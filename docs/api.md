@@ -1,6 +1,18 @@
 # 调用合同（1.20.1-forge）
 
-MCP外层工具固定18项，动态动作通过describe_action/list_capabilities发现。桥接使用stdio每行一个JSON-RPC消息；localhost HTTP的POST `/call` 是内部鉴权端点，不暴露公网。
+MCP外层工具19项（新增只读get_context），动态动作通过describe_action/list_capabilities发现。桥接使用stdio每行一个JSON-RPC消息；localhost HTTP的POST `/call` 是内部鉴权端点，不暴露公网。
+
+## 原生聊天输入与运行上下文
+
+先get_context()（或observe(kind="context")）读取mode、transport、native_chat_allowed、server.cheats_enabled与player.permission_level。主菜单返回unknown；单人服务器首读refresh_pending时重读，读取observed_at_ms确认快照时间。远程服务器的全局作弊设置不公开时是unknown，不能用玩家OP权限反推作弊开关。
+
+使用execute_action(action="chat.submit", arguments={"text":完整单行文本}, action_id=唯一ID)提交AI自行构造的文本；不加、不删、不固定任何前缀。例如普通消息、/time query daytime、#mine 16 minecraft:iron_ore、.help均由当前客户端原生处理链和已装模组接管。仅校验非空单行及256字符上限；Minecraft本身仍会按正常聊天规则归一化空格，不能承诺逐字节发到服务器。
+
+- MCPMCP不按文本前缀分类或根据mode封锁chat.submit的内容，游戏和模组自行接受或拒绝；此能力受input执行方式约束，PACKET拒绝，SIMULATE/MIXED可用。mode与服务器权限查询供AI按用户任务自行决策，开放输入不是自动授权作弊、改配方、改客户端文件或修改其他模组设置。
+- 先确认已在世界、无打开界面；有界面返回close_existing_screen_first，不覆盖玩家正在编辑的聊天或容器。仅submitted表示进入原生提交链，不证明服务器执行、模组接管或采集完成。读get_chat_messages和结构化效果验证；未知前缀可能变成普通公开聊天，不能假设任意模组已安装或前缀固定。
+- Baritone支持所需批量采集命令时，让AI用该客户端实际前缀和帮助自行组合指令，避免逐矿石“扫描+move.to+player.dig”；精确坐标拆除仍可用player.dig。采集数量语义按实际模组帮助核对，独立读库存增量，不把命令受理当产物成功。
+- 原生提交后启动的Baritone/Meteor等后台流程不属于chat.submit这个短任务；get_job或cancel_job仅描述提交，不代表后台已停止。按模组帮助通过同一入口发送停止命令并验证，例如已核实默认前缀时#stop；不得依赖MCP stop能通用停止任意模组流程。
+- chat.send和command是保留的旧直发兼容接口，有原有权限/前缀限制，不能替代原生聊天模组命令。优先chat.submit，原生ui.key的旧权限保护仍保留，权限设置页也不自动化。
 
 ## 任务
 

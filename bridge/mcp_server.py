@@ -24,6 +24,7 @@ def string(maximum=128):return {'type':'string','minLength':1,'maxLength':maximu
 def declaration(name,description,properties=None,required=None,write=False):return {'name':name,'description':description,'inputSchema':{'type':'object','properties':properties or {},'required':required or [],'additionalProperties':False},'annotations':{'readOnlyHint':not write,'destructiveHint':write,'openWorldHint':False}}
 OBJECT={'type':'object','additionalProperties':True}
 TOOLS=[
+ declaration('get_context','只读查询当前MCPMCP模式、执行方式、服务器作弊开关和玩家命令权限；远程未同步字段明确unknown，单人异步快照pending时重复查询。'),
  declaration('get_status','读取主菜单/世界连接、模式、插件和任务状态。'),
  declaration('list_capabilities','列出可调用动作与查询能力。'),
  declaration('describe_action','读取动作参数、执行方式、前置条件和验证说明。',{'action':string()},['action']),
@@ -43,7 +44,7 @@ TOOLS=[
  declaration('read_plugin_file','只读取 MCPMCP-Plugin 内声明和文档，不读取其他客户端文件。',{'path':string(512)},['path']),
  declaration('write_plugin_file','只写 MCPMCP-Plugin 内文本文件；不能安装或覆盖二进制代码。',{'path':string(512),'text':{'type':'string','maxLength':262144,'minLength':0}},['path','text'],True),
 ]
-ALIASES={'get_player_state':'player','get_inventory':'inventory','get_screen':'screen','get_recipes':'recipes','get_chat_messages':'chat','get_mods':'mods','get_paths':'paths'}
+ALIASES={'get_context':'context','get_player_state':'player','get_inventory':'inventory','get_screen':'screen','get_recipes':'recipes','get_chat_messages':'chat','get_mods':'mods','get_paths':'paths'}
 def validate(v,s,depth=0,budget=None):
  if budget is None:budget=[8192]
  budget[0]-=1
@@ -94,7 +95,7 @@ class Server:
   if 'id'not in m:return None
   i=m['id'];method=m['method'];p=m.get('params',{})
   if not isinstance(p,dict):return self.error(i,-32602,'params must be object')
-  if method=='initialize':r={'protocolVersion':p.get('protocolVersion')if p.get('protocolVersion')in('2025-11-25','2025-06-18','2025-03-26','2024-11-05')else'2025-03-26','serverInfo':{'name':'mcpmcp','version':'0.1.1'},'capabilities':{'tools':{'listChanged':False}},'instructions':'先读能力与状态，优先结构化观测player/state/inventory/container/blocks/entities/screen；先小范围粗查、再目标细查，按next_offset/next_cursor续查。dig_target_occluded先读玩家与目标邻域、检查距离遮挡并调整安全站位；分页未完、unknown、一次失败均不直接转截图。截图识图仅作最后手段：写明未解视觉问题和已尝试路径，仅最小必要区域识别一次，不做例行截图；用户明确要求检查画面或留证时按需处理。submitted不代表成功，以实时结构化读回验证。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。'}
+  if method=='initialize':r={'protocolVersion':p.get('protocolVersion')if p.get('protocolVersion')in('2025-11-25','2025-06-18','2025-03-26','2024-11-05')else'2025-03-26','serverInfo':{'name':'mcpmcp','version':'0.1.2'},'capabilities':{'tools':{'listChanged':False}},'instructions':'先get_context查询模式/执行方式/服务器作弊与玩家权限；chat.submit接收AI编写的完整文本，不补前缀、不分类普通消息和模组命令，经原生聊天提交链路，客户端/服务器决定接管或拒绝；仅交送不代表命令完成，后台任务用该模组自身停止命令。先读能力与状态，优先结构化观测player/state/inventory/container/blocks/entities/screen；先小范围粗查、再目标细查，按next_offset/next_cursor续查。dig_target_occluded先读玩家与目标邻域、检查距离遮挡并调整安全站位；分页未完、unknown、一次失败均不直接转截图。截图识图仅作最后手段：写明未解视觉问题和已尝试路径，仅最小必要区域识别一次，不做例行截图；用户明确要求检查画面或留证时按需处理。submitted不代表成功，以实时结构化读回验证。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。'}
   elif method=='ping':r={}
   elif method=='tools/list':r={'tools':TOOLS}
   elif method=='tools/call':

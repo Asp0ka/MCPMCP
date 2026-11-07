@@ -1,0 +1,14 @@
+{
+  "configuration_non_secret": {
+    "mode": "NORMAL",
+    "transport": "MIXED",
+    "debug": false,
+    "trustJavaPlugins": false,
+    "port": 5007,
+    "scanBudget": 4096,
+    "pluginOverrides": {}
+  },
+  "installed_jar": "D:\\Games\\mc\\Cheat\\versions\\1.20.1-Forge_47.4.28-test\\mods\\mcpmcp-1.20.1-forge-0.1.2.jar",
+  "installed_jar_sha256": "4e6366b4166f8b0ca033b840f0eb61a97d816dc65678765578f655f2ce6c4679",
+  "evidence_event_rows": 317
+}

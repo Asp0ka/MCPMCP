@@ -1,12 +1,12 @@
 # MCP Minecraft Plus（MCPMCP）
 
-Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.28 / Java 17**，版本 `0.1.1`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
+Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.28 / Java 17**，版本 `0.1.2`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
 
 这是独立重写工程。协议、权限与任务位于 `core`，插件API位于 `plugin-api`，Minecraft类型与Forge实现位于 `versions/1.20.1-forge`，Python桥接位于 `bridge`。后续版本/加载器仍需实现各自适配层，当前JAR不能直接跨版本或直接用于Fabric/NeoForge。
 
 ## 使用
 
-1. 向对应实例 `mods` 安装 `versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.1.jar`。按该游戏版本安装Forge；需要寻路时安装相容Baritone。无需JEI/REI。
+1. 向对应实例 `mods` 安装 `versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.2.jar`。按该游戏版本安装Forge；需要寻路时安装相容Baritone。无需JEI/REI。
 2. 正常启动游戏。主菜单即启动本地MCPMCP服务；首次生成 `config/mcpmcp.json`，默认 `NORMAL + MIXED`、DEBUG关闭、Java插件不信任。
 3. 用Python 3.10+运行：
 
@@ -26,10 +26,26 @@ Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.
 - Baritone有界移动/停止；视角、潜行、交互、挖掘、放置、长按、骑乘输入；聊天和显式指令。
 - 玩家2×2/工作台3×3合成；槽位移动；熔炉、酿造、铁砧、砂轮、制图、切石等工作菜单的有界步骤；装备和收纳袋操作。
 - 容器状态保持：已有菜单复用，临时打开的菜单结束后关闭。游标保护、任务取消恢复、手动菜单冲突拒绝，未恢复情况通过status报告。
-- 18个稳定MCP工具与动态动作目录；声明插件热重载，可选可信Java适配器冷加载，recipes等观测Provider扩展。
+- 19个MCP工具与动态动作目录；声明插件热重载，可选可信Java适配器冷加载，recipes等观测Provider扩展。
 - 已知PLAY封包目录/描述、现有连接上的有界元信息捕获，以及受权限约束的构造器/已核对wire发送。
 
 完整可调用参数以运行中的 `describe_action` 为准。`submitted` 不代表服务器接受；容器步骤等待同步、任务状态与独立读回共同构成验收。实测范围与限制见 [docs/acceptance.md](docs/acceptance.md)。
+
+## 原生聊天输入与运行上下文
+
+先get_context()（或observe(kind="context")）读取mode、transport、native_chat_allowed、server.cheats_enabled与player.permission_level。主菜单返回unknown；单人服务器首读refresh_pending时重读，读取observed_at_ms确认快照时间。远程服务器的全局作弊设置不公开时是unknown，不能用玩家OP权限反推作弊开关。
+
+使用execute_action(action="chat.submit", arguments={"text":完整单行文本}, action_id=唯一ID)提交AI自行构造的文本；不加、不删、不固定任何前缀。例如普通消息、/time query daytime、#mine 16 minecraft:iron_ore、.help均由当前客户端原生处理链和已装模组接管。仅校验非空单行及256字符上限；Minecraft本身仍会按正常聊天规则归一化空格，不能承诺逐字节发到服务器。
+
+- MCPMCP不按文本前缀分类或根据mode封锁chat.submit的内容，游戏和模组自行接受或拒绝；此能力受input执行方式约束，PACKET拒绝，SIMULATE/MIXED可用。mode与服务器权限查询供AI按用户任务自行决策，开放输入不是自动授权作弊、改配方、改客户端文件或修改其他模组设置。
+- 先确认已在世界、无打开界面；有界面返回close_existing_screen_first，不覆盖玩家正在编辑的聊天或容器。仅submitted表示进入原生提交链，不证明服务器执行、模组接管或采集完成。读get_chat_messages和结构化效果验证；未知前缀可能变成普通公开聊天，不能假设任意模组已安装或前缀固定。
+- Baritone支持所需批量采集命令时，让AI用该客户端实际前缀和帮助自行组合指令，避免逐矿石“扫描+move.to+player.dig”；精确坐标拆除仍可用player.dig。采集数量语义按实际模组帮助核对，独立读库存增量，不把命令受理当产物成功。
+- 原生提交后启动的Baritone/Meteor等后台流程不属于chat.submit这个短任务；get_job或cancel_job仅描述提交，不代表后台已停止。按模组帮助通过同一入口发送停止命令并验证，例如已核实默认前缀时#stop；不得依赖MCP stop能通用停止任意模组流程。
+- chat.send和command是保留的旧直发兼容接口，有原有权限/前缀限制，不能替代原生聊天模组命令。优先chat.submit，原生ui.key的旧权限保护仍保留，权限设置页也不自动化。
+
+## 原生聊天输入与运行上下文
+
+`chat.submit` 接受AI编写的完整单行文本，不补前缀、不按用途分类；普通消息、`/命令`、`#Baritone`、`.`模组命令走客户端原生提交链。`get_context` 只读返回当前 mode、transport、服务器作弊开关和玩家命令权限，远程未公开值返回 unknown。详见 [0.1.2 更新记录](docs/native-chat-0.1.2.md)。
 
 ## 插件设置与语言
 
@@ -83,7 +99,7 @@ python scripts/live_acceptance.py --scenario all_regressions
 
 ## 打包
 
-构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.1-1.20.1-forge.zip`，包含JAR、stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
+构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.2-1.20.1-forge.zip`，包含JAR、stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
 
 ## 开发
 

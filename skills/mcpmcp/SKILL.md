@@ -1,7 +1,7 @@
 ---
 name: mcpmcp
 description: Use when operating Minecraft through MCPMCP.
-version: 0.1.0
+version: 0.1.2
 author: MCPMCP contributors
 license: MIT
 platforms: [windows]
@@ -50,8 +50,20 @@ metadata:
 | 容器 | `container.move/craft/sequence/smelt/brew/workstation` |
 | 装备/袋 | `inventory.equip/unequip/bundle`，玩家菜单槽号 |
 | UI | `ui.click/focus/text/key/mouse/scroll` |
-| 聊天 | `chat.send`（无 slash）；`command` 需 CHEAT |
+| 原生聊天/指令 | `chat.submit`，完整文本自行提供；先 `get_context` |
 | 插件 | `get_plugins`, `read_plugin_file`, `write_plugin_file`, `reload_plugins` |
+
+## 原生聊天输入与运行上下文
+
+先get_context()（或observe(kind="context")）读取mode、transport、native_chat_allowed、server.cheats_enabled与player.permission_level。主菜单返回unknown；单人服务器首读refresh_pending时重读，读取observed_at_ms确认快照时间。远程服务器的全局作弊设置不公开时是unknown，不能用玩家OP权限反推作弊开关。
+
+使用execute_action(action="chat.submit", arguments={"text":完整单行文本}, action_id=唯一ID)提交AI自行构造的文本；不加、不删、不固定任何前缀。例如普通消息、/time query daytime、#mine 16 minecraft:iron_ore、.help均由当前客户端原生处理链和已装模组接管。仅校验非空单行及256字符上限；Minecraft本身仍会按正常聊天规则归一化空格，不能承诺逐字节发到服务器。
+
+- MCPMCP不按文本前缀分类或根据mode封锁chat.submit的内容，游戏和模组自行接受或拒绝；此能力受input执行方式约束，PACKET拒绝，SIMULATE/MIXED可用。mode与服务器权限查询供AI按用户任务自行决策，开放输入不是自动授权作弊、改配方、改客户端文件或修改其他模组设置。
+- 先确认已在世界、无打开界面；有界面返回close_existing_screen_first，不覆盖玩家正在编辑的聊天或容器。仅submitted表示进入原生提交链，不证明服务器执行、模组接管或采集完成。读get_chat_messages和结构化效果验证；未知前缀可能变成普通公开聊天，不能假设任意模组已安装或前缀固定。
+- Baritone支持所需批量采集命令时，让AI用该客户端实际前缀和帮助自行组合指令，避免逐矿石“扫描+move.to+player.dig”；精确坐标拆除仍可用player.dig。采集数量语义按实际模组帮助核对，独立读库存增量，不把命令受理当产物成功。
+- 原生提交后启动的Baritone/Meteor等后台流程不属于chat.submit这个短任务；get_job或cancel_job仅描述提交，不代表后台已停止。按模组帮助通过同一入口发送停止命令并验证，例如已核实默认前缀时#stop；不得依赖MCP stop能通用停止任意模组流程。
+- chat.send和command是保留的旧直发兼容接口，有原有权限/前缀限制，不能替代原生聊天模组命令。优先chat.submit，原生ui.key的旧权限保护仍保留，权限设置页也不自动化。
 
 ## 容器与工作方块
 
@@ -67,7 +79,7 @@ metadata:
 
 - NORMAL 遵守正常客户端距离、可视和槽位规则；HACK 允许明确的额外封包行为；CHEAT 允许游戏指令；HACK_CHEAT 同时允许。服务器仍有最终权限。
 - PACKET 禁止原生UI模拟和 Baritone；不要静默改模式或降级模拟。SIMULATE 通过客户端操作路径；最终仍由游戏发送协议包，不代表离线操作。
-- 不通过 UI 设置、聊天slash或声明permission绕过模式。自动化不能操作控制自身权限的 MCP 设置；权限由用户在本地设置/配置。
+- 不通过 UI 设置或声明permission擅自提权；chat.submit的内容由AI结合get_context与用户任务自主决策，旧直发command仍需CHEAT。自动化不能操作控制自身权限的 MCP 设置；权限由用户在本地设置/配置。
 - 原始封包仅针对经核对的 C2S 类/布局，最低权限由核心确定。不能用任意构造器、CustomPayload、命令方块/结构/书编辑载荷来绕过文件保护。
 
 ## 观测与输入

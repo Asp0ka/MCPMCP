@@ -27,6 +27,7 @@ public final class Observations {
         try {
             Minecraft mc=Minecraft.getInstance();
             return switch(kind) {
+                case "context"->ContextObservation.read();
                 case "screen"->UiActions.read(args);
                 case "screenshot"->UiActions.execute("screenshot",args);
                 case "recipes"->RecipeService.read(args);
