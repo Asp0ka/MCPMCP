@@ -1,0 +1,26 @@
+Compiled from "QuestObject.java"
+public abstract class dev.ftb.mods.ftbquests.quest.QuestObject extends dev.ftb.mods.ftbquests.quest.QuestObjectBase {
+  protected boolean disableToast;
+  public dev.ftb.mods.ftbquests.quest.QuestObject(long);
+  public void writeData(net.minecraft.nbt.CompoundTag);
+  public void readData(net.minecraft.nbt.CompoundTag);
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+  public void forceProgress(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange);
+  public abstract int getRelativeProgressFromChildren(dev.ftb.mods.ftbquests.quest.TeamData);
+  public boolean cacheProgress();
+  public static int getRelativeProgressFromChildren(int, int);
+  public boolean isVisible(dev.ftb.mods.ftbquests.quest.TeamData);
+  public boolean isSearchable(dev.ftb.mods.ftbquests.quest.TeamData);
+  public void onStarted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+  public void onCompleted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+  protected void verifyDependenciesInternal(long, int);
+  public dev.ftb.mods.ftblibrary.icon.Color4I getProgressColor(dev.ftb.mods.ftbquests.quest.TeamData);
+  public dev.ftb.mods.ftblibrary.icon.Color4I getProgressColor(dev.ftb.mods.ftbquests.quest.TeamData, boolean);
+  public java.util.Collection<? extends dev.ftb.mods.ftbquests.quest.QuestObject> getChildren();
+  public boolean isCompletedRaw(dev.ftb.mods.ftbquests.quest.TeamData);
+  public boolean isOptionalForProgression(dev.ftb.mods.ftbquests.quest.TeamData);
+  public boolean hasUnclaimedRewardsRaw(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID);
+  private void lambda$fillConfigGroup$0(java.lang.Boolean);
+}

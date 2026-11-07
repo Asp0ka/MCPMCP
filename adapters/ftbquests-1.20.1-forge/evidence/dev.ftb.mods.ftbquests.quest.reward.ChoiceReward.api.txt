@@ -1,0 +1,10 @@
+Compiled from "ChoiceReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.ChoiceReward extends dev.ftb.mods.ftbquests.quest.reward.RandomReward {
+  public dev.ftb.mods.ftbquests.quest.reward.ChoiceReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+  public void onButtonClicked(dev.ftb.mods.ftblibrary.ui.Button, boolean);
+  public boolean getExcludeFromClaimAll();
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+}

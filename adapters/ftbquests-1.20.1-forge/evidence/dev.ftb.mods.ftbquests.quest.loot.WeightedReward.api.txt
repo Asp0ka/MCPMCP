@@ -1,0 +1,13 @@
+Compiled from "WeightedReward.java"
+public class dev.ftb.mods.ftbquests.quest.loot.WeightedReward implements java.lang.Comparable<dev.ftb.mods.ftbquests.quest.loot.WeightedReward> {
+  private final dev.ftb.mods.ftbquests.quest.reward.Reward reward;
+  private float weight;
+  public dev.ftb.mods.ftbquests.quest.loot.WeightedReward(dev.ftb.mods.ftbquests.quest.reward.Reward, float);
+  public dev.ftb.mods.ftbquests.quest.reward.Reward getReward();
+  public float getWeight();
+  public void setWeight(float);
+  public static java.lang.String chanceString(float, float, boolean);
+  public static java.lang.String chanceString(float, float);
+  public int compareTo(dev.ftb.mods.ftbquests.quest.loot.WeightedReward);
+  public int compareTo(java.lang.Object);
+}

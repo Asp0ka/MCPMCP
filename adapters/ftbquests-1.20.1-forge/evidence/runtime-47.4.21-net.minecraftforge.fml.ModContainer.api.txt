@@ -1,0 +1,40 @@
+Compiled from "ModContainer.java"
+public abstract class net.minecraftforge.fml.ModContainer {
+  protected final java.lang.String modId;
+  protected final java.lang.String namespace;
+  protected final net.minecraftforge.forgespi.language.IModInfo modInfo;
+  protected net.minecraftforge.fml.ModLoadingStage modLoadingStage;
+  protected java.util.function.Supplier<?> contextExtension;
+  protected final java.util.Map<net.minecraftforge.fml.ModLoadingStage, java.lang.Runnable> activityMap;
+  protected final java.util.Map<java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<?>>, java.util.function.Supplier<?>> extensionPoints;
+  protected final java.util.EnumMap<net.minecraftforge.fml.config.ModConfig$Type, net.minecraftforge.fml.config.ModConfig> configs;
+  protected java.util.Optional<java.util.function.Consumer<net.minecraftforge.fml.config.IConfigEvent>> configHandler;
+  public net.minecraftforge.fml.ModContainer(net.minecraftforge.forgespi.language.IModInfo);
+  net.minecraftforge.fml.ModContainer();
+  public final java.lang.String getModId();
+  public final java.lang.String getNamespace();
+  public net.minecraftforge.fml.ModLoadingStage getCurrentState();
+  public static <T extends net.minecraftforge.eventbus.api.Event & net.minecraftforge.fml.event.IModBusEvent> java.util.concurrent.CompletableFuture<java.lang.Void> buildTransitionHandler(net.minecraftforge.fml.ModContainer, net.minecraftforge.fml.IModStateTransition$EventGenerator<T>, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.BiFunction<net.minecraftforge.fml.ModLoadingStage, java.lang.Throwable, net.minecraftforge.fml.ModLoadingStage>, java.util.concurrent.Executor);
+  public net.minecraftforge.forgespi.language.IModInfo getModInfo();
+  public <T extends java.lang.Record> java.util.Optional<T> getCustomExtension(java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<T>>);
+  public <T extends java.lang.Record & net.minecraftforge.fml.IExtensionPoint<T>> void registerExtensionPoint(java.lang.Class<? extends net.minecraftforge.fml.IExtensionPoint<T>>, java.util.function.Supplier<T>);
+  public void registerDisplayTest(net.minecraftforge.fml.IExtensionPoint$DisplayTest);
+  public void registerDisplayTest(java.util.function.Supplier<net.minecraftforge.fml.IExtensionPoint$DisplayTest>);
+  public void registerDisplayTest(java.lang.String, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public void registerDisplayTest(java.util.function.Supplier<java.lang.String>, java.util.function.BiPredicate<java.lang.String, java.lang.Boolean>);
+  public void addConfig(net.minecraftforge.fml.config.ModConfig);
+  public void dispatchConfigEvent(net.minecraftforge.fml.config.IConfigEvent);
+  public abstract boolean matches(java.lang.Object);
+  public abstract java.lang.Object getMod();
+  protected <T extends net.minecraftforge.eventbus.api.Event & net.minecraftforge.fml.event.IModBusEvent> void acceptEvent(T);
+  private static void lambda$dispatchConfigEvent$9(net.minecraftforge.fml.config.IConfigEvent, java.util.function.Consumer);
+  private static net.minecraftforge.fml.IExtensionPoint$DisplayTest lambda$registerDisplayTest$8(net.minecraftforge.fml.IExtensionPoint$DisplayTest);
+  private static java.lang.Object lambda$getCustomExtension$7();
+  private static void lambda$buildTransitionHandler$6(net.minecraftforge.fml.ModContainer, java.util.function.BiFunction, net.minecraftforge.fml.loading.progress.ProgressMeter, java.lang.Void, java.lang.Throwable);
+  private static void lambda$buildTransitionHandler$5(net.minecraftforge.fml.ModContainer, net.minecraftforge.fml.IModStateTransition$EventGenerator);
+  private static void lambda$buildTransitionHandler$4();
+  private net.minecraftforge.fml.IExtensionPoint$DisplayTest lambda$new$3();
+  private boolean lambda$new$2(java.lang.String, java.lang.Boolean);
+  private java.lang.String lambda$new$1();
+  private static java.lang.String lambda$new$0(net.minecraftforge.forgespi.language.IModInfo);
+}

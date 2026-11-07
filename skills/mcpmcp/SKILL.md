@@ -32,9 +32,9 @@ metadata:
 ## 操作顺序
 
 1. 调用 `get_status`、`list_capabilities`，确认实例、world_epoch、连接、模式、执行方式、插件状态与恢复状态。主菜单时仍可使用 screen、screenshot 和 world/UI 动作。
-2. 对每项动作读 `describe_action`。动作参数是版本合同；不能照抄别的版本或旧工程的槽号。
+2. 对每项动作读 `describe_action`。动作参数是版本合同；不能照抄别的版本或旧工程的槽号。查询与dry-run必须保持不发包、不写物品或界面的合同；开发适配时审查原生helper及事件回调的实际副作用，不能因方法名是get/can/simulate就把它当成纯读取。
 3. 按下方“观测与输入”规则，先读结构化玩家状态，再读与目标有关的背包/装备/局部方块/实体/当前菜单，确定目标坐标与可操作前提；不要每轮先截图。每次打开、关闭或切换界面后重新读取，断言预期菜单类型、身份和同步就绪，再执行后续步骤；打开失败后仍可能读到玩家菜单的同号槽位。`container_slot` 是来源容器索引；执行 `slot` 必须使用当前菜单返回的槽号。核对物品ID、count、NBT、目标容量和空游标，不混用背包与菜单索引。
-4. 使用唯一 `action_id` 调用 `execute_action`，保留该 ID。`queued`/`running` 继续查 `get_job`；`submitted` 只证明已交送。按动作核对材料与产物总量、目标坐标、装备槽或NBT，不以任意状态变化代替目标效果；客户端槽位预测、state_id增加或炉火进度变化均不能证明服务端接受。需要持久性时关闭重开同一容器复查。
+4. 使用唯一 `action_id` 调用 `execute_action`，保留该 ID。`queued`/`running` 继续查 `get_job`；同时读取插件内层结果：外层任务的`submitted`可能包着`result.data.status=dry_run/unchanged/delivery_unknown`，不能覆盖这些语义或计为实际发送。真实提交也只证明交送；按动作核对材料与产物总量、目标坐标、装备槽或NBT，不以任意状态变化代替目标效果。客户端槽位预测、state_id增加或炉火进度变化均不能证明服务端接受；需要持久性时关闭重开同一容器复查。
 5. 网络超时返回 `delivery_unknown` 时，先查同一 ID 和实时状态，不换新 ID重复非幂等动作。ID结果已过期且无法确认效果时停止重试，报告不确定结果。
 6. 取消用 `cancel_job`；紧急停止用 `execute_action(action="stop")`。之后核对移动、按键、游标、菜单和 `recovery_active/recovery_error`。恢复未完成时先解决，不启动下一批库存操作。
 
@@ -108,6 +108,8 @@ metadata:
 
 回答“是否适配”或扩展实现范围时，先核对当前源码注册、发布清单和实际验收记录，分别说明独立适配、间接读取与未实现能力；字段如 `includes_curios` 只证明上游法术管理器包含饰品来源，不证明通用饰品槽读取、穿戴或拓展技能已实现。通用 API 接入、拓展新增数据和拓展专属主动技能分别列范围，避免把已交付插件数量写成整个模组生态的覆盖承诺。
 
+适配批量或“一键”动作时，先核对原生处理器真正遍历的对象、排除项与副作用，再提供与该范围一致的预览和提交合同；不能给一个全局请求加上不起作用的章节/类型过滤并声称只操作筛选结果。选择型操作必须显式传选择及其对象身份，不默认第一项；完成、可领取、已领取和实际奖励到帐分别验证。64位对象ID通过接口全程用经过格式校验的字符串传输，避免JSON浮点损失导致操作另一个对象。
+
 - `jei.transfer` 的 `submitted` 只说明交给 JEI 处理器；读 `jei.transfer` 回执和容器槽位才算填料。JEI 15.20 无完成回调，必须读槽位。
 - RS 网格、精妙存储/背包、更多熔炉等菜单型查询要求真实已打开菜单；不在菜单时返回 `available=false`，不要推断服务端库存。
 - 精妙/熔炉 quick_move 合同v2要求 `expected_stack_hash`，从同次observer的 `data.slots[].item.stack_hash` 获取，并一起绑定menu_id/menu_token/state_id、item_id/count；包含普通NBT、ForgeCaps和完整count。旧指纹拒绝后重新观察，不用同ID/count猜身份。背包开启合成升级时，quick_move遵循该模组的升级优先路由，不承诺固定目的槽；读回实际role，定向放置用container.move。
@@ -117,6 +119,9 @@ metadata:
 - Curios独立插件 `mcpmcp.curios` 已支持5.14.1+1.20.1 V2；先 `observe curios` 读闭合合同，`curios.slots` 无GUI读取动态普通/外观槽及拓展identifier，`curios.menu`取session/menu/state与真实当前页槽，`curios.candidates`只查指定背包物品的客户端原生谓词。不要硬编码ring数量或用46+index猜槽号，页外ProxySlot不能点击，外观页也可能混入无外观支持的功能槽。
 - Curios写动作为normal/packet，dry_run默认true。`curios.swap`只做hotbar0..8与当前页真实CurioSlot单次SWAP，intent为equip/unequip/exchange，两侧ID/count/完整stack_hash连同identifier/index/cosmetic必填，空栈也要精确hash。非hotbar先core container.move定向暂存再刷新。保留原生标签、重复限制、绑定诅咒和事件；未知包装器只读，不直接写capability或增减槽位。
 - Curios开关显式组织：原已开目标菜单保持；原关闭先curios.open→读回→操作/读回→curios.close→读回，其他界面冲突停止。page仅相邻，切页/切外观后重读session；render.set与cosmetics.set用expected_boolean+value防盲切，pending时先观察，交送不确定勿换UUID重发。Curios泛用饰品支持不等于附属主动技能覆盖；显示标志false也不等于非空外观饰品消失或功能停用。
+- FTB Quests独立插件 `mcpmcp.ftbquests` 适配2001.4.22；先observe ftbquests读合同。book/chapters/quests/quest/rewards查询当前玩家同步的可见内容/依赖/任务进度/奖励，隐藏数字/正文为null或unknown，不查其它队伍或ServerQuestFile。对象ID全程16位小写hex字符串，禁止JSON数字。ItemReward用item.item_id/configured_count/stack_hash识别，不从标题猜物品或数量。
+- FTB单领reward.claim与选择reward.choose必须session、完整reward_hash；choose显式choice_index和完整table_hash，不能默认第一项。rewards.claim_all必须完整走完无过滤claimable预览，绑定preview_token/scope=all_not_excluded/hash/count/max_rewards，一次全域原生请求，不支持章或类型过滤。先审阅全部候选/递归effects，可能含command/custom/random，隐藏或未知路由拒绝整批；客户端摘要无法消除服务端竞态。
+- FTB任务确认只支持task.check：已读取正文、acknowledge_read:true、可见/可开始/未完成且不消耗资源的checkmark、完整task定义hash，auto奖励必须全DISABLED；不编辑/reset/设进度或提交物品任务。dry_run与实际提交用不同request_id/action_id，二者分别保持内外同UUID；实际提交未知时保留原UUID查receipt，pending未解决不换新UUID重发。单领/一键/Choice都要分别核对claimed和库存/XP/其它实际效果；重复任务可能瞬时重置不能据此重试。
 - 插件返回的业务错误现在会原样上报，不再变成 `unknown_observation`；看到 `not_in_world` 先进入世界。
 
 ## 插件

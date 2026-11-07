@@ -1,0 +1,69 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+group = 'dev.mcpmcp.adapters'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+repositories { mavenCentral() }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+def platformRoot = file('../..')
+def targets = new groovy.json.JsonSlurper().parse(file('targets.json'))
+def localRepo = file('.gradle/target-dependencies')
+localRepo.mkdirs()
+repositories { flatDir { dirs localRepo } }
+def mappedTargets = targets.collect { t ->
+ def source = providers.gradleProperty(t.mod_id + 'Jar').map { file(it) }.getOrElse(file(t.path))
+ if (!source.isFile()) throw new GradleException('Missing exact target: ' + t.mod_id)
+ if (java.security.MessageDigest.getInstance('SHA-256').digest(source.bytes).encodeHex().toString() != t.sha256) throw new GradleException('Target SHA-256 mismatch: ' + t.mod_id)
+ def alias = new File(localRepo, t.mod_id + '-' + t.version + '.jar')
+ if (!alias.isFile() || !java.util.Arrays.equals(alias.bytes, source.bytes)) alias.bytes = source.bytes
+ fg.deobf('local.mcpmcp.' + t.sha256 + ':' + t.mod_id + ':' + t.version)
+}
+dependencies {
+ minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+ mappedTargets.each { compileOnly it; testImplementation it }
+ compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ compileOnly 'com.google.code.gson:gson:2.10'
+ testImplementation 'com.google.code.gson:gson:2.10'
+}
+jar {
+ archiveFileName = 'adapter.jar'
+ manifest { attributes 'Implementation-Title':'MCPMCP FTB Quests adapter', 'Implementation-Version':project.version }
+ preserveFileTimestamps = false
+ reproducibleFileOrder = true
+}
+jar.finalizedBy 'reobfJar'
+tasks.register('adapterContractTest', JavaExec) {
+ dependsOn testClasses
+ classpath = sourceSets.test.runtimeClasspath
+ mainClass = 'dev.mcpmcp.ftbquests.AdapterTest'
+ workingDir = layout.buildDirectory.dir('contract-test-run').get().asFile
+ systemProperty 'adapter.projectDir', projectDir.absolutePath
+ systemProperty 'file.encoding', 'UTF-8'
+ doFirst { workingDir.mkdirs() }
+}
+check.dependsOn adapterContractTest
+tasks.register('stageDistribution', Copy) {
+ dependsOn 'reobfJar', 'check'
+ from(tasks.named('jar').flatMap { it.archiveFile })
+ from('plugin.json', 'GUIDE.md')
+ into layout.projectDirectory.dir('distribution')
+}
+tasks.register('verifyDistribution') {
+ dependsOn 'stageDistribution'
+ doLast {
+  def built = tasks.named('jar').get().archiveFile.get().asFile
+  def staged = file('distribution/adapter.jar')
+  if (!java.util.Arrays.equals(built.bytes, staged.bytes)) throw new GradleException('Distribution differs from reobf output')
+  ['plugin.json','GUIDE.md'].each { n -> if (!java.util.Arrays.equals(file(n).bytes,file('distribution/'+n).bytes)) throw new GradleException('Stale distribution document: '+n) }
+  if (new java.util.HashSet(java.util.Arrays.asList(file('distribution').list())) != ['adapter.jar','plugin.json','GUIDE.md'].toSet()) throw new GradleException('Unexpected distribution entries')
+  def zip = new java.util.zip.ZipFile(staged)
+  try {
+   def service = zip.getEntry('META-INF/services/dev.mcpmcp.api.McpmcpPlugin')
+   if (service == null || zip.getInputStream(service).getText('UTF-8').trim() != 'dev.mcpmcp.ftbquests.FtbQuestsProvider') throw new GradleException('Wrong SPI provider')
+   zip.entries().each { e -> if (e.name.endsWith('.class') && (!e.name.startsWith('dev/mcpmcp/ftbquests/') || e.name.contains('Test') || e.name.contains('Host'))) throw new GradleException('Bundled foreign/test class: '+e.name) }
+  } finally { zip.close() }
+  logger.lifecycle('Verified reobf distribution SHA-256: '+java.security.MessageDigest.getInstance('SHA-256').digest(staged.bytes).encodeHex().toString())
+ }
+}
+tasks.named('build') { dependsOn 'verifyDistribution' }

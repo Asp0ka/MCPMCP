@@ -1,0 +1,468 @@
+Compiled from "ClientQuestFile.java"
+public class dev.ftb.mods.ftbquests.client.ClientQuestFile extends dev.ftb.mods.ftbquests.quest.BaseQuestFile {
+  private static final java.util.List<java.lang.String> MISSING_DATA_ERR;
+
+  public static dev.ftb.mods.ftbquests.client.ClientQuestFile INSTANCE;
+
+  public dev.ftb.mods.ftbquests.quest.TeamData selfTeamData;
+
+  private dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen questScreen;
+
+  private dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen$PersistedData persistedData;
+
+  private boolean editorPermission;
+
+  public dev.ftb.mods.ftbquests.client.ClientQuestFile();
+    Code:
+       0: aload_0
+       1: invokespecial #37                 // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile."<init>":()V
+       4: return
+
+  public static boolean exists();
+    Code:
+       0: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       3: ifnull        19
+       6: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       9: getfield      #45                 // Field invalid:Z
+      12: ifne          19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: ireturn
+
+  public static void syncFromServer(dev.ftb.mods.ftbquests.quest.BaseQuestFile);
+    Code:
+       0: aload_0
+       1: instanceof    #2                  // class dev/ftb/mods/ftbquests/client/ClientQuestFile
+       4: ifeq          15
+       7: aload_0
+       8: checkcast     #2                  // class dev/ftb/mods/ftbquests/client/ClientQuestFile
+      11: astore_1
+      12: goto          25
+      15: new           #50                 // class java/lang/IllegalArgumentException
+      18: dup
+      19: ldc           #52                 // String need a client quest file instance!
+      21: invokespecial #55                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      24: athrow
+      25: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      28: ifnull        43
+      31: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      34: invokevirtual #58                 // Method deleteChildren:()V
+      37: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      40: invokevirtual #61                 // Method deleteSelf:()V
+      43: aload_1
+      44: putstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      47: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      50: invokevirtual #64                 // Method onReplaced:()V
+      53: return
+
+  private void onReplaced();
+    Code:
+       0: aload_0
+       1: new           #68                 // class dev/ftb/mods/ftbquests/quest/TeamData
+       4: dup
+       5: getstatic     #74                 // Field net/minecraft/Util.f_137441_:Ljava/util/UUID;
+       8: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      11: ldc           #76                 // String Loading...
+      13: invokespecial #79                 // Method dev/ftb/mods/ftbquests/quest/TeamData."<init>":(Ljava/util/UUID;Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;Ljava/lang/String;)V
+      16: putfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      19: aload_0
+      20: getfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      23: iconst_1
+      24: invokevirtual #85                 // Method dev/ftb/mods/ftbquests/quest/TeamData.setLocked:(Z)Z
+      27: pop
+      28: aload_0
+      29: invokevirtual #88                 // Method refreshGui:()V
+      32: invokestatic  #94                 // Method dev/ftb/mods/ftbquests/FTBQuests.getRecipeModHelper:()Ldev/ftb/mods/ftbquests/integration/RecipeModHelper;
+      35: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      38: invokeinterface #100,  2          // InterfaceMethod dev/ftb/mods/ftbquests/integration/RecipeModHelper.refreshRecipes:(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)V
+      43: invokestatic  #105                // Method dev/ftb/mods/ftbquests/client/gui/EmergencyItemsScreen.initCooldown:()V
+      46: return
+
+  public boolean canEdit();
+    Code:
+       0: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+       3: getfield      #116                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       6: ifnull        36
+       9: aload_0
+      10: invokevirtual #119                // Method hasEditorPermission:()Z
+      13: ifeq          36
+      16: aload_0
+      17: getfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      20: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      23: getfield      #116                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      26: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/TeamData.getCanEdit:(Lnet/minecraft/world/entity/player/Player;)Z
+      29: ifeq          36
+      32: iconst_1
+      33: goto          37
+      36: iconst_0
+      37: ireturn
+
+  public void refreshGui();
+    Code:
+       0: aload_0
+       1: invokevirtual #126                // Method clearCachedData:()V
+       4: aload_0
+       5: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+       8: ifnull        96
+      11: aload_0
+      12: aload_0
+      13: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      16: invokevirtual #132                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.getPersistedScreenData:()Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;
+      19: putfield      #134                // Field persistedData:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;
+      22: ldc           #9                  // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+      24: invokestatic  #140                // Method dev/ftb/mods/ftblibrary/util/client/ClientUtils.getCurrentGuiAs:(Ljava/lang/Class;)Ljava/lang/Object;
+      27: ifnull        96
+      30: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      33: getfield      #144                // Field net/minecraft/client/Minecraft.f_91067_:Lnet/minecraft/client/MouseHandler;
+      36: invokevirtual #150                // Method net/minecraft/client/MouseHandler.m_91589_:()D
+      39: dstore_1
+      40: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      43: getfield      #144                // Field net/minecraft/client/Minecraft.f_91067_:Lnet/minecraft/client/MouseHandler;
+      46: invokevirtual #153                // Method net/minecraft/client/MouseHandler.m_91594_:()D
+      49: dstore_3
+      50: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      53: aconst_null
+      54: invokevirtual #157                // Method net/minecraft/client/Minecraft.m_91152_:(Lnet/minecraft/client/gui/screens/Screen;)V
+      57: aload_0
+      58: new           #9                  // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+      61: dup
+      62: aload_0
+      63: aload_0
+      64: getfield      #134                // Field persistedData:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;
+      67: invokespecial #160                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen."<init>":(Ldev/ftb/mods/ftbquests/client/ClientQuestFile;Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;)V
+      70: putfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      73: aload_0
+      74: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      77: invokevirtual #163                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.openGui:()V
+      80: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      83: invokevirtual #167                // Method net/minecraft/client/Minecraft.m_91268_:()Lcom/mojang/blaze3d/platform/Window;
+      86: invokevirtual #173                // Method com/mojang/blaze3d/platform/Window.m_85439_:()J
+      89: ldc           #174                // int 212993
+      91: dload_1
+      92: dload_3
+      93: invokestatic  #180                // Method com/mojang/blaze3d/platform/InputConstants.m_84833_:(JIDD)V
+      96: return
+
+  public java.util.Optional<dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen> getQuestScreen();
+    Code:
+       0: aload_0
+       1: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+       4: invokestatic  #192                // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+       7: areturn
+
+  public static dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen openGui();
+    Code:
+       0: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       3: ifnull        13
+       6: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       9: invokevirtual #196                // Method openQuestGui:()Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      12: areturn
+      13: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      16: getfield      #116                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      19: astore_0
+      20: aload_0
+      21: ifnull        38
+      24: getstatic     #198                // Field MISSING_DATA_ERR:Ljava/util/List;
+      27: aload_0
+      28: invokedynamic #217,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/world/entity/player/Player;)Ljava/util/function/Consumer;
+      33: invokeinterface #223,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      38: aconst_null
+      39: areturn
+
+  public static dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen openGui(dev.ftb.mods.ftbquests.quest.Quest, boolean);
+    Code:
+       0: invokestatic  #232                // Method openGui:()Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+       3: astore_2
+       4: aload_2
+       5: ifnull        14
+       8: aload_2
+       9: aload_0
+      10: iload_1
+      11: invokevirtual #236                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.open:(Ldev/ftb/mods/ftbquests/quest/QuestObject;Z)V
+      14: aload_2
+      15: areturn
+
+  private dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen openQuestGui();
+    Code:
+       0: invokestatic  #240                // Method exists:()Z
+       3: ifeq          156
+       6: aload_0
+       7: invokevirtual #243                // Method isDisableGui:()Z
+      10: ifeq          50
+      13: aload_0
+      14: invokevirtual #245                // Method canEdit:()Z
+      17: ifne          50
+      20: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      23: invokevirtual #249                // Method net/minecraft/client/Minecraft.m_91300_:()Lnet/minecraft/client/gui/components/toasts/ToastComponent;
+      26: new           #251                // class dev/ftb/mods/ftbquests/client/gui/CustomToast
+      29: dup
+      30: ldc           #253                // String item.ftbquests.book.disabled
+      32: invokestatic  #259                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      35: getstatic     #265                // Field dev/ftb/mods/ftblibrary/icon/Icons.BARRIER:Ldev/ftb/mods/ftblibrary/icon/Icon;
+      38: invokestatic  #269                // InterfaceMethod net/minecraft/network/chat/Component.m_237119_:()Lnet/minecraft/network/chat/MutableComponent;
+      41: invokespecial #272                // Method dev/ftb/mods/ftbquests/client/gui/CustomToast."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Lnet/minecraft/network/chat/Component;)V
+      44: invokevirtual #278                // Method net/minecraft/client/gui/components/toasts/ToastComponent.m_94922_:(Lnet/minecraft/client/gui/components/toasts/Toast;)V
+      47: goto          156
+      50: aload_0
+      51: getfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      54: invokevirtual #281                // Method dev/ftb/mods/ftbquests/quest/TeamData.isLocked:()Z
+      57: ifeq          111
+      60: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      63: invokevirtual #249                // Method net/minecraft/client/Minecraft.m_91300_:()Lnet/minecraft/client/gui/components/toasts/ToastComponent;
+      66: new           #251                // class dev/ftb/mods/ftbquests/client/gui/CustomToast
+      69: dup
+      70: aload_0
+      71: getfield      #285                // Field lockMessage:Ljava/lang/String;
+      74: invokevirtual #290                // Method java/lang/String.isEmpty:()Z
+      77: ifeq          89
+      80: ldc_w         #292                // String Quests locked!
+      83: invokestatic  #295                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      86: goto          96
+      89: aload_0
+      90: getfield      #285                // Field lockMessage:Ljava/lang/String;
+      93: invokestatic  #301                // Method dev/ftb/mods/ftbquests/util/TextUtils.parseRawText:(Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+      96: getstatic     #265                // Field dev/ftb/mods/ftblibrary/icon/Icons.BARRIER:Ldev/ftb/mods/ftblibrary/icon/Icon;
+      99: invokestatic  #269                // InterfaceMethod net/minecraft/network/chat/Component.m_237119_:()Lnet/minecraft/network/chat/MutableComponent;
+     102: invokespecial #272                // Method dev/ftb/mods/ftbquests/client/gui/CustomToast."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Lnet/minecraft/network/chat/Component;)V
+     105: invokevirtual #278                // Method net/minecraft/client/gui/components/toasts/ToastComponent.m_94922_:(Lnet/minecraft/client/gui/components/toasts/Toast;)V
+     108: goto          156
+     111: aload_0
+     112: invokevirtual #245                // Method canEdit:()Z
+     115: ifeq          121
+     118: invokestatic  #308                // Method dev/ftb/mods/ftbquests/quest/task/StructureTask.maybeRequestStructureSync:()V
+     121: aload_0
+     122: new           #9                  // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+     125: dup
+     126: aload_0
+     127: aload_0
+     128: getfield      #134                // Field persistedData:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;
+     131: invokespecial #160                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen."<init>":(Ldev/ftb/mods/ftbquests/client/ClientQuestFile;Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;)V
+     134: putfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+     137: aload_0
+     138: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+     141: invokevirtual #163                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.openGui:()V
+     144: aload_0
+     145: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+     148: invokevirtual #311                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.refreshWidgets:()V
+     151: aload_0
+     152: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+     155: areturn
+     156: aconst_null
+     157: areturn
+
+  public dev.architectury.utils.Env getSide();
+    Code:
+       0: getstatic     #319                // Field dev/architectury/utils/Env.CLIENT:Ldev/architectury/utils/Env;
+       3: areturn
+
+  public void deleteObject(long);
+    Code:
+       0: new           #324                // class dev/ftb/mods/ftbquests/net/DeleteObjectMessage
+       3: dup
+       4: lload_1
+       5: invokespecial #326                // Method dev/ftb/mods/ftbquests/net/DeleteObjectMessage."<init>":(J)V
+       8: invokevirtual #329                // Method dev/ftb/mods/ftbquests/net/DeleteObjectMessage.sendToServer:()V
+      11: return
+
+  public void clearCachedData();
+    Code:
+       0: aload_0
+       1: invokespecial #331                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.clearCachedData:()V
+       4: getstatic     #337                // Field dev/ftb/mods/ftbquests/quest/theme/QuestTheme.instance:Ldev/ftb/mods/ftbquests/quest/theme/QuestTheme;
+       7: invokevirtual #340                // Method dev/ftb/mods/ftbquests/quest/theme/QuestTheme.clearCache:()V
+      10: return
+
+  public dev.ftb.mods.ftbquests.quest.TeamData getOrCreateTeamData(net.minecraft.world.entity.Entity);
+    Code:
+       0: invokestatic  #346                // Method dev/ftb/mods/ftbteams/api/FTBTeamsAPI.api:()Ldev/ftb/mods/ftbteams/api/FTBTeamsAPI$API;
+       3: invokeinterface #350,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/FTBTeamsAPI$API.getClientManager:()Ldev/ftb/mods/ftbteams/api/client/ClientTeamManager;
+       8: aload_1
+       9: invokevirtual #356                // Method net/minecraft/world/entity/Entity.m_20148_:()Ljava/util/UUID;
+      12: invokeinterface #362,  2          // InterfaceMethod dev/ftb/mods/ftbteams/api/client/ClientTeamManager.getKnownPlayer:(Ljava/util/UUID;)Ljava/util/Optional;
+      17: aload_1
+      18: invokedynamic #375,  0            // InvokeDynamic #1:get:(Lnet/minecraft/world/entity/Entity;)Ljava/util/function/Supplier;
+      23: invokevirtual #379                // Method java/util/Optional.orElseThrow:(Ljava/util/function/Supplier;)Ljava/lang/Object;
+      26: checkcast     #381                // class dev/ftb/mods/ftbteams/api/client/KnownClientPlayer
+      29: astore_2
+      30: aload_2
+      31: invokevirtual #383                // Method dev/ftb/mods/ftbteams/api/client/KnownClientPlayer.id:()Ljava/util/UUID;
+      34: invokestatic  #112                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      37: getfield      #116                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      40: invokevirtual #384                // Method net/minecraft/client/player/LocalPlayer.m_20148_:()Ljava/util/UUID;
+      43: invokevirtual #390                // Method java/util/UUID.equals:(Ljava/lang/Object;)Z
+      46: ifeq          56
+      49: aload_0
+      50: getfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      53: goto          64
+      56: aload_0
+      57: aload_2
+      58: invokevirtual #393                // Method dev/ftb/mods/ftbteams/api/client/KnownClientPlayer.teamId:()Ljava/util/UUID;
+      61: invokevirtual #396                // Method getOrCreateTeamData:(Ljava/util/UUID;)Ldev/ftb/mods/ftbquests/quest/TeamData;
+      64: areturn
+
+  public void setPersistedScreenInfo(dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen$PersistedData);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #134                // Field persistedData:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen$PersistedData;
+       5: return
+
+  public static boolean canClientPlayerEdit();
+    Code:
+       0: invokestatic  #240                // Method exists:()Z
+       3: ifeq          25
+       6: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       9: getfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      12: invokestatic  #408                // Method dev/ftb/mods/ftbquests/client/FTBQuestsClient.getClientPlayer:()Lnet/minecraft/world/entity/player/Player;
+      15: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/TeamData.getCanEdit:(Lnet/minecraft/world/entity/player/Player;)Z
+      18: ifeq          25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: ireturn
+
+  public static boolean isQuestPinned(long);
+    Code:
+       0: invokestatic  #240                // Method exists:()Z
+       3: ifeq          26
+       6: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       9: getfield      #81                 // Field selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      12: invokestatic  #408                // Method dev/ftb/mods/ftbquests/client/FTBQuestsClient.getClientPlayer:()Lnet/minecraft/world/entity/player/Player;
+      15: lload_0
+      16: invokevirtual #413                // Method dev/ftb/mods/ftbquests/quest/TeamData.isQuestPinned:(Lnet/minecraft/world/entity/player/Player;J)Z
+      19: ifeq          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: ireturn
+
+  public boolean isPlayerOnTeam(net.minecraft.world.entity.player.Player, dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: invokestatic  #346                // Method dev/ftb/mods/ftbteams/api/FTBTeamsAPI.api:()Ldev/ftb/mods/ftbteams/api/FTBTeamsAPI$API;
+       3: invokeinterface #350,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/FTBTeamsAPI$API.getClientManager:()Ldev/ftb/mods/ftbteams/api/client/ClientTeamManager;
+       8: aload_1
+       9: invokevirtual #419                // Method net/minecraft/world/entity/player/Player.m_20148_:()Ljava/util/UUID;
+      12: invokeinterface #362,  2          // InterfaceMethod dev/ftb/mods/ftbteams/api/client/ClientTeamManager.getKnownPlayer:(Ljava/util/UUID;)Ljava/util/Optional;
+      17: aload_2
+      18: invokedynamic #432,  0            // InvokeDynamic #2:apply:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Function;
+      23: invokevirtual #436                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      26: iconst_0
+      27: invokestatic  #442                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      30: invokevirtual #445                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      33: checkcast     #438                // class java/lang/Boolean
+      36: invokevirtual #448                // Method java/lang/Boolean.booleanValue:()Z
+      39: ireturn
+
+  public boolean moveChapterGroup(long, boolean);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: iload_3
+       3: invokespecial #453                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.moveChapterGroup:(JZ)Z
+       6: ifeq          35
+       9: aload_0
+      10: invokevirtual #126                // Method clearCachedData:()V
+      13: ldc           #9                  // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+      15: invokestatic  #140                // Method dev/ftb/mods/ftblibrary/util/client/ClientUtils.getCurrentGuiAs:(Ljava/lang/Class;)Ljava/lang/Object;
+      18: checkcast     #9                  // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+      21: astore        4
+      23: aload         4
+      25: ifnull        33
+      28: aload         4
+      30: invokevirtual #456                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.refreshChapterPanel:()V
+      33: iconst_1
+      34: ireturn
+      35: iconst_0
+      36: ireturn
+
+  public void setEditorPermission(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #462                // Field editorPermission:Z
+       5: return
+
+  public boolean hasEditorPermission();
+    Code:
+       0: aload_0
+       1: getfield      #462                // Field editorPermission:Z
+       4: ireturn
+
+  public static void openBookToQuestObject(long);
+    Code:
+       0: invokestatic  #240                // Method exists:()Z
+       3: ifeq          66
+       6: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+       9: astore_2
+      10: aload_2
+      11: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      14: ifnonnull     24
+      17: getstatic     #42                 // Field INSTANCE:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      20: invokevirtual #196                // Method openQuestGui:()Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      23: pop
+      24: aload_2
+      25: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      28: ifnull        66
+      31: lload_0
+      32: lconst_0
+      33: lcmp
+      34: ifeq          59
+      37: aload_2
+      38: lload_0
+      39: invokevirtual #466                // Method get:(J)Ldev/ftb/mods/ftbquests/quest/QuestObject;
+      42: astore_3
+      43: aload_3
+      44: ifnull        56
+      47: aload_2
+      48: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      51: aload_3
+      52: iconst_1
+      53: invokevirtual #236                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.open:(Ldev/ftb/mods/ftbquests/quest/QuestObject;Z)V
+      56: goto          66
+      59: aload_2
+      60: getfield      #128                // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      63: invokevirtual #163                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.openGui:()V
+      66: return
+
+  private static java.lang.Boolean lambda$isPlayerOnTeam$2(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbteams.api.client.KnownClientPlayer);
+    Code:
+       0: aload_1
+       1: invokevirtual #393                // Method dev/ftb/mods/ftbteams/api/client/KnownClientPlayer.teamId:()Ljava/util/UUID;
+       4: aload_0
+       5: invokevirtual #474                // Method dev/ftb/mods/ftbquests/quest/TeamData.getTeamId:()Ljava/util/UUID;
+       8: invokevirtual #390                // Method java/util/UUID.equals:(Ljava/lang/Object;)Z
+      11: invokestatic  #442                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      14: areturn
+
+  private static java.lang.RuntimeException lambda$getOrCreateTeamData$1(net.minecraft.world.entity.Entity);
+    Code:
+       0: new           #476                // class java/lang/RuntimeException
+       3: dup
+       4: aload_0
+       5: invokevirtual #356                // Method net/minecraft/world/entity/Entity.m_20148_:()Ljava/util/UUID;
+       8: invokestatic  #479                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      11: invokedynamic #491,  0            // InvokeDynamic #3:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      16: invokespecial #492                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+      19: areturn
+
+  private static void lambda$openGui$0(net.minecraft.world.entity.player.Player, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #295                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       5: getstatic     #499                // Field net/minecraft/ChatFormatting.RED:Lnet/minecraft/ChatFormatting;
+       8: invokevirtual #505                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      11: iconst_0
+      12: invokevirtual #509                // Method net/minecraft/world/entity/player/Player.m_5661_:(Lnet/minecraft/network/chat/Component;Z)V
+      15: return
+
+  static {};
+    Code:
+       0: ldc_w         #512                // String Unable to open Quest GUI: no quest book data received from server!
+       3: ldc_w         #514                // String - Check that FTB Quests and FTB Teams are installed on the server
+       6: ldc_w         #516                // String   and that no server-side errors were logged when you connected.
+       9: invokestatic  #520                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      12: putstatic     #198                // Field MISSING_DATA_ERR:Ljava/util/List;
+      15: return
+}

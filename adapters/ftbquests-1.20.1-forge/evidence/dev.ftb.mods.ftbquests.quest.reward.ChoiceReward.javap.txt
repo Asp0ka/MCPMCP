@@ -1,0 +1,55 @@
+Compiled from "ChoiceReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.ChoiceReward extends dev.ftb.mods.ftbquests.quest.reward.RandomReward {
+  public dev.ftb.mods.ftbquests.quest.reward.ChoiceReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #11                 // Method dev/ftb/mods/ftbquests/quest/reward/RandomReward."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: return
+
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+    Code:
+       0: getstatic     #23                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardTypes.CHOICE:Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       3: areturn
+
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+    Code:
+       0: return
+
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+    Code:
+       0: aload_0
+       1: invokevirtual #40                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnull        17
+       7: aload_0
+       8: invokevirtual #40                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: aload_1
+      12: iconst_0
+      13: iconst_0
+      14: invokevirtual #45                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.addMouseOverText:(Ldev/ftb/mods/ftblibrary/util/TooltipList;ZZ)V
+      17: return
+
+  public void onButtonClicked(dev.ftb.mods.ftblibrary.ui.Button, boolean);
+    Code:
+       0: iload_2
+       1: ifeq          19
+       4: aload_1
+       5: invokevirtual #56                 // Method dev/ftb/mods/ftblibrary/ui/Button.playClickSound:()V
+       8: new           #58                 // class dev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen
+      11: dup
+      12: aload_0
+      13: invokespecial #61                 // Method dev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen."<init>":(Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;)V
+      16: invokevirtual #64                 // Method dev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen.openGui:()V
+      19: return
+
+  public boolean getExcludeFromClaimAll();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: iconst_0
+       1: ireturn
+}

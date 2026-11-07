@@ -1,0 +1,11 @@
+Compiled from "ClaimAllRewardsMessage.java"
+public class dev.ftb.mods.ftbquests.net.ClaimAllRewardsMessage extends dev.architectury.networking.simple.BaseC2SMessage {
+  public dev.ftb.mods.ftbquests.net.ClaimAllRewardsMessage();
+  dev.ftb.mods.ftbquests.net.ClaimAllRewardsMessage(net.minecraft.network.FriendlyByteBuf);
+  public dev.architectury.networking.simple.MessageType getType();
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(dev.architectury.networking.NetworkManager$PacketContext);
+  private static void lambda$handle$2(dev.ftb.mods.ftbquests.quest.TeamData, net.minecraft.server.level.ServerPlayer, dev.ftb.mods.ftbquests.quest.Quest);
+  private static void lambda$handle$1(dev.ftb.mods.ftbquests.quest.TeamData, net.minecraft.server.level.ServerPlayer, dev.ftb.mods.ftbquests.quest.reward.Reward);
+  private static boolean lambda$handle$0(dev.ftb.mods.ftbquests.quest.reward.Reward);
+}

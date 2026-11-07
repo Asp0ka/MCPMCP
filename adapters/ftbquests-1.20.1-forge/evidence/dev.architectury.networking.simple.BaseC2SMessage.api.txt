@@ -1,0 +1,5 @@
+Compiled from "BaseC2SMessage.java"
+public abstract class dev.architectury.networking.simple.BaseC2SMessage extends dev.architectury.networking.simple.Message {
+  public dev.architectury.networking.simple.BaseC2SMessage();
+  public final void sendToServer();
+}

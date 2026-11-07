@@ -1,0 +1,53 @@
+Compiled from "CheckmarkTask.java"
+public class dev.ftb.mods.ftbquests.quest.task.CheckmarkTask extends dev.ftb.mods.ftbquests.quest.task.AbstractBooleanTask {
+  public dev.ftb.mods.ftbquests.quest.task.CheckmarkTask(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #11                 // Method dev/ftb/mods/ftbquests/quest/task/AbstractBooleanTask."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: return
+
+  public dev.ftb.mods.ftbquests.quest.task.TaskType getType();
+    Code:
+       0: getstatic     #23                 // Field dev/ftb/mods/ftbquests/quest/task/TaskTypes.CHECKMARK:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+       3: areturn
+
+  public void drawGUI(dev.ftb.mods.ftbquests.quest.TeamData, net.minecraft.client.gui.GuiGraphics, int, int, int, int);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #41                 // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+       5: ifeq          21
+       8: getstatic     #47                 // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.CHECKMARK_TASK_ACTIVE:Ldev/ftb/mods/ftbquests/quest/theme/property/IconProperty;
+      11: aload_0
+      12: invokevirtual #53                 // Method dev/ftb/mods/ftbquests/quest/theme/property/IconProperty.get:(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)Ljava/lang/Object;
+      15: checkcast     #55                 // class dev/ftb/mods/ftblibrary/icon/Icon
+      18: goto          31
+      21: getstatic     #58                 // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.CHECKMARK_TASK_INACTIVE:Ldev/ftb/mods/ftbquests/quest/theme/property/IconProperty;
+      24: aload_0
+      25: invokevirtual #53                 // Method dev/ftb/mods/ftbquests/quest/theme/property/IconProperty.get:(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)Ljava/lang/Object;
+      28: checkcast     #55                 // class dev/ftb/mods/ftblibrary/icon/Icon
+      31: aload_2
+      32: iload_3
+      33: iload         4
+      35: iload         5
+      37: iload         6
+      39: invokevirtual #62                 // Method dev/ftb/mods/ftblibrary/icon/Icon.draw:(Lnet/minecraft/client/gui/GuiGraphics;IIII)V
+      42: return
+
+  public boolean canSubmit(dev.ftb.mods.ftbquests.quest.TeamData, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean checkOnLogin();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  protected boolean hasIconConfig();
+    Code:
+       0: iconst_0
+       1: ireturn
+}

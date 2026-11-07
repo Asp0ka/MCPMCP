@@ -1,0 +1,81 @@
+Compiled from "ClaimRewardMessage.java"
+public class dev.ftb.mods.ftbquests.net.ClaimRewardMessage extends dev.architectury.networking.simple.BaseC2SMessage {
+  private final long id;
+
+  private final boolean notify;
+
+  dev.ftb.mods.ftbquests.net.ClaimRewardMessage(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method dev/architectury/networking/simple/BaseC2SMessage."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #26                 // Method net/minecraft/network/FriendlyByteBuf.readLong:()J
+       9: putfield      #28                 // Field id:J
+      12: aload_0
+      13: aload_1
+      14: invokevirtual #32                 // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      17: putfield      #34                 // Field notify:Z
+      20: return
+
+  public dev.ftb.mods.ftbquests.net.ClaimRewardMessage(long, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method dev/architectury/networking/simple/BaseC2SMessage."<init>":()V
+       4: aload_0
+       5: lload_1
+       6: putfield      #28                 // Field id:J
+       9: aload_0
+      10: iload_3
+      11: putfield      #34                 // Field notify:Z
+      14: return
+
+  public dev.architectury.networking.simple.MessageType getType();
+    Code:
+       0: getstatic     #48                 // Field dev/ftb/mods/ftbquests/net/FTBQuestsNetHandler.CLAIM_REWARD:Ldev/architectury/networking/simple/MessageType;
+       3: areturn
+
+  public void write(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #28                 // Field id:J
+       5: invokevirtual #53                 // Method net/minecraft/network/FriendlyByteBuf.writeLong:(J)Lio/netty/buffer/ByteBuf;
+       8: pop
+       9: aload_1
+      10: aload_0
+      11: getfield      #34                 // Field notify:Z
+      14: invokevirtual #57                 // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      17: pop
+      18: return
+
+  public void handle(dev.architectury.networking.NetworkManager$PacketContext);
+    Code:
+       0: getstatic     #66                 // Field dev/ftb/mods/ftbquests/quest/ServerQuestFile.INSTANCE:Ldev/ftb/mods/ftbquests/quest/ServerQuestFile;
+       3: aload_0
+       4: getfield      #28                 // Field id:J
+       7: invokevirtual #70                 // Method dev/ftb/mods/ftbquests/quest/ServerQuestFile.getReward:(J)Ldev/ftb/mods/ftbquests/quest/reward/Reward;
+      10: astore_2
+      11: aload_2
+      12: ifnull        57
+      15: aload_1
+      16: invokeinterface #74,  1           // InterfaceMethod dev/architectury/networking/NetworkManager$PacketContext.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+      21: checkcast     #76                 // class net/minecraft/server/level/ServerPlayer
+      24: astore_3
+      25: getstatic     #66                 // Field dev/ftb/mods/ftbquests/quest/ServerQuestFile.INSTANCE:Ldev/ftb/mods/ftbquests/quest/ServerQuestFile;
+      28: aload_3
+      29: invokevirtual #80                 // Method dev/ftb/mods/ftbquests/quest/ServerQuestFile.getOrCreateTeamData:(Lnet/minecraft/world/entity/Entity;)Ldev/ftb/mods/ftbquests/quest/TeamData;
+      32: astore        4
+      34: aload         4
+      36: aload_2
+      37: invokevirtual #86                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+      40: invokevirtual #92                 // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      43: ifeq          57
+      46: aload         4
+      48: aload_3
+      49: aload_2
+      50: aload_0
+      51: getfield      #34                 // Field notify:Z
+      54: invokevirtual #96                 // Method dev/ftb/mods/ftbquests/quest/TeamData.claimReward:(Lnet/minecraft/server/level/ServerPlayer;Ldev/ftb/mods/ftbquests/quest/reward/Reward;Z)V
+      57: return
+}

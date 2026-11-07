@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.ftbquests",
+  "mod_id": "ftbquests",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "2001.4.22",
+  "target_sha256": "9ea9d159a78a2724cfe0457b024680fdb52a2126eff9cfa5280a30578f647a68",
+  "actions": []
+}

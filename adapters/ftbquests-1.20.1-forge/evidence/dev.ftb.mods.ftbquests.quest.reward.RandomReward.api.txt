@@ -1,0 +1,23 @@
+Compiled from "RandomReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.RandomReward extends dev.ftb.mods.ftbquests.quest.reward.Reward {
+  private dev.ftb.mods.ftbquests.quest.loot.RewardTable table;
+  public dev.ftb.mods.ftbquests.quest.reward.RandomReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+  public void writeData(net.minecraft.nbt.CompoundTag);
+  public void readData(net.minecraft.nbt.CompoundTag);
+  public dev.ftb.mods.ftbquests.quest.loot.RewardTable getTable();
+  public void setTable(dev.ftb.mods.ftbquests.quest.loot.RewardTable);
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+  public net.minecraft.network.chat.Component getAltTitle();
+  public dev.ftb.mods.ftblibrary.icon.Icon getAltIcon();
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+  public boolean getExcludeFromClaimAll();
+  public boolean isClaimAllHardcoded();
+  public java.util.Optional<dev.ftb.mods.ftblibrary.util.client.PositionedIngredient> getIngredient(dev.ftb.mods.ftblibrary.ui.Widget);
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+  public void automatedClaimPost(net.minecraft.world.level.block.entity.BlockEntity, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+  private void lambda$fillConfigGroup$0(dev.ftb.mods.ftbquests.quest.loot.RewardTable);
+}

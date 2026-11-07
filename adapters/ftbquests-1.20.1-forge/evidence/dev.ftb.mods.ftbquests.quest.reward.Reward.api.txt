@@ -1,0 +1,48 @@
+Compiled from "Reward.java"
+public abstract class dev.ftb.mods.ftbquests.quest.reward.Reward extends dev.ftb.mods.ftbquests.quest.QuestObjectBase {
+  protected final dev.ftb.mods.ftbquests.quest.Quest quest;
+  private dev.ftb.mods.ftblibrary.config.Tristate team;
+  protected dev.ftb.mods.ftbquests.quest.reward.RewardAutoClaim autoclaim;
+  private boolean excludeFromClaimAll;
+  private boolean ignoreRewardBlocking;
+  public dev.ftb.mods.ftbquests.quest.reward.Reward(long, dev.ftb.mods.ftbquests.quest.Quest);
+  public dev.ftb.mods.ftbquests.quest.Quest getQuest();
+  public final dev.ftb.mods.ftbquests.quest.QuestObjectType getObjectType();
+  public final dev.ftb.mods.ftbquests.quest.BaseQuestFile getQuestFile();
+  public final dev.ftb.mods.ftbquests.quest.Chapter getQuestChapter();
+  public final long getParentID();
+  public abstract dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+  public void writeData(net.minecraft.nbt.CompoundTag);
+  public void readData(net.minecraft.nbt.CompoundTag);
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+  public abstract void claim(net.minecraft.server.level.ServerPlayer, boolean);
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+  public void automatedClaimPost(net.minecraft.world.level.block.entity.BlockEntity, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+  public final void deleteSelf();
+  public final void deleteChildren();
+  public void editedFromGUI();
+  public void onCreated();
+  public final boolean isTeamReward();
+  public final dev.ftb.mods.ftbquests.quest.reward.RewardAutoClaim getAutoClaimType();
+  public final void forceProgress(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange);
+  public dev.ftb.mods.ftblibrary.icon.Icon getAltIcon();
+  public net.minecraft.network.chat.Component getAltTitle();
+  public final dev.ftb.mods.ftblibrary.config.ConfigGroup createSubGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+  public boolean addTitleInMouseOverText();
+  public void onButtonClicked(dev.ftb.mods.ftblibrary.ui.Button, boolean);
+  public boolean getExcludeFromClaimAll();
+  public boolean isClaimAllHardcoded();
+  public java.util.Optional<dev.ftb.mods.ftblibrary.util.client.PositionedIngredient> getIngredient(dev.ftb.mods.ftblibrary.ui.Widget);
+  public java.util.Set<dev.ftb.mods.ftbquests.integration.RecipeModHelper$Components> componentsToRefresh();
+  public java.lang.String getButtonText();
+  public boolean ignoreRewardBlocking();
+  protected boolean isIgnoreRewardBlockingHardcoded();
+  private void lambda$forceProgress$4(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange, net.minecraft.server.level.ServerPlayer);
+  private void lambda$fillConfigGroup$3(java.lang.Boolean);
+  private void lambda$fillConfigGroup$2(java.lang.Boolean);
+  private void lambda$fillConfigGroup$1(dev.ftb.mods.ftbquests.quest.reward.RewardAutoClaim);
+  private void lambda$fillConfigGroup$0(dev.ftb.mods.ftblibrary.config.Tristate);
+}

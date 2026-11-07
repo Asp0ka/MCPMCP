@@ -1,0 +1,40 @@
+Compiled from "ChapterGroup.java"
+public class dev.ftb.mods.ftbquests.quest.ChapterGroup extends dev.ftb.mods.ftbquests.quest.QuestObject {
+  protected final dev.ftb.mods.ftbquests.quest.BaseQuestFile file;
+  private final java.util.List<dev.ftb.mods.ftbquests.quest.Chapter> chapters;
+  private boolean guiCollapsed;
+  public dev.ftb.mods.ftbquests.quest.ChapterGroup(long, dev.ftb.mods.ftbquests.quest.BaseQuestFile);
+  public dev.ftb.mods.ftbquests.quest.BaseQuestFile getFile();
+  public java.util.List<dev.ftb.mods.ftbquests.quest.Chapter> getChapters();
+  public void addChapter(dev.ftb.mods.ftbquests.quest.Chapter);
+  public void removeChapter(dev.ftb.mods.ftbquests.quest.Chapter);
+  public void clearChapters();
+  public void sortChapters(java.util.Comparator<? super dev.ftb.mods.ftbquests.quest.Chapter>);
+  public dev.ftb.mods.ftbquests.quest.QuestObjectType getObjectType();
+  public dev.ftb.mods.ftbquests.quest.BaseQuestFile getQuestFile();
+  public boolean isFirstGroup();
+  public boolean isLastGroup();
+  public boolean isDefaultGroup();
+  public void onCreated();
+  public void clearCachedData();
+  public void deleteSelf();
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+  public void editedFromGUI();
+  public net.minecraft.network.chat.Component getAltTitle();
+  public dev.ftb.mods.ftblibrary.icon.Icon getAltIcon();
+  public boolean isVisible(dev.ftb.mods.ftbquests.quest.TeamData);
+  public int getRelativeProgressFromChildren(dev.ftb.mods.ftbquests.quest.TeamData);
+  public void onCompleted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+  public java.util.List<dev.ftb.mods.ftbquests.quest.Chapter> getVisibleChapters(dev.ftb.mods.ftbquests.quest.TeamData);
+  public dev.ftb.mods.ftbquests.quest.Chapter getFirstVisibleChapter(dev.ftb.mods.ftbquests.quest.TeamData);
+  public java.util.Collection<? extends dev.ftb.mods.ftbquests.quest.QuestObject> getChildren();
+  public boolean hasUnclaimedRewardsRaw(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID);
+  public boolean moveChapterWithinGroup(dev.ftb.mods.ftbquests.quest.Chapter, boolean);
+  public void toggleCollapsed();
+  public boolean isGuiCollapsed();
+  private static boolean lambda$hasUnclaimedRewardsRaw$4(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID, dev.ftb.mods.ftbquests.quest.Chapter);
+  private static boolean lambda$getFirstVisibleChapter$3(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.Chapter);
+  private static boolean lambda$getVisibleChapters$2(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.Chapter);
+  private static boolean lambda$isVisible$1(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.Chapter);
+  private void lambda$fillConfigGroup$0(java.lang.String);
+}

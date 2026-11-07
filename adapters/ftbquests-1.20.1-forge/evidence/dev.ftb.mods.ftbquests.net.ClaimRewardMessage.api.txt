@@ -1,0 +1,10 @@
+Compiled from "ClaimRewardMessage.java"
+public class dev.ftb.mods.ftbquests.net.ClaimRewardMessage extends dev.architectury.networking.simple.BaseC2SMessage {
+  private final long id;
+  private final boolean notify;
+  dev.ftb.mods.ftbquests.net.ClaimRewardMessage(net.minecraft.network.FriendlyByteBuf);
+  public dev.ftb.mods.ftbquests.net.ClaimRewardMessage(long, boolean);
+  public dev.architectury.networking.simple.MessageType getType();
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(dev.architectury.networking.NetworkManager$PacketContext);
+}

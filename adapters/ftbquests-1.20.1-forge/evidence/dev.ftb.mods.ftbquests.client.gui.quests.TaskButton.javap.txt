@@ -1,0 +1,653 @@
+Compiled from "TaskButton.java"
+public class dev.ftb.mods.ftbquests.client.gui.quests.TaskButton extends dev.ftb.mods.ftblibrary.ui.Button {
+  private final dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen questScreen;
+
+  dev.ftb.mods.ftbquests.quest.task.Task task;
+
+  public dev.ftb.mods.ftbquests.client.gui.quests.TaskButton(dev.ftb.mods.ftblibrary.ui.Panel, dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #34                 // Method dev/ftb/mods/ftbquests/quest/task/Task.getTitle:()Lnet/minecraft/network/chat/Component;
+       6: getstatic     #40                 // Field dev/ftb/mods/ftblibrary/icon/Icons.ACCEPT:Ldev/ftb/mods/ftblibrary/icon/Icon;
+       9: invokespecial #43                 // Method dev/ftb/mods/ftblibrary/ui/Button."<init>":(Ldev/ftb/mods/ftblibrary/ui/Panel;Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;)V
+      12: aload_0
+      13: aload_1
+      14: invokevirtual #49                 // Method dev/ftb/mods/ftblibrary/ui/Panel.getGui:()Ldev/ftb/mods/ftblibrary/ui/BaseScreen;
+      17: checkcast     #51                 // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+      20: putfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      23: aload_0
+      24: aload_2
+      25: putfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      28: return
+
+  public boolean mousePressed(dev.ftb.mods.ftblibrary.ui.input.MouseButton);
+    Code:
+       0: aload_0
+       1: invokevirtual #65                 // Method isMouseOver:()Z
+       4: ifeq          31
+       7: aload_1
+       8: invokevirtual #70                 // Method dev/ftb/mods/ftblibrary/ui/input/MouseButton.isRight:()Z
+      11: ifne          24
+      14: aload_0
+      15: invokevirtual #74                 // Method getWidgetType:()Ldev/ftb/mods/ftblibrary/ui/WidgetType;
+      18: getstatic     #80                 // Field dev/ftb/mods/ftblibrary/ui/WidgetType.DISABLED:Ldev/ftb/mods/ftblibrary/ui/WidgetType;
+      21: if_acmpeq     29
+      24: aload_0
+      25: aload_1
+      26: invokevirtual #84                 // Method onClicked:(Ldev/ftb/mods/ftblibrary/ui/input/MouseButton;)V
+      29: iconst_1
+      30: ireturn
+      31: iconst_0
+      32: ireturn
+
+  public void onClicked(dev.ftb.mods.ftblibrary.ui.input.MouseButton);
+    Code:
+       0: aload_1
+       1: invokevirtual #88                 // Method dev/ftb/mods/ftblibrary/ui/input/MouseButton.isLeft:()Z
+       4: ifeq          111
+       7: aload_0
+       8: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      11: invokevirtual #92                 // Method dev/ftb/mods/ftbquests/quest/task/Task.getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      14: invokevirtual #97                 // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.canEdit:()Z
+      17: ifeq          40
+      20: invokestatic  #102                // Method dev/ftb/mods/ftblibrary/ui/ScreenWrapper.m_96639_:()Z
+      23: ifeq          40
+      26: aload_0
+      27: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      30: aload_0
+      31: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      34: invokevirtual #106                // Method dev/ftb/mods/ftbquests/quest/task/Task.onEditButtonClicked:(Ljava/lang/Runnable;)V
+      37: goto          479
+      40: aload_0
+      41: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      44: invokevirtual #109                // Method dev/ftb/mods/ftbquests/quest/task/Task.isValid:()Z
+      47: ifeq          97
+      50: aload_0
+      51: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      54: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      57: getfield      #119                // Field dev/ftb/mods/ftbquests/client/ClientQuestFile.selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      60: aload_0
+      61: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      64: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/task/Task.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+      67: invokevirtual #129                // Method dev/ftb/mods/ftbquests/quest/TeamData.canStartTasks:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+      70: ifeq          97
+      73: aload_0
+      74: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      77: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      80: getfield      #119                // Field dev/ftb/mods/ftbquests/client/ClientQuestFile.selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      83: aload_0
+      84: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      87: invokevirtual #133                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      90: ifne          97
+      93: iconst_1
+      94: goto          98
+      97: iconst_0
+      98: istore_2
+      99: aload_0
+     100: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     103: aload_0
+     104: iload_2
+     105: invokevirtual #137                // Method dev/ftb/mods/ftbquests/quest/task/Task.onButtonClicked:(Ldev/ftb/mods/ftblibrary/ui/Button;Z)V
+     108: goto          479
+     111: aload_1
+     112: invokevirtual #70                 // Method dev/ftb/mods/ftblibrary/ui/input/MouseButton.isRight:()Z
+     115: ifeq          479
+     118: aload_0
+     119: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+     122: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+     125: invokevirtual #138                // Method dev/ftb/mods/ftbquests/client/ClientQuestFile.canEdit:()Z
+     128: ifeq          479
+     131: aload_0
+     132: invokevirtual #142                // Method playClickSound:()V
+     135: aload_0
+     136: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     139: aload_0
+     140: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+     143: invokestatic  #148                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.create:(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;)Ldev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder;
+     146: astore_2
+     147: aload_2
+     148: new           #150                // class dev/ftb/mods/ftblibrary/ui/ContextMenuItem
+     151: dup
+     152: ldc           #152                // String ftbquests.gui.move_left
+     154: invokestatic  #158                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     157: getstatic     #161                // Field dev/ftb/mods/ftblibrary/icon/Icons.LEFT:Ldev/ftb/mods/ftblibrary/icon/Icon;
+     160: aload_0
+     161: invokedynamic #180,  0            // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/client/gui/quests/TaskButton;)Ljava/util/function/Consumer;
+     166: invokespecial #183                // Method dev/ftb/mods/ftblibrary/ui/ContextMenuItem."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Ljava/util/function/Consumer;)V
+     169: invokestatic  #189                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     172: invokevirtual #193                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.insertAtTop:(Ljava/util/Collection;)Ldev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder;
+     175: pop
+     176: aload_2
+     177: new           #150                // class dev/ftb/mods/ftblibrary/ui/ContextMenuItem
+     180: dup
+     181: ldc           #195                // String ftbquests.gui.move_right
+     183: invokestatic  #158                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     186: getstatic     #198                // Field dev/ftb/mods/ftblibrary/icon/Icons.RIGHT:Ldev/ftb/mods/ftblibrary/icon/Icon;
+     189: aload_0
+     190: invokedynamic #203,  0            // InvokeDynamic #1:accept:(Ldev/ftb/mods/ftbquests/client/gui/quests/TaskButton;)Ljava/util/function/Consumer;
+     195: invokespecial #183                // Method dev/ftb/mods/ftblibrary/ui/ContextMenuItem."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Ljava/util/function/Consumer;)V
+     198: invokestatic  #189                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     201: invokevirtual #193                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.insertAtTop:(Ljava/util/Collection;)Ldev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder;
+     204: pop
+     205: aload_0
+     206: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     209: astore        4
+     211: aload         4
+     213: instanceof    #205                // class dev/ftb/mods/ftbquests/quest/task/ItemTask
+     216: ifeq          411
+     219: aload         4
+     221: checkcast     #205                // class dev/ftb/mods/ftbquests/quest/task/ItemTask
+     224: astore_3
+     225: aload_3
+     226: invokevirtual #209                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.getItemStack:()Lnet/minecraft/world/item/ItemStack;
+     229: invokevirtual #214                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     232: ifne          411
+     235: aload_3
+     236: invokevirtual #209                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.getItemStack:()Lnet/minecraft/world/item/ItemStack;
+     239: invokevirtual #218                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     242: invokevirtual #224                // Method net/minecraft/world/item/Item.m_204114_:()Lnet/minecraft/core/Holder$Reference;
+     245: invokevirtual #228                // Method net/minecraft/core/Holder$Reference.m_203616_:()Ljava/util/stream/Stream;
+     248: invokeinterface #234,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+     253: astore        4
+     255: aload         4
+     257: invokeinterface #237,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     262: ifne          381
+     265: getstatic     #243                // Field dev/ftb/mods/ftbquests/integration/item_filtering/ItemMatchingSystem.INSTANCE:Ldev/ftb/mods/ftbquests/integration/item_filtering/ItemMatchingSystem;
+     268: aload_3
+     269: invokevirtual #209                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.getItemStack:()Lnet/minecraft/world/item/ItemStack;
+     272: invokevirtual #247                // Method dev/ftb/mods/ftbquests/integration/item_filtering/ItemMatchingSystem.isItemFilter:(Lnet/minecraft/world/item/ItemStack;)Z
+     275: ifne          381
+     278: getstatic     #243                // Field dev/ftb/mods/ftbquests/integration/item_filtering/ItemMatchingSystem.INSTANCE:Ldev/ftb/mods/ftbquests/integration/item_filtering/ItemMatchingSystem;
+     281: invokevirtual #251                // Method dev/ftb/mods/ftbquests/integration/item_filtering/ItemMatchingSystem.adapters:()Ljava/util/Collection;
+     284: invokeinterface #257,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     289: astore        5
+     291: aload         5
+     293: invokeinterface #262,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     298: ifeq          381
+     301: aload         5
+     303: invokeinterface #266,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     308: checkcast     #268                // class dev/ftb/mods/ftbquests/api/ItemFilterAdapter
+     311: astore        6
+     313: aload         6
+     315: invokeinterface #271,  1          // InterfaceMethod dev/ftb/mods/ftbquests/api/ItemFilterAdapter.hasItemTagFilter:()Z
+     320: ifeq          378
+     323: aload_2
+     324: new           #150                // class dev/ftb/mods/ftblibrary/ui/ContextMenuItem
+     327: dup
+     328: ldc_w         #273                // String ftbquests.task.ftbquests.item.convert_tag
+     331: iconst_1
+     332: anewarray     #275                // class java/lang/Object
+     335: dup
+     336: iconst_0
+     337: aload         6
+     339: invokeinterface #279,  1          // InterfaceMethod dev/ftb/mods/ftbquests/api/ItemFilterAdapter.getName:()Ljava/lang/String;
+     344: aastore
+     345: invokestatic  #283                // InterfaceMethod net/minecraft/network/chat/Component.m_237110_:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+     348: getstatic     #289                // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.RELOAD_ICON:Ldev/ftb/mods/ftbquests/quest/theme/property/IconProperty;
+     351: invokevirtual #294                // Method dev/ftb/mods/ftbquests/quest/theme/property/IconProperty.get:()Ljava/lang/Object;
+     354: checkcast     #296                // class dev/ftb/mods/ftblibrary/icon/Icon
+     357: aload_0
+     358: aload         4
+     360: aload_3
+     361: aload         6
+     363: invokedynamic #304,  0            // InvokeDynamic #2:accept:(Ldev/ftb/mods/ftbquests/client/gui/quests/TaskButton;Ljava/util/List;Ldev/ftb/mods/ftbquests/quest/task/ItemTask;Ldev/ftb/mods/ftbquests/api/ItemFilterAdapter;)Ljava/util/function/Consumer;
+     368: invokespecial #183                // Method dev/ftb/mods/ftblibrary/ui/ContextMenuItem."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Ljava/util/function/Consumer;)V
+     371: invokestatic  #189                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     374: invokevirtual #193                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.insertAtTop:(Ljava/util/Collection;)Ldev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder;
+     377: pop
+     378: goto          291
+     381: aload_2
+     382: new           #150                // class dev/ftb/mods/ftblibrary/ui/ContextMenuItem
+     385: dup
+     386: ldc_w         #306                // String ftbquests.task.grab_item
+     389: invokestatic  #158                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     392: getstatic     #309                // Field dev/ftb/mods/ftblibrary/icon/Icons.ADD_GRAY:Ldev/ftb/mods/ftblibrary/icon/Icon;
+     395: aload_3
+     396: invokedynamic #317,  0            // InvokeDynamic #3:accept:(Ldev/ftb/mods/ftbquests/quest/task/ItemTask;)Ljava/util/function/Consumer;
+     401: invokespecial #183                // Method dev/ftb/mods/ftblibrary/ui/ContextMenuItem."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Ljava/util/function/Consumer;)V
+     404: invokestatic  #189                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     407: invokevirtual #193                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.insertAtTop:(Ljava/util/Collection;)Ldev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder;
+     410: pop
+     411: aload_0
+     412: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     415: invokevirtual #321                // Method dev/ftb/mods/ftbquests/quest/task/Task.getIcon:()Ldev/ftb/mods/ftblibrary/icon/Icon;
+     418: astore        4
+     420: aload         4
+     422: instanceof    #323                // class dev/ftb/mods/ftblibrary/icon/ItemIcon
+     425: ifeq          471
+     428: aload         4
+     430: checkcast     #323                // class dev/ftb/mods/ftblibrary/icon/ItemIcon
+     433: astore_3
+     434: aload_2
+     435: new           #150                // class dev/ftb/mods/ftblibrary/ui/ContextMenuItem
+     438: dup
+     439: ldc_w         #325                // String ftbquests.gui.use_as_quest_icon
+     442: invokestatic  #158                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     445: getstatic     #328                // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.EDIT_ICON:Ldev/ftb/mods/ftbquests/quest/theme/property/IconProperty;
+     448: invokevirtual #294                // Method dev/ftb/mods/ftbquests/quest/theme/property/IconProperty.get:()Ljava/lang/Object;
+     451: checkcast     #296                // class dev/ftb/mods/ftblibrary/icon/Icon
+     454: aload_0
+     455: aload_3
+     456: invokedynamic #336,  0            // InvokeDynamic #4:accept:(Ldev/ftb/mods/ftbquests/client/gui/quests/TaskButton;Ldev/ftb/mods/ftblibrary/icon/ItemIcon;)Ljava/util/function/Consumer;
+     461: invokespecial #183                // Method dev/ftb/mods/ftblibrary/ui/ContextMenuItem."<init>":(Lnet/minecraft/network/chat/Component;Ldev/ftb/mods/ftblibrary/icon/Icon;Ljava/util/function/Consumer;)V
+     464: invokestatic  #189                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     467: invokevirtual #193                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.insertAtTop:(Ljava/util/Collection;)Ldev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder;
+     470: pop
+     471: aload_2
+     472: aload_0
+     473: invokevirtual #337                // Method getGui:()Ldev/ftb/mods/ftblibrary/ui/BaseScreen;
+     476: invokevirtual #341                // Method dev/ftb/mods/ftbquests/client/gui/ContextMenuBuilder.openContextMenu:(Ldev/ftb/mods/ftblibrary/ui/BaseScreen;)V
+     479: return
+
+  private void setTagFilterAndSave(dev.ftb.mods.ftbquests.quest.task.ItemTask, dev.ftb.mods.ftbquests.api.ItemFilterAdapter, net.minecraft.tags.TagKey<net.minecraft.world.item.Item>);
+    Code:
+       0: aload_1
+       1: aload_2
+       2: aload_3
+       3: invokeinterface #362,  2          // InterfaceMethod dev/ftb/mods/ftbquests/api/ItemFilterAdapter.makeTagFilterStack:(Lnet/minecraft/tags/TagKey;)Lnet/minecraft/world/item/ItemStack;
+       8: aload_1
+       9: invokevirtual #209                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.getItemStack:()Lnet/minecraft/world/item/ItemStack;
+      12: invokevirtual #366                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      15: invokevirtual #370                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.setStackAndCount:(Lnet/minecraft/world/item/ItemStack;I)Ldev/ftb/mods/ftbquests/quest/task/ItemTask;
+      18: pop
+      19: aload_1
+      20: invokevirtual #373                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.getRawTitle:()Ljava/lang/String;
+      23: invokevirtual #376                // Method java/lang/String.isEmpty:()Z
+      26: ifeq          45
+      29: aload_1
+      30: aload_3
+      31: invokevirtual #382                // Method net/minecraft/tags/TagKey.f_203868_:()Lnet/minecraft/resources/ResourceLocation;
+      34: invokestatic  #386                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      37: invokedynamic #398,  0            // InvokeDynamic #5:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      42: invokevirtual #402                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.setRawTitle:(Ljava/lang/String;)V
+      45: new           #404                // class dev/ftb/mods/ftbquests/net/EditObjectMessage
+      48: dup
+      49: aload_1
+      50: invokespecial #407                // Method dev/ftb/mods/ftbquests/net/EditObjectMessage."<init>":(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)V
+      53: invokevirtual #410                // Method dev/ftb/mods/ftbquests/net/EditObjectMessage.sendToServer:()V
+      56: return
+
+  public java.util.Optional<dev.ftb.mods.ftblibrary.util.client.PositionedIngredient> getIngredientUnderMouse();
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+       4: aload_0
+       5: invokevirtual #419                // Method dev/ftb/mods/ftbquests/quest/task/Task.getIngredient:(Ldev/ftb/mods/ftblibrary/ui/Widget;)Ljava/util/Optional;
+       8: areturn
+
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+       4: aload_1
+       5: aload_0
+       6: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+       9: invokevirtual #426                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.addInfoTooltip:(Ldev/ftb/mods/ftblibrary/util/TooltipList;Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)V
+      12: aload_0
+      13: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      16: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      19: getfield      #119                // Field dev/ftb/mods/ftbquests/client/ClientQuestFile.selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      22: astore_2
+      23: aload_0
+      24: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      27: aload_1
+      28: aload_2
+      29: invokestatic  #432                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      32: getfield      #436                // Field net/minecraft/client/Minecraft.f_91066_:Lnet/minecraft/client/Options;
+      35: getfield      #441                // Field net/minecraft/client/Options.f_92125_:Z
+      38: invokevirtual #445                // Method dev/ftb/mods/ftbquests/quest/task/Task.addMouseOverHeader:(Ldev/ftb/mods/ftblibrary/util/TooltipList;Ldev/ftb/mods/ftbquests/quest/TeamData;Z)V
+      41: aload_2
+      42: aload_0
+      43: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      46: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/task/Task.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+      49: invokevirtual #129                // Method dev/ftb/mods/ftbquests/quest/TeamData.canStartTasks:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+      52: ifeq          255
+      55: aload_0
+      56: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      59: invokevirtual #449                // Method dev/ftb/mods/ftbquests/quest/task/Task.getMaxProgress:()J
+      62: lstore_3
+      63: aload_2
+      64: aload_0
+      65: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      68: invokevirtual #453                // Method dev/ftb/mods/ftbquests/quest/TeamData.getProgress:(Ldev/ftb/mods/ftbquests/quest/task/Task;)J
+      71: lstore        5
+      73: lload_3
+      74: lconst_1
+      75: lcmp
+      76: ifle          255
+      79: aload_0
+      80: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      83: invokevirtual #456                // Method dev/ftb/mods/ftbquests/quest/task/Task.hideProgressNumbers:()Z
+      86: ifeq          118
+      89: aload_1
+      90: aload_0
+      91: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      94: aload_2
+      95: invokevirtual #460                // Method dev/ftb/mods/ftbquests/quest/task/Task.getRelativeProgressFromChildren:(Ldev/ftb/mods/ftbquests/quest/TeamData;)I
+      98: invokedynamic #465,  0            // InvokeDynamic #6:makeConcatWithConstants:(I)Ljava/lang/String;
+     103: invokestatic  #468                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     106: getstatic     #474                // Field net/minecraft/ChatFormatting.DARK_GREEN:Lnet/minecraft/ChatFormatting;
+     109: invokevirtual #480                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     112: invokevirtual #486                // Method dev/ftb/mods/ftblibrary/util/TooltipList.add:(Lnet/minecraft/network/chat/Component;)V
+     115: goto          255
+     118: invokestatic  #489                // Method isShiftKeyDown:()Z
+     121: ifeq          131
+     124: lload_3
+     125: invokestatic  #495                // Method java/lang/Long.toUnsignedString:(J)Ljava/lang/String;
+     128: goto          138
+     131: aload_0
+     132: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     135: invokevirtual #498                // Method dev/ftb/mods/ftbquests/quest/task/Task.formatMaxProgress:()Ljava/lang/String;
+     138: astore        7
+     140: invokestatic  #489                // Method isShiftKeyDown:()Z
+     143: ifeq          154
+     146: lload         5
+     148: invokestatic  #495                // Method java/lang/Long.toUnsignedString:(J)Ljava/lang/String;
+     151: goto          164
+     154: aload_0
+     155: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     158: aload_2
+     159: lload         5
+     161: invokevirtual #502                // Method dev/ftb/mods/ftbquests/quest/task/Task.formatProgress:(Ldev/ftb/mods/ftbquests/quest/TeamData;J)Ljava/lang/String;
+     164: astore        8
+     166: lload         5
+     168: lload_3
+     169: lcmp
+     170: ifle          178
+     173: aload         7
+     175: goto          180
+     178: aload         8
+     180: aload         7
+     182: invokedynamic #507,  0            // InvokeDynamic #7:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     187: astore        9
+     189: lload_3
+     190: ldc2_w        #508                // long 100l
+     193: lcmp
+     194: ifge          215
+     197: aload_1
+     198: aload         9
+     200: invokestatic  #468                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     203: getstatic     #474                // Field net/minecraft/ChatFormatting.DARK_GREEN:Lnet/minecraft/ChatFormatting;
+     206: invokevirtual #480                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     209: invokevirtual #486                // Method dev/ftb/mods/ftblibrary/util/TooltipList.add:(Lnet/minecraft/network/chat/Component;)V
+     212: goto          255
+     215: aload_1
+     216: aload         9
+     218: invokestatic  #468                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     221: getstatic     #474                // Field net/minecraft/ChatFormatting.DARK_GREEN:Lnet/minecraft/ChatFormatting;
+     224: invokevirtual #480                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     227: aload_0
+     228: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     231: aload_2
+     232: invokevirtual #460                // Method dev/ftb/mods/ftbquests/quest/task/Task.getRelativeProgressFromChildren:(Ldev/ftb/mods/ftbquests/quest/TeamData;)I
+     235: invokedynamic #512,  0            // InvokeDynamic #8:makeConcatWithConstants:(I)Ljava/lang/String;
+     240: invokestatic  #468                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     243: getstatic     #515                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+     246: invokevirtual #480                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     249: invokevirtual #519                // Method net/minecraft/network/chat/MutableComponent.m_7220_:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+     252: invokevirtual #486                // Method dev/ftb/mods/ftblibrary/util/TooltipList.add:(Lnet/minecraft/network/chat/Component;)V
+     255: aload_0
+     256: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     259: aload_2
+     260: invokevirtual #523                // Method dev/ftb/mods/ftbquests/quest/task/Task.isOptionalForProgression:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+     263: ifeq          282
+     266: aload_1
+     267: ldc_w         #525                // String ftbquests.quest.misc.optional_task
+     270: invokestatic  #158                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     273: getstatic     #528                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+     276: invokevirtual #480                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     279: invokevirtual #486                // Method dev/ftb/mods/ftblibrary/util/TooltipList.add:(Lnet/minecraft/network/chat/Component;)V
+     282: aload_0
+     283: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     286: aload_1
+     287: aload_2
+     288: invokevirtual #531                // Method dev/ftb/mods/ftbquests/quest/task/Task.addMouseOverText:(Ldev/ftb/mods/ftblibrary/util/TooltipList;Ldev/ftb/mods/ftbquests/quest/TeamData;)V
+     291: return
+
+  public void drawBackground(net.minecraft.client.gui.GuiGraphics, dev.ftb.mods.ftblibrary.ui.Theme, int, int, int, int);
+    Code:
+       0: aload_0
+       1: invokevirtual #65                 // Method isMouseOver:()Z
+       4: ifeq          20
+       7: aload_0
+       8: aload_1
+       9: aload_2
+      10: iload_3
+      11: iload         4
+      13: iload         5
+      15: iload         6
+      17: invokespecial #550                // Method dev/ftb/mods/ftblibrary/ui/Button.drawBackground:(Lnet/minecraft/client/gui/GuiGraphics;Ldev/ftb/mods/ftblibrary/ui/Theme;IIII)V
+      20: return
+
+  public void drawIcon(net.minecraft.client.gui.GuiGraphics, dev.ftb.mods.ftblibrary.ui.Theme, int, int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+       4: aload_0
+       5: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+       8: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      11: getfield      #119                // Field dev/ftb/mods/ftbquests/client/ClientQuestFile.selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      14: aload_1
+      15: iload_3
+      16: iload         4
+      18: iload         5
+      20: iload         6
+      22: invokevirtual #558                // Method dev/ftb/mods/ftbquests/quest/task/Task.drawGUI:(Ldev/ftb/mods/ftbquests/quest/TeamData;Lnet/minecraft/client/gui/GuiGraphics;IIII)V
+      25: return
+
+  public void draw(net.minecraft.client.gui.GuiGraphics, dev.ftb.mods.ftblibrary.ui.Theme, int, int, int, int);
+    Code:
+       0: iload         6
+       2: bipush        32
+       4: if_icmplt     12
+       7: bipush        32
+       9: goto          14
+      12: bipush        16
+      14: istore        7
+      16: invokestatic  #564                // Method dev/ftb/mods/ftblibrary/ui/GuiHelper.setupDrawing:()V
+      19: aload_0
+      20: aload_1
+      21: aload_2
+      22: iload_3
+      23: iload         4
+      25: iload         5
+      27: iload         6
+      29: invokevirtual #565                // Method drawBackground:(Lnet/minecraft/client/gui/GuiGraphics;Ldev/ftb/mods/ftblibrary/ui/Theme;IIII)V
+      32: aload_0
+      33: aload_1
+      34: aload_2
+      35: iload_3
+      36: iload         5
+      38: iload         7
+      40: isub
+      41: iconst_2
+      42: idiv
+      43: iadd
+      44: iload         4
+      46: iload         6
+      48: iload         7
+      50: isub
+      51: iconst_2
+      52: idiv
+      53: iadd
+      54: iload         7
+      56: iload         7
+      58: invokevirtual #567                // Method drawIcon:(Lnet/minecraft/client/gui/GuiGraphics;Ldev/ftb/mods/ftblibrary/ui/Theme;IIII)V
+      61: aload_0
+      62: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      65: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+      68: getfield      #119                // Field dev/ftb/mods/ftbquests/client/ClientQuestFile.selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+      71: ifnonnull     75
+      74: return
+      75: aload_0
+      76: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      79: invokevirtual #570                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.getContextMenu:()Ljava/util/Optional;
+      82: invokevirtual #575                // Method java/util/Optional.isPresent:()Z
+      85: ifeq          88
+      88: aload_1
+      89: invokevirtual #581                // Method net/minecraft/client/gui/GuiGraphics.m_280168_:()Lcom/mojang/blaze3d/vertex/PoseStack;
+      92: astore        8
+      94: aload_0
+      95: getfield      #53                 // Field questScreen:Ldev/ftb/mods/ftbquests/client/gui/quests/QuestScreen;
+      98: getfield      #113                // Field dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.file:Ldev/ftb/mods/ftbquests/client/ClientQuestFile;
+     101: getfield      #119                // Field dev/ftb/mods/ftbquests/client/ClientQuestFile.selfTeamData:Ldev/ftb/mods/ftbquests/quest/TeamData;
+     104: aload_0
+     105: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     108: invokevirtual #133                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+     111: ifeq          168
+     114: aload         8
+     116: invokevirtual #586                // Method com/mojang/blaze3d/vertex/PoseStack.m_85836_:()V
+     119: aload         8
+     121: fconst_0
+     122: fconst_0
+     123: ldc_w         #587                // float 200.0f
+     126: invokevirtual #591                // Method com/mojang/blaze3d/vertex/PoseStack.m_252880_:(FFF)V
+     129: invokestatic  #596                // Method com/mojang/blaze3d/systems/RenderSystem.enableBlend:()V
+     132: getstatic     #599                // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.CHECK_ICON:Ldev/ftb/mods/ftbquests/quest/theme/property/IconProperty;
+     135: invokevirtual #294                // Method dev/ftb/mods/ftbquests/quest/theme/property/IconProperty.get:()Ljava/lang/Object;
+     138: checkcast     #296                // class dev/ftb/mods/ftblibrary/icon/Icon
+     141: aload_1
+     142: iload_3
+     143: iload         5
+     145: iadd
+     146: bipush        9
+     148: isub
+     149: iload         4
+     151: iconst_1
+     152: iadd
+     153: bipush        8
+     155: bipush        8
+     157: invokevirtual #602                // Method dev/ftb/mods/ftblibrary/icon/Icon.draw:(Lnet/minecraft/client/gui/GuiGraphics;IIII)V
+     160: aload         8
+     162: invokevirtual #605                // Method com/mojang/blaze3d/vertex/PoseStack.m_85849_:()V
+     165: goto          258
+     168: aload_0
+     169: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+     172: invokevirtual #609                // Method dev/ftb/mods/ftbquests/quest/task/Task.getButtonText:()Lnet/minecraft/network/chat/MutableComponent;
+     175: astore        9
+     177: aload         9
+     179: invokevirtual #613                // Method net/minecraft/network/chat/MutableComponent.m_214077_:()Lnet/minecraft/network/chat/ComponentContents;
+     182: getstatic     #619                // Field net/minecraft/network/chat/ComponentContents.f_237124_:Lnet/minecraft/network/chat/ComponentContents;
+     185: if_acmpeq     258
+     188: aload         8
+     190: invokevirtual #586                // Method com/mojang/blaze3d/vertex/PoseStack.m_85836_:()V
+     193: aload         8
+     195: iload_3
+     196: i2f
+     197: ldc_w         #620                // float 19.0f
+     200: fadd
+     201: aload_2
+     202: aload         9
+     204: invokevirtual #626                // Method dev/ftb/mods/ftblibrary/ui/Theme.getStringWidth:(Lnet/minecraft/network/chat/FormattedText;)I
+     207: i2f
+     208: fconst_2
+     209: fdiv
+     210: fsub
+     211: iload         4
+     213: i2f
+     214: ldc_w         #627                // float 15.0f
+     217: fadd
+     218: ldc_w         #587                // float 200.0f
+     221: invokevirtual #591                // Method com/mojang/blaze3d/vertex/PoseStack.m_252880_:(FFF)V
+     224: aload         8
+     226: ldc_w         #628                // float 0.5f
+     229: ldc_w         #628                // float 0.5f
+     232: fconst_1
+     233: invokevirtual #631                // Method com/mojang/blaze3d/vertex/PoseStack.m_85841_:(FFF)V
+     236: invokestatic  #596                // Method com/mojang/blaze3d/systems/RenderSystem.enableBlend:()V
+     239: aload_2
+     240: aload_1
+     241: aload         9
+     243: iconst_0
+     244: iconst_0
+     245: getstatic     #637                // Field dev/ftb/mods/ftblibrary/icon/Color4I.WHITE:Ldev/ftb/mods/ftblibrary/icon/Color4I;
+     248: iconst_2
+     249: invokevirtual #641                // Method dev/ftb/mods/ftblibrary/ui/Theme.drawString:(Lnet/minecraft/client/gui/GuiGraphics;Ljava/lang/Object;IILdev/ftb/mods/ftblibrary/icon/Color4I;I)I
+     252: pop
+     253: aload         8
+     255: invokevirtual #605                // Method com/mojang/blaze3d/vertex/PoseStack.m_85849_:()V
+     258: return
+
+  private void lambda$onClicked$4(dev.ftb.mods.ftblibrary.icon.ItemIcon, dev.ftb.mods.ftblibrary.ui.Button);
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+       4: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/task/Task.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+       7: aload_1
+       8: invokevirtual #649                // Method dev/ftb/mods/ftblibrary/icon/ItemIcon.getStack:()Lnet/minecraft/world/item/ItemStack;
+      11: invokevirtual #652                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      14: invokevirtual #658                // Method dev/ftb/mods/ftbquests/quest/Quest.setRawIcon:(Lnet/minecraft/world/item/ItemStack;)V
+      17: aload_0
+      18: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      21: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/task/Task.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+      24: invokevirtual #661                // Method dev/ftb/mods/ftbquests/quest/Quest.clearCachedData:()V
+      27: new           #404                // class dev/ftb/mods/ftbquests/net/EditObjectMessage
+      30: dup
+      31: aload_0
+      32: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+      35: invokevirtual #123                // Method dev/ftb/mods/ftbquests/quest/task/Task.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+      38: invokespecial #407                // Method dev/ftb/mods/ftbquests/net/EditObjectMessage."<init>":(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)V
+      41: invokevirtual #410                // Method dev/ftb/mods/ftbquests/net/EditObjectMessage.sendToServer:()V
+      44: return
+
+  private static void lambda$onClicked$3(dev.ftb.mods.ftbquests.quest.task.ItemTask, dev.ftb.mods.ftblibrary.ui.Button);
+    Code:
+       0: new           #664                // class dev/ftb/mods/ftbquests/net/GiveItemToPlayerMessage
+       3: dup
+       4: aload_0
+       5: invokevirtual #209                // Method dev/ftb/mods/ftbquests/quest/task/ItemTask.getItemStack:()Lnet/minecraft/world/item/ItemStack;
+       8: invokespecial #666                // Method dev/ftb/mods/ftbquests/net/GiveItemToPlayerMessage."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+      11: invokevirtual #667                // Method dev/ftb/mods/ftbquests/net/GiveItemToPlayerMessage.sendToServer:()V
+      14: return
+
+  private void lambda$onClicked$2(java.util.List, dev.ftb.mods.ftbquests.quest.task.ItemTask, dev.ftb.mods.ftbquests.api.ItemFilterAdapter, dev.ftb.mods.ftblibrary.ui.Button);
+    Code:
+       0: aload_1
+       1: invokeinterface #670,  1          // InterfaceMethod java/util/List.size:()I
+       6: iconst_1
+       7: if_icmpne     29
+      10: aload_0
+      11: aload_2
+      12: aload_3
+      13: aload_1
+      14: iconst_0
+      15: invokeinterface #673,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      20: checkcast     #378                // class net/minecraft/tags/TagKey
+      23: invokevirtual #675                // Method setTagFilterAndSave:(Ldev/ftb/mods/ftbquests/quest/task/ItemTask;Ldev/ftb/mods/ftbquests/api/ItemFilterAdapter;Lnet/minecraft/tags/TagKey;)V
+      26: goto          43
+      29: new           #7                  // class dev/ftb/mods/ftbquests/client/gui/quests/TaskButton$TagSelectionScreen
+      32: dup
+      33: aload_0
+      34: aload_1
+      35: aload_2
+      36: aload_3
+      37: invokespecial #678                // Method dev/ftb/mods/ftbquests/client/gui/quests/TaskButton$TagSelectionScreen."<init>":(Ldev/ftb/mods/ftbquests/client/gui/quests/TaskButton;Ljava/util/List;Ldev/ftb/mods/ftbquests/quest/task/ItemTask;Ldev/ftb/mods/ftbquests/api/ItemFilterAdapter;)V
+      40: invokevirtual #681                // Method dev/ftb/mods/ftbquests/client/gui/quests/TaskButton$TagSelectionScreen.openGui:()V
+      43: return
+
+  private void lambda$onClicked$1(dev.ftb.mods.ftblibrary.ui.Button);
+    Code:
+       0: new           #683                // class dev/ftb/mods/ftbquests/net/ReorderItemMessage
+       3: dup
+       4: aload_0
+       5: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+       8: invokevirtual #686                // Method dev/ftb/mods/ftbquests/quest/task/Task.getId:()J
+      11: iconst_1
+      12: invokespecial #689                // Method dev/ftb/mods/ftbquests/net/ReorderItemMessage."<init>":(JZ)V
+      15: invokevirtual #690                // Method dev/ftb/mods/ftbquests/net/ReorderItemMessage.sendToServer:()V
+      18: return
+
+  private void lambda$onClicked$0(dev.ftb.mods.ftblibrary.ui.Button);
+    Code:
+       0: new           #683                // class dev/ftb/mods/ftbquests/net/ReorderItemMessage
+       3: dup
+       4: aload_0
+       5: getfield      #55                 // Field task:Ldev/ftb/mods/ftbquests/quest/task/Task;
+       8: invokevirtual #686                // Method dev/ftb/mods/ftbquests/quest/task/Task.getId:()J
+      11: iconst_0
+      12: invokespecial #689                // Method dev/ftb/mods/ftbquests/net/ReorderItemMessage."<init>":(JZ)V
+      15: invokevirtual #690                // Method dev/ftb/mods/ftbquests/net/ReorderItemMessage.sendToServer:()V
+      18: return
+}

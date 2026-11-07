@@ -1,0 +1,95 @@
+Compiled from "SelectChoiceRewardScreen.java"
+public class dev.ftb.mods.ftbquests.client.gui.SelectChoiceRewardScreen extends dev.ftb.mods.ftblibrary.ui.misc.AbstractButtonListScreen {
+  private final dev.ftb.mods.ftbquests.quest.reward.ChoiceReward choiceReward;
+
+  private dev.ftb.mods.ftbquests.quest.loot.WeightedReward acceptedReward;
+
+  public dev.ftb.mods.ftbquests.client.gui.SelectChoiceRewardScreen(dev.ftb.mods.ftbquests.quest.reward.ChoiceReward);
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method dev/ftb/mods/ftblibrary/ui/misc/AbstractButtonListScreen."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #24                 // Field choiceReward:Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;
+       9: aload_0
+      10: ldc           #26                 // String ftbquests.reward.ftbquests.choice
+      12: invokestatic  #32                 // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      15: invokevirtual #36                 // Method setTitle:(Lnet/minecraft/network/chat/Component;)V
+      18: aload_0
+      19: iconst_1
+      20: iconst_1
+      21: iconst_1
+      22: invokevirtual #40                 // Method setBorder:(III)V
+      25: aload_0
+      26: iconst_0
+      27: invokevirtual #44                 // Method showBottomPanel:(Z)V
+      30: aload_0
+      31: iconst_1
+      32: invokevirtual #47                 // Method showCloseButton:(Z)V
+      35: return
+
+  public void addButtons(dev.ftb.mods.ftblibrary.ui.Panel);
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field choiceReward:Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;
+       4: invokevirtual #58                 // Method dev/ftb/mods/ftbquests/quest/reward/ChoiceReward.getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       7: ifnull        32
+      10: aload_0
+      11: getfield      #24                 // Field choiceReward:Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;
+      14: invokevirtual #58                 // Method dev/ftb/mods/ftbquests/quest/reward/ChoiceReward.getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      17: invokevirtual #64                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getWeightedRewards:()Ljava/util/List;
+      20: aload_0
+      21: aload_1
+      22: invokedynamic #84,  0             // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen;Ldev/ftb/mods/ftblibrary/ui/Panel;)Ljava/util/function/Consumer;
+      27: invokeinterface #90,  2           // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      32: return
+
+  public dev.ftb.mods.ftblibrary.ui.Theme getTheme();
+    Code:
+       0: getstatic     #99                 // Field dev/ftb/mods/ftbquests/client/gui/FTBQuestsTheme.INSTANCE:Ldev/ftb/mods/ftbquests/client/gui/FTBQuestsTheme;
+       3: areturn
+
+  protected void doCancel();
+    Code:
+       0: aload_0
+       1: invokevirtual #103                // Method closeGui:()V
+       4: return
+
+  protected void doAccept();
+    Code:
+       0: aload_0
+       1: invokevirtual #103                // Method closeGui:()V
+       4: aload_0
+       5: getfield      #24                 // Field choiceReward:Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;
+       8: invokevirtual #58                 // Method dev/ftb/mods/ftbquests/quest/reward/ChoiceReward.getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: ifnull        52
+      14: aload_0
+      15: getfield      #24                 // Field choiceReward:Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;
+      18: invokevirtual #58                 // Method dev/ftb/mods/ftbquests/quest/reward/ChoiceReward.getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      21: invokevirtual #64                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getWeightedRewards:()Ljava/util/List;
+      24: aload_0
+      25: getfield      #106                // Field acceptedReward:Ldev/ftb/mods/ftbquests/quest/loot/WeightedReward;
+      28: invokeinterface #110,  2          // InterfaceMethod java/util/List.indexOf:(Ljava/lang/Object;)I
+      33: istore_1
+      34: new           #112                // class dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage
+      37: dup
+      38: aload_0
+      39: getfield      #24                 // Field choiceReward:Ldev/ftb/mods/ftbquests/quest/reward/ChoiceReward;
+      42: getfield      #116                // Field dev/ftb/mods/ftbquests/quest/reward/ChoiceReward.id:J
+      45: iload_1
+      46: invokespecial #119                // Method dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage."<init>":(JI)V
+      49: invokevirtual #122                // Method dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage.sendToServer:()V
+      52: return
+
+  private void lambda$addButtons$0(dev.ftb.mods.ftblibrary.ui.Panel, dev.ftb.mods.ftbquests.quest.loot.WeightedReward);
+    Code:
+       0: aload_1
+       1: new           #7                  // class dev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen$ChoiceRewardButton
+       4: dup
+       5: aload_0
+       6: aload_1
+       7: aload_2
+       8: invokespecial #128                // Method dev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen$ChoiceRewardButton."<init>":(Ldev/ftb/mods/ftbquests/client/gui/SelectChoiceRewardScreen;Ldev/ftb/mods/ftblibrary/ui/Panel;Ldev/ftb/mods/ftbquests/quest/loot/WeightedReward;)V
+      11: invokevirtual #134                // Method dev/ftb/mods/ftblibrary/ui/Panel.add:(Ldev/ftb/mods/ftblibrary/ui/Widget;)V
+      14: return
+}

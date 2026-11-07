@@ -1,0 +1,311 @@
+Classfile jar:file:///D:/AI/Hermes/workspace/MCP%20Minecraft%20Plus/adapters/ftbquests-1.20.1-forge/distribution/adapter.jar!/dev/mcpmcp/ftbquests/NativePackets.class
+  Last modified 1980��2��1��; size 2967 bytes
+  SHA-256 checksum a56454ff5a5a482da0f2b6579636f7a4c504b51f6c09ec75f0f8b844bad66922
+  Compiled from "NativePackets.java"
+final class dev.mcpmcp.ftbquests.NativePackets
+  minor version: 0
+  major version: 61
+  flags: (0x0030) ACC_FINAL, ACC_SUPER
+  this_class: #2                          // dev/mcpmcp/ftbquests/NativePackets
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 4, attributes: 3
+Constant pool:
+    #1 = Utf8               dev/mcpmcp/ftbquests/NativePackets
+    #2 = Class              #1            // dev/mcpmcp/ftbquests/NativePackets
+    #3 = Utf8               java/lang/Object
+    #4 = Class              #3            // java/lang/Object
+    #5 = Utf8               NativePackets.java
+    #6 = Utf8               java/lang/invoke/MethodHandles$Lookup
+    #7 = Class              #6            // java/lang/invoke/MethodHandles$Lookup
+    #8 = Utf8               java/lang/invoke/MethodHandles
+    #9 = Class              #8            // java/lang/invoke/MethodHandles
+   #10 = Utf8               Lookup
+   #11 = Utf8               build
+   #12 = Utf8               (Ljava/lang/String;Lcom/google/gson/JsonObject;)Ldev/architectury/networking/simple/BaseC2SMessage;
+   #13 = Utf8               java/lang/String
+   #14 = Class              #13           // java/lang/String
+   #15 = Utf8               hashCode
+   #16 = Utf8               ()I
+   #17 = NameAndType        #15:#16       // hashCode:()I
+   #18 = Methodref          #14.#17       // java/lang/String.hashCode:()I
+   #19 = Utf8               ftbquests.reward.claim
+   #20 = String             #19           // ftbquests.reward.claim
+   #21 = Utf8               equals
+   #22 = Utf8               (Ljava/lang/Object;)Z
+   #23 = NameAndType        #21:#22       // equals:(Ljava/lang/Object;)Z
+   #24 = Methodref          #14.#23       // java/lang/String.equals:(Ljava/lang/Object;)Z
+   #25 = Utf8               ftbquests.reward.choose
+   #26 = String             #25           // ftbquests.reward.choose
+   #27 = Utf8               ftbquests.rewards.claim_all
+   #28 = String             #27           // ftbquests.rewards.claim_all
+   #29 = Utf8               dev/ftb/mods/ftbquests/net/ClaimRewardMessage
+   #30 = Class              #29           // dev/ftb/mods/ftbquests/net/ClaimRewardMessage
+   #31 = Utf8               reward_id
+   #32 = String             #31           // reward_id
+   #33 = Utf8
+   #34 = String             #33           //
+   #35 = Utf8               dev/mcpmcp/ftbquests/Json
+   #36 = Class              #35           // dev/mcpmcp/ftbquests/Json
+   #37 = Utf8               str
+   #38 = Utf8               (Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #39 = NameAndType        #37:#38       // str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #40 = Methodref          #36.#39       // dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #41 = Utf8               parseId
+   #42 = Utf8               (Ljava/lang/String;)J
+   #43 = NameAndType        #41:#42       // parseId:(Ljava/lang/String;)J
+   #44 = Methodref          #36.#43       // dev/mcpmcp/ftbquests/Json.parseId:(Ljava/lang/String;)J
+   #45 = Utf8               <init>
+   #46 = Utf8               (JZ)V
+   #47 = NameAndType        #45:#46       // "<init>":(JZ)V
+   #48 = Methodref          #30.#47       // dev/ftb/mods/ftbquests/net/ClaimRewardMessage."<init>":(JZ)V
+   #49 = Utf8               dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage
+   #50 = Class              #49           // dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage
+   #51 = Utf8               choice_index
+   #52 = String             #51           // choice_index
+   #53 = Utf8               integer
+   #54 = Utf8               (Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+   #55 = NameAndType        #53:#54       // integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+   #56 = Methodref          #36.#55       // dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+   #57 = Utf8               (JI)V
+   #58 = NameAndType        #45:#57       // "<init>":(JI)V
+   #59 = Methodref          #50.#58       // dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage."<init>":(JI)V
+   #60 = Utf8               dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage
+   #61 = Class              #60           // dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage
+   #62 = Utf8               ()V
+   #63 = NameAndType        #45:#62       // "<init>":()V
+   #64 = Methodref          #61.#63       // dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage."<init>":()V
+   #65 = Utf8               java/lang/IllegalArgumentException
+   #66 = Class              #65           // java/lang/IllegalArgumentException
+   #67 = Utf8               ftbquests_unknown_action
+   #68 = String             #67           // ftbquests_unknown_action
+   #69 = Utf8               (Ljava/lang/String;)V
+   #70 = NameAndType        #45:#69       // "<init>":(Ljava/lang/String;)V
+   #71 = Methodref          #66.#70       // java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+   #72 = Utf8               com/google/gson/JsonObject
+   #73 = Class              #72           // com/google/gson/JsonObject
+   #74 = Utf8               dev/architectury/networking/simple/BaseC2SMessage
+   #75 = Class              #74           // dev/architectury/networking/simple/BaseC2SMessage
+   #76 = Utf8               action
+   #77 = Utf8               Ljava/lang/String;
+   #78 = Utf8               args
+   #79 = Utf8               Lcom/google/gson/JsonObject;
+   #80 = Utf8               submit
+   #81 = Utf8               (Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+   #82 = Utf8               (Ljava/lang/Object;)V
+   #83 = MethodType         #82           //  (Ljava/lang/Object;)V
+   #84 = Utf8               sendToServer
+   #85 = NameAndType        #84:#62       // sendToServer:()V
+   #86 = Methodref          #75.#85       // dev/architectury/networking/simple/BaseC2SMessage.sendToServer:()V
+   #87 = MethodHandle       5:#86         // REF_invokeVirtual dev/architectury/networking/simple/BaseC2SMessage.sendToServer:()V
+   #88 = Utf8               (Ldev/architectury/networking/simple/BaseC2SMessage;)V
+   #89 = MethodType         #88           //  (Ldev/architectury/networking/simple/BaseC2SMessage;)V
+   #90 = Utf8               java/lang/invoke/LambdaMetafactory
+   #91 = Class              #90           // java/lang/invoke/LambdaMetafactory
+   #92 = Utf8               metafactory
+   #93 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #94 = NameAndType        #92:#93       // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #95 = Methodref          #91.#94       // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #96 = MethodHandle       6:#95         // REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #97 = Utf8               accept
+   #98 = Utf8               ()Ljava/util/function/Consumer;
+   #99 = NameAndType        #97:#98       // accept:()Ljava/util/function/Consumer;
+  #100 = InvokeDynamic      #0:#99        // #0:accept:()Ljava/util/function/Consumer;
+  #101 = Utf8               (Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer;)V
+  #102 = NameAndType        #80:#101      // submit:(Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer;)V
+  #103 = Methodref          #2.#102       // dev/mcpmcp/ftbquests/NativePackets.submit:(Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer;)V
+  #104 = Utf8               (Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer<Ldev/architectury/networking/simple/BaseC2SMessage;>;)V
+  #105 = NameAndType        #11:#12       // build:(Ljava/lang/String;Lcom/google/gson/JsonObject;)Ldev/architectury/networking/simple/BaseC2SMessage;
+  #106 = Methodref          #2.#105       // dev/mcpmcp/ftbquests/NativePackets.build:(Ljava/lang/String;Lcom/google/gson/JsonObject;)Ldev/architectury/networking/simple/BaseC2SMessage;
+  #107 = Utf8               java/util/function/Consumer
+  #108 = Class              #107          // java/util/function/Consumer
+  #109 = NameAndType        #97:#82       // accept:(Ljava/lang/Object;)V
+  #110 = InterfaceMethodref #108.#109     // java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+  #111 = Utf8               sender
+  #112 = Utf8               Ljava/util/function/Consumer<Ldev/architectury/networking/simple/BaseC2SMessage;>;
+  #113 = Utf8               Ljava/util/function/Consumer;
+  #114 = Methodref          #4.#63        // java/lang/Object."<init>":()V
+  #115 = Utf8               this
+  #116 = Utf8               Ldev/mcpmcp/ftbquests/NativePackets;
+  #117 = Utf8               Code
+  #118 = Utf8               StackMapTable
+  #119 = Utf8               LineNumberTable
+  #120 = Utf8               LocalVariableTable
+  #121 = Utf8               LocalVariableTypeTable
+  #122 = Utf8               Signature
+  #123 = Utf8               InnerClasses
+  #124 = Utf8               SourceFile
+  #125 = Utf8               BootstrapMethods
+{
+  static dev.architectury.networking.simple.BaseC2SMessage build(java.lang.String, com.google.gson.JsonObject);
+    descriptor: (Ljava/lang/String;Lcom/google/gson/JsonObject;)Ldev/architectury/networking/simple/BaseC2SMessage;
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=7, locals=4, args_size=2
+         0: aload_0
+         1: astore_2
+         2: iconst_m1
+         3: istore_3
+         4: aload_2
+         5: invokevirtual #18                 // Method java/lang/String.hashCode:()I
+         8: lookupswitch  { // 3
+
+              -229453338: 44
+
+                85894475: 72
+
+              1473610157: 58
+                 default: 83
+            }
+        44: aload_2
+        45: ldc           #20                 // String ftbquests.reward.claim
+        47: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        50: ifeq          83
+        53: iconst_0
+        54: istore_3
+        55: goto          83
+        58: aload_2
+        59: ldc           #26                 // String ftbquests.reward.choose
+        61: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        64: ifeq          83
+        67: iconst_1
+        68: istore_3
+        69: goto          83
+        72: aload_2
+        73: ldc           #28                 // String ftbquests.rewards.claim_all
+        75: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        78: ifeq          83
+        81: iconst_2
+        82: istore_3
+        83: iload_3
+        84: tableswitch   { // 0 to 2
+
+                       0: 112
+
+                       1: 134
+
+                       2: 162
+                 default: 172
+            }
+       112: new           #30                 // class dev/ftb/mods/ftbquests/net/ClaimRewardMessage
+       115: dup
+       116: aload_1
+       117: ldc           #32                 // String reward_id
+       119: ldc           #34                 // String
+       121: invokestatic  #40                 // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       124: invokestatic  #44                 // Method dev/mcpmcp/ftbquests/Json.parseId:(Ljava/lang/String;)J
+       127: iconst_1
+       128: invokespecial #48                 // Method dev/ftb/mods/ftbquests/net/ClaimRewardMessage."<init>":(JZ)V
+       131: goto          182
+       134: new           #50                 // class dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage
+       137: dup
+       138: aload_1
+       139: ldc           #32                 // String reward_id
+       141: ldc           #34                 // String
+       143: invokestatic  #40                 // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       146: invokestatic  #44                 // Method dev/mcpmcp/ftbquests/Json.parseId:(Ljava/lang/String;)J
+       149: aload_1
+       150: ldc           #52                 // String choice_index
+       152: iconst_m1
+       153: invokestatic  #56                 // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+       156: invokespecial #59                 // Method dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage."<init>":(JI)V
+       159: goto          182
+       162: new           #61                 // class dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage
+       165: dup
+       166: invokespecial #64                 // Method dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage."<init>":()V
+       169: goto          182
+       172: new           #66                 // class java/lang/IllegalArgumentException
+       175: dup
+       176: ldc           #68                 // String ftbquests_unknown_action
+       178: invokespecial #71                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+       181: athrow
+       182: areturn
+      StackMapTable: number_of_entries = 9
+        frame_type = 253 /* append */
+          offset_delta = 44
+          locals = [ class java/lang/String, int ]
+        frame_type = 13 /* same */
+        frame_type = 13 /* same */
+        frame_type = 10 /* same */
+        frame_type = 28 /* same */
+        frame_type = 21 /* same */
+        frame_type = 27 /* same */
+        frame_type = 9 /* same */
+        frame_type = 255 /* full_frame */
+          offset_delta = 9
+          locals = [ class java/lang/String, class com/google/gson/JsonObject ]
+          stack = [ class dev/architectury/networking/simple/BaseC2SMessage ]
+      LineNumberTable:
+        line 8: 0
+        line 9: 112
+        line 10: 134
+        line 11: 162
+        line 12: 172
+        line 8: 182
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0     183     0 action   Ljava/lang/String;
+            0     183     1  args   Lcom/google/gson/JsonObject;
+
+  static void submit(java.lang.String, com.google.gson.JsonObject);
+    descriptor: (Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #100,  0            // InvokeDynamic #0:accept:()Ljava/util/function/Consumer;
+         7: invokestatic  #103                // Method submit:(Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer;)V
+        10: return
+      LineNumberTable:
+        line 14: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      11     0 action   Ljava/lang/String;
+            0      11     1  args   Lcom/google/gson/JsonObject;
+
+  static void submit(java.lang.String, com.google.gson.JsonObject, java.util.function.Consumer<dev.architectury.networking.simple.BaseC2SMessage>);
+    descriptor: (Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer;)V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_2
+         1: aload_0
+         2: aload_1
+         3: invokestatic  #106                // Method build:(Ljava/lang/String;Lcom/google/gson/JsonObject;)Ldev/architectury/networking/simple/BaseC2SMessage;
+         6: invokeinterface #110,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+        11: return
+      LineNumberTable:
+        line 15: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      12     0 action   Ljava/lang/String;
+            0      12     1  args   Lcom/google/gson/JsonObject;
+            0      12     2 sender   Ljava/util/function/Consumer;
+      LocalVariableTypeTable:
+        Start  Length  Slot  Name   Signature
+            0      12     2 sender   Ljava/util/function/Consumer<Ldev/architectury/networking/simple/BaseC2SMessage;>;
+    Signature: #104                         // (Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer<Ldev/architectury/networking/simple/BaseC2SMessage;>;)V
+
+  private dev.mcpmcp.ftbquests.NativePackets();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #114                // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 16: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Ldev/mcpmcp/ftbquests/NativePackets;
+}
+InnerClasses:
+  public static final #10= #7 of #9;      // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+SourceFile: "NativePackets.java"
+BootstrapMethods:
+  0: #96 REF_invokeStatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #83 (Ljava/lang/Object;)V
+      #87 REF_invokeVirtual dev/architectury/networking/simple/BaseC2SMessage.sendToServer:()V
+      #89 (Ldev/architectury/networking/simple/BaseC2SMessage;)V

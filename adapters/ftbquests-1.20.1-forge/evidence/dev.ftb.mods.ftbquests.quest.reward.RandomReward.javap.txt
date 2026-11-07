@@ -1,0 +1,335 @@
+Compiled from "RandomReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.RandomReward extends dev.ftb.mods.ftbquests.quest.reward.Reward {
+  private dev.ftb.mods.ftbquests.quest.loot.RewardTable table;
+
+  public dev.ftb.mods.ftbquests.quest.reward.RandomReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #18                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: aload_0
+       7: aconst_null
+       8: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: return
+
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+    Code:
+       0: getstatic     #32                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardTypes.RANDOM:Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       3: areturn
+
+  public void writeData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #37                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       9: ifnull        63
+      12: aload_1
+      13: ldc           #43                 // String table_id
+      15: aload_0
+      16: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      19: getfield      #47                 // Field dev/ftb/mods/ftbquests/quest/loot/RewardTable.id:J
+      22: invokevirtual #53                 // Method net/minecraft/nbt/CompoundTag.m_128356_:(Ljava/lang/String;J)V
+      25: aload_0
+      26: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      29: getfield      #47                 // Field dev/ftb/mods/ftbquests/quest/loot/RewardTable.id:J
+      32: ldc2_w        #54                 // long -1l
+      35: lcmp
+      36: ifne          63
+      39: new           #57                 // class dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag
+      42: dup
+      43: invokespecial #60                 // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag."<init>":()V
+      46: astore_2
+      47: aload_0
+      48: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      51: aload_2
+      52: invokevirtual #61                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+      55: aload_1
+      56: ldc           #63                 // String table_data
+      58: aload_2
+      59: invokevirtual #67                 // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      62: pop
+      63: return
+
+  public void readData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #73                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.readData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aconst_null
+       7: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      10: aload_0
+      11: invokevirtual #77                 // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      14: astore_2
+      15: aload_1
+      16: ldc           #43                 // String table_id
+      18: invokevirtual #81                 // Method net/minecraft/nbt/CompoundTag.m_128454_:(Ljava/lang/String;)J
+      21: lstore_3
+      22: lload_3
+      23: lconst_0
+      24: lcmp
+      25: ifeq          37
+      28: aload_0
+      29: aload_2
+      30: lload_3
+      31: invokevirtual #87                 // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getRewardTable:(J)Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      34: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      37: aload_0
+      38: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      41: ifnonnull     90
+      44: aload_1
+      45: ldc           #63                 // String table_data
+      47: invokevirtual #91                 // Method net/minecraft/nbt/CompoundTag.m_128441_:(Ljava/lang/String;)Z
+      50: ifeq          90
+      53: aload_0
+      54: new           #45                 // class dev/ftb/mods/ftbquests/quest/loot/RewardTable
+      57: dup
+      58: ldc2_w        #54                 // long -1l
+      61: aload_2
+      62: invokespecial #94                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable."<init>":(JLdev/ftb/mods/ftbquests/quest/BaseQuestFile;)V
+      65: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      68: aload_0
+      69: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      72: aload_1
+      73: ldc           #63                 // String table_data
+      75: invokevirtual #98                 // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      78: invokevirtual #99                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.readData:(Lnet/minecraft/nbt/CompoundTag;)V
+      81: aload_0
+      82: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      85: ldc           #101                // String Internal
+      87: invokevirtual #105                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.setRawTitle:(Ljava/lang/String;)V
+      90: return
+
+  public dev.ftb.mods.ftbquests.quest.loot.RewardTable getTable();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnull        22
+       7: aload_0
+       8: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: invokevirtual #112                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.isValid:()Z
+      14: ifne          22
+      17: aload_0
+      18: aconst_null
+      19: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      22: aload_0
+      23: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      26: areturn
+
+  public void setTable(dev.ftb.mods.ftbquests.quest.loot.RewardTable);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       5: return
+
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #119                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.writeNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_0
+       6: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       9: astore_2
+      10: aload_1
+      11: aload_2
+      12: ifnonnull     19
+      15: lconst_0
+      16: goto          23
+      19: aload_2
+      20: getfield      #47                 // Field dev/ftb/mods/ftbquests/quest/loot/RewardTable.id:J
+      23: invokevirtual #125                // Method net/minecraft/network/FriendlyByteBuf.writeLong:(J)Lio/netty/buffer/ByteBuf;
+      26: pop
+      27: aload_2
+      28: ifnull        47
+      31: aload_2
+      32: getfield      #47                 // Field dev/ftb/mods/ftbquests/quest/loot/RewardTable.id:J
+      35: ldc2_w        #54                 // long -1l
+      38: lcmp
+      39: ifne          47
+      42: aload_2
+      43: aload_1
+      44: invokevirtual #126                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.writeNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+      47: return
+
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #130                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.readNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_0
+       6: invokevirtual #77                 // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       9: astore_2
+      10: aload_1
+      11: invokevirtual #134                // Method net/minecraft/network/FriendlyByteBuf.readLong:()J
+      14: lstore_3
+      15: lload_3
+      16: ldc2_w        #54                 // long -1l
+      19: lcmp
+      20: ifne          58
+      23: aload_0
+      24: new           #45                 // class dev/ftb/mods/ftbquests/quest/loot/RewardTable
+      27: dup
+      28: ldc2_w        #54                 // long -1l
+      31: aload_2
+      32: invokespecial #94                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable."<init>":(JLdev/ftb/mods/ftbquests/quest/BaseQuestFile;)V
+      35: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      38: aload_0
+      39: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      42: aload_1
+      43: invokevirtual #135                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.readNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+      46: aload_0
+      47: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      50: ldc           #101                // String Internal
+      52: invokevirtual #105                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.setRawTitle:(Ljava/lang/String;)V
+      55: goto          67
+      58: aload_0
+      59: aload_2
+      60: lload_3
+      61: invokevirtual #87                 // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getRewardTable:(J)Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      64: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      67: return
+
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #145                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.fillConfigGroup:(Ldev/ftb/mods/ftblibrary/config/ConfigGroup;)V
+       5: aload_1
+       6: ldc           #146                // String table
+       8: new           #148                // class dev/ftb/mods/ftbquests/util/ConfigQuestObject
+      11: dup
+      12: getstatic     #154                // Field dev/ftb/mods/ftbquests/quest/QuestObjectType.REWARD_TABLE:Ldev/ftb/mods/ftbquests/quest/QuestObjectType;
+      15: invokespecial #157                // Method dev/ftb/mods/ftbquests/util/ConfigQuestObject."<init>":(Ljava/util/function/Predicate;)V
+      18: aload_0
+      19: getfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      22: aload_0
+      23: invokedynamic #175,  0            // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/quest/reward/RandomReward;)Ljava/util/function/Consumer;
+      28: aload_0
+      29: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      32: invokevirtual #181                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.add:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/ConfigValue;Ljava/lang/Object;Ljava/util/function/Consumer;Ljava/lang/Object;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      35: checkcast     #148                // class dev/ftb/mods/ftbquests/util/ConfigQuestObject
+      38: ldc           #183                // String ftbquests.reward_table
+      40: invokevirtual #187                // Method dev/ftb/mods/ftbquests/util/ConfigQuestObject.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      43: pop
+      44: return
+
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: astore_3
+       5: aload_3
+       6: ifnull        61
+       9: aload_3
+      10: aload_1
+      11: invokevirtual #198                // Method net/minecraft/server/level/ServerPlayer.m_217043_:()Lnet/minecraft/util/RandomSource;
+      14: iconst_1
+      15: iconst_0
+      16: invokevirtual #202                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.generateWeightedRandomRewards:(Lnet/minecraft/util/RandomSource;IZ)Ljava/util/Collection;
+      19: invokeinterface #208,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      24: astore        4
+      26: aload         4
+      28: invokeinterface #213,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      33: ifeq          61
+      36: aload         4
+      38: invokeinterface #217,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      43: checkcast     #219                // class dev/ftb/mods/ftbquests/quest/loot/WeightedReward
+      46: astore        5
+      48: aload         5
+      50: invokevirtual #223                // Method dev/ftb/mods/ftbquests/quest/loot/WeightedReward.getReward:()Ldev/ftb/mods/ftbquests/quest/reward/Reward;
+      53: aload_1
+      54: iload_2
+      55: invokevirtual #225                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.claim:(Lnet/minecraft/server/level/ServerPlayer;Z)V
+      58: goto          26
+      61: return
+
+  public net.minecraft.network.chat.Component getAltTitle();
+    Code:
+       0: aload_0
+       1: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnonnull     14
+       7: aload_0
+       8: invokespecial #233                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getAltTitle:()Lnet/minecraft/network/chat/Component;
+      11: goto          25
+      14: aload_0
+      15: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      18: aload_0
+      19: invokespecial #233                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getAltTitle:()Lnet/minecraft/network/chat/Component;
+      22: invokevirtual #237                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getTitleOrElse:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/Component;
+      25: areturn
+
+  public dev.ftb.mods.ftblibrary.icon.Icon getAltIcon();
+    Code:
+       0: aload_0
+       1: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnonnull     14
+       7: aload_0
+       8: invokespecial #243                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getAltIcon:()Ldev/ftb/mods/ftblibrary/icon/Icon;
+      11: goto          21
+      14: aload_0
+      15: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      18: invokevirtual #246                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getIcon:()Ldev/ftb/mods/ftblibrary/icon/Icon;
+      21: areturn
+
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+    Code:
+       0: aload_0
+       1: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnull        17
+       7: aload_0
+       8: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: aload_1
+      12: iconst_1
+      13: iconst_0
+      14: invokevirtual #254                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.addMouseOverText:(Ldev/ftb/mods/ftblibrary/util/TooltipList;ZZ)V
+      17: return
+
+  public boolean getExcludeFromClaimAll();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean isClaimAllHardcoded();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public java.util.Optional<dev.ftb.mods.ftblibrary.util.client.PositionedIngredient> getIngredient(dev.ftb.mods.ftblibrary.ui.Widget);
+    Code:
+       0: aload_0
+       1: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnull        34
+       7: aload_0
+       8: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: invokevirtual #265                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getLootCrate:()Ldev/ftb/mods/ftbquests/quest/loot/LootCrate;
+      14: ifnull        34
+      17: aload_0
+      18: invokevirtual #41                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      21: invokevirtual #265                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getLootCrate:()Ldev/ftb/mods/ftbquests/quest/loot/LootCrate;
+      24: invokevirtual #271                // Method dev/ftb/mods/ftbquests/quest/loot/LootCrate.createStack:()Lnet/minecraft/world/item/ItemStack;
+      27: aload_1
+      28: invokestatic  #277                // Method dev/ftb/mods/ftblibrary/util/client/PositionedIngredient.of:(Ljava/lang/Object;Ldev/ftb/mods/ftblibrary/ui/Widget;)Ljava/util/Optional;
+      31: goto          37
+      34: invokestatic  #283                // Method java/util/Optional.empty:()Ljava/util/Optional;
+      37: areturn
+
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void automatedClaimPost(net.minecraft.world.level.block.entity.BlockEntity, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: return
+
+  private void lambda$fillConfigGroup$0(dev.ftb.mods.ftbquests.quest.loot.RewardTable);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #20                 // Field table:Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       5: return
+}

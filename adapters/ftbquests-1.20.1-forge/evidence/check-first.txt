@@ -1,0 +1,34 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+
+> Task :compileTestJava FAILED
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+3 actionable tasks: 3 executed
+D:\AI\Hermes\workspace\MCP Minecraft Plus\adapters\ftbquests-1.20.1-forge\src\test\java\dev\mcpmcp\ftbquests\ServiceTest.java:23: ����: ��lambda ����ʽ���õı��ر������������ձ�����ʵ���ϵ����ձ���
+  JsonObject bad=a.deepCopy();bad.addProperty("expected_reward_hash","b".repeat(64));rejects(()->s.act("ftbquests.reward.claim",bad),"reward_changed");
+                                                                                                                                ^
+D:\AI\Hermes\workspace\MCP Minecraft Plus\adapters\ftbquests-1.20.1-forge\src\test\java\dev\mcpmcp\ftbquests\ServiceTest.java:32: ����: ��lambda ����ʽ���õı��ر������������ձ�����ʵ���ϵ����ձ���
+  Host cg=new Host();FtbService gs=new FtbService(cg);JsonObject ga=ca.deepCopy();ga.remove("choice_index");rejects(()->gs.act("ftbquests.reward.choose",ga),"missing_choice_index");ga=ca.deepCopy();ga.addProperty("choice_index",2);JsonObject oi=ga;rejects(()->gs.act("ftbquests.reward.choose",oi),"choice_index_invalid");ga=ca.deepCopy();ga.addProperty("expected_table_hash","c".repeat(64));JsonObject ot=ga;rejects(()->gs.act("ftbquests.reward.choose",ot),"choice_table_changed");array(cg.frame,"rewards").get(1).getAsJsonObject().addProperty("quest_completed",false);rejects(()->gs.act("ftbquests.reward.choose",ca),"not_claimable");check(cg.sends==0,"choice preflight guards all zero send");
+                                                                                                                                                         ^
+D:\AI\Hermes\workspace\MCP Minecraft Plus\adapters\ftbquests-1.20.1-forge\src\test\java\dev\mcpmcp\ftbquests\ServiceTest.java:33: ����: ��lambda ����ʽ���õı��ر������������ձ�����ʵ���ϵ����ձ���
+  Host b=new Host();FtbService bs=new FtbService(b);JsonObject ba=batch(bs);check(str(data(bs.act("ftbquests.rewards.claim_all",ba)),"status","").equals("dry_run")&&b.sends==0,"batch dry-run zero send");JsonObject wrong=ba.deepCopy();wrong.addProperty("expected_claimable_count",2);rejects(()->bs.act("ftbquests.rewards.claim_all",wrong),"count_or_budget");wrong=ba.deepCopy();wrong.addProperty("chapter_id","0000000000000002");JsonObject filter=wrong;rejects(()->bs.act("ftbquests.rewards.claim_all",filter),"unknown_chapter_id");ba.addProperty("dry_run",false);bs.act("ftbquests.rewards.claim_all",ba);bs.act("ftbquests.rewards.claim_all",ba);check(b.sends==1,"native claimall once no reward loop");
+                                                                                                                                                                                                                                                                                                                                           ^
+3 ������
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --info option to get more log output.
+> Run with --scan to get full insights.
+
+BUILD FAILED in 3s

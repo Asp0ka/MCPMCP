@@ -1,0 +1,112 @@
+Compiled from "ClaimChoiceRewardMessage.java"
+public class dev.ftb.mods.ftbquests.net.ClaimChoiceRewardMessage extends dev.architectury.networking.simple.BaseC2SMessage {
+  private final long id;
+
+  private final int index;
+
+  public dev.ftb.mods.ftbquests.net.ClaimChoiceRewardMessage(long, int);
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method dev/architectury/networking/simple/BaseC2SMessage."<init>":()V
+       4: aload_0
+       5: lload_1
+       6: putfield      #23                 // Field id:J
+       9: aload_0
+      10: iload_3
+      11: putfield      #25                 // Field index:I
+      14: return
+
+  public dev.architectury.networking.simple.MessageType getType();
+    Code:
+       0: getstatic     #35                 // Field dev/ftb/mods/ftbquests/net/FTBQuestsNetHandler.CLAIM_CHOICE_REWARD:Ldev/architectury/networking/simple/MessageType;
+       3: areturn
+
+  dev.ftb.mods.ftbquests.net.ClaimChoiceRewardMessage(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method dev/architectury/networking/simple/BaseC2SMessage."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #43                 // Method net/minecraft/network/FriendlyByteBuf.readLong:()J
+       9: putfield      #23                 // Field id:J
+      12: aload_0
+      13: aload_1
+      14: invokevirtual #47                 // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+      17: putfield      #25                 // Field index:I
+      20: return
+
+  public void write(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #23                 // Field id:J
+       5: invokevirtual #53                 // Method net/minecraft/network/FriendlyByteBuf.writeLong:(J)Lio/netty/buffer/ByteBuf;
+       8: pop
+       9: aload_1
+      10: aload_0
+      11: getfield      #25                 // Field index:I
+      14: invokevirtual #57                 // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+      17: pop
+      18: return
+
+  public void handle(dev.architectury.networking.NetworkManager$PacketContext);
+    Code:
+       0: getstatic     #66                 // Field dev/ftb/mods/ftbquests/quest/ServerQuestFile.INSTANCE:Ldev/ftb/mods/ftbquests/quest/ServerQuestFile;
+       3: aload_0
+       4: getfield      #23                 // Field id:J
+       7: invokevirtual #70                 // Method dev/ftb/mods/ftbquests/quest/ServerQuestFile.getReward:(J)Ldev/ftb/mods/ftbquests/quest/reward/Reward;
+      10: astore_2
+      11: aload_2
+      12: instanceof    #72                 // class dev/ftb/mods/ftbquests/quest/reward/ChoiceReward
+      15: ifeq          135
+      18: aload_2
+      19: checkcast     #72                 // class dev/ftb/mods/ftbquests/quest/reward/ChoiceReward
+      22: astore_3
+      23: aload_1
+      24: invokeinterface #76,  1           // InterfaceMethod dev/architectury/networking/NetworkManager$PacketContext.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+      29: astore        5
+      31: aload         5
+      33: instanceof    #78                 // class net/minecraft/server/level/ServerPlayer
+      36: ifeq          135
+      39: aload         5
+      41: checkcast     #78                 // class net/minecraft/server/level/ServerPlayer
+      44: astore        4
+      46: aload         4
+      48: invokestatic  #84                 // Method dev/ftb/mods/ftbquests/quest/TeamData.get:(Lnet/minecraft/world/entity/player/Player;)Ldev/ftb/mods/ftbquests/quest/TeamData;
+      51: astore        5
+      53: aload_3
+      54: invokevirtual #88                 // Method dev/ftb/mods/ftbquests/quest/reward/ChoiceReward.getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      57: astore        6
+      59: aload         6
+      61: ifnull        135
+      64: aload         5
+      66: aload_2
+      67: invokevirtual #94                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getQuest:()Ldev/ftb/mods/ftbquests/quest/Quest;
+      70: invokevirtual #98                 // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      73: ifeq          135
+      76: aload_0
+      77: getfield      #25                 // Field index:I
+      80: iflt          135
+      83: aload_0
+      84: getfield      #25                 // Field index:I
+      87: aload         6
+      89: invokevirtual #104                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getWeightedRewards:()Ljava/util/List;
+      92: invokeinterface #109,  1          // InterfaceMethod java/util/List.size:()I
+      97: if_icmpge     135
+     100: aload         6
+     102: invokevirtual #104                // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getWeightedRewards:()Ljava/util/List;
+     105: aload_0
+     106: getfield      #25                 // Field index:I
+     109: invokeinterface #112,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     114: checkcast     #114                // class dev/ftb/mods/ftbquests/quest/loot/WeightedReward
+     117: invokevirtual #117                // Method dev/ftb/mods/ftbquests/quest/loot/WeightedReward.getReward:()Ldev/ftb/mods/ftbquests/quest/reward/Reward;
+     120: aload         4
+     122: iconst_1
+     123: invokevirtual #121                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.claim:(Lnet/minecraft/server/level/ServerPlayer;Z)V
+     126: aload         5
+     128: aload         4
+     130: aload_2
+     131: iconst_1
+     132: invokevirtual #125                // Method dev/ftb/mods/ftbquests/quest/TeamData.claimReward:(Lnet/minecraft/server/level/ServerPlayer;Ldev/ftb/mods/ftbquests/quest/reward/Reward;Z)V
+     135: return
+}

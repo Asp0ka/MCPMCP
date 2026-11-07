@@ -1,0 +1,95 @@
+{
+  "head": "49e7acaa65cfdcdf4b406f3653b3583061d9b4ca",
+  "plugin_id": "mcpmcp.ftbquests",
+  "provider": "dev.mcpmcp.ftbquests.FtbQuestsProvider",
+  "minecraft": "1.20.1",
+  "runtime_forge": "47.4.21",
+  "build_forge": "47.4.28",
+  "java": "17.0.21+9",
+  "gradle": "8.8",
+  "checks_passed": 175,
+  "build": "clean build --offline -Dnet.minecraftforge.gradle.check.certs=false",
+  "status": "BUILD SUCCESSFUL",
+  "artifacts": {
+    "adapter.jar": {
+      "bytes": 49009,
+      "sha256": "d250889cd15dce0c9be41f04667f3d8222bd8a751db4b50d9ac9859b16284f44"
+    },
+    "GUIDE.md": {
+      "bytes": 14807,
+      "sha256": "856a7cbc4dc2672f27123018e44bb4d0e2cc900bcedb955d3476126be4d68f4f"
+    },
+    "plugin.json": {
+      "bytes": 251,
+      "sha256": "8cbfc91b2c1e819454cf4fdae781bf41a20a9df168bf4774e1ead87fb79bac06"
+    }
+  },
+  "class_count": 17,
+  "foreign_or_test_classes": [],
+  "spi_services": 1,
+  "observers": [
+    "ftbquests",
+    "ftbquests.book",
+    "ftbquests.chapters",
+    "ftbquests.quests",
+    "ftbquests.quest",
+    "ftbquests.rewards",
+    "ftbquests.claimable",
+    "ftbquests.receipt"
+  ],
+  "actions": {
+    "ftbquests.reward.claim": {
+      "transport": "packet",
+      "permission": "normal"
+    },
+    "ftbquests.reward.choose": {
+      "transport": "packet",
+      "permission": "normal"
+    },
+    "ftbquests.rewards.claim_all": {
+      "transport": "packet",
+      "permission": "normal"
+    },
+    "ftbquests.task.check": {
+      "transport": "packet",
+      "permission": "normal"
+    }
+  },
+  "runtime_pins": [
+    {
+      "mod_id": "ftbteams",
+      "version": "2001.3.2",
+      "sha256": "b1cb4d82ea9f137a87e12a7aaf3329619294b56f7d70337dfd557a76e10b6e07"
+    },
+    {
+      "mod_id": "architectury",
+      "version": "9.2.14",
+      "sha256": "218b471d0b8a1f6cda14cfc1beb9eeb0df54304500acc6c5613d9b88ec65d9af"
+    },
+    {
+      "mod_id": "ftblibrary",
+      "version": "2001.2.13",
+      "sha256": "41810281b65336265cae2c88412022d02f2f0a3f28c66a06173d86f98acf14a7"
+    },
+    {
+      "mod_id": "ftbquests",
+      "version": "2001.4.22",
+      "sha256": "9ea9d159a78a2724cfe0457b024680fdb52a2126eff9cfa5280a30578f647a68"
+    }
+  ],
+  "actual_target_hashes_verified": true,
+  "staged_matches_reobf": true,
+  "game_started": true,
+  "installed": true,
+  "real_packets_sent": true,
+  "committed": false,
+  "limitations": [
+    "Native global all_not_excluded has client/server races; no server-side allowlist.",
+    "Choice remains subject to other-client concurrency despite local dedupe.",
+    "No multiplayer-team/XP positive/repeatable cooldown/configured command effect acceptance.",
+    "Checkmark confirmation only after explicit read acknowledgement and no auto reward effects; resource task submit/editor/reset absent."
+  ],
+  "game_acceptance": "docs/evidence/ftbquests-0.1.2/acceptance.json",
+  "game_checks": 30,
+  "maintenance_note": "Parent added guarded checkmark task confirmation, explicit ItemReward fields and native reward visibility; final build/check and installed hash independently verified."
+}

@@ -12,9 +12,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PACK = Path('D:/Games/mc/Cheat/versions/神秘启旅')
-EXPECTED = {'mcpmcp.'+x for x in ('curios','ars_nouveau','avaritia','botania','ironfurnaces','irons_spellbooks','jei','malum','refinedstorage','sophisticatedbackpacks','sophisticatedstorage','traveloptics','wizards_reborn')}
+EXPECTED = {'mcpmcp.'+x for x in ('ftbquests','curios','ars_nouveau','avaritia','botania','ironfurnaces','irons_spellbooks','jei','malum','refinedstorage','sophisticatedbackpacks','sophisticatedstorage','traveloptics','wizards_reborn')}
 # Explicit current reobfuscated builds, never a search for any matching old JAR.
 SPECS = [
+ ('ftbquests','ftbquests-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
  ('curios','curios-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
  ('jei','jei-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
  ('jei','jei-legacy-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),

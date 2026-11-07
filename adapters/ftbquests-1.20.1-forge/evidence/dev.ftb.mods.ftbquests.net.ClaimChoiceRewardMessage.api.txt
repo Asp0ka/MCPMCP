@@ -1,0 +1,10 @@
+Compiled from "ClaimChoiceRewardMessage.java"
+public class dev.ftb.mods.ftbquests.net.ClaimChoiceRewardMessage extends dev.architectury.networking.simple.BaseC2SMessage {
+  private final long id;
+  private final int index;
+  public dev.ftb.mods.ftbquests.net.ClaimChoiceRewardMessage(long, int);
+  public dev.architectury.networking.simple.MessageType getType();
+  dev.ftb.mods.ftbquests.net.ClaimChoiceRewardMessage(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(dev.architectury.networking.NetworkManager$PacketContext);
+}

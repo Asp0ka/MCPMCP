@@ -1,0 +1,37 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :adapterContractTest
+2026-11-07 18:45:03,885 main WARN Advanced terminal features are not available in this environment
+
+> Task :adapterContractTest FAILED
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+4 actionable tasks: 2 executed, 2 up-to-date
+Exception in thread "main" java.lang.AssertionError: actual task type/max/current projected without submit: {"id":"0000000000000066","type":"ftbquests:checkmark","title":{"text":"Checkmark requirement","truncated":false,"total_utf16_units":21},"completed":false,"progress":null,"max_progress":null,"progress_hidden":true,"progress_unknown_reason":"native_hide_progress_numbers","consumes_resources":false,"definition_hash":"5a0c8ec47a1094790b4fa582cadf7c5fd3482b28f001e203aaf04093dbf15e79"}
+	at dev.mcpmcp.ftbquests.AdapterTest.check(AdapterTest.java:10)
+	at dev.mcpmcp.ftbquests.NativeTest.projection(NativeTest.java:44)
+	at dev.mcpmcp.ftbquests.NativeTest.run(NativeTest.java:33)
+	at dev.mcpmcp.ftbquests.AdapterTest.main(AdapterTest.java:31)
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':adapterContractTest'.
+> Process 'command 'D:\Games\mc\mc-info-mcp\tooling\jdk17\jdk-17.0.21+9\bin\java.exe'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 4s

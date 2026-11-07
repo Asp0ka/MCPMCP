@@ -1,0 +1,2775 @@
+Compiled from "FtbService.java"
+public final class dev.mcpmcp.ftbquests.FtbService {
+  private final dev.mcpmcp.ftbquests.FtbAccess access;
+
+  private final java.util.function.LongSupplier clock;
+
+  private final java.util.Map<java.lang.String, dev.mcpmcp.ftbquests.FtbService$Cursor> cursors;
+
+  private final java.util.Map<java.lang.String, dev.mcpmcp.ftbquests.FtbService$Preview> previews;
+
+  private final java.util.Map<java.lang.String, dev.mcpmcp.ftbquests.FtbService$Receipt> receipts;
+
+  private com.google.gson.JsonObject pending;
+
+  public dev.mcpmcp.ftbquests.FtbService(dev.mcpmcp.ftbquests.FtbAccess);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #58,  0             // InvokeDynamic #0:getAsLong:()Ljava/util/function/LongSupplier;
+       7: invokespecial #61                 // Method "<init>":(Ldev/mcpmcp/ftbquests/FtbAccess;Ljava/util/function/LongSupplier;)V
+      10: return
+
+  dev.mcpmcp.ftbquests.FtbService(dev.mcpmcp.ftbquests.FtbAccess, java.util.function.LongSupplier);
+    Code:
+       0: aload_0
+       1: invokespecial #66                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #68                 // class java/util/LinkedHashMap
+       8: dup
+       9: invokespecial #69                 // Method java/util/LinkedHashMap."<init>":()V
+      12: putfield      #71                 // Field cursors:Ljava/util/Map;
+      15: aload_0
+      16: new           #68                 // class java/util/LinkedHashMap
+      19: dup
+      20: invokespecial #69                 // Method java/util/LinkedHashMap."<init>":()V
+      23: putfield      #73                 // Field previews:Ljava/util/Map;
+      26: aload_0
+      27: new           #68                 // class java/util/LinkedHashMap
+      30: dup
+      31: invokespecial #69                 // Method java/util/LinkedHashMap."<init>":()V
+      34: putfield      #75                 // Field receipts:Ljava/util/Map;
+      37: aload_0
+      38: aload_1
+      39: invokestatic  #81                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      42: checkcast     #83                 // class dev/mcpmcp/ftbquests/FtbAccess
+      45: putfield      #85                 // Field access:Ldev/mcpmcp/ftbquests/FtbAccess;
+      48: aload_0
+      49: aload_2
+      50: putfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+      53: return
+
+  public synchronized com.google.gson.JsonObject read(java.lang.String, com.google.gson.JsonObject);
+    Code:
+       0: aload_1
+       1: aload_2
+       2: invokestatic  #99                 // Method dev/mcpmcp/ftbquests/Contract.validate:(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+       5: aload_1
+       6: ldc           #101                // String ftbquests
+       8: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      11: ifeq          18
+      14: invokestatic  #111                // Method dev/mcpmcp/ftbquests/Contract.discovery:()Lcom/google/gson/JsonObject;
+      17: areturn
+      18: aload_1
+      19: ldc           #113                // String ftbquests.receipt
+      21: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      24: ifeq          137
+      27: aconst_null
+      28: astore_3
+      29: aload_0
+      30: aload_0
+      31: getfield      #85                 // Field access:Ldev/mcpmcp/ftbquests/FtbAccess;
+      34: invokeinterface #116,  1          // InterfaceMethod dev/mcpmcp/ftbquests/FtbAccess.capture:()Lcom/google/gson/JsonObject;
+      39: invokevirtual #120                // Method updatePending:(Lcom/google/gson/JsonObject;)V
+      42: goto          53
+      45: astore        4
+      47: aload         4
+      49: invokevirtual #128                // Method java/lang/RuntimeException.getMessage:()Ljava/lang/String;
+      52: astore_3
+      53: aload_0
+      54: getfield      #75                 // Field receipts:Ljava/util/Map;
+      57: aload_2
+      58: ldc           #130                // String request_id
+      60: ldc           #132                // String
+      62: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      65: invokeinterface #141,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      70: checkcast     #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+      73: astore        4
+      75: aload         4
+      77: ifnull        84
+      80: iconst_1
+      81: goto          85
+      84: iconst_0
+      85: ldc           #143                // String ftbquests_receipt_not_found
+      87: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      90: aload         4
+      92: invokevirtual #150                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.result:()Lcom/google/gson/JsonObject;
+      95: ldc           #152                // String data
+      97: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     100: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+     103: astore        5
+     105: aload         5
+     107: ldc           #161                // String readback_unavailable
+     109: getstatic     #165                // Field dev/mcpmcp/ftbquests/Json.GSON:Lcom/google/gson/Gson;
+     112: aload_3
+     113: invokevirtual #171                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
+     116: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     119: iconst_2
+     120: anewarray     #4                  // class java/lang/Object
+     123: dup
+     124: iconst_0
+     125: ldc           #152                // String data
+     127: aastore
+     128: dup
+     129: iconst_1
+     130: aload         5
+     132: aastore
+     133: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     136: areturn
+     137: aload_0
+     138: getfield      #85                 // Field access:Ldev/mcpmcp/ftbquests/FtbAccess;
+     141: invokeinterface #116,  1          // InterfaceMethod dev/mcpmcp/ftbquests/FtbAccess.capture:()Lcom/google/gson/JsonObject;
+     146: astore_3
+     147: aload_0
+     148: aload_3
+     149: invokevirtual #120                // Method updatePending:(Lcom/google/gson/JsonObject;)V
+     152: aload_0
+     153: invokevirtual #182                // Method purge:()V
+     156: aload_1
+     157: ldc           #184                // String ftbquests.book
+     159: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     162: ifeq          186
+     165: iconst_2
+     166: anewarray     #4                  // class java/lang/Object
+     169: dup
+     170: iconst_0
+     171: ldc           #152                // String data
+     173: aastore
+     174: dup
+     175: iconst_1
+     176: aload_0
+     177: aload_3
+     178: invokevirtual #188                // Method book:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+     181: aastore
+     182: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     185: areturn
+     186: aload_1
+     187: ldc           #190                // String ftbquests.quest
+     189: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     192: ifeq          266
+     195: aload_3
+     196: ldc           #192                // String quests
+     198: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     201: aload_2
+     202: ldc           #198                // String quest_id
+     204: ldc           #132                // String
+     206: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     209: invokestatic  #202                // Method find:(Lcom/google/gson/JsonArray;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     212: astore        4
+     214: aload         4
+     216: ifnull        223
+     219: iconst_1
+     220: goto          224
+     223: iconst_0
+     224: ldc           #204                // String ftbquests_quest_missing_or_not_visible
+     226: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     229: aload_0
+     230: aload_3
+     231: invokevirtual #207                // Method base:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+     234: astore        5
+     236: aload         5
+     238: ldc           #209                // String quest
+     240: aload         4
+     242: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+     245: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     248: iconst_2
+     249: anewarray     #4                  // class java/lang/Object
+     252: dup
+     253: iconst_0
+     254: ldc           #152                // String data
+     256: aastore
+     257: dup
+     258: iconst_1
+     259: aload         5
+     261: aastore
+     262: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     265: areturn
+     266: aload_1
+     267: astore        5
+     269: iconst_m1
+     270: istore        6
+     272: aload         5
+     274: invokevirtual #213                // Method java/lang/String.hashCode:()I
+     277: lookupswitch  { // 4
+
+           -1737100197: 352
+
+            -636266641: 320
+
+             -75126003: 368
+
+            2007802810: 336
+               default: 381
+          }
+     320: aload         5
+     322: ldc           #215                // String ftbquests.chapters
+     324: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     327: ifeq          381
+     330: iconst_0
+     331: istore        6
+     333: goto          381
+     336: aload         5
+     338: ldc           #217                // String ftbquests.quests
+     340: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     343: ifeq          381
+     346: iconst_1
+     347: istore        6
+     349: goto          381
+     352: aload         5
+     354: ldc           #219                // String ftbquests.rewards
+     356: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     359: ifeq          381
+     362: iconst_2
+     363: istore        6
+     365: goto          381
+     368: aload         5
+     370: ldc           #221                // String ftbquests.claimable
+     372: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     375: ifeq          381
+     378: iconst_3
+     379: istore        6
+     381: iload         6
+     383: tableswitch   { // 0 to 3
+
+                     0: 412
+
+                     1: 419
+
+                     2: 428
+
+                     3: 437
+               default: 446
+          }
+     412: aload_3
+     413: invokestatic  #225                // Method chapterStats:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonArray;
+     416: goto          456
+     419: aload_3
+     420: ldc           #192                // String quests
+     422: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     425: goto          456
+     428: aload_3
+     429: ldc           #227                // String rewards
+     431: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     434: goto          456
+     437: aload_3
+     438: ldc           #229                // String preview
+     440: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     443: goto          456
+     446: new           #91                 // class java/lang/IllegalArgumentException
+     449: dup
+     450: ldc           #231                // String ftbquests_unknown_read
+     452: invokespecial #234                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     455: athrow
+     456: astore        4
+     458: new           #236                // class com/google/gson/JsonArray
+     461: dup
+     462: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+     465: astore        5
+     467: aload         4
+     469: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     472: astore        6
+     474: aload         6
+     476: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     481: ifeq          518
+     484: aload         6
+     486: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     491: checkcast     #253                // class com/google/gson/JsonElement
+     494: astore        7
+     496: aload         7
+     498: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     501: aload_2
+     502: invokestatic  #259                // Method matches:(Lcom/google/gson/JsonObject;Lcom/google/gson/JsonObject;)Z
+     505: ifeq          515
+     508: aload         5
+     510: aload         7
+     512: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     515: goto          474
+     518: aload_2
+     519: ldc_w         #264                // String limit
+     522: bipush        8
+     524: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     527: istore        6
+     529: iconst_0
+     530: istore        7
+     532: aload_0
+     533: getfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+     536: invokeinterface #272,  1          // InterfaceMethod java/util/function/LongSupplier.getAsLong:()J
+     541: ldc2_w        #273                // long 30000l
+     544: ladd
+     545: lstore        8
+     547: aload_1
+     548: aload_2
+     549: invokestatic  #278                // Method query:(Ljava/lang/String;Lcom/google/gson/JsonObject;)Ljava/lang/String;
+     552: astore        10
+     554: aload_2
+     555: ldc_w         #280                // String cursor
+     558: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     561: ifeq          720
+     564: aload_0
+     565: getfield      #71                 // Field cursors:Ljava/util/Map;
+     568: aload_2
+     569: ldc_w         #280                // String cursor
+     572: ldc           #132                // String
+     574: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     577: invokeinterface #141,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     582: checkcast     #11                 // class dev/mcpmcp/ftbquests/FtbService$Cursor
+     585: astore        11
+     587: aload         11
+     589: ifnull        614
+     592: aload_0
+     593: getfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+     596: invokeinterface #272,  1          // InterfaceMethod java/util/function/LongSupplier.getAsLong:()J
+     601: aload         11
+     603: invokevirtual #287                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.expires:()J
+     606: lcmp
+     607: ifge          614
+     610: iconst_1
+     611: goto          615
+     614: iconst_0
+     615: ldc_w         #289                // String ftbquests_stale_cursor
+     618: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     621: aload         11
+     623: invokevirtual #291                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.query:()Ljava/lang/String;
+     626: aload         10
+     628: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     631: ifeq          678
+     634: aload         11
+     636: invokevirtual #294                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.version:()Ljava/lang/String;
+     639: aload_3
+     640: ldc_w         #295                // String version
+     643: ldc           #132                // String
+     645: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     648: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     651: ifeq          678
+     654: aload         11
+     656: invokevirtual #298                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.session:()Ljava/lang/String;
+     659: aload_3
+     660: ldc_w         #299                // String session
+     663: ldc           #132                // String
+     665: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     668: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     671: ifeq          678
+     674: iconst_1
+     675: goto          679
+     678: iconst_0
+     679: ldc_w         #301                // String ftbquests_stale_cursor_or_query_changed
+     682: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     685: aload         11
+     687: invokevirtual #304                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.offset:()I
+     690: istore        7
+     692: aload         11
+     694: invokevirtual #287                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.expires:()J
+     697: lstore        8
+     699: iload         7
+     701: aload         5
+     703: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     706: if_icmpge     713
+     709: iconst_1
+     710: goto          714
+     713: iconst_0
+     714: ldc_w         #309                // String ftbquests_cursor_out_of_range
+     717: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     720: iload         7
+     722: istore        11
+     724: iconst_0
+     725: istore        12
+     727: new           #236                // class com/google/gson/JsonArray
+     730: dup
+     731: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+     734: astore        13
+     736: iload         11
+     738: aload         5
+     740: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     743: if_icmpge     836
+     746: iload         11
+     748: iload         7
+     750: isub
+     751: iload         6
+     753: if_icmpge     836
+     756: aload         5
+     758: iload         11
+     760: invokevirtual #312                // Method com/google/gson/JsonArray.get:(I)Lcom/google/gson/JsonElement;
+     763: invokevirtual #315                // Method com/google/gson/JsonElement.toString:()Ljava/lang/String;
+     766: getstatic     #321                // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+     769: invokevirtual #325                // Method java/lang/String.getBytes:(Ljava/nio/charset/Charset;)[B
+     772: arraylength
+     773: istore        14
+     775: iload         14
+     777: ldc_w         #326                // int 1048576
+     780: if_icmpgt     787
+     783: iconst_1
+     784: goto          788
+     787: iconst_0
+     788: ldc_w         #328                // String ftbquests_row_response_budget
+     791: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     794: iload         12
+     796: iload         14
+     798: iadd
+     799: ldc_w         #326                // int 1048576
+     802: if_icmple     808
+     805: goto          836
+     808: iload         12
+     810: iload         14
+     812: iadd
+     813: istore        12
+     815: aload         13
+     817: aload         5
+     819: iload         11
+     821: iinc          11, 1
+     824: invokevirtual #312                // Method com/google/gson/JsonArray.get:(I)Lcom/google/gson/JsonElement;
+     827: invokevirtual #331                // Method com/google/gson/JsonElement.deepCopy:()Lcom/google/gson/JsonElement;
+     830: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     833: goto          736
+     836: aconst_null
+     837: astore        14
+     839: iload         11
+     841: aload         5
+     843: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     846: if_icmpge     926
+     849: aload_0
+     850: getfield      #71                 // Field cursors:Ljava/util/Map;
+     853: invokeinterface #332,  1          // InterfaceMethod java/util/Map.size:()I
+     858: sipush        256
+     861: if_icmpge     868
+     864: iconst_1
+     865: goto          869
+     868: iconst_0
+     869: ldc_w         #334                // String ftbquests_cursor_budget
+     872: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     875: invokestatic  #340                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
+     878: invokevirtual #341                // Method java/util/UUID.toString:()Ljava/lang/String;
+     881: astore        14
+     883: aload_0
+     884: getfield      #71                 // Field cursors:Ljava/util/Map;
+     887: aload         14
+     889: new           #11                 // class dev/mcpmcp/ftbquests/FtbService$Cursor
+     892: dup
+     893: aload         10
+     895: aload_3
+     896: ldc_w         #295                // String version
+     899: ldc           #132                // String
+     901: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     904: aload_3
+     905: ldc_w         #299                // String session
+     908: ldc           #132                // String
+     910: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     913: iload         11
+     915: lload         8
+     917: invokespecial #344                // Method dev/mcpmcp/ftbquests/FtbService$Cursor."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IJ)V
+     920: invokeinterface #348,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     925: pop
+     926: aload_0
+     927: aload_3
+     928: invokevirtual #207                // Method base:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+     931: astore        15
+     933: aload         15
+     935: ldc_w         #350                // String rows
+     938: aload         13
+     940: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     943: aload         15
+     945: ldc_w         #351                // String offset
+     948: iload         7
+     950: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     953: invokevirtual #361                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     956: aload         15
+     958: ldc_w         #264                // String limit
+     961: iload         6
+     963: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     966: invokevirtual #361                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     969: aload         15
+     971: ldc_w         #363                // String total_rows
+     974: aload         5
+     976: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     979: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     982: invokevirtual #361                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     985: aload         15
+     987: ldc_w         #365                // String complete
+     990: aload         14
+     992: ifnonnull     999
+     995: iconst_1
+     996: goto          1000
+     999: iconst_0
+    1000: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1003: invokevirtual #373                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+    1006: aload         15
+    1008: ldc_w         #375                // String next_cursor
+    1011: getstatic     #165                // Field dev/mcpmcp/ftbquests/Json.GSON:Lcom/google/gson/Gson;
+    1014: aload         14
+    1016: invokevirtual #171                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
+    1019: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+    1022: aload_1
+    1023: ldc           #221                // String ftbquests.claimable
+    1025: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+    1028: ifeq          1220
+    1031: aload_3
+    1032: invokestatic  #378                // Method claimSummary:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+    1035: astore        16
+    1037: aload         15
+    1039: ldc_w         #380                // String native_batch
+    1042: aload         16
+    1044: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+    1047: aload         15
+    1049: ldc_w         #382                // String preview_complete
+    1052: aload         14
+    1054: ifnonnull     1061
+    1057: iconst_1
+    1058: goto          1062
+    1061: iconst_0
+    1062: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1065: invokevirtual #373                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+    1068: aconst_null
+    1069: astore        17
+    1071: aload         16
+    1073: ldc_w         #384                // String claimable_count
+    1076: iconst_0
+    1077: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+    1080: istore        18
+    1082: aload         14
+    1084: ifnonnull     1204
+    1087: aload         16
+    1089: ldc_w         #386                // String safe_to_submit
+    1092: iconst_0
+    1093: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+    1096: ifeq          1204
+    1099: iload         18
+    1101: ifle          1204
+    1104: iload         18
+    1106: sipush        512
+    1109: if_icmpgt     1204
+    1112: aload_0
+    1113: getfield      #73                 // Field previews:Ljava/util/Map;
+    1116: invokeinterface #332,  1          // InterfaceMethod java/util/Map.size:()I
+    1121: sipush        128
+    1124: if_icmpge     1131
+    1127: iconst_1
+    1128: goto          1132
+    1131: iconst_0
+    1132: ldc_w         #392                // String ftbquests_preview_budget
+    1135: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+    1138: invokestatic  #340                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
+    1141: invokevirtual #341                // Method java/util/UUID.toString:()Ljava/lang/String;
+    1144: astore        17
+    1146: aload_0
+    1147: getfield      #73                 // Field previews:Ljava/util/Map;
+    1150: aload         17
+    1152: new           #9                  // class dev/mcpmcp/ftbquests/FtbService$Preview
+    1155: dup
+    1156: aload_3
+    1157: ldc_w         #299                // String session
+    1160: ldc           #132                // String
+    1162: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    1165: aload         16
+    1167: ldc_w         #394                // String claimable_hash
+    1170: ldc           #132                // String
+    1172: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    1175: iload         18
+    1177: lload         8
+    1179: aload_0
+    1180: getfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+    1183: invokeinterface #272,  1          // InterfaceMethod java/util/function/LongSupplier.getAsLong:()J
+    1188: ldc2_w        #273                // long 30000l
+    1191: ladd
+    1192: invokestatic  #400                // Method java/lang/Math.min:(JJ)J
+    1195: invokespecial #403                // Method dev/mcpmcp/ftbquests/FtbService$Preview."<init>":(Ljava/lang/String;Ljava/lang/String;IJ)V
+    1198: invokeinterface #348,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    1203: pop
+    1204: aload         15
+    1206: ldc_w         #405                // String preview_token
+    1209: getstatic     #165                // Field dev/mcpmcp/ftbquests/Json.GSON:Lcom/google/gson/Gson;
+    1212: aload         17
+    1214: invokevirtual #171                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
+    1217: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+    1220: iconst_2
+    1221: anewarray     #4                  // class java/lang/Object
+    1224: dup
+    1225: iconst_0
+    1226: ldc           #152                // String data
+    1228: aastore
+    1229: dup
+    1230: iconst_1
+    1231: aload         15
+    1233: aastore
+    1234: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+    1237: areturn
+    1238: astore_3
+    1239: iconst_2
+    1240: anewarray     #4                  // class java/lang/Object
+    1243: dup
+    1244: iconst_0
+    1245: ldc           #152                // String data
+    1247: aastore
+    1248: dup
+    1249: iconst_1
+    1250: bipush        12
+    1252: anewarray     #4                  // class java/lang/Object
+    1255: dup
+    1256: iconst_0
+    1257: ldc_w         #407                // String source
+    1260: aastore
+    1261: dup
+    1262: iconst_1
+    1263: ldc           #101                // String ftbquests
+    1265: aastore
+    1266: dup
+    1267: iconst_2
+    1268: ldc_w         #409                // String available
+    1271: aastore
+    1272: dup
+    1273: iconst_3
+    1274: iconst_0
+    1275: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1278: aastore
+    1279: dup
+    1280: iconst_4
+    1281: ldc_w         #411                // String error
+    1284: aastore
+    1285: dup
+    1286: iconst_5
+    1287: aload_3
+    1288: invokevirtual #128                // Method java/lang/RuntimeException.getMessage:()Ljava/lang/String;
+    1291: aastore
+    1292: dup
+    1293: bipush        6
+    1295: ldc_w         #365                // String complete
+    1298: aastore
+    1299: dup
+    1300: bipush        7
+    1302: iconst_0
+    1303: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1306: aastore
+    1307: dup
+    1308: bipush        8
+    1310: ldc_w         #413                // String state
+    1313: aastore
+    1314: dup
+    1315: bipush        9
+    1317: ldc_w         #415                // String unknown
+    1320: aastore
+    1321: dup
+    1322: bipush        10
+    1324: ldc_w         #417                // String pending_operation
+    1327: aastore
+    1328: dup
+    1329: bipush        11
+    1331: aload_0
+    1332: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+    1335: ifnonnull     1344
+    1338: getstatic     #425                // Field com/google/gson/JsonNull.INSTANCE:Lcom/google/gson/JsonNull;
+    1341: goto          1351
+    1344: aload_0
+    1345: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+    1348: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+    1351: aastore
+    1352: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+    1355: aastore
+    1356: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+    1359: areturn
+    Exception table:
+       from    to  target type
+          29    42    45   Class java/lang/IllegalArgumentException
+          29    42    45   Class java/lang/IllegalStateException
+           0    17  1238   Class java/lang/IllegalArgumentException
+           0    17  1238   Class java/lang/IllegalStateException
+          18   136  1238   Class java/lang/IllegalArgumentException
+          18   136  1238   Class java/lang/IllegalStateException
+         137   185  1238   Class java/lang/IllegalArgumentException
+         137   185  1238   Class java/lang/IllegalStateException
+         186   265  1238   Class java/lang/IllegalArgumentException
+         186   265  1238   Class java/lang/IllegalStateException
+         266  1237  1238   Class java/lang/IllegalArgumentException
+         266  1237  1238   Class java/lang/IllegalStateException
+
+  public synchronized com.google.gson.JsonObject act(java.lang.String, com.google.gson.JsonObject);
+    Code:
+       0: aload_1
+       1: aload_2
+       2: invokestatic  #99                 // Method dev/mcpmcp/ftbquests/Contract.validate:(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+       5: aload_0
+       6: invokevirtual #182                // Method purge:()V
+       9: aload_2
+      10: ldc           #130                // String request_id
+      12: ldc           #132                // String
+      14: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      17: astore_3
+      18: aload_1
+      19: aload_2
+      20: invokestatic  #458                // Method dev/mcpmcp/ftbquests/Json.canonical:(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+      23: invokedynamic #470,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      28: astore        4
+      30: aload_0
+      31: getfield      #75                 // Field receipts:Ljava/util/Map;
+      34: aload_3
+      35: invokeinterface #141,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      40: checkcast     #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+      43: astore        5
+      45: aload         5
+      47: ifnull        75
+      50: aload         5
+      52: invokevirtual #473                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.payload:()Ljava/lang/String;
+      55: aload         4
+      57: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      60: ldc_w         #475                // String ftbquests_request_id_reused
+      63: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      66: aload         5
+      68: invokevirtual #150                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.result:()Lcom/google/gson/JsonObject;
+      71: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+      74: areturn
+      75: aload_0
+      76: getfield      #85                 // Field access:Ldev/mcpmcp/ftbquests/FtbAccess;
+      79: invokeinterface #116,  1          // InterfaceMethod dev/mcpmcp/ftbquests/FtbAccess.capture:()Lcom/google/gson/JsonObject;
+      84: astore        6
+      86: aload_0
+      87: aload         6
+      89: invokevirtual #120                // Method updatePending:(Lcom/google/gson/JsonObject;)V
+      92: aload_0
+      93: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+      96: ifnonnull     103
+      99: iconst_1
+     100: goto          104
+     103: iconst_0
+     104: ldc_w         #477                // String ftbquests_operation_pending_read_claimed_before_new_uuid
+     107: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     110: aload_0
+     111: aload_1
+     112: aload_2
+     113: aload         6
+     115: invokevirtual #481                // Method preflight:(Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonObject;)Ljava/util/List;
+     118: astore        7
+     120: aload_0
+     121: getfield      #85                 // Field access:Ldev/mcpmcp/ftbquests/FtbAccess;
+     124: invokeinterface #116,  1          // InterfaceMethod dev/mcpmcp/ftbquests/FtbAccess.capture:()Lcom/google/gson/JsonObject;
+     129: astore        8
+     131: aload_0
+     132: aload         8
+     134: invokevirtual #120                // Method updatePending:(Lcom/google/gson/JsonObject;)V
+     137: aload_0
+     138: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     141: ifnonnull     148
+     144: iconst_1
+     145: goto          149
+     148: iconst_0
+     149: ldc_w         #485                // String ftbquests_operation_pending
+     152: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     155: aload         6
+     157: ldc_w         #295                // String version
+     160: ldc           #132                // String
+     162: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     165: aload         8
+     167: ldc_w         #295                // String version
+     170: ldc_w         #487                // String !
+     173: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     176: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     179: ldc_w         #489                // String ftbquests_snapshot_changed
+     182: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     185: aload_0
+     186: aload_1
+     187: aload_2
+     188: aload         8
+     190: invokevirtual #481                // Method preflight:(Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonObject;)Ljava/util/List;
+     193: pop
+     194: aload_2
+     195: ldc_w         #491                // String dry_run
+     198: iconst_1
+     199: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     202: istore        9
+     204: iconst_2
+     205: anewarray     #4                  // class java/lang/Object
+     208: dup
+     209: iconst_0
+     210: ldc           #152                // String data
+     212: aastore
+     213: dup
+     214: iconst_1
+     215: bipush        20
+     217: anewarray     #4                  // class java/lang/Object
+     220: dup
+     221: iconst_0
+     222: ldc_w         #407                // String source
+     225: aastore
+     226: dup
+     227: iconst_1
+     228: ldc           #101                // String ftbquests
+     230: aastore
+     231: dup
+     232: iconst_2
+     233: ldc_w         #493                // String status
+     236: aastore
+     237: dup
+     238: iconst_3
+     239: iload         9
+     241: ifeq          250
+     244: ldc_w         #491                // String dry_run
+     247: goto          253
+     250: ldc_w         #495                // String submitted
+     253: aastore
+     254: dup
+     255: iconst_4
+     256: ldc           #130                // String request_id
+     258: aastore
+     259: dup
+     260: iconst_5
+     261: aload_3
+     262: aastore
+     263: dup
+     264: bipush        6
+     266: ldc_w         #497                // String action
+     269: aastore
+     270: dup
+     271: bipush        7
+     273: aload_1
+     274: aastore
+     275: dup
+     276: bipush        8
+     278: ldc_w         #299                // String session
+     281: aastore
+     282: dup
+     283: bipush        9
+     285: aload         6
+     287: ldc_w         #299                // String session
+     290: ldc           #132                // String
+     292: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     295: aastore
+     296: dup
+     297: bipush        10
+     299: ldc_w         #499                // String reward_ids
+     302: aastore
+     303: dup
+     304: bipush        11
+     306: aload         7
+     308: aastore
+     309: dup
+     310: bipush        12
+     312: ldc_w         #501                // String packet_count_max
+     315: aastore
+     316: dup
+     317: bipush        13
+     319: iload         9
+     321: ifeq          328
+     324: iconst_0
+     325: goto          329
+     328: iconst_1
+     329: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     332: aastore
+     333: dup
+     334: bipush        14
+     336: ldc_w         #503                // String server_confirmed
+     339: aastore
+     340: dup
+     341: bipush        15
+     343: iconst_0
+     344: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     347: aastore
+     348: dup
+     349: bipush        16
+     351: ldc_w         #505                // String effects_confirmed
+     354: aastore
+     355: dup
+     356: bipush        17
+     358: iconst_0
+     359: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     362: aastore
+     363: dup
+     364: bipush        18
+     366: ldc_w         #507                // String native_scope
+     369: aastore
+     370: dup
+     371: bipush        19
+     373: aload_1
+     374: ldc_w         #509                // String claim_all
+     377: invokevirtual #512                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+     380: ifeq          389
+     383: ldc_w         #514                // String all_not_excluded
+     386: goto          408
+     389: aload_1
+     390: ldc_w         #516                // String task.check
+     393: invokevirtual #512                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+     396: ifeq          405
+     399: ldc_w         #518                // String single_checkmark
+     402: goto          408
+     405: ldc_w         #520                // String single_reward
+     408: aastore
+     409: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     412: aastore
+     413: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     416: astore        10
+     418: iload         9
+     420: ifeq          426
+     423: aload         10
+     425: areturn
+     426: aload_0
+     427: getfield      #75                 // Field receipts:Ljava/util/Map;
+     430: invokeinterface #332,  1          // InterfaceMethod java/util/Map.size:()I
+     435: sipush        512
+     438: if_icmpge     445
+     441: iconst_1
+     442: goto          446
+     445: iconst_0
+     446: ldc_w         #522                // String ftbquests_receipt_budget_restart_requires_manual_reconciliation
+     449: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     452: aload_0
+     453: getfield      #75                 // Field receipts:Ljava/util/Map;
+     456: aload_3
+     457: new           #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+     460: dup
+     461: aload         4
+     463: aload         10
+     465: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+     468: invokespecial #524                // Method dev/mcpmcp/ftbquests/FtbService$Receipt."<init>":(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+     471: invokeinterface #348,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     476: pop
+     477: aload_0
+     478: bipush        16
+     480: anewarray     #4                  // class java/lang/Object
+     483: dup
+     484: iconst_0
+     485: ldc           #130                // String request_id
+     487: aastore
+     488: dup
+     489: iconst_1
+     490: aload_3
+     491: aastore
+     492: dup
+     493: iconst_2
+     494: ldc_w         #497                // String action
+     497: aastore
+     498: dup
+     499: iconst_3
+     500: aload_1
+     501: aastore
+     502: dup
+     503: iconst_4
+     504: ldc_w         #526                // String player_uuid
+     507: aastore
+     508: dup
+     509: iconst_5
+     510: aload         6
+     512: ldc_w         #526                // String player_uuid
+     515: ldc           #132                // String
+     517: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     520: aastore
+     521: dup
+     522: bipush        6
+     524: ldc_w         #528                // String team_uuid
+     527: aastore
+     528: dup
+     529: bipush        7
+     531: aload         6
+     533: ldc_w         #528                // String team_uuid
+     536: ldc           #132                // String
+     538: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     541: aastore
+     542: dup
+     543: bipush        8
+     545: ldc_w         #530                // String context
+     548: aastore
+     549: dup
+     550: bipush        9
+     552: aload         6
+     554: ldc_w         #530                // String context
+     557: ldc           #132                // String
+     559: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     562: aastore
+     563: dup
+     564: bipush        10
+     566: ldc_w         #499                // String reward_ids
+     569: aastore
+     570: dup
+     571: bipush        11
+     573: aload         7
+     575: aastore
+     576: dup
+     577: bipush        12
+     579: ldc_w         #532                // String submitted_at_ms
+     582: aastore
+     583: dup
+     584: bipush        13
+     586: aload_0
+     587: getfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+     590: invokeinterface #272,  1          // InterfaceMethod java/util/function/LongSupplier.getAsLong:()J
+     595: invokestatic  #537                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+     598: aastore
+     599: dup
+     600: bipush        14
+     602: ldc_w         #493                // String status
+     605: aastore
+     606: dup
+     607: bipush        15
+     609: ldc_w         #495                // String submitted
+     612: aastore
+     613: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     616: putfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     619: aload_0
+     620: getfield      #85                 // Field access:Ldev/mcpmcp/ftbquests/FtbAccess;
+     623: aload_1
+     624: aload_2
+     625: invokeinterface #540,  3          // InterfaceMethod dev/mcpmcp/ftbquests/FtbAccess.submit:(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+     630: goto          707
+     633: astore        11
+     635: aload         10
+     637: ldc           #152                // String data
+     639: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     642: ldc_w         #493                // String status
+     645: ldc_w         #544                // String delivery_unknown
+     648: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     651: aload         10
+     653: ldc           #152                // String data
+     655: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     658: ldc_w         #411                // String error
+     661: aload         11
+     663: invokevirtual #548                // Method java/lang/Throwable.getMessage:()Ljava/lang/String;
+     666: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     669: aload_0
+     670: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     673: ldc_w         #493                // String status
+     676: ldc_w         #544                // String delivery_unknown
+     679: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     682: aload_0
+     683: getfield      #75                 // Field receipts:Ljava/util/Map;
+     686: aload_3
+     687: new           #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+     690: dup
+     691: aload         4
+     693: aload         10
+     695: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+     698: invokespecial #524                // Method dev/mcpmcp/ftbquests/FtbService$Receipt."<init>":(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+     701: invokeinterface #348,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     706: pop
+     707: aload         10
+     709: areturn
+    Exception table:
+       from    to  target type
+         619   630   633   Class java/lang/RuntimeException
+         619   630   633   Class java/lang/LinkageError
+
+  private java.util.List<java.lang.String> preflight(java.lang.String, com.google.gson.JsonObject, com.google.gson.JsonObject);
+    Code:
+       0: aload_3
+       1: ldc_w         #409                // String available
+       4: iconst_0
+       5: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+       8: ldc_w         #560                // String ftbquests_unavailable
+      11: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      14: aload_2
+      15: ldc_w         #299                // String session
+      18: ldc           #132                // String
+      20: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      23: aload_3
+      24: ldc_w         #299                // String session
+      27: ldc_w         #487                // String !
+      30: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      33: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      36: ldc_w         #562                // String ftbquests_stale_session
+      39: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      42: aload_3
+      43: ldc_w         #564                // String team_locked
+      46: iconst_1
+      47: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+      50: ifne          57
+      53: iconst_1
+      54: goto          58
+      57: iconst_0
+      58: ldc_w         #566                // String ftbquests_team_locked
+      61: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      64: aload_1
+      65: ldc_w         #509                // String claim_all
+      68: invokevirtual #512                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+      71: ifeq          403
+      74: aload_3
+      75: invokestatic  #378                // Method claimSummary:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+      78: astore        4
+      80: aload         4
+      82: ldc_w         #384                // String claimable_count
+      85: iconst_0
+      86: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      89: istore        5
+      91: aload_2
+      92: ldc_w         #568                // String scope
+      95: ldc           #132                // String
+      97: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     100: ldc_w         #514                // String all_not_excluded
+     103: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     106: ldc_w         #570                // String ftbquests_native_scope_required
+     109: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     112: aload         4
+     114: ldc_w         #386                // String safe_to_submit
+     117: iconst_0
+     118: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     121: ldc_w         #572                // String ftbquests_native_scope_unreviewable
+     124: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     127: iload         5
+     129: ifle          162
+     132: iload         5
+     134: aload_2
+     135: ldc_w         #574                // String expected_claimable_count
+     138: iconst_m1
+     139: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     142: if_icmpne     162
+     145: iload         5
+     147: aload_2
+     148: ldc_w         #576                // String max_rewards
+     151: iconst_0
+     152: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     155: if_icmpgt     162
+     158: iconst_1
+     159: goto          163
+     162: iconst_0
+     163: ldc_w         #578                // String ftbquests_claimable_count_or_budget_changed
+     166: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     169: aload         4
+     171: ldc_w         #394                // String claimable_hash
+     174: ldc           #132                // String
+     176: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     179: aload_2
+     180: ldc_w         #580                // String expected_claimable_hash
+     183: ldc_w         #487                // String !
+     186: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     189: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     192: ldc_w         #582                // String ftbquests_claimable_hash_changed
+     195: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     198: aload_0
+     199: getfield      #73                 // Field previews:Ljava/util/Map;
+     202: aload_2
+     203: ldc_w         #405                // String preview_token
+     206: ldc           #132                // String
+     208: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     211: invokeinterface #141,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     216: checkcast     #9                  // class dev/mcpmcp/ftbquests/FtbService$Preview
+     219: astore        6
+     221: aload         6
+     223: ifnull        299
+     226: aload_0
+     227: getfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+     230: invokeinterface #272,  1          // InterfaceMethod java/util/function/LongSupplier.getAsLong:()J
+     235: aload         6
+     237: invokevirtual #583                // Method dev/mcpmcp/ftbquests/FtbService$Preview.expires:()J
+     240: lcmp
+     241: ifge          299
+     244: aload         6
+     246: invokevirtual #584                // Method dev/mcpmcp/ftbquests/FtbService$Preview.session:()Ljava/lang/String;
+     249: aload_3
+     250: ldc_w         #299                // String session
+     253: ldc           #132                // String
+     255: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     258: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     261: ifeq          299
+     264: aload         6
+     266: invokevirtual #587                // Method dev/mcpmcp/ftbquests/FtbService$Preview.hash:()Ljava/lang/String;
+     269: aload         4
+     271: ldc_w         #394                // String claimable_hash
+     274: ldc           #132                // String
+     276: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     279: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     282: ifeq          299
+     285: aload         6
+     287: invokevirtual #589                // Method dev/mcpmcp/ftbquests/FtbService$Preview.count:()I
+     290: iload         5
+     292: if_icmpne     299
+     295: iconst_1
+     296: goto          300
+     299: iconst_0
+     300: ldc_w         #591                // String ftbquests_complete_fresh_preview_required
+     303: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     306: new           #593                // class java/util/ArrayList
+     309: dup
+     310: invokespecial #594                // Method java/util/ArrayList."<init>":()V
+     313: astore        7
+     315: aload_3
+     316: ldc           #229                // String preview
+     318: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     321: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     324: astore        8
+     326: aload         8
+     328: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     333: ifeq          400
+     336: aload         8
+     338: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     343: checkcast     #253                // class com/google/gson/JsonElement
+     346: astore        9
+     348: aload         9
+     350: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     353: astore        10
+     355: aload         10
+     357: ldc_w         #596                // String can_claim
+     360: iconst_0
+     361: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     364: ifeq          397
+     367: aload         10
+     369: ldc_w         #598                // String exclude_from_claim_all
+     372: iconst_1
+     373: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     376: ifne          397
+     379: aload         7
+     381: aload         10
+     383: ldc_w         #600                // String id
+     386: ldc           #132                // String
+     388: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     391: invokeinterface #602,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     396: pop
+     397: goto          326
+     400: aload         7
+     402: areturn
+     403: aload_1
+     404: ldc_w         #604                // String ftbquests.task.check
+     407: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     410: ifeq          686
+     413: aload_2
+     414: ldc_w         #606                // String acknowledge_read
+     417: iconst_0
+     418: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     421: ldc_w         #608                // String ftbquests_acknowledge_read_required
+     424: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     427: aload_3
+     428: ldc           #192                // String quests
+     430: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     433: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     436: astore        4
+     438: aload         4
+     440: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     445: ifeq          675
+     448: aload         4
+     450: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     455: checkcast     #253                // class com/google/gson/JsonElement
+     458: astore        5
+     460: aload         5
+     462: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     465: astore        6
+     467: aload         6
+     469: ldc_w         #610                // String details_visible
+     472: iconst_0
+     473: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     476: ifeq          438
+     479: aload         6
+     481: ldc_w         #612                // String tasks
+     484: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     487: ifeq          438
+     490: aload         6
+     492: ldc_w         #612                // String tasks
+     495: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     498: invokevirtual #618                // Method com/google/gson/JsonElement.isJsonNull:()Z
+     501: ifeq          507
+     504: goto          438
+     507: aload         6
+     509: ldc_w         #612                // String tasks
+     512: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     515: aload_2
+     516: ldc_w         #620                // String task_id
+     519: ldc           #132                // String
+     521: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     524: invokestatic  #202                // Method find:(Lcom/google/gson/JsonArray;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     527: astore        7
+     529: aload         7
+     531: ifnonnull     537
+     534: goto          438
+     537: aload         7
+     539: ldc_w         #622                // String type
+     542: ldc           #132                // String
+     544: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     547: ldc_w         #624                // String ftbquests:checkmark
+     550: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     553: ifeq          572
+     556: aload         7
+     558: ldc_w         #626                // String consumes_resources
+     561: iconst_1
+     562: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     565: ifne          572
+     568: iconst_1
+     569: goto          573
+     572: iconst_0
+     573: ldc_w         #628                // String ftbquests_checkmark_task_required
+     576: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     579: aload         7
+     581: ldc_w         #630                // String completed
+     584: iconst_1
+     585: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     588: ifne          595
+     591: iconst_1
+     592: goto          596
+     595: iconst_0
+     596: ldc_w         #632                // String ftbquests_task_already_completed
+     599: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     602: aload         6
+     604: ldc_w         #634                // String can_start
+     607: iconst_0
+     608: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     611: ldc_w         #636                // String ftbquests_task_not_startable
+     614: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     617: aload         6
+     619: ldc_w         #638                // String checkmark_route_safe
+     622: iconst_0
+     623: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     626: ldc_w         #640                // String ftbquests_checkmark_auto_effects_require_native_ui
+     629: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     632: aload         7
+     634: ldc_w         #642                // String definition_hash
+     637: ldc           #132                // String
+     639: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     642: aload_2
+     643: ldc_w         #644                // String expected_task_hash
+     646: ldc_w         #487                // String !
+     649: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     652: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     655: ldc_w         #646                // String ftbquests_task_definition_changed
+     658: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     661: aload         7
+     663: ldc_w         #600                // String id
+     666: ldc           #132                // String
+     668: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     671: invokestatic  #650                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     674: areturn
+     675: new           #91                 // class java/lang/IllegalArgumentException
+     678: dup
+     679: ldc_w         #652                // String ftbquests_task_missing_or_not_visible
+     682: invokespecial #234                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     685: athrow
+     686: aload_3
+     687: ldc           #227                // String rewards
+     689: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     692: aload_2
+     693: ldc_w         #654                // String reward_id
+     696: ldc           #132                // String
+     698: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     701: invokestatic  #202                // Method find:(Lcom/google/gson/JsonArray;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     704: astore        4
+     706: aload         4
+     708: ifnull        715
+     711: iconst_1
+     712: goto          716
+     715: iconst_0
+     716: ldc_w         #656                // String ftbquests_reward_missing_or_not_visible
+     719: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     722: aload         4
+     724: ldc_w         #658                // String claimed
+     727: iconst_1
+     728: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     731: ifne          738
+     734: iconst_1
+     735: goto          739
+     738: iconst_0
+     739: ldc_w         #660                // String ftbquests_reward_already_claimed
+     742: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     745: aload         4
+     747: ldc_w         #662                // String quest_completed
+     750: iconst_0
+     751: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     754: ifeq          797
+     757: aload         4
+     759: ldc_w         #664                // String native_can_claim
+     762: iconst_0
+     763: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     766: ifeq          797
+     769: aload         4
+     771: ldc_w         #596                // String can_claim
+     774: iconst_0
+     775: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     778: ifeq          797
+     781: aload         4
+     783: ldc_w         #666                // String reward_blocked
+     786: iconst_1
+     787: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     790: ifne          797
+     793: iconst_1
+     794: goto          798
+     797: iconst_0
+     798: ldc_w         #668                // String ftbquests_reward_not_claimable
+     801: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     804: aload_2
+     805: ldc_w         #670                // String expected_reward_hash
+     808: ldc           #132                // String
+     810: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     813: aload         4
+     815: ldc_w         #672                // String reward_hash
+     818: ldc_w         #487                // String !
+     821: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     824: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     827: ldc_w         #674                // String ftbquests_reward_changed
+     830: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     833: aload_1
+     834: ldc_w         #676                // String choose
+     837: invokevirtual #512                // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+     840: ifeq          995
+     843: aload         4
+     845: ldc_w         #678                // String choice
+     848: iconst_0
+     849: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     852: ifeq          871
+     855: aload         4
+     857: ldc_w         #680                // String choice_route_safe
+     860: iconst_0
+     861: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     864: ifeq          871
+     867: iconst_1
+     868: goto          872
+     871: iconst_0
+     872: ldc_w         #682                // String ftbquests_choice_route_unsafe
+     875: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     878: aload_2
+     879: ldc_w         #684                // String expected_table_hash
+     882: ldc           #132                // String
+     884: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     887: aload         4
+     889: ldc_w         #686                // String table_hash
+     892: ldc_w         #487                // String !
+     895: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     898: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     901: ldc_w         #688                // String ftbquests_choice_table_changed
+     904: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     907: aload         4
+     909: ldc_w         #690                // String choice_candidates
+     912: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     915: astore        5
+     917: aload_2
+     918: ldc_w         #692                // String choice_index
+     921: iconst_m1
+     922: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     925: istore        6
+     927: iload         6
+     929: iflt          985
+     932: iload         6
+     934: aload         5
+     936: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     939: if_icmpge     985
+     942: aload         5
+     944: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     947: aload         4
+     949: ldc_w         #694                // String table_candidates_total
+     952: iconst_m1
+     953: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     956: if_icmpne     985
+     959: aload         5
+     961: iload         6
+     963: invokevirtual #312                // Method com/google/gson/JsonArray.get:(I)Lcom/google/gson/JsonElement;
+     966: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     969: ldc_w         #692                // String choice_index
+     972: iconst_m1
+     973: invokestatic  #268                // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     976: iload         6
+     978: if_icmpne     985
+     981: iconst_1
+     982: goto          986
+     985: iconst_0
+     986: ldc_w         #696                // String ftbquests_choice_index_invalid
+     989: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     992: goto          1030
+     995: aload         4
+     997: ldc_w         #678                // String choice
+    1000: iconst_1
+    1001: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+    1004: ifne          1023
+    1007: aload         4
+    1009: ldc_w         #698                // String ordinary_route_safe
+    1012: iconst_0
+    1013: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+    1016: ifeq          1023
+    1019: iconst_1
+    1020: goto          1024
+    1023: iconst_0
+    1024: ldc_w         #700                // String ftbquests_ordinary_route_required
+    1027: invokestatic  #147                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+    1030: aload         4
+    1032: ldc_w         #600                // String id
+    1035: ldc           #132                // String
+    1037: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    1040: invokestatic  #650                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+    1043: areturn
+
+  private void updatePending(com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+       4: ifnonnull     8
+       7: return
+       8: aload_0
+       9: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+      12: ldc           #130                // String request_id
+      14: ldc           #132                // String
+      16: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      19: astore_2
+      20: aload_0
+      21: getfield      #75                 // Field receipts:Ljava/util/Map;
+      24: aload_2
+      25: invokeinterface #141,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      30: checkcast     #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+      33: astore_3
+      34: aload_0
+      35: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+      38: ldc_w         #530                // String context
+      41: ldc           #132                // String
+      43: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      46: aload_1
+      47: ldc_w         #530                // String context
+      50: ldc_w         #487                // String !
+      53: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      56: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      59: ifne          181
+      62: aload_3
+      63: invokevirtual #150                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.result:()Lcom/google/gson/JsonObject;
+      66: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+      69: astore        4
+      71: aload         4
+      73: ldc           #152                // String data
+      75: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+      78: ldc_w         #493                // String status
+      81: ldc_w         #710                // String context_lost_delivery_unresolved
+      84: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+      87: aload_0
+      88: getfield      #75                 // Field receipts:Ljava/util/Map;
+      91: aload_2
+      92: new           #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+      95: dup
+      96: aload_3
+      97: invokevirtual #473                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.payload:()Ljava/lang/String;
+     100: aload         4
+     102: invokespecial #524                // Method dev/mcpmcp/ftbquests/FtbService$Receipt."<init>":(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+     105: invokeinterface #348,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     110: pop
+     111: aload_0
+     112: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     115: ldc_w         #493                // String status
+     118: ldc_w         #710                // String context_lost_delivery_unresolved
+     121: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     124: aload_0
+     125: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     128: ldc_w         #526                // String player_uuid
+     131: ldc           #132                // String
+     133: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     136: aload_1
+     137: ldc_w         #526                // String player_uuid
+     140: ldc_w         #487                // String !
+     143: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     146: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     149: ifeq          180
+     152: aload_0
+     153: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     156: ldc_w         #528                // String team_uuid
+     159: ldc           #132                // String
+     161: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     164: aload_1
+     165: ldc_w         #528                // String team_uuid
+     168: ldc_w         #487                // String !
+     171: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     174: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     177: ifne          181
+     180: return
+     181: aload_0
+     182: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     185: ldc_w         #497                // String action
+     188: ldc           #132                // String
+     190: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     193: ldc_w         #604                // String ftbquests.task.check
+     196: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     199: istore        4
+     201: iconst_1
+     202: istore        5
+     204: aload_0
+     205: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     208: ldc_w         #499                // String reward_ids
+     211: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     214: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     217: astore        6
+     219: aload         6
+     221: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     226: ifeq          419
+     229: aload         6
+     231: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     236: checkcast     #253                // class com/google/gson/JsonElement
+     239: astore        7
+     241: iload         4
+     243: ifeq          373
+     246: aconst_null
+     247: astore        8
+     249: aload_1
+     250: ldc           #192                // String quests
+     252: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     255: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     258: astore        9
+     260: aload         9
+     262: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     267: ifeq          343
+     270: aload         9
+     272: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     277: checkcast     #253                // class com/google/gson/JsonElement
+     280: astore        10
+     282: aload         10
+     284: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     287: astore        11
+     289: aload         11
+     291: ldc_w         #612                // String tasks
+     294: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     297: ifeq          340
+     300: aload         11
+     302: ldc_w         #612                // String tasks
+     305: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     308: invokevirtual #618                // Method com/google/gson/JsonElement.isJsonNull:()Z
+     311: ifne          340
+     314: aload         11
+     316: ldc_w         #612                // String tasks
+     319: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     322: aload         7
+     324: invokevirtual #713                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+     327: invokestatic  #202                // Method find:(Lcom/google/gson/JsonArray;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     330: astore        8
+     332: aload         8
+     334: ifnull        340
+     337: goto          343
+     340: goto          260
+     343: iload         5
+     345: aload         8
+     347: ifnull        366
+     350: aload         8
+     352: ldc_w         #630                // String completed
+     355: iconst_0
+     356: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     359: ifeq          366
+     362: iconst_1
+     363: goto          367
+     366: iconst_0
+     367: iand
+     368: istore        5
+     370: goto          416
+     373: aload_1
+     374: ldc           #227                // String rewards
+     376: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     379: aload         7
+     381: invokevirtual #713                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+     384: invokestatic  #202                // Method find:(Lcom/google/gson/JsonArray;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     387: astore        8
+     389: iload         5
+     391: aload         8
+     393: ifnull        412
+     396: aload         8
+     398: ldc_w         #658                // String claimed
+     401: iconst_0
+     402: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     405: ifeq          412
+     408: iconst_1
+     409: goto          413
+     412: iconst_0
+     413: iand
+     414: istore        5
+     416: goto          219
+     419: iload         5
+     421: ifeq          534
+     424: aload_3
+     425: invokevirtual #150                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.result:()Lcom/google/gson/JsonObject;
+     428: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+     431: astore        6
+     433: aload         6
+     435: ldc           #152                // String data
+     437: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     440: ldc_w         #493                // String status
+     443: iload         4
+     445: ifeq          454
+     448: ldc_w         #715                // String task_completed_read_back
+     451: goto          457
+     454: ldc_w         #717                // String claimed_read_back
+     457: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     460: aload         6
+     462: ldc           #152                // String data
+     464: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     467: iload         4
+     469: ifeq          478
+     472: ldc_w         #719                // String task_completed_observed
+     475: goto          481
+     478: ldc_w         #721                // String claimed_observed
+     481: iconst_1
+     482: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     485: invokevirtual #373                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     488: aload         6
+     490: ldc           #152                // String data
+     492: invokevirtual #156                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     495: ldc_w         #505                // String effects_confirmed
+     498: iconst_0
+     499: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     502: invokevirtual #373                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     505: aload_0
+     506: getfield      #75                 // Field receipts:Ljava/util/Map;
+     509: aload_2
+     510: new           #7                  // class dev/mcpmcp/ftbquests/FtbService$Receipt
+     513: dup
+     514: aload_3
+     515: invokevirtual #473                // Method dev/mcpmcp/ftbquests/FtbService$Receipt.payload:()Ljava/lang/String;
+     518: aload         6
+     520: invokespecial #524                // Method dev/mcpmcp/ftbquests/FtbService$Receipt."<init>":(Ljava/lang/String;Lcom/google/gson/JsonObject;)V
+     523: invokeinterface #348,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     528: pop
+     529: aload_0
+     530: aconst_null
+     531: putfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     534: return
+
+  private com.google.gson.JsonObject base(com.google.gson.JsonObject);
+    Code:
+       0: bipush        20
+       2: anewarray     #4                  // class java/lang/Object
+       5: dup
+       6: iconst_0
+       7: ldc_w         #407                // String source
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc           #101                // String ftbquests
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: ldc_w         #409                // String available
+      21: aastore
+      22: dup
+      23: iconst_3
+      24: iconst_1
+      25: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      28: aastore
+      29: dup
+      30: iconst_4
+      31: ldc_w         #568                // String scope
+      34: aastore
+      35: dup
+      36: iconst_5
+      37: ldc_w         #726                // String client_synced_self_team
+      40: aastore
+      41: dup
+      42: bipush        6
+      44: ldc_w         #299                // String session
+      47: aastore
+      48: dup
+      49: bipush        7
+      51: aload_1
+      52: ldc_w         #299                // String session
+      55: ldc           #132                // String
+      57: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      60: aastore
+      61: dup
+      62: bipush        8
+      64: ldc_w         #295                // String version
+      67: aastore
+      68: dup
+      69: bipush        9
+      71: aload_1
+      72: ldc_w         #295                // String version
+      75: ldc           #132                // String
+      77: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      80: aastore
+      81: dup
+      82: bipush        10
+      84: ldc_w         #526                // String player_uuid
+      87: aastore
+      88: dup
+      89: bipush        11
+      91: aload_1
+      92: ldc_w         #526                // String player_uuid
+      95: ldc           #132                // String
+      97: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     100: aastore
+     101: dup
+     102: bipush        12
+     104: ldc_w         #528                // String team_uuid
+     107: aastore
+     108: dup
+     109: bipush        13
+     111: aload_1
+     112: ldc_w         #528                // String team_uuid
+     115: ldc           #132                // String
+     117: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     120: aastore
+     121: dup
+     122: bipush        14
+     124: ldc_w         #728                // String observed_at_ms
+     127: aastore
+     128: dup
+     129: bipush        15
+     131: aload_1
+     132: ldc_w         #728                // String observed_at_ms
+     135: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     138: aastore
+     139: dup
+     140: bipush        16
+     142: ldc_w         #730                // String server_state
+     145: aastore
+     146: dup
+     147: bipush        17
+     149: ldc_w         #732                // String client_synced_may_lag
+     152: aastore
+     153: dup
+     154: bipush        18
+     156: ldc_w         #417                // String pending_operation
+     159: aastore
+     160: dup
+     161: bipush        19
+     163: aload_0
+     164: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     167: ifnonnull     176
+     170: getstatic     #425                // Field com/google/gson/JsonNull.INSTANCE:Lcom/google/gson/JsonNull;
+     173: goto          183
+     176: aload_0
+     177: getfield      #419                // Field pending:Lcom/google/gson/JsonObject;
+     180: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+     183: aastore
+     184: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     187: areturn
+
+  private com.google.gson.JsonObject book(com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #207                // Method base:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+       5: astore_2
+       6: aload_2
+       7: ldc_w         #734                // String title
+      10: aload_1
+      11: ldc_w         #734                // String title
+      14: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      17: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+      20: aload_2
+      21: ldc_w         #736                // String totals
+      24: aload_1
+      25: ldc           #192                // String quests
+      27: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+      30: invokestatic  #740                // Method counts:(Lcom/google/gson/JsonArray;)Lcom/google/gson/JsonObject;
+      33: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+      36: aload_1
+      37: invokestatic  #225                // Method chapterStats:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonArray;
+      40: astore_3
+      41: new           #236                // class com/google/gson/JsonArray
+      44: dup
+      45: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+      48: astore        4
+      50: aload_1
+      51: ldc_w         #742                // String groups
+      54: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+      57: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+      60: astore        5
+      62: aload         5
+      64: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      69: ifeq          282
+      72: aload         5
+      74: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      79: checkcast     #253                // class com/google/gson/JsonElement
+      82: astore        6
+      84: aload         6
+      86: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      89: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+      92: astore        7
+      94: new           #236                // class com/google/gson/JsonArray
+      97: dup
+      98: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+     101: astore        8
+     103: new           #744                // class java/util/HashSet
+     106: dup
+     107: invokespecial #745                // Method java/util/HashSet."<init>":()V
+     110: astore        9
+     112: aload_3
+     113: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     116: astore        10
+     118: aload         10
+     120: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     125: ifeq          193
+     128: aload         10
+     130: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     135: checkcast     #253                // class com/google/gson/JsonElement
+     138: astore        11
+     140: aload         11
+     142: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     145: ldc_w         #749                // String group_id
+     148: ldc           #132                // String
+     150: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     153: aload         7
+     155: ldc_w         #600                // String id
+     158: ldc           #132                // String
+     160: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     163: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     166: ifeq          190
+     169: aload         9
+     171: aload         11
+     173: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     176: ldc_w         #600                // String id
+     179: ldc           #132                // String
+     181: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     184: invokeinterface #750,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     189: pop
+     190: goto          118
+     193: aload_1
+     194: ldc           #192                // String quests
+     196: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     199: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     202: astore        10
+     204: aload         10
+     206: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     211: ifeq          259
+     214: aload         10
+     216: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     221: checkcast     #253                // class com/google/gson/JsonElement
+     224: astore        11
+     226: aload         9
+     228: aload         11
+     230: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     233: ldc_w         #752                // String chapter_id
+     236: ldc           #132                // String
+     238: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     241: invokeinterface #755,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+     246: ifeq          256
+     249: aload         8
+     251: aload         11
+     253: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     256: goto          204
+     259: aload         7
+     261: ldc_w         #756                // String counts
+     264: aload         8
+     266: invokestatic  #740                // Method counts:(Lcom/google/gson/JsonArray;)Lcom/google/gson/JsonObject;
+     269: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     272: aload         4
+     274: aload         7
+     276: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     279: goto          62
+     282: aload_2
+     283: ldc_w         #742                // String groups
+     286: aload         4
+     288: sipush        128
+     291: invokestatic  #760                // Method slice:(Lcom/google/gson/JsonArray;I)Lcom/google/gson/JsonArray;
+     294: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     297: aload_2
+     298: ldc_w         #762                // String groups_total
+     301: aload         4
+     303: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     306: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     309: invokevirtual #361                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     312: aload_2
+     313: ldc_w         #764                // String groups_truncated
+     316: aload         4
+     318: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     321: sipush        128
+     324: if_icmple     331
+     327: iconst_1
+     328: goto          332
+     331: iconst_0
+     332: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     335: invokevirtual #373                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     338: aload_2
+     339: ldc_w         #766                // String chapters
+     342: aload_3
+     343: sipush        128
+     346: invokestatic  #760                // Method slice:(Lcom/google/gson/JsonArray;I)Lcom/google/gson/JsonArray;
+     349: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     352: aload_2
+     353: ldc_w         #768                // String chapters_total
+     356: aload_3
+     357: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     360: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     363: invokevirtual #361                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     366: aload_2
+     367: ldc_w         #770                // String chapters_truncated
+     370: aload_3
+     371: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     374: sipush        128
+     377: if_icmple     384
+     380: iconst_1
+     381: goto          385
+     384: iconst_0
+     385: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     388: invokevirtual #373                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     391: aload_2
+     392: ldc_w         #772                // String statistics_scope
+     395: ldc_w         #774                // String visible_quests_only; hidden details and claims remain unknown
+     398: invokevirtual #547                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     401: aload_2
+     402: ldc_w         #380                // String native_batch
+     405: aload_1
+     406: invokestatic  #378                // Method claimSummary:(Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+     409: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     412: aload_2
+     413: areturn
+
+  private static com.google.gson.JsonArray slice(com.google.gson.JsonArray, int);
+    Code:
+       0: new           #236                // class com/google/gson/JsonArray
+       3: dup
+       4: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+       7: astore_2
+       8: iconst_0
+       9: istore_3
+      10: iload_3
+      11: iload_1
+      12: aload_0
+      13: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+      16: invokestatic  #782                // Method java/lang/Math.min:(II)I
+      19: if_icmpge     40
+      22: aload_2
+      23: aload_0
+      24: iload_3
+      25: invokevirtual #312                // Method com/google/gson/JsonArray.get:(I)Lcom/google/gson/JsonElement;
+      28: invokevirtual #331                // Method com/google/gson/JsonElement.deepCopy:()Lcom/google/gson/JsonElement;
+      31: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+      34: iinc          3, 1
+      37: goto          10
+      40: aload_2
+      41: areturn
+
+  private static com.google.gson.JsonArray chapterStats(com.google.gson.JsonObject);
+    Code:
+       0: new           #236                // class com/google/gson/JsonArray
+       3: dup
+       4: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: ldc_w         #766                // String chapters
+      12: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+      15: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+      18: astore_2
+      19: aload_2
+      20: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      25: ifeq          150
+      28: aload_2
+      29: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #253                // class com/google/gson/JsonElement
+      37: astore_3
+      38: aload_3
+      39: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      42: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+      45: astore        4
+      47: new           #236                // class com/google/gson/JsonArray
+      50: dup
+      51: invokespecial #237                // Method com/google/gson/JsonArray."<init>":()V
+      54: astore        5
+      56: aload_0
+      57: ldc           #192                // String quests
+      59: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+      62: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+      65: astore        6
+      67: aload         6
+      69: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      74: ifeq          128
+      77: aload         6
+      79: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      84: checkcast     #253                // class com/google/gson/JsonElement
+      87: astore        7
+      89: aload         7
+      91: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      94: ldc_w         #752                // String chapter_id
+      97: ldc           #132                // String
+      99: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     102: aload         4
+     104: ldc_w         #600                // String id
+     107: ldc           #132                // String
+     109: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     112: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     115: ifeq          125
+     118: aload         5
+     120: aload         7
+     122: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     125: goto          67
+     128: aload         4
+     130: ldc_w         #756                // String counts
+     133: aload         5
+     135: invokestatic  #740                // Method counts:(Lcom/google/gson/JsonArray;)Lcom/google/gson/JsonObject;
+     138: invokevirtual #175                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     141: aload_1
+     142: aload         4
+     144: invokevirtual #262                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     147: goto          19
+     150: aload_1
+     151: areturn
+
+  private static com.google.gson.JsonObject counts(com.google.gson.JsonArray);
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iconst_0
+       3: istore_2
+       4: iconst_0
+       5: istore_3
+       6: iconst_0
+       7: istore        4
+       9: iconst_0
+      10: istore        5
+      12: iconst_0
+      13: istore        6
+      15: aload_0
+      16: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+      19: astore        7
+      21: aload         7
+      23: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      28: ifeq          263
+      31: aload         7
+      33: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      38: checkcast     #253                // class com/google/gson/JsonElement
+      41: astore        8
+      43: aload         8
+      45: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      48: astore        9
+      50: aload         9
+      52: ldc_w         #630                // String completed
+      55: iconst_0
+      56: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+      59: ifeq          65
+      62: iinc          1, 1
+      65: aload         9
+      67: ldc_w         #493                // String status
+      70: ldc           #132                // String
+      72: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      75: astore        10
+      77: iconst_m1
+      78: istore        11
+      80: aload         10
+      82: invokevirtual #213                // Method java/lang/String.hashCode:()I
+      85: lookupswitch  { // 3
+
+           -1097452790: 154
+
+            -753541113: 120
+
+            -733902135: 137
+               default: 168
+          }
+     120: aload         10
+     122: ldc_w         #784                // String in_progress
+     125: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     128: ifeq          168
+     131: iconst_0
+     132: istore        11
+     134: goto          168
+     137: aload         10
+     139: ldc_w         #409                // String available
+     142: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     145: ifeq          168
+     148: iconst_1
+     149: istore        11
+     151: goto          168
+     154: aload         10
+     156: ldc_w         #786                // String locked
+     159: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     162: ifeq          168
+     165: iconst_2
+     166: istore        11
+     168: iload         11
+     170: tableswitch   { // 0 to 2
+
+                     0: 196
+
+                     1: 202
+
+                     2: 208
+               default: 214
+          }
+     196: iinc          2, 1
+     199: goto          214
+     202: iinc          3, 1
+     205: goto          214
+     208: iinc          4, 1
+     211: goto          214
+     214: aload         9
+     216: ldc_w         #788                // String claimable
+     219: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     222: ifeq          239
+     225: aload         9
+     227: ldc_w         #788                // String claimable
+     230: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     233: invokevirtual #618                // Method com/google/gson/JsonElement.isJsonNull:()Z
+     236: ifeq          245
+     239: iinc          6, 1
+     242: goto          260
+     245: aload         9
+     247: ldc_w         #788                // String claimable
+     250: iconst_0
+     251: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     254: ifeq          260
+     257: iinc          5, 1
+     260: goto          21
+     263: bipush        14
+     265: anewarray     #4                  // class java/lang/Object
+     268: dup
+     269: iconst_0
+     270: ldc_w         #790                // String visible_quests
+     273: aastore
+     274: dup
+     275: iconst_1
+     276: aload_0
+     277: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     280: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     283: aastore
+     284: dup
+     285: iconst_2
+     286: ldc_w         #630                // String completed
+     289: aastore
+     290: dup
+     291: iconst_3
+     292: iload_1
+     293: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     296: aastore
+     297: dup
+     298: iconst_4
+     299: ldc_w         #784                // String in_progress
+     302: aastore
+     303: dup
+     304: iconst_5
+     305: iload_2
+     306: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     309: aastore
+     310: dup
+     311: bipush        6
+     313: ldc_w         #409                // String available
+     316: aastore
+     317: dup
+     318: bipush        7
+     320: iload_3
+     321: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     324: aastore
+     325: dup
+     326: bipush        8
+     328: ldc_w         #786                // String locked
+     331: aastore
+     332: dup
+     333: bipush        9
+     335: iload         4
+     337: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     340: aastore
+     341: dup
+     342: bipush        10
+     344: ldc_w         #792                // String claimable_quests
+     347: aastore
+     348: dup
+     349: bipush        11
+     351: iload         5
+     353: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     356: aastore
+     357: dup
+     358: bipush        12
+     360: ldc_w         #794                // String claimability_unknown_quests
+     363: aastore
+     364: dup
+     365: bipush        13
+     367: iload         6
+     369: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     372: aastore
+     373: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     376: areturn
+
+  static com.google.gson.JsonObject claimSummary(com.google.gson.JsonObject);
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iconst_0
+       3: istore_2
+       4: iconst_0
+       5: istore_3
+       6: iconst_0
+       7: istore        4
+       9: new           #797                // class java/util/LinkedHashSet
+      12: dup
+      13: invokespecial #798                // Method java/util/LinkedHashSet."<init>":()V
+      16: astore        5
+      18: aload_0
+      19: ldc_w         #800                // String native_scope_safe
+      22: iconst_0
+      23: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+      26: istore        6
+      28: aload_0
+      29: ldc           #229                // String preview
+      31: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+      34: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+      37: astore        7
+      39: aload         7
+      41: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      46: ifeq          238
+      49: aload         7
+      51: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      56: checkcast     #253                // class com/google/gson/JsonElement
+      59: astore        8
+      61: aload         8
+      63: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      66: astore        9
+      68: aload         9
+      70: ldc_w         #598                // String exclude_from_claim_all
+      73: iconst_1
+      74: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+      77: ifeq          83
+      80: iinc          2, 1
+      83: aload         9
+      85: ldc_w         #678                // String choice
+      88: iconst_0
+      89: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+      92: ifeq          98
+      95: iinc          3, 1
+      98: aload         9
+     100: ldc_w         #596                // String can_claim
+     103: iconst_0
+     104: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     107: ifne          113
+     110: iinc          4, 1
+     113: aload         9
+     115: ldc_w         #596                // String can_claim
+     118: iconst_0
+     119: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     122: ifeq          235
+     125: aload         9
+     127: ldc_w         #598                // String exclude_from_claim_all
+     130: iconst_1
+     131: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     134: ifne          235
+     137: iinc          1, 1
+     140: iload         6
+     142: aload         9
+     144: ldc_w         #698                // String ordinary_route_safe
+     147: iconst_0
+     148: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     151: ifeq          182
+     154: aload         9
+     156: ldc_w         #678                // String choice
+     159: iconst_1
+     160: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     163: ifne          182
+     166: aload         9
+     168: ldc_w         #658                // String claimed
+     171: iconst_1
+     172: invokestatic  #390                // Method dev/mcpmcp/ftbquests/Json.bool:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     175: ifne          182
+     178: iconst_1
+     179: goto          183
+     182: iconst_0
+     183: iand
+     184: istore        6
+     186: aload         9
+     188: ldc_w         #802                // String effects
+     191: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     194: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     197: astore        10
+     199: aload         10
+     201: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     206: ifeq          235
+     209: aload         10
+     211: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     216: checkcast     #253                // class com/google/gson/JsonElement
+     219: astore        11
+     221: aload         5
+     223: aload         11
+     225: invokevirtual #713                // Method com/google/gson/JsonElement.getAsString:()Ljava/lang/String;
+     228: invokevirtual #803                // Method java/util/LinkedHashSet.add:(Ljava/lang/Object;)Z
+     231: pop
+     232: goto          199
+     235: goto          39
+     238: bipush        10
+     240: anewarray     #4                  // class java/lang/Object
+     243: dup
+     244: iconst_0
+     245: ldc_w         #568                // String scope
+     248: aastore
+     249: dup
+     250: iconst_1
+     251: ldc_w         #514                // String all_not_excluded
+     254: aastore
+     255: dup
+     256: iconst_2
+     257: ldc_w         #299                // String session
+     260: aastore
+     261: dup
+     262: iconst_3
+     263: aload_0
+     264: ldc_w         #299                // String session
+     267: ldc           #132                // String
+     269: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     272: aastore
+     273: dup
+     274: iconst_4
+     275: ldc_w         #295                // String version
+     278: aastore
+     279: dup
+     280: iconst_5
+     281: aload_0
+     282: ldc_w         #295                // String version
+     285: ldc           #132                // String
+     287: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     290: aastore
+     291: dup
+     292: bipush        6
+     294: ldc_w         #350                // String rows
+     297: aastore
+     298: dup
+     299: bipush        7
+     301: aload_0
+     302: ldc           #229                // String preview
+     304: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     307: aastore
+     308: dup
+     309: bipush        8
+     311: ldc_w         #800                // String native_scope_safe
+     314: aastore
+     315: dup
+     316: bipush        9
+     318: iload         6
+     320: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     323: aastore
+     324: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     327: invokestatic  #805                // Method dev/mcpmcp/ftbquests/Json.hash:(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+     330: astore        7
+     332: bipush        22
+     334: anewarray     #4                  // class java/lang/Object
+     337: dup
+     338: iconst_0
+     339: ldc_w         #568                // String scope
+     342: aastore
+     343: dup
+     344: iconst_1
+     345: ldc_w         #514                // String all_not_excluded
+     348: aastore
+     349: dup
+     350: iconst_2
+     351: ldc_w         #394                // String claimable_hash
+     354: aastore
+     355: dup
+     356: iconst_3
+     357: aload         7
+     359: aastore
+     360: dup
+     361: iconst_4
+     362: ldc_w         #384                // String claimable_count
+     365: aastore
+     366: dup
+     367: iconst_5
+     368: iload_1
+     369: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     372: aastore
+     373: dup
+     374: bipush        6
+     376: ldc_w         #807                // String preview_rows
+     379: aastore
+     380: dup
+     381: bipush        7
+     383: aload_0
+     384: ldc           #229                // String preview
+     386: invokestatic  #196                // Method dev/mcpmcp/ftbquests/Json.array:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     389: invokevirtual #307                // Method com/google/gson/JsonArray.size:()I
+     392: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     395: aastore
+     396: dup
+     397: bipush        8
+     399: ldc_w         #809                // String excluded_count
+     402: aastore
+     403: dup
+     404: bipush        9
+     406: iload_2
+     407: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     410: aastore
+     411: dup
+     412: bipush        10
+     414: ldc_w         #811                // String choice_count
+     417: aastore
+     418: dup
+     419: bipush        11
+     421: iload_3
+     422: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     425: aastore
+     426: dup
+     427: bipush        12
+     429: ldc_w         #813                // String blocked_or_locked_count
+     432: aastore
+     433: dup
+     434: bipush        13
+     436: iload         4
+     438: invokestatic  #357                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     441: aastore
+     442: dup
+     443: bipush        14
+     445: ldc_w         #815                // String native_scope_blockers
+     448: aastore
+     449: dup
+     450: bipush        15
+     452: aload_0
+     453: ldc_w         #815                // String native_scope_blockers
+     456: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     459: aastore
+     460: dup
+     461: bipush        16
+     463: ldc_w         #802                // String effects
+     466: aastore
+     467: dup
+     468: bipush        17
+     470: aload         5
+     472: aastore
+     473: dup
+     474: bipush        18
+     476: ldc_w         #386                // String safe_to_submit
+     479: aastore
+     480: dup
+     481: bipush        19
+     483: iload         6
+     485: ifeq          499
+     488: iload_1
+     489: sipush        512
+     492: if_icmpgt     499
+     495: iconst_1
+     496: goto          500
+     499: iconst_0
+     500: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     503: aastore
+     504: dup
+     505: bipush        20
+     507: ldc_w         #817                // String server_races_possible
+     510: aastore
+     511: dup
+     512: bipush        21
+     514: iconst_1
+     515: invokestatic  #370                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     518: aastore
+     519: invokestatic  #179                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     522: areturn
+
+  private static java.lang.String query(java.lang.String, com.google.gson.JsonObject);
+    Code:
+       0: aload_1
+       1: invokevirtual #159                // Method com/google/gson/JsonObject.deepCopy:()Lcom/google/gson/JsonObject;
+       4: astore_2
+       5: aload_2
+       6: ldc_w         #280                // String cursor
+       9: invokevirtual #826                // Method com/google/gson/JsonObject.remove:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      12: pop
+      13: aload_0
+      14: aload_2
+      15: invokestatic  #458                // Method dev/mcpmcp/ftbquests/Json.canonical:(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+      18: invokedynamic #470,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      23: areturn
+
+  private static boolean matches(com.google.gson.JsonObject, com.google.gson.JsonObject);
+    Code:
+       0: ldc_w         #752                // String chapter_id
+       3: ldc_w         #749                // String group_id
+       6: ldc           #198                // String quest_id
+       8: ldc_w         #493                // String status
+      11: ldc_w         #658                // String claimed
+      14: ldc_w         #598                // String exclude_from_claim_all
+      17: invokestatic  #829                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      20: invokeinterface #830,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      25: astore_2
+      26: aload_2
+      27: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      32: ifeq          82
+      35: aload_2
+      36: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      41: checkcast     #103                // class java/lang/String
+      44: astore_3
+      45: aload_1
+      46: aload_3
+      47: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+      50: ifeq          79
+      53: aload_0
+      54: aload_3
+      55: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+      58: ifeq          77
+      61: aload_1
+      62: aload_3
+      63: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      66: aload_0
+      67: aload_3
+      68: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      71: invokevirtual #831                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+      74: ifne          79
+      77: iconst_0
+      78: ireturn
+      79: goto          26
+      82: aload_1
+      83: ldc_w         #788                // String claimable
+      86: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+      89: ifeq          151
+      92: aload_0
+      93: ldc_w         #596                // String can_claim
+      96: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+      99: ifeq          108
+     102: ldc_w         #596                // String can_claim
+     105: goto          111
+     108: ldc_w         #788                // String claimable
+     111: astore_2
+     112: aload_0
+     113: aload_2
+     114: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     117: ifeq          149
+     120: aload_0
+     121: aload_2
+     122: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     125: invokevirtual #618                // Method com/google/gson/JsonElement.isJsonNull:()Z
+     128: ifne          149
+     131: aload_0
+     132: aload_2
+     133: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     136: aload_1
+     137: ldc_w         #788                // String claimable
+     140: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+     143: invokevirtual #831                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     146: ifne          151
+     149: iconst_0
+     150: ireturn
+     151: aload_1
+     152: ldc_w         #832                // String query
+     155: ldc           #132                // String
+     157: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     160: getstatic     #838                // Field java/util/Locale.ROOT:Ljava/util/Locale;
+     163: invokevirtual #842                // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+     166: astore_2
+     167: aload_2
+     168: invokevirtual #845                // Method java/lang/String.isEmpty:()Z
+     171: ifne          191
+     174: aload_0
+     175: invokestatic  #848                // Method searchText:(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+     178: getstatic     #838                // Field java/util/Locale.ROOT:Ljava/util/Locale;
+     181: invokevirtual #842                // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+     184: aload_2
+     185: invokevirtual #851                // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+     188: ifeq          195
+     191: iconst_1
+     192: goto          196
+     195: iconst_0
+     196: ireturn
+
+  private static java.lang.String searchText(com.google.gson.JsonElement);
+    Code:
+       0: new           #855                // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #856                // Method java/lang/StringBuilder."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: invokevirtual #859                // Method com/google/gson/JsonElement.isJsonObject:()Z
+      12: ifeq          124
+      15: aload_0
+      16: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      19: astore_2
+      20: ldc_w         #734                // String title
+      23: ldc_w         #861                // String subtitle
+      26: ldc_w         #863                // String description
+      29: ldc_w         #612                // String tasks
+      32: ldc           #227                // String rewards
+      34: ldc_w         #865                // String quest_title
+      37: invokestatic  #829                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      40: invokeinterface #830,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      45: astore_3
+      46: aload_3
+      47: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      52: ifeq          97
+      55: aload_3
+      56: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      61: checkcast     #103                // class java/lang/String
+      64: astore        4
+      66: aload_2
+      67: aload         4
+      69: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+      72: ifeq          94
+      75: aload_1
+      76: aload_2
+      77: aload         4
+      79: invokevirtual #615                // Method com/google/gson/JsonObject.get:(Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      82: invokestatic  #848                // Method searchText:(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+      85: invokevirtual #869                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      88: bipush        32
+      90: invokevirtual #872                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      93: pop
+      94: goto          46
+      97: aload_2
+      98: ldc_w         #874                // String text
+     101: invokevirtual #284                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     104: ifeq          121
+     107: aload_1
+     108: aload_2
+     109: ldc_w         #874                // String text
+     112: ldc           #132                // String
+     114: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     117: invokevirtual #869                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     120: pop
+     121: goto          175
+     124: aload_0
+     125: invokevirtual #877                // Method com/google/gson/JsonElement.isJsonArray:()Z
+     128: ifeq          175
+     131: aload_0
+     132: invokevirtual #881                // Method com/google/gson/JsonElement.getAsJsonArray:()Lcom/google/gson/JsonArray;
+     135: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+     138: astore_2
+     139: aload_2
+     140: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     145: ifeq          175
+     148: aload_2
+     149: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     154: checkcast     #253                // class com/google/gson/JsonElement
+     157: astore_3
+     158: aload_1
+     159: aload_3
+     160: invokestatic  #848                // Method searchText:(Lcom/google/gson/JsonElement;)Ljava/lang/String;
+     163: invokevirtual #869                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     166: bipush        32
+     168: invokevirtual #872                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+     171: pop
+     172: goto          139
+     175: aload_1
+     176: invokevirtual #882                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     179: areturn
+
+  static com.google.gson.JsonObject find(com.google.gson.JsonArray, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokevirtual #241                // Method com/google/gson/JsonArray.iterator:()Ljava/util/Iterator;
+       4: astore_2
+       5: aload_2
+       6: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      11: ifeq          53
+      14: aload_2
+      15: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      20: checkcast     #253                // class com/google/gson/JsonElement
+      23: astore_3
+      24: aload_3
+      25: invokevirtual #255                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      28: astore        4
+      30: aload         4
+      32: ldc_w         #600                // String id
+      35: ldc           #132                // String
+      37: invokestatic  #138                // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      40: aload_1
+      41: invokevirtual #107                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      44: ifeq          50
+      47: aload         4
+      49: areturn
+      50: goto          5
+      53: aconst_null
+      54: areturn
+
+  private void purge();
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field clock:Ljava/util/function/LongSupplier;
+       4: invokeinterface #272,  1          // InterfaceMethod java/util/function/LongSupplier.getAsLong:()J
+       9: lstore_1
+      10: aload_0
+      11: getfield      #71                 // Field cursors:Ljava/util/Map;
+      14: invokeinterface #888,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      19: lload_1
+      20: invokedynamic #900,  0            // InvokeDynamic #2:test:(J)Ljava/util/function/Predicate;
+      25: invokeinterface #904,  2          // InterfaceMethod java/util/Set.removeIf:(Ljava/util/function/Predicate;)Z
+      30: pop
+      31: aload_0
+      32: getfield      #73                 // Field previews:Ljava/util/Map;
+      35: invokeinterface #888,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      40: lload_1
+      41: invokedynamic #909,  0            // InvokeDynamic #3:test:(J)Ljava/util/function/Predicate;
+      46: invokeinterface #904,  2          // InterfaceMethod java/util/Set.removeIf:(Ljava/util/function/Predicate;)Z
+      51: pop
+      52: return
+
+  private static boolean lambda$purge$1(long, java.util.Map$Entry);
+    Code:
+       0: lload_0
+       1: aload_2
+       2: invokeinterface #913,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       7: checkcast     #9                  // class dev/mcpmcp/ftbquests/FtbService$Preview
+      10: invokevirtual #583                // Method dev/mcpmcp/ftbquests/FtbService$Preview.expires:()J
+      13: lcmp
+      14: iflt          21
+      17: iconst_1
+      18: goto          22
+      21: iconst_0
+      22: ireturn
+
+  private static boolean lambda$purge$0(long, java.util.Map$Entry);
+    Code:
+       0: lload_0
+       1: aload_2
+       2: invokeinterface #913,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       7: checkcast     #11                 // class dev/mcpmcp/ftbquests/FtbService$Cursor
+      10: invokevirtual #287                // Method dev/mcpmcp/ftbquests/FtbService$Cursor.expires:()J
+      13: lcmp
+      14: iflt          21
+      17: iconst_1
+      18: goto          22
+      21: iconst_0
+      22: ireturn
+}

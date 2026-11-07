@@ -1,0 +1,498 @@
+{
+  "source": "ftbquests",
+  "adapter_version": "0.1.0",
+  "contracts": {
+    "ftbquests": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false,
+      "required": [],
+      "description": "Exact target, closed schemas, client-only scope and submission workflow. No game reads."
+    },
+    "ftbquests.book": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false,
+      "required": [],
+      "description": "Visible-only overall/group/chapter statistics, session, version and pending receipt. Never open GUI."
+    },
+    "ftbquests.chapters": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Default 8. Results bounded by limit and 1 MiB row JSON budget; cursor binds identical filters/limit/session/version.",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Opaque continuation token, expires in 30s. Keep query fields unchanged. Drift is stale_cursor, never an empty complete page.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "query": {
+          "type": "string",
+          "description": "Case-insensitive search in visible returned title/subtitle/description/task/reward preview text.",
+          "minLength": 0,
+          "maxLength": 256
+        },
+        "group_id": {
+          "type": "string",
+          "description": "Optional exact visible group.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "description": "Client-synced visible data only, no GUI or server/other-team reads. Each task list includes content/progress/dependencies/reward preview; hidden fields are null with reason."
+    },
+    "ftbquests.quests": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Default 8. Results bounded by limit and 1 MiB row JSON budget; cursor binds identical filters/limit/session/version.",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Opaque continuation token, expires in 30s. Keep query fields unchanged. Drift is stale_cursor, never an empty complete page.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "query": {
+          "type": "string",
+          "description": "Case-insensitive search in visible returned title/subtitle/description/task/reward preview text.",
+          "minLength": 0,
+          "maxLength": 256
+        },
+        "chapter_id": {
+          "type": "string",
+          "description": "Optional exact visible chapter.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        },
+        "claimable": {
+          "type": "boolean",
+          "description": "Filter current client-synced effective eligibility; excludes locked/blocked/already claimed."
+        },
+        "status": {
+          "type": "string",
+          "description": "Quest progression status.",
+          "enum": [
+            "completed",
+            "in_progress",
+            "available",
+            "locked"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "description": "Client-synced visible data only, no GUI or server/other-team reads. Each task list includes content/progress/dependencies/reward preview; hidden fields are null with reason."
+    },
+    "ftbquests.quest": {
+      "type": "object",
+      "properties": {
+        "quest_id": {
+          "type": "string",
+          "description": "Exact visible quest ID. Hidden content and hidden-until-startable details are not bypassed.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "quest_id"
+      ]
+    },
+    "ftbquests.rewards": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Default 8. Results bounded by limit and 1 MiB row JSON budget; cursor binds identical filters/limit/session/version.",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Opaque continuation token, expires in 30s. Keep query fields unchanged. Drift is stale_cursor, never an empty complete page.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "query": {
+          "type": "string",
+          "description": "Case-insensitive search in visible returned title/subtitle/description/task/reward preview text.",
+          "minLength": 0,
+          "maxLength": 256
+        },
+        "chapter_id": {
+          "type": "string",
+          "description": "Optional exact visible chapter.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        },
+        "claimable": {
+          "type": "boolean",
+          "description": "Filter current client-synced effective eligibility; excludes locked/blocked/already claimed."
+        },
+        "quest_id": {
+          "type": "string",
+          "description": "Optional visible quest.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        },
+        "claimed": {
+          "type": "boolean",
+          "description": "Filter claimed state."
+        },
+        "exclude_from_claim_all": {
+          "type": "boolean",
+          "description": "Filter native getExcludeFromClaimAll, including choice exclusions."
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "description": "Client-synced visible data only, no GUI or server/other-team reads. Each task list includes content/progress/dependencies/reward preview; hidden fields are null with reason."
+    },
+    "ftbquests.claimable": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "description": "Default 8. Results bounded by limit and 1 MiB row JSON budget; cursor binds identical filters/limit/session/version.",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Opaque continuation token, expires in 30s. Keep query fields unchanged. Drift is stale_cursor, never an empty complete page.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        }
+      },
+      "additionalProperties": false,
+      "required": [],
+      "description": "Unfiltered native all_not_excluded preview with all completed unclaimed visible reward rows, exclusions and side-effect classification. Walk every page for preview_token."
+    },
+    "ftbquests.receipt": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "description": "Exact operation UUID. Reads current synced claimed state when available and returns retained receipt even when disconnected; never resubmits.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "request_id"
+      ]
+    },
+    "ftbquests.reward.claim": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "type": "string",
+          "description": "Fresh observation token, 30 second TTL; bound to world/player/connection/file/selfTeamData and full content/progress snapshot.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "request_id": {
+          "type": "string",
+          "description": "One UUID per operation; match core action_id. Dry-run is a separate operation UUID from the real submit because core action IDs bind the full payload. Retained receipts never auto-expire/re-send; ambiguous delivery blocks new mutations until claimed read-back, including after context change.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "dry_run": {
+          "type": "boolean",
+          "description": "Default true. false explicitly submits exactly once."
+        },
+        "reward_id": {
+          "type": "string",
+          "description": "Reward ID from visible quest rewards, exactly 16 lower-case hexadecimal digits; JSON number IDs forbidden.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        },
+        "expected_reward_hash": {
+          "type": "string",
+          "description": "Same snapshot reward_hash; binds definition, eligibility and choice/table content.",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "[0-9a-f]{64}"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "session",
+        "request_id",
+        "reward_id",
+        "expected_reward_hash"
+      ],
+      "description": "One native ClaimRewardMessage(id,true) for audited ordinary reward routes. Choice requires reward.choose. No setters or direct Reward.claim calls."
+    },
+    "ftbquests.reward.choose": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "type": "string",
+          "description": "Fresh observation token, 30 second TTL; bound to world/player/connection/file/selfTeamData and full content/progress snapshot.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "request_id": {
+          "type": "string",
+          "description": "One UUID per operation; match core action_id. Dry-run is a separate operation UUID from the real submit because core action IDs bind the full payload. Retained receipts never auto-expire/re-send; ambiguous delivery blocks new mutations until claimed read-back, including after context change.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "dry_run": {
+          "type": "boolean",
+          "description": "Default true. false explicitly submits exactly once."
+        },
+        "reward_id": {
+          "type": "string",
+          "description": "Reward ID from visible quest rewards, exactly 16 lower-case hexadecimal digits; JSON number IDs forbidden.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        },
+        "expected_reward_hash": {
+          "type": "string",
+          "description": "Same snapshot reward_hash; binds definition, eligibility and choice/table content.",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "[0-9a-f]{64}"
+        },
+        "choice_index": {
+          "type": "integer",
+          "description": "Explicit zero-based ordered table index from choice_candidates, never defaulted.",
+          "minimum": 0,
+          "maximum": 127
+        },
+        "expected_table_hash": {
+          "type": "string",
+          "description": "Whole recursive table identity, all candidates/weights/definitions; parent must be completed and unclaimed.",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "[0-9a-f]{64}"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "session",
+        "request_id",
+        "reward_id",
+        "expected_reward_hash",
+        "choice_index",
+        "expected_table_hash"
+      ],
+      "description": "One ClaimChoiceRewardMessage. Native server calls child.claim before marking parent, so adapter requires parent unclaimed, unlocked/unblocked self-team and a fully reviewed bounded table. No automatic first choice."
+    },
+    "ftbquests.rewards.claim_all": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "type": "string",
+          "description": "Fresh observation token, 30 second TTL; bound to world/player/connection/file/selfTeamData and full content/progress snapshot.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "request_id": {
+          "type": "string",
+          "description": "One UUID per operation; match core action_id. Dry-run is a separate operation UUID from the real submit because core action IDs bind the full payload. Retained receipts never auto-expire/re-send; ambiguous delivery blocks new mutations until claimed read-back, including after context change.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "dry_run": {
+          "type": "boolean",
+          "description": "Default true. false explicitly submits exactly once."
+        },
+        "preview_token": {
+          "type": "string",
+          "description": "Issued only by the final page of a complete unfiltered ftbquests.claimable preview; session/hash/count bound, 30s expiry.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "scope": {
+          "type": "string",
+          "description": "Native global scope. No chapter/type filter exists.",
+          "enum": [
+            "all_not_excluded"
+          ]
+        },
+        "expected_claimable_hash": {
+          "type": "string",
+          "description": "Exact claimable_hash from completed preview, including exclusions, definitions and effects.",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "[0-9a-f]{64}"
+        },
+        "expected_claimable_count": {
+          "type": "integer",
+          "description": "Exact eligible, unclaimed, unblocked native candidate count.",
+          "minimum": 1,
+          "maximum": 512
+        },
+        "max_rewards": {
+          "type": "integer",
+          "description": "Explicit count budget; native packet has no server-side budget/filter. Races remain possible.",
+          "minimum": 1,
+          "maximum": 512
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "session",
+        "request_id",
+        "preview_token",
+        "scope",
+        "expected_claimable_hash",
+        "expected_claimable_count",
+        "max_rewards"
+      ],
+      "description": "One native ClaimAllRewardsMessage(), never a per-reward loop. Fails closed if native scope includes hidden, unknown or unsafe-choice candidates. Built-in ChoiceReward is excluded by native getExcludeFromClaimAll(). Preconfigured command/custom/table effects remain native."
+    },
+    "ftbquests.task.check": {
+      "type": "object",
+      "properties": {
+        "session": {
+          "type": "string",
+          "description": "Fresh observation token, 30 second TTL; bound to world/player/connection/file/selfTeamData and full content/progress snapshot.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "request_id": {
+          "type": "string",
+          "description": "One UUID per operation; match core action_id. Dry-run is a separate operation UUID from the real submit because core action IDs bind the full payload. Retained receipts never auto-expire/re-send; ambiguous delivery blocks new mutations until claimed read-back, including after context change.",
+          "minLength": 36,
+          "maxLength": 36,
+          "pattern": "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        },
+        "dry_run": {
+          "type": "boolean",
+          "description": "Default true. false explicitly submits exactly once."
+        },
+        "task_id": {
+          "type": "string",
+          "description": "Exact visible, startable checkmark task. No resource tasks or progress setters.",
+          "minLength": 16,
+          "maxLength": 16,
+          "pattern": "[0-9a-f]{16}"
+        },
+        "expected_task_hash": {
+          "type": "string",
+          "description": "Exact visible task definition hash.",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "[0-9a-f]{64}"
+        },
+        "acknowledge_read": {
+          "type": "boolean",
+          "description": "Must explicitly be true: caller has read this informational task. Does not authorize task editing or resource submission."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "session",
+        "request_id",
+        "task_id",
+        "expected_task_hash",
+        "acknowledge_read"
+      ]
+    }
+  },
+  "actions": {
+    "ftbquests.reward.claim": {
+      "transport": "packet",
+      "permission": "normal"
+    },
+    "ftbquests.reward.choose": {
+      "transport": "packet",
+      "permission": "normal"
+    },
+    "ftbquests.rewards.claim_all": {
+      "transport": "packet",
+      "permission": "normal"
+    },
+    "ftbquests.task.check": {
+      "transport": "packet",
+      "permission": "normal"
+    }
+  },
+  "observers": [
+    "ftbquests",
+    "ftbquests.book",
+    "ftbquests.chapters",
+    "ftbquests.quests",
+    "ftbquests.quest",
+    "ftbquests.rewards",
+    "ftbquests.claimable",
+    "ftbquests.receipt"
+  ],
+  "runtime_pins": [
+    {
+      "mod_id": "ftbteams",
+      "version": "2001.3.2",
+      "sha256": "b1cb4d82ea9f137a87e12a7aaf3329619294b56f7d70337dfd557a76e10b6e07"
+    },
+    {
+      "mod_id": "architectury",
+      "version": "9.2.14",
+      "sha256": "218b471d0b8a1f6cda14cfc1beb9eeb0df54304500acc6c5613d9b88ec65d9af"
+    },
+    {
+      "mod_id": "ftblibrary",
+      "version": "2001.2.13",
+      "sha256": "41810281b65336265cae2c88412022d02f2f0a3f28c66a06173d86f98acf14a7"
+    },
+    {
+      "mod_id": "ftbquests",
+      "version": "2001.4.22",
+      "sha256": "9ea9d159a78a2724cfe0457b024680fdb52a2126eff9cfa5280a30578f647a68"
+    }
+  ],
+  "scope": "ClientQuestFile.INSTANCE/selfTeamData/current player; native non-editor visibility",
+  "dry_run_default": true,
+  "limits": {
+    "session_ttl_ms": 30000,
+    "page_max": 32,
+    "quests_max": 16384,
+    "reward_rows_max": 65536,
+    "receipts_max": 512,
+    "preview_budget_max": 512,
+    "choice_candidates_max": 128
+  },
+  "limitations": [
+    "Client sync can lag server; submitted and claimed read-back do not prove inventory delivery or command effects.",
+    "Native claim_all has global scope and no expected-hash/count fields on the wire. Client preflight cannot eliminate server races.",
+    "Configured command/custom/advancement/stage/table rewards may change server state. Native effects are neither edited nor elevated by this plugin.",
+    "Only explicit acknowledged checkmark confirmation; no resource task submission, editor, reset, give/creative, arbitrary commands, server files or other-team data.",
+    "No GUI operation or command-link click. Unknown/unsynced data is explicit and cannot authorize a mutation.",
+    "Complete every preview page. New UUID is not a retry strategy for unknown delivery. Receipts are in-memory for this provider lifetime."
+  ]
+}

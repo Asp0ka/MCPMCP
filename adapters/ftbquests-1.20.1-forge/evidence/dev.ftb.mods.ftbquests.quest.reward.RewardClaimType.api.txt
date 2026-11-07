@@ -1,0 +1,15 @@
+Compiled from "RewardClaimType.java"
+public final class dev.ftb.mods.ftbquests.quest.reward.RewardClaimType extends java.lang.Enum<dev.ftb.mods.ftbquests.quest.reward.RewardClaimType> {
+  public static final dev.ftb.mods.ftbquests.quest.reward.RewardClaimType CAN_CLAIM;
+  public static final dev.ftb.mods.ftbquests.quest.reward.RewardClaimType CANT_CLAIM;
+  public static final dev.ftb.mods.ftbquests.quest.reward.RewardClaimType CLAIMED;
+  private static final dev.ftb.mods.ftbquests.quest.reward.RewardClaimType[] $VALUES;
+  public static dev.ftb.mods.ftbquests.quest.reward.RewardClaimType[] values();
+  public static dev.ftb.mods.ftbquests.quest.reward.RewardClaimType valueOf(java.lang.String);
+  private dev.ftb.mods.ftbquests.quest.reward.RewardClaimType();
+  public boolean canClaim();
+  public boolean cantClaim();
+  public boolean isClaimed();
+  private static dev.ftb.mods.ftbquests.quest.reward.RewardClaimType[] $values();
+  static {};
+}

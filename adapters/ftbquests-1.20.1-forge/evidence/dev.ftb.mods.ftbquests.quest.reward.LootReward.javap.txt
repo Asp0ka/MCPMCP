@@ -1,0 +1,86 @@
+Compiled from "LootReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.LootReward extends dev.ftb.mods.ftbquests.quest.reward.RandomReward {
+  public dev.ftb.mods.ftbquests.quest.reward.LootReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #11                 // Method dev/ftb/mods/ftbquests/quest/reward/RandomReward."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: return
+
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+    Code:
+       0: getstatic     #23                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardTypes.LOOT:Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       3: areturn
+
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: astore_3
+       5: aload_3
+       6: ifnull        61
+       9: aload_3
+      10: aload_1
+      11: invokevirtual #37                 // Method net/minecraft/server/level/ServerPlayer.m_217043_:()Lnet/minecraft/util/RandomSource;
+      14: iconst_1
+      15: iconst_1
+      16: invokevirtual #43                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.generateWeightedRandomRewards:(Lnet/minecraft/util/RandomSource;IZ)Ljava/util/Collection;
+      19: invokeinterface #49,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      24: astore        4
+      26: aload         4
+      28: invokeinterface #55,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      33: ifeq          61
+      36: aload         4
+      38: invokeinterface #59,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      43: checkcast     #61                 // class dev/ftb/mods/ftbquests/quest/loot/WeightedReward
+      46: astore        5
+      48: aload         5
+      50: invokevirtual #65                 // Method dev/ftb/mods/ftbquests/quest/loot/WeightedReward.getReward:()Ldev/ftb/mods/ftbquests/quest/reward/Reward;
+      53: aload_1
+      54: iload_2
+      55: invokevirtual #69                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.claim:(Lnet/minecraft/server/level/ServerPlayer;Z)V
+      58: goto          26
+      61: return
+
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: ifnull        17
+       7: aload_0
+       8: invokevirtual #31                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+      11: aload_1
+      12: iconst_1
+      13: iconst_1
+      14: invokevirtual #85                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.addMouseOverText:(Ldev/ftb/mods/ftblibrary/util/TooltipList;ZZ)V
+      17: return
+
+  public void onButtonClicked(dev.ftb.mods.ftblibrary.ui.Button, boolean);
+    Code:
+       0: iload_2
+       1: ifeq          14
+       4: new           #92                 // class dev/ftb/mods/ftbquests/client/gui/RewardNotificationsScreen
+       7: dup
+       8: invokespecial #95                 // Method dev/ftb/mods/ftbquests/client/gui/RewardNotificationsScreen."<init>":()V
+      11: invokevirtual #98                 // Method dev/ftb/mods/ftbquests/client/gui/RewardNotificationsScreen.openGui:()V
+      14: aload_0
+      15: aload_1
+      16: iload_2
+      17: invokespecial #100                // Method dev/ftb/mods/ftbquests/quest/reward/RandomReward.onButtonClicked:(Ldev/ftb/mods/ftblibrary/ui/Button;Z)V
+      20: return
+
+  public boolean getExcludeFromClaimAll();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void automatedClaimPost(net.minecraft.world.level.block.entity.BlockEntity, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: return
+}

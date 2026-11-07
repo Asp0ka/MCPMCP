@@ -1,0 +1,30 @@
+Compiled from "CustomReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.CustomReward extends dev.ftb.mods.ftbquests.quest.reward.Reward {
+  public dev.ftb.mods.ftbquests.quest.reward.CustomReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #11                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: return
+
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+    Code:
+       0: getstatic     #23                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardTypes.CUSTOM:Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       3: areturn
+
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+    Code:
+       0: getstatic     #33                 // Field dev/ftb/mods/ftbquests/events/CustomRewardEvent.EVENT:Ldev/architectury/event/Event;
+       3: invokeinterface #39,  1           // InterfaceMethod dev/architectury/event/Event.invoker:()Ljava/lang/Object;
+       8: checkcast     #41                 // class dev/architectury/event/EventActor
+      11: new           #29                 // class dev/ftb/mods/ftbquests/events/CustomRewardEvent
+      14: dup
+      15: aload_0
+      16: aload_1
+      17: iload_2
+      18: invokespecial #44                 // Method dev/ftb/mods/ftbquests/events/CustomRewardEvent."<init>":(Ldev/ftb/mods/ftbquests/quest/reward/CustomReward;Lnet/minecraft/server/level/ServerPlayer;Z)V
+      21: invokeinterface #48,  2           // InterfaceMethod dev/architectury/event/EventActor.act:(Ljava/lang/Object;)Ldev/architectury/event/EventResult;
+      26: pop
+      27: return
+}

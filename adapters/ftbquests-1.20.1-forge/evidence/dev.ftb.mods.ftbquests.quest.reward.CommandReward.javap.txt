@@ -1,0 +1,394 @@
+Compiled from "CommandReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.CommandReward extends dev.ftb.mods.ftbquests.quest.reward.Reward {
+  private static final java.lang.String DEFAULT_COMMAND;
+
+  public static final java.util.regex.Pattern PATTERN;
+
+  private java.lang.String command;
+
+  private boolean elevatePerms;
+
+  private boolean silent;
+
+  public dev.ftb.mods.ftbquests.quest.reward.CommandReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #31                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: aload_0
+       7: ldc           #19                 // String /say Hi, @p!
+       9: putfield      #33                 // Field command:Ljava/lang/String;
+      12: return
+
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+    Code:
+       0: getstatic     #45                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardTypes.COMMAND:Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       3: areturn
+
+  public void writeData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #50                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc           #51                 // String command
+       8: aload_0
+       9: getfield      #33                 // Field command:Ljava/lang/String;
+      12: invokevirtual #57                 // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      15: aload_0
+      16: getfield      #59                 // Field elevatePerms:Z
+      19: ifeq          29
+      22: aload_1
+      23: ldc           #61                 // String elevate_perms
+      25: iconst_1
+      26: invokevirtual #65                 // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      29: aload_0
+      30: getfield      #67                 // Field silent:Z
+      33: ifeq          43
+      36: aload_1
+      37: ldc           #68                 // String silent
+      39: iconst_1
+      40: invokevirtual #65                 // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      43: return
+
+  public void readData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #72                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.readData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc           #51                 // String command
+       9: invokevirtual #76                 // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      12: putfield      #33                 // Field command:Ljava/lang/String;
+      15: aload_0
+      16: aload_1
+      17: ldc           #61                 // String elevate_perms
+      19: invokevirtual #80                 // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      22: putfield      #59                 // Field elevatePerms:Z
+      25: aload_0
+      26: aload_1
+      27: ldc           #68                 // String silent
+      29: invokevirtual #80                 // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      32: putfield      #67                 // Field silent:Z
+      35: return
+
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #85                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.writeNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_1
+       6: aload_0
+       7: getfield      #33                 // Field command:Ljava/lang/String;
+      10: sipush        32767
+      13: invokevirtual #91                 // Method net/minecraft/network/FriendlyByteBuf.m_130072_:(Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;
+      16: pop
+      17: aload_1
+      18: aload_0
+      19: getfield      #59                 // Field elevatePerms:Z
+      22: invokevirtual #95                 // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      25: pop
+      26: aload_1
+      27: aload_0
+      28: getfield      #67                 // Field silent:Z
+      31: invokevirtual #95                 // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      34: pop
+      35: return
+
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #99                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.readNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_0
+       6: aload_1
+       7: sipush        32767
+      10: invokevirtual #103                // Method net/minecraft/network/FriendlyByteBuf.m_130136_:(I)Ljava/lang/String;
+      13: putfield      #33                 // Field command:Ljava/lang/String;
+      16: aload_0
+      17: aload_1
+      18: invokevirtual #107                // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      21: putfield      #59                 // Field elevatePerms:Z
+      24: aload_0
+      25: aload_1
+      26: invokevirtual #107                // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      29: putfield      #67                 // Field silent:Z
+      32: return
+
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #116                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.fillConfigGroup:(Ldev/ftb/mods/ftblibrary/config/ConfigGroup;)V
+       5: aload_1
+       6: ldc           #51                 // String command
+       8: aload_0
+       9: getfield      #33                 // Field command:Ljava/lang/String;
+      12: aload_0
+      13: invokedynamic #135,  0            // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/quest/reward/CommandReward;)Ljava/util/function/Consumer;
+      18: ldc           #19                 // String /say Hi, @p!
+      20: invokevirtual #141                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addString:(Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Consumer;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/StringConfig;
+      23: ldc           #143                // String ftbquests.reward.ftbquests.command
+      25: invokevirtual #149                // Method dev/ftb/mods/ftblibrary/config/StringConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      28: pop
+      29: aload_1
+      30: ldc           #151                // String elevate
+      32: aload_0
+      33: getfield      #59                 // Field elevatePerms:Z
+      36: aload_0
+      37: invokedynamic #158,  0            // InvokeDynamic #1:accept:(Ldev/ftb/mods/ftbquests/quest/reward/CommandReward;)Ljava/util/function/Consumer;
+      42: iconst_0
+      43: invokevirtual #162                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+      46: pop
+      47: aload_1
+      48: ldc           #68                 // String silent
+      50: aload_0
+      51: getfield      #67                 // Field silent:Z
+      54: aload_0
+      55: invokedynamic #167,  0            // InvokeDynamic #2:accept:(Ldev/ftb/mods/ftbquests/quest/reward/CommandReward;)Ljava/util/function/Consumer;
+      60: iconst_0
+      61: invokevirtual #162                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+      64: pop
+      65: return
+
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+    Code:
+       0: new           #174                // class java/util/HashMap
+       3: dup
+       4: invokespecial #177                // Method java/util/HashMap."<init>":()V
+       7: astore_3
+       8: aload_3
+       9: ldc           #179                // String p
+      11: aload_1
+      12: invokevirtual #185                // Method net/minecraft/server/level/ServerPlayer.m_36316_:()Lcom/mojang/authlib/GameProfile;
+      15: invokevirtual #191                // Method com/mojang/authlib/GameProfile.getName:()Ljava/lang/String;
+      18: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      23: pop
+      24: aload_1
+      25: invokevirtual #201                // Method net/minecraft/server/level/ServerPlayer.m_20183_:()Lnet/minecraft/core/BlockPos;
+      28: astore        4
+      30: aload_3
+      31: ldc           #203                // String x
+      33: aload         4
+      35: invokevirtual #209                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      38: invokestatic  #215                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      41: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      46: pop
+      47: aload_3
+      48: ldc           #217                // String y
+      50: aload         4
+      52: invokevirtual #220                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      55: invokestatic  #215                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      58: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      63: pop
+      64: aload_3
+      65: ldc           #222                // String z
+      67: aload         4
+      69: invokevirtual #225                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      72: invokestatic  #215                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      75: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      80: pop
+      81: aload_0
+      82: invokevirtual #229                // Method getQuestChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+      85: ifnull        101
+      88: aload_3
+      89: ldc           #231                // String chapter
+      91: aload_0
+      92: invokevirtual #229                // Method getQuestChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+      95: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     100: pop
+     101: aload_3
+     102: ldc           #232                // String quest
+     104: aload_0
+     105: getfield      #234                // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+     108: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     113: pop
+     114: invokestatic  #238                // Method dev/ftb/mods/ftbteams/api/FTBTeamsAPI.api:()Ldev/ftb/mods/ftbteams/api/FTBTeamsAPI$API;
+     117: invokeinterface #242,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/FTBTeamsAPI$API.getManager:()Ldev/ftb/mods/ftbteams/api/TeamManager;
+     122: aload_1
+     123: invokeinterface #248,  2          // InterfaceMethod dev/ftb/mods/ftbteams/api/TeamManager.getTeamForPlayer:(Lnet/minecraft/server/level/ServerPlayer;)Ljava/util/Optional;
+     128: aload_3
+     129: invokedynamic #258,  0            // InvokeDynamic #3:accept:(Ljava/util/Map;)Ljava/util/function/Consumer;
+     134: invokevirtual #264                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+     137: aload_0
+     138: getfield      #33                 // Field command:Ljava/lang/String;
+     141: invokevirtual #269                // Method java/lang/String.trim:()Ljava/lang/String;
+     144: aload_3
+     145: invokestatic  #273                // Method format:(Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+     148: astore        5
+     150: aload_1
+     151: invokevirtual #277                // Method net/minecraft/server/level/ServerPlayer.m_20203_:()Lnet/minecraft/commands/CommandSourceStack;
+     154: astore        6
+     156: aload_0
+     157: getfield      #59                 // Field elevatePerms:Z
+     160: ifeq          171
+     163: aload         6
+     165: iconst_2
+     166: invokevirtual #283                // Method net/minecraft/commands/CommandSourceStack.m_81325_:(I)Lnet/minecraft/commands/CommandSourceStack;
+     169: astore        6
+     171: aload_0
+     172: getfield      #67                 // Field silent:Z
+     175: ifeq          185
+     178: aload         6
+     180: invokevirtual #286                // Method net/minecraft/commands/CommandSourceStack.m_81324_:()Lnet/minecraft/commands/CommandSourceStack;
+     183: astore        6
+     185: aload_1
+     186: getfield      #290                // Field net/minecraft/server/level/ServerPlayer.f_8924_:Lnet/minecraft/server/MinecraftServer;
+     189: invokevirtual #296                // Method net/minecraft/server/MinecraftServer.m_129892_:()Lnet/minecraft/commands/Commands;
+     192: aload         6
+     194: aload         5
+     196: invokevirtual #302                // Method net/minecraft/commands/Commands.m_230957_:(Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
+     199: pop
+     200: return
+
+  public net.minecraft.network.chat.MutableComponent getAltTitle();
+    Code:
+       0: ldc           #143                // String ftbquests.reward.ftbquests.command
+       2: invokestatic  #319                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       5: ldc_w         #321                // String :
+       8: invokevirtual #326                // Method net/minecraft/network/chat/MutableComponent.m_130946_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      11: aload_0
+      12: getfield      #33                 // Field command:Ljava/lang/String;
+      15: invokestatic  #329                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      18: getstatic     #335                // Field net/minecraft/ChatFormatting.RED:Lnet/minecraft/ChatFormatting;
+      21: invokevirtual #339                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      24: invokevirtual #343                // Method net/minecraft/network/chat/MutableComponent.m_7220_:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+      27: areturn
+
+  public static java.lang.String format(java.lang.String, java.util.Map<java.lang.String, java.lang.Object>);
+    Code:
+       0: new           #348                // class java/lang/StringBuilder
+       3: dup
+       4: aload_0
+       5: invokespecial #350                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+       8: astore_2
+       9: new           #352                // class java/util/ArrayList
+      12: dup
+      13: invokespecial #353                // Method java/util/ArrayList."<init>":()V
+      16: astore_3
+      17: getstatic     #355                // Field PATTERN:Ljava/util/regex/Pattern;
+      20: aload_0
+      21: invokevirtual #361                // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+      24: astore        4
+      26: aload         4
+      28: invokevirtual #366                // Method java/util/regex/Matcher.find:()Z
+      31: ifeq          112
+      34: aload         4
+      36: iconst_1
+      37: invokevirtual #369                // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+      40: astore        5
+      42: aload_1
+      43: aload         5
+      45: invokeinterface #373,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      50: ifeq          109
+      53: aload         5
+      55: invokedynamic #384,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      60: astore        6
+      62: aload_2
+      63: aload         6
+      65: invokevirtual #388                // Method java/lang/StringBuilder.indexOf:(Ljava/lang/String;)I
+      68: istore        7
+      70: iload         7
+      72: iconst_m1
+      73: if_icmpeq     109
+      76: aload_2
+      77: iload         7
+      79: iload         7
+      81: aload         6
+      83: invokevirtual #391                // Method java/lang/String.length:()I
+      86: iadd
+      87: ldc_w         #393                // String %s
+      90: invokevirtual #397                // Method java/lang/StringBuilder.replace:(IILjava/lang/String;)Ljava/lang/StringBuilder;
+      93: pop
+      94: aload_3
+      95: aload_1
+      96: aload         5
+      98: invokeinterface #401,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     103: invokeinterface #406,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     108: pop
+     109: goto          26
+     112: aload_2
+     113: invokevirtual #409                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     116: aload_3
+     117: invokeinterface #413,  1          // InterfaceMethod java/util/List.toArray:()[Ljava/lang/Object;
+     122: invokestatic  #416                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     125: areturn
+
+  public net.minecraft.network.chat.Component getAltTitle();
+    Code:
+       0: aload_0
+       1: invokevirtual #429                // Method getAltTitle:()Lnet/minecraft/network/chat/MutableComponent;
+       4: areturn
+
+  private static void lambda$claim$3(java.util.Map, dev.ftb.mods.ftbteams.api.Team);
+    Code:
+       0: aload_0
+       1: ldc_w         #431                // String team
+       4: aload_1
+       5: invokeinterface #435,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/Team.getName:()Lnet/minecraft/network/chat/Component;
+      10: invokeinterface #438,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      15: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      20: pop
+      21: aload_0
+      22: ldc_w         #440                // String team_id
+      25: aload_1
+      26: invokeinterface #443,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/Team.getShortName:()Ljava/lang/String;
+      31: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      36: pop
+      37: aload_0
+      38: ldc_w         #445                // String long_team_id
+      41: aload_1
+      42: invokeinterface #449,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/Team.getId:()Ljava/util/UUID;
+      47: invokevirtual #452                // Method java/util/UUID.toString:()Ljava/lang/String;
+      50: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      55: pop
+      56: aload_0
+      57: ldc_w         #454                // String member_count
+      60: aload_1
+      61: invokeinterface #458,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/Team.getMembers:()Ljava/util/Set;
+      66: invokeinterface #463,  1          // InterfaceMethod java/util/Set.size:()I
+      71: invokestatic  #215                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      74: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      79: pop
+      80: aload_0
+      81: ldc_w         #465                // String online_member_count
+      84: aload_1
+      85: invokeinterface #469,  1          // InterfaceMethod dev/ftb/mods/ftbteams/api/Team.getOnlineMembers:()Ljava/util/Collection;
+      90: invokeinterface #472,  1          // InterfaceMethod java/util/Collection.size:()I
+      95: invokestatic  #215                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      98: invokeinterface #197,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     103: pop
+     104: return
+
+  private void lambda$fillConfigGroup$2(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #479                // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #67                 // Field silent:Z
+       8: return
+
+  private void lambda$fillConfigGroup$1(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #479                // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #59                 // Field elevatePerms:Z
+       8: return
+
+  private void lambda$fillConfigGroup$0(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #33                 // Field command:Ljava/lang/String;
+       5: return
+
+  static {};
+    Code:
+       0: ldc_w         #483                // String [{](\\w+)}
+       3: invokestatic  #487                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+       6: putstatic     #355                // Field PATTERN:Ljava/util/regex/Pattern;
+       9: return
+}

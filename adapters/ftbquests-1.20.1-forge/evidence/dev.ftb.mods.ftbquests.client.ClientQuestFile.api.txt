@@ -1,0 +1,35 @@
+Compiled from "ClientQuestFile.java"
+public class dev.ftb.mods.ftbquests.client.ClientQuestFile extends dev.ftb.mods.ftbquests.quest.BaseQuestFile {
+  private static final java.util.List<java.lang.String> MISSING_DATA_ERR;
+  public static dev.ftb.mods.ftbquests.client.ClientQuestFile INSTANCE;
+  public dev.ftb.mods.ftbquests.quest.TeamData selfTeamData;
+  private dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen questScreen;
+  private dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen$PersistedData persistedData;
+  private boolean editorPermission;
+  public dev.ftb.mods.ftbquests.client.ClientQuestFile();
+  public static boolean exists();
+  public static void syncFromServer(dev.ftb.mods.ftbquests.quest.BaseQuestFile);
+  private void onReplaced();
+  public boolean canEdit();
+  public void refreshGui();
+  public java.util.Optional<dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen> getQuestScreen();
+  public static dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen openGui();
+  public static dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen openGui(dev.ftb.mods.ftbquests.quest.Quest, boolean);
+  private dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen openQuestGui();
+  public dev.architectury.utils.Env getSide();
+  public void deleteObject(long);
+  public void clearCachedData();
+  public dev.ftb.mods.ftbquests.quest.TeamData getOrCreateTeamData(net.minecraft.world.entity.Entity);
+  public void setPersistedScreenInfo(dev.ftb.mods.ftbquests.client.gui.quests.QuestScreen$PersistedData);
+  public static boolean canClientPlayerEdit();
+  public static boolean isQuestPinned(long);
+  public boolean isPlayerOnTeam(net.minecraft.world.entity.player.Player, dev.ftb.mods.ftbquests.quest.TeamData);
+  public boolean moveChapterGroup(long, boolean);
+  public void setEditorPermission(boolean);
+  public boolean hasEditorPermission();
+  public static void openBookToQuestObject(long);
+  private static java.lang.Boolean lambda$isPlayerOnTeam$2(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbteams.api.client.KnownClientPlayer);
+  private static java.lang.RuntimeException lambda$getOrCreateTeamData$1(net.minecraft.world.entity.Entity);
+  private static void lambda$openGui$0(net.minecraft.world.entity.player.Player, java.lang.String);
+  static {};
+}

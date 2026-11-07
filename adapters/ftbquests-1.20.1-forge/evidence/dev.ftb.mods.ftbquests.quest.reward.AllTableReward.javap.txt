@@ -1,0 +1,41 @@
+Compiled from "AllTableReward.java"
+public class dev.ftb.mods.ftbquests.quest.reward.AllTableReward extends dev.ftb.mods.ftbquests.quest.reward.LootReward {
+  public dev.ftb.mods.ftbquests.quest.reward.AllTableReward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: aload_3
+       3: invokespecial #11                 // Method dev/ftb/mods/ftbquests/quest/reward/LootReward."<init>":(JLdev/ftb/mods/ftbquests/quest/Quest;)V
+       6: return
+
+  public dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+    Code:
+       0: getstatic     #23                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardTypes.ALL_TABLE:Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       3: areturn
+
+  public void claim(net.minecraft.server.level.ServerPlayer, boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method getTable:()Ldev/ftb/mods/ftbquests/quest/loot/RewardTable;
+       4: astore_3
+       5: aload_3
+       6: ifnull        55
+       9: aload_3
+      10: invokevirtual #37                 // Method dev/ftb/mods/ftbquests/quest/loot/RewardTable.getWeightedRewards:()Ljava/util/List;
+      13: invokeinterface #43,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      18: astore        4
+      20: aload         4
+      22: invokeinterface #49,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      27: ifeq          55
+      30: aload         4
+      32: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      37: checkcast     #55                 // class dev/ftb/mods/ftbquests/quest/loot/WeightedReward
+      40: astore        5
+      42: aload         5
+      44: invokevirtual #59                 // Method dev/ftb/mods/ftbquests/quest/loot/WeightedReward.getReward:()Ldev/ftb/mods/ftbquests/quest/reward/Reward;
+      47: aload_1
+      48: iload_2
+      49: invokevirtual #63                 // Method dev/ftb/mods/ftbquests/quest/reward/Reward.claim:(Lnet/minecraft/server/level/ServerPlayer;Z)V
+      52: goto          20
+      55: return
+}

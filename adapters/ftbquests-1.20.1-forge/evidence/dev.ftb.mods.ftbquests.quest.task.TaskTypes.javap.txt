@@ -1,0 +1,287 @@
+Compiled from "TaskTypes.java"
+public interface dev.ftb.mods.ftbquests.quest.task.TaskTypes {
+  public static final java.util.Map<net.minecraft.resources.ResourceLocation, dev.ftb.mods.ftbquests.quest.task.TaskType> TYPES;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType ITEM;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType CUSTOM;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType XP;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType DIMENSION;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType STAT;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType KILL;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType LOCATION;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType CHECKMARK;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType ADVANCEMENT;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType OBSERVATION;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType BIOME;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType STRUCTURE;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType STAGE;
+
+  public static final dev.ftb.mods.ftbquests.quest.task.TaskType FLUID;
+
+  public static dev.ftb.mods.ftbquests.quest.task.TaskType register(net.minecraft.resources.ResourceLocation, dev.ftb.mods.ftbquests.quest.task.TaskType$Provider, java.util.function.Supplier<dev.ftb.mods.ftblibrary.icon.Icon>);
+    Code:
+       0: getstatic     #41                 // Field TYPES:Ljava/util/Map;
+       3: aload_0
+       4: aload_1
+       5: aload_2
+       6: invokedynamic #61,  0             // InvokeDynamic #0:apply:(Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ljava/util/function/Function;
+      11: invokeinterface #67,  3           // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+      16: checkcast     #9                  // class dev/ftb/mods/ftbquests/quest/task/TaskType
+      19: areturn
+
+  public static void init();
+    Code:
+       0: return
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$14();
+    Code:
+       0: getstatic     #81                 // Field net/minecraft/world/level/material/Fluids.f_76193_:Lnet/minecraft/world/level/material/FlowingFluid;
+       3: ldc2_w        #82                 // long 1000l
+       6: invokestatic  #89                 // Method dev/architectury/fluid/FluidStack.create:(Lnet/minecraft/world/level/material/Fluid;J)Ldev/architectury/fluid/FluidStack;
+       9: invokestatic  #95                 // Method dev/ftb/mods/ftblibrary/util/client/ClientUtils.getStillTexture:(Ldev/architectury/fluid/FluidStack;)Lnet/minecraft/resources/ResourceLocation;
+      12: invokestatic  #101                // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+      15: invokedynamic #113,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      20: invokevirtual #117                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      23: ldc           #119                // String missingno
+      25: invokevirtual #122                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      28: checkcast     #124                // class java/lang/String
+      31: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+      34: ldc           #131                // int 8421631
+      36: invokestatic  #137                // Method dev/ftb/mods/ftblibrary/icon/Color4I.rgb:(I)Ldev/ftb/mods/ftblibrary/icon/Color4I;
+      39: invokevirtual #141                // Method dev/ftb/mods/ftblibrary/icon/Icon.withTint:(Ldev/ftb/mods/ftblibrary/icon/Color4I;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+      42: getstatic     #146                // Field dev/ftb/mods/ftbquests/quest/task/FluidTask.TANK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      45: invokevirtual #107                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      48: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+      51: invokevirtual #150                // Method dev/ftb/mods/ftblibrary/icon/Icon.combineWith:(Ldev/ftb/mods/ftblibrary/icon/Icon;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+      54: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$13();
+    Code:
+       0: getstatic     #157                // Field dev/ftb/mods/ftblibrary/icon/Icons.CONTROLLER:Ldev/ftb/mods/ftblibrary/icon/Icon;
+       3: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$12();
+    Code:
+       0: ldc           #160                // String minecraft:item/filled_map
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$11();
+    Code:
+       0: ldc           #163                // String minecraft:block/oak_sapling
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$10();
+    Code:
+       0: getstatic     #167                // Field dev/ftb/mods/ftblibrary/icon/Icons.ART:Ldev/ftb/mods/ftblibrary/icon/Icon;
+       3: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$9();
+    Code:
+       0: ldc           #170                // String minecraft:item/wheat
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$8();
+    Code:
+       0: getstatic     #174                // Field dev/ftb/mods/ftblibrary/icon/Icons.ACCEPT_GRAY:Ldev/ftb/mods/ftblibrary/icon/Icon;
+       3: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$7();
+    Code:
+       0: ldc           #177                // String minecraft:item/compass_00
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$6();
+    Code:
+       0: ldc           #180                // String minecraft:item/diamond_sword
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$5();
+    Code:
+       0: ldc           #183                // String minecraft:item/iron_sword
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$4();
+    Code:
+       0: ldc           #186                // String minecraft:block/nether_portal
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$3();
+    Code:
+       0: ldc           #189                // String minecraft:item/experience_bottle
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$2();
+    Code:
+       0: getstatic     #193                // Field dev/ftb/mods/ftblibrary/icon/Icons.COLOR_HSB:Ldev/ftb/mods/ftblibrary/icon/Icon;
+       3: areturn
+
+  private static dev.ftb.mods.ftblibrary.icon.Icon lambda$static$1();
+    Code:
+       0: ldc           #196                // String minecraft:item/diamond
+       2: invokestatic  #130                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIcon:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/icon/Icon;
+       5: areturn
+
+  private static dev.ftb.mods.ftbquests.quest.task.TaskType lambda$register$0(dev.ftb.mods.ftbquests.quest.task.TaskType$Provider, java.util.function.Supplier, net.minecraft.resources.ResourceLocation);
+    Code:
+       0: new           #9                  // class dev/ftb/mods/ftbquests/quest/task/TaskType
+       3: dup
+       4: aload_2
+       5: aload_0
+       6: aload_1
+       7: invokespecial #201                // Method dev/ftb/mods/ftbquests/quest/task/TaskType."<init>":(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)V
+      10: areturn
+
+  static {};
+    Code:
+       0: new           #204                // class java/util/LinkedHashMap
+       3: dup
+       4: invokespecial #206                // Method java/util/LinkedHashMap."<init>":()V
+       7: putstatic     #41                 // Field TYPES:Ljava/util/Map;
+      10: new           #103                // class net/minecraft/resources/ResourceLocation
+      13: dup
+      14: ldc           #208                // String ftbquests
+      16: ldc           #210                // String item
+      18: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      21: invokedynamic #224,  0            // InvokeDynamic #2:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+      26: invokedynamic #234,  0            // InvokeDynamic #3:get:()Ljava/util/function/Supplier;
+      31: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      34: putstatic     #238                // Field ITEM:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      37: new           #103                // class net/minecraft/resources/ResourceLocation
+      40: dup
+      41: ldc           #208                // String ftbquests
+      43: ldc           #240                // String custom
+      45: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      48: invokedynamic #245,  0            // InvokeDynamic #4:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+      53: invokedynamic #249,  0            // InvokeDynamic #5:get:()Ljava/util/function/Supplier;
+      58: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      61: putstatic     #251                // Field CUSTOM:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      64: new           #103                // class net/minecraft/resources/ResourceLocation
+      67: dup
+      68: ldc           #208                // String ftbquests
+      70: ldc           #253                // String xp
+      72: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      75: invokedynamic #258,  0            // InvokeDynamic #6:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+      80: invokedynamic #262,  0            // InvokeDynamic #7:get:()Ljava/util/function/Supplier;
+      85: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      88: putstatic     #264                // Field XP:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      91: new           #103                // class net/minecraft/resources/ResourceLocation
+      94: dup
+      95: ldc           #208                // String ftbquests
+      97: ldc_w         #266                // String dimension
+     100: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     103: invokedynamic #271,  0            // InvokeDynamic #8:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     108: invokedynamic #275,  0            // InvokeDynamic #9:get:()Ljava/util/function/Supplier;
+     113: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     116: putstatic     #277                // Field DIMENSION:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     119: new           #103                // class net/minecraft/resources/ResourceLocation
+     122: dup
+     123: ldc           #208                // String ftbquests
+     125: ldc_w         #279                // String stat
+     128: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     131: invokedynamic #284,  0            // InvokeDynamic #10:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     136: invokedynamic #288,  0            // InvokeDynamic #11:get:()Ljava/util/function/Supplier;
+     141: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     144: putstatic     #290                // Field STAT:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     147: new           #103                // class net/minecraft/resources/ResourceLocation
+     150: dup
+     151: ldc           #208                // String ftbquests
+     153: ldc_w         #292                // String kill
+     156: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     159: invokedynamic #297,  0            // InvokeDynamic #12:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     164: invokedynamic #301,  0            // InvokeDynamic #13:get:()Ljava/util/function/Supplier;
+     169: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     172: putstatic     #303                // Field KILL:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     175: new           #103                // class net/minecraft/resources/ResourceLocation
+     178: dup
+     179: ldc           #208                // String ftbquests
+     181: ldc_w         #305                // String location
+     184: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     187: invokedynamic #310,  0            // InvokeDynamic #14:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     192: invokedynamic #314,  0            // InvokeDynamic #15:get:()Ljava/util/function/Supplier;
+     197: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     200: putstatic     #316                // Field LOCATION:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     203: new           #103                // class net/minecraft/resources/ResourceLocation
+     206: dup
+     207: ldc           #208                // String ftbquests
+     209: ldc_w         #318                // String checkmark
+     212: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     215: invokedynamic #323,  0            // InvokeDynamic #16:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     220: invokedynamic #327,  0            // InvokeDynamic #17:get:()Ljava/util/function/Supplier;
+     225: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     228: putstatic     #329                // Field CHECKMARK:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     231: new           #103                // class net/minecraft/resources/ResourceLocation
+     234: dup
+     235: ldc           #208                // String ftbquests
+     237: ldc_w         #331                // String advancement
+     240: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     243: invokedynamic #336,  0            // InvokeDynamic #18:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     248: invokedynamic #340,  0            // InvokeDynamic #19:get:()Ljava/util/function/Supplier;
+     253: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     256: putstatic     #342                // Field ADVANCEMENT:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     259: new           #103                // class net/minecraft/resources/ResourceLocation
+     262: dup
+     263: ldc           #208                // String ftbquests
+     265: ldc_w         #344                // String observation
+     268: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     271: invokedynamic #349,  0            // InvokeDynamic #20:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     276: invokedynamic #353,  0            // InvokeDynamic #21:get:()Ljava/util/function/Supplier;
+     281: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     284: putstatic     #355                // Field OBSERVATION:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     287: new           #103                // class net/minecraft/resources/ResourceLocation
+     290: dup
+     291: ldc           #208                // String ftbquests
+     293: ldc_w         #357                // String biome
+     296: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     299: invokedynamic #362,  0            // InvokeDynamic #22:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     304: invokedynamic #366,  0            // InvokeDynamic #23:get:()Ljava/util/function/Supplier;
+     309: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     312: putstatic     #368                // Field BIOME:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     315: new           #103                // class net/minecraft/resources/ResourceLocation
+     318: dup
+     319: ldc           #208                // String ftbquests
+     321: ldc_w         #370                // String structure
+     324: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     327: invokedynamic #375,  0            // InvokeDynamic #24:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     332: invokedynamic #379,  0            // InvokeDynamic #25:get:()Ljava/util/function/Supplier;
+     337: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     340: putstatic     #381                // Field STRUCTURE:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     343: new           #103                // class net/minecraft/resources/ResourceLocation
+     346: dup
+     347: ldc           #208                // String ftbquests
+     349: ldc_w         #383                // String gamestage
+     352: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     355: invokedynamic #388,  0            // InvokeDynamic #26:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     360: invokedynamic #392,  0            // InvokeDynamic #27:get:()Ljava/util/function/Supplier;
+     365: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     368: putstatic     #394                // Field STAGE:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     371: new           #103                // class net/minecraft/resources/ResourceLocation
+     374: dup
+     375: ldc           #208                // String ftbquests
+     377: ldc_w         #396                // String fluid
+     380: invokespecial #213                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     383: invokedynamic #399,  0            // InvokeDynamic #28:create:()Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;
+     388: invokedynamic #403,  0            // InvokeDynamic #29:get:()Ljava/util/function/Supplier;
+     393: invokestatic  #236                // InterfaceMethod register:(Lnet/minecraft/resources/ResourceLocation;Ldev/ftb/mods/ftbquests/quest/task/TaskType$Provider;Ljava/util/function/Supplier;)Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     396: putstatic     #405                // Field FLUID:Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+     399: return
+}

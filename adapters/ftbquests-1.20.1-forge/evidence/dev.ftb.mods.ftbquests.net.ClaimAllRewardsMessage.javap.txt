@@ -1,0 +1,75 @@
+Compiled from "ClaimAllRewardsMessage.java"
+public class dev.ftb.mods.ftbquests.net.ClaimAllRewardsMessage extends dev.architectury.networking.simple.BaseC2SMessage {
+  public dev.ftb.mods.ftbquests.net.ClaimAllRewardsMessage();
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method dev/architectury/networking/simple/BaseC2SMessage."<init>":()V
+       4: return
+
+  dev.ftb.mods.ftbquests.net.ClaimAllRewardsMessage(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method dev/architectury/networking/simple/BaseC2SMessage."<init>":()V
+       4: return
+
+  public dev.architectury.networking.simple.MessageType getType();
+    Code:
+       0: getstatic     #32                 // Field dev/ftb/mods/ftbquests/net/FTBQuestsNetHandler.CLAIM_ALL_REWARDS:Ldev/architectury/networking/simple/MessageType;
+       3: areturn
+
+  public void write(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: return
+
+  public void handle(dev.architectury.networking.NetworkManager$PacketContext);
+    Code:
+       0: aload_1
+       1: invokeinterface #40,  1           // InterfaceMethod dev/architectury/networking/NetworkManager$PacketContext.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+       6: checkcast     #42                 // class net/minecraft/server/level/ServerPlayer
+       9: astore_2
+      10: aload_2
+      11: invokestatic  #48                 // Method dev/ftb/mods/ftbquests/quest/TeamData.get:(Lnet/minecraft/world/entity/player/Player;)Ldev/ftb/mods/ftbquests/quest/TeamData;
+      14: astore_3
+      15: getstatic     #54                 // Field dev/ftb/mods/ftbquests/quest/ServerQuestFile.INSTANCE:Ldev/ftb/mods/ftbquests/quest/ServerQuestFile;
+      18: aload_3
+      19: aload_2
+      20: invokedynamic #74,  0             // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/quest/TeamData;Lnet/minecraft/server/level/ServerPlayer;)Ljava/util/function/Consumer;
+      25: invokevirtual #78                 // Method dev/ftb/mods/ftbquests/quest/ServerQuestFile.forAllQuests:(Ljava/util/function/Consumer;)V
+      28: return
+
+  private static void lambda$handle$2(dev.ftb.mods.ftbquests.quest.TeamData, net.minecraft.server.level.ServerPlayer, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: invokevirtual #88                 // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+       5: ifeq          39
+       8: aload_2
+       9: invokevirtual #94                 // Method dev/ftb/mods/ftbquests/quest/Quest.getRewards:()Ljava/util/Collection;
+      12: invokeinterface #100,  1          // InterfaceMethod java/util/Collection.stream:()Ljava/util/stream/Stream;
+      17: invokedynamic #112,  0            // InvokeDynamic #1:test:()Ljava/util/function/Predicate;
+      22: invokeinterface #118,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      27: aload_0
+      28: aload_1
+      29: invokedynamic #126,  0            // InvokeDynamic #2:accept:(Ldev/ftb/mods/ftbquests/quest/TeamData;Lnet/minecraft/server/level/ServerPlayer;)Ljava/util/function/Consumer;
+      34: invokeinterface #129,  2          // InterfaceMethod java/util/stream/Stream.forEach:(Ljava/util/function/Consumer;)V
+      39: return
+
+  private static void lambda$handle$1(dev.ftb.mods.ftbquests.quest.TeamData, net.minecraft.server.level.ServerPlayer, dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iconst_1
+       4: invokevirtual #135                // Method dev/ftb/mods/ftbquests/quest/TeamData.claimReward:(Lnet/minecraft/server/level/ServerPlayer;Ldev/ftb/mods/ftbquests/quest/reward/Reward;Z)V
+       7: return
+
+  private static boolean lambda$handle$0(dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getExcludeFromClaimAll:()Z
+       4: ifne          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+}

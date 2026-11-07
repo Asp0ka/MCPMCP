@@ -1,0 +1,19 @@
+Compiled from "TaskType.java"
+public final class dev.ftb.mods.ftbquests.quest.task.TaskType {
+  private final net.minecraft.resources.ResourceLocation typeId;
+  private final dev.ftb.mods.ftbquests.quest.task.TaskType$Provider provider;
+  private final java.util.function.Supplier<dev.ftb.mods.ftblibrary.icon.Icon> iconSupplier;
+  private net.minecraft.network.chat.Component displayName;
+  private dev.ftb.mods.ftbquests.quest.task.TaskType$GuiProvider guiProvider;
+  public int internalId;
+  dev.ftb.mods.ftbquests.quest.task.TaskType(net.minecraft.resources.ResourceLocation, dev.ftb.mods.ftbquests.quest.task.TaskType$Provider, java.util.function.Supplier<dev.ftb.mods.ftblibrary.icon.Icon>);
+  public net.minecraft.resources.ResourceLocation getTypeId();
+  public static dev.ftb.mods.ftbquests.quest.task.Task createTask(long, dev.ftb.mods.ftbquests.quest.Quest, java.lang.String);
+  public dev.ftb.mods.ftbquests.quest.task.Task createTask(long, dev.ftb.mods.ftbquests.quest.Quest);
+  public java.lang.String getTypeForNBT();
+  public dev.ftb.mods.ftbquests.quest.task.TaskType setDisplayName(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public dev.ftb.mods.ftblibrary.icon.Icon getIconSupplier();
+  public dev.ftb.mods.ftbquests.quest.task.TaskType setGuiProvider(dev.ftb.mods.ftbquests.quest.task.TaskType$GuiProvider);
+  public dev.ftb.mods.ftbquests.quest.task.TaskType$GuiProvider getGuiProvider();
+}

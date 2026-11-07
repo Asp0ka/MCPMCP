@@ -1,0 +1,3764 @@
+Compiled from "Quest.java"
+public final class dev.ftb.mods.ftbquests.quest.Quest extends dev.ftb.mods.ftbquests.quest.QuestObject implements dev.ftb.mods.ftbquests.quest.Movable,dev.ftb.mods.ftbquests.quest.Excludable {
+  public static final java.lang.String PAGEBREAK_CODE;
+
+  private dev.ftb.mods.ftbquests.quest.Chapter chapter;
+
+  private java.lang.String rawSubtitle;
+
+  private double x;
+
+  private double y;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate hideUntilDepsVisible;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate hideUntilDepsComplete;
+
+  private java.lang.String shape;
+
+  private final java.util.List<java.lang.String> rawDescription;
+
+  private final java.util.List<dev.ftb.mods.ftbquests.quest.QuestObject> dependencies;
+
+  private final java.util.List<dev.ftb.mods.ftbquests.quest.task.Task> tasks;
+
+  private final java.util.List<dev.ftb.mods.ftbquests.quest.reward.Reward> rewards;
+
+  private dev.ftb.mods.ftbquests.quest.DependencyRequirement dependencyRequirement;
+
+  private java.lang.String guidePage;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate hideDependencyLines;
+
+  private boolean hideDependentLines;
+
+  private int minRequiredDependencies;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate hideTextUntilComplete;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate disableJEI;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate hideDetailsUntilStartable;
+
+  private double size;
+
+  private boolean optional;
+
+  private int minWidth;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate canRepeat;
+
+  private boolean invisibleUntilCompleted;
+
+  private int invisibleUntilTasks;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate requireSequentialTasks;
+
+  private double iconScale;
+
+  private int maxCompletableDeps;
+
+  private boolean hideLockIcon;
+
+  private int repeatCooldown;
+
+  private net.minecraft.network.chat.Component cachedSubtitle;
+
+  private java.util.List<net.minecraft.network.chat.Component> cachedDescription;
+
+  private boolean ignoreRewardBlocking;
+
+  private dev.ftb.mods.ftbquests.quest.ProgressionMode progressionMode;
+
+  private final java.util.Set<java.lang.Long> dependantIDs;
+
+  public dev.ftb.mods.ftbquests.quest.Quest(long, dev.ftb.mods.ftbquests.quest.Chapter);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: invokespecial #94                 // Method dev/ftb/mods/ftbquests/quest/QuestObject."<init>":(J)V
+       5: aload_0
+       6: aconst_null
+       7: putfield      #96                 // Field cachedSubtitle:Lnet/minecraft/network/chat/Component;
+      10: aload_0
+      11: aconst_null
+      12: putfield      #98                 // Field cachedDescription:Ljava/util/List;
+      15: aload_0
+      16: aload_3
+      17: putfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      20: aload_0
+      21: ldc           #102                // String
+      23: putfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      26: aload_0
+      27: dconst_0
+      28: putfield      #106                // Field x:D
+      31: aload_0
+      32: dconst_0
+      33: putfield      #108                // Field y:D
+      36: aload_0
+      37: ldc           #102                // String
+      39: putfield      #110                // Field shape:Ljava/lang/String;
+      42: aload_0
+      43: new           #112                // class java/util/ArrayList
+      46: dup
+      47: iconst_0
+      48: invokespecial #115                // Method java/util/ArrayList."<init>":(I)V
+      51: putfield      #117                // Field rawDescription:Ljava/util/List;
+      54: aload_0
+      55: new           #112                // class java/util/ArrayList
+      58: dup
+      59: iconst_0
+      60: invokespecial #115                // Method java/util/ArrayList."<init>":(I)V
+      63: putfield      #119                // Field dependencies:Ljava/util/List;
+      66: aload_0
+      67: new           #112                // class java/util/ArrayList
+      70: dup
+      71: iconst_1
+      72: invokespecial #115                // Method java/util/ArrayList."<init>":(I)V
+      75: putfield      #121                // Field tasks:Ljava/util/List;
+      78: aload_0
+      79: new           #112                // class java/util/ArrayList
+      82: dup
+      83: iconst_1
+      84: invokespecial #115                // Method java/util/ArrayList."<init>":(I)V
+      87: putfield      #123                // Field rewards:Ljava/util/List;
+      90: aload_0
+      91: ldc           #102                // String
+      93: putfield      #125                // Field guidePage:Ljava/lang/String;
+      96: aload_0
+      97: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     100: putfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     103: aload_0
+     104: iconst_0
+     105: putfield      #134                // Field hideDependentLines:Z
+     108: aload_0
+     109: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     112: putfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     115: aload_0
+     116: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     119: putfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     122: aload_0
+     123: getstatic     #143                // Field dev/ftb/mods/ftbquests/quest/DependencyRequirement.ALL_COMPLETED:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     126: putfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     129: aload_0
+     130: iconst_0
+     131: putfield      #147                // Field minRequiredDependencies:I
+     134: aload_0
+     135: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     138: putfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     141: aload_0
+     142: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     145: putfield      #151                // Field disableJEI:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     148: aload_0
+     149: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     152: putfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     155: aload_0
+     156: dconst_0
+     157: putfield      #155                // Field size:D
+     160: aload_0
+     161: iconst_0
+     162: putfield      #157                // Field optional:Z
+     165: aload_0
+     166: iconst_0
+     167: putfield      #159                // Field minWidth:I
+     170: aload_0
+     171: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     174: putfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     177: aload_0
+     178: iconst_0
+     179: putfield      #163                // Field invisibleUntilCompleted:Z
+     182: aload_0
+     183: iconst_0
+     184: putfield      #165                // Field invisibleUntilTasks:I
+     187: aload_0
+     188: iconst_0
+     189: putfield      #167                // Field ignoreRewardBlocking:Z
+     192: aload_0
+     193: getstatic     #171                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.DEFAULT:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     196: putfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     199: aload_0
+     200: new           #175                // class java/util/HashSet
+     203: dup
+     204: invokespecial #178                // Method java/util/HashSet."<init>":()V
+     207: putfield      #180                // Field dependantIDs:Ljava/util/Set;
+     210: aload_0
+     211: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     214: putfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     217: aload_0
+     218: dconst_1
+     219: putfield      #184                // Field iconScale:D
+     222: aload_0
+     223: iconst_0
+     224: putfield      #186                // Field maxCompletableDeps:I
+     227: aload_0
+     228: iconst_0
+     229: putfield      #188                // Field hideLockIcon:Z
+     232: aload_0
+     233: iconst_0
+     234: putfield      #190                // Field repeatCooldown:I
+     237: return
+
+  public dev.ftb.mods.ftbquests.quest.QuestObjectType getObjectType();
+    Code:
+       0: getstatic     #201                // Field dev/ftb/mods/ftbquests/quest/QuestObjectType.QUEST:Ldev/ftb/mods/ftbquests/quest/QuestObjectType;
+       3: areturn
+
+  public dev.ftb.mods.ftbquests.quest.BaseQuestFile getQuestFile();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       4: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       7: areturn
+
+  public dev.ftb.mods.ftbquests.quest.Chapter getQuestChapter();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       4: areturn
+
+  public long getParentID();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       4: getfield      #215                // Field dev/ftb/mods/ftbquests/quest/Chapter.id:J
+       7: lreturn
+
+  public java.util.Collection<dev.ftb.mods.ftbquests.quest.task.Task> getTasks();
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: invokestatic  #224                // Method java/util/Collections.unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+       7: areturn
+
+  public java.util.List<dev.ftb.mods.ftbquests.quest.task.Task> getTasksAsList();
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: invokestatic  #224                // Method java/util/Collections.unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+       7: areturn
+
+  public java.util.Collection<dev.ftb.mods.ftbquests.quest.reward.Reward> getRewards();
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field rewards:Ljava/util/List;
+       4: invokestatic  #224                // Method java/util/Collections.unmodifiableList:(Ljava/util/List;)Ljava/util/List;
+       7: areturn
+
+  public int getMinRequiredDependencies();
+    Code:
+       0: aload_0
+       1: getfield      #147                // Field minRequiredDependencies:I
+       4: ireturn
+
+  public boolean shouldHideDependentLines();
+    Code:
+       0: aload_0
+       1: getfield      #134                // Field hideDependentLines:Z
+       4: ireturn
+
+  public java.lang.String getGuidePage();
+    Code:
+       0: aload_0
+       1: getfield      #125                // Field guidePage:Ljava/lang/String;
+       4: areturn
+
+  public dev.ftb.mods.ftblibrary.config.Tristate getHideTextUntilComplete();
+    Code:
+       0: aload_0
+       1: getfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: areturn
+
+  public boolean showInRecipeMod();
+    Code:
+       0: aload_0
+       1: getfield      #151                // Field disableJEI:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: aload_0
+       5: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       8: invokevirtual #245                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.isDefaultQuestDisableJEI:()Z
+      11: ifne          18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+      22: ireturn
+
+  public java.lang.String getRawSubtitle();
+    Code:
+       0: aload_0
+       1: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+       4: areturn
+
+  public void setRawSubtitle(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #104                // Field rawSubtitle:Ljava/lang/String;
+       5: return
+
+  public void setX(double);
+    Code:
+       0: aload_0
+       1: dload_1
+       2: putfield      #106                // Field x:D
+       5: return
+
+  public void setY(double);
+    Code:
+       0: aload_0
+       1: dload_1
+       2: putfield      #108                // Field y:D
+       5: return
+
+  public double getSize();
+    Code:
+       0: aload_0
+       1: getfield      #155                // Field size:D
+       4: dconst_0
+       5: dcmpl
+       6: ifne          19
+       9: aload_0
+      10: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      13: invokevirtual #260                // Method dev/ftb/mods/ftbquests/quest/Chapter.getDefaultQuestSize:()D
+      16: goto          23
+      19: aload_0
+      20: getfield      #155                // Field size:D
+      23: dreturn
+
+  public void setSize(double);
+    Code:
+       0: aload_0
+       1: dload_1
+       2: putfield      #155                // Field size:D
+       5: return
+
+  public boolean isOptional();
+    Code:
+       0: aload_0
+       1: getfield      #157                // Field optional:Z
+       4: ireturn
+
+  public int getMinWidth();
+    Code:
+       0: aload_0
+       1: getfield      #159                // Field minWidth:I
+       4: ireturn
+
+  public boolean canBeRepeated();
+    Code:
+       0: aload_0
+       1: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: aload_0
+       5: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       8: invokevirtual #267                // Method dev/ftb/mods/ftbquests/quest/Chapter.isDefaultRepeatable:()Z
+      11: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+      14: ireturn
+
+  public java.util.List<java.lang.String> getRawDescription();
+    Code:
+       0: aload_0
+       1: getfield      #117                // Field rawDescription:Ljava/util/List;
+       4: areturn
+
+  public double getIconScale();
+    Code:
+       0: aload_0
+       1: getfield      #184                // Field iconScale:D
+       4: dreturn
+
+  public boolean isOptionalForProgression(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: invokevirtual #275                // Method isOptional:()Z
+       4: ifne          22
+       7: aload_0
+       8: invokevirtual #277                // Method canBeRepeated:()Z
+      11: ifne          22
+      14: aload_1
+      15: aload_0
+      16: invokevirtual #283                // Method dev/ftb/mods/ftbquests/quest/TeamData.isExcludedByOtherQuestline:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      19: ifeq          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: ireturn
+
+  public boolean getRequireSequentialTasks();
+    Code:
+       0: aload_0
+       1: getfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: aload_0
+       5: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       8: invokevirtual #288                // Method dev/ftb/mods/ftbquests/quest/Chapter.isRequireSequentialTasks:()Z
+      11: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+      14: ireturn
+
+  public void writeData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #293                // Method dev/ftb/mods/ftbquests/quest/QuestObject.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc_w         #294                // String x
+       9: aload_0
+      10: getfield      #106                // Field x:D
+      13: invokevirtual #300                // Method net/minecraft/nbt/CompoundTag.m_128347_:(Ljava/lang/String;D)V
+      16: aload_1
+      17: ldc_w         #301                // String y
+      20: aload_0
+      21: getfield      #108                // Field y:D
+      24: invokevirtual #300                // Method net/minecraft/nbt/CompoundTag.m_128347_:(Ljava/lang/String;D)V
+      27: aload_0
+      28: getfield      #110                // Field shape:Ljava/lang/String;
+      31: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+      34: ifne          48
+      37: aload_1
+      38: ldc_w         #307                // String shape
+      41: aload_0
+      42: getfield      #110                // Field shape:Ljava/lang/String;
+      45: invokevirtual #311                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      48: aload_0
+      49: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      52: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+      55: ifne          69
+      58: aload_1
+      59: ldc_w         #313                // String subtitle
+      62: aload_0
+      63: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      66: invokevirtual #311                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      69: aload_0
+      70: getfield      #117                // Field rawDescription:Ljava/util/List;
+      73: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      78: ifne          141
+      81: new           #318                // class net/minecraft/nbt/ListTag
+      84: dup
+      85: invokespecial #319                // Method net/minecraft/nbt/ListTag."<init>":()V
+      88: astore_2
+      89: aload_0
+      90: getfield      #117                // Field rawDescription:Ljava/util/List;
+      93: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      98: astore_3
+      99: aload_3
+     100: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     105: ifeq          132
+     108: aload_3
+     109: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     114: checkcast     #303                // class java/lang/String
+     117: astore        4
+     119: aload_2
+     120: aload         4
+     122: invokestatic  #338                // Method net/minecraft/nbt/StringTag.m_129297_:(Ljava/lang/String;)Lnet/minecraft/nbt/StringTag;
+     125: invokevirtual #342                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+     128: pop
+     129: goto          99
+     132: aload_1
+     133: ldc_w         #344                // String description
+     136: aload_2
+     137: invokevirtual #348                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     140: pop
+     141: aload_0
+     142: getfield      #125                // Field guidePage:Ljava/lang/String;
+     145: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+     148: ifne          162
+     151: aload_1
+     152: ldc_w         #350                // String guide_page
+     155: aload_0
+     156: getfield      #125                // Field guidePage:Ljava/lang/String;
+     159: invokevirtual #311                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+     162: aload_0
+     163: getfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     166: aload_1
+     167: ldc_w         #352                // String hide_dependency_lines
+     170: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     173: aload_0
+     174: getfield      #134                // Field hideDependentLines:Z
+     177: ifeq          188
+     180: aload_1
+     181: ldc_w         #358                // String hide_dependent_lines
+     184: iconst_1
+     185: invokevirtual #362                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     188: aload_0
+     189: getfield      #147                // Field minRequiredDependencies:I
+     192: ifle          207
+     195: aload_1
+     196: ldc_w         #364                // String min_required_dependencies
+     199: aload_0
+     200: getfield      #147                // Field minRequiredDependencies:I
+     203: i2b
+     204: invokevirtual #368                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     207: aload_0
+     208: invokevirtual #371                // Method removeInvalidDependencies:()V
+     211: aload_0
+     212: invokevirtual #374                // Method hasDependencies:()Z
+     215: ifeq          281
+     218: new           #318                // class net/minecraft/nbt/ListTag
+     221: dup
+     222: invokespecial #319                // Method net/minecraft/nbt/ListTag."<init>":()V
+     225: astore_2
+     226: aload_0
+     227: getfield      #119                // Field dependencies:Ljava/util/List;
+     230: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     235: astore_3
+     236: aload_3
+     237: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     242: ifeq          272
+     245: aload_3
+     246: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     251: checkcast     #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+     254: astore        4
+     256: aload_2
+     257: aload         4
+     259: invokevirtual #377                // Method dev/ftb/mods/ftbquests/quest/QuestObject.getCodeString:()Ljava/lang/String;
+     262: invokestatic  #338                // Method net/minecraft/nbt/StringTag.m_129297_:(Ljava/lang/String;)Lnet/minecraft/nbt/StringTag;
+     265: invokevirtual #342                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+     268: pop
+     269: goto          236
+     272: aload_1
+     273: ldc_w         #378                // String dependencies
+     276: aload_2
+     277: invokevirtual #348                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     280: pop
+     281: aload_0
+     282: getfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     285: aload_1
+     286: ldc_w         #380                // String hide_until_deps_visible
+     289: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     292: aload_0
+     293: getfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     296: aload_1
+     297: ldc_w         #382                // String hide_until_deps_complete
+     300: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     303: aload_0
+     304: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     307: getstatic     #143                // Field dev/ftb/mods/ftbquests/quest/DependencyRequirement.ALL_COMPLETED:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     310: if_acmpeq     327
+     313: aload_1
+     314: ldc_w         #384                // String dependency_requirement
+     317: aload_0
+     318: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     321: invokevirtual #387                // Method dev/ftb/mods/ftbquests/quest/DependencyRequirement.getId:()Ljava/lang/String;
+     324: invokevirtual #311                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+     327: aload_0
+     328: getfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     331: aload_1
+     332: ldc_w         #389                // String hide_text_until_complete
+     335: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     338: aload_0
+     339: getfield      #155                // Field size:D
+     342: dconst_0
+     343: dcmpl
+     344: ifeq          358
+     347: aload_1
+     348: ldc_w         #390                // String size
+     351: aload_0
+     352: getfield      #155                // Field size:D
+     355: invokevirtual #300                // Method net/minecraft/nbt/CompoundTag.m_128347_:(Ljava/lang/String;D)V
+     358: aload_0
+     359: getfield      #184                // Field iconScale:D
+     362: dconst_1
+     363: dcmpl
+     364: ifeq          378
+     367: aload_1
+     368: ldc_w         #392                // String icon_scale
+     371: aload_0
+     372: getfield      #184                // Field iconScale:D
+     375: invokevirtual #300                // Method net/minecraft/nbt/CompoundTag.m_128347_:(Ljava/lang/String;D)V
+     378: aload_0
+     379: getfield      #157                // Field optional:Z
+     382: ifeq          393
+     385: aload_1
+     386: ldc_w         #393                // String optional
+     389: iconst_1
+     390: invokevirtual #362                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     393: aload_0
+     394: getfield      #159                // Field minWidth:I
+     397: ifle          411
+     400: aload_1
+     401: ldc_w         #395                // String min_width
+     404: aload_0
+     405: getfield      #159                // Field minWidth:I
+     408: invokevirtual #368                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     411: aload_0
+     412: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     415: aload_1
+     416: ldc_w         #397                // String can_repeat
+     419: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     422: aload_0
+     423: getfield      #163                // Field invisibleUntilCompleted:Z
+     426: ifeq          437
+     429: aload_1
+     430: ldc_w         #399                // String invisible
+     433: iconst_1
+     434: invokevirtual #362                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     437: aload_0
+     438: getfield      #165                // Field invisibleUntilTasks:I
+     441: ifle          455
+     444: aload_1
+     445: ldc_w         #401                // String invisible_until_tasks
+     448: aload_0
+     449: getfield      #165                // Field invisibleUntilTasks:I
+     452: invokevirtual #368                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     455: aload_0
+     456: getfield      #167                // Field ignoreRewardBlocking:Z
+     459: ifeq          470
+     462: aload_1
+     463: ldc_w         #403                // String ignore_reward_blocking
+     466: iconst_1
+     467: invokevirtual #362                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     470: aload_0
+     471: getfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     474: getstatic     #171                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.DEFAULT:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     477: if_acmpeq     494
+     480: aload_1
+     481: ldc_w         #405                // String progression_mode
+     484: aload_0
+     485: getfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     488: invokevirtual #406                // Method dev/ftb/mods/ftbquests/quest/ProgressionMode.getId:()Ljava/lang/String;
+     491: invokevirtual #311                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+     494: aload_0
+     495: getfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     498: aload_1
+     499: ldc_w         #408                // String hide_details_until_startable
+     502: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     505: aload_0
+     506: getfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     509: aload_1
+     510: ldc_w         #410                // String require_sequential_tasks
+     513: invokevirtual #356                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     516: aload_0
+     517: getfield      #186                // Field maxCompletableDeps:I
+     520: ifle          534
+     523: aload_1
+     524: ldc_w         #412                // String max_completable_dependents
+     527: aload_0
+     528: getfield      #186                // Field maxCompletableDeps:I
+     531: invokevirtual #368                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     534: aload_0
+     535: getfield      #188                // Field hideLockIcon:Z
+     538: ifeq          549
+     541: aload_1
+     542: ldc_w         #414                // String hide_lock_icon
+     545: iconst_1
+     546: invokevirtual #362                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     549: aload_0
+     550: getfield      #190                // Field repeatCooldown:I
+     553: ifle          567
+     556: aload_1
+     557: ldc_w         #416                // String repeat_cooldown
+     560: aload_0
+     561: getfield      #190                // Field repeatCooldown:I
+     564: invokevirtual #368                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     567: return
+
+  public void readData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #426                // Method dev/ftb/mods/ftbquests/quest/QuestObject.readData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc_w         #313                // String subtitle
+      10: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      13: putfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      16: aload_0
+      17: aload_1
+      18: ldc_w         #294                // String x
+      21: invokevirtual #434                // Method net/minecraft/nbt/CompoundTag.m_128459_:(Ljava/lang/String;)D
+      24: putfield      #106                // Field x:D
+      27: aload_0
+      28: aload_1
+      29: ldc_w         #301                // String y
+      32: invokevirtual #434                // Method net/minecraft/nbt/CompoundTag.m_128459_:(Ljava/lang/String;)D
+      35: putfield      #108                // Field y:D
+      38: aload_0
+      39: aload_1
+      40: ldc_w         #307                // String shape
+      43: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      46: putfield      #110                // Field shape:Ljava/lang/String;
+      49: aload_0
+      50: getfield      #110                // Field shape:Ljava/lang/String;
+      53: ldc_w         #436                // String default
+      56: invokevirtual #439                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      59: ifeq          68
+      62: aload_0
+      63: ldc           #102                // String
+      65: putfield      #110                // Field shape:Ljava/lang/String;
+      68: aload_0
+      69: getfield      #117                // Field rawDescription:Ljava/util/List;
+      72: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+      77: aload_1
+      78: ldc_w         #344                // String description
+      81: bipush        8
+      83: invokevirtual #446                // Method net/minecraft/nbt/CompoundTag.m_128437_:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      86: astore_2
+      87: iconst_0
+      88: istore_3
+      89: iload_3
+      90: aload_2
+      91: invokevirtual #448                // Method net/minecraft/nbt/ListTag.size:()I
+      94: if_icmpge     118
+      97: aload_0
+      98: getfield      #117                // Field rawDescription:Ljava/util/List;
+     101: aload_2
+     102: iload_3
+     103: invokevirtual #452                // Method net/minecraft/nbt/ListTag.m_128778_:(I)Ljava/lang/String;
+     106: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     111: pop
+     112: iinc          3, 1
+     115: goto          89
+     118: aload_0
+     119: aload_1
+     120: ldc_w         #350                // String guide_page
+     123: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+     126: putfield      #125                // Field guidePage:Ljava/lang/String;
+     129: aload_0
+     130: aload_1
+     131: ldc_w         #352                // String hide_dependency_lines
+     134: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     137: putfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     140: aload_0
+     141: aload_1
+     142: ldc_w         #358                // String hide_dependent_lines
+     145: invokevirtual #461                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+     148: putfield      #134                // Field hideDependentLines:Z
+     151: aload_0
+     152: aload_1
+     153: ldc_w         #364                // String min_required_dependencies
+     156: invokevirtual #465                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     159: putfield      #147                // Field minRequiredDependencies:I
+     162: aload_0
+     163: invokevirtual #468                // Method clearDependencies:()V
+     166: aload_1
+     167: ldc_w         #378                // String dependencies
+     170: bipush        11
+     172: invokevirtual #472                // Method net/minecraft/nbt/CompoundTag.m_128425_:(Ljava/lang/String;I)Z
+     175: ifeq          241
+     178: aload_1
+     179: ldc_w         #378                // String dependencies
+     182: invokevirtual #476                // Method net/minecraft/nbt/CompoundTag.m_128465_:(Ljava/lang/String;)[I
+     185: astore_3
+     186: aload_3
+     187: arraylength
+     188: istore        4
+     190: iconst_0
+     191: istore        5
+     193: iload         5
+     195: iload         4
+     197: if_icmpge     238
+     200: aload_3
+     201: iload         5
+     203: iaload
+     204: istore        6
+     206: aload_0
+     207: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     210: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+     213: iload         6
+     215: i2l
+     216: invokevirtual #481                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.get:(J)Ldev/ftb/mods/ftbquests/quest/QuestObject;
+     219: astore        7
+     221: aload         7
+     223: ifnull        232
+     226: aload_0
+     227: aload         7
+     229: invokevirtual #485                // Method addDependency:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)V
+     232: iinc          5, 1
+     235: goto          193
+     238: goto          308
+     241: aload_1
+     242: ldc_w         #378                // String dependencies
+     245: bipush        8
+     247: invokevirtual #446                // Method net/minecraft/nbt/CompoundTag.m_128437_:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+     250: astore_3
+     251: iconst_0
+     252: istore        4
+     254: iload         4
+     256: aload_3
+     257: invokevirtual #448                // Method net/minecraft/nbt/ListTag.size:()I
+     260: if_icmpge     308
+     263: aload_0
+     264: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     267: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+     270: aload_0
+     271: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     274: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+     277: aload_3
+     278: iload         4
+     280: invokevirtual #452                // Method net/minecraft/nbt/ListTag.m_128778_:(I)Ljava/lang/String;
+     283: invokevirtual #489                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getID:(Ljava/lang/Object;)J
+     286: invokevirtual #481                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.get:(J)Ldev/ftb/mods/ftbquests/quest/QuestObject;
+     289: astore        5
+     291: aload         5
+     293: ifnull        302
+     296: aload_0
+     297: aload         5
+     299: invokevirtual #485                // Method addDependency:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)V
+     302: iinc          4, 1
+     305: goto          254
+     308: aload_1
+     309: ldc_w         #493                // String hide
+     312: iconst_1
+     313: invokevirtual #472                // Method net/minecraft/nbt/CompoundTag.m_128425_:(Ljava/lang/String;I)Z
+     316: ifeq          333
+     319: aload_0
+     320: aload_1
+     321: ldc_w         #493                // String hide
+     324: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     327: putfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     330: goto          344
+     333: aload_0
+     334: aload_1
+     335: ldc_w         #380                // String hide_until_deps_visible
+     338: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     341: putfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     344: aload_0
+     345: aload_1
+     346: ldc_w         #382                // String hide_until_deps_complete
+     349: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     352: putfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     355: aload_0
+     356: getstatic     #497                // Field dev/ftb/mods/ftbquests/quest/DependencyRequirement.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     359: aload_1
+     360: ldc_w         #384                // String dependency_requirement
+     363: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+     366: invokevirtual #502                // Method dev/ftb/mods/ftblibrary/config/NameMap.get:(Ljava/lang/String;)Ljava/lang/Object;
+     369: checkcast     #140                // class dev/ftb/mods/ftbquests/quest/DependencyRequirement
+     372: putfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     375: aload_0
+     376: aload_1
+     377: ldc_w         #389                // String hide_text_until_complete
+     380: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     383: putfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     386: aload_0
+     387: aload_1
+     388: ldc_w         #390                // String size
+     391: invokevirtual #434                // Method net/minecraft/nbt/CompoundTag.m_128459_:(Ljava/lang/String;)D
+     394: putfield      #155                // Field size:D
+     397: aload_0
+     398: aload_1
+     399: ldc_w         #392                // String icon_scale
+     402: bipush        6
+     404: invokevirtual #472                // Method net/minecraft/nbt/CompoundTag.m_128425_:(Ljava/lang/String;I)Z
+     407: ifeq          420
+     410: aload_1
+     411: ldc_w         #392                // String icon_scale
+     414: invokevirtual #434                // Method net/minecraft/nbt/CompoundTag.m_128459_:(Ljava/lang/String;)D
+     417: goto          421
+     420: dconst_1
+     421: putfield      #184                // Field iconScale:D
+     424: aload_0
+     425: aload_1
+     426: ldc_w         #393                // String optional
+     429: invokevirtual #461                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+     432: putfield      #157                // Field optional:Z
+     435: aload_0
+     436: aload_1
+     437: ldc_w         #395                // String min_width
+     440: invokevirtual #465                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     443: putfield      #159                // Field minWidth:I
+     446: aload_0
+     447: aload_1
+     448: ldc_w         #397                // String can_repeat
+     451: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     454: putfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     457: aload_0
+     458: aload_1
+     459: ldc_w         #399                // String invisible
+     462: invokevirtual #461                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+     465: putfield      #163                // Field invisibleUntilCompleted:Z
+     468: aload_0
+     469: aload_1
+     470: ldc_w         #401                // String invisible_until_tasks
+     473: invokevirtual #465                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     476: putfield      #165                // Field invisibleUntilTasks:I
+     479: aload_0
+     480: aload_1
+     481: ldc_w         #403                // String ignore_reward_blocking
+     484: invokevirtual #461                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+     487: putfield      #167                // Field ignoreRewardBlocking:Z
+     490: aload_0
+     491: getstatic     #503                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     494: aload_1
+     495: ldc_w         #405                // String progression_mode
+     498: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+     501: invokevirtual #502                // Method dev/ftb/mods/ftblibrary/config/NameMap.get:(Ljava/lang/String;)Ljava/lang/Object;
+     504: checkcast     #169                // class dev/ftb/mods/ftbquests/quest/ProgressionMode
+     507: putfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     510: aload_0
+     511: aload_1
+     512: ldc_w         #408                // String hide_details_until_startable
+     515: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     518: putfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     521: aload_0
+     522: aload_1
+     523: ldc_w         #410                // String require_sequential_tasks
+     526: invokestatic  #457                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+     529: putfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     532: aload_0
+     533: aload_1
+     534: ldc_w         #412                // String max_completable_dependents
+     537: invokevirtual #465                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     540: putfield      #186                // Field maxCompletableDeps:I
+     543: aload_0
+     544: aload_1
+     545: ldc_w         #414                // String hide_lock_icon
+     548: invokevirtual #461                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+     551: putfield      #188                // Field hideLockIcon:Z
+     554: aload_0
+     555: aload_1
+     556: ldc_w         #416                // String repeat_cooldown
+     559: invokevirtual #465                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     562: putfield      #190                // Field repeatCooldown:I
+     565: return
+
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #512                // Method dev/ftb/mods/ftbquests/quest/QuestObject.writeNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: iconst_0
+       6: istore_2
+       7: iload_2
+       8: iconst_1
+       9: aload_0
+      10: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      13: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+      16: ifne          23
+      19: iconst_1
+      20: goto          24
+      23: iconst_0
+      24: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+      27: istore_2
+      28: iload_2
+      29: iconst_2
+      30: aload_0
+      31: getfield      #117                // Field rawDescription:Ljava/util/List;
+      34: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      39: ifne          46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+      50: istore_2
+      51: iload_2
+      52: iconst_4
+      53: aload_0
+      54: getfield      #155                // Field size:D
+      57: dconst_0
+      58: dcmpl
+      59: ifeq          66
+      62: iconst_1
+      63: goto          67
+      66: iconst_0
+      67: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+      70: istore_2
+      71: iload_2
+      72: bipush        8
+      74: aload_0
+      75: getfield      #125                // Field guidePage:Ljava/lang/String;
+      78: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+      81: ifne          88
+      84: iconst_1
+      85: goto          89
+      88: iconst_0
+      89: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+      92: istore_2
+      93: iload_2
+      94: bipush        16
+      96: aload_0
+      97: getfield      #167                // Field ignoreRewardBlocking:Z
+     100: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     103: istore_2
+     104: iload_2
+     105: bipush        32
+     107: aload_0
+     108: getfield      #134                // Field hideDependentLines:Z
+     111: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     114: istore_2
+     115: iload_2
+     116: sipush        128
+     119: aload_0
+     120: getfield      #163                // Field invisibleUntilCompleted:Z
+     123: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     126: istore_2
+     127: iload_2
+     128: sipush        256
+     131: aload_0
+     132: getfield      #157                // Field optional:Z
+     135: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     138: istore_2
+     139: iload_2
+     140: sipush        512
+     143: aload_0
+     144: getfield      #159                // Field minWidth:I
+     147: ifle          154
+     150: iconst_1
+     151: goto          155
+     154: iconst_0
+     155: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     158: istore_2
+     159: iload_2
+     160: sipush        1024
+     163: aload_0
+     164: getfield      #165                // Field invisibleUntilTasks:I
+     167: ifle          174
+     170: iconst_1
+     171: goto          175
+     174: iconst_0
+     175: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     178: istore_2
+     179: iload_2
+     180: sipush        2048
+     183: aload_0
+     184: getfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     187: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     190: if_acmpeq     197
+     193: iconst_1
+     194: goto          198
+     197: iconst_0
+     198: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     201: istore_2
+     202: iload_2
+     203: sipush        4096
+     206: aload_0
+     207: getfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     210: getstatic     #523                // Field dev/ftb/mods/ftblibrary/config/Tristate.TRUE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     213: if_acmpne     220
+     216: iconst_1
+     217: goto          221
+     220: iconst_0
+     221: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     224: istore_2
+     225: iload_2
+     226: sipush        8192
+     229: aload_0
+     230: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     233: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     236: if_acmpeq     243
+     239: iconst_1
+     240: goto          244
+     243: iconst_0
+     244: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     247: istore_2
+     248: iload_2
+     249: sipush        16384
+     252: aload_0
+     253: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     256: getstatic     #523                // Field dev/ftb/mods/ftblibrary/config/Tristate.TRUE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     259: if_acmpne     266
+     262: iconst_1
+     263: goto          267
+     266: iconst_0
+     267: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     270: istore_2
+     271: iload_2
+     272: ldc_w         #524                // int 32768
+     275: aload_0
+     276: getfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     279: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     282: if_acmpeq     289
+     285: iconst_1
+     286: goto          290
+     289: iconst_0
+     290: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     293: istore_2
+     294: iload_2
+     295: ldc_w         #525                // int 65536
+     298: aload_0
+     299: getfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     302: getstatic     #523                // Field dev/ftb/mods/ftblibrary/config/Tristate.TRUE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     305: if_acmpne     312
+     308: iconst_1
+     309: goto          313
+     312: iconst_0
+     313: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     316: istore_2
+     317: iload_2
+     318: ldc_w         #526                // int 131072
+     321: aload_0
+     322: getfield      #184                // Field iconScale:D
+     325: dconst_1
+     326: dcmpl
+     327: ifeq          334
+     330: iconst_1
+     331: goto          335
+     334: iconst_0
+     335: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     338: istore_2
+     339: iload_2
+     340: ldc_w         #527                // int 262144
+     343: aload_0
+     344: getfield      #188                // Field hideLockIcon:Z
+     347: invokestatic  #520                // Method dev/ftb/mods/ftblibrary/math/Bits.setFlag:(IIZ)I
+     350: istore_2
+     351: aload_1
+     352: iload_2
+     353: invokevirtual #531                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+     356: pop
+     357: aload_0
+     358: getfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     361: aload_1
+     362: invokevirtual #533                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/network/FriendlyByteBuf;)V
+     365: aload_0
+     366: getfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     369: aload_1
+     370: invokevirtual #533                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/network/FriendlyByteBuf;)V
+     373: aload_0
+     374: getfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     377: aload_1
+     378: invokevirtual #533                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/network/FriendlyByteBuf;)V
+     381: aload_0
+     382: getfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     385: aload_1
+     386: invokevirtual #533                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/network/FriendlyByteBuf;)V
+     389: aload_0
+     390: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+     393: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+     396: ifne          411
+     399: aload_1
+     400: aload_0
+     401: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+     404: sipush        32767
+     407: invokevirtual #537                // Method net/minecraft/network/FriendlyByteBuf.m_130072_:(Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;
+     410: pop
+     411: aload_1
+     412: aload_0
+     413: getfield      #106                // Field x:D
+     416: invokevirtual #541                // Method net/minecraft/network/FriendlyByteBuf.writeDouble:(D)Lio/netty/buffer/ByteBuf;
+     419: pop
+     420: aload_1
+     421: aload_0
+     422: getfield      #108                // Field y:D
+     425: invokevirtual #541                // Method net/minecraft/network/FriendlyByteBuf.writeDouble:(D)Lio/netty/buffer/ByteBuf;
+     428: pop
+     429: aload_1
+     430: aload_0
+     431: getfield      #110                // Field shape:Ljava/lang/String;
+     434: sipush        32767
+     437: invokevirtual #537                // Method net/minecraft/network/FriendlyByteBuf.m_130072_:(Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;
+     440: pop
+     441: aload_0
+     442: getfield      #117                // Field rawDescription:Ljava/util/List;
+     445: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     450: ifne          461
+     453: aload_1
+     454: aload_0
+     455: getfield      #117                // Field rawDescription:Ljava/util/List;
+     458: invokestatic  #547                // Method dev/ftb/mods/ftbquests/util/NetUtils.writeStrings:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/util/Collection;)V
+     461: aload_0
+     462: getfield      #125                // Field guidePage:Ljava/lang/String;
+     465: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+     468: ifne          483
+     471: aload_1
+     472: aload_0
+     473: getfield      #125                // Field guidePage:Ljava/lang/String;
+     476: sipush        32767
+     479: invokevirtual #537                // Method net/minecraft/network/FriendlyByteBuf.m_130072_:(Ljava/lang/String;I)Lnet/minecraft/network/FriendlyByteBuf;
+     482: pop
+     483: aload_1
+     484: aload_0
+     485: getfield      #147                // Field minRequiredDependencies:I
+     488: invokevirtual #531                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+     491: pop
+     492: getstatic     #497                // Field dev/ftb/mods/ftbquests/quest/DependencyRequirement.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     495: aload_1
+     496: aload_0
+     497: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     500: invokevirtual #550                // Method dev/ftb/mods/ftblibrary/config/NameMap.write:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/lang/Object;)V
+     503: aload_1
+     504: aload_0
+     505: getfield      #119                // Field dependencies:Ljava/util/List;
+     508: invokeinterface #551,  1          // InterfaceMethod java/util/List.size:()I
+     513: invokevirtual #531                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+     516: pop
+     517: aload_0
+     518: getfield      #119                // Field dependencies:Ljava/util/List;
+     521: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     526: astore_3
+     527: aload_3
+     528: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     533: ifeq          572
+     536: aload_3
+     537: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     542: checkcast     #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+     545: astore        4
+     547: aload_1
+     548: aload         4
+     550: getfield      #554                // Field dev/ftb/mods/ftbquests/quest/QuestObject.invalid:Z
+     553: ifeq          560
+     556: lconst_0
+     557: goto          565
+     560: aload         4
+     562: getfield      #555                // Field dev/ftb/mods/ftbquests/quest/QuestObject.id:J
+     565: invokevirtual #559                // Method net/minecraft/network/FriendlyByteBuf.writeLong:(J)Lio/netty/buffer/ByteBuf;
+     568: pop
+     569: goto          527
+     572: aload_0
+     573: getfield      #155                // Field size:D
+     576: dconst_0
+     577: dcmpl
+     578: ifeq          590
+     581: aload_1
+     582: aload_0
+     583: getfield      #155                // Field size:D
+     586: invokevirtual #541                // Method net/minecraft/network/FriendlyByteBuf.writeDouble:(D)Lio/netty/buffer/ByteBuf;
+     589: pop
+     590: aload_0
+     591: getfield      #184                // Field iconScale:D
+     594: dconst_1
+     595: dcmpl
+     596: ifeq          608
+     599: aload_1
+     600: aload_0
+     601: getfield      #184                // Field iconScale:D
+     604: invokevirtual #541                // Method net/minecraft/network/FriendlyByteBuf.writeDouble:(D)Lio/netty/buffer/ByteBuf;
+     607: pop
+     608: aload_0
+     609: getfield      #159                // Field minWidth:I
+     612: ifle          624
+     615: aload_1
+     616: aload_0
+     617: getfield      #159                // Field minWidth:I
+     620: invokevirtual #531                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+     623: pop
+     624: aload_0
+     625: getfield      #165                // Field invisibleUntilTasks:I
+     628: ifle          640
+     631: aload_1
+     632: aload_0
+     633: getfield      #165                // Field invisibleUntilTasks:I
+     636: invokevirtual #531                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+     639: pop
+     640: getstatic     #503                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     643: aload_1
+     644: aload_0
+     645: getfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     648: invokevirtual #550                // Method dev/ftb/mods/ftblibrary/config/NameMap.write:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/lang/Object;)V
+     651: aload_1
+     652: aload_0
+     653: getfield      #186                // Field maxCompletableDeps:I
+     656: invokevirtual #531                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+     659: pop
+     660: aload_0
+     661: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     664: invokevirtual #562                // Method dev/ftb/mods/ftblibrary/config/Tristate.isTrue:()Z
+     667: ifeq          679
+     670: aload_1
+     671: aload_0
+     672: getfield      #190                // Field repeatCooldown:I
+     675: invokevirtual #566                // Method net/minecraft/network/FriendlyByteBuf.writeInt:(I)Lio/netty/buffer/ByteBuf;
+     678: pop
+     679: return
+
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #572                // Method dev/ftb/mods/ftbquests/quest/QuestObject.readNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_1
+       6: invokevirtual #575                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+       9: istore_2
+      10: aload_0
+      11: aload_1
+      12: invokestatic  #578                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+      15: putfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      18: aload_0
+      19: aload_1
+      20: invokestatic  #578                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+      23: putfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      26: aload_0
+      27: aload_1
+      28: invokestatic  #578                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+      31: putfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      34: aload_0
+      35: aload_1
+      36: invokestatic  #578                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+      39: putfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      42: aload_0
+      43: iload_2
+      44: iconst_1
+      45: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+      48: ifeq          61
+      51: aload_1
+      52: sipush        32767
+      55: invokevirtual #585                // Method net/minecraft/network/FriendlyByteBuf.m_130136_:(I)Ljava/lang/String;
+      58: goto          63
+      61: ldc           #102                // String
+      63: putfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      66: aload_0
+      67: aload_1
+      68: invokevirtual #588                // Method net/minecraft/network/FriendlyByteBuf.readDouble:()D
+      71: putfield      #106                // Field x:D
+      74: aload_0
+      75: aload_1
+      76: invokevirtual #588                // Method net/minecraft/network/FriendlyByteBuf.readDouble:()D
+      79: putfield      #108                // Field y:D
+      82: aload_0
+      83: aload_1
+      84: sipush        32767
+      87: invokevirtual #585                // Method net/minecraft/network/FriendlyByteBuf.m_130136_:(I)Ljava/lang/String;
+      90: putfield      #110                // Field shape:Ljava/lang/String;
+      93: iload_2
+      94: iconst_2
+      95: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+      98: ifeq          112
+     101: aload_1
+     102: aload_0
+     103: getfield      #117                // Field rawDescription:Ljava/util/List;
+     106: invokestatic  #591                // Method dev/ftb/mods/ftbquests/util/NetUtils.readStrings:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/util/Collection;)V
+     109: goto          121
+     112: aload_0
+     113: getfield      #117                // Field rawDescription:Ljava/util/List;
+     116: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+     121: aload_0
+     122: iload_2
+     123: bipush        8
+     125: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     128: ifeq          141
+     131: aload_1
+     132: sipush        32767
+     135: invokevirtual #585                // Method net/minecraft/network/FriendlyByteBuf.m_130136_:(I)Ljava/lang/String;
+     138: goto          143
+     141: ldc           #102                // String
+     143: putfield      #125                // Field guidePage:Ljava/lang/String;
+     146: aload_0
+     147: aload_1
+     148: invokevirtual #575                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+     151: putfield      #147                // Field minRequiredDependencies:I
+     154: aload_0
+     155: getstatic     #497                // Field dev/ftb/mods/ftbquests/quest/DependencyRequirement.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     158: aload_1
+     159: invokevirtual #594                // Method dev/ftb/mods/ftblibrary/config/NameMap.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/Object;
+     162: checkcast     #140                // class dev/ftb/mods/ftbquests/quest/DependencyRequirement
+     165: putfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     168: aload_0
+     169: invokevirtual #468                // Method clearDependencies:()V
+     172: aload_1
+     173: invokevirtual #575                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+     176: istore_3
+     177: iconst_0
+     178: istore        4
+     180: iload         4
+     182: iload_3
+     183: if_icmpge     219
+     186: aload_0
+     187: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     190: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+     193: aload_1
+     194: invokevirtual #597                // Method net/minecraft/network/FriendlyByteBuf.readLong:()J
+     197: invokevirtual #481                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.get:(J)Ldev/ftb/mods/ftbquests/quest/QuestObject;
+     200: astore        5
+     202: aload         5
+     204: ifnull        213
+     207: aload_0
+     208: aload         5
+     210: invokevirtual #485                // Method addDependency:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)V
+     213: iinc          4, 1
+     216: goto          180
+     219: aload_0
+     220: iload_2
+     221: iconst_4
+     222: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     225: ifeq          235
+     228: aload_1
+     229: invokevirtual #588                // Method net/minecraft/network/FriendlyByteBuf.readDouble:()D
+     232: goto          236
+     235: dconst_0
+     236: putfield      #155                // Field size:D
+     239: aload_0
+     240: iload_2
+     241: ldc_w         #526                // int 131072
+     244: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     247: ifeq          257
+     250: aload_1
+     251: invokevirtual #588                // Method net/minecraft/network/FriendlyByteBuf.readDouble:()D
+     254: goto          258
+     257: dconst_1
+     258: putfield      #184                // Field iconScale:D
+     261: aload_0
+     262: iload_2
+     263: sipush        512
+     266: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     269: ifeq          279
+     272: aload_1
+     273: invokevirtual #575                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+     276: goto          280
+     279: iconst_0
+     280: putfield      #159                // Field minWidth:I
+     283: aload_0
+     284: iload_2
+     285: bipush        16
+     287: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     290: putfield      #167                // Field ignoreRewardBlocking:Z
+     293: aload_0
+     294: iload_2
+     295: bipush        32
+     297: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     300: putfield      #134                // Field hideDependentLines:Z
+     303: aload_0
+     304: iload_2
+     305: sipush        8192
+     308: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     311: ifeq          336
+     314: iload_2
+     315: sipush        16384
+     318: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     321: ifeq          330
+     324: getstatic     #523                // Field dev/ftb/mods/ftblibrary/config/Tristate.TRUE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     327: goto          339
+     330: getstatic     #600                // Field dev/ftb/mods/ftblibrary/config/Tristate.FALSE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     333: goto          339
+     336: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     339: putfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     342: aload_0
+     343: iload_2
+     344: sipush        128
+     347: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     350: putfield      #163                // Field invisibleUntilCompleted:Z
+     353: aload_0
+     354: iload_2
+     355: sipush        256
+     358: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     361: putfield      #157                // Field optional:Z
+     364: aload_0
+     365: iload_2
+     366: sipush        1024
+     369: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     372: ifeq          382
+     375: aload_1
+     376: invokevirtual #575                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+     379: goto          383
+     382: iconst_0
+     383: putfield      #165                // Field invisibleUntilTasks:I
+     386: aload_0
+     387: iload_2
+     388: sipush        2048
+     391: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     394: ifeq          419
+     397: iload_2
+     398: sipush        4096
+     401: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     404: ifeq          413
+     407: getstatic     #523                // Field dev/ftb/mods/ftblibrary/config/Tristate.TRUE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     410: goto          422
+     413: getstatic     #600                // Field dev/ftb/mods/ftblibrary/config/Tristate.FALSE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     416: goto          422
+     419: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     422: putfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     425: aload_0
+     426: iload_2
+     427: ldc_w         #524                // int 32768
+     430: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     433: ifeq          458
+     436: iload_2
+     437: ldc_w         #525                // int 65536
+     440: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     443: ifeq          452
+     446: getstatic     #523                // Field dev/ftb/mods/ftblibrary/config/Tristate.TRUE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     449: goto          461
+     452: getstatic     #600                // Field dev/ftb/mods/ftblibrary/config/Tristate.FALSE:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     455: goto          461
+     458: getstatic     #130                // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     461: putfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     464: aload_0
+     465: iload_2
+     466: ldc_w         #527                // int 262144
+     469: invokestatic  #582                // Method dev/ftb/mods/ftblibrary/math/Bits.getFlag:(II)Z
+     472: putfield      #188                // Field hideLockIcon:Z
+     475: aload_0
+     476: getstatic     #503                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     479: aload_1
+     480: invokevirtual #594                // Method dev/ftb/mods/ftblibrary/config/NameMap.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/Object;
+     483: checkcast     #169                // class dev/ftb/mods/ftbquests/quest/ProgressionMode
+     486: putfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     489: aload_0
+     490: aload_1
+     491: invokevirtual #575                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+     494: putfield      #186                // Field maxCompletableDeps:I
+     497: aload_0
+     498: aload_0
+     499: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     502: invokevirtual #562                // Method dev/ftb/mods/ftblibrary/config/Tristate.isTrue:()Z
+     505: ifeq          515
+     508: aload_1
+     509: invokevirtual #603                // Method net/minecraft/network/FriendlyByteBuf.readInt:()I
+     512: goto          516
+     515: iconst_0
+     516: putfield      #190                // Field repeatCooldown:I
+     519: return
+
+  public int getRelativeProgressFromChildren(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #610                // Method dev/ftb/mods/ftbquests/quest/TeamData.getCompletionCount:(Ldev/ftb/mods/ftbquests/quest/Quest;)I
+       5: ifle          11
+       8: bipush        100
+      10: ireturn
+      11: aload_0
+      12: getfield      #121                // Field tasks:Ljava/util/List;
+      15: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      20: ifeq          38
+      23: aload_1
+      24: aload_0
+      25: invokevirtual #614                // Method dev/ftb/mods/ftbquests/quest/TeamData.areDependenciesComplete:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+      28: ifeq          36
+      31: bipush        100
+      33: goto          37
+      36: iconst_0
+      37: ireturn
+      38: iconst_0
+      39: istore_2
+      40: aload_0
+      41: getfield      #121                // Field tasks:Ljava/util/List;
+      44: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      49: astore_3
+      50: aload_3
+      51: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      56: ifeq          82
+      59: aload_3
+      60: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      65: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      68: astore        4
+      70: iload_2
+      71: aload_1
+      72: aload         4
+      74: invokevirtual #620                // Method dev/ftb/mods/ftbquests/quest/TeamData.getRelativeProgress:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)I
+      77: iadd
+      78: istore_2
+      79: goto          50
+      82: iload_2
+      83: ifle          96
+      86: aload_1
+      87: aload_0
+      88: invokevirtual #614                // Method dev/ftb/mods/ftbquests/quest/TeamData.areDependenciesComplete:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+      91: ifne          96
+      94: iconst_0
+      95: ireturn
+      96: iload_2
+      97: aload_0
+      98: getfield      #121                // Field tasks:Ljava/util/List;
+     101: invokeinterface #551,  1          // InterfaceMethod java/util/List.size:()I
+     106: invokestatic  #623                // Method getRelativeProgressFromChildren:(II)I
+     109: ireturn
+
+  public void onStarted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #630                // Field id:J
+       5: invokevirtual #635                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.setStarted:(J)V
+       8: getstatic     #638                // Field dev/ftb/mods/ftbquests/events/ObjectStartedEvent.QUEST:Ldev/architectury/event/Event;
+      11: invokeinterface #643,  1          // InterfaceMethod dev/architectury/event/Event.invoker:()Ljava/lang/Object;
+      16: checkcast     #645                // class dev/architectury/event/EventActor
+      19: new           #15                 // class dev/ftb/mods/ftbquests/events/ObjectStartedEvent$QuestEvent
+      22: dup
+      23: aload_1
+      24: aload_0
+      25: invokevirtual #649                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.withObject:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;
+      28: invokespecial #651                // Method dev/ftb/mods/ftbquests/events/ObjectStartedEvent$QuestEvent."<init>":(Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;)V
+      31: invokeinterface #655,  2          // InterfaceMethod dev/architectury/event/EventActor.act:(Ljava/lang/Object;)Ldev/architectury/event/EventResult;
+      36: pop
+      37: aload_1
+      38: invokevirtual #659                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.getTeamData:()Ldev/ftb/mods/ftbquests/quest/TeamData;
+      41: aload_0
+      42: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      45: invokevirtual #662                // Method dev/ftb/mods/ftbquests/quest/TeamData.isStarted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      48: ifne          66
+      51: aload_0
+      52: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      55: aload_1
+      56: aload_0
+      57: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      60: invokevirtual #649                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.withObject:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;
+      63: invokevirtual #664                // Method dev/ftb/mods/ftbquests/quest/Chapter.onStarted:(Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;)V
+      66: return
+
+  public void onCompleted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+    Code:
+       0: aload_1
+       1: invokevirtual #659                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.getTeamData:()Ldev/ftb/mods/ftbquests/quest/TeamData;
+       4: aload_0
+       5: invokevirtual #670                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+       8: ifne          108
+      11: aload_1
+      12: aload_0
+      13: getfield      #630                // Field id:J
+      16: invokevirtual #673                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.setCompleted:(J)V
+      19: getstatic     #674                // Field dev/ftb/mods/ftbquests/events/ObjectCompletedEvent.QUEST:Ldev/architectury/event/Event;
+      22: invokeinterface #643,  1          // InterfaceMethod dev/architectury/event/Event.invoker:()Ljava/lang/Object;
+      27: checkcast     #645                // class dev/architectury/event/EventActor
+      30: new           #20                 // class dev/ftb/mods/ftbquests/events/ObjectCompletedEvent$QuestEvent
+      33: dup
+      34: aload_1
+      35: aload_0
+      36: invokevirtual #649                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.withObject:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;
+      39: invokespecial #675                // Method dev/ftb/mods/ftbquests/events/ObjectCompletedEvent$QuestEvent."<init>":(Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;)V
+      42: invokeinterface #655,  2          // InterfaceMethod dev/architectury/event/EventActor.act:(Ljava/lang/Object;)Ldev/architectury/event/EventResult;
+      47: pop
+      48: aload_0
+      49: getfield      #678                // Field disableToast:Z
+      52: ifne          63
+      55: aload_1
+      56: aload_0
+      57: getfield      #630                // Field id:J
+      60: invokevirtual #681                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.notifyPlayers:(J)V
+      63: aload_0
+      64: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      67: aload_1
+      68: invokevirtual #659                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.getTeamData:()Ldev/ftb/mods/ftbquests/quest/TeamData;
+      71: invokevirtual #684                // Method dev/ftb/mods/ftbquests/quest/Chapter.isCompletedRaw:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+      74: ifeq          92
+      77: aload_0
+      78: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      81: aload_1
+      82: aload_0
+      83: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      86: invokevirtual #649                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.withObject:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;
+      89: invokevirtual #686                // Method dev/ftb/mods/ftbquests/quest/Chapter.onCompleted:(Ldev/ftb/mods/ftbquests/events/QuestProgressEventData;)V
+      92: aload_1
+      93: invokevirtual #659                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.getTeamData:()Ldev/ftb/mods/ftbquests/quest/TeamData;
+      96: aload_0
+      97: invokevirtual #690                // Method dev/ftb/mods/ftbquests/quest/TeamData.checkAutoCompletion:(Ldev/ftb/mods/ftbquests/quest/Quest;)V
+     100: aload_0
+     101: aload_1
+     102: invokevirtual #659                // Method dev/ftb/mods/ftbquests/events/QuestProgressEventData.getTeamData:()Ldev/ftb/mods/ftbquests/quest/TeamData;
+     105: invokevirtual #694                // Method checkForDependantCompletion:(Ldev/ftb/mods/ftbquests/quest/TeamData;)V
+     108: return
+
+  private void checkForDependantCompletion(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: invokevirtual #697                // Method getDependants:()Ljava/util/Collection;
+       4: aload_1
+       5: invokedynamic #716,  0            // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Consumer;
+      10: invokeinterface #722,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+      15: return
+
+  public dev.ftb.mods.ftbquests.quest.ProgressionMode getProgressionMode();
+    Code:
+       0: aload_0
+       1: getfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+       4: getstatic     #171                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.DEFAULT:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+       7: if_acmpne     20
+      10: aload_0
+      11: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      14: invokevirtual #726                // Method dev/ftb/mods/ftbquests/quest/Chapter.getProgressionMode:()Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+      17: goto          24
+      20: aload_0
+      21: getfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+      24: areturn
+
+  public void forceProgress(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #731                // Method dev/ftb/mods/ftbquests/quest/QuestObject.forceProgress:(Ldev/ftb/mods/ftbquests/quest/TeamData;Ldev/ftb/mods/ftbquests/util/ProgressChange;)V
+       6: aload_0
+       7: getfield      #123                // Field rewards:Ljava/util/List;
+      10: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      15: astore_3
+      16: aload_3
+      17: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      22: ifeq          46
+      25: aload_3
+      26: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      31: checkcast     #733                // class dev/ftb/mods/ftbquests/quest/reward/Reward
+      34: astore        4
+      36: aload         4
+      38: aload_1
+      39: aload_2
+      40: invokevirtual #734                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.forceProgress:(Ldev/ftb/mods/ftbquests/quest/TeamData;Ldev/ftb/mods/ftbquests/util/ProgressChange;)V
+      43: goto          16
+      46: return
+
+  public net.minecraft.network.chat.Component getAltTitle();
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+       9: ifne          29
+      12: aload_0
+      13: getfield      #121                // Field tasks:Ljava/util/List;
+      16: iconst_0
+      17: invokeinterface #745,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      22: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      25: invokevirtual #748                // Method dev/ftb/mods/ftbquests/quest/task/Task.getTitle:()Lnet/minecraft/network/chat/Component;
+      28: areturn
+      29: ldc_w         #750                // String ftbquests.unnamed
+      32: invokestatic  #756                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      35: areturn
+
+  public dev.ftb.mods.ftblibrary.icon.Icon getAltIcon();
+    Code:
+       0: new           #112                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #759                // Method java/util/ArrayList."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: getfield      #121                // Field tasks:Ljava/util/List;
+      12: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore_2
+      18: aload_2
+      19: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          51
+      27: aload_2
+      28: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      36: astore_3
+      37: aload_1
+      38: aload_3
+      39: invokevirtual #762                // Method dev/ftb/mods/ftbquests/quest/task/Task.getIcon:()Ldev/ftb/mods/ftblibrary/icon/Icon;
+      42: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      47: pop
+      48: goto          18
+      51: aload_1
+      52: iconst_0
+      53: invokestatic  #768                // Method dev/ftb/mods/ftblibrary/icon/IconAnimation.fromList:(Ljava/util/List;Z)Ldev/ftb/mods/ftblibrary/icon/Icon;
+      56: areturn
+
+  public void deleteSelf();
+    Code:
+       0: aload_0
+       1: invokespecial #772                // Method dev/ftb/mods/ftbquests/quest/QuestObject.deleteSelf:()V
+       4: aload_0
+       5: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       8: aload_0
+       9: invokevirtual #775                // Method dev/ftb/mods/ftbquests/quest/Chapter.removeQuest:(Ldev/ftb/mods/ftbquests/quest/Quest;)V
+      12: new           #112                // class java/util/ArrayList
+      15: dup
+      16: invokespecial #759                // Method java/util/ArrayList."<init>":()V
+      19: astore_1
+      20: aload_0
+      21: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      24: aload_0
+      25: aload_1
+      26: invokedynamic #785,  0            // InvokeDynamic #1:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;Ljava/util/List;)Ljava/util/function/Consumer;
+      31: invokevirtual #788                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.forAllQuestLinks:(Ljava/util/function/Consumer;)V
+      34: aload_1
+      35: aload_0
+      36: invokedynamic #795,  0            // InvokeDynamic #2:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+      41: invokeinterface #796,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      46: return
+
+  public void deleteChildren();
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_1
+      10: aload_1
+      11: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          41
+      19: aload_1
+      20: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      28: astore_2
+      29: aload_2
+      30: invokevirtual #801                // Method dev/ftb/mods/ftbquests/quest/task/Task.deleteChildren:()V
+      33: aload_2
+      34: iconst_1
+      35: putfield      #802                // Field dev/ftb/mods/ftbquests/quest/task/Task.invalid:Z
+      38: goto          10
+      41: aload_0
+      42: getfield      #123                // Field rewards:Ljava/util/List;
+      45: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      50: astore_1
+      51: aload_1
+      52: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      57: ifeq          82
+      60: aload_1
+      61: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      66: checkcast     #733                // class dev/ftb/mods/ftbquests/quest/reward/Reward
+      69: astore_2
+      70: aload_2
+      71: invokevirtual #803                // Method dev/ftb/mods/ftbquests/quest/reward/Reward.deleteChildren:()V
+      74: aload_2
+      75: iconst_1
+      76: putfield      #804                // Field dev/ftb/mods/ftbquests/quest/reward/Reward.invalid:Z
+      79: goto          51
+      82: aload_0
+      83: getfield      #121                // Field tasks:Ljava/util/List;
+      86: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+      91: aload_0
+      92: getfield      #123                // Field rewards:Ljava/util/List;
+      95: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+     100: return
+
+  public void onCreated();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       4: aload_0
+       5: invokevirtual #809                // Method dev/ftb/mods/ftbquests/quest/Chapter.addQuest:(Ldev/ftb/mods/ftbquests/quest/Quest;)V
+       8: aload_0
+       9: getfield      #121                // Field tasks:Ljava/util/List;
+      12: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      17: ifne          74
+      20: new           #112                // class java/util/ArrayList
+      23: dup
+      24: aload_0
+      25: getfield      #121                // Field tasks:Ljava/util/List;
+      28: invokespecial #812                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      31: astore_1
+      32: aload_0
+      33: getfield      #121                // Field tasks:Ljava/util/List;
+      36: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+      41: aload_1
+      42: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      47: astore_2
+      48: aload_2
+      49: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      54: ifeq          74
+      57: aload_2
+      58: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      63: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      66: astore_3
+      67: aload_3
+      68: invokevirtual #814                // Method dev/ftb/mods/ftbquests/quest/task/Task.onCreated:()V
+      71: goto          48
+      74: return
+
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #820                // Method dev/ftb/mods/ftbquests/quest/QuestObject.fillConfigGroup:(Ldev/ftb/mods/ftblibrary/config/ConfigGroup;)V
+       5: aload_1
+       6: ldc_w         #313                // String subtitle
+       9: aload_0
+      10: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      13: aload_0
+      14: invokedynamic #826,  0            // InvokeDynamic #3:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+      19: ldc           #102                // String
+      21: invokevirtual #832                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addString:(Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Consumer;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/StringConfig;
+      24: pop
+      25: new           #834                // class dev/ftb/mods/ftblibrary/config/StringConfig
+      28: dup
+      29: invokespecial #835                // Method dev/ftb/mods/ftblibrary/config/StringConfig."<init>":()V
+      32: astore_2
+      33: aload_1
+      34: ldc_w         #344                // String description
+      37: new           #13                 // class dev/ftb/mods/ftbquests/quest/Quest$1
+      40: dup
+      41: aload_0
+      42: aload_2
+      43: invokespecial #838                // Method dev/ftb/mods/ftbquests/quest/Quest$1."<init>":(Ldev/ftb/mods/ftbquests/quest/Quest;Ldev/ftb/mods/ftblibrary/config/StringConfig;)V
+      46: aload_0
+      47: getfield      #117                // Field rawDescription:Ljava/util/List;
+      50: aload_0
+      51: invokedynamic #845,  0            // InvokeDynamic #4:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+      56: invokestatic  #848                // Method java/util/Collections.emptyList:()Ljava/util/List;
+      59: invokevirtual #851                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.add:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/ConfigValue;Ljava/lang/Object;Ljava/util/function/Consumer;Ljava/lang/Object;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      62: pop
+      63: aload_1
+      64: ldc_w         #853                // String appearance
+      67: invokevirtual #857                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+      70: astore_3
+      71: aload_3
+      72: ldc_w         #307                // String shape
+      75: aload_0
+      76: getfield      #110                // Field shape:Ljava/lang/String;
+      79: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+      82: ifeq          91
+      85: ldc_w         #436                // String default
+      88: goto          95
+      91: aload_0
+      92: getfield      #110                // Field shape:Ljava/lang/String;
+      95: aload_0
+      96: invokedynamic #862,  0            // InvokeDynamic #5:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     101: getstatic     #867                // Field dev/ftb/mods/ftbquests/quest/QuestShape.idMapWithDefault:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     104: invokevirtual #871                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addEnum:(Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Consumer;Ldev/ftb/mods/ftblibrary/config/NameMap;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     107: pop
+     108: aload_3
+     109: ldc_w         #390                // String size
+     112: aload_0
+     113: getfield      #155                // Field size:D
+     116: aload_0
+     117: invokedynamic #878,  0            // InvokeDynamic #6:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     122: dconst_0
+     123: dconst_0
+     124: ldc2_w        #879                // double 8.0d
+     127: invokevirtual #884                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addDouble:(Ljava/lang/String;DLjava/util/function/Consumer;DDD)Ldev/ftb/mods/ftblibrary/config/DoubleConfig;
+     130: pop
+     131: aload_3
+     132: ldc_w         #294                // String x
+     135: aload_0
+     136: getfield      #106                // Field x:D
+     139: aload_0
+     140: invokedynamic #889,  0            // InvokeDynamic #7:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     145: dconst_0
+     146: ldc2_w        #890                // double -Infinityd
+     149: ldc2_w        #892                // double Infinityd
+     152: invokevirtual #884                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addDouble:(Ljava/lang/String;DLjava/util/function/Consumer;DDD)Ldev/ftb/mods/ftblibrary/config/DoubleConfig;
+     155: pop
+     156: aload_3
+     157: ldc_w         #301                // String y
+     160: aload_0
+     161: getfield      #108                // Field y:D
+     164: aload_0
+     165: invokedynamic #898,  0            // InvokeDynamic #8:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     170: dconst_0
+     171: ldc2_w        #890                // double -Infinityd
+     174: ldc2_w        #892                // double Infinityd
+     177: invokevirtual #884                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addDouble:(Ljava/lang/String;DLjava/util/function/Consumer;DDD)Ldev/ftb/mods/ftblibrary/config/DoubleConfig;
+     180: pop
+     181: aload_3
+     182: ldc_w         #395                // String min_width
+     185: aload_0
+     186: getfield      #159                // Field minWidth:I
+     189: aload_0
+     190: invokedynamic #905,  0            // InvokeDynamic #9:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     195: iconst_0
+     196: iconst_0
+     197: sipush        3000
+     200: invokevirtual #909                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addInt:(Ljava/lang/String;ILjava/util/function/Consumer;III)Ldev/ftb/mods/ftblibrary/config/IntConfig;
+     203: pop
+     204: aload_3
+     205: ldc_w         #392                // String icon_scale
+     208: aload_0
+     209: getfield      #184                // Field iconScale:D
+     212: aload_0
+     213: invokedynamic #914,  0            // InvokeDynamic #10:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     218: dconst_1
+     219: ldc2_w        #915                // double 0.1d
+     222: ldc2_w        #917                // double 2.0d
+     225: invokevirtual #884                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addDouble:(Ljava/lang/String;DLjava/util/function/Consumer;DDD)Ldev/ftb/mods/ftblibrary/config/DoubleConfig;
+     228: pop
+     229: aload_1
+     230: ldc_w         #920                // String visibility
+     233: invokevirtual #857                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+     236: astore        4
+     238: aload         4
+     240: ldc_w         #382                // String hide_until_deps_complete
+     243: aload_0
+     244: getfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     247: aload_0
+     248: invokedynamic #927,  0            // InvokeDynamic #11:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     253: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     256: pop
+     257: aload         4
+     259: ldc_w         #380                // String hide_until_deps_visible
+     262: aload_0
+     263: getfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     266: aload_0
+     267: invokedynamic #936,  0            // InvokeDynamic #12:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     272: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     275: pop
+     276: aload         4
+     278: ldc_w         #399                // String invisible
+     281: aload_0
+     282: getfield      #163                // Field invisibleUntilCompleted:Z
+     285: aload_0
+     286: invokedynamic #943,  0            // InvokeDynamic #13:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     291: iconst_0
+     292: invokevirtual #947                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+     295: pop
+     296: aload         4
+     298: ldc_w         #401                // String invisible_until_tasks
+     301: aload_0
+     302: getfield      #165                // Field invisibleUntilTasks:I
+     305: aload_0
+     306: invokedynamic #952,  0            // InvokeDynamic #14:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     311: iconst_0
+     312: iconst_0
+     313: ldc_w         #953                // int 2147483647
+     316: invokevirtual #909                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addInt:(Ljava/lang/String;ILjava/util/function/Consumer;III)Ldev/ftb/mods/ftblibrary/config/IntConfig;
+     319: aload_0
+     320: getfield      #163                // Field invisibleUntilCompleted:Z
+     323: invokevirtual #959                // Method dev/ftb/mods/ftblibrary/config/IntConfig.setCanEdit:(Z)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+     326: pop
+     327: aload         4
+     329: ldc_w         #408                // String hide_details_until_startable
+     332: aload_0
+     333: getfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     336: aload_0
+     337: invokedynamic #964,  0            // InvokeDynamic #15:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     342: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     345: pop
+     346: aload         4
+     348: ldc_w         #389                // String hide_text_until_complete
+     351: aload_0
+     352: getfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     355: aload_0
+     356: invokedynamic #969,  0            // InvokeDynamic #16:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     361: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     364: pop
+     365: aload         4
+     367: ldc_w         #414                // String hide_lock_icon
+     370: aload_0
+     371: getfield      #188                // Field hideLockIcon:Z
+     374: aload_0
+     375: invokedynamic #974,  0            // InvokeDynamic #17:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     380: iconst_0
+     381: invokevirtual #947                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+     384: pop
+     385: aload_0
+     386: invokedynamic #985,  0            // InvokeDynamic #18:test:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Predicate;
+     391: astore        5
+     393: aload_0
+     394: invokevirtual #371                // Method removeInvalidDependencies:()V
+     397: aload_1
+     398: ldc_w         #378                // String dependencies
+     401: invokevirtual #857                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+     404: astore        6
+     406: aload         6
+     408: ldc_w         #378                // String dependencies
+     411: aload_0
+     412: getfield      #119                // Field dependencies:Ljava/util/List;
+     415: new           #987                // class dev/ftb/mods/ftbquests/util/ConfigQuestObject
+     418: dup
+     419: aload         5
+     421: invokespecial #990                // Method dev/ftb/mods/ftbquests/util/ConfigQuestObject."<init>":(Ljava/util/function/Predicate;)V
+     424: aconst_null
+     425: invokevirtual #994                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addList:(Ljava/lang/String;Ljava/util/List;Ldev/ftb/mods/ftblibrary/config/ConfigValue;Ljava/lang/Object;)Ldev/ftb/mods/ftblibrary/config/ListConfig;
+     428: ldc_w         #996                // String ftbquests.dependencies
+     431: invokevirtual #1002               // Method dev/ftb/mods/ftblibrary/config/ListConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+     434: pop
+     435: aload         6
+     437: ldc_w         #384                // String dependency_requirement
+     440: aload_0
+     441: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     444: aload_0
+     445: invokedynamic #1009,  0           // InvokeDynamic #19:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     450: getstatic     #497                // Field dev/ftb/mods/ftbquests/quest/DependencyRequirement.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     453: invokevirtual #871                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addEnum:(Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Consumer;Ldev/ftb/mods/ftblibrary/config/NameMap;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     456: pop
+     457: aload         6
+     459: ldc_w         #364                // String min_required_dependencies
+     462: aload_0
+     463: getfield      #147                // Field minRequiredDependencies:I
+     466: aload_0
+     467: invokedynamic #1014,  0           // InvokeDynamic #20:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     472: iconst_0
+     473: iconst_0
+     474: ldc_w         #953                // int 2147483647
+     477: invokevirtual #909                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addInt:(Ljava/lang/String;ILjava/util/function/Consumer;III)Ldev/ftb/mods/ftblibrary/config/IntConfig;
+     480: pop
+     481: aload         6
+     483: ldc_w         #352                // String hide_dependency_lines
+     486: aload_0
+     487: getfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     490: aload_0
+     491: invokedynamic #1019,  0           // InvokeDynamic #21:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     496: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     499: pop
+     500: aload         6
+     502: ldc_w         #358                // String hide_dependent_lines
+     505: aload_0
+     506: getfield      #134                // Field hideDependentLines:Z
+     509: aload_0
+     510: invokedynamic #1024,  0           // InvokeDynamic #22:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     515: iconst_0
+     516: invokevirtual #947                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+     519: pop
+     520: aload         6
+     522: ldc_w         #412                // String max_completable_dependents
+     525: aload_0
+     526: getfield      #186                // Field maxCompletableDeps:I
+     529: aload_0
+     530: invokedynamic #1029,  0           // InvokeDynamic #23:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     535: iconst_0
+     536: iconst_0
+     537: ldc_w         #953                // int 2147483647
+     540: invokevirtual #909                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addInt:(Ljava/lang/String;ILjava/util/function/Consumer;III)Ldev/ftb/mods/ftblibrary/config/IntConfig;
+     543: pop
+     544: aload_1
+     545: ldc_w         #1031               // String misc
+     548: invokevirtual #857                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+     551: astore        7
+     553: aload         7
+     555: ldc_w         #350                // String guide_page
+     558: aload_0
+     559: getfield      #125                // Field guidePage:Ljava/lang/String;
+     562: aload_0
+     563: invokedynamic #1036,  0           // InvokeDynamic #24:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     568: ldc           #102                // String
+     570: invokevirtual #832                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addString:(Ljava/lang/String;Ljava/lang/String;Ljava/util/function/Consumer;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/StringConfig;
+     573: pop
+     574: aload         7
+     576: ldc_w         #1038               // String disable_jei
+     579: aload_0
+     580: getfield      #151                // Field disableJEI:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     583: aload_0
+     584: invokedynamic #1043,  0           // InvokeDynamic #25:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     589: getstatic     #1044               // Field dev/ftb/mods/ftblibrary/config/Tristate.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     592: invokevirtual #871                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addEnum:(Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Consumer;Ldev/ftb/mods/ftblibrary/config/NameMap;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     595: pop
+     596: aload         7
+     598: ldc_w         #397                // String can_repeat
+     601: aload_0
+     602: getfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     605: aload_0
+     606: invokedynamic #1049,  0           // InvokeDynamic #26:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     611: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     614: pop
+     615: aload         7
+     617: ldc_w         #416                // String repeat_cooldown
+     620: aload_0
+     621: getfield      #190                // Field repeatCooldown:I
+     624: aload_0
+     625: invokedynamic #1054,  0           // InvokeDynamic #27:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     630: iconst_0
+     631: iconst_0
+     632: ldc_w         #953                // int 2147483647
+     635: invokevirtual #909                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addInt:(Ljava/lang/String;ILjava/util/function/Consumer;III)Ldev/ftb/mods/ftblibrary/config/IntConfig;
+     638: pop
+     639: aload         7
+     641: ldc_w         #393                // String optional
+     644: aload_0
+     645: getfield      #157                // Field optional:Z
+     648: aload_0
+     649: invokedynamic #1059,  0           // InvokeDynamic #28:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     654: iconst_0
+     655: invokevirtual #947                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+     658: pop
+     659: aload         7
+     661: ldc_w         #403                // String ignore_reward_blocking
+     664: aload_0
+     665: getfield      #167                // Field ignoreRewardBlocking:Z
+     668: aload_0
+     669: invokedynamic #1064,  0           // InvokeDynamic #29:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     674: iconst_0
+     675: invokevirtual #947                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+     678: pop
+     679: aload         7
+     681: ldc_w         #405                // String progression_mode
+     684: aload_0
+     685: getfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+     688: aload_0
+     689: invokedynamic #1071,  0           // InvokeDynamic #30:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     694: getstatic     #503                // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+     697: invokevirtual #871                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addEnum:(Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Consumer;Ldev/ftb/mods/ftblibrary/config/NameMap;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     700: pop
+     701: aload         7
+     703: ldc_w         #410                // String require_sequential_tasks
+     706: aload_0
+     707: getfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     710: aload_0
+     711: invokedynamic #1076,  0           // InvokeDynamic #31:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+     716: invokevirtual #931                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addTristate:(Ljava/lang/String;Ldev/ftb/mods/ftblibrary/config/Tristate;Ljava/util/function/Consumer;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+     719: pop
+     720: return
+
+  public boolean shouldHideDependencyLines();
+    Code:
+       0: aload_0
+       1: getfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: aload_0
+       5: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       8: getfield      #1086               // Field dev/ftb/mods/ftbquests/quest/Chapter.defaultHideDependencyLines:Z
+      11: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+      14: ireturn
+
+  public boolean shouldHideLockIcon();
+    Code:
+       0: aload_0
+       1: getfield      #188                // Field hideLockIcon:Z
+       4: ireturn
+
+  public long getMovableID();
+    Code:
+       0: aload_0
+       1: getfield      #630                // Field id:J
+       4: lreturn
+
+  public dev.ftb.mods.ftbquests.quest.Chapter getChapter();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       4: areturn
+
+  public double getX();
+    Code:
+       0: aload_0
+       1: getfield      #106                // Field x:D
+       4: dreturn
+
+  public double getY();
+    Code:
+       0: aload_0
+       1: getfield      #108                // Field y:D
+       4: dreturn
+
+  public double getWidth();
+    Code:
+       0: aload_0
+       1: invokevirtual #1094               // Method getSize:()D
+       4: dreturn
+
+  public double getHeight();
+    Code:
+       0: aload_0
+       1: invokevirtual #1094               // Method getSize:()D
+       4: dreturn
+
+  public java.lang.String getShape();
+    Code:
+       0: aload_0
+       1: getfield      #110                // Field shape:Ljava/lang/String;
+       4: invokevirtual #306                // Method java/lang/String.isEmpty:()Z
+       7: ifeq          20
+      10: aload_0
+      11: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      14: invokevirtual #1099               // Method dev/ftb/mods/ftbquests/quest/Chapter.getDefaultQuestShape:()Ljava/lang/String;
+      17: goto          24
+      20: aload_0
+      21: getfield      #110                // Field shape:Ljava/lang/String;
+      24: areturn
+
+  public void move(dev.ftb.mods.ftbquests.quest.Chapter, double, double);
+    Code:
+       0: new           #1104               // class dev/ftb/mods/ftbquests/net/MoveMovableMessage
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: getfield      #215                // Field dev/ftb/mods/ftbquests/quest/Chapter.id:J
+       9: dload_2
+      10: dload         4
+      12: invokespecial #1107               // Method dev/ftb/mods/ftbquests/net/MoveMovableMessage."<init>":(Ldev/ftb/mods/ftbquests/quest/Movable;JDD)V
+      15: invokevirtual #1110               // Method dev/ftb/mods/ftbquests/net/MoveMovableMessage.sendToServer:()V
+      18: return
+
+  public boolean isVisible(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: getfield      #163                // Field invisibleUntilCompleted:Z
+       4: ifeq          73
+       7: aload_1
+       8: aload_0
+       9: invokevirtual #670                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      12: ifne          73
+      15: aload_0
+      16: getfield      #165                // Field invisibleUntilTasks:I
+      19: ifeq          71
+      22: aload_0
+      23: getfield      #121                // Field tasks:Ljava/util/List;
+      26: invokeinterface #1115,  1         // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      31: aload_1
+      32: dup
+      33: invokestatic  #1121               // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      36: pop
+      37: invokedynamic #1127,  0           // InvokeDynamic #32:test:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Predicate;
+      42: invokeinterface #1133,  2         // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      47: aload_0
+      48: getfield      #165                // Field invisibleUntilTasks:I
+      51: i2l
+      52: invokeinterface #1137,  3         // InterfaceMethod java/util/stream/Stream.limit:(J)Ljava/util/stream/Stream;
+      57: invokeinterface #1140,  1         // InterfaceMethod java/util/stream/Stream.count:()J
+      62: aload_0
+      63: getfield      #165                // Field invisibleUntilTasks:I
+      66: i2l
+      67: lcmp
+      68: ifge          73
+      71: iconst_0
+      72: ireturn
+      73: aload_1
+      74: invokevirtual #1143               // Method dev/ftb/mods/ftbquests/quest/TeamData.getFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      77: invokevirtual #1146               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.isHideExcludedQuests:()Z
+      80: ifeq          93
+      83: aload_1
+      84: aload_0
+      85: invokevirtual #283                // Method dev/ftb/mods/ftbquests/quest/TeamData.isExcludedByOtherQuestline:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      88: ifeq          93
+      91: iconst_0
+      92: ireturn
+      93: aload_0
+      94: getfield      #119                // Field dependencies:Ljava/util/List;
+      97: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     102: ifeq          107
+     105: iconst_1
+     106: ireturn
+     107: aload_0
+     108: getfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     111: aload_0
+     112: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     115: invokevirtual #1149               // Method dev/ftb/mods/ftbquests/quest/Chapter.hideQuestUntilDepsComplete:()Z
+     118: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+     121: ifeq          130
+     124: aload_1
+     125: aload_0
+     126: invokevirtual #614                // Method dev/ftb/mods/ftbquests/quest/TeamData.areDependenciesComplete:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+     129: ireturn
+     130: aload_0
+     131: getfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+     134: aload_0
+     135: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     138: invokevirtual #1152               // Method dev/ftb/mods/ftbquests/quest/Chapter.isHideQuestUntilDepsVisible:()Z
+     141: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+     144: ifeq          153
+     147: aload_1
+     148: aload_0
+     149: invokevirtual #1155               // Method dev/ftb/mods/ftbquests/quest/TeamData.areDependenciesVisible:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+     152: ireturn
+     153: aload_0
+     154: invokevirtual #1158               // Method streamDependencies:()Ljava/util/stream/Stream;
+     157: aload_1
+     158: invokedynamic #1165,  0           // InvokeDynamic #33:test:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Predicate;
+     163: invokeinterface #1169,  2         // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+     168: ireturn
+
+  public boolean isSearchable(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       4: invokevirtual #1173               // Method dev/ftb/mods/ftbquests/quest/Chapter.isAlwaysInvisible:()Z
+       7: ifne          22
+      10: aload_0
+      11: aload_1
+      12: invokespecial #1175               // Method dev/ftb/mods/ftbquests/quest/QuestObject.isSearchable:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+      15: ifeq          22
+      18: iconst_1
+      19: goto          23
+      22: iconst_0
+      23: ireturn
+
+  public void clearCachedData();
+    Code:
+       0: aload_0
+       1: invokespecial #1178               // Method dev/ftb/mods/ftbquests/quest/QuestObject.clearCachedData:()V
+       4: aload_0
+       5: aconst_null
+       6: putfield      #96                 // Field cachedSubtitle:Lnet/minecraft/network/chat/Component;
+       9: aload_0
+      10: aconst_null
+      11: putfield      #98                 // Field cachedDescription:Ljava/util/List;
+      14: aload_0
+      15: getfield      #121                // Field tasks:Ljava/util/List;
+      18: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      23: astore_1
+      24: aload_1
+      25: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      30: ifeq          50
+      33: aload_1
+      34: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      39: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      42: astore_2
+      43: aload_2
+      44: invokevirtual #1179               // Method dev/ftb/mods/ftbquests/quest/task/Task.clearCachedData:()V
+      47: goto          24
+      50: aload_0
+      51: getfield      #123                // Field rewards:Ljava/util/List;
+      54: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      59: astore_1
+      60: aload_1
+      61: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      66: ifeq          86
+      69: aload_1
+      70: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      75: checkcast     #733                // class dev/ftb/mods/ftbquests/quest/reward/Reward
+      78: astore_2
+      79: aload_2
+      80: invokevirtual #1180               // Method dev/ftb/mods/ftbquests/quest/reward/Reward.clearCachedData:()V
+      83: goto          60
+      86: return
+
+  public net.minecraft.network.chat.Component getSubtitle();
+    Code:
+       0: aload_0
+       1: getfield      #96                 // Field cachedSubtitle:Lnet/minecraft/network/chat/Component;
+       4: ifnonnull     18
+       7: aload_0
+       8: aload_0
+       9: getfield      #104                // Field rawSubtitle:Ljava/lang/String;
+      12: invokestatic  #1187               // Method dev/ftb/mods/ftbquests/util/TextUtils.parseRawText:(Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+      15: putfield      #96                 // Field cachedSubtitle:Lnet/minecraft/network/chat/Component;
+      18: aload_0
+      19: getfield      #96                 // Field cachedSubtitle:Lnet/minecraft/network/chat/Component;
+      22: areturn
+
+  public java.util.List<net.minecraft.network.chat.Component> getDescription();
+    Code:
+       0: aload_0
+       1: getfield      #98                 // Field cachedDescription:Ljava/util/List;
+       4: ifnonnull     35
+       7: aload_0
+       8: aload_0
+       9: getfield      #117                // Field rawDescription:Ljava/util/List;
+      12: invokeinterface #1115,  1         // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      17: invokedynamic #1196,  0           // InvokeDynamic #34:apply:()Ljava/util/function/Function;
+      22: invokeinterface #1200,  2         // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      27: invokeinterface #1203,  1         // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      32: putfield      #98                 // Field cachedDescription:Ljava/util/List;
+      35: aload_0
+      36: getfield      #98                 // Field cachedDescription:Ljava/util/List;
+      39: areturn
+
+  public boolean hasDependency(dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_1
+       1: getfield      #554                // Field dev/ftb/mods/ftbquests/quest/QuestObject.invalid:Z
+       4: ifeq          9
+       7: iconst_0
+       8: ireturn
+       9: aload_0
+      10: getfield      #119                // Field dependencies:Ljava/util/List;
+      13: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      18: astore_2
+      19: aload_2
+      20: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      25: ifeq          48
+      28: aload_2
+      29: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      37: astore_3
+      38: aload_3
+      39: aload_1
+      40: if_acmpne     45
+      43: iconst_1
+      44: ireturn
+      45: goto          19
+      48: iconst_0
+      49: ireturn
+
+  protected boolean validateEditedConfig();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #630                // Field id:J
+       5: iconst_0
+       6: invokevirtual #1214               // Method verifyDependenciesInternal:(JI)V
+       9: iconst_1
+      10: ireturn
+      11: astore_1
+      12: aload_0
+      13: invokevirtual #468                // Method clearDependencies:()V
+      16: aload_0
+      17: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      20: invokevirtual #1219               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.isServerSide:()Z
+      23: ifne          35
+      26: ldc_w         #1221               // String ftbquests.gui.looping_dependencies
+      29: invokestatic  #756                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      32: invokestatic  #1227               // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.displayError:(Lnet/minecraft/network/chat/Component;)V
+      35: iconst_0
+      36: ireturn
+    Exception table:
+       from    to  target type
+           0    10    11   Class dev/ftb/mods/ftbquests/quest/DependencyDepthException
+           0    10    11   Class dev/ftb/mods/ftbquests/quest/DependencyLoopException
+
+  public boolean verifyDependencies(boolean);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #630                // Field id:J
+       5: iconst_0
+       6: invokevirtual #1214               // Method verifyDependenciesInternal:(JI)V
+       9: iconst_1
+      10: ireturn
+      11: astore_2
+      12: iload_1
+      13: ifeq          57
+      16: getstatic     #1237               // Field dev/ftb/mods/ftbquests/FTBQuests.LOGGER:Lorg/apache/logging/log4j/Logger;
+      19: aload_0
+      20: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      23: aload_2
+      24: getfield      #1243               // Field dev/ftb/mods/ftbquests/quest/DependencyDepthException.object:Ldev/ftb/mods/ftbquests/quest/QuestObject;
+      27: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      30: invokedynamic #1255,  0           // InvokeDynamic #35:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      35: invokeinterface #1260,  2         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+      40: aload_0
+      41: invokevirtual #468                // Method clearDependencies:()V
+      44: aload_0
+      45: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      48: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      51: invokevirtual #1263               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.markDirty:()V
+      54: goto          81
+      57: getstatic     #1237               // Field dev/ftb/mods/ftbquests/FTBQuests.LOGGER:Lorg/apache/logging/log4j/Logger;
+      60: aload_0
+      61: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      64: aload_2
+      65: getfield      #1243               // Field dev/ftb/mods/ftbquests/quest/DependencyDepthException.object:Ldev/ftb/mods/ftbquests/quest/QuestObject;
+      68: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      71: invokedynamic #1266,  0           // InvokeDynamic #36:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      76: invokeinterface #1260,  2         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+      81: iconst_0
+      82: ireturn
+      83: astore_2
+      84: iload_1
+      85: ifeq          129
+      88: getstatic     #1237               // Field dev/ftb/mods/ftbquests/FTBQuests.LOGGER:Lorg/apache/logging/log4j/Logger;
+      91: aload_0
+      92: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      95: aload_2
+      96: getfield      #1267               // Field dev/ftb/mods/ftbquests/quest/DependencyLoopException.object:Ldev/ftb/mods/ftbquests/quest/QuestObject;
+      99: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     102: invokedynamic #1270,  0           // InvokeDynamic #37:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     107: invokeinterface #1260,  2         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+     112: aload_0
+     113: invokevirtual #468                // Method clearDependencies:()V
+     116: aload_0
+     117: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+     120: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+     123: invokevirtual #1263               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.markDirty:()V
+     126: goto          153
+     129: getstatic     #1237               // Field dev/ftb/mods/ftbquests/FTBQuests.LOGGER:Lorg/apache/logging/log4j/Logger;
+     132: aload_0
+     133: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     136: aload_2
+     137: getfield      #1267               // Field dev/ftb/mods/ftbquests/quest/DependencyLoopException.object:Ldev/ftb/mods/ftbquests/quest/QuestObject;
+     140: invokestatic  #1241               // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     143: invokedynamic #1273,  0           // InvokeDynamic #38:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     148: invokeinterface #1260,  2         // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+     153: iconst_0
+     154: ireturn
+    Exception table:
+       from    to  target type
+           0    10    11   Class dev/ftb/mods/ftbquests/quest/DependencyDepthException
+           0    10    83   Class dev/ftb/mods/ftbquests/quest/DependencyLoopException
+
+  protected void verifyDependenciesInternal(long, int);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: new           #1279               // class it/unimi/dsi/fastutil/longs/LongOpenHashSet
+       5: dup
+       6: invokespecial #1280               // Method it/unimi/dsi/fastutil/longs/LongOpenHashSet."<init>":()V
+       9: iconst_0
+      10: invokevirtual #1284               // Method _verify:(JLit/unimi/dsi/fastutil/longs/LongSet;I)V
+      13: return
+
+  private void _verify(long, it.unimi.dsi.fastutil.longs.LongSet, int);
+    Code:
+       0: aload_3
+       1: aload_0
+       2: getfield      #630                // Field id:J
+       5: invokeinterface #1290,  3         // InterfaceMethod it/unimi/dsi/fastutil/longs/LongSet.add:(J)Z
+      10: ifeq          111
+      13: iload         4
+      15: sipush        1000
+      18: if_icmplt     30
+      21: new           #1208               // class dev/ftb/mods/ftbquests/quest/DependencyDepthException
+      24: dup
+      25: aload_0
+      26: invokespecial #1292               // Method dev/ftb/mods/ftbquests/quest/DependencyDepthException."<init>":(Ldev/ftb/mods/ftbquests/quest/QuestObject;)V
+      29: athrow
+      30: aload_0
+      31: getfield      #119                // Field dependencies:Ljava/util/List;
+      34: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      39: astore        5
+      41: aload         5
+      43: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      48: ifeq          111
+      51: aload         5
+      53: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      58: checkcast     #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      61: astore        6
+      63: aload         6
+      65: getfield      #555                // Field dev/ftb/mods/ftbquests/quest/QuestObject.id:J
+      68: lload_1
+      69: lcmp
+      70: ifne          82
+      73: new           #1210               // class dev/ftb/mods/ftbquests/quest/DependencyLoopException
+      76: dup
+      77: aload_0
+      78: invokespecial #1293               // Method dev/ftb/mods/ftbquests/quest/DependencyLoopException."<init>":(Ldev/ftb/mods/ftbquests/quest/QuestObject;)V
+      81: athrow
+      82: aload         6
+      84: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      87: ifeq          108
+      90: aload         6
+      92: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      95: astore        7
+      97: aload         7
+      99: lload_1
+     100: aload_3
+     101: iload         4
+     103: iconst_1
+     104: iadd
+     105: invokevirtual #1284               // Method _verify:(JLit/unimi/dsi/fastutil/longs/LongSet;I)V
+     108: goto          41
+     111: return
+
+  public java.util.Set<dev.ftb.mods.ftbquests.integration.RecipeModHelper$Components> componentsToRefresh();
+    Code:
+       0: getstatic     #1302               // Field dev/ftb/mods/ftbquests/integration/RecipeModHelper$Components.QUESTS:Ldev/ftb/mods/ftbquests/integration/RecipeModHelper$Components;
+       3: invokestatic  #1308               // Method java/util/EnumSet.of:(Ljava/lang/Enum;)Ljava/util/EnumSet;
+       6: areturn
+
+  public void editedFromGUI();
+    Code:
+       0: ldc_w         #1223               // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+       3: invokestatic  #1315               // Method dev/ftb/mods/ftblibrary/util/client/ClientUtils.getCurrentGuiAs:(Ljava/lang/Class;)Ljava/lang/Object;
+       6: checkcast     #1223               // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+       9: astore_1
+      10: aload_1
+      11: ifnull        22
+      14: aload_1
+      15: invokevirtual #1318               // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.refreshQuestPanel:()V
+      18: aload_1
+      19: invokevirtual #1321               // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.refreshViewQuestPanel:()V
+      22: return
+
+  public void onMoved(double, double, long);
+    Code:
+       0: aload_0
+       1: dload_1
+       2: putfield      #106                // Field x:D
+       5: aload_0
+       6: dload_3
+       7: putfield      #108                // Field y:D
+      10: lload         5
+      12: aload_0
+      13: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      16: getfield      #215                // Field dev/ftb/mods/ftbquests/quest/Chapter.id:J
+      19: lcmp
+      20: ifeq          59
+      23: aload_0
+      24: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      27: lload         5
+      29: invokevirtual #1331               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getChapter:(J)Ldev/ftb/mods/ftbquests/quest/Chapter;
+      32: astore        7
+      34: aload         7
+      36: ifnull        59
+      39: aload_0
+      40: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      43: aload_0
+      44: invokevirtual #775                // Method dev/ftb/mods/ftbquests/quest/Chapter.removeQuest:(Ldev/ftb/mods/ftbquests/quest/Quest;)V
+      47: aload         7
+      49: aload_0
+      50: invokevirtual #809                // Method dev/ftb/mods/ftbquests/quest/Chapter.addQuest:(Ldev/ftb/mods/ftbquests/quest/Quest;)V
+      53: aload_0
+      54: aload         7
+      56: putfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      59: return
+
+  public void copyToClipboard();
+    Code:
+       0: aload_0
+       1: invokestatic  #1338               // Method dev/ftb/mods/ftbquests/client/FTBQuestsClient.copyToClipboard:(Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;)V
+       4: return
+
+  public java.util.Collection<dev.ftb.mods.ftbquests.quest.QuestObject> getDependants();
+    Code:
+       0: aload_0
+       1: getfield      #180                // Field dependantIDs:Ljava/util/Set;
+       4: invokeinterface #1342,  1         // InterfaceMethod java/util/Set.stream:()Ljava/util/stream/Stream;
+       9: aload_0
+      10: invokedynamic #1351,  0           // InvokeDynamic #39:apply:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Function;
+      15: invokeinterface #1200,  2         // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      20: invokedynamic #1358,  0           // InvokeDynamic #40:test:()Ljava/util/function/Predicate;
+      25: invokeinterface #1133,  2         // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      30: invokeinterface #1203,  1         // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      35: areturn
+
+  public boolean checkRepeatable(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID);
+    Code:
+       0: aload_0
+       1: invokevirtual #277                // Method canBeRepeated:()Z
+       4: ifeq          51
+       7: aload_0
+       8: getfield      #123                // Field rewards:Ljava/util/List;
+      11: invokeinterface #1115,  1         // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      16: aload_1
+      17: aload_2
+      18: invokedynamic #1371,  0           // InvokeDynamic #41:test:(Ldev/ftb/mods/ftbquests/quest/TeamData;Ljava/util/UUID;)Ljava/util/function/Predicate;
+      23: invokeinterface #1374,  2         // InterfaceMethod java/util/stream/Stream.allMatch:(Ljava/util/function/Predicate;)Z
+      28: ifeq          51
+      31: aload_0
+      32: aload_1
+      33: new           #1376               // class dev/ftb/mods/ftbquests/util/ProgressChange
+      36: dup
+      37: aload_1
+      38: invokevirtual #1143               // Method dev/ftb/mods/ftbquests/quest/TeamData.getFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      41: aload_0
+      42: aload_2
+      43: invokespecial #1379               // Method dev/ftb/mods/ftbquests/util/ProgressChange."<init>":(Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;Ldev/ftb/mods/ftbquests/quest/QuestObjectBase;Ljava/util/UUID;)V
+      46: invokevirtual #1380               // Method forceProgress:(Ldev/ftb/mods/ftbquests/quest/TeamData;Ldev/ftb/mods/ftbquests/util/ProgressChange;)V
+      49: iconst_1
+      50: ireturn
+      51: iconst_0
+      52: ireturn
+
+  public java.util.Collection<? extends dev.ftb.mods.ftbquests.quest.QuestObject> getChildren();
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: areturn
+
+  public boolean isCompletedRaw(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #1386               // Method dev/ftb/mods/ftbquests/quest/TeamData.canStartTasks:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+       5: ifeq          20
+       8: aload_0
+       9: aload_1
+      10: invokespecial #1387               // Method dev/ftb/mods/ftbquests/quest/QuestObject.isCompletedRaw:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+      13: ifeq          20
+      16: iconst_1
+      17: goto          21
+      20: iconst_0
+      21: ireturn
+
+  public boolean hasUnclaimedRewardsRaw(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #670                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+       5: ifeq          65
+       8: aload_0
+       9: getfield      #123                // Field rewards:Ljava/util/List;
+      12: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore_3
+      18: aload_3
+      19: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          65
+      27: aload_3
+      28: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #733                // class dev/ftb/mods/ftbquests/quest/reward/Reward
+      36: astore        4
+      38: aload_1
+      39: aload         4
+      41: invokevirtual #1391               // Method dev/ftb/mods/ftbquests/quest/TeamData.isRewardBlocked:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Z
+      44: ifne          62
+      47: aload_1
+      48: aload_2
+      49: aload         4
+      51: invokevirtual #1395               // Method dev/ftb/mods/ftbquests/quest/TeamData.getClaimType:(Ljava/util/UUID;Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Ldev/ftb/mods/ftbquests/quest/reward/RewardClaimType;
+      54: getstatic     #1401               // Field dev/ftb/mods/ftbquests/quest/reward/RewardClaimType.CAN_CLAIM:Ldev/ftb/mods/ftbquests/quest/reward/RewardClaimType;
+      57: if_acmpne     62
+      60: iconst_1
+      61: ireturn
+      62: goto          18
+      65: iconst_0
+      66: ireturn
+
+  public boolean ignoreRewardBlocking();
+    Code:
+       0: aload_0
+       1: getfield      #167                // Field ignoreRewardBlocking:Z
+       4: ireturn
+
+  public void writeTasks(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: new           #318                // class net/minecraft/nbt/ListTag
+       3: dup
+       4: invokespecial #319                // Method net/minecraft/nbt/ListTag."<init>":()V
+       7: astore_2
+       8: aload_0
+       9: getfield      #121                // Field tasks:Ljava/util/List;
+      12: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore_3
+      18: aload_3
+      19: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          97
+      27: aload_3
+      28: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #616                // class dev/ftb/mods/ftbquests/quest/task/Task
+      36: astore        4
+      38: aload         4
+      40: invokevirtual #1407               // Method dev/ftb/mods/ftbquests/quest/task/Task.getType:()Ldev/ftb/mods/ftbquests/quest/task/TaskType;
+      43: astore        5
+      45: new           #1409               // class dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag
+      48: dup
+      49: invokespecial #1410               // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag."<init>":()V
+      52: astore        6
+      54: aload         6
+      56: ldc_w         #1411               // String id
+      59: aload         4
+      61: invokevirtual #1412               // Method dev/ftb/mods/ftbquests/quest/task/Task.getCodeString:()Ljava/lang/String;
+      64: invokevirtual #1413               // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      67: aload         6
+      69: ldc_w         #1415               // String type
+      72: aload         5
+      74: invokevirtual #1420               // Method dev/ftb/mods/ftbquests/quest/task/TaskType.getTypeForNBT:()Ljava/lang/String;
+      77: invokevirtual #1413               // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      80: aload         4
+      82: aload         6
+      84: invokevirtual #1421               // Method dev/ftb/mods/ftbquests/quest/task/Task.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+      87: aload_2
+      88: aload         6
+      90: invokevirtual #342                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+      93: pop
+      94: goto          18
+      97: aload_1
+      98: ldc_w         #1422               // String tasks
+     101: aload_2
+     102: invokevirtual #348                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     105: pop
+     106: return
+
+  public void writeRewards(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: new           #318                // class net/minecraft/nbt/ListTag
+       3: dup
+       4: invokespecial #319                // Method net/minecraft/nbt/ListTag."<init>":()V
+       7: astore_2
+       8: aload_0
+       9: getfield      #123                // Field rewards:Ljava/util/List;
+      12: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore_3
+      18: aload_3
+      19: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          97
+      27: aload_3
+      28: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #733                // class dev/ftb/mods/ftbquests/quest/reward/Reward
+      36: astore        4
+      38: aload         4
+      40: invokevirtual #1430               // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+      43: astore        5
+      45: new           #1409               // class dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag
+      48: dup
+      49: invokespecial #1410               // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag."<init>":()V
+      52: astore        6
+      54: aload         6
+      56: ldc_w         #1411               // String id
+      59: aload         4
+      61: invokevirtual #1431               // Method dev/ftb/mods/ftbquests/quest/reward/Reward.getCodeString:()Ljava/lang/String;
+      64: invokevirtual #1413               // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      67: aload         6
+      69: ldc_w         #1415               // String type
+      72: aload         5
+      74: invokevirtual #1434               // Method dev/ftb/mods/ftbquests/quest/reward/RewardType.getTypeForNBT:()Ljava/lang/String;
+      77: invokevirtual #1413               // Method dev/ftb/mods/ftblibrary/snbt/SNBTCompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      80: aload         4
+      82: aload         6
+      84: invokevirtual #1435               // Method dev/ftb/mods/ftbquests/quest/reward/Reward.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+      87: aload_2
+      88: aload         6
+      90: invokevirtual #342                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+      93: pop
+      94: goto          18
+      97: aload_1
+      98: ldc_w         #1436               // String rewards
+     101: aload_2
+     102: invokevirtual #348                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     105: pop
+     106: return
+
+  public boolean hasDependencies();
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+       9: ifne          16
+      12: iconst_1
+      13: goto          17
+      16: iconst_0
+      17: ireturn
+
+  public java.util.stream.Stream<dev.ftb.mods.ftbquests.quest.QuestObject> streamDependencies();
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: invokeinterface #1115,  1         // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: areturn
+
+  public void addDependency(dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      10: pop
+      11: aload_1
+      12: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      15: ifeq          31
+      18: aload_1
+      19: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      22: astore_2
+      23: aload_2
+      24: aload_0
+      25: getfield      #630                // Field id:J
+      28: invokevirtual #1441               // Method addDependant:(J)V
+      31: return
+
+  public void removeDependency(dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #1445,  2         // InterfaceMethod java/util/List.remove:(Ljava/lang/Object;)Z
+      10: pop
+      11: aload_1
+      12: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      15: ifeq          31
+      18: aload_1
+      19: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      22: astore_2
+      23: aload_2
+      24: aload_0
+      25: getfield      #630                // Field id:J
+      28: invokevirtual #1448               // Method removeDependant:(J)V
+      31: return
+
+  public void removeInvalidDependencies();
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_1
+      10: aload_1
+      11: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          74
+      19: aload_1
+      20: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      28: astore_2
+      29: aload_2
+      30: ifnull        45
+      33: aload_2
+      34: getfield      #554                // Field dev/ftb/mods/ftbquests/quest/QuestObject.invalid:Z
+      37: ifne          45
+      40: aload_2
+      41: aload_0
+      42: if_acmpne     71
+      45: aload_1
+      46: invokeinterface #1450,  1         // InterfaceMethod java/util/Iterator.remove:()V
+      51: aload_2
+      52: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      55: ifeq          71
+      58: aload_2
+      59: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      62: astore_3
+      63: aload_3
+      64: aload_0
+      65: getfield      #630                // Field id:J
+      68: invokevirtual #1448               // Method removeDependant:(J)V
+      71: goto          10
+      74: return
+
+  public void clearDependencies();
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: aload_0
+       5: invokedynamic #1459,  0           // InvokeDynamic #42:accept:(Ldev/ftb/mods/ftbquests/quest/Quest;)Ljava/util/function/Consumer;
+      10: invokeinterface #796,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      15: aload_0
+      16: getfield      #119                // Field dependencies:Ljava/util/List;
+      19: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+      24: return
+
+  private void addDependant(long);
+    Code:
+       0: aload_0
+       1: getfield      #180                // Field dependantIDs:Ljava/util/Set;
+       4: lload_1
+       5: invokestatic  #1464               // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       8: invokeinterface #1465,  2         // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      13: pop
+      14: return
+
+  private void removeDependant(long);
+    Code:
+       0: aload_0
+       1: getfield      #180                // Field dependantIDs:Ljava/util/Set;
+       4: lload_1
+       5: invokestatic  #1464               // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       8: invokeinterface #1466,  2         // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+      13: pop
+      14: return
+
+  public boolean allTasksCompleted(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: invokeinterface #1115,  1         // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: aload_1
+      10: invokedynamic #1473,  0           // InvokeDynamic #43:test:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Predicate;
+      15: invokeinterface #1374,  2         // InterfaceMethod java/util/stream/Stream.allMatch:(Ljava/util/function/Predicate;)Z
+      20: ireturn
+
+  public boolean hideDetailsUntilStartable();
+    Code:
+       0: aload_0
+       1: getfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: aload_0
+       5: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       8: invokevirtual #1476               // Method dev/ftb/mods/ftbquests/quest/Chapter.hideQuestDetailsUntilStartable:()Z
+      11: invokevirtual #249                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+      14: ireturn
+
+  public void addTask(dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      10: pop
+      11: return
+
+  public void removeTask(dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #1445,  2         // InterfaceMethod java/util/List.remove:(Ljava/lang/Object;)Z
+      10: pop
+      11: return
+
+  public void addReward(dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field rewards:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      10: pop
+      11: return
+
+  public void removeReward(dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field rewards:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #1445,  2         // InterfaceMethod java/util/List.remove:(Ljava/lang/Object;)Z
+      10: pop
+      11: return
+
+  public void setTaskList(java.util.List<dev.ftb.mods.ftbquests.quest.task.Task>);
+    Code:
+       0: aload_0
+       1: getfield      #121                // Field tasks:Ljava/util/List;
+       4: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+       9: aload_0
+      10: getfield      #121                // Field tasks:Ljava/util/List;
+      13: aload_1
+      14: invokeinterface #1488,  2         // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      19: pop
+      20: return
+
+  public void setRewardList(java.util.List<dev.ftb.mods.ftbquests.quest.reward.Reward>);
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field rewards:Ljava/util/List;
+       4: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+       9: aload_0
+      10: getfield      #123                // Field rewards:Ljava/util/List;
+      13: aload_1
+      14: invokeinterface #1488,  2         // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      19: pop
+      20: return
+
+  public int getRepeatCooldown();
+    Code:
+       0: aload_0
+       1: getfield      #190                // Field repeatCooldown:I
+       4: ireturn
+
+  private boolean checkDependencies(dev.ftb.mods.ftbquests.quest.Quest$DependencyChecker);
+    Code:
+       0: aload_0
+       1: getfield      #147                // Field minRequiredDependencies:I
+       4: ifle          57
+       7: aload_0
+       8: invokevirtual #1158               // Method streamDependencies:()Ljava/util/stream/Stream;
+      11: aload_1
+      12: dup
+      13: invokestatic  #1121               // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      16: pop
+      17: invokedynamic #1501,  0           // InvokeDynamic #44:test:(Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;)Ljava/util/function/Predicate;
+      22: invokeinterface #1133,  2         // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      27: aload_0
+      28: getfield      #147                // Field minRequiredDependencies:I
+      31: i2l
+      32: invokeinterface #1137,  3         // InterfaceMethod java/util/stream/Stream.limit:(J)Ljava/util/stream/Stream;
+      37: invokeinterface #1140,  1         // InterfaceMethod java/util/stream/Stream.count:()J
+      42: aload_0
+      43: getfield      #147                // Field minRequiredDependencies:I
+      46: i2l
+      47: lcmp
+      48: ifne          55
+      51: iconst_1
+      52: goto          56
+      55: iconst_0
+      56: ireturn
+      57: aload_0
+      58: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+      61: invokevirtual #1504               // Method dev/ftb/mods/ftbquests/quest/DependencyRequirement.needOnlyOne:()Z
+      64: ifeq          88
+      67: aload_0
+      68: invokevirtual #1158               // Method streamDependencies:()Ljava/util/stream/Stream;
+      71: aload_1
+      72: dup
+      73: invokestatic  #1121               // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      76: pop
+      77: invokedynamic #1501,  0           // InvokeDynamic #44:test:(Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;)Ljava/util/function/Predicate;
+      82: invokeinterface #1169,  2         // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+      87: ireturn
+      88: aload_0
+      89: invokevirtual #1158               // Method streamDependencies:()Ljava/util/stream/Stream;
+      92: aload_1
+      93: dup
+      94: invokestatic  #1121               // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      97: pop
+      98: invokedynamic #1501,  0           // InvokeDynamic #44:test:(Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;)Ljava/util/function/Predicate;
+     103: invokeinterface #1374,  2         // InterfaceMethod java/util/stream/Stream.allMatch:(Ljava/util/function/Predicate;)Z
+     108: ireturn
+
+  public boolean areDependenciesComplete(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: aload_1
+       3: invokedynamic #1513,  0           // InvokeDynamic #45:check0:(Ldev/ftb/mods/ftbquests/quest/Quest;Ldev/ftb/mods/ftbquests/quest/TeamData;)Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;
+       8: invokevirtual #1515               // Method checkDependencies:(Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;)Z
+      11: ireturn
+
+  public boolean areDependenciesVisible(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #1522,  0           // InvokeDynamic #46:check0:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;
+       7: invokevirtual #1515               // Method checkDependencies:(Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;)Z
+      10: ireturn
+
+  public java.util.List<com.mojang.datafixers.util.Pair<java.lang.Integer, java.lang.Integer>> buildDescriptionIndex();
+    Code:
+       0: new           #112                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #759                // Method java/util/ArrayList."<init>":()V
+       7: astore_1
+       8: iconst_0
+       9: istore_2
+      10: iload_2
+      11: istore_3
+      12: iload_3
+      13: aload_0
+      14: getfield      #117                // Field rawDescription:Ljava/util/List;
+      17: invokeinterface #551,  1          // InterfaceMethod java/util/List.size:()I
+      22: if_icmpge     76
+      25: aload_0
+      26: getfield      #117                // Field rawDescription:Ljava/util/List;
+      29: iload_3
+      30: invokeinterface #745,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      35: checkcast     #303                // class java/lang/String
+      38: ldc           #37                 // String {@pagebreak}
+      40: invokevirtual #439                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      43: ifeq          70
+      46: aload_1
+      47: iload_2
+      48: invokestatic  #1529               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      51: iload_3
+      52: iconst_1
+      53: isub
+      54: invokestatic  #1529               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      57: invokestatic  #1534               // Method com/mojang/datafixers/util/Pair.of:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/datafixers/util/Pair;
+      60: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      65: pop
+      66: iload_3
+      67: iconst_1
+      68: iadd
+      69: istore_2
+      70: iinc          3, 1
+      73: goto          12
+      76: iload_2
+      77: aload_0
+      78: getfield      #117                // Field rawDescription:Ljava/util/List;
+      81: invokeinterface #551,  1          // InterfaceMethod java/util/List.size:()I
+      86: if_icmpge     117
+      89: aload_1
+      90: iload_2
+      91: invokestatic  #1529               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      94: aload_0
+      95: getfield      #117                // Field rawDescription:Ljava/util/List;
+      98: invokeinterface #551,  1          // InterfaceMethod java/util/List.size:()I
+     103: iconst_1
+     104: isub
+     105: invokestatic  #1529               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     108: invokestatic  #1534               // Method com/mojang/datafixers/util/Pair.of:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/datafixers/util/Pair;
+     111: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     116: pop
+     117: aload_1
+     118: areturn
+
+  public boolean isQuestObjectExcluded(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: invokeinterface #316,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+       9: ifeq          14
+      12: iconst_0
+      13: ireturn
+      14: iconst_0
+      15: istore_2
+      16: iconst_0
+      17: istore_3
+      18: aload_0
+      19: getfield      #119                // Field dependencies:Ljava/util/List;
+      22: invokeinterface #323,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      27: astore        4
+      29: aload         4
+      31: invokeinterface #328,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      36: ifeq          187
+      39: aload         4
+      41: invokeinterface #332,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      46: checkcast     #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      49: astore        5
+      51: aload         5
+      53: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      56: ifeq          184
+      59: aload         5
+      61: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      64: astore        6
+      66: iinc          3, 1
+      69: iconst_0
+      70: istore        7
+      72: aload         6
+      74: getfield      #180                // Field dependantIDs:Ljava/util/Set;
+      77: invokeinterface #1540,  1         // InterfaceMethod java/util/Set.isEmpty:()Z
+      82: ifne          149
+      85: aload         6
+      87: getfield      #186                // Field maxCompletableDeps:I
+      90: ifle          149
+      93: aload         6
+      95: invokevirtual #697                // Method getDependants:()Ljava/util/Collection;
+      98: invokeinterface #1541,  1         // InterfaceMethod java/util/Collection.stream:()Ljava/util/stream/Stream;
+     103: aload_1
+     104: dup
+     105: invokestatic  #1121               // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     108: pop
+     109: invokedynamic #1542,  0           // InvokeDynamic #47:test:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Predicate;
+     114: invokeinterface #1133,  2         // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+     119: invokeinterface #1140,  1         // InterfaceMethod java/util/stream/Stream.count:()J
+     124: lstore        8
+     126: lload         8
+     128: aload         6
+     130: getfield      #186                // Field maxCompletableDeps:I
+     133: i2l
+     134: lcmp
+     135: iflt          149
+     138: aload_1
+     139: aload_0
+     140: invokevirtual #670                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+     143: ifne          149
+     146: iconst_1
+     147: istore        7
+     149: iload         7
+     151: ifeq          157
+     154: goto          29
+     157: aload_1
+     158: aload         6
+     160: invokevirtual #670                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+     163: ifeq          172
+     166: iinc          2, 1
+     169: goto          29
+     172: aload_1
+     173: aload         6
+     175: invokevirtual #283                // Method dev/ftb/mods/ftbquests/quest/TeamData.isExcludedByOtherQuestline:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+     178: ifne          184
+     181: iinc          2, 1
+     184: goto          29
+     187: iload_3
+     188: ifne          193
+     191: iconst_0
+     192: ireturn
+     193: aload_0
+     194: getfield      #147                // Field minRequiredDependencies:I
+     197: ifle          209
+     200: aload_0
+     201: getfield      #147                // Field minRequiredDependencies:I
+     204: istore        4
+     206: goto          228
+     209: aload_0
+     210: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+     213: invokevirtual #1504               // Method dev/ftb/mods/ftbquests/quest/DependencyRequirement.needOnlyOne:()Z
+     216: ifeq          225
+     219: iconst_1
+     220: istore        4
+     222: goto          228
+     225: iload_3
+     226: istore        4
+     228: iload_2
+     229: iload         4
+     231: if_icmpge     238
+     234: iconst_1
+     235: goto          239
+     238: iconst_0
+     239: ireturn
+
+  public boolean isExclusiveQuest();
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field dependencies:Ljava/util/List;
+       4: invokeinterface #1115,  1         // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: invokedynamic #1553,  0           // InvokeDynamic #48:test:()Ljava/util/function/Predicate;
+      14: invokeinterface #1169,  2         // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+      19: ireturn
+
+  private <T> void moveItem(java.util.List<T>, T, int);
+    Code:
+       0: aload_1
+       1: aload_2
+       2: invokeinterface #1562,  2         // InterfaceMethod java/util/List.indexOf:(Ljava/lang/Object;)I
+       7: istore        4
+       9: iload         4
+      11: iload_3
+      12: iadd
+      13: istore        5
+      15: iload         4
+      17: iflt          67
+      20: iload         5
+      22: iflt          67
+      25: iload         5
+      27: aload_1
+      28: invokeinterface #551,  1          // InterfaceMethod java/util/List.size:()I
+      33: if_icmpge     67
+      36: aload_1
+      37: iload         5
+      39: invokeinterface #745,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      44: astore        6
+      46: aload_1
+      47: iload         5
+      49: aload_2
+      50: invokeinterface #1566,  3         // InterfaceMethod java/util/List.set:(ILjava/lang/Object;)Ljava/lang/Object;
+      55: pop
+      56: aload_1
+      57: iload         4
+      59: aload         6
+      61: invokeinterface #1566,  3         // InterfaceMethod java/util/List.set:(ILjava/lang/Object;)Ljava/lang/Object;
+      66: pop
+      67: aload_0
+      68: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      71: invokevirtual #1263               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.markDirty:()V
+      74: return
+
+  public void moveTaskLeft(dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #121                // Field tasks:Ljava/util/List;
+       5: aload_1
+       6: iconst_m1
+       7: invokevirtual #1575               // Method moveItem:(Ljava/util/List;Ljava/lang/Object;I)V
+      10: return
+
+  public void moveTaskRight(dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #121                // Field tasks:Ljava/util/List;
+       5: aload_1
+       6: iconst_1
+       7: invokevirtual #1575               // Method moveItem:(Ljava/util/List;Ljava/lang/Object;I)V
+      10: return
+
+  public void moveRewardLeft(dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #123                // Field rewards:Ljava/util/List;
+       5: aload_1
+       6: iconst_m1
+       7: invokevirtual #1575               // Method moveItem:(Ljava/util/List;Ljava/lang/Object;I)V
+      10: return
+
+  public void moveRewardRight(dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #123                // Field rewards:Ljava/util/List;
+       5: aload_1
+       6: iconst_1
+       7: invokevirtual #1575               // Method moveItem:(Ljava/util/List;Ljava/lang/Object;I)V
+      10: return
+
+  private static boolean lambda$isExclusiveQuest$41(dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_0
+       1: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+       4: ifeq          23
+       7: aload_0
+       8: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      11: astore_1
+      12: aload_1
+      13: getfield      #186                // Field maxCompletableDeps:I
+      16: ifle          23
+      19: iconst_1
+      20: goto          24
+      23: iconst_0
+      24: ireturn
+
+  private static boolean lambda$areDependenciesVisible$40(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #1580               // Method dev/ftb/mods/ftbquests/quest/QuestObject.isVisible:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+       5: ireturn
+
+  private boolean lambda$areDependenciesComplete$39(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_0
+       1: getfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+       4: invokevirtual #1583               // Method dev/ftb/mods/ftbquests/quest/DependencyRequirement.needCompletion:()Z
+       7: ifeq          18
+      10: aload_1
+      11: aload_2
+      12: invokevirtual #670                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      15: goto          23
+      18: aload_1
+      19: aload_2
+      20: invokevirtual #662                // Method dev/ftb/mods/ftbquests/quest/TeamData.isStarted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      23: ireturn
+
+  private static boolean lambda$allTasksCompleted$38(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1587               // Method dev/ftb/mods/ftbquests/quest/TeamData.getProgress:(Ldev/ftb/mods/ftbquests/quest/task/Task;)J
+       5: aload_1
+       6: invokevirtual #1590               // Method dev/ftb/mods/ftbquests/quest/task/Task.getMaxProgress:()J
+       9: lcmp
+      10: iflt          17
+      13: iconst_1
+      14: goto          18
+      17: iconst_0
+      18: ireturn
+
+  private void lambda$clearDependencies$37(dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_1
+       1: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+       4: ifeq          20
+       7: aload_1
+       8: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      11: astore_2
+      12: aload_2
+      13: aload_0
+      14: getfield      #630                // Field id:J
+      17: invokevirtual #1448               // Method removeDependant:(J)V
+      20: return
+
+  private static boolean lambda$checkRepeatable$36(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID, dev.ftb.mods.ftbquests.quest.reward.Reward);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #1594               // Method dev/ftb/mods/ftbquests/quest/TeamData.isRewardClaimed:(Ljava/util/UUID;Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Z
+       6: ireturn
+
+  private static boolean lambda$getDependants$35(dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_0
+       1: ifnull        15
+       4: aload_0
+       5: getfield      #554                // Field dev/ftb/mods/ftbquests/quest/QuestObject.invalid:Z
+       8: ifne          15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  private dev.ftb.mods.ftbquests.quest.QuestObject lambda$getDependants$34(java.lang.Long);
+    Code:
+       0: aload_0
+       1: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       4: aload_1
+       5: invokevirtual #1597               // Method java/lang/Long.longValue:()J
+       8: invokevirtual #481                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.get:(J)Ldev/ftb/mods/ftbquests/quest/QuestObject;
+      11: areturn
+
+  private static boolean lambda$isVisible$33(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #1580               // Method dev/ftb/mods/ftbquests/quest/QuestObject.isVisible:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+       5: ireturn
+
+  private void lambda$fillConfigGroup$32(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #182                // Field requireSequentialTasks:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$31(dev.ftb.mods.ftbquests.quest.ProgressionMode);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #173                // Field progressionMode:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+       5: return
+
+  private void lambda$fillConfigGroup$30(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1604               // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #167                // Field ignoreRewardBlocking:Z
+       8: return
+
+  private void lambda$fillConfigGroup$29(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1604               // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #157                // Field optional:Z
+       8: return
+
+  private void lambda$fillConfigGroup$28(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1608               // Method java/lang/Integer.intValue:()I
+       5: putfield      #190                // Field repeatCooldown:I
+       8: return
+
+  private void lambda$fillConfigGroup$27(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #161                // Field canRepeat:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$26(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #151                // Field disableJEI:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$25(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #125                // Field guidePage:Ljava/lang/String;
+       5: return
+
+  private void lambda$fillConfigGroup$24(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1608               // Method java/lang/Integer.intValue:()I
+       5: putfield      #186                // Field maxCompletableDeps:I
+       8: return
+
+  private void lambda$fillConfigGroup$23(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1604               // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #134                // Field hideDependentLines:Z
+       8: return
+
+  private void lambda$fillConfigGroup$22(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #132                // Field hideDependencyLines:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$21(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1608               // Method java/lang/Integer.intValue:()I
+       5: putfield      #147                // Field minRequiredDependencies:I
+       8: return
+
+  private void lambda$fillConfigGroup$20(dev.ftb.mods.ftbquests.quest.DependencyRequirement);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #145                // Field dependencyRequirement:Ldev/ftb/mods/ftbquests/quest/DependencyRequirement;
+       5: return
+
+  private boolean lambda$fillConfigGroup$19(dev.ftb.mods.ftbquests.quest.QuestObjectBase);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+       5: getfield      #209                // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       8: if_acmpeq     30
+      11: aload_1
+      12: aload_0
+      13: getfield      #100                // Field chapter:Ldev/ftb/mods/ftbquests/quest/Chapter;
+      16: if_acmpeq     30
+      19: aload_1
+      20: instanceof    #4                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      23: ifeq          30
+      26: iconst_1
+      27: goto          31
+      30: iconst_0
+      31: ireturn
+
+  private void lambda$fillConfigGroup$18(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1604               // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #188                // Field hideLockIcon:Z
+       8: return
+
+  private void lambda$fillConfigGroup$17(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #149                // Field hideTextUntilComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$16(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #153                // Field hideDetailsUntilStartable:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$15(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1608               // Method java/lang/Integer.intValue:()I
+       5: putfield      #165                // Field invisibleUntilTasks:I
+       8: return
+
+  private void lambda$fillConfigGroup$14(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1604               // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #163                // Field invisibleUntilCompleted:Z
+       8: return
+
+  private void lambda$fillConfigGroup$13(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #136                // Field hideUntilDepsVisible:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$12(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #138                // Field hideUntilDepsComplete:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+
+  private void lambda$fillConfigGroup$11(java.lang.Double);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1615               // Method java/lang/Double.doubleValue:()D
+       5: putfield      #184                // Field iconScale:D
+       8: return
+
+  private void lambda$fillConfigGroup$10(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1608               // Method java/lang/Integer.intValue:()I
+       5: putfield      #159                // Field minWidth:I
+       8: return
+
+  private void lambda$fillConfigGroup$9(java.lang.Double);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1615               // Method java/lang/Double.doubleValue:()D
+       5: putfield      #108                // Field y:D
+       8: return
+
+  private void lambda$fillConfigGroup$8(java.lang.Double);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1615               // Method java/lang/Double.doubleValue:()D
+       5: putfield      #106                // Field x:D
+       8: return
+
+  private void lambda$fillConfigGroup$7(java.lang.Double);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #1615               // Method java/lang/Double.doubleValue:()D
+       5: putfield      #155                // Field size:D
+       8: return
+
+  private void lambda$fillConfigGroup$6(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: ldc_w         #436                // String default
+       5: invokevirtual #439                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       8: ifeq          16
+      11: ldc           #102                // String
+      13: goto          17
+      16: aload_1
+      17: putfield      #110                // Field shape:Ljava/lang/String;
+      20: return
+
+  private void lambda$fillConfigGroup$5(java.util.List);
+    Code:
+       0: aload_0
+       1: getfield      #117                // Field rawDescription:Ljava/util/List;
+       4: invokeinterface #442,  1          // InterfaceMethod java/util/List.clear:()V
+       9: aload_0
+      10: getfield      #117                // Field rawDescription:Ljava/util/List;
+      13: aload_1
+      14: invokeinterface #1488,  2         // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      19: pop
+      20: return
+
+  private void lambda$fillConfigGroup$4(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #104                // Field rawSubtitle:Ljava/lang/String;
+       5: return
+
+  private void lambda$deleteSelf$3(dev.ftb.mods.ftbquests.quest.QuestLink);
+    Code:
+       0: aload_0
+       1: invokevirtual #240                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       4: aload_1
+       5: getfield      #1619               // Field dev/ftb/mods/ftbquests/quest/QuestLink.id:J
+       8: invokevirtual #1622               // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.deleteObject:(J)V
+      11: return
+
+  private void lambda$deleteSelf$2(java.util.List, dev.ftb.mods.ftbquests.quest.QuestLink);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: invokevirtual #1626               // Method dev/ftb/mods/ftbquests/quest/QuestLink.linksTo:(Ldev/ftb/mods/ftbquests/quest/Quest;)Z
+       5: ifeq          16
+       8: aload_1
+       9: aload_2
+      10: invokeinterface #453,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      15: pop
+      16: return
+
+  private static void lambda$checkForDependantCompletion$1(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.QuestObject);
+    Code:
+       0: aload_1
+       1: instanceof    #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+       4: ifeq          60
+       7: aload_1
+       8: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/Quest
+      11: astore_2
+      12: aload_2
+      13: invokevirtual #1628               // Method getProgressionMode:()Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+      16: getstatic     #1631               // Field dev/ftb/mods/ftbquests/quest/ProgressionMode.FLEXIBLE:Ldev/ftb/mods/ftbquests/quest/ProgressionMode;
+      19: if_acmpne     55
+      22: aload_2
+      23: aload_0
+      24: dup
+      25: invokestatic  #1121               // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      28: pop
+      29: invokedynamic #1632,  0           // InvokeDynamic #49:check0:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;
+      34: invokevirtual #1515               // Method checkDependencies:(Ldev/ftb/mods/ftbquests/quest/Quest$DependencyChecker;)Z
+      37: ifeq          55
+      40: aload_2
+      41: getfield      #121                // Field tasks:Ljava/util/List;
+      44: aload_0
+      45: invokedynamic #1639,  0           // InvokeDynamic #50:accept:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ljava/util/function/Consumer;
+      50: invokeinterface #796,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      55: aload_0
+      56: aload_2
+      57: invokevirtual #690                // Method dev/ftb/mods/ftbquests/quest/TeamData.checkAutoCompletion:(Ldev/ftb/mods/ftbquests/quest/Quest;)V
+      60: return
+
+  private static void lambda$checkForDependantCompletion$0(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.quest.task.Task);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: getfield      #1641               // Field dev/ftb/mods/ftbquests/quest/task/Task.id:J
+       5: invokevirtual #1644               // Method dev/ftb/mods/ftbquests/quest/TeamData.getProgress:(J)J
+       8: aload_1
+       9: invokevirtual #1590               // Method dev/ftb/mods/ftbquests/quest/task/Task.getMaxProgress:()J
+      12: lcmp
+      13: iflt          21
+      16: aload_0
+      17: aload_1
+      18: invokevirtual #1647               // Method dev/ftb/mods/ftbquests/quest/TeamData.markTaskCompleted:(Ldev/ftb/mods/ftbquests/quest/task/Task;)V
+      21: return
+}

@@ -1,0 +1,316 @@
+Compiled from "QuestObject.java"
+public abstract class dev.ftb.mods.ftbquests.quest.QuestObject extends dev.ftb.mods.ftbquests.quest.QuestObjectBase {
+  protected boolean disableToast;
+
+  public dev.ftb.mods.ftbquests.quest.QuestObject(long);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: invokespecial #17                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase."<init>":(J)V
+       5: aload_0
+       6: iconst_0
+       7: putfield      #19                 // Field disableToast:Z
+      10: return
+
+  public void writeData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #27                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: getfield      #19                 // Field disableToast:Z
+       9: ifeq          19
+      12: aload_1
+      13: ldc           #29                 // String disable_toast
+      15: iconst_1
+      16: invokevirtual #35                 // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      19: return
+
+  public void readData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #39                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.readData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc           #29                 // String disable_toast
+       9: invokevirtual #43                 // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      12: putfield      #19                 // Field disableToast:Z
+      15: return
+
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #48                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.writeNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_1
+       6: aload_0
+       7: getfield      #19                 // Field disableToast:Z
+      10: invokevirtual #54                 // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      13: pop
+      14: return
+
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #58                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.readNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_0
+       6: aload_1
+       7: invokevirtual #62                 // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      10: putfield      #19                 // Field disableToast:Z
+      13: return
+
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #71                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.fillConfigGroup:(Ldev/ftb/mods/ftblibrary/config/ConfigGroup;)V
+       5: aload_1
+       6: ldc           #29                 // String disable_toast
+       8: aload_0
+       9: getfield      #19                 // Field disableToast:Z
+      12: aload_0
+      13: invokedynamic #90,  0             // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Ljava/util/function/Consumer;
+      18: iconst_0
+      19: invokevirtual #96                 // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+      22: ldc           #98                 // String ftbquests.disable_completion_toast
+      24: invokevirtual #104                // Method dev/ftb/mods/ftblibrary/config/BooleanConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      27: aload_0
+      28: invokevirtual #108                // Method getQuestChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+      31: ifnull        44
+      34: aload_0
+      35: invokevirtual #108                // Method getQuestChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+      38: invokevirtual #113                // Method dev/ftb/mods/ftbquests/quest/Chapter.isAlwaysInvisible:()Z
+      41: ifne          48
+      44: iconst_1
+      45: goto          49
+      48: iconst_0
+      49: invokevirtual #119                // Method dev/ftb/mods/ftblibrary/config/ConfigValue.setCanEdit:(Z)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      52: bipush        127
+      54: invokevirtual #123                // Method dev/ftb/mods/ftblibrary/config/ConfigValue.setOrder:(I)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      57: pop
+      58: return
+
+  public void forceProgress(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange);
+    Code:
+       0: aload_2
+       1: invokevirtual #133                // Method dev/ftb/mods/ftbquests/util/ProgressChange.shouldReset:()Z
+       4: ifeq          30
+       7: aload_1
+       8: aload_0
+       9: getfield      #135                // Field id:J
+      12: aconst_null
+      13: invokevirtual #141                // Method dev/ftb/mods/ftbquests/quest/TeamData.setStarted:(JLjava/util/Date;)Z
+      16: pop
+      17: aload_1
+      18: aload_0
+      19: getfield      #135                // Field id:J
+      22: aconst_null
+      23: invokevirtual #144                // Method dev/ftb/mods/ftbquests/quest/TeamData.setCompleted:(JLjava/util/Date;)Z
+      26: pop
+      27: goto          56
+      30: aload_1
+      31: aload_0
+      32: getfield      #135                // Field id:J
+      35: aload_2
+      36: invokevirtual #148                // Method dev/ftb/mods/ftbquests/util/ProgressChange.getDate:()Ljava/util/Date;
+      39: invokevirtual #141                // Method dev/ftb/mods/ftbquests/quest/TeamData.setStarted:(JLjava/util/Date;)Z
+      42: pop
+      43: aload_1
+      44: aload_0
+      45: getfield      #135                // Field id:J
+      48: aload_2
+      49: invokevirtual #148                // Method dev/ftb/mods/ftbquests/util/ProgressChange.getDate:()Ljava/util/Date;
+      52: invokevirtual #144                // Method dev/ftb/mods/ftbquests/quest/TeamData.setCompleted:(JLjava/util/Date;)Z
+      55: pop
+      56: aload_0
+      57: invokevirtual #152                // Method getChildren:()Ljava/util/Collection;
+      60: invokeinterface #158,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      65: astore_3
+      66: aload_3
+      67: invokeinterface #163,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      72: ifeq          96
+      75: aload_3
+      76: invokeinterface #167,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      81: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      84: astore        4
+      86: aload         4
+      88: aload_1
+      89: aload_2
+      90: invokevirtual #169                // Method forceProgress:(Ldev/ftb/mods/ftbquests/quest/TeamData;Ldev/ftb/mods/ftbquests/util/ProgressChange;)V
+      93: goto          66
+      96: return
+
+  public abstract int getRelativeProgressFromChildren(dev.ftb.mods.ftbquests.quest.TeamData);
+
+  public boolean cacheProgress();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public static int getRelativeProgressFromChildren(int, int);
+    Code:
+       0: iload_1
+       1: ifle          8
+       4: iload_0
+       5: ifgt          10
+       8: iconst_0
+       9: ireturn
+      10: iload_0
+      11: iload_1
+      12: bipush        100
+      14: imul
+      15: if_icmplt     21
+      18: bipush        100
+      20: ireturn
+      21: iconst_1
+      22: iload_0
+      23: i2d
+      24: iload_1
+      25: i2d
+      26: ddiv
+      27: d2i
+      28: invokestatic  #183                // Method java/lang/Math.max:(II)I
+      31: ireturn
+
+  public boolean isVisible(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean isSearchable(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #190                // Method isVisible:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+       5: ireturn
+
+  public void onStarted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+    Code:
+       0: return
+
+  public void onCompleted(dev.ftb.mods.ftbquests.events.QuestProgressEventData<?>);
+    Code:
+       0: return
+
+  protected void verifyDependenciesInternal(long, int);
+    Code:
+       0: return
+
+  public dev.ftb.mods.ftblibrary.icon.Color4I getProgressColor(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #206                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+       5: ifeq          18
+       8: getstatic     #212                // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.QUEST_COMPLETED_COLOR:Ldev/ftb/mods/ftbquests/quest/theme/property/ColorProperty;
+      11: invokevirtual #217                // Method dev/ftb/mods/ftbquests/quest/theme/property/ColorProperty.get:()Ljava/lang/Object;
+      14: checkcast     #219                // class dev/ftb/mods/ftblibrary/icon/Color4I
+      17: areturn
+      18: aload_1
+      19: aload_0
+      20: invokevirtual #222                // Method dev/ftb/mods/ftbquests/quest/TeamData.isStarted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      23: ifeq          36
+      26: getstatic     #225                // Field dev/ftb/mods/ftbquests/quest/theme/property/ThemeProperties.QUEST_STARTED_COLOR:Ldev/ftb/mods/ftbquests/quest/theme/property/ColorProperty;
+      29: invokevirtual #217                // Method dev/ftb/mods/ftbquests/quest/theme/property/ColorProperty.get:()Ljava/lang/Object;
+      32: checkcast     #219                // class dev/ftb/mods/ftblibrary/icon/Color4I
+      35: areturn
+      36: getstatic     #229                // Field dev/ftb/mods/ftblibrary/icon/Color4I.WHITE:Ldev/ftb/mods/ftblibrary/icon/Color4I;
+      39: areturn
+
+  public dev.ftb.mods.ftblibrary.icon.Color4I getProgressColor(dev.ftb.mods.ftbquests.quest.TeamData, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #233                // Method getProgressColor:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Ldev/ftb/mods/ftblibrary/icon/Color4I;
+       5: astore_3
+       6: iload_2
+       7: ifeq          19
+      10: aload_3
+      11: ldc           #234                // float -0.35f
+      13: invokevirtual #238                // Method dev/ftb/mods/ftblibrary/icon/Color4I.addBrightness:(F)Ldev/ftb/mods/ftblibrary/icon/Color4I;
+      16: goto          20
+      19: aload_3
+      20: areturn
+
+  public java.util.Collection<? extends dev.ftb.mods.ftbquests.quest.QuestObject> getChildren();
+    Code:
+       0: invokestatic  #246                // InterfaceMethod java/util/List.of:()Ljava/util/List;
+       3: areturn
+
+  public boolean isCompletedRaw(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: iconst_0
+       1: istore_2
+       2: iconst_0
+       3: istore_3
+       4: aload_0
+       5: invokevirtual #152                // Method getChildren:()Ljava/util/Collection;
+       8: invokeinterface #158,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      13: astore        4
+      15: aload         4
+      17: invokeinterface #163,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      22: ifeq          90
+      25: aload         4
+      27: invokeinterface #167,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #2                  // class dev/ftb/mods/ftbquests/quest/QuestObject
+      35: astore        5
+      37: aload_1
+      38: aload         5
+      40: invokevirtual #206                // Method dev/ftb/mods/ftbquests/quest/TeamData.isCompleted:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      43: ifne          59
+      46: aload_1
+      47: aload         5
+      49: invokevirtual #250                // Method dev/ftb/mods/ftbquests/quest/TeamData.isExcludedByOtherQuestline:(Ldev/ftb/mods/ftbquests/quest/QuestObject;)Z
+      52: ifne          59
+      55: iconst_1
+      56: goto          60
+      59: iconst_0
+      60: istore        6
+      62: iload         6
+      64: ifeq          84
+      67: aload         5
+      69: aload_1
+      70: invokevirtual #253                // Method isOptionalForProgression:(Ldev/ftb/mods/ftbquests/quest/TeamData;)Z
+      73: ifeq          82
+      76: iinc          2, 1
+      79: goto          87
+      82: iconst_0
+      83: ireturn
+      84: iinc          3, 1
+      87: goto          15
+      90: aload_0
+      91: invokevirtual #152                // Method getChildren:()Ljava/util/Collection;
+      94: invokeinterface #256,  1          // InterfaceMethod java/util/Collection.isEmpty:()Z
+      99: ifne          119
+     102: iload_2
+     103: aload_0
+     104: invokevirtual #152                // Method getChildren:()Ljava/util/Collection;
+     107: invokeinterface #260,  1          // InterfaceMethod java/util/Collection.size:()I
+     112: if_icmplt     119
+     115: iload_3
+     116: ifle          123
+     119: iconst_1
+     120: goto          124
+     123: iconst_0
+     124: ireturn
+
+  public boolean isOptionalForProgression(dev.ftb.mods.ftbquests.quest.TeamData);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean hasUnclaimedRewardsRaw(dev.ftb.mods.ftbquests.quest.TeamData, java.util.UUID);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  private void lambda$fillConfigGroup$0(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #273                // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #19                 // Field disableToast:Z
+       8: return
+}

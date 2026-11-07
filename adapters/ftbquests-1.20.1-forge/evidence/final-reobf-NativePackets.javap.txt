@@ -1,0 +1,126 @@
+Compiled from "NativePackets.java"
+final class dev.mcpmcp.ftbquests.NativePackets {
+  static dev.architectury.networking.simple.BaseC2SMessage build(java.lang.String, com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: astore_2
+       2: iconst_m1
+       3: istore_3
+       4: aload_2
+       5: invokevirtual #18                 // Method java/lang/String.hashCode:()I
+       8: lookupswitch  { // 4
+
+           -1688300856: 52
+
+            -229453338: 66
+
+              85894475: 94
+
+            1473610157: 80
+               default: 105
+          }
+      52: aload_2
+      53: ldc           #20                 // String ftbquests.task.check
+      55: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      58: ifeq          105
+      61: iconst_0
+      62: istore_3
+      63: goto          105
+      66: aload_2
+      67: ldc           #26                 // String ftbquests.reward.claim
+      69: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      72: ifeq          105
+      75: iconst_1
+      76: istore_3
+      77: goto          105
+      80: aload_2
+      81: ldc           #28                 // String ftbquests.reward.choose
+      83: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      86: ifeq          105
+      89: iconst_2
+      90: istore_3
+      91: goto          105
+      94: aload_2
+      95: ldc           #30                 // String ftbquests.rewards.claim_all
+      97: invokevirtual #24                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     100: ifeq          105
+     103: iconst_3
+     104: istore_3
+     105: iload_3
+     106: tableswitch   { // 0 to 3
+
+                     0: 136
+
+                     1: 157
+
+                     2: 179
+
+                     3: 207
+               default: 217
+          }
+     136: new           #32                 // class dev/ftb/mods/ftbquests/net/SubmitTaskMessage
+     139: dup
+     140: aload_1
+     141: ldc           #34                 // String task_id
+     143: ldc           #36                 // String
+     145: invokestatic  #42                 // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     148: invokestatic  #46                 // Method dev/mcpmcp/ftbquests/Json.parseId:(Ljava/lang/String;)J
+     151: invokespecial #50                 // Method dev/ftb/mods/ftbquests/net/SubmitTaskMessage."<init>":(J)V
+     154: goto          227
+     157: new           #52                 // class dev/ftb/mods/ftbquests/net/ClaimRewardMessage
+     160: dup
+     161: aload_1
+     162: ldc           #54                 // String reward_id
+     164: ldc           #36                 // String
+     166: invokestatic  #42                 // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     169: invokestatic  #46                 // Method dev/mcpmcp/ftbquests/Json.parseId:(Ljava/lang/String;)J
+     172: iconst_1
+     173: invokespecial #57                 // Method dev/ftb/mods/ftbquests/net/ClaimRewardMessage."<init>":(JZ)V
+     176: goto          227
+     179: new           #59                 // class dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage
+     182: dup
+     183: aload_1
+     184: ldc           #54                 // String reward_id
+     186: ldc           #36                 // String
+     188: invokestatic  #42                 // Method dev/mcpmcp/ftbquests/Json.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     191: invokestatic  #46                 // Method dev/mcpmcp/ftbquests/Json.parseId:(Ljava/lang/String;)J
+     194: aload_1
+     195: ldc           #61                 // String choice_index
+     197: iconst_m1
+     198: invokestatic  #65                 // Method dev/mcpmcp/ftbquests/Json.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     201: invokespecial #68                 // Method dev/ftb/mods/ftbquests/net/ClaimChoiceRewardMessage."<init>":(JI)V
+     204: goto          227
+     207: new           #70                 // class dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage
+     210: dup
+     211: invokespecial #73                 // Method dev/ftb/mods/ftbquests/net/ClaimAllRewardsMessage."<init>":()V
+     214: goto          227
+     217: new           #75                 // class java/lang/IllegalArgumentException
+     220: dup
+     221: ldc           #77                 // String ftbquests_unknown_action
+     223: invokespecial #80                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     226: athrow
+     227: areturn
+
+  static void submit(java.lang.String, com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #109,  0            // InvokeDynamic #0:accept:()Ljava/util/function/Consumer;
+       7: invokestatic  #112                // Method submit:(Ljava/lang/String;Lcom/google/gson/JsonObject;Ljava/util/function/Consumer;)V
+      10: return
+
+  static void submit(java.lang.String, com.google.gson.JsonObject, java.util.function.Consumer<dev.architectury.networking.simple.BaseC2SMessage>);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: aload_1
+       3: invokestatic  #115                // Method build:(Ljava/lang/String;Lcom/google/gson/JsonObject;)Ldev/architectury/networking/simple/BaseC2SMessage;
+       6: invokeinterface #119,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+      11: return
+
+  private dev.mcpmcp.ftbquests.NativePackets();
+    Code:
+       0: aload_0
+       1: invokespecial #123                // Method java/lang/Object."<init>":()V
+       4: return
+}

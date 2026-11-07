@@ -1,0 +1,28 @@
+{
+  "batch": "ftbquests-final-cec22d749ca4",
+  "verified": true,
+  "checks": 30,
+  "event_rows": 197,
+  "events_sha256": "138b1ec589c4f411595432ce577fb25e1686931a173e4727eca628948249ebca",
+  "adapter_sha256": "d250889cd15dce0c9be41f04667f3d8222bd8a751db4b50d9ac9859b16284f44",
+  "limits": [
+    "Current client-synced self-team only; packet submit and claim flag are not inventory delivery proof.",
+    "One-click native scope is global all_not_excluded, including preconfigured effects; server races cannot be eliminated by client hash/count.",
+    "Choice native handler has concurrency risk; local guards and receipts are not server idempotency.",
+    "No multiplayer other-team, XP positive, repeatable cooldown or actual command reward execution acceptance.",
+    "Only explicit acknowledged checkmark confirmation supported; resource tasks/editor/reset/direct setters absent.",
+    "Development event log preserves initial old-binary query/UI failures; final scenario snapshots bind the final installed binary hashes."
+  ],
+  "single_claim_bread_delta": 3,
+  "global_native_batch_rewards": 9,
+  "global_item_deltas": {
+    "minecraft:bread": 6,
+    "ars_nouveau:source_gem": 8,
+    "minecraft:gold_ingot": 8,
+    "apotheosis:gem_dust": 24,
+    "thaumjourney:trace_mana_crystal": 1,
+    "apotheosis:rare_material": 16,
+    "apotheosis:gem": 1
+  },
+  "choice_result": "prefab:item_house x1; explicit zero-based index2; not placed"
+}

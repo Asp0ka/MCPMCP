@@ -1,0 +1,606 @@
+Compiled from "Reward.java"
+public abstract class dev.ftb.mods.ftbquests.quest.reward.Reward extends dev.ftb.mods.ftbquests.quest.QuestObjectBase {
+  protected final dev.ftb.mods.ftbquests.quest.Quest quest;
+
+  private dev.ftb.mods.ftblibrary.config.Tristate team;
+
+  protected dev.ftb.mods.ftbquests.quest.reward.RewardAutoClaim autoclaim;
+
+  private boolean excludeFromClaimAll;
+
+  private boolean ignoreRewardBlocking;
+
+  public dev.ftb.mods.ftbquests.quest.reward.Reward(long, dev.ftb.mods.ftbquests.quest.Quest);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: invokespecial #31                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase."<init>":(J)V
+       5: aload_0
+       6: aload_3
+       7: putfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+      10: aload_0
+      11: getstatic     #38                 // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      14: putfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      17: aload_0
+      18: getstatic     #44                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.DEFAULT:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      21: putfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      24: aload_0
+      25: aload_0
+      26: invokevirtual #50                 // Method getType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+      29: invokevirtual #56                 // Method dev/ftb/mods/ftbquests/quest/reward/RewardType.getExcludeFromListRewards:()Z
+      32: putfield      #58                 // Field excludeFromClaimAll:Z
+      35: aload_0
+      36: iconst_0
+      37: putfield      #60                 // Field ignoreRewardBlocking:Z
+      40: return
+
+  public dev.ftb.mods.ftbquests.quest.Quest getQuest();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: areturn
+
+  public final dev.ftb.mods.ftbquests.quest.QuestObjectType getObjectType();
+    Code:
+       0: getstatic     #73                 // Field dev/ftb/mods/ftbquests/quest/QuestObjectType.REWARD:Ldev/ftb/mods/ftbquests/quest/QuestObjectType;
+       3: areturn
+
+  public final dev.ftb.mods.ftbquests.quest.BaseQuestFile getQuestFile();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: invokevirtual #81                 // Method dev/ftb/mods/ftbquests/quest/Quest.getChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+       7: getfield      #87                 // Field dev/ftb/mods/ftbquests/quest/Chapter.file:Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      10: areturn
+
+  public final dev.ftb.mods.ftbquests.quest.Chapter getQuestChapter();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: invokevirtual #81                 // Method dev/ftb/mods/ftbquests/quest/Quest.getChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+       7: areturn
+
+  public final long getParentID();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: getfield      #93                 // Field dev/ftb/mods/ftbquests/quest/Quest.id:J
+       7: lreturn
+
+  public abstract dev.ftb.mods.ftbquests.quest.reward.RewardType getType();
+
+  public void writeData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #98                 // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.writeData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: getfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       9: getstatic     #38                 // Field dev/ftb/mods/ftblibrary/config/Tristate.DEFAULT:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      12: if_acmpeq     25
+      15: aload_0
+      16: getfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      19: aload_1
+      20: ldc           #100                // String team_reward
+      22: invokevirtual #104                // Method dev/ftb/mods/ftblibrary/config/Tristate.write:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+      25: aload_0
+      26: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      29: getstatic     #44                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.DEFAULT:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      32: if_acmpeq     48
+      35: aload_1
+      36: ldc           #106                // String auto
+      38: aload_0
+      39: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      42: getfield      #109                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.id:Ljava/lang/String;
+      45: invokevirtual #115                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      48: aload_0
+      49: getfield      #58                 // Field excludeFromClaimAll:Z
+      52: ifeq          62
+      55: aload_1
+      56: ldc           #117                // String exclude_from_claim_all
+      58: iconst_1
+      59: invokevirtual #121                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      62: aload_0
+      63: getfield      #60                 // Field ignoreRewardBlocking:Z
+      66: ifeq          76
+      69: aload_1
+      70: ldc           #123                // String ignore_reward_blocking
+      72: iconst_1
+      73: invokevirtual #121                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      76: return
+
+  public void readData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #127                // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.readData:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc           #100                // String team_reward
+       9: invokestatic  #131                // Method dev/ftb/mods/ftblibrary/config/Tristate.read:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/Tristate;
+      12: putfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      15: aload_0
+      16: getstatic     #135                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+      19: aload_1
+      20: ldc           #106                // String auto
+      22: invokevirtual #139                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      25: invokevirtual #145                // Method dev/ftb/mods/ftblibrary/config/NameMap.get:(Ljava/lang/String;)Ljava/lang/Object;
+      28: checkcast     #42                 // class dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim
+      31: putfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      34: aload_0
+      35: aload_1
+      36: ldc           #117                // String exclude_from_claim_all
+      38: invokevirtual #149                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      41: putfield      #58                 // Field excludeFromClaimAll:Z
+      44: aload_0
+      45: aload_1
+      46: ldc           #123                // String ignore_reward_blocking
+      48: invokevirtual #149                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      51: putfield      #60                 // Field ignoreRewardBlocking:Z
+      54: return
+
+  public void writeNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #154                // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.writeNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: getstatic     #155                // Field dev/ftb/mods/ftblibrary/config/Tristate.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+       8: aload_1
+       9: aload_0
+      10: getfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      13: invokevirtual #158                // Method dev/ftb/mods/ftblibrary/config/NameMap.write:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/lang/Object;)V
+      16: getstatic     #135                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+      19: aload_1
+      20: aload_0
+      21: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      24: invokevirtual #158                // Method dev/ftb/mods/ftblibrary/config/NameMap.write:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/lang/Object;)V
+      27: aload_1
+      28: aload_0
+      29: getfield      #58                 // Field excludeFromClaimAll:Z
+      32: invokevirtual #164                // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      35: pop
+      36: aload_1
+      37: aload_0
+      38: getfield      #60                 // Field ignoreRewardBlocking:Z
+      41: invokevirtual #164                // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      44: pop
+      45: return
+
+  public void readNetData(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #168                // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.readNetData:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       5: aload_0
+       6: getstatic     #155                // Field dev/ftb/mods/ftblibrary/config/Tristate.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+       9: aload_1
+      10: invokevirtual #171                // Method dev/ftb/mods/ftblibrary/config/NameMap.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/Object;
+      13: checkcast     #35                 // class dev/ftb/mods/ftblibrary/config/Tristate
+      16: putfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      19: aload_0
+      20: getstatic     #135                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+      23: aload_1
+      24: invokevirtual #171                // Method dev/ftb/mods/ftblibrary/config/NameMap.read:(Lnet/minecraft/network/FriendlyByteBuf;)Ljava/lang/Object;
+      27: checkcast     #42                 // class dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim
+      30: putfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      33: aload_0
+      34: aload_1
+      35: invokevirtual #174                // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      38: putfield      #58                 // Field excludeFromClaimAll:Z
+      41: aload_0
+      42: aload_1
+      43: invokevirtual #174                // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      46: putfield      #60                 // Field ignoreRewardBlocking:Z
+      49: return
+
+  public void fillConfigGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #183                // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.fillConfigGroup:(Ldev/ftb/mods/ftblibrary/config/ConfigGroup;)V
+       5: aload_1
+       6: ldc           #184                // String team
+       8: aload_0
+       9: getfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+      12: aload_0
+      13: invokedynamic #203,  0            // InvokeDynamic #0:accept:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Ljava/util/function/Consumer;
+      18: getstatic     #155                // Field dev/ftb/mods/ftblibrary/config/Tristate.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+      21: invokevirtual #209                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addEnum:(Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Consumer;Ldev/ftb/mods/ftblibrary/config/NameMap;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+      24: ldc           #211                // String ftbquests.reward.team_reward
+      26: invokevirtual #217                // Method dev/ftb/mods/ftblibrary/config/EnumConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      29: pop
+      30: aload_1
+      31: ldc           #218                // String autoclaim
+      33: aload_0
+      34: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      37: aload_0
+      38: invokedynamic #225,  0            // InvokeDynamic #1:accept:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Ljava/util/function/Consumer;
+      43: getstatic     #135                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.NAME_MAP:Ldev/ftb/mods/ftblibrary/config/NameMap;
+      46: invokevirtual #209                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addEnum:(Ljava/lang/String;Ljava/lang/Object;Ljava/util/function/Consumer;Ldev/ftb/mods/ftblibrary/config/NameMap;)Ldev/ftb/mods/ftblibrary/config/EnumConfig;
+      49: ldc           #227                // String ftbquests.reward.autoclaim
+      51: invokevirtual #217                // Method dev/ftb/mods/ftblibrary/config/EnumConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      54: pop
+      55: aload_1
+      56: ldc           #117                // String exclude_from_claim_all
+      58: aload_0
+      59: invokevirtual #230                // Method getExcludeFromClaimAll:()Z
+      62: aload_0
+      63: invokedynamic #237,  0            // InvokeDynamic #2:accept:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Ljava/util/function/Consumer;
+      68: aload_0
+      69: getfield      #58                 // Field excludeFromClaimAll:Z
+      72: invokevirtual #241                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+      75: ldc           #243                // String ftbquests.reward.exclude_from_claim_all
+      77: invokevirtual #246                // Method dev/ftb/mods/ftblibrary/config/BooleanConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      80: aload_0
+      81: invokevirtual #249                // Method isClaimAllHardcoded:()Z
+      84: ifne          91
+      87: iconst_1
+      88: goto          92
+      91: iconst_0
+      92: invokevirtual #255                // Method dev/ftb/mods/ftblibrary/config/ConfigValue.setCanEdit:(Z)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+      95: pop
+      96: aload_1
+      97: ldc           #123                // String ignore_reward_blocking
+      99: aload_0
+     100: invokevirtual #257                // Method ignoreRewardBlocking:()Z
+     103: aload_0
+     104: invokedynamic #262,  0            // InvokeDynamic #3:accept:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Ljava/util/function/Consumer;
+     109: aload_0
+     110: getfield      #60                 // Field ignoreRewardBlocking:Z
+     113: invokevirtual #241                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.addBool:(Ljava/lang/String;ZLjava/util/function/Consumer;Z)Ldev/ftb/mods/ftblibrary/config/BooleanConfig;
+     116: ldc_w         #264                // String ftbquests.quest.misc.ignore_reward_blocking
+     119: invokevirtual #246                // Method dev/ftb/mods/ftblibrary/config/BooleanConfig.setNameKey:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+     122: aload_0
+     123: invokevirtual #267                // Method isIgnoreRewardBlockingHardcoded:()Z
+     126: ifne          133
+     129: iconst_1
+     130: goto          134
+     133: iconst_0
+     134: invokevirtual #255                // Method dev/ftb/mods/ftblibrary/config/ConfigValue.setCanEdit:(Z)Ldev/ftb/mods/ftblibrary/config/ConfigValue;
+     137: pop
+     138: return
+
+  public abstract void claim(net.minecraft.server.level.ServerPlayer, boolean);
+
+  public boolean automatedClaimPre(net.minecraft.world.level.block.entity.BlockEntity, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.util.RandomSource, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload         5
+       2: ifnull        9
+       5: iconst_1
+       6: goto          10
+       9: iconst_0
+      10: ireturn
+
+  public void automatedClaimPost(net.minecraft.world.level.block.entity.BlockEntity, java.util.UUID, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_3
+       1: ifnull        10
+       4: aload_0
+       5: aload_3
+       6: iconst_0
+       7: invokevirtual #288                // Method claim:(Lnet/minecraft/server/level/ServerPlayer;Z)V
+      10: return
+
+  public final void deleteSelf();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: aload_0
+       5: invokevirtual #294                // Method dev/ftb/mods/ftbquests/quest/Quest.removeReward:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)V
+       8: aload_0
+       9: invokevirtual #296                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      12: invokevirtual #302                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getAllTeamData:()Ljava/util/Collection;
+      15: invokeinterface #308,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      20: astore_1
+      21: aload_1
+      22: invokeinterface #313,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      27: ifeq          48
+      30: aload_1
+      31: invokeinterface #317,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      36: checkcast     #319                // class dev/ftb/mods/ftbquests/quest/TeamData
+      39: astore_2
+      40: aload_2
+      41: aload_0
+      42: invokevirtual #322                // Method dev/ftb/mods/ftbquests/quest/TeamData.deleteReward:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)V
+      45: goto          21
+      48: aload_0
+      49: invokespecial #324                // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.deleteSelf:()V
+      52: return
+
+  public final void deleteChildren();
+    Code:
+       0: aload_0
+       1: invokevirtual #296                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+       4: invokevirtual #302                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getAllTeamData:()Ljava/util/Collection;
+       7: invokeinterface #308,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      12: astore_1
+      13: aload_1
+      14: invokeinterface #313,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      19: ifeq          40
+      22: aload_1
+      23: invokeinterface #317,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      28: checkcast     #319                // class dev/ftb/mods/ftbquests/quest/TeamData
+      31: astore_2
+      32: aload_2
+      33: aload_0
+      34: invokevirtual #322                // Method dev/ftb/mods/ftbquests/quest/TeamData.deleteReward:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)V
+      37: goto          13
+      40: aload_0
+      41: invokespecial #329                // Method dev/ftb/mods/ftbquests/quest/QuestObjectBase.deleteChildren:()V
+      44: return
+
+  public void editedFromGUI();
+    Code:
+       0: ldc_w         #332                // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+       3: invokestatic  #338                // Method dev/ftb/mods/ftblibrary/util/client/ClientUtils.getCurrentGuiAs:(Ljava/lang/Class;)Ljava/lang/Object;
+       6: checkcast     #332                // class dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen
+       9: astore_1
+      10: aload_1
+      11: ifnull        29
+      14: aload_1
+      15: invokevirtual #341                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.refreshQuestPanel:()V
+      18: aload_1
+      19: invokevirtual #344                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.isViewingQuest:()Z
+      22: ifeq          29
+      25: aload_1
+      26: invokevirtual #347                // Method dev/ftb/mods/ftbquests/client/gui/quests/QuestScreen.refreshViewQuestPanel:()V
+      29: return
+
+  public void onCreated();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: aload_0
+       5: invokevirtual #353                // Method dev/ftb/mods/ftbquests/quest/Quest.addReward:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;)V
+       8: return
+
+  public final boolean isTeamReward();
+    Code:
+       0: aload_0
+       1: getfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       4: aload_0
+       5: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       8: invokevirtual #355                // Method dev/ftb/mods/ftbquests/quest/Quest.getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      11: invokevirtual #358                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.isDefaultPerTeamReward:()Z
+      14: invokevirtual #361                // Method dev/ftb/mods/ftblibrary/config/Tristate.get:(Z)Z
+      17: ireturn
+
+  public final dev.ftb.mods.ftbquests.quest.reward.RewardAutoClaim getAutoClaimType();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+       4: invokevirtual #81                 // Method dev/ftb/mods/ftbquests/quest/Quest.getChapter:()Ldev/ftb/mods/ftbquests/quest/Chapter;
+       7: invokevirtual #366                // Method dev/ftb/mods/ftbquests/quest/Chapter.isAlwaysInvisible:()Z
+      10: ifeq          37
+      13: aload_0
+      14: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      17: getstatic     #44                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.DEFAULT:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      20: if_acmpeq     33
+      23: aload_0
+      24: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      27: getstatic     #369                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.DISABLED:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      30: if_acmpne     37
+      33: getstatic     #372                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.ENABLED:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      36: areturn
+      37: aload_0
+      38: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      41: getstatic     #44                 // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.DEFAULT:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      44: if_acmpne     58
+      47: aload_0
+      48: getfield      #33                 // Field quest:Ldev/ftb/mods/ftbquests/quest/Quest;
+      51: invokevirtual #355                // Method dev/ftb/mods/ftbquests/quest/Quest.getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      54: invokevirtual #375                // Method dev/ftb/mods/ftbquests/quest/BaseQuestFile.getDefaultRewardAutoClaim:()Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      57: areturn
+      58: aload_0
+      59: getfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      62: areturn
+
+  public final void forceProgress(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange);
+    Code:
+       0: aload_2
+       1: invokevirtual #384                // Method dev/ftb/mods/ftbquests/util/ProgressChange.shouldReset:()Z
+       4: ifeq          20
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #388                // Method dev/ftb/mods/ftbquests/util/ProgressChange.getPlayerId:()Ljava/util/UUID;
+      12: aload_0
+      13: invokevirtual #392                // Method dev/ftb/mods/ftbquests/quest/TeamData.resetReward:(Ljava/util/UUID;Ldev/ftb/mods/ftbquests/quest/reward/Reward;)Z
+      16: pop
+      17: goto          127
+      20: aload_0
+      21: invokevirtual #296                // Method getQuestFile:()Ldev/ftb/mods/ftbquests/quest/BaseQuestFile;
+      24: astore        4
+      26: aload         4
+      28: instanceof    #394                // class dev/ftb/mods/ftbquests/quest/ServerQuestFile
+      31: ifeq          127
+      34: aload         4
+      36: checkcast     #394                // class dev/ftb/mods/ftbquests/quest/ServerQuestFile
+      39: astore_3
+      40: aload_0
+      41: invokevirtual #396                // Method getAutoClaimType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      44: getstatic     #369                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.DISABLED:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      47: if_acmpeq     127
+      50: aload_0
+      51: invokevirtual #398                // Method isTeamReward:()Z
+      54: ifeq          110
+      57: aload_3
+      58: getfield      #402                // Field dev/ftb/mods/ftbquests/quest/ServerQuestFile.server:Lnet/minecraft/server/MinecraftServer;
+      61: invokevirtual #408                // Method net/minecraft/server/MinecraftServer.m_6846_:()Lnet/minecraft/server/players/PlayerList;
+      64: aload_2
+      65: invokevirtual #388                // Method dev/ftb/mods/ftbquests/util/ProgressChange.getPlayerId:()Ljava/util/UUID;
+      68: invokevirtual #414                // Method net/minecraft/server/players/PlayerList.m_11259_:(Ljava/util/UUID;)Lnet/minecraft/server/level/ServerPlayer;
+      71: astore        4
+      73: aload         4
+      75: ifnull        107
+      78: aload_1
+      79: aload         4
+      81: aload_0
+      82: aload_0
+      83: invokevirtual #396                // Method getAutoClaimType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      86: getstatic     #372                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.ENABLED:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      89: if_acmpne     96
+      92: iconst_1
+      93: goto          97
+      96: iconst_0
+      97: aload_2
+      98: invokevirtual #420                // Method dev/ftb/mods/ftbquests/util/ProgressChange.getDate:()Ljava/util/Date;
+     101: invokevirtual #425                // Method java/util/Date.getTime:()J
+     104: invokevirtual #429                // Method dev/ftb/mods/ftbquests/quest/TeamData.claimReward:(Lnet/minecraft/server/level/ServerPlayer;Ldev/ftb/mods/ftbquests/quest/reward/Reward;ZJ)V
+     107: goto          127
+     110: aload_1
+     111: invokevirtual #432                // Method dev/ftb/mods/ftbquests/quest/TeamData.getOnlineMembers:()Ljava/util/Collection;
+     114: aload_0
+     115: aload_1
+     116: aload_2
+     117: invokedynamic #442,  0            // InvokeDynamic #4:accept:(Ldev/ftb/mods/ftbquests/quest/reward/Reward;Ldev/ftb/mods/ftbquests/quest/TeamData;Ldev/ftb/mods/ftbquests/util/ProgressChange;)Ljava/util/function/Consumer;
+     122: invokeinterface #446,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+     127: return
+
+  public dev.ftb.mods.ftblibrary.icon.Icon getAltIcon();
+    Code:
+       0: aload_0
+       1: invokevirtual #50                 // Method getType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       4: invokevirtual #454                // Method dev/ftb/mods/ftbquests/quest/reward/RewardType.getIconSupplier:()Ldev/ftb/mods/ftblibrary/icon/Icon;
+       7: areturn
+
+  public net.minecraft.network.chat.Component getAltTitle();
+    Code:
+       0: aload_0
+       1: invokevirtual #50                 // Method getType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       4: invokevirtual #459                // Method dev/ftb/mods/ftbquests/quest/reward/RewardType.getDisplayName:()Lnet/minecraft/network/chat/Component;
+       7: areturn
+
+  public final dev.ftb.mods.ftblibrary.config.ConfigGroup createSubGroup(dev.ftb.mods.ftblibrary.config.ConfigGroup);
+    Code:
+       0: aload_0
+       1: invokevirtual #50                 // Method getType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardType;
+       4: astore_2
+       5: aload_1
+       6: aload_0
+       7: invokevirtual #464                // Method getObjectType:()Ldev/ftb/mods/ftbquests/quest/QuestObjectType;
+      10: invokevirtual #468                // Method dev/ftb/mods/ftbquests/quest/QuestObjectType.getId:()Ljava/lang/String;
+      13: invokevirtual #472                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+      16: aload_2
+      17: invokevirtual #476                // Method dev/ftb/mods/ftbquests/quest/reward/RewardType.getTypeId:()Lnet/minecraft/resources/ResourceLocation;
+      20: invokevirtual #481                // Method net/minecraft/resources/ResourceLocation.m_135827_:()Ljava/lang/String;
+      23: invokevirtual #472                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+      26: aload_2
+      27: invokevirtual #476                // Method dev/ftb/mods/ftbquests/quest/reward/RewardType.getTypeId:()Lnet/minecraft/resources/ResourceLocation;
+      30: invokevirtual #484                // Method net/minecraft/resources/ResourceLocation.m_135815_:()Ljava/lang/String;
+      33: invokevirtual #472                // Method dev/ftb/mods/ftblibrary/config/ConfigGroup.getOrCreateSubgroup:(Ljava/lang/String;)Ldev/ftb/mods/ftblibrary/config/ConfigGroup;
+      36: areturn
+
+  public void addMouseOverText(dev.ftb.mods.ftblibrary.util.TooltipList);
+    Code:
+       0: return
+
+  public boolean addTitleInMouseOverText();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public void onButtonClicked(dev.ftb.mods.ftblibrary.ui.Button, boolean);
+    Code:
+       0: iload_2
+       1: ifeq          23
+       4: aload_1
+       5: invokevirtual #500                // Method dev/ftb/mods/ftblibrary/ui/Button.playClickSound:()V
+       8: new           #502                // class dev/ftb/mods/ftbquests/net/ClaimRewardMessage
+      11: dup
+      12: aload_0
+      13: getfield      #503                // Field id:J
+      16: iconst_1
+      17: invokespecial #506                // Method dev/ftb/mods/ftbquests/net/ClaimRewardMessage."<init>":(JZ)V
+      20: invokevirtual #509                // Method dev/ftb/mods/ftbquests/net/ClaimRewardMessage.sendToServer:()V
+      23: return
+
+  public boolean getExcludeFromClaimAll();
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field excludeFromClaimAll:Z
+       4: ireturn
+
+  public boolean isClaimAllHardcoded();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public java.util.Optional<dev.ftb.mods.ftblibrary.util.client.PositionedIngredient> getIngredient(dev.ftb.mods.ftblibrary.ui.Widget);
+    Code:
+       0: aload_0
+       1: invokevirtual #517                // Method getIcon:()Ldev/ftb/mods/ftblibrary/icon/Icon;
+       4: invokevirtual #521                // Method dev/ftb/mods/ftblibrary/icon/Icon.getIngredient:()Ljava/lang/Object;
+       7: aload_1
+       8: invokestatic  #527                // Method dev/ftb/mods/ftblibrary/util/client/PositionedIngredient.of:(Ljava/lang/Object;Ldev/ftb/mods/ftblibrary/ui/Widget;)Ljava/util/Optional;
+      11: areturn
+
+  public java.util.Set<dev.ftb.mods.ftbquests.integration.RecipeModHelper$Components> componentsToRefresh();
+    Code:
+       0: getstatic     #535                // Field dev/ftb/mods/ftbquests/integration/RecipeModHelper$Components.QUESTS:Ldev/ftb/mods/ftbquests/integration/RecipeModHelper$Components;
+       3: invokestatic  #540                // Method java/util/EnumSet.of:(Ljava/lang/Enum;)Ljava/util/EnumSet;
+       6: areturn
+
+  public java.lang.String getButtonText();
+    Code:
+       0: ldc_w         #543                // String
+       3: areturn
+
+  public boolean ignoreRewardBlocking();
+    Code:
+       0: aload_0
+       1: getfield      #60                 // Field ignoreRewardBlocking:Z
+       4: ireturn
+
+  protected boolean isIgnoreRewardBlockingHardcoded();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  private void lambda$forceProgress$4(dev.ftb.mods.ftbquests.quest.TeamData, dev.ftb.mods.ftbquests.util.ProgressChange, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_1
+       1: aload_3
+       2: aload_0
+       3: aload_0
+       4: invokevirtual #396                // Method getAutoClaimType:()Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+       7: getstatic     #372                // Field dev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim.ENABLED:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+      10: if_acmpne     17
+      13: iconst_1
+      14: goto          18
+      17: iconst_0
+      18: aload_2
+      19: invokevirtual #420                // Method dev/ftb/mods/ftbquests/util/ProgressChange.getDate:()Ljava/util/Date;
+      22: invokevirtual #425                // Method java/util/Date.getTime:()J
+      25: invokevirtual #429                // Method dev/ftb/mods/ftbquests/quest/TeamData.claimReward:(Lnet/minecraft/server/level/ServerPlayer;Ldev/ftb/mods/ftbquests/quest/reward/Reward;ZJ)V
+      28: return
+
+  private void lambda$fillConfigGroup$3(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #549                // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #60                 // Field ignoreRewardBlocking:Z
+       8: return
+
+  private void lambda$fillConfigGroup$2(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #549                // Method java/lang/Boolean.booleanValue:()Z
+       5: putfield      #58                 // Field excludeFromClaimAll:Z
+       8: return
+
+  private void lambda$fillConfigGroup$1(dev.ftb.mods.ftbquests.quest.reward.RewardAutoClaim);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #46                 // Field autoclaim:Ldev/ftb/mods/ftbquests/quest/reward/RewardAutoClaim;
+       5: return
+
+  private void lambda$fillConfigGroup$0(dev.ftb.mods.ftblibrary.config.Tristate);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #40                 // Field team:Ldev/ftb/mods/ftblibrary/config/Tristate;
+       5: return
+}

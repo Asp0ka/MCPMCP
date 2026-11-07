@@ -1,0 +1,274 @@
+Compiled from "RuntimePin.java"
+final class dev.mcpmcp.ftbquests.RuntimePin {
+  static final java.util.List<dev.mcpmcp.ftbquests.RuntimePin$Pin> PINS;
+
+  private final dev.mcpmcp.ftbquests.RuntimePin$Lookup lookup;
+
+  private final dev.mcpmcp.ftbquests.RuntimePin$Filesystem filesystem;
+
+  dev.mcpmcp.ftbquests.RuntimePin();
+    Code:
+       0: aload_0
+       1: invokedynamic #47,  0             // InvokeDynamic #0:get:()Ldev/mcpmcp/ftbquests/RuntimePin$Lookup;
+       6: invokedynamic #56,  0             // InvokeDynamic #1:digest:()Ldev/mcpmcp/ftbquests/RuntimePin$Filesystem;
+      11: invokespecial #59                 // Method "<init>":(Ldev/mcpmcp/ftbquests/RuntimePin$Lookup;Ldev/mcpmcp/ftbquests/RuntimePin$Filesystem;)V
+      14: return
+
+  dev.mcpmcp.ftbquests.RuntimePin(dev.mcpmcp.ftbquests.RuntimePin$Lookup, dev.mcpmcp.ftbquests.RuntimePin$Filesystem);
+    Code:
+       0: aload_0
+       1: invokespecial #63                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #65                 // Field lookup:Ldev/mcpmcp/ftbquests/RuntimePin$Lookup;
+       9: aload_0
+      10: aload_2
+      11: putfield      #67                 // Field filesystem:Ldev/mcpmcp/ftbquests/RuntimePin$Filesystem;
+      14: return
+
+  void verify();
+    Code:
+       0: getstatic     #70                 // Field PINS:Ljava/util/List;
+       3: invokeinterface #76,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       8: astore_1
+       9: aload_1
+      10: invokeinterface #82,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      15: ifeq          136
+      18: aload_1
+      19: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      24: checkcast     #13                 // class dev/mcpmcp/ftbquests/RuntimePin$Pin
+      27: astore_2
+      28: aload_0
+      29: getfield      #65                 // Field lookup:Ldev/mcpmcp/ftbquests/RuntimePin$Lookup;
+      32: aload_2
+      33: invokevirtual #90                 // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.modId:()Ljava/lang/String;
+      36: invokeinterface #92,  2           // InterfaceMethod dev/mcpmcp/ftbquests/RuntimePin$Lookup.get:(Ljava/lang/String;)Ldev/mcpmcp/ftbquests/RuntimePin$Loaded;
+      41: astore_3
+      42: aload_3
+      43: ifnull        50
+      46: iconst_1
+      47: goto          51
+      50: iconst_0
+      51: aload_2
+      52: invokevirtual #90                 // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.modId:()Ljava/lang/String;
+      55: invokedynamic #104,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      60: invokestatic  #110                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      63: aload_2
+      64: invokevirtual #113                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.version:()Ljava/lang/String;
+      67: aload_3
+      68: invokevirtual #114                // Method dev/mcpmcp/ftbquests/RuntimePin$Loaded.version:()Ljava/lang/String;
+      71: invokevirtual #120                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      74: aload_2
+      75: invokevirtual #90                 // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.modId:()Ljava/lang/String;
+      78: invokedynamic #123,  0            // InvokeDynamic #3:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      83: invokestatic  #110                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+      86: aload_3
+      87: invokevirtual #127                // Method dev/mcpmcp/ftbquests/RuntimePin$Loaded.path:()Ljava/nio/file/Path;
+      90: ifnull        120
+      93: aload_2
+      94: invokevirtual #130                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.sha256:()Ljava/lang/String;
+      97: aload_0
+      98: getfield      #67                 // Field filesystem:Ldev/mcpmcp/ftbquests/RuntimePin$Filesystem;
+     101: aload_3
+     102: invokevirtual #127                // Method dev/mcpmcp/ftbquests/RuntimePin$Loaded.path:()Ljava/nio/file/Path;
+     105: invokeinterface #131,  2          // InterfaceMethod dev/mcpmcp/ftbquests/RuntimePin$Filesystem.digest:(Ljava/nio/file/Path;)Ljava/lang/String;
+     110: invokevirtual #120                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     113: ifeq          120
+     116: iconst_1
+     117: goto          121
+     120: iconst_0
+     121: aload_2
+     122: invokevirtual #90                 // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.modId:()Ljava/lang/String;
+     125: invokedynamic #134,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     130: invokestatic  #110                // Method dev/mcpmcp/ftbquests/Json.need:(ZLjava/lang/String;)V
+     133: goto          9
+     136: return
+
+  static java.lang.String digest(java.nio.file.Path);
+    Code:
+       0: ldc           #146                // String SHA-256
+       2: invokestatic  #152                // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+       5: astore_1
+       6: aload_0
+       7: iconst_0
+       8: anewarray     #154                // class java/nio/file/OpenOption
+      11: invokestatic  #160                // Method java/nio/file/Files.newInputStream:(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/InputStream;
+      14: astore_2
+      15: ldc           #161                // int 65536
+      17: newarray       byte
+      19: astore_3
+      20: aload_2
+      21: aload_3
+      22: invokevirtual #169                // Method java/io/InputStream.read:([B)I
+      25: dup
+      26: istore        4
+      28: iconst_m1
+      29: if_icmpeq     43
+      32: aload_1
+      33: aload_3
+      34: iconst_0
+      35: iload         4
+      37: invokevirtual #173                // Method java/security/MessageDigest.update:([BII)V
+      40: goto          20
+      43: aload_2
+      44: ifnull        76
+      47: aload_2
+      48: invokevirtual #176                // Method java/io/InputStream.close:()V
+      51: goto          76
+      54: astore_3
+      55: aload_2
+      56: ifnull        74
+      59: aload_2
+      60: invokevirtual #176                // Method java/io/InputStream.close:()V
+      63: goto          74
+      66: astore        4
+      68: aload_3
+      69: aload         4
+      71: invokevirtual #182                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+      74: aload_3
+      75: athrow
+      76: invokestatic  #188                // Method java/util/HexFormat.of:()Ljava/util/HexFormat;
+      79: aload_1
+      80: invokevirtual #191                // Method java/security/MessageDigest.digest:()[B
+      83: invokevirtual #195                // Method java/util/HexFormat.formatHex:([B)Ljava/lang/String;
+      86: areturn
+      87: astore_1
+      88: new           #199                // class java/lang/IllegalStateException
+      91: dup
+      92: ldc           #201                // String ftbquests_dependency_hash_unavailable
+      94: aload_1
+      95: invokespecial #204                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      98: athrow
+    Exception table:
+       from    to  target type
+          15    43    54   Class java/lang/Throwable
+          59    63    66   Class java/lang/Throwable
+           0    86    87   Class java/io/IOException
+           0    86    87   Class java/security/NoSuchAlgorithmException
+
+  static com.google.gson.JsonArray declarations();
+    Code:
+       0: new           #218                // class com/google/gson/JsonArray
+       3: dup
+       4: invokespecial #219                // Method com/google/gson/JsonArray."<init>":()V
+       7: astore_0
+       8: getstatic     #70                 // Field PINS:Ljava/util/List;
+      11: invokeinterface #76,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      16: astore_1
+      17: aload_1
+      18: invokeinterface #82,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          87
+      26: aload_1
+      27: invokeinterface #86,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #13                 // class dev/mcpmcp/ftbquests/RuntimePin$Pin
+      35: astore_2
+      36: aload_0
+      37: bipush        6
+      39: anewarray     #4                  // class java/lang/Object
+      42: dup
+      43: iconst_0
+      44: ldc           #221                // String mod_id
+      46: aastore
+      47: dup
+      48: iconst_1
+      49: aload_2
+      50: invokevirtual #90                 // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.modId:()Ljava/lang/String;
+      53: aastore
+      54: dup
+      55: iconst_2
+      56: ldc           #222                // String version
+      58: aastore
+      59: dup
+      60: iconst_3
+      61: aload_2
+      62: invokevirtual #113                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.version:()Ljava/lang/String;
+      65: aastore
+      66: dup
+      67: iconst_4
+      68: ldc           #223                // String sha256
+      70: aastore
+      71: dup
+      72: iconst_5
+      73: aload_2
+      74: invokevirtual #130                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin.sha256:()Ljava/lang/String;
+      77: aastore
+      78: invokestatic  #227                // Method dev/mcpmcp/ftbquests/Json.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      81: invokevirtual #231                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+      84: goto          17
+      87: aload_0
+      88: areturn
+
+  private static dev.mcpmcp.ftbquests.RuntimePin$Loaded lambda$new$1(java.lang.String);
+    Code:
+       0: invokestatic  #239                // Method net/minecraftforge/fml/ModList.get:()Lnet/minecraftforge/fml/ModList;
+       3: astore_1
+       4: aload_1
+       5: ifnonnull     18
+       8: new           #199                // class java/lang/IllegalStateException
+      11: dup
+      12: ldc           #241                // String ftbquests_modlist_unavailable
+      14: invokespecial #244                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      17: athrow
+      18: aload_1
+      19: aload_0
+      20: invokevirtual #248                // Method net/minecraftforge/fml/ModList.getModContainerById:(Ljava/lang/String;)Ljava/util/Optional;
+      23: aload_0
+      24: invokedynamic #259,  0            // InvokeDynamic #5:get:(Ljava/lang/String;)Ljava/util/function/Supplier;
+      29: invokevirtual #265                // Method java/util/Optional.orElseThrow:(Ljava/util/function/Supplier;)Ljava/lang/Object;
+      32: checkcast     #267                // class net/minecraftforge/fml/ModContainer
+      35: invokevirtual #271                // Method net/minecraftforge/fml/ModContainer.getModInfo:()Lnet/minecraftforge/forgespi/language/IModInfo;
+      38: astore_2
+      39: aload_2
+      40: invokeinterface #277,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getOwningFile:()Lnet/minecraftforge/forgespi/language/IModFileInfo;
+      45: invokeinterface #283,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModFileInfo.getFile:()Lnet/minecraftforge/forgespi/locating/IModFile;
+      50: astore_3
+      51: new           #9                  // class dev/mcpmcp/ftbquests/RuntimePin$Loaded
+      54: dup
+      55: aload_2
+      56: invokeinterface #287,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getVersion:()Lorg/apache/maven/artifact/versioning/ArtifactVersion;
+      61: invokevirtual #290                // Method java/lang/Object.toString:()Ljava/lang/String;
+      64: aload_3
+      65: invokeinterface #295,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getFilePath:()Ljava/nio/file/Path;
+      70: aload_3
+      71: invokespecial #298                // Method dev/mcpmcp/ftbquests/RuntimePin$Loaded."<init>":(Ljava/lang/String;Ljava/nio/file/Path;Ljava/lang/Object;)V
+      74: areturn
+
+  private static java.lang.IllegalStateException lambda$new$0(java.lang.String);
+    Code:
+       0: new           #199                // class java/lang/IllegalStateException
+       3: dup
+       4: aload_0
+       5: invokedynamic #104,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      10: invokespecial #244                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      13: areturn
+
+  static {};
+    Code:
+       0: new           #13                 // class dev/mcpmcp/ftbquests/RuntimePin$Pin
+       3: dup
+       4: ldc_w         #309                // String ftbteams
+       7: ldc_w         #311                // String 2001.3.2
+      10: ldc_w         #313                // String b1cb4d82ea9f137a87e12a7aaf3329619294b56f7d70337dfd557a76e10b6e07
+      13: invokespecial #316                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      16: new           #13                 // class dev/mcpmcp/ftbquests/RuntimePin$Pin
+      19: dup
+      20: ldc_w         #318                // String architectury
+      23: ldc_w         #320                // String 9.2.14
+      26: ldc_w         #322                // String 218b471d0b8a1f6cda14cfc1beb9eeb0df54304500acc6c5613d9b88ec65d9af
+      29: invokespecial #316                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      32: new           #13                 // class dev/mcpmcp/ftbquests/RuntimePin$Pin
+      35: dup
+      36: ldc_w         #324                // String ftblibrary
+      39: ldc_w         #326                // String 2001.2.13
+      42: ldc_w         #328                // String 41810281b65336265cae2c88412022d02f2f0a3f28c66a06173d86f98acf14a7
+      45: invokespecial #316                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      48: new           #13                 // class dev/mcpmcp/ftbquests/RuntimePin$Pin
+      51: dup
+      52: ldc_w         #330                // String ftbquests
+      55: ldc_w         #332                // String 2001.4.22
+      58: ldc_w         #334                // String 9ea9d159a78a2724cfe0457b024680fdb52a2126eff9cfa5280a30578f647a68
+      61: invokespecial #316                // Method dev/mcpmcp/ftbquests/RuntimePin$Pin."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      64: invokestatic  #337                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      67: putstatic     #70                 // Field PINS:Ljava/util/List;
+      70: return
+}

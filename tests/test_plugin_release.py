@@ -35,6 +35,26 @@ class ReleaseTest(unittest.TestCase):
             with self.assertRaises(ValueError):combine_acceptance(rows,baseline,bad)
         with self.assertRaises(ValueError):combine_acceptance([rows[0]|{'adapter_sha256':'changed'},rows[1]],baseline,curios)
 
+    def test_ftb_is_required_and_new_binary_needs_own_acceptance(self):
+        import copy
+        from package_plugins import combine_acceptance
+        self.assertIn('mcpmcp.ftbquests',r.EXPECTED)
+        specs=[x for x in r.SPECS if x[0]=='ftbquests']
+        self.assertEqual(len(specs),1)
+        baseline={'batch':'base','verified':True,'checks':{k:True for k in ['all_plugins_loaded','policy_restored','empty_cursor_before_leave','no_recovery','iron_effect','travel_effect','furnace_transfer','storage_roundtrip','backpack_contract','nbt_stale_native_rejected','nbt_stale_packet_rejected','jei_focus_preserved']},'installed_hashes':{'mcpmcp.jei':'old'}}
+        curios={'batch':'curios','verified':True,'checks':{k:True for k in ['all_plugins_loaded','read_slots','equip','unequip','swap','cosmetic','render','stale_identity_rejected','invalid_slot_rejected','cursor_rejected','menu_preserved','closed_state_restored','policy_restored','empty_cursor','no_recovery']},'installed_hashes':{'mcpmcp.jei':'old','mcpmcp.curios':'curio'}}
+        ftb={'batch':'ftb','verified':True,'checks':{k:True for k in ['all_plugins_loaded','book_query','chapter_query','quest_list','quest_detail','progress_query','single_claim','claim_all','claimed_flag_readback','reward_effect_readback','duplicate_rejected','invalid_id_rejected','stale_session_rejected','policy_restored','menu_preserved','no_recovery']},'installed_hashes':curios['installed_hashes']|{'mcpmcp.ftbquests':'ftb'}}
+        rows=[{'id':k,'adapter_sha256':v} for k,v in ftb['installed_hashes'].items()]
+        combined=combine_acceptance(rows,baseline,curios,ftb)
+        self.assertEqual(combined['batch'],'ftb')
+        self.assertTrue(combined['verified'])
+        for key in ftb['checks']:
+            wrong=copy.deepcopy(ftb);wrong['checks'][key]=False
+            with self.assertRaises(ValueError):combine_acceptance(rows,baseline,curios,wrong)
+        wrong=copy.deepcopy(ftb);wrong['installed_hashes']['mcpmcp.jei']='changed'
+        with self.assertRaises(ValueError):combine_acceptance(rows,baseline,curios,wrong)
+        with self.assertRaises(ValueError):combine_acceptance(rows,baseline,curios)
+
     def test_exact_ids_required(self):
         with self.assertRaises(ValueError):
             r.require_ids([], {'mcpmcp.jei'})

@@ -8,6 +8,7 @@ MCPMCP 核心仍只依赖原版协议与客户端公开 API。下列插件是可
 
 | 插件 | 目标 | 能力 | 边界 |
 |---|---|---|---|
+| `mcpmcp.ftbquests` | FTB Quests2001.4.22及精确FTB Library/Teams/Architectury依赖 | 任务书、章节、列表/详情/进度、普通/选择奖励、全域一键领、显式阅读勾选 | 原生全域all_not_excluded无章过滤；奖励副作用/队伍/重复竞态见ftbquests-0.1.2.md |
 | `mcpmcp.curios` | Curios5.14.1+1.20.1 | 动态普通/外观槽、候选与真实菜单读取，受控开关/穿戴/卸下/交换、渲染与分页 | V2当前页hotbar单次SWAP；完整双侧指纹；拓展通用槽/饰品自动读取，专属技能另需适配；见curios-0.1.2.md |
 | `mcpmcp.jei` | JEI 15.20.0.130 / 15.74.0.234 两个独立构建 | 分类、材料、配方、配方槽位、催化剂查询；`jei.transfer` 通过 JEI 已注册处理器填料；`jei.show` 打开配方页 | 查询不打开 GUI；填料要求已打开兼容容器、空游标；`submitted` 不等于已填料或已合成；15.20 无完成回调，需读槽位 |
 | `mcpmcp.refinedstorage` | Refined Storage 1.12.4 | 网格菜单、存储行分页、提取/插入等受控动作 | 需要已打开 RS 网格；直接用网格 UUID 与实时菜单校验，不伪造服务端库存 |
@@ -26,7 +27,7 @@ MCPMCP 核心仍只依赖原版协议与客户端公开 API。下列插件是可
 
 真实整合包 `D:/Games/mc/Cheat/versions/神秘启旅`（Forge 47.4.21）中：
 
-- 原12插件验收保留；新增Curios后共13个adapter冷加载成功，`get_plugins` 全部 `active`、`java_loaded=true`、`java_error=null`。
+- 原12插件验收保留；新增Curios和FTB后共14个adapter冷加载成功，`get_plugins` 全部 `active`、`java_loaded=true`、`java_error=null`。
 - JEI 15.20.0.130：分类、材料分页、橡木木板配方、槽位与催化剂读回；背包合成格填料后原木减少 1、结果槽出现 4 木板，游标为空、菜单未关闭。
 - 各插件根 observer 返回合同或明确 `available=false` 原因；Ars/Iron's/Traveloptics 读到法力与法术书，Malum 返回 569 条候选、Wizard's Reborn 返回 479 条候选并成功分页；Botania/Avaritia 的局部方块与菜单合同可用。
 - Botania/Avaritia 的客户端 RecipeManager 查询已读到实际配方；空页 complete=false 仅表示当前扫描预算尚未命中，必须继续 next_cursor。额外的查看器动态配方也可用 JEI 分类查询（如 botania:mana_pool、avaritia:extreme_craft）。
@@ -43,17 +44,19 @@ python scripts/install_plugins.py
 python scripts/install_plugins.py --apply
 ```
 
-`plugin_release.py` 从明确工程执行所有适配器的 clean/build/reobf 和分发任务，生成按源文件、manifest、GUIDE、产物 SHA-256 绑定的构建凭据；不是搜索任意旧 JAR 来匹配。安装器要求完整13插件集合、唯一目标版本/full hash、SPI/provider、规范路径及目标进程均通过预检；全量暂存再复查，保留备份和用户支持文件。系统不能提供跨进程事务，复制过程中不要另外启动游戏。
+`plugin_release.py` 从明确工程执行所有适配器的 clean/build/reobf 和分发任务，生成按源文件、manifest、GUIDE、产物 SHA-256 绑定的构建凭据；不是搜索任意旧 JAR 来匹配。安装器要求完整14插件集合、唯一目标版本/full hash、SPI/provider、规范路径及目标进程均通过预检；全量暂存再复查，保留备份和用户支持文件。系统不能提供跨进程事务，复制过程中不要另外启动游戏。
 
-完成实际增量验收、分别保存原12插件 `docs/evidence/plugin-acceptance-0.1.2/final-delta.json` 和Curios `docs/evidence/curios-0.1.2/acceptance.json`、提交源代码后运行：
+完成实际增量验收、分别保存原12插件 `docs/evidence/plugin-acceptance-0.1.2/final-delta.json` 、Curios `docs/evidence/curios-0.1.2/acceptance.json` 和FTB `docs/evidence/ftbquests-0.1.2/acceptance.json`、提交源代码后运行：
 
 ```text
 python scripts/package.py
 ```
 
-主包包含核心、精确提交的源码、文档，以及 `optional/MCPMCP-Plugins-1.20.1-forge.zip`（测试实例13插件）和 `optional/MCPMCP-JEI-Variants-1.20.1-forge.zip`（JEI15.20/15.74二选一）。两个 JEI 变体都分发，但不得同时安装同 ID 的插件。包内 manifest 和 SHA256SUMS 记录对应提交、构建/安装/验收凭据及 hash；打包先写临时文件并验证后替换正式包。
+主包包含核心、精确提交的源码、文档，以及 `optional/MCPMCP-Plugins-1.20.1-forge.zip`（测试实例14插件）和 `optional/MCPMCP-JEI-Variants-1.20.1-forge.zip`（JEI15.20/15.74二选一）。两个 JEI 变体都分发，但不得同时安装同 ID 的插件。包内 manifest 和 SHA256SUMS 记录对应提交、构建/安装/验收凭据及 hash；打包先写临时文件并验证后替换正式包。
 
 Curios新增范围与29项实机检查见 `curios-0.1.2.md`。单独增量构建可用 `python scripts/plugin_release.py --project curios-1.20.1-forge`，其余源码/产物/文档必须与此前构建凭据一致；不重建不等于省略来源验证。
+
+FTB新增范围与30项实机检查见 `ftbquests-0.1.2.md`。增量构建 `python scripts/plugin_release.py --project ftbquests-1.20.1-forge` 保持原13插件二进制不变，独立验证任务/奖励与新产物hash。
 
 ## 独立构建
 
