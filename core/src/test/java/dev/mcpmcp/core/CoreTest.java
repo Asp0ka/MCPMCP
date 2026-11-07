@@ -29,6 +29,15 @@ public final class CoreTest {
   jobs.submit("world","x",new JsonObject(),()->Jsons.obj("pending",true),0,1000);jobs.pump(1);ok(jobs.result("world").get("status").getAsString().equals("cancelled"));
   SessionLease lease=new SessionLease(0,false);ok(lease.observe(0,false).equals("open"));lease.opened(4);ok(lease.observe(4,true).equals("operate"));ok(lease.finish(4).equals("close"));
   SessionLease reuse=new SessionLease(7,true);ok(reuse.observe(7,true).equals("operate"));ok(reuse.finish(7).equals("keep"));ok(reuse.observe(8,true).equals("conflict"));
+  java.nio.file.Path tmp=java.nio.file.Files.createTempDirectory("mcpmcp-plugin-test");
+  PluginFiles pf=new PluginFiles(tmp);fails(()->pf.resolve("../options.txt"));fails(()->pf.resolve("/tmp/options.txt"));fails(()->pf.write("example/adapter.jar","bad"));
+  pf.write("example/GUIDE.md","hello");ok(pf.read("example/GUIDE.md").equals("hello"));
+  java.nio.file.Files.delete(tmp.resolve("example/GUIDE.md"));java.nio.file.Files.delete(tmp.resolve("example"));java.nio.file.Files.delete(tmp);
+  fails(()->pf.resolve("C:/options.txt"));fails(()->pf.resolve("a/../../outside.md"));fails(()->Schema.bounded(Jsons.obj("n",Double.NaN)));
+  class Cleaning implements Jobs.Step,Jobs.Cleanup {int clean;public JsonObject tick(){return Jsons.obj("pending",true);}public void cleanup(){clean++;}}
+  Cleaning cleanup=new Cleaning();jobs.submit("cleanup","x",new JsonObject(),cleanup,1,1000);jobs.pump(1);jobs.cancel("cleanup");ok(cleanup.clean==1);
+  Cleaning timeout=new Cleaning();jobs.submit("timeout","x",new JsonObject(),timeout,1,1);Thread.sleep(5);jobs.pump(1);ok(jobs.result("timeout").get("status").getAsString().equals("failed"));ok(timeout.clean==1);
+  Jobs reentrant=new Jobs();int[] calls={0};reentrant.submit("nested","ui",new JsonObject(),()->{calls[0]++;if(calls[0]<2)reentrant.pump(0);return Jsons.obj("observed_success",true);},0,1000);reentrant.pump(0);ok(calls[0]==1);
   System.out.println("CoreTest: "+count+" checks passed");
  }
 }

@@ -1,0 +1,41 @@
+{
+  "api": 1,
+  "id": "example.vanilla",
+  "mod_id": "minecraft",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "actions": [
+    {
+      "name": "example.select_hotbar",
+      "description": "Demonstrates a declarative normal packet adapter.",
+      "transport": "packet",
+      "permission": "normal",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "slot": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8
+          }
+        },
+        "required": [
+          "slot"
+        ],
+        "additionalProperties": false
+      },
+      "packet": {
+        "packet_class": "net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket",
+        "mode": "constructor",
+        "signature": [
+          "int"
+        ],
+        "values": [
+          {
+            "param": "slot"
+          }
+        ]
+      }
+    }
+  ]
+}
