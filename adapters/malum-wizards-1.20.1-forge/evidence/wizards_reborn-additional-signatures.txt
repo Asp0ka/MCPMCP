@@ -1,0 +1,120 @@
+Compiled from "JewelerTableContainer.java"
+public class mod.maxbogomol.wizards_reborn.client.gui.container.JewelerTableContainer extends mod.maxbogomol.fluffy_fur.client.gui.screen.ContainerMenuBase {
+  public final net.minecraft.world.level.block.entity.BlockEntity blockEntity;
+  public mod.maxbogomol.wizards_reborn.client.gui.container.JewelerTableContainer(int, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+  public int getInventorySize();
+  private void lambda$new$0(net.minecraftforge.items.IItemHandler);
+}
+Compiled from "AlchemyFurnaceContainer.java"
+public class mod.maxbogomol.wizards_reborn.client.gui.container.AlchemyFurnaceContainer extends mod.maxbogomol.fluffy_fur.client.gui.screen.ContainerMenuBase {
+  public final net.minecraft.world.level.block.entity.BlockEntity blockEntity;
+  public mod.maxbogomol.wizards_reborn.client.gui.container.AlchemyFurnaceContainer(int, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+  public int getInventorySize();
+  protected boolean isFuel(net.minecraft.world.item.ItemStack);
+  private void lambda$new$0(net.minecraftforge.items.IItemHandler);
+}
+Compiled from "PipeBaseBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.pipe.PipeBaseBlockEntity extends mod.maxbogomol.fluffy_fur.common.block.entity.BlockEntityBase {
+  public mod.maxbogomol.wizards_reborn.api.alchemy.PipeConnection[] connections;
+  public boolean loaded;
+  public static final net.minecraftforge.client.model.data.ModelProperty<int[]> DATA_TYPE;
+  public mod.maxbogomol.wizards_reborn.common.block.pipe.PipeBaseBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void initConnections();
+  public net.minecraftforge.client.model.data.ModelData getModelData();
+  public void setConnection(net.minecraft.core.Direction, mod.maxbogomol.wizards_reborn.api.alchemy.PipeConnection);
+  public mod.maxbogomol.wizards_reborn.api.alchemy.PipeConnection getConnection(net.minecraft.core.Direction);
+  public void setConnections(mod.maxbogomol.wizards_reborn.api.alchemy.PipeConnection[]);
+  public void onDataPacket(net.minecraft.network.Connection, net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public void loadConnections(net.minecraft.nbt.CompoundTag);
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.nbt.CompoundTag m_5995_();
+  public void writeConnections(net.minecraft.nbt.CompoundTag);
+  public void cloggedEffect();
+  static {};
+}
+Compiled from "CrystalRitual.java"
+public class mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual {
+  public java.lang.String id;
+  public static java.util.Random random;
+  public static java.awt.Color standardColor;
+  public mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual(java.lang.String);
+  public java.lang.String getId();
+  public java.awt.Color getColor();
+  public java.lang.String getTranslatedName();
+  public static java.lang.String getTranslatedName(java.lang.String);
+  public java.util.List<mod.maxbogomol.wizards_reborn.api.crystal.CrystalType> getCrystalsList();
+  public int getMinimalPolishingLevel();
+  public mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitualArea getArea(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public boolean hasArea(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public boolean hasLightRay(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public int getStatLevel(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity, mod.maxbogomol.wizards_reborn.api.crystal.CrystalStat);
+  public int getMaxRitualCooldown(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public int getMaxRitualCooldown(int, net.minecraft.world.item.ItemStack);
+  public int getMaxRitualCooldownWithStat(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public float getCooldownStatModifier();
+  public void setCooldown(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity, int);
+  public int getCooldown(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public void setMaxCooldown(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity, int);
+  public int getMaxCooldown(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public float getCrystalCooldown(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public void updateCrystal(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public boolean canStart(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public boolean canTick(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public boolean canEnd(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public void start(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public void tick(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public void end(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public net.minecraft.world.item.ItemStack getCrystalItem(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public mod.maxbogomol.wizards_reborn.api.crystal.CrystalType getCrystalType(net.minecraft.world.item.ItemStack);
+  public mod.maxbogomol.wizards_reborn.api.crystal.PolishingType getCrystalPolishingType(net.minecraft.world.item.ItemStack);
+  public java.awt.Color getCrystalColor(net.minecraft.world.item.ItemStack);
+  public static java.util.ArrayList<net.minecraft.core.BlockPos> getBlockPosWithArea(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, java.util.function.Predicate<net.minecraft.core.BlockPos>, boolean, boolean, int);
+  public static java.util.ArrayList<net.minecraft.core.BlockPos> getBlockPosWithArea(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitualArea, java.util.function.Predicate<net.minecraft.core.BlockPos>, boolean, boolean, int);
+  public static java.util.List<mod.maxbogomol.wizards_reborn.common.block.arcane_pedestal.ArcanePedestalBlockEntity> getPedestalsWithArea(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static java.util.List<mod.maxbogomol.wizards_reborn.common.block.arcane_pedestal.ArcanePedestalBlockEntity> getPedestalsWithArea(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitualArea);
+  public static java.util.List<net.minecraft.world.item.ItemStack> getItemsFromPedestals(java.util.List<mod.maxbogomol.wizards_reborn.common.block.arcane_pedestal.ArcanePedestalBlockEntity>);
+  public boolean canActivateWithItems(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity, mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitualArea);
+  public static void deleteItemsFromPedestals(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, java.util.List<mod.maxbogomol.wizards_reborn.common.block.arcane_pedestal.ArcanePedestalBlockEntity>, boolean, boolean);
+  public void render(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity, float, com.mojang.blaze3d.vertex.PoseStack, net.minecraft.client.renderer.MultiBufferSource, int, int);
+  public static net.minecraft.world.Container getItemHandler(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public static void updateRunicPedestal(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public static void clearItemHandler(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public int getInventorySize(net.minecraft.world.Container);
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemsResult(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  public boolean canStartWithCrystal(mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity);
+  private boolean lambda$canActivateWithItems$0(mod.maxbogomol.wizards_reborn.common.recipe.CrystalRitualRecipe);
+  static {};
+}
+Compiled from "ArcaneEnchantment.java"
+public class mod.maxbogomol.wizards_reborn.api.arcaneenchantment.ArcaneEnchantment {
+  public java.lang.String id;
+  public int maxLevel;
+  public mod.maxbogomol.wizards_reborn.api.arcaneenchantment.ArcaneEnchantment(java.lang.String, int);
+  public java.lang.String getId();
+  public java.awt.Color getColor();
+  public int getMaxLevel();
+  public boolean isCurse();
+  public java.lang.String getTranslatedName();
+  public static java.lang.String getTranslatedName(java.lang.String);
+  public boolean canEnchantItem(net.minecraft.world.item.ItemStack);
+  public boolean checkCompatibility(mod.maxbogomol.wizards_reborn.api.arcaneenchantment.ArcaneEnchantment);
+  public net.minecraft.network.chat.Component getFullname(int);
+  public java.util.List<net.minecraft.network.chat.Component> modifierAppendHoverText(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level, net.minecraft.world.item.TooltipFlag);
+  public void renderParticle(com.mojang.blaze3d.vertex.PoseStack, net.minecraft.world.entity.LivingEntity, net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, int, int, int, int, int);
+}
+Compiled from "AlchemyPotion.java"
+public class mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion {
+  public java.lang.String id;
+  public java.util.ArrayList<net.minecraft.world.effect.MobEffectInstance> effects;
+  public mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion(java.lang.String);
+  public mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion(java.lang.String, net.minecraft.world.effect.MobEffectInstance...);
+  public java.lang.String getId();
+  public java.awt.Color getColor();
+  public java.util.ArrayList<net.minecraft.world.effect.MobEffectInstance> getEffects();
+  public java.lang.String getTranslatedName();
+  public static java.lang.String getTranslatedName(java.lang.String);
+  public void apply(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity);
+}

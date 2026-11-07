@@ -1,0 +1,12 @@
+Compiled from "CooldownInstance.java"
+public class io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance {
+  private int cooldownRemaining;
+  private final int spellCooldown;
+  public io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance(int);
+  public io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance(int, int);
+  public void decrement();
+  public void decrementBy(int);
+  public int getCooldownRemaining();
+  public int getSpellCooldown();
+  public float getCooldownPercent();
+}

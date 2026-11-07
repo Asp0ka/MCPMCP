@@ -1,0 +1,97 @@
+Compiled from "RecipeRegistry.java"
+public class io.redspace.ironsspellbooks.registries.RecipeRegistry {
+  private static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.item.crafting.RecipeType<?>> RECIPE_TYPES;
+
+  private static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.item.crafting.RecipeSerializer<?>> RECIPE_SERIALIZERS;
+
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<?>> ALCHEMIST_CAULDRON_FILL_SERIALIZER;
+
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.FillAlchemistCauldronRecipe>> ALCHEMIST_CAULDRON_FILL_TYPE;
+
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<?>> ALCHEMIST_CAULDRON_EMPTY_SERIALIZER;
+
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.EmptyAlchemistCauldronRecipe>> ALCHEMIST_CAULDRON_EMPTY_TYPE;
+
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<?>> ALCHEMIST_CAULDRON_BREW_SERIALIZER;
+
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.BrewAlchemistCauldronRecipe>> ALCHEMIST_CAULDRON_BREW_TYPE;
+
+  public io.redspace.ironsspellbooks.registries.RecipeRegistry();
+    Code:
+       0: aload_0
+       1: invokespecial #49                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void register(net.minecraftforge.eventbus.api.IEventBus);
+    Code:
+       0: getstatic     #55                 // Field RECIPE_TYPES:Lnet/minecraftforge/registries/DeferredRegister;
+       3: aload_0
+       4: invokevirtual #59                 // Method net/minecraftforge/registries/DeferredRegister.register:(Lnet/minecraftforge/eventbus/api/IEventBus;)V
+       7: getstatic     #61                 // Field RECIPE_SERIALIZERS:Lnet/minecraftforge/registries/DeferredRegister;
+      10: aload_0
+      11: invokevirtual #59                 // Method net/minecraftforge/registries/DeferredRegister.register:(Lnet/minecraftforge/eventbus/api/IEventBus;)V
+      14: return
+
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$2();
+    Code:
+       0: new           #11                 // class io/redspace/ironsspellbooks/registries/RecipeRegistry$3
+       3: dup
+       4: invokespecial #66                 // Method io/redspace/ironsspellbooks/registries/RecipeRegistry$3."<init>":()V
+       7: areturn
+
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$1();
+    Code:
+       0: new           #9                  // class io/redspace/ironsspellbooks/registries/RecipeRegistry$2
+       3: dup
+       4: invokespecial #68                 // Method io/redspace/ironsspellbooks/registries/RecipeRegistry$2."<init>":()V
+       7: areturn
+
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$0();
+    Code:
+       0: new           #7                  // class io/redspace/ironsspellbooks/registries/RecipeRegistry$1
+       3: dup
+       4: invokespecial #70                 // Method io/redspace/ironsspellbooks/registries/RecipeRegistry$1."<init>":()V
+       7: areturn
+
+  static {};
+    Code:
+       0: getstatic     #77                 // Field net/minecraft/core/registries/Registries.f_256954_:Lnet/minecraft/resources/ResourceKey;
+       3: ldc           #79                 // String irons_spellbooks
+       5: invokestatic  #83                 // Method net/minecraftforge/registries/DeferredRegister.create:(Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;)Lnet/minecraftforge/registries/DeferredRegister;
+       8: putstatic     #55                 // Field RECIPE_TYPES:Lnet/minecraftforge/registries/DeferredRegister;
+      11: getstatic     #86                 // Field net/minecraft/core/registries/Registries.f_256764_:Lnet/minecraft/resources/ResourceKey;
+      14: ldc           #79                 // String irons_spellbooks
+      16: invokestatic  #83                 // Method net/minecraftforge/registries/DeferredRegister.create:(Lnet/minecraft/resources/ResourceKey;Ljava/lang/String;)Lnet/minecraftforge/registries/DeferredRegister;
+      19: putstatic     #61                 // Field RECIPE_SERIALIZERS:Lnet/minecraftforge/registries/DeferredRegister;
+      22: getstatic     #61                 // Field RECIPE_SERIALIZERS:Lnet/minecraftforge/registries/DeferredRegister;
+      25: ldc           #88                 // String alchemist_cauldron_fill
+      27: invokedynamic #105,  0            // InvokeDynamic #0:get:()Ljava/util/function/Supplier;
+      32: invokevirtual #108                // Method net/minecraftforge/registries/DeferredRegister.register:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/registries/RegistryObject;
+      35: putstatic     #110                // Field ALCHEMIST_CAULDRON_FILL_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+      38: getstatic     #55                 // Field RECIPE_TYPES:Lnet/minecraftforge/registries/DeferredRegister;
+      41: ldc           #88                 // String alchemist_cauldron_fill
+      43: invokedynamic #115,  0            // InvokeDynamic #1:get:()Ljava/util/function/Supplier;
+      48: invokevirtual #108                // Method net/minecraftforge/registries/DeferredRegister.register:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/registries/RegistryObject;
+      51: putstatic     #117                // Field ALCHEMIST_CAULDRON_FILL_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+      54: getstatic     #61                 // Field RECIPE_SERIALIZERS:Lnet/minecraftforge/registries/DeferredRegister;
+      57: ldc           #119                // String alchemist_cauldron_empty
+      59: invokedynamic #122,  0            // InvokeDynamic #2:get:()Ljava/util/function/Supplier;
+      64: invokevirtual #108                // Method net/minecraftforge/registries/DeferredRegister.register:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/registries/RegistryObject;
+      67: putstatic     #124                // Field ALCHEMIST_CAULDRON_EMPTY_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+      70: getstatic     #55                 // Field RECIPE_TYPES:Lnet/minecraftforge/registries/DeferredRegister;
+      73: ldc           #119                // String alchemist_cauldron_empty
+      75: invokedynamic #128,  0            // InvokeDynamic #3:get:()Ljava/util/function/Supplier;
+      80: invokevirtual #108                // Method net/minecraftforge/registries/DeferredRegister.register:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/registries/RegistryObject;
+      83: putstatic     #130                // Field ALCHEMIST_CAULDRON_EMPTY_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+      86: getstatic     #61                 // Field RECIPE_SERIALIZERS:Lnet/minecraftforge/registries/DeferredRegister;
+      89: ldc           #132                // String alchemist_cauldron_brew
+      91: invokedynamic #135,  0            // InvokeDynamic #4:get:()Ljava/util/function/Supplier;
+      96: invokevirtual #108                // Method net/minecraftforge/registries/DeferredRegister.register:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/registries/RegistryObject;
+      99: putstatic     #137                // Field ALCHEMIST_CAULDRON_BREW_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+     102: getstatic     #55                 // Field RECIPE_TYPES:Lnet/minecraftforge/registries/DeferredRegister;
+     105: ldc           #132                // String alchemist_cauldron_brew
+     107: invokedynamic #141,  0            // InvokeDynamic #5:get:()Ljava/util/function/Supplier;
+     112: invokevirtual #108                // Method net/minecraftforge/registries/DeferredRegister.register:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraftforge/registries/RegistryObject;
+     115: putstatic     #143                // Field ALCHEMIST_CAULDRON_BREW_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+     118: return
+}

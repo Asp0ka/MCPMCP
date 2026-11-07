@@ -1,0 +1,367 @@
+Compiled from "StorageContainerMenu.java"
+public class net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu extends net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase<net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper> implements net.p3pp3rf1y.sophisticatedcore.common.gui.ISyncedContainer {
+  private final net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockEntity storageBlockEntity;
+
+  private boolean stopOpenersOnRemove;
+
+  public net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu(int, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: aload_3
+       4: iconst_0
+       5: invokespecial #27                 // Method "<init>":(ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Z)V
+       8: return
+
+  public net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu(int, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos, boolean);
+    Code:
+       0: aload_0
+       1: getstatic     #41                 // Field net/p3pp3rf1y/sophisticatedstorage/init/ModBlocks.STORAGE_CONTAINER_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #47                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #49                 // class net/minecraft/world/inventory/MenuType
+      10: iload_1
+      11: aload_2
+      12: aload_3
+      13: iload         4
+      15: invokespecial #52                 // Method "<init>":(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Z)V
+      18: return
+
+  public net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu(net.minecraft.world.inventory.MenuType<?>, int, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: aload_3
+       4: aload         4
+       6: iconst_0
+       7: invokespecial #52                 // Method "<init>":(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Z)V
+      10: return
+
+  protected net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu(net.minecraft.world.inventory.MenuType<?>, int, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: aload_3
+       4: aload_3
+       5: invokevirtual #65                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       8: aload         4
+      10: invokestatic  #69                 // Method getWrapper:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper;
+      13: getstatic     #75                 // Field net/p3pp3rf1y/sophisticatedcore/util/NoopStorageWrapper.INSTANCE:Lnet/p3pp3rf1y/sophisticatedcore/util/NoopStorageWrapper;
+      16: iconst_m1
+      17: iconst_0
+      18: invokespecial #78                 // Method net/p3pp3rf1y/sophisticatedcore/common/gui/StorageContainerMenuBase."<init>":(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Player;Lnet/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper;Lnet/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper;IZ)V
+      21: aload_0
+      22: iconst_1
+      23: putfield      #80                 // Field stopOpenersOnRemove:Z
+      26: aload_0
+      27: aload_3
+      28: invokevirtual #65                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      31: aload         4
+      33: ldc           #82                 // class net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity
+      35: invokestatic  #88                 // Method net/p3pp3rf1y/sophisticatedcore/util/WorldHelper.getBlockEntity:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Ljava/lang/Class;)Ljava/util/Optional;
+      38: aload         4
+      40: invokedynamic #106,  0            // InvokeDynamic #0:get:(Lnet/minecraft/core/BlockPos;)Ljava/util/function/Supplier;
+      45: invokevirtual #112                // Method java/util/Optional.orElseThrow:(Ljava/util/function/Supplier;)Ljava/lang/Object;
+      48: checkcast     #82                 // class net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity
+      51: putfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+      54: aload_3
+      55: invokevirtual #65                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      58: invokevirtual #120                // Method net/minecraft/world/level/Level.m_5776_:()Z
+      61: ifne          77
+      64: iload         5
+      66: ifne          77
+      69: aload_0
+      70: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+      73: aload_3
+      74: invokevirtual #124                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.startOpen:(Lnet/minecraft/world/entity/player/Player;)V
+      77: return
+
+  public net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockEntity getStorageBlockEntity();
+    Code:
+       0: aload_0
+       1: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+       4: areturn
+
+  public void m_6877_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #131                // Method net/p3pp3rf1y/sophisticatedcore/common/gui/StorageContainerMenuBase.m_6877_:(Lnet/minecraft/world/entity/player/Player;)V
+       5: aload_1
+       6: invokevirtual #65                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       9: invokevirtual #120                // Method net/minecraft/world/level/Level.m_5776_:()Z
+      12: ifne          30
+      15: aload_0
+      16: getfield      #80                 // Field stopOpenersOnRemove:Z
+      19: ifeq          30
+      22: aload_0
+      23: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+      26: aload_1
+      27: invokevirtual #134                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.stopOpen:(Lnet/minecraft/world/entity/player/Player;)V
+      30: return
+
+  public void transferOpenersToSettingsMenu();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #80                 // Field stopOpenersOnRemove:Z
+       5: return
+
+  private static net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper getWrapper(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: ldc           #82                 // class net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity
+       4: invokestatic  #88                 // Method net/p3pp3rf1y/sophisticatedcore/util/WorldHelper.getBlockEntity:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Ljava/lang/Class;)Ljava/util/Optional;
+       7: invokedynamic #148,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      12: invokevirtual #152                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      15: getstatic     #75                 // Field net/p3pp3rf1y/sophisticatedcore/util/NoopStorageWrapper.INSTANCE:Lnet/p3pp3rf1y/sophisticatedcore/util/NoopStorageWrapper;
+      18: invokevirtual #155                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      21: checkcast     #157                // class net/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper
+      24: areturn
+
+  public static net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu fromBuffer(int, net.minecraft.world.entity.player.Inventory, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #2                  // class net/p3pp3rf1y/sophisticatedstorage/common/gui/StorageContainerMenu
+       3: dup
+       4: iload_0
+       5: aload_1
+       6: getfield      #166                // Field net/minecraft/world/entity/player/Inventory.f_35978_:Lnet/minecraft/world/entity/player/Player;
+       9: aload_2
+      10: invokevirtual #172                // Method net/minecraft/network/FriendlyByteBuf.m_130135_:()Lnet/minecraft/core/BlockPos;
+      13: invokespecial #174                // Method "<init>":(ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;)V
+      16: areturn
+
+  public java.util.Optional<net.minecraft.core.BlockPos> getBlockPosition();
+    Code:
+       0: aload_0
+       1: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+       4: invokevirtual #185                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.m_58899_:()Lnet/minecraft/core/BlockPos;
+       7: invokestatic  #189                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+      10: areturn
+
+  public java.util.Optional<net.minecraft.world.entity.Entity> getEntity();
+    Code:
+       0: invokestatic  #194                // Method java/util/Optional.empty:()Ljava/util/Optional;
+       3: areturn
+
+  protected net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase<net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper>.StorageUpgradeSlot instantiateUpgradeSlot(net.p3pp3rf1y.sophisticatedcore.upgrades.UpgradeHandler, int);
+    Code:
+       0: new           #10                 // class net/p3pp3rf1y/sophisticatedstorage/common/gui/StorageContainerMenu$1
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: iload_2
+       7: invokespecial #200                // Method net/p3pp3rf1y/sophisticatedstorage/common/gui/StorageContainerMenu$1."<init>":(Lnet/p3pp3rf1y/sophisticatedstorage/common/gui/StorageContainerMenu;Lnet/p3pp3rf1y/sophisticatedcore/upgrades/UpgradeHandler;I)V
+      10: areturn
+
+  public void openSettings();
+    Code:
+       0: aload_0
+       1: invokevirtual #207                // Method isClientSide:()Z
+       4: ifeq          17
+       7: aload_0
+       8: invokedynamic #219,  0            // InvokeDynamic #2:accept:()Ljava/util/function/Consumer;
+      13: invokevirtual #223                // Method sendToServer:(Ljava/util/function/Consumer;)V
+      16: return
+      17: aload_0
+      18: invokevirtual #225                // Method getBlockPosition:()Ljava/util/Optional;
+      21: aload_0
+      22: invokedynamic #234,  0            // InvokeDynamic #3:accept:(Lnet/p3pp3rf1y/sophisticatedstorage/common/gui/StorageContainerMenu;)Ljava/util/function/Consumer;
+      27: invokevirtual #237                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      30: return
+
+  protected net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageSettingsContainerMenu instantiateSettingsContainerMenu(int, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: aload_3
+       4: iconst_0
+       5: invokevirtual #242                // Method instantiateSettingsContainerMenu:(ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Z)Lnet/p3pp3rf1y/sophisticatedstorage/common/gui/StorageSettingsContainerMenu;
+       8: areturn
+
+  protected net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageSettingsContainerMenu instantiateSettingsContainerMenu(int, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos, boolean);
+    Code:
+       0: new           #244                // class net/p3pp3rf1y/sophisticatedstorage/common/gui/StorageSettingsContainerMenu
+       3: dup
+       4: iload_1
+       5: aload_2
+       6: aload_3
+       7: iload         4
+       9: invokespecial #245                // Method net/p3pp3rf1y/sophisticatedstorage/common/gui/StorageSettingsContainerMenu."<init>":(ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Z)V
+      12: areturn
+
+  protected boolean storageItemHasChanged();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean detectSettingsChangeAndReload();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+       4: invokevirtual #185                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.m_58899_:()Lnet/minecraft/core/BlockPos;
+       7: astore_2
+       8: aload_1
+       9: invokevirtual #65                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      12: aload_2
+      13: invokevirtual #253                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      16: astore_3
+      17: aload_3
+      18: instanceof    #82                 // class net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity
+      21: ifeq          87
+      24: aload_1
+      25: aload_2
+      26: invokevirtual #257                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      29: i2d
+      30: ldc2_w        #258                // double 0.5d
+      33: dadd
+      34: aload_2
+      35: invokevirtual #262                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      38: i2d
+      39: ldc2_w        #258                // double 0.5d
+      42: dadd
+      43: aload_2
+      44: invokevirtual #265                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      47: i2d
+      48: ldc2_w        #258                // double 0.5d
+      51: dadd
+      52: invokevirtual #269                // Method net/minecraft/world/entity/player/Player.m_20275_:(DDD)D
+      55: ldc2_w        #270                // double 64.0d
+      58: dcmpg
+      59: ifgt          87
+      62: aload_3
+      63: instanceof    #273                // class net/p3pp3rf1y/sophisticatedstorage/block/WoodStorageBlockEntity
+      66: ifeq          83
+      69: aload_3
+      70: checkcast     #273                // class net/p3pp3rf1y/sophisticatedstorage/block/WoodStorageBlockEntity
+      73: astore        4
+      75: aload         4
+      77: invokevirtual #276                // Method net/p3pp3rf1y/sophisticatedstorage/block/WoodStorageBlockEntity.isPacked:()Z
+      80: ifne          87
+      83: iconst_1
+      84: goto          88
+      87: iconst_0
+      88: ireturn
+
+  protected void onStorageInventorySlotSet(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokespecial #286                // Method net/p3pp3rf1y/sophisticatedcore/common/gui/StorageContainerMenuBase.onStorageInventorySlotSet:(I)V
+       5: aload_0
+       6: invokevirtual #288                // Method getStorageBlockEntity:()Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+       9: invokevirtual #291                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.isLocked:()Z
+      12: ifeq          71
+      15: aload_0
+      16: invokevirtual #288                // Method getStorageBlockEntity:()Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+      19: invokevirtual #294                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.memorizesItemsWhenLocked:()Z
+      22: ifeq          71
+      25: aload_0
+      26: iload_1
+      27: invokevirtual #298                // Method m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
+      30: invokevirtual #304                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      33: invokevirtual #309                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      36: ifne          71
+      39: aload_0
+      40: invokevirtual #313                // Method getStorageWrapper:()Lnet/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper;
+      43: invokeinterface #317,  1          // InterfaceMethod net/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper.getSettingsHandler:()Lnet/p3pp3rf1y/sophisticatedcore/settings/SettingsHandler;
+      48: ldc_w         #319                // class net/p3pp3rf1y/sophisticatedcore/settings/memory/MemorySettingsCategory
+      51: invokevirtual #325                // Method net/p3pp3rf1y/sophisticatedcore/settings/SettingsHandler.getTypeCategory:(Ljava/lang/Class;)Lnet/p3pp3rf1y/sophisticatedcore/settings/ISettingsCategory;
+      54: checkcast     #319                // class net/p3pp3rf1y/sophisticatedcore/settings/memory/MemorySettingsCategory
+      57: astore_2
+      58: aload_2
+      59: iload_1
+      60: invokevirtual #329                // Method net/p3pp3rf1y/sophisticatedcore/settings/memory/MemorySettingsCategory.isSlotSelected:(I)Z
+      63: ifne          71
+      66: aload_2
+      67: iload_1
+      68: invokevirtual #332                // Method net/p3pp3rf1y/sophisticatedcore/settings/memory/MemorySettingsCategory.selectSlot:(I)V
+      71: return
+
+  public float getSlotFillPercentage(int);
+    Code:
+       0: aload_0
+       1: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+       4: iload_1
+       5: invokevirtual #338                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.getSlotFillPercentage:(I)F
+       8: freturn
+
+  private void lambda$openSettings$4(net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: invokevirtual #341                // Method transferOpenersToSettingsMenu:()V
+       4: aload_0
+       5: getfield      #343                // Field player:Lnet/minecraft/world/entity/player/Player;
+       8: checkcast     #345                // class net/minecraft/server/level/ServerPlayer
+      11: new           #347                // class net/minecraft/world/SimpleMenuProvider
+      14: dup
+      15: aload_0
+      16: aload_1
+      17: invokedynamic #358,  0            // InvokeDynamic #4:m_7208_:(Lnet/p3pp3rf1y/sophisticatedstorage/common/gui/StorageContainerMenu;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/inventory/MenuConstructor;
+      22: getstatic     #363                // Field net/p3pp3rf1y/sophisticatedstorage/client/gui/StorageTranslationHelper.INSTANCE:Lnet/p3pp3rf1y/sophisticatedstorage/client/gui/StorageTranslationHelper;
+      25: ldc_w         #365                // String settings.title
+      28: invokevirtual #369                // Method net/p3pp3rf1y/sophisticatedstorage/client/gui/StorageTranslationHelper.translGui:(Ljava/lang/String;)Ljava/lang/String;
+      31: invokestatic  #375                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      34: invokespecial #378                // Method net/minecraft/world/SimpleMenuProvider."<init>":(Lnet/minecraft/world/inventory/MenuConstructor;Lnet/minecraft/network/chat/Component;)V
+      37: aload_0
+      38: getfield      #114                // Field storageBlockEntity:Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity;
+      41: invokevirtual #185                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.m_58899_:()Lnet/minecraft/core/BlockPos;
+      44: invokestatic  #384                // Method net/minecraftforge/network/NetworkHooks.openScreen:(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/MenuProvider;Lnet/minecraft/core/BlockPos;)V
+      47: return
+
+  private net.minecraft.world.inventory.AbstractContainerMenu lambda$openSettings$3(net.minecraft.core.BlockPos, int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: aload         4
+       4: aload_1
+       5: iconst_1
+       6: invokevirtual #242                // Method instantiateSettingsContainerMenu:(ILnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Z)Lnet/p3pp3rf1y/sophisticatedstorage/common/gui/StorageSettingsContainerMenu;
+       9: areturn
+
+  private static void lambda$openSettings$2(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: ldc_w         #389                // String action
+       4: ldc_w         #390                // String openSettings
+       7: invokevirtual #396                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      10: return
+
+  private static net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper lambda$getWrapper$1(net.p3pp3rf1y.sophisticatedstorage.block.StorageBlockEntity);
+    Code:
+       0: aload_0
+       1: invokevirtual #401                // Method net/p3pp3rf1y/sophisticatedstorage/block/StorageBlockEntity.getStorageWrapper:()Lnet/p3pp3rf1y/sophisticatedstorage/block/StorageWrapper;
+       4: areturn
+
+  private static java.lang.IllegalArgumentException lambda$new$0(net.minecraft.core.BlockPos);
+    Code:
+       0: new           #403                // class java/lang/IllegalArgumentException
+       3: dup
+       4: aload_0
+       5: invokestatic  #409                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+       8: invokedynamic #420,  0            // InvokeDynamic #5:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      13: invokespecial #423                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      16: areturn
+
+  static net.minecraft.world.entity.player.Player access$000(net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu);
+    Code:
+       0: aload_0
+       1: getfield      #343                // Field player:Lnet/minecraft/world/entity/player/Player;
+       4: areturn
+
+  static net.p3pp3rf1y.sophisticatedcore.api.IStorageWrapper access$100(net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu);
+    Code:
+       0: aload_0
+       1: getfield      #432                // Field storageWrapper:Lnet/p3pp3rf1y/sophisticatedcore/api/IStorageWrapper;
+       4: areturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

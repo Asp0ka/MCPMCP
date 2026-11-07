@@ -1,0 +1,22 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+group = 'dev.mcpmcp.adapters'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+repositories { mavenCentral() }
+sourceSets { main { java { srcDir '../jei-1.20.1-forge/src/main/java'; exclude '**/LiveJeiBackend.java' }; resources.srcDir '../jei-1.20.1-forge/src/main/resources' }; test { java.srcDir '../jei-1.20.1-forge/src/test/java' } }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+def platformRoot = file('../..')
+def targetJei = providers.gradleProperty('jeiJar').map { file(it) }.getOrElse(new File(platformRoot, '.local/targets/jei-15.20.0.130.jar'))
+dependencies {
+ minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+ compileOnly files(targetJei, new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ compileOnly 'com.google.code.gson:gson:2.10'
+ testImplementation files(targetJei, new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ testImplementation 'com.google.code.gson:gson:2.10'
+}
+tasks.named('compileJava') { doFirst { if (!targetJei.isFile()) throw new GradleException('Provide -PjeiJar=<exact JEI jar>; disabled JARs are accepted without enabling the mod.') } }
+jar { archiveFileName = 'adapter.jar'; manifest { attributes 'Implementation-Title':'MCPMCP JEI adapter', 'Implementation-Version':project.version } }
+jar.finalizedBy('reobfJar')
+tasks.register('adapterContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.jei.AdapterTest' }
+check.dependsOn adapterContractTest

@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.malum",
+  "mod_id": "malum",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "1.20.1-1.6.7",
+  "target_sha256": "ceda6ce4cc19de21ff6c21a732d8f9270ecc83cdae69027b13aaa24b536307f8",
+  "actions": []
+}

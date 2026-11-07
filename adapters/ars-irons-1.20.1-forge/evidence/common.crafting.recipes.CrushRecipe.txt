@@ -1,0 +1,26 @@
+Compiled from "CrushRecipe.java"
+public class com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public final net.minecraft.world.item.crafting.Ingredient input;
+  public final java.util.List<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput> outputs;
+  public final net.minecraft.resources.ResourceLocation id;
+  private boolean skipBlockPlace;
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, java.util.List<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput>, boolean);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, java.util.List<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput>);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe(java.lang.String, net.minecraft.world.item.crafting.Ingredient, java.util.List<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput>);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe(java.lang.String, net.minecraft.world.item.crafting.Ingredient, java.util.List<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput>, boolean);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe(java.lang.String, net.minecraft.world.item.crafting.Ingredient);
+  public java.util.List<net.minecraft.world.item.ItemStack> getRolledOutputs(net.minecraft.util.RandomSource);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe withItems(net.minecraft.world.item.ItemStack, float);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe withItems(net.minecraft.world.item.ItemStack);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe skipBlockPlace();
+  public java.lang.Boolean shouldSkipBlockPlace();
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public boolean matches(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_8004_(int, int);
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public com.google.gson.JsonElement asRecipe();
+}

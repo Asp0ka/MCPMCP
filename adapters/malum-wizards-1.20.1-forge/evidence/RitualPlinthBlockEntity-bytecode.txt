@@ -1,0 +1,1680 @@
+Compiled from "RitualPlinthBlockEntity.java"
+public class com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity extends team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity {
+  private static final net.minecraft.world.phys.Vec3 PLINTH_ITEM_OFFSET;
+
+  public com.sammy.malum.core.systems.ritual.MalumRitualType ritualType;
+
+  public com.sammy.malum.core.systems.ritual.MalumRitualTier ritualTier;
+
+  public int spiritAmount;
+
+  public int progress;
+
+  public float activeDuration;
+
+  public boolean setupComplete;
+
+  public java.util.Map<java.lang.Object, java.lang.Integer> absorptionProgress;
+
+  public com.sammy.malum.core.systems.ritual.MalumRitualRecipeData ritualRecipe;
+
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory inventory;
+
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory extrasInventory;
+
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> internalInventory;
+
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> exposedInventory;
+
+  public com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #44                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: aload_0
+       8: new           #46                 // class java/util/HashMap
+      11: dup
+      12: invokespecial #49                 // Method java/util/HashMap."<init>":()V
+      15: putfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+      18: aload_0
+      19: aload_0
+      20: invokedynamic #70,  0             // InvokeDynamic #0:get:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      25: invokestatic  #76                 // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      28: putfield      #78                 // Field internalInventory:Lnet/minecraftforge/common/util/LazyOptional;
+      31: aload_0
+      32: aload_0
+      33: invokedynamic #83,  0             // InvokeDynamic #1:get:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      38: invokestatic  #76                 // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      41: putfield      #85                 // Field exposedInventory:Lnet/minecraftforge/common/util/LazyOptional;
+      44: return
+
+  public com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #101                // Field com/sammy/malum/registry/common/block/BlockEntityRegistry.RITUAL_PLINTH:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #107                // class net/minecraft/world/level/block/entity/BlockEntityType
+      10: aload_1
+      11: aload_2
+      12: invokespecial #44                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      15: aload_0
+      16: new           #46                 // class java/util/HashMap
+      19: dup
+      20: invokespecial #49                 // Method java/util/HashMap."<init>":()V
+      23: putfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+      26: aload_0
+      27: aload_0
+      28: invokedynamic #70,  0             // InvokeDynamic #0:get:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      33: invokestatic  #76                 // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      36: putfield      #78                 // Field internalInventory:Lnet/minecraftforge/common/util/LazyOptional;
+      39: aload_0
+      40: aload_0
+      41: invokedynamic #83,  0             // InvokeDynamic #1:get:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      46: invokestatic  #76                 // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      49: putfield      #85                 // Field exposedInventory:Lnet/minecraftforge/common/util/LazyOptional;
+      52: aload_0
+      53: new           #9                  // class com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity$1
+      56: dup
+      57: aload_0
+      58: iconst_1
+      59: bipush        64
+      61: aload_0
+      62: invokedynamic #119,  0            // InvokeDynamic #2:test:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)Ljava/util/function/Predicate;
+      67: invokespecial #122                // Method com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity$1."<init>":(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;IILjava/util/function/Predicate;)V
+      70: putfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      73: aload_0
+      74: new           #7                  // class com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity$2
+      77: dup
+      78: aload_0
+      79: bipush        8
+      81: bipush        64
+      83: invokespecial #127                // Method com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity$2."<init>":(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;II)V
+      86: putfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      89: return
+
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: getfield      #133                // Field spiritAmount:I
+       4: ifeq          17
+       7: aload_1
+       8: ldc           #134                // String spiritAmount
+      10: aload_0
+      11: getfield      #133                // Field spiritAmount:I
+      14: invokevirtual #140                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      17: aload_0
+      18: getfield      #142                // Field progress:I
+      21: ifeq          34
+      24: aload_1
+      25: ldc           #143                // String progress
+      27: aload_0
+      28: getfield      #142                // Field progress:I
+      31: invokevirtual #140                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      34: aload_0
+      35: getfield      #145                // Field setupComplete:Z
+      38: ifeq          48
+      41: aload_1
+      42: ldc           #146                // String setupComplete
+      44: iconst_1
+      45: invokevirtual #150                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      48: aload_0
+      49: getfield      #152                // Field activeDuration:F
+      52: fconst_0
+      53: fcmpl
+      54: ifeq          67
+      57: aload_1
+      58: ldc           #153                // String activeDuration
+      60: aload_0
+      61: getfield      #152                // Field activeDuration:F
+      64: invokevirtual #157                // Method net/minecraft/nbt/CompoundTag.m_128350_:(Ljava/lang/String;F)V
+      67: aload_0
+      68: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      71: ifnull        90
+      74: aload_1
+      75: ldc           #160                // String ritualType
+      77: aload_0
+      78: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      81: getfield      #166                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.identifier:Lnet/minecraft/resources/ResourceLocation;
+      84: invokevirtual #172                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      87: invokevirtual #176                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      90: aload_0
+      91: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      94: aload_1
+      95: invokevirtual #181                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.save:(Lnet/minecraft/nbt/CompoundTag;)V
+      98: aload_0
+      99: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     102: aload_1
+     103: ldc           #182                // String extrasInventory
+     105: invokevirtual #185                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.save:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+     108: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: ldc           #134                // String spiritAmount
+       4: invokevirtual #192                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+       7: putfield      #133                // Field spiritAmount:I
+      10: aload_0
+      11: aload_1
+      12: ldc           #143                // String progress
+      14: invokevirtual #192                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      17: putfield      #142                // Field progress:I
+      20: aload_0
+      21: aload_1
+      22: ldc           #146                // String setupComplete
+      24: invokevirtual #196                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      27: putfield      #145                // Field setupComplete:Z
+      30: aload_0
+      31: aload_1
+      32: ldc           #153                // String activeDuration
+      34: invokevirtual #200                // Method net/minecraft/nbt/CompoundTag.m_128457_:(Ljava/lang/String;)F
+      37: putfield      #152                // Field activeDuration:F
+      40: aload_0
+      41: new           #168                // class net/minecraft/resources/ResourceLocation
+      44: dup
+      45: aload_1
+      46: ldc           #160                // String ritualType
+      48: invokevirtual #204                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      51: invokespecial #207                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;)V
+      54: invokestatic  #212                // Method com/sammy/malum/registry/common/RitualRegistry.get:(Lnet/minecraft/resources/ResourceLocation;)Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      57: putfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      60: aload_0
+      61: aload_0
+      62: getfield      #133                // Field spiritAmount:I
+      65: invokestatic  #218                // Method com/sammy/malum/core/systems/ritual/MalumRitualTier.figureOutTier:(I)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      68: putfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      71: aload_0
+      72: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      75: aload_1
+      76: invokevirtual #223                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.load:(Lnet/minecraft/nbt/CompoundTag;)V
+      79: aload_0
+      80: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      83: aload_1
+      84: ldc           #182                // String extrasInventory
+      86: invokevirtual #225                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.load:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;)V
+      89: aload_0
+      90: aload_1
+      91: invokespecial #227                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+      94: return
+
+  public void onBreak(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: aload_0
+       5: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       8: aload_0
+       9: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      12: invokevirtual #241                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.dumpItems:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+      15: aload_0
+      16: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      19: aload_0
+      20: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      23: aload_0
+      24: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      27: invokevirtual #241                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.dumpItems:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+      30: aload_0
+      31: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      34: ifnull        120
+      37: aload_0
+      38: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      41: ifnull        120
+      44: new           #243                // class net/minecraft/world/item/ItemStack
+      47: dup
+      48: getstatic     #248                // Field com/sammy/malum/registry/common/item/ItemRegistry.RITUAL_SHARD:Lnet/minecraftforge/registries/RegistryObject;
+      51: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      54: checkcast     #250                // class net/minecraft/world/level/ItemLike
+      57: invokespecial #253                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      60: astore_2
+      61: aload_2
+      62: aload_0
+      63: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      66: aload_0
+      67: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      70: invokevirtual #257                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.createShardNBT:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lnet/minecraft/nbt/CompoundTag;
+      73: invokevirtual #260                // Method net/minecraft/world/item/ItemStack.m_41751_:(Lnet/minecraft/nbt/CompoundTag;)V
+      76: aload_0
+      77: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      80: new           #262                // class net/minecraft/world/entity/item/ItemEntity
+      83: dup
+      84: aload_0
+      85: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      88: aload_0
+      89: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      92: invokevirtual #268                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      95: i2d
+      96: aload_0
+      97: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     100: invokevirtual #271                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     103: i2d
+     104: aload_0
+     105: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     108: invokevirtual #274                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     111: i2d
+     112: aload_2
+     113: invokespecial #277                // Method net/minecraft/world/entity/item/ItemEntity."<init>":(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+     116: invokevirtual #283                // Method net/minecraft/world/level/Level.m_7967_:(Lnet/minecraft/world/entity/Entity;)Z
+     119: pop
+     120: return
+
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_0
+       1: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+       4: ifnull        33
+       7: aload_0
+       8: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: invokevirtual #293                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.onUsePlinth:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+      17: astore_3
+      18: aload_3
+      19: getstatic     #299                // Field net/minecraft/world/InteractionResult.PASS:Lnet/minecraft/world/InteractionResult;
+      22: invokevirtual #302                // Method net/minecraft/world/InteractionResult.equals:(Ljava/lang/Object;)Z
+      25: ifne          30
+      28: aload_3
+      29: areturn
+      30: goto          263
+      33: aload_0
+      34: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      37: iconst_0
+      38: invokevirtual #306                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      41: invokevirtual #310                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      44: ifeq          263
+      47: aload_0
+      48: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      51: invokevirtual #313                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.isEmpty:()Z
+      54: ifeq          263
+      57: aload_1
+      58: aload_2
+      59: invokevirtual #319                // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+      62: astore_3
+      63: aload_3
+      64: invokevirtual #323                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      67: instanceof    #325                // class com/sammy/malum/common/item/spirit/RitualShardItem
+      70: ifeq          263
+      73: aload_0
+      74: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      77: getfield      #328                // Field net/minecraft/world/level/Level.f_46443_:Z
+      80: ifne          259
+      83: aload_0
+      84: aload_3
+      85: invokestatic  #332                // Method com/sammy/malum/common/item/spirit/RitualShardItem.getRitualType:(Lnet/minecraft/world/item/ItemStack;)Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      88: putfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      91: aload_0
+      92: aload_3
+      93: invokestatic  #336                // Method com/sammy/malum/common/item/spirit/RitualShardItem.getRitualTier:(Lnet/minecraft/world/item/ItemStack;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      96: putfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      99: aload_0
+     100: aload_0
+     101: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     104: getfield      #339                // Field com/sammy/malum/core/systems/ritual/MalumRitualTier.spiritThreshold:I
+     107: putfield      #133                // Field spiritAmount:I
+     110: aload_0
+     111: iconst_1
+     112: putfield      #145                // Field setupComplete:Z
+     115: getstatic     #345                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_BEGINS_CHARGING:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+     118: aload_0
+     119: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     122: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+     125: dup
+     126: aload_0
+     127: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     130: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+     133: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+     136: dup
+     137: aload_0
+     138: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     141: getfield      #356                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.spirit:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     144: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+     147: invokevirtual #365                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;)V
+     150: aload_0
+     151: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     154: aconst_null
+     155: aload_0
+     156: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     159: getstatic     #374                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_BEGINS:Lnet/minecraftforge/registries/RegistryObject;
+     162: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     165: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     168: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     171: fconst_1
+     172: ldc_w         #383                // float 0.9f
+     175: aload_0
+     176: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     179: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     182: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     187: ldc_w         #394                // float 0.2f
+     190: fmul
+     191: fadd
+     192: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     195: aload_0
+     196: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     199: aconst_null
+     200: aload_0
+     201: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     204: getstatic     #401                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_COMPLETED:Lnet/minecraftforge/registries/RegistryObject;
+     207: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     210: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     213: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     216: fconst_1
+     217: ldc_w         #383                // float 0.9f
+     220: aload_0
+     221: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     224: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     227: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     232: ldc_w         #394                // float 0.2f
+     235: fmul
+     236: fadd
+     237: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     240: aload_1
+     241: aload_2
+     242: getstatic     #404                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     245: invokevirtual #408                // Method net/minecraft/world/entity/player/Player.m_21008_:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+     248: aload_0
+     249: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     252: aload_0
+     253: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     256: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+     259: getstatic     #416                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+     262: areturn
+     263: aload_0
+     264: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     267: aload_1
+     268: invokevirtual #420                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+     271: aload_1
+     272: aload_2
+     273: invokevirtual #424                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.interact:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+     276: pop
+     277: getstatic     #416                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+     280: areturn
+
+  public void init();
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: iconst_0
+       5: invokevirtual #306                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+       8: astore_1
+       9: aload_0
+      10: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+      13: ifnonnull     20
+      16: iconst_1
+      17: goto          21
+      20: iconst_0
+      21: istore_2
+      22: aload_0
+      23: getstatic     #435                // Field com/sammy/malum/registry/common/RitualRegistry.RITUALS:Ljava/util/List;
+      26: invokeinterface #441,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      31: invokedynamic #454,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+      36: invokeinterface #460,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      41: aload_1
+      42: invokedynamic #470,  0            // InvokeDynamic #4:test:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/function/Predicate;
+      47: invokeinterface #474,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      52: invokeinterface #478,  1          // InterfaceMethod java/util/stream/Stream.findAny:()Ljava/util/Optional;
+      57: aconst_null
+      58: invokevirtual #483                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      61: checkcast     #485                // class com/sammy/malum/core/systems/ritual/MalumRitualRecipeData
+      64: putfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+      67: aload_0
+      68: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      71: ifnonnull     130
+      74: iload_2
+      75: ifeq          130
+      78: aload_0
+      79: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+      82: ifnull        130
+      85: aload_0
+      86: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      89: aconst_null
+      90: aload_0
+      91: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      94: getstatic     #374                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_BEGINS:Lnet/minecraftforge/registries/RegistryObject;
+      97: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     100: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     103: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     106: fconst_1
+     107: ldc_w         #383                // float 0.9f
+     110: aload_0
+     111: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     114: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     117: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     122: ldc_w         #394                // float 0.2f
+     125: fmul
+     126: fadd
+     127: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     130: aload_0
+     131: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     134: getfield      #328                // Field net/minecraft/world/level/Level.f_46443_:Z
+     137: ifeq          220
+     140: aconst_null
+     141: astore_3
+     142: aconst_null
+     143: astore        4
+     145: aload_0
+     146: getfield      #145                // Field setupComplete:Z
+     149: ifeq          166
+     152: getstatic     #488                // Field com/sammy/malum/registry/common/SoundRegistry.COMPLETED_RITUAL_AMBIENCE:Lnet/minecraftforge/registries/RegistryObject;
+     155: astore_3
+     156: invokedynamic #497,  0            // InvokeDynamic #5:test:()Ljava/util/function/Predicate;
+     161: astore        4
+     163: goto          209
+     166: aload_0
+     167: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     170: ifnull        187
+     173: getstatic     #504                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_EVOLUTION_AMBIENCE:Lnet/minecraftforge/registries/RegistryObject;
+     176: astore_3
+     177: invokedynamic #509,  0            // InvokeDynamic #6:test:()Ljava/util/function/Predicate;
+     182: astore        4
+     184: goto          209
+     187: iload_2
+     188: ifeq          209
+     191: aload_0
+     192: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+     195: ifnull        209
+     198: getstatic     #512                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_BEGINNING_AMBIENCE:Lnet/minecraftforge/registries/RegistryObject;
+     201: astore_3
+     202: invokedynamic #517,  0            // InvokeDynamic #7:test:()Ljava/util/function/Predicate;
+     207: astore        4
+     209: aload_3
+     210: ifnull        220
+     213: aload_0
+     214: aload_3
+     215: aload         4
+     217: invokestatic  #523                // Method com/sammy/malum/common/block/curiosities/ritual_plinth/RitualSoundInstance.playSound:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;Ljava/util/function/Supplier;Ljava/util/function/Predicate;)V
+     220: return
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: invokespecial #533                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.tick:()V
+       4: aload_0
+       5: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+       8: ifnull        87
+      11: aload_0
+      12: dup
+      13: getfield      #152                // Field activeDuration:F
+      16: fconst_1
+      17: fadd
+      18: putfield      #152                // Field activeDuration:F
+      21: aload_0
+      22: getfield      #142                // Field progress:I
+      25: ifle          66
+      28: aload_0
+      29: dup
+      30: getfield      #142                // Field progress:I
+      33: iconst_1
+      34: isub
+      35: putfield      #142                // Field progress:I
+      38: aload_0
+      39: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      42: getfield      #328                // Field net/minecraft/world/level/Level.f_46443_:Z
+      45: ifne          152
+      48: aload_0
+      49: invokevirtual #536                // Method eatSpirits:()V
+      52: aload_0
+      53: getfield      #142                // Field progress:I
+      56: ifne          152
+      59: aload_0
+      60: invokevirtual #539                // Method completeCharging:()V
+      63: goto          152
+      66: aload_0
+      67: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      70: getfield      #328                // Field net/minecraft/world/level/Level.f_46443_:Z
+      73: ifne          152
+      76: aload_0
+      77: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      80: aload_0
+      81: invokevirtual #543                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.triggerRitualEffect:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)V
+      84: goto          152
+      87: aload_0
+      88: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+      91: ifnull        147
+      94: aload_0
+      95: dup
+      96: getfield      #142                // Field progress:I
+      99: iconst_1
+     100: iadd
+     101: putfield      #142                // Field progress:I
+     104: aload_0
+     105: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     108: getfield      #328                // Field net/minecraft/world/level/Level.f_46443_:Z
+     111: ifne          152
+     114: aload_0
+     115: getfield      #142                // Field progress:I
+     118: bipush        60
+     120: if_icmple     152
+     123: aload_0
+     124: invokevirtual #546                // Method consume:()Z
+     127: istore_1
+     128: iload_1
+     129: ifeq          139
+     132: aload_0
+     133: invokevirtual #549                // Method beginCharging:()V
+     136: goto          144
+     139: aload_0
+     140: iconst_0
+     141: putfield      #142                // Field progress:I
+     144: goto          152
+     147: aload_0
+     148: iconst_0
+     149: putfield      #142                // Field progress:I
+     152: aload_0
+     153: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     156: getfield      #328                // Field net/minecraft/world/level/Level.f_46443_:Z
+     159: ifeq          243
+     162: aload_0
+     163: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     166: iconst_0
+     167: invokevirtual #306                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     170: astore_1
+     171: aload_1
+     172: invokevirtual #310                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     175: ifne          232
+     178: aload_0
+     179: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     182: ifnull        197
+     185: aload_0
+     186: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     189: aload_0
+     190: aload_1
+     191: invokevirtual #553                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.isItemStackValid:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;Lnet/minecraft/world/item/ItemStack;)Z
+     194: goto          223
+     197: aload_0
+     198: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+     201: ifnull        222
+     204: aload_0
+     205: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+     208: getfield      #557                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.input:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     211: aload_1
+     212: invokevirtual #562                // Method team/lodestar/lodestone/systems/recipe/IngredientWithCount.matches:(Lnet/minecraft/world/item/ItemStack;)Z
+     215: ifeq          222
+     218: iconst_1
+     219: goto          223
+     222: iconst_0
+     223: istore_2
+     224: iload_2
+     225: ifeq          232
+     228: aload_0
+     229: invokestatic  #567                // Method com/sammy/malum/visual_effects/RitualPlinthParticleEffects.holdingPrimeItemPlinthParticles:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)V
+     232: aload_0
+     233: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     236: ifnull        243
+     239: aload_0
+     240: invokestatic  #570                // Method com/sammy/malum/visual_effects/RitualPlinthParticleEffects.riteActivePlinthParticles:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)V
+     243: return
+
+  public boolean consume();
+    Code:
+       0: aload_0
+       1: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+       4: getfield      #575                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.extraItems:Ljava/util/List;
+       7: invokeinterface #576,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      12: ifeq          17
+      15: iconst_1
+      16: ireturn
+      17: aload_0
+      18: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      21: invokevirtual #579                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.updateData:()V
+      24: aload_0
+      25: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      28: getfield      #582                // Field team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.nonEmptyItemAmount:I
+      31: istore_1
+      32: iload_1
+      33: aload_0
+      34: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+      37: getfield      #575                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.extraItems:Ljava/util/List;
+      40: invokeinterface #585,  1          // InterfaceMethod java/util/List.size:()I
+      45: if_icmpge     279
+      48: ldc_w         #587                // class com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint
+      51: aload_0
+      52: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      55: aload_0
+      56: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      59: iconst_4
+      60: invokestatic  #591                // Method team/lodestar/lodestone/helpers/BlockHelper.getBlockEntities:(Ljava/lang/Class;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;I)Ljava/util/Collection;
+      63: astore_2
+      64: aload_2
+      65: invokeinterface #597,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      70: astore_3
+      71: aload_3
+      72: invokeinterface #602,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      77: ifeq          277
+      80: aload_3
+      81: invokeinterface #605,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      86: checkcast     #587                // class com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint
+      89: astore        4
+      91: aload         4
+      93: invokeinterface #609,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getSuppliedInventory:()Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      98: astore        5
+     100: aload         5
+     102: iconst_0
+     103: invokevirtual #306                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     106: astore        6
+     108: aload_0
+     109: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+     112: getfield      #575                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.extraItems:Ljava/util/List;
+     115: iload_1
+     116: invokeinterface #612,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     121: checkcast     #559                // class team/lodestar/lodestone/systems/recipe/IngredientWithCount
+     124: astore        7
+     126: aload         7
+     128: aload         6
+     130: invokevirtual #562                // Method team/lodestar/lodestone/systems/recipe/IngredientWithCount.matches:(Lnet/minecraft/world/item/ItemStack;)Z
+     133: ifeq          274
+     136: aload_0
+     137: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     140: aconst_null
+     141: aload         4
+     143: invokeinterface #615,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getAccessPointBlockPos:()Lnet/minecraft/core/BlockPos;
+     148: getstatic     #618                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_ABSORBS_ITEM:Lnet/minecraftforge/registries/RegistryObject;
+     151: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     154: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     157: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     160: fconst_1
+     161: ldc_w         #383                // float 0.9f
+     164: aload_0
+     165: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     168: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     171: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     176: ldc_w         #394                // float 0.2f
+     179: fmul
+     180: fadd
+     181: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     184: getstatic     #621                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_EATS_ITEM:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+     187: aload_0
+     188: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     191: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+     194: dup
+     195: aload_0
+     196: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     199: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+     202: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+     205: dup
+     206: aload_0
+     207: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+     210: getfield      #622                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     213: getfield      #356                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.spirit:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     216: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+     219: aload         4
+     221: invokeinterface #626,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getItemPos:()Lnet/minecraft/world/phys/Vec3;
+     226: aload         6
+     228: invokestatic  #632                // Method com/sammy/malum/visual_effects/networked/ritual/RitualPlinthAbsorbItemParticleEffect.createData:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/item/ItemStack;)Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;
+     231: invokevirtual #635                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;)V
+     234: aload_0
+     235: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     238: aload         6
+     240: aload         7
+     242: getfield      #638                // Field team/lodestar/lodestone/systems/recipe/IngredientWithCount.count:I
+     245: invokevirtual #641                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     248: invokevirtual #645                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.insertItem:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+     251: pop
+     252: aload         5
+     254: invokevirtual #579                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.updateData:()V
+     257: aload_0
+     258: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     261: aload         4
+     263: invokeinterface #615,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getAccessPointBlockPos:()Lnet/minecraft/core/BlockPos;
+     268: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+     271: goto          277
+     274: goto          71
+     277: iconst_0
+     278: ireturn
+     279: iconst_1
+     280: ireturn
+
+  public void beginCharging();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+       5: getfield      #622                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+       8: putfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      11: aload_0
+      12: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      15: iconst_0
+      16: invokevirtual #306                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      19: aload_0
+      20: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+      23: getfield      #557                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.input:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+      26: getfield      #638                // Field team/lodestar/lodestone/systems/recipe/IngredientWithCount.count:I
+      29: invokevirtual #658                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+      32: aload_0
+      33: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      36: invokevirtual #579                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.updateData:()V
+      39: aload_0
+      40: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      43: invokevirtual #661                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.clear:()V
+      46: getstatic     #345                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_BEGINS_CHARGING:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+      49: aload_0
+      50: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      53: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+      56: dup
+      57: aload_0
+      58: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      61: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+      64: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+      67: dup
+      68: aload_0
+      69: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      72: getfield      #356                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.spirit:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+      75: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+      78: invokevirtual #365                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;)V
+      81: aload_0
+      82: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      85: aconst_null
+      86: aload_0
+      87: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      90: getstatic     #664                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_FORMS:Lnet/minecraftforge/registries/RegistryObject;
+      93: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      96: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+      99: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     102: fconst_1
+     103: ldc_w         #383                // float 0.9f
+     106: aload_0
+     107: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     110: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     113: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     118: ldc_w         #394                // float 0.2f
+     121: fmul
+     122: fadd
+     123: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     126: aload_0
+     127: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     130: aload_0
+     131: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     134: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+     137: return
+
+  public void eatSpirits();
+    Code:
+       0: aload_0
+       1: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: invokevirtual #579                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.updateData:()V
+       7: ldc_w         #587                // class com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint
+      10: aload_0
+      11: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      14: aload_0
+      15: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      18: iconst_4
+      19: invokestatic  #591                // Method team/lodestar/lodestone/helpers/BlockHelper.getBlockEntities:(Ljava/lang/Class;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;I)Ljava/util/Collection;
+      22: astore_1
+      23: ldc_w         #666                // class com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity
+      26: aload_0
+      27: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      30: aload_0
+      31: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      34: iconst_4
+      35: invokestatic  #591                // Method team/lodestar/lodestone/helpers/BlockHelper.getBlockEntities:(Ljava/lang/Class;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;I)Ljava/util/Collection;
+      38: astore_2
+      39: aload_0
+      40: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      43: ldc_w         #262                // class net/minecraft/world/entity/item/ItemEntity
+      46: new           #668                // class net/minecraft/world/phys/AABB
+      49: dup
+      50: aload_0
+      51: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      54: invokespecial #669                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;)V
+      57: ldc2_w        #670                // double 4.0d
+      60: invokevirtual #675                // Method net/minecraft/world/phys/AABB.m_82400_:(D)Lnet/minecraft/world/phys/AABB;
+      63: invokevirtual #679                // Method net/minecraft/world/level/Level.m_45976_:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+      66: invokeinterface #441,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      71: invokedynamic #686,  0            // InvokeDynamic #8:test:()Ljava/util/function/Predicate;
+      76: invokeinterface #474,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      81: invokeinterface #690,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      86: astore_3
+      87: iconst_0
+      88: istore        4
+      90: aload_0
+      91: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      94: getfield      #356                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.spirit:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+      97: astore        5
+      99: aload_1
+     100: invokeinterface #597,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     105: astore        6
+     107: aload         6
+     109: invokeinterface #602,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     114: ifeq          388
+     117: aload         6
+     119: invokeinterface #605,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     124: checkcast     #587                // class com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint
+     127: astore        7
+     129: aload         7
+     131: invokeinterface #609,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getSuppliedInventory:()Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     136: astore        8
+     138: aload         8
+     140: iconst_0
+     141: invokevirtual #306                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     144: astore        9
+     146: aload         9
+     148: invokevirtual #323                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     151: astore        11
+     153: aload         11
+     155: instanceof    #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+     158: ifeq          385
+     161: aload         11
+     163: checkcast     #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+     166: astore        10
+     168: aload         10
+     170: getfield      #696                // Field com/sammy/malum/common/item/spirit/SpiritShardItem.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     173: aload         5
+     175: invokevirtual #699                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     178: ifeq          385
+     181: aload_0
+     182: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     185: aload         7
+     187: invokedynamic #710,  0            // InvokeDynamic #9:apply:()Ljava/util/function/BiFunction;
+     192: invokeinterface #716,  3          // InterfaceMethod java/util/Map.compute:(Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+     197: pop
+     198: aload_0
+     199: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     202: aload         7
+     204: invokeinterface #718,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     209: checkcast     #720                // class java/lang/Integer
+     212: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+     215: iconst_5
+     216: if_icmplt     385
+     219: aload         7
+     221: invokeinterface #615,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getAccessPointBlockPos:()Lnet/minecraft/core/BlockPos;
+     226: astore        11
+     228: aload         9
+     230: invokevirtual #726                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     233: aload_0
+     234: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     237: ifnonnull     244
+     240: iconst_4
+     241: goto          254
+     244: aload_0
+     245: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     248: getfield      #339                // Field com/sammy/malum/core/systems/ritual/MalumRitualTier.spiritThreshold:I
+     251: bipush        16
+     253: idiv
+     254: invokestatic  #732                // Method java/lang/Math.min:(II)I
+     257: istore        12
+     259: iload         4
+     261: iload         12
+     263: iadd
+     264: istore        4
+     266: aload         9
+     268: iload         12
+     270: invokevirtual #658                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+     273: aload         8
+     275: iconst_0
+     276: invokevirtual #735                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.onContentsChanged:(I)V
+     279: aload_0
+     280: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     283: aconst_null
+     284: aload         11
+     286: getstatic     #738                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_ABSORBS_SPIRIT:Lnet/minecraftforge/registries/RegistryObject;
+     289: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     292: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     295: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     298: fconst_1
+     299: ldc_w         #383                // float 0.9f
+     302: aload_0
+     303: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     306: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     309: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     314: ldc_w         #394                // float 0.2f
+     317: fmul
+     318: fadd
+     319: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     322: getstatic     #741                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_EATS_SPIRIT:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+     325: aload_0
+     326: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     329: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+     332: dup
+     333: aload_0
+     334: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     337: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+     340: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+     343: dup
+     344: aload         5
+     346: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+     349: aload         7
+     351: invokeinterface #626,  1          // InterfaceMethod com/sammy/malum/common/block/storage/IMalumSpecialItemAccessPoint.getItemPos:()Lnet/minecraft/world/phys/Vec3;
+     356: aload         9
+     358: invokestatic  #632                // Method com/sammy/malum/visual_effects/networked/ritual/RitualPlinthAbsorbItemParticleEffect.createData:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/item/ItemStack;)Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;
+     361: invokevirtual #635                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;)V
+     364: aload_0
+     365: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     368: aload         7
+     370: invokeinterface #744,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     375: pop
+     376: aload_0
+     377: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     380: aload         11
+     382: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+     385: goto          107
+     388: aload_2
+     389: invokeinterface #597,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     394: astore        6
+     396: aload         6
+     398: invokeinterface #602,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     403: ifeq          669
+     406: aload         6
+     408: invokeinterface #605,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     413: checkcast     #666                // class com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity
+     416: astore        7
+     418: aload         5
+     420: aload         7
+     422: getfield      #745                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     425: invokevirtual #699                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     428: ifeq          666
+     431: aload         7
+     433: getfield      #746                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.count:I
+     436: ifle          666
+     439: aload_0
+     440: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     443: aload         7
+     445: invokedynamic #751,  0            // InvokeDynamic #10:apply:()Ljava/util/function/BiFunction;
+     450: invokeinterface #716,  3          // InterfaceMethod java/util/Map.compute:(Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+     455: pop
+     456: aload_0
+     457: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     460: aload         7
+     462: invokeinterface #718,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     467: checkcast     #720                // class java/lang/Integer
+     470: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+     473: iconst_5
+     474: if_icmplt     666
+     477: aload         7
+     479: invokevirtual #752                // Method com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.m_58899_:()Lnet/minecraft/core/BlockPos;
+     482: astore        8
+     484: aload         7
+     486: getfield      #746                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.count:I
+     489: aload_0
+     490: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     493: ifnonnull     500
+     496: iconst_4
+     497: goto          510
+     500: aload_0
+     501: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     504: getfield      #339                // Field com/sammy/malum/core/systems/ritual/MalumRitualTier.spiritThreshold:I
+     507: bipush        16
+     509: idiv
+     510: invokestatic  #732                // Method java/lang/Math.min:(II)I
+     513: istore        9
+     515: iload         4
+     517: iload         9
+     519: iadd
+     520: istore        4
+     522: aload         7
+     524: dup
+     525: getfield      #746                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.count:I
+     528: iload         9
+     530: isub
+     531: putfield      #746                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.count:I
+     534: aload         7
+     536: getfield      #746                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.count:I
+     539: ifne          548
+     542: aload         7
+     544: aconst_null
+     545: putfield      #745                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     548: aload_0
+     549: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     552: aconst_null
+     553: aload         8
+     555: getstatic     #738                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_ABSORBS_SPIRIT:Lnet/minecraftforge/registries/RegistryObject;
+     558: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     561: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     564: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     567: fconst_1
+     568: ldc_w         #383                // float 0.9f
+     571: aload_0
+     572: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     575: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     578: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     583: ldc_w         #394                // float 0.2f
+     586: fmul
+     587: fadd
+     588: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     591: getstatic     #741                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_EATS_SPIRIT:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+     594: aload_0
+     595: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     598: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+     601: dup
+     602: aload_0
+     603: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     606: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+     609: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+     612: dup
+     613: aload         5
+     615: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+     618: aload         7
+     620: invokevirtual #753                // Method com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.getItemPos:()Lnet/minecraft/world/phys/Vec3;
+     623: aload         5
+     625: getfield      #756                // Field com/sammy/malum/core/systems/spirit/MalumSpiritType.spiritShard:Ljava/util/function/Supplier;
+     628: invokeinterface #757,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+     633: checkcast     #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+     636: invokevirtual #761                // Method com/sammy/malum/common/item/spirit/SpiritShardItem.m_7968_:()Lnet/minecraft/world/item/ItemStack;
+     639: invokestatic  #632                // Method com/sammy/malum/visual_effects/networked/ritual/RitualPlinthAbsorbItemParticleEffect.createData:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/item/ItemStack;)Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;
+     642: invokevirtual #635                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;)V
+     645: aload_0
+     646: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     649: aload         7
+     651: invokeinterface #744,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     656: pop
+     657: aload_0
+     658: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     661: aload         8
+     663: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+     666: goto          396
+     669: aload_3
+     670: invokeinterface #597,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     675: astore        6
+     677: aload         6
+     679: invokeinterface #602,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     684: ifeq          922
+     687: aload         6
+     689: invokeinterface #605,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     694: checkcast     #262                // class net/minecraft/world/entity/item/ItemEntity
+     697: astore        7
+     699: aload         7
+     701: invokevirtual #764                // Method net/minecraft/world/entity/item/ItemEntity.m_32055_:()Lnet/minecraft/world/item/ItemStack;
+     704: astore        8
+     706: aload         8
+     708: invokevirtual #323                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     711: astore        10
+     713: aload         10
+     715: instanceof    #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+     718: ifeq          919
+     721: aload         10
+     723: checkcast     #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+     726: astore        9
+     728: aload         9
+     730: getfield      #696                // Field com/sammy/malum/common/item/spirit/SpiritShardItem.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     733: aload         5
+     735: invokevirtual #699                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     738: ifeq          919
+     741: aload_0
+     742: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     745: aload         7
+     747: invokedynamic #769,  0            // InvokeDynamic #11:apply:()Ljava/util/function/BiFunction;
+     752: invokeinterface #716,  3          // InterfaceMethod java/util/Map.compute:(Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+     757: pop
+     758: aload_0
+     759: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     762: aload         7
+     764: invokeinterface #718,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     769: checkcast     #720                // class java/lang/Integer
+     772: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+     775: iconst_5
+     776: if_icmplt     919
+     779: aload_0
+     780: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     783: aconst_null
+     784: aload         7
+     786: invokevirtual #772                // Method net/minecraft/world/entity/item/ItemEntity.m_20183_:()Lnet/minecraft/core/BlockPos;
+     789: getstatic     #738                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_ABSORBS_SPIRIT:Lnet/minecraftforge/registries/RegistryObject;
+     792: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     795: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     798: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     801: fconst_1
+     802: ldc_w         #383                // float 0.9f
+     805: aload_0
+     806: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     809: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     812: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     817: ldc_w         #394                // float 0.2f
+     820: fmul
+     821: fadd
+     822: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     825: getstatic     #741                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_EATS_SPIRIT:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+     828: aload_0
+     829: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     832: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+     835: dup
+     836: aload_0
+     837: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     840: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+     843: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+     846: dup
+     847: aload         5
+     849: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+     852: aload         7
+     854: invokevirtual #775                // Method net/minecraft/world/entity/item/ItemEntity.m_20182_:()Lnet/minecraft/world/phys/Vec3;
+     857: dconst_0
+     858: aload         7
+     860: invokevirtual #778                // Method net/minecraft/world/entity/item/ItemEntity.m_20206_:()F
+     863: fconst_2
+     864: fdiv
+     865: f2d
+     866: dconst_0
+     867: invokevirtual #784                // Method net/minecraft/world/phys/Vec3.m_82520_:(DDD)Lnet/minecraft/world/phys/Vec3;
+     870: aload         5
+     872: getfield      #756                // Field com/sammy/malum/core/systems/spirit/MalumSpiritType.spiritShard:Ljava/util/function/Supplier;
+     875: invokeinterface #757,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+     880: checkcast     #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+     883: invokevirtual #761                // Method com/sammy/malum/common/item/spirit/SpiritShardItem.m_7968_:()Lnet/minecraft/world/item/ItemStack;
+     886: invokestatic  #632                // Method com/sammy/malum/visual_effects/networked/ritual/RitualPlinthAbsorbItemParticleEffect.createData:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/item/ItemStack;)Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;
+     889: invokevirtual #635                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;Lcom/sammy/malum/visual_effects/networked/data/NBTEffectData;)V
+     892: iload         4
+     894: aload         8
+     896: invokevirtual #726                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     899: iadd
+     900: istore        4
+     902: aload         7
+     904: invokevirtual #787                // Method net/minecraft/world/entity/item/ItemEntity.m_146870_:()V
+     907: aload_0
+     908: getfield      #51                 // Field absorptionProgress:Ljava/util/Map;
+     911: aload         7
+     913: invokeinterface #744,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     918: pop
+     919: goto          677
+     922: iload         4
+     924: ifeq          1066
+     927: aload_0
+     928: dup
+     929: getfield      #133                // Field spiritAmount:I
+     932: iload         4
+     934: iadd
+     935: putfield      #133                // Field spiritAmount:I
+     938: aload_0
+     939: bipush        60
+     941: putfield      #142                // Field progress:I
+     944: aload_0
+     945: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     948: astore        6
+     950: aload_0
+     951: getfield      #133                // Field spiritAmount:I
+     954: invokestatic  #218                // Method com/sammy/malum/core/systems/ritual/MalumRitualTier.figureOutTier:(I)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     957: astore        7
+     959: aload         7
+     961: ifnull        1055
+     964: aload         7
+     966: aload         6
+     968: invokevirtual #699                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     971: ifne          1055
+     974: aload_0
+     975: aload         7
+     977: putfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     980: aload_0
+     981: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     984: aconst_null
+     985: aload_0
+     986: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     989: getstatic     #790                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_EVOLVES:Lnet/minecraftforge/registries/RegistryObject;
+     992: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     995: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+     998: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+    1001: fconst_1
+    1002: ldc_w         #383                // float 0.9f
+    1005: aload_0
+    1006: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1009: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+    1012: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+    1017: ldc_w         #394                // float 0.2f
+    1020: fmul
+    1021: fadd
+    1022: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+    1025: getstatic     #793                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_CHANGES_TIER:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+    1028: aload_0
+    1029: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1032: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+    1035: dup
+    1036: aload_0
+    1037: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+    1040: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+    1043: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+    1046: dup
+    1047: aload         5
+    1049: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+    1052: invokevirtual #365                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;)V
+    1055: aload_0
+    1056: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1059: aload_0
+    1060: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1063: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+    1066: return
+
+  public void completeCharging();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokestatic  #815                // Method com/sammy/malum/core/systems/ritual/MalumRitualTier.figureOutTier:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+       5: putfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+       8: aload_0
+       9: aload_0
+      10: getfield      #220                // Field ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      13: ifnull        20
+      16: iconst_1
+      17: goto          21
+      20: iconst_0
+      21: putfield      #145                // Field setupComplete:Z
+      24: aload_0
+      25: getfield      #145                // Field setupComplete:Z
+      28: ifne          78
+      31: aload_0
+      32: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      35: getfield      #356                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.spirit:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+      38: astore_1
+      39: aload_0
+      40: aconst_null
+      41: putfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      44: aload_0
+      45: iconst_0
+      46: putfield      #133                // Field spiritAmount:I
+      49: getstatic     #818                // Field com/sammy/malum/registry/common/ParticleEffectTypeRegistry.RITUAL_PLINTH_FAILURE:Lcom/sammy/malum/visual_effects/networked/ParticleEffectType;
+      52: aload_0
+      53: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      56: new           #347                // class com/sammy/malum/visual_effects/networked/data/PositionEffectData
+      59: dup
+      60: aload_0
+      61: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      64: invokespecial #350                // Method com/sammy/malum/visual_effects/networked/data/PositionEffectData."<init>":(Lnet/minecraft/core/BlockPos;)V
+      67: new           #352                // class com/sammy/malum/visual_effects/networked/data/ColorEffectData
+      70: dup
+      71: aload_1
+      72: invokespecial #359                // Method com/sammy/malum/visual_effects/networked/data/ColorEffectData."<init>":(Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;)V
+      75: invokevirtual #365                // Method com/sammy/malum/visual_effects/networked/ParticleEffectType.createPositionedEffect:(Lnet/minecraft/world/level/Level;Lcom/sammy/malum/visual_effects/networked/data/PositionEffectData;Lcom/sammy/malum/visual_effects/networked/data/ColorEffectData;)V
+      78: aload_0
+      79: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      82: aconst_null
+      83: aload_0
+      84: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      87: getstatic     #401                // Field com/sammy/malum/registry/common/SoundRegistry.RITUAL_COMPLETED:Lnet/minecraftforge/registries/RegistryObject;
+      90: invokevirtual #105                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      93: checkcast     #376                // class net/minecraft/sounds/SoundEvent
+      96: getstatic     #382                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+      99: fconst_1
+     100: ldc_w         #383                // float 0.9f
+     103: aload_0
+     104: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     107: getfield      #387                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     110: invokeinterface #393,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     115: ldc_w         #394                // float 0.2f
+     118: fmul
+     119: fadd
+     120: invokevirtual #398                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     123: aload_0
+     124: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     127: aload_0
+     128: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     131: invokestatic  #413                // Method team/lodestar/lodestone/helpers/BlockHelper.updateAndNotifyState:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+     134: return
+
+  public net.minecraft.world.phys.Vec3 getItemPos();
+    Code:
+       0: aload_0
+       1: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: astore_1
+       5: aload_0
+       6: invokevirtual #821                // Method getCentralItemOffset:()Lnet/minecraft/world/phys/Vec3;
+       9: astore_2
+      10: new           #780                // class net/minecraft/world/phys/Vec3
+      13: dup
+      14: aload_1
+      15: invokevirtual #268                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      18: i2d
+      19: aload_2
+      20: getfield      #825                // Field net/minecraft/world/phys/Vec3.f_82479_:D
+      23: dadd
+      24: aload_1
+      25: invokevirtual #271                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      28: i2d
+      29: aload_2
+      30: getfield      #828                // Field net/minecraft/world/phys/Vec3.f_82480_:D
+      33: dadd
+      34: aload_1
+      35: invokevirtual #274                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      38: i2d
+      39: aload_2
+      40: getfield      #831                // Field net/minecraft/world/phys/Vec3.f_82481_:D
+      43: dadd
+      44: invokespecial #834                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      47: areturn
+
+  public net.minecraft.world.phys.Vec3 getCentralItemOffset();
+    Code:
+       0: getstatic     #838                // Field PLINTH_ITEM_OFFSET:Lnet/minecraft/world/phys/Vec3;
+       3: areturn
+
+  public net.minecraft.world.phys.Vec3 getRitualIconPos();
+    Code:
+       0: aload_0
+       1: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: astore_1
+       5: aload_0
+       6: fconst_0
+       7: invokevirtual #843                // Method getRitualIconOffset:(F)Lnet/minecraft/world/phys/Vec3;
+      10: astore_2
+      11: new           #780                // class net/minecraft/world/phys/Vec3
+      14: dup
+      15: aload_1
+      16: invokevirtual #268                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      19: i2d
+      20: aload_2
+      21: getfield      #825                // Field net/minecraft/world/phys/Vec3.f_82479_:D
+      24: dadd
+      25: aload_1
+      26: invokevirtual #271                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      29: i2d
+      30: aload_2
+      31: getfield      #828                // Field net/minecraft/world/phys/Vec3.f_82480_:D
+      34: dadd
+      35: aload_1
+      36: invokevirtual #274                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      39: i2d
+      40: aload_2
+      41: getfield      #831                // Field net/minecraft/world/phys/Vec3.f_82481_:D
+      44: dadd
+      45: invokespecial #834                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      48: areturn
+
+  public net.minecraft.world.phys.Vec3 getRitualIconOffset(float);
+    Code:
+       0: new           #780                // class net/minecraft/world/phys/Vec3
+       3: dup
+       4: ldc2_w        #844                // double 0.5d
+       7: ldc_w         #846                // float 1.5f
+      10: getstatic     #852                // Field team/lodestar/lodestone/systems/easing/Easing.CUBIC_OUT:Lteam/lodestar/lodestone/systems/easing/Easing;
+      13: aload_0
+      14: getfield      #152                // Field activeDuration:F
+      17: fload_1
+      18: fadd
+      19: ldc_w         #853                // float 30.0f
+      22: invokestatic  #856                // Method java/lang/Math.min:(FF)F
+      25: ldc_w         #853                // float 30.0f
+      28: fdiv
+      29: fconst_0
+      30: fconst_2
+      31: fconst_1
+      32: invokevirtual #860                // Method team/lodestar/lodestone/systems/easing/Easing.ease:(FFFF)F
+      35: fadd
+      36: f2d
+      37: ldc2_w        #844                // double 0.5d
+      40: invokespecial #834                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      43: areturn
+
+  public net.minecraft.world.phys.Vec3 getParticlePositionPosition(net.minecraft.core.Direction);
+    Code:
+       0: aload_0
+       1: invokevirtual #369                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: astore_2
+       5: aload_2
+       6: invokevirtual #268                // Method net/minecraft/core/BlockPos.m_123341_:()I
+       9: i2f
+      10: ldc_w         #864                // float 0.5f
+      13: fadd
+      14: aload_1
+      15: invokevirtual #869                // Method net/minecraft/core/Direction.m_122429_:()I
+      18: i2f
+      19: ldc_w         #870                // float 0.51f
+      22: fmul
+      23: fadd
+      24: fstore_3
+      25: aload_2
+      26: invokevirtual #271                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      29: i2f
+      30: ldc_w         #871                // float 0.875f
+      33: fadd
+      34: fstore        4
+      36: aload_2
+      37: invokevirtual #274                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      40: i2f
+      41: ldc_w         #864                // float 0.5f
+      44: fadd
+      45: aload_1
+      46: invokevirtual #874                // Method net/minecraft/core/Direction.m_122431_:()I
+      49: i2f
+      50: ldc_w         #870                // float 0.51f
+      53: fmul
+      54: fadd
+      55: fstore        5
+      57: new           #780                // class net/minecraft/world/phys/Vec3
+      60: dup
+      61: fload_3
+      62: f2d
+      63: fload         4
+      65: f2d
+      66: fload         5
+      68: f2d
+      69: invokespecial #834                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      72: areturn
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+    Code:
+       0: aload_1
+       1: getstatic     #889                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     27
+       7: aload_2
+       8: ifnonnull     19
+      11: aload_0
+      12: getfield      #78                 // Field internalInventory:Lnet/minecraftforge/common/util/LazyOptional;
+      15: invokevirtual #893                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      18: areturn
+      19: aload_0
+      20: getfield      #85                 // Field exposedInventory:Lnet/minecraftforge/common/util/LazyOptional;
+      23: invokevirtual #893                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      26: areturn
+      27: aload_0
+      28: aload_1
+      29: aload_2
+      30: invokespecial #895                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/core/Direction;)Lnet/minecraftforge/common/util/LazyOptional;
+      33: areturn
+
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+    Code:
+       0: aload_0
+       1: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+       4: astore_1
+       5: new           #668                // class net/minecraft/world/phys/AABB
+       8: dup
+       9: aload_1
+      10: invokevirtual #268                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      13: iconst_1
+      14: isub
+      15: i2d
+      16: aload_1
+      17: invokevirtual #271                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      20: i2d
+      21: aload_1
+      22: invokevirtual #274                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      25: iconst_1
+      26: isub
+      27: i2d
+      28: aload_1
+      29: invokevirtual #268                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      32: iconst_1
+      33: iadd
+      34: i2d
+      35: aload_1
+      36: invokevirtual #271                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      39: bipush        6
+      41: iadd
+      42: i2d
+      43: aload_1
+      44: invokevirtual #274                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      47: iconst_1
+      48: iadd
+      49: i2d
+      50: invokespecial #903                // Method net/minecraft/world/phys/AABB."<init>":(DDDDDD)V
+      53: areturn
+
+  private static java.lang.Integer lambda$eatSpirits$10(java.lang.Object, java.lang.Integer);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: goto          14
+       8: aload_1
+       9: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+      12: iconst_1
+      13: iadd
+      14: invokestatic  #907                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      17: areturn
+
+  private static java.lang.Integer lambda$eatSpirits$9(java.lang.Object, java.lang.Integer);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: goto          14
+       8: aload_1
+       9: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+      12: iconst_1
+      13: iadd
+      14: invokestatic  #907                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      17: areturn
+
+  private static java.lang.Integer lambda$eatSpirits$8(java.lang.Object, java.lang.Integer);
+    Code:
+       0: aload_1
+       1: ifnonnull     8
+       4: iconst_1
+       5: goto          14
+       8: aload_1
+       9: invokevirtual #723                // Method java/lang/Integer.intValue:()I
+      12: iconst_1
+      13: iadd
+      14: invokestatic  #907                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      17: areturn
+
+  private static boolean lambda$eatSpirits$7(net.minecraft.world.entity.item.ItemEntity);
+    Code:
+       0: aload_0
+       1: invokevirtual #764                // Method net/minecraft/world/entity/item/ItemEntity.m_32055_:()Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #323                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       7: instanceof    #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+      10: ireturn
+
+  private static boolean lambda$init$6(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #431                // Field ritualRecipe:Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+       4: ifnull        14
+       7: aload_0
+       8: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      11: ifnull        18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  private static boolean lambda$init$5(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #145                // Field setupComplete:Z
+       4: ifne          14
+       7: aload_0
+       8: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      11: ifnonnull     18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  private static boolean lambda$init$4(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  private static boolean lambda$init$3(net.minecraft.world.item.ItemStack, com.sammy.malum.core.systems.ritual.MalumRitualRecipeData);
+    Code:
+       0: aload_1
+       1: ifnull        19
+       4: aload_1
+       5: getfield      #557                // Field com/sammy/malum/core/systems/ritual/MalumRitualRecipeData.input:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+       8: aload_0
+       9: invokevirtual #562                // Method team/lodestar/lodestone/systems/recipe/IngredientWithCount.matches:(Lnet/minecraft/world/item/ItemStack;)Z
+      12: ifeq          19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: ireturn
+
+  private boolean lambda$new$2(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+       4: ifnull        19
+       7: aload_0
+       8: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      11: aload_0
+      12: aload_1
+      13: invokevirtual #553                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.isItemStackValid:(Lcom/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity;Lnet/minecraft/world/item/ItemStack;)Z
+      16: ifne          36
+      19: aload_0
+      20: getfield      #159                // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      23: ifnonnull     40
+      26: aload_1
+      27: invokevirtual #323                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      30: instanceof    #694                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+      33: ifne          40
+      36: iconst_1
+      37: goto          41
+      40: iconst_0
+      41: ireturn
+
+  private net.minecraftforge.items.IItemHandler lambda$new$1();
+    Code:
+       0: new           #915                // class net/minecraftforge/items/wrapper/CombinedInvWrapper
+       3: dup
+       4: iconst_1
+       5: anewarray     #917                // class net/minecraftforge/items/IItemHandlerModifiable
+       8: dup
+       9: iconst_0
+      10: aload_0
+      11: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      14: aastore
+      15: invokespecial #920                // Method net/minecraftforge/items/wrapper/CombinedInvWrapper."<init>":([Lnet/minecraftforge/items/IItemHandlerModifiable;)V
+      18: areturn
+
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+    Code:
+       0: new           #915                // class net/minecraftforge/items/wrapper/CombinedInvWrapper
+       3: dup
+       4: iconst_2
+       5: anewarray     #917                // class net/minecraftforge/items/IItemHandlerModifiable
+       8: dup
+       9: iconst_0
+      10: aload_0
+      11: getfield      #124                // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      14: aastore
+      15: dup
+      16: iconst_1
+      17: aload_0
+      18: getfield      #129                // Field extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      21: aastore
+      22: invokespecial #920                // Method net/minecraftforge/items/wrapper/CombinedInvWrapper."<init>":([Lnet/minecraftforge/items/IItemHandlerModifiable;)V
+      25: areturn
+
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: areturn
+
+  static net.minecraft.core.BlockPos access$100(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+       4: areturn
+
+  static net.minecraft.world.level.Level access$200(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #234                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: areturn
+
+  static net.minecraft.core.BlockPos access$300(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #237                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+       4: areturn
+
+  static {};
+    Code:
+       0: new           #780                // class net/minecraft/world/phys/Vec3
+       3: dup
+       4: ldc2_w        #844                // double 0.5d
+       7: ldc2_w        #929                // double 1.375d
+      10: ldc2_w        #844                // double 0.5d
+      13: invokespecial #834                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      16: putstatic     #838                // Field PLINTH_ITEM_OFFSET:Lnet/minecraft/world/phys/Vec3;
+      19: return
+}

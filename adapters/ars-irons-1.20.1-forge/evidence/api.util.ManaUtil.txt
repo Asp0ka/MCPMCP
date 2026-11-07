@@ -1,0 +1,13 @@
+Compiled from "ManaUtil.java"
+public class com.hollingsworth.arsnouveau.api.util.ManaUtil {
+  static final java.util.UUID MAX_MANA_MODIFIER;
+  static final java.util.UUID MANA_REGEN_MODIFIER;
+  public com.hollingsworth.arsnouveau.api.util.ManaUtil();
+  public static int getPlayerDiscounts(net.minecraft.world.entity.LivingEntity, com.hollingsworth.arsnouveau.api.spell.Spell, net.minecraft.world.item.ItemStack);
+  public static double getCurrentMana(net.minecraft.world.entity.LivingEntity);
+  public static com.hollingsworth.arsnouveau.api.util.ManaUtil$Mana calcMaxMana(net.minecraft.world.entity.player.Player);
+  public static int getMaxMana(net.minecraft.world.entity.player.Player);
+  public static double getManaRegen(net.minecraft.world.entity.player.Player);
+  private static void lambda$getPlayerDiscounts$0(java.util.concurrent.atomic.AtomicInteger, com.hollingsworth.arsnouveau.api.spell.Spell, net.minecraftforge.items.IItemHandlerModifiable);
+  static {};
+}

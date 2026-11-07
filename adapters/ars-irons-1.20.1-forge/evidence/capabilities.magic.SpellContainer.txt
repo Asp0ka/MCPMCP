@@ -1,0 +1,704 @@
+Compiled from "SpellContainer.java"
+public class io.redspace.ironsspellbooks.capabilities.magic.SpellContainer implements io.redspace.ironsspellbooks.api.spells.ISpellContainer {
+  public static final java.lang.String SPELL_DATA;
+
+  public static final java.lang.String MAX_SLOTS;
+
+  public static final java.lang.String MUST_EQUIP;
+
+  public static final java.lang.String IMPROVED;
+
+  public static final java.lang.String SPELL_WHEEL;
+
+  public static final java.lang.String SLOT_INDEX;
+
+  public static final java.lang.String SPELL_ID;
+
+  public static final java.lang.String SPELL_LEVEL;
+
+  public static final java.lang.String SPELL_LOCKED;
+
+  io.redspace.ironsspellbooks.api.spells.SpellSlot[] slots;
+
+  int maxSpells;
+
+  int activeSlots;
+
+  boolean spellWheel;
+
+  boolean mustEquip;
+
+  boolean improved;
+
+  public static final com.mojang.serialization.Codec<io.redspace.ironsspellbooks.api.spells.SpellSlot> SPELL_SLOT_CODEC;
+
+  public static final com.mojang.serialization.Codec<io.redspace.ironsspellbooks.api.spells.ISpellContainer> CODEC;
+
+  public static final com.mojang.serialization.Codec<io.redspace.ironsspellbooks.api.spells.ISpellContainer> LEGACY_CODEC;
+
+  public boolean equals(java.lang.Object);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: if_acmpeq     86
+       5: aload_1
+       6: instanceof    #2                  // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer
+       9: ifeq          90
+      12: aload_1
+      13: checkcast     #2                  // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer
+      16: astore_2
+      17: aload_2
+      18: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      21: aload_0
+      22: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      25: invokestatic  #76                 // Method java/util/Arrays.equals:([Ljava/lang/Object;[Ljava/lang/Object;)Z
+      28: ifeq          90
+      31: aload_0
+      32: getfield      #78                 // Field maxSpells:I
+      35: aload_2
+      36: getfield      #78                 // Field maxSpells:I
+      39: if_icmpne     90
+      42: aload_0
+      43: getfield      #80                 // Field activeSlots:I
+      46: aload_2
+      47: getfield      #80                 // Field activeSlots:I
+      50: if_icmpne     90
+      53: aload_0
+      54: getfield      #82                 // Field spellWheel:Z
+      57: aload_2
+      58: getfield      #82                 // Field spellWheel:Z
+      61: if_icmpne     90
+      64: aload_0
+      65: getfield      #84                 // Field mustEquip:Z
+      68: aload_2
+      69: getfield      #84                 // Field mustEquip:Z
+      72: if_icmpne     90
+      75: aload_0
+      76: getfield      #86                 // Field improved:Z
+      79: aload_2
+      80: getfield      #86                 // Field improved:Z
+      83: if_icmpne     90
+      86: iconst_1
+      87: goto          91
+      90: iconst_0
+      91: ireturn
+
+  public int hashCode();
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+       4: invokestatic  #96                 // Method java/util/Arrays.hashCode:([Ljava/lang/Object;)I
+       7: istore_1
+       8: iload_1
+       9: bipush        31
+      11: imul
+      12: aload_0
+      13: getfield      #78                 // Field maxSpells:I
+      16: iadd
+      17: bipush        31
+      19: imul
+      20: aload_0
+      21: getfield      #80                 // Field activeSlots:I
+      24: iadd
+      25: istore_1
+      26: iload_1
+      27: sipush        1000
+      30: imul
+      31: istore_1
+      32: iload_1
+      33: aload_0
+      34: getfield      #82                 // Field spellWheel:Z
+      37: ifeq          45
+      40: bipush        100
+      42: goto          46
+      45: iconst_0
+      46: iadd
+      47: istore_1
+      48: iload_1
+      49: aload_0
+      50: getfield      #84                 // Field mustEquip:Z
+      53: ifeq          61
+      56: bipush        10
+      58: goto          62
+      61: iconst_0
+      62: iadd
+      63: istore_1
+      64: iload_1
+      65: aload_0
+      66: getfield      #86                 // Field improved:Z
+      69: ifeq          76
+      72: iconst_1
+      73: goto          77
+      76: iconst_0
+      77: iadd
+      78: istore_1
+      79: iload_1
+      80: ireturn
+
+  public io.redspace.ironsspellbooks.capabilities.magic.SpellContainer();
+    Code:
+       0: aload_0
+       1: invokespecial #101                // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #78                 // Field maxSpells:I
+       9: aload_0
+      10: iconst_0
+      11: putfield      #80                 // Field activeSlots:I
+      14: aload_0
+      15: iconst_0
+      16: putfield      #82                 // Field spellWheel:Z
+      19: aload_0
+      20: iconst_1
+      21: putfield      #84                 // Field mustEquip:Z
+      24: aload_0
+      25: iconst_0
+      26: putfield      #86                 // Field improved:Z
+      29: return
+
+  public io.redspace.ironsspellbooks.capabilities.magic.SpellContainer(int, boolean, boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: iconst_0
+       5: invokespecial #105                // Method "<init>":(IZZZ)V
+       8: return
+
+  public io.redspace.ironsspellbooks.capabilities.magic.SpellContainer(int, boolean, boolean, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #101                // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #78                 // Field maxSpells:I
+       9: aload_0
+      10: iconst_0
+      11: putfield      #80                 // Field activeSlots:I
+      14: aload_0
+      15: iconst_0
+      16: putfield      #82                 // Field spellWheel:Z
+      19: aload_0
+      20: iconst_1
+      21: putfield      #84                 // Field mustEquip:Z
+      24: aload_0
+      25: iconst_0
+      26: putfield      #86                 // Field improved:Z
+      29: aload_0
+      30: iload_1
+      31: putfield      #78                 // Field maxSpells:I
+      34: aload_0
+      35: aload_0
+      36: getfield      #78                 // Field maxSpells:I
+      39: anewarray     #107                // class io/redspace/ironsspellbooks/api/spells/SpellSlot
+      42: putfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      45: aload_0
+      46: iload_2
+      47: putfield      #82                 // Field spellWheel:Z
+      50: aload_0
+      51: iload_3
+      52: putfield      #84                 // Field mustEquip:Z
+      55: aload_0
+      56: iload         4
+      58: putfield      #86                 // Field improved:Z
+      61: return
+
+  public io.redspace.ironsspellbooks.capabilities.magic.SpellContainer(int, boolean, boolean, boolean, io.redspace.ironsspellbooks.api.spells.SpellSlot[]);
+    Code:
+       0: aload_0
+       1: invokespecial #101                // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #78                 // Field maxSpells:I
+       9: aload_0
+      10: iconst_0
+      11: putfield      #80                 // Field activeSlots:I
+      14: aload_0
+      15: iconst_0
+      16: putfield      #82                 // Field spellWheel:Z
+      19: aload_0
+      20: iconst_1
+      21: putfield      #84                 // Field mustEquip:Z
+      24: aload_0
+      25: iconst_0
+      26: putfield      #86                 // Field improved:Z
+      29: aload_0
+      30: iload_1
+      31: putfield      #78                 // Field maxSpells:I
+      34: aload_0
+      35: aload         5
+      37: putfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      40: aload_0
+      41: iload_2
+      42: putfield      #82                 // Field spellWheel:Z
+      45: aload_0
+      46: iload_3
+      47: putfield      #84                 // Field mustEquip:Z
+      50: aload_0
+      51: iload         4
+      53: putfield      #86                 // Field improved:Z
+      56: aload_0
+      57: aload         5
+      59: invokestatic  #112                // Method java/util/Arrays.stream:([Ljava/lang/Object;)Ljava/util/stream/Stream;
+      62: invokedynamic #132,  0            // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+      67: invokeinterface #138,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      72: invokeinterface #142,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      77: invokeinterface #147,  1          // InterfaceMethod java/util/List.size:()I
+      82: putfield      #80                 // Field activeSlots:I
+      85: return
+
+  public int getMaxSpellCount();
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field maxSpells:I
+       4: ireturn
+
+  public int getActiveSpellCount();
+    Code:
+       0: aload_0
+       1: getfield      #80                 // Field activeSlots:I
+       4: ireturn
+
+  public boolean isEmpty();
+    Code:
+       0: aload_0
+       1: getfield      #80                 // Field activeSlots:I
+       4: ifne          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  public io.redspace.ironsspellbooks.api.spells.SpellSlot[] getAllSpells();
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field maxSpells:I
+       4: anewarray     #107                // class io/redspace/ironsspellbooks/api/spells/SpellSlot
+       7: astore_1
+       8: aload_0
+       9: getfield      #78                 // Field maxSpells:I
+      12: ifle          30
+      15: aload_0
+      16: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      19: iconst_0
+      20: aload_1
+      21: iconst_0
+      22: aload_0
+      23: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      26: arraylength
+      27: invokestatic  #159                // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+      30: aload_1
+      31: areturn
+
+  public java.util.List<io.redspace.ironsspellbooks.api.spells.SpellSlot> getActiveSpells();
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+       4: invokestatic  #112                // Method java/util/Arrays.stream:([Ljava/lang/Object;)Ljava/util/stream/Stream;
+       7: invokedynamic #132,  0            // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+      12: invokeinterface #138,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      17: invokestatic  #169                // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      20: invokeinterface #173,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      25: checkcast     #144                // class java/util/List
+      28: areturn
+
+  public int getNextAvailableIndex();
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+       4: aconst_null
+       5: invokestatic  #180                // Method org/apache/commons/lang3/ArrayUtils.indexOf:([Ljava/lang/Object;Ljava/lang/Object;)I
+       8: ireturn
+
+  public boolean mustEquip();
+    Code:
+       0: aload_0
+       1: getfield      #84                 // Field mustEquip:Z
+       4: ireturn
+
+  public boolean isImproved();
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field improved:Z
+       4: ireturn
+
+  public boolean isSpellWheel();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field spellWheel:Z
+       4: ireturn
+
+  public io.redspace.ironsspellbooks.api.spells.SpellData getSpellAtIndex(int);
+    Code:
+       0: iload_1
+       1: iflt          33
+       4: iload_1
+       5: aload_0
+       6: getfield      #78                 // Field maxSpells:I
+       9: if_icmpge     33
+      12: aload_0
+      13: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      16: iload_1
+      17: aaload
+      18: astore_2
+      19: aload_2
+      20: ifnull        33
+      23: aload_0
+      24: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      27: iload_1
+      28: aaload
+      29: invokevirtual #188                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot.spellData:()Lio/redspace/ironsspellbooks/api/spells/SpellData;
+      32: areturn
+      33: getstatic     #194                // Field io/redspace/ironsspellbooks/api/spells/SpellData.EMPTY:Lio/redspace/ironsspellbooks/api/spells/SpellData;
+      36: areturn
+
+  public int getIndexForSpell(io.redspace.ironsspellbooks.api.spells.AbstractSpell);
+    Code:
+       0: iconst_0
+       1: istore_2
+       2: iload_2
+       3: aload_0
+       4: getfield      #78                 // Field maxSpells:I
+       7: if_icmpge     40
+      10: aload_0
+      11: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      14: iload_2
+      15: aaload
+      16: astore_3
+      17: aload_3
+      18: ifnull        34
+      21: aload_3
+      22: invokevirtual #201                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot.getSpell:()Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      25: aload_1
+      26: invokevirtual #205                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.equals:(Ljava/lang/Object;)Z
+      29: ifeq          34
+      32: iload_2
+      33: ireturn
+      34: iinc          2, 1
+      37: goto          2
+      40: iconst_m1
+      41: ireturn
+
+  public io.redspace.ironsspellbooks.api.spells.ISpellContainerMutable mutableCopy();
+    Code:
+       0: new           #9                  // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer$Mutable
+       3: dup
+       4: aload_0
+       5: aload_0
+       6: invokespecial #214                // Method io/redspace/ironsspellbooks/capabilities/magic/SpellContainer$Mutable."<init>":(Lio/redspace/ironsspellbooks/capabilities/magic/SpellContainer;Lio/redspace/ironsspellbooks/capabilities/magic/SpellContainer;)V
+       9: areturn
+
+  public boolean addSpell(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int, boolean, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+       4: aconst_null
+       5: invokestatic  #180                // Method org/apache/commons/lang3/ArrayUtils.indexOf:([Ljava/lang/Object;Ljava/lang/Object;)I
+       8: istore        5
+      10: iload         5
+      12: iconst_m1
+      13: if_icmple     100
+      16: iload         5
+      18: aload_0
+      19: getfield      #78                 // Field maxSpells:I
+      22: if_icmpge     100
+      25: aload_0
+      26: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      29: iload         5
+      31: aaload
+      32: ifnonnull     100
+      35: aload_0
+      36: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      39: invokestatic  #112                // Method java/util/Arrays.stream:([Ljava/lang/Object;)Ljava/util/stream/Stream;
+      42: aload_1
+      43: invokedynamic #227,  0            // InvokeDynamic #1:test:(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;)Ljava/util/function/Predicate;
+      48: invokeinterface #231,  2          // InterfaceMethod java/util/stream/Stream.noneMatch:(Ljava/util/function/Predicate;)Z
+      53: ifeq          100
+      56: aload_0
+      57: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      60: iload         5
+      62: new           #107                // class io/redspace/ironsspellbooks/api/spells/SpellSlot
+      65: dup
+      66: new           #190                // class io/redspace/ironsspellbooks/api/spells/SpellData
+      69: dup
+      70: aload_1
+      71: iload_2
+      72: iload_3
+      73: invokespecial #234                // Method io/redspace/ironsspellbooks/api/spells/SpellData."<init>":(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZ)V
+      76: iload         5
+      78: invokespecial #237                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot."<init>":(Lio/redspace/ironsspellbooks/api/spells/SpellData;I)V
+      81: aastore
+      82: aload_0
+      83: dup
+      84: getfield      #80                 // Field activeSlots:I
+      87: iconst_1
+      88: iadd
+      89: putfield      #80                 // Field activeSlots:I
+      92: aload_0
+      93: aload         4
+      95: invokevirtual #241                // Method save:(Lnet/minecraft/world/item/ItemStack;)V
+      98: iconst_1
+      99: ireturn
+     100: iconst_0
+     101: ireturn
+
+  public void save(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: ifnull        9
+       4: aload_1
+       5: aload_0
+       6: invokestatic  #247                // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.set:(Lnet/minecraft/world/item/ItemStack;Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;)V
+       9: return
+
+  private static boolean lambda$addSpell$8(io.redspace.ironsspellbooks.api.spells.AbstractSpell, io.redspace.ironsspellbooks.api.spells.SpellSlot);
+    Code:
+       0: aload_1
+       1: ifnull        19
+       4: aload_1
+       5: invokevirtual #201                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot.getSpell:()Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       8: aload_0
+       9: invokevirtual #205                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.equals:(Ljava/lang/Object;)Z
+      12: ifeq          19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: ireturn
+
+  private static io.redspace.ironsspellbooks.api.spells.ISpellContainer lambda$static$7(net.minecraft.nbt.Tag);
+    Code:
+       0: aload_0
+       1: checkcast     #252                // class net/minecraft/nbt/CompoundTag
+       4: astore_1
+       5: aload_1
+       6: ldc           #35                 // String maxSpells
+       8: invokevirtual #256                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      11: istore_2
+      12: aload_1
+      13: ldc           #38                 // String mustEquip
+      15: invokevirtual #260                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      18: istore_3
+      19: aload_1
+      20: ldc           #44                 // String spellWheel
+      22: invokevirtual #260                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      25: istore        4
+      27: iload_2
+      28: anewarray     #107                // class io/redspace/ironsspellbooks/api/spells/SpellSlot
+      31: astore        5
+      33: aload_1
+      34: ldc_w         #262                // String Improved
+      37: invokevirtual #260                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      40: istore        6
+      42: new           #264                // class java/util/concurrent/atomic/AtomicInteger
+      45: dup
+      46: iconst_0
+      47: invokespecial #267                // Method java/util/concurrent/atomic/AtomicInteger."<init>":(I)V
+      50: astore        7
+      52: aload_1
+      53: ldc           #32                 // String data
+      55: invokevirtual #271                // Method net/minecraft/nbt/CompoundTag.m_128423_:(Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
+      58: checkcast     #273                // class net/minecraft/nbt/ListTag
+      61: astore        8
+      63: aload         8
+      65: ifnull        90
+      68: aload         8
+      70: invokevirtual #275                // Method net/minecraft/nbt/ListTag.isEmpty:()Z
+      73: ifne          90
+      76: aload         8
+      78: aload         5
+      80: aload         7
+      82: invokedynamic #288,  0            // InvokeDynamic #2:accept:([Lio/redspace/ironsspellbooks/api/spells/SpellSlot;Ljava/util/concurrent/atomic/AtomicInteger;)Ljava/util/function/Consumer;
+      87: invokevirtual #292                // Method net/minecraft/nbt/ListTag.forEach:(Ljava/util/function/Consumer;)V
+      90: new           #2                  // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer
+      93: dup
+      94: iload_2
+      95: iload         4
+      97: iload_3
+      98: iload         6
+     100: aload         5
+     102: invokespecial #296                // Method "<init>":(IZZZ[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;)V
+     105: areturn
+
+  private static void lambda$static$6(io.redspace.ironsspellbooks.api.spells.SpellSlot[], java.util.concurrent.atomic.AtomicInteger, net.minecraft.nbt.Tag);
+    Code:
+       0: aload_2
+       1: checkcast     #252                // class net/minecraft/nbt/CompoundTag
+       4: astore_3
+       5: aload_3
+       6: ldc           #50                 // String id
+       8: invokevirtual #307                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      11: astore        4
+      13: aload_3
+      14: ldc           #53                 // String level
+      16: invokevirtual #256                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      19: istore        5
+      21: aload_3
+      22: ldc           #56                 // String locked
+      24: invokevirtual #260                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      27: istore        6
+      29: aload_3
+      30: ldc           #47                 // String index
+      32: invokevirtual #256                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      35: istore        7
+      37: iload         7
+      39: aload_0
+      40: arraylength
+      41: if_icmpge     78
+      44: aload_0
+      45: iload         7
+      47: new           #107                // class io/redspace/ironsspellbooks/api/spells/SpellSlot
+      50: dup
+      51: new           #190                // class io/redspace/ironsspellbooks/api/spells/SpellData
+      54: dup
+      55: aload         4
+      57: invokestatic  #312                // Method io/redspace/ironsspellbooks/api/registry/SpellRegistry.getSpell:(Ljava/lang/String;)Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      60: iload         5
+      62: iload         6
+      64: invokespecial #234                // Method io/redspace/ironsspellbooks/api/spells/SpellData."<init>":(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZ)V
+      67: iload         7
+      69: invokespecial #237                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot."<init>":(Lio/redspace/ironsspellbooks/api/spells/SpellData;I)V
+      72: aastore
+      73: aload_1
+      74: invokevirtual #315                // Method java/util/concurrent/atomic/AtomicInteger.incrementAndGet:()I
+      77: pop
+      78: return
+
+  private static com.mojang.datafixers.kinds.App lambda$static$5(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+       0: aload_0
+       1: getstatic     #327                // Field com/mojang/serialization/Codec.INT:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+       4: ldc           #35                 // String maxSpells
+       6: invokeinterface #333,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      11: invokedynamic #344,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+      16: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      19: getstatic     #353                // Field com/mojang/serialization/Codec.BOOL:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      22: ldc           #44                 // String spellWheel
+      24: invokeinterface #333,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      29: invokedynamic #359,  0            // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+      34: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      37: getstatic     #353                // Field com/mojang/serialization/Codec.BOOL:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      40: ldc           #38                 // String mustEquip
+      42: invokeinterface #333,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      47: invokedynamic #363,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+      52: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      55: getstatic     #353                // Field com/mojang/serialization/Codec.BOOL:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      58: ldc           #41                 // String improved
+      60: iconst_0
+      61: invokestatic  #369                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      64: invokeinterface #373,  3          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+      69: invokedynamic #377,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+      74: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      77: getstatic     #379                // Field SPELL_SLOT_CODEC:Lcom/mojang/serialization/Codec;
+      80: invokestatic  #383                // InterfaceMethod com/mojang/serialization/Codec.list:(Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+      83: ldc           #32                 // String data
+      85: invokeinterface #384,  2          // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      90: invokedynamic #390,  0            // InvokeDynamic #7:apply:()Ljava/util/function/Function;
+      95: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      98: invokevirtual #394                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P5;
+     101: aload_0
+     102: invokedynamic #405,  0            // InvokeDynamic #8:apply:()Lcom/mojang/datafixers/util/Function5;
+     107: invokevirtual #408                // Method com/mojang/datafixers/Products$P5.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function5;)Lcom/mojang/datafixers/kinds/App;
+     110: areturn
+
+  private static io.redspace.ironsspellbooks.api.spells.ISpellContainer lambda$static$4(java.lang.Integer, java.lang.Boolean, java.lang.Boolean, java.lang.Boolean, java.util.List);
+    Code:
+       0: new           #2                  // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer
+       3: dup
+       4: aload_0
+       5: invokevirtual #415                // Method java/lang/Integer.intValue:()I
+       8: aload_1
+       9: invokevirtual #418                // Method java/lang/Boolean.booleanValue:()Z
+      12: aload_2
+      13: invokevirtual #418                // Method java/lang/Boolean.booleanValue:()Z
+      16: aload_3
+      17: invokevirtual #418                // Method java/lang/Boolean.booleanValue:()Z
+      20: invokespecial #105                // Method "<init>":(IZZZ)V
+      23: astore        5
+      25: aload         4
+      27: aload         5
+      29: invokedynamic #428,  0            // InvokeDynamic #9:accept:(Lio/redspace/ironsspellbooks/capabilities/magic/SpellContainer;)Ljava/util/function/Consumer;
+      34: invokeinterface #429,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      39: aload         5
+      41: aload         4
+      43: invokeinterface #147,  1          // InterfaceMethod java/util/List.size:()I
+      48: putfield      #80                 // Field activeSlots:I
+      51: aload         5
+      53: areturn
+
+  private static void lambda$static$3(io.redspace.ironsspellbooks.capabilities.magic.SpellContainer, io.redspace.ironsspellbooks.api.spells.SpellSlot);
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field slots:[Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+       4: aload_1
+       5: invokevirtual #439                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot.index:()I
+       8: aload_1
+       9: aastore
+      10: return
+
+  private static com.mojang.datafixers.kinds.App lambda$static$2(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+       0: aload_0
+       1: getstatic     #446                // Field net/minecraft/resources/ResourceLocation.f_135803_:Lcom/mojang/serialization/Codec;
+       4: ldc           #50                 // String id
+       6: invokeinterface #384,  2          // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      11: invokedynamic #453,  0            // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+      16: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      19: getstatic     #327                // Field com/mojang/serialization/Codec.INT:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      22: ldc           #47                 // String index
+      24: invokeinterface #333,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      29: invokedynamic #457,  0            // InvokeDynamic #11:apply:()Ljava/util/function/Function;
+      34: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      37: getstatic     #327                // Field com/mojang/serialization/Codec.INT:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      40: ldc           #53                 // String level
+      42: invokeinterface #333,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      47: invokedynamic #462,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+      52: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      55: getstatic     #353                // Field com/mojang/serialization/Codec.BOOL:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      58: ldc           #56                 // String locked
+      60: iconst_0
+      61: invokestatic  #369                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      64: invokeinterface #373,  3          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+      69: invokedynamic #469,  0            // InvokeDynamic #13:apply:()Ljava/util/function/Function;
+      74: invokevirtual #350                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      77: invokevirtual #472                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P4;
+      80: aload_0
+      81: invokedynamic #483,  0            // InvokeDynamic #14:apply:()Lcom/mojang/datafixers/util/Function4;
+      86: invokevirtual #486                // Method com/mojang/datafixers/Products$P4.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function4;)Lcom/mojang/datafixers/kinds/App;
+      89: areturn
+
+  private static io.redspace.ironsspellbooks.api.spells.SpellSlot lambda$static$1(net.minecraft.resources.ResourceLocation, java.lang.Integer, java.lang.Integer, java.lang.Boolean);
+    Code:
+       0: new           #190                // class io/redspace/ironsspellbooks/api/spells/SpellData
+       3: dup
+       4: aload_0
+       5: aload_2
+       6: invokevirtual #415                // Method java/lang/Integer.intValue:()I
+       9: aload_3
+      10: invokevirtual #418                // Method java/lang/Boolean.booleanValue:()Z
+      13: invokespecial #489                // Method io/redspace/ironsspellbooks/api/spells/SpellData."<init>":(Lnet/minecraft/resources/ResourceLocation;IZ)V
+      16: aload_1
+      17: invokevirtual #415                // Method java/lang/Integer.intValue:()I
+      20: invokestatic  #493                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot.of:(Lio/redspace/ironsspellbooks/api/spells/SpellData;I)Lio/redspace/ironsspellbooks/api/spells/SpellSlot;
+      23: areturn
+
+  private static net.minecraft.resources.ResourceLocation lambda$static$0(io.redspace.ironsspellbooks.api.spells.SpellSlot);
+    Code:
+       0: aload_0
+       1: invokevirtual #201                // Method io/redspace/ironsspellbooks/api/spells/SpellSlot.getSpell:()Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       4: invokevirtual #500                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getSpellResource:()Lnet/minecraft/resources/ResourceLocation;
+       7: areturn
+
+  static {};
+    Code:
+       0: invokedynamic #506,  0            // InvokeDynamic #15:apply:()Ljava/util/function/Function;
+       5: invokestatic  #510                // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+       8: putstatic     #379                // Field SPELL_SLOT_CODEC:Lcom/mojang/serialization/Codec;
+      11: invokedynamic #514,  0            // InvokeDynamic #16:apply:()Ljava/util/function/Function;
+      16: invokestatic  #510                // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+      19: putstatic     #516                // Field CODEC:Lcom/mojang/serialization/Codec;
+      22: invokedynamic #521,  0            // InvokeDynamic #17:apply:()Ljava/util/function/Function;
+      27: invokestatic  #526                // Method io/redspace/ironsspellbooks/api/backwards_compat/CodecHelper.createLegacyCodec:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+      30: putstatic     #528                // Field LEGACY_CODEC:Lcom/mojang/serialization/Codec;
+      33: return
+}

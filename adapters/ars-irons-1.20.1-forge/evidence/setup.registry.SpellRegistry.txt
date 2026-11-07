@@ -1,0 +1,1 @@
+����: �Ҳ�����: com.hollingsworth.arsnouveau.setup.registry.SpellRegistry

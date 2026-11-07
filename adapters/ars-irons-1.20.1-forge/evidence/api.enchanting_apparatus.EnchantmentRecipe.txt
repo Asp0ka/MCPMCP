@@ -1,0 +1,17 @@
+Compiled from "EnchantmentRecipe.java"
+public class com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantmentRecipe extends com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe {
+  public net.minecraft.world.item.enchantment.Enchantment enchantment;
+  public int enchantLevel;
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantmentRecipe(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.item.enchantment.Enchantment, int, int);
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public boolean doesReagentMatch(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.player.Player);
+  public boolean excludeJei();
+  public boolean isMatch(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.world.entity.player.Player);
+  public boolean doesReagentMatch(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack assemble(com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack getResult(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile);
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public com.google.gson.JsonElement asRecipe();
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  private static boolean lambda$isMatch$0(net.minecraft.world.item.ItemStack);
+}

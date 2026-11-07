@@ -1,0 +1,9 @@
+{
+  "api": 1,
+  "id": "mcpmcp.sophisticatedbackpacks",
+  "mod_id": "sophisticatedbackpacks",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "3.24.63.2057",
+  "target_sha256": "4d4be2e6a9988ff08260de621c26d0b43f2e03e3aede00842c66dc136a5303bf"
+}

@@ -1,0 +1,426 @@
+Compiled from "MalumSpiritType.java"
+public class com.sammy.malum.core.systems.spirit.MalumSpiritType {
+  public final java.lang.String identifier;
+
+  public final java.util.function.Supplier<com.sammy.malum.common.item.spirit.SpiritShardItem> spiritShard;
+
+  private final com.sammy.malum.core.systems.spirit.SpiritVisualMotif visualMotif;
+
+  private final java.awt.Color itemColor;
+
+  protected net.minecraft.world.item.Rarity itemRarity;
+
+  protected net.minecraft.network.chat.Component spiritItemDescription;
+
+  public static com.sammy.malum.core.systems.spirit.SpiritTypeBuilder create(java.lang.String, com.sammy.malum.core.systems.spirit.SpiritVisualMotif, java.util.function.Supplier<com.sammy.malum.common.item.spirit.SpiritShardItem>);
+    Code:
+       0: new           #28                 // class com/sammy/malum/core/systems/spirit/SpiritTypeBuilder
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: invokespecial #32                 // Method com/sammy/malum/core/systems/spirit/SpiritTypeBuilder."<init>":(Ljava/lang/String;Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;Ljava/util/function/Supplier;)V
+      10: areturn
+
+  public com.sammy.malum.core.systems.spirit.MalumSpiritType(java.lang.String, com.sammy.malum.core.systems.spirit.SpiritVisualMotif, java.util.function.Supplier<com.sammy.malum.common.item.spirit.SpiritShardItem>, java.awt.Color);
+    Code:
+       0: aload_0
+       1: invokespecial #37                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #39                 // Field identifier:Ljava/lang/String;
+       9: aload_0
+      10: aload_3
+      11: putfield      #41                 // Field spiritShard:Ljava/util/function/Supplier;
+      14: aload_0
+      15: aload_2
+      16: putfield      #43                 // Field visualMotif:Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;
+      19: aload_0
+      20: aload         4
+      22: putfield      #45                 // Field itemColor:Ljava/awt/Color;
+      25: return
+
+  public float getAlphaMultiplier();
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field visualMotif:Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;
+       4: invokevirtual #53                 // Method com/sammy/malum/core/systems/spirit/SpiritVisualMotif.getAlphaMultiplier:()F
+       7: freturn
+
+  public java.awt.Color getPrimaryColor();
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field visualMotif:Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;
+       4: invokevirtual #57                 // Method com/sammy/malum/core/systems/spirit/SpiritVisualMotif.getPrimaryColor:()Ljava/awt/Color;
+       7: areturn
+
+  public java.awt.Color getSecondaryColor();
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field visualMotif:Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;
+       4: invokevirtual #60                 // Method com/sammy/malum/core/systems/spirit/SpiritVisualMotif.getSecondaryColor:()Ljava/awt/Color;
+       7: areturn
+
+  public float getColorCoefficient();
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field visualMotif:Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;
+       4: invokevirtual #63                 // Method com/sammy/malum/core/systems/spirit/SpiritVisualMotif.getColorCoefficient:()F
+       7: freturn
+
+  public team.lodestar.lodestone.systems.particle.data.color.ColorParticleDataBuilder createColorData();
+    Code:
+       0: aload_0
+       1: fconst_1
+       2: invokevirtual #68                 // Method createColorData:(F)Lteam/lodestar/lodestone/systems/particle/data/color/ColorParticleDataBuilder;
+       5: areturn
+
+  public team.lodestar.lodestone.systems.particle.data.color.ColorParticleDataBuilder createColorData(float);
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field visualMotif:Lcom/sammy/malum/core/systems/spirit/SpiritVisualMotif;
+       4: fload_1
+       5: invokevirtual #69                 // Method com/sammy/malum/core/systems/spirit/SpiritVisualMotif.createColorData:(F)Lteam/lodestar/lodestone/systems/particle/data/color/ColorParticleDataBuilder;
+       8: areturn
+
+  public java.awt.Color getItemColor();
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field itemColor:Ljava/awt/Color;
+       4: areturn
+
+  public net.minecraft.network.chat.TextColor getTextColor(boolean);
+    Code:
+       0: iload_1
+       1: ifeq          17
+       4: aload_0
+       5: invokevirtual #75                 // Method getPrimaryColor:()Ljava/awt/Color;
+       8: iconst_1
+       9: ldc           #76                 // float 0.75f
+      11: invokestatic  #82                 // Method team/lodestar/lodestone/helpers/ColorHelper.darker:(Ljava/awt/Color;IF)Ljava/awt/Color;
+      14: goto          27
+      17: aload_0
+      18: invokevirtual #75                 // Method getPrimaryColor:()Ljava/awt/Color;
+      21: iconst_1
+      22: ldc           #83                 // float 0.85f
+      24: invokestatic  #86                 // Method team/lodestar/lodestone/helpers/ColorHelper.brighter:(Ljava/awt/Color;IF)Ljava/awt/Color;
+      27: astore_2
+      28: aload_2
+      29: invokevirtual #92                 // Method java/awt/Color.getRGB:()I
+      32: invokestatic  #98                 // Method net/minecraft/network/chat/TextColor.m_131266_:(I)Lnet/minecraft/network/chat/TextColor;
+      35: areturn
+
+  public net.minecraft.world.item.Rarity getItemRarity();
+    Code:
+       0: aload_0
+       1: getfield      #105                // Field itemRarity:Lnet/minecraft/world/item/Rarity;
+       4: ifnonnull     35
+       7: aload_0
+       8: iconst_0
+       9: invokevirtual #107                // Method getTextColor:(Z)Lnet/minecraft/network/chat/TextColor;
+      12: astore_1
+      13: aload_0
+      14: aload_0
+      15: getfield      #39                 // Field identifier:Ljava/lang/String;
+      18: invokedynamic #119,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      23: aload_1
+      24: invokedynamic #139,  0            // InvokeDynamic #1:apply:(Lnet/minecraft/network/chat/TextColor;)Ljava/util/function/UnaryOperator;
+      29: invokestatic  #144                // Method net/minecraft/world/item/Rarity.create:(Ljava/lang/String;Ljava/util/function/UnaryOperator;)Lnet/minecraft/world/item/Rarity;
+      32: putfield      #105                // Field itemRarity:Lnet/minecraft/world/item/Rarity;
+      35: aload_0
+      36: getfield      #105                // Field itemRarity:Lnet/minecraft/world/item/Rarity;
+      39: areturn
+
+  public net.minecraft.network.chat.Component getSpiritShardFlavourTextComponent();
+    Code:
+       0: aload_0
+       1: getfield      #150                // Field spiritItemDescription:Lnet/minecraft/network/chat/Component;
+       4: ifnonnull     38
+       7: aload_0
+       8: aload_0
+       9: invokevirtual #154                // Method getSpiritFlavourText:()Ljava/lang/String;
+      12: invokestatic  #160                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      15: getstatic     #166                // Field net/minecraft/ChatFormatting.ITALIC:Lnet/minecraft/ChatFormatting;
+      18: invokevirtual #172                // Method net/minecraft/network/chat/MutableComponent.m_130940_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      21: getstatic     #178                // Field net/minecraft/network/chat/Style.f_131099_:Lnet/minecraft/network/chat/Style;
+      24: aload_0
+      25: iconst_1
+      26: invokevirtual #107                // Method getTextColor:(Z)Lnet/minecraft/network/chat/TextColor;
+      29: invokevirtual #182                // Method net/minecraft/network/chat/Style.m_131148_:(Lnet/minecraft/network/chat/TextColor;)Lnet/minecraft/network/chat/Style;
+      32: invokevirtual #186                // Method net/minecraft/network/chat/MutableComponent.m_130948_:(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+      35: putfield      #150                // Field spiritItemDescription:Lnet/minecraft/network/chat/Component;
+      38: aload_0
+      39: getfield      #150                // Field spiritItemDescription:Lnet/minecraft/network/chat/Component;
+      42: areturn
+
+  public java.lang.String getSpiritFlavourText();
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field identifier:Ljava/lang/String;
+       4: invokedynamic #189,  0            // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       9: areturn
+
+  public net.minecraft.network.chat.Component getSpiritJarCounterComponent(int);
+    Code:
+       0: iload_1
+       1: invokedynamic #196,  0            // InvokeDynamic #3:makeConcatWithConstants:(I)Ljava/lang/String;
+       6: invokestatic  #199                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       9: aload_0
+      10: invokevirtual #202                // Method getSpiritDescription:()Ljava/lang/String;
+      13: invokestatic  #160                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      16: invokevirtual #206                // Method net/minecraft/network/chat/MutableComponent.m_7220_:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+      19: getstatic     #178                // Field net/minecraft/network/chat/Style.f_131099_:Lnet/minecraft/network/chat/Style;
+      22: aload_0
+      23: invokevirtual #75                 // Method getPrimaryColor:()Ljava/awt/Color;
+      26: invokevirtual #92                 // Method java/awt/Color.getRGB:()I
+      29: invokevirtual #210                // Method net/minecraft/network/chat/Style.m_178520_:(I)Lnet/minecraft/network/chat/Style;
+      32: invokevirtual #186                // Method net/minecraft/network/chat/MutableComponent.m_130948_:(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+      35: areturn
+
+  public java.lang.String getSpiritDescription();
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field identifier:Ljava/lang/String;
+       4: invokedynamic #215,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       9: areturn
+
+  public net.minecraft.resources.ResourceLocation getTotemGlowTexture();
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field identifier:Ljava/lang/String;
+       4: invokedynamic #220,  0            // InvokeDynamic #5:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       9: invokestatic  #226                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      12: areturn
+
+  public net.minecraft.world.level.block.state.BlockState getTotemPoleBlockState(boolean, net.minecraft.world.phys.BlockHitResult);
+    Code:
+       0: iload_1
+       1: ifeq          16
+       4: getstatic     #234                // Field com/sammy/malum/registry/common/block/BlockRegistry.SOULWOOD_TOTEM_POLE:Lnet/minecraftforge/registries/RegistryObject;
+       7: invokevirtual #240                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      10: checkcast     #242                // class net/minecraft/world/level/block/Block
+      13: goto          25
+      16: getstatic     #245                // Field com/sammy/malum/registry/common/block/BlockRegistry.RUNEWOOD_TOTEM_POLE:Lnet/minecraftforge/registries/RegistryObject;
+      19: invokevirtual #240                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      22: checkcast     #242                // class net/minecraft/world/level/block/Block
+      25: astore_3
+      26: aload_3
+      27: invokevirtual #249                // Method net/minecraft/world/level/block/Block.m_49966_:()Lnet/minecraft/world/level/block/state/BlockState;
+      30: getstatic     #255                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.f_61374_:Lnet/minecraft/world/level/block/state/properties/DirectionProperty;
+      33: aload_2
+      34: invokevirtual #261                // Method net/minecraft/world/phys/BlockHitResult.m_82434_:()Lnet/minecraft/core/Direction;
+      37: invokevirtual #267                // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+      40: checkcast     #263                // class net/minecraft/world/level/block/state/BlockState
+      43: getstatic     #273                // Field com/sammy/malum/registry/common/SpiritTypeRegistry.SPIRIT_TYPE_PROPERTY:Lcom/sammy/malum/core/systems/spirit/SpiritTypeProperty;
+      46: aload_0
+      47: getfield      #39                 // Field identifier:Ljava/lang/String;
+      50: invokevirtual #267                // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+      53: checkcast     #263                // class net/minecraft/world/level/block/state/BlockState
+      56: areturn
+
+  public net.minecraft.world.level.block.state.BlockState getSpiritMoteBlockState();
+    Code:
+       0: getstatic     #282                // Field com/sammy/malum/registry/common/block/BlockRegistry.SPIRIT_MOTE:Lnet/minecraftforge/registries/RegistryObject;
+       3: invokevirtual #240                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       6: checkcast     #242                // class net/minecraft/world/level/block/Block
+       9: invokevirtual #249                // Method net/minecraft/world/level/block/Block.m_49966_:()Lnet/minecraft/world/level/block/state/BlockState;
+      12: getstatic     #287                // Field com/sammy/malum/common/block/curiosities/mana_mote/SpiritMoteBlock.SPIRIT_TYPE:Lcom/sammy/malum/core/systems/spirit/SpiritTypeProperty;
+      15: aload_0
+      16: getfield      #39                 // Field identifier:Ljava/lang/String;
+      19: invokevirtual #267                // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+      22: checkcast     #263                // class net/minecraft/world/level/block/state/BlockState
+      25: areturn
+
+  private static net.minecraft.network.chat.Style lambda$getItemRarity$0(net.minecraft.network.chat.TextColor, net.minecraft.network.chat.Style);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #182                // Method net/minecraft/network/chat/Style.m_131148_:(Lnet/minecraft/network/chat/TextColor;)Lnet/minecraft/network/chat/Style;
+       5: areturn
+}
+Compiled from "MalumRitualTier.java"
+public class com.sammy.malum.core.systems.ritual.MalumRitualTier {
+  public static final java.util.List<com.sammy.malum.core.systems.ritual.MalumRitualTier> TIERS;
+
+  public static final com.sammy.malum.core.systems.ritual.MalumRitualTier FADED;
+
+  public static final com.sammy.malum.core.systems.ritual.MalumRitualTier DIM;
+
+  public static final com.sammy.malum.core.systems.ritual.MalumRitualTier VAGUE;
+
+  public static final com.sammy.malum.core.systems.ritual.MalumRitualTier BRIGHT;
+
+  public static final com.sammy.malum.core.systems.ritual.MalumRitualTier VIVID;
+
+  public static final com.sammy.malum.core.systems.ritual.MalumRitualTier RADIANT;
+
+  public final net.minecraft.resources.ResourceLocation identifier;
+
+  public final int spiritThreshold;
+
+  public final int potency;
+
+  public com.sammy.malum.core.systems.ritual.MalumRitualTier(net.minecraft.resources.ResourceLocation, int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #32                 // Field identifier:Lnet/minecraft/resources/ResourceLocation;
+       9: aload_0
+      10: iload_2
+      11: putfield      #34                 // Field spiritThreshold:I
+      14: aload_0
+      15: iload_3
+      16: putfield      #36                 // Field potency:I
+      19: return
+
+  public boolean isGreaterThan(com.sammy.malum.core.systems.ritual.MalumRitualTier);
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field potency:I
+       4: aload_1
+       5: getfield      #36                 // Field potency:I
+       8: if_icmple     15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  public java.lang.String translationIdentifier();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field identifier:Lnet/minecraft/resources/ResourceLocation;
+       4: invokevirtual #47                 // Method net/minecraft/resources/ResourceLocation.m_135827_:()Ljava/lang/String;
+       7: aload_0
+       8: getfield      #32                 // Field identifier:Lnet/minecraft/resources/ResourceLocation;
+      11: invokevirtual #50                 // Method net/minecraft/resources/ResourceLocation.m_135815_:()Ljava/lang/String;
+      14: invokedynamic #62,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      19: areturn
+
+  public net.minecraft.resources.ResourceLocation getDecorTexture();
+    Code:
+       0: new           #44                 // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: aload_0
+       5: getfield      #32                 // Field identifier:Lnet/minecraft/resources/ResourceLocation;
+       8: invokevirtual #47                 // Method net/minecraft/resources/ResourceLocation.m_135827_:()Ljava/lang/String;
+      11: aload_0
+      12: getfield      #32                 // Field identifier:Lnet/minecraft/resources/ResourceLocation;
+      15: invokevirtual #50                 // Method net/minecraft/resources/ResourceLocation.m_135815_:()Ljava/lang/String;
+      18: invokedynamic #69,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      23: invokespecial #72                 // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      26: areturn
+
+  public static com.sammy.malum.core.systems.ritual.MalumRitualTier create(com.sammy.malum.core.systems.ritual.MalumRitualTier);
+    Code:
+       0: getstatic     #76                 // Field TIERS:Ljava/util/List;
+       3: aload_0
+       4: invokeinterface #82,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       9: pop
+      10: aload_0
+      11: areturn
+
+  public static com.sammy.malum.core.systems.ritual.MalumRitualTier figureOutTier(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #90                 // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.spiritAmount:I
+       4: invokestatic  #93                 // Method figureOutTier:(I)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+       7: areturn
+
+  public static com.sammy.malum.core.systems.ritual.MalumRitualTier figureOutTier(int);
+    Code:
+       0: getstatic     #76                 // Field TIERS:Ljava/util/List;
+       3: invokeinterface #99,  1           // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       8: iload_0
+       9: invokedynamic #117,  0            // InvokeDynamic #2:test:(I)Ljava/util/function/Predicate;
+      14: invokeinterface #123,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      19: invokeinterface #127,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      24: astore_1
+      25: aload_1
+      26: invokeinterface #131,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      31: ifeq          38
+      34: aconst_null
+      35: goto          55
+      38: aload_1
+      39: aload_1
+      40: invokeinterface #135,  1          // InterfaceMethod java/util/List.size:()I
+      45: iconst_1
+      46: isub
+      47: invokeinterface #139,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      52: checkcast     #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+      55: areturn
+
+  private static boolean lambda$figureOutTier$0(int, com.sammy.malum.core.systems.ritual.MalumRitualTier);
+    Code:
+       0: iload_0
+       1: aload_1
+       2: getfield      #34                 // Field spiritThreshold:I
+       5: if_icmplt     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  static {};
+    Code:
+       0: new           #144                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #145                // Method java/util/ArrayList."<init>":()V
+       7: putstatic     #76                 // Field TIERS:Ljava/util/List;
+      10: new           #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+      13: dup
+      14: ldc           #147                // String faded
+      16: invokestatic  #153                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      19: bipush        64
+      21: iconst_1
+      22: invokespecial #155                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;II)V
+      25: invokestatic  #157                // Method create:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      28: putstatic     #159                // Field FADED:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      31: new           #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+      34: dup
+      35: ldc           #161                // String dim
+      37: invokestatic  #153                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      40: sipush        256
+      43: iconst_2
+      44: invokespecial #155                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;II)V
+      47: invokestatic  #157                // Method create:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      50: putstatic     #163                // Field DIM:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      53: new           #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+      56: dup
+      57: ldc           #165                // String vague
+      59: invokestatic  #153                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      62: sipush        1024
+      65: iconst_3
+      66: invokespecial #155                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;II)V
+      69: invokestatic  #157                // Method create:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      72: putstatic     #167                // Field VAGUE:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      75: new           #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+      78: dup
+      79: ldc           #169                // String bright
+      81: invokestatic  #153                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      84: sipush        4096
+      87: iconst_4
+      88: invokespecial #155                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;II)V
+      91: invokestatic  #157                // Method create:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      94: putstatic     #171                // Field BRIGHT:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+      97: new           #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+     100: dup
+     101: ldc           #173                // String vivid
+     103: invokestatic  #153                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     106: sipush        16384
+     109: iconst_5
+     110: invokespecial #155                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;II)V
+     113: invokestatic  #157                // Method create:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     116: putstatic     #175                // Field VIVID:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     119: new           #2                  // class com/sammy/malum/core/systems/ritual/MalumRitualTier
+     122: dup
+     123: ldc           #177                // String radiant
+     125: invokestatic  #153                // Method com/sammy/malum/MalumMod.malumPath:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     128: ldc           #178                // int 65536
+     130: bipush        6
+     132: invokespecial #155                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;II)V
+     135: invokestatic  #157                // Method create:(Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;)Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     138: putstatic     #180                // Field RADIANT:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     141: return
+}

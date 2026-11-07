@@ -1,0 +1,25 @@
+{
+  "notice": "Bundled JAR data only, not runtime datapack/RecipeManager results",
+  "counts": {
+    "unknown": 92,
+    "forge:conditional": 19,
+    "avaritia:shaped_table": 52,
+    "minecraft:crafting_shaped": 16,
+    "avaritia:shapeless_table": 2,
+    "avaritia:extreme_smithing": 7,
+    "avaritia:eternal_singularity": 1,
+    "avaritia:infinity_catalyst": 2,
+    "minecraft:crafting_shapeless": 12
+  },
+  "examples": {
+    "unknown": "data/avaritia/advancements/recipes/misc/blaze_cube.json",
+    "forge:conditional": "data/avaritia/recipes/ae2_creative_energy_cell.json",
+    "avaritia:shaped_table": "data/avaritia/recipes/blaze_axe.json",
+    "minecraft:crafting_shaped": "data/avaritia/recipes/compressed_chest.json",
+    "avaritia:shapeless_table": "data/avaritia/recipes/cosmic_meatballs.json",
+    "avaritia:extreme_smithing": "data/avaritia/recipes/endless_cake.json",
+    "avaritia:eternal_singularity": "data/avaritia/recipes/eternal_singularity.json",
+    "avaritia:infinity_catalyst": "data/avaritia/recipes/infinity_catalyst.json",
+    "minecraft:crafting_shapeless": "data/minecraft/recipes/blaze_cube.json"
+  }
+}

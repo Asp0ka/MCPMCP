@@ -1,0 +1,110 @@
+Compiled from "SmithingTransformRecipe.java"
+public class net.minecraft.world.item.crafting.SmithingTransformRecipe$Serializer implements net.minecraft.world.item.crafting.RecipeSerializer<net.minecraft.world.item.crafting.SmithingTransformRecipe> {
+  public net.minecraft.world.item.crafting.SmithingTransformRecipe$Serializer();
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public net.minecraft.world.item.crafting.SmithingTransformRecipe fromJson(net.minecraft.resources.ResourceLocation, com.google.gson.JsonObject);
+    Code:
+       0: aload_2
+       1: ldc           #21                 // String template
+       3: invokestatic  #27                 // Method net/minecraft/util/GsonHelper.getNonNull:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonElement;
+       6: invokestatic  #32                 // Method net/minecraft/world/item/crafting/Ingredient.fromJson:(Lcom/google/gson/JsonElement;)Lnet/minecraft/world/item/crafting/Ingredient;
+       9: astore_3
+      10: aload_2
+      11: ldc           #34                 // String base
+      13: invokestatic  #27                 // Method net/minecraft/util/GsonHelper.getNonNull:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      16: invokestatic  #32                 // Method net/minecraft/world/item/crafting/Ingredient.fromJson:(Lcom/google/gson/JsonElement;)Lnet/minecraft/world/item/crafting/Ingredient;
+      19: astore        4
+      21: aload_2
+      22: ldc           #36                 // String addition
+      24: invokestatic  #27                 // Method net/minecraft/util/GsonHelper.getNonNull:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonElement;
+      27: invokestatic  #32                 // Method net/minecraft/world/item/crafting/Ingredient.fromJson:(Lcom/google/gson/JsonElement;)Lnet/minecraft/world/item/crafting/Ingredient;
+      30: astore        5
+      32: aload_2
+      33: ldc           #38                 // String result
+      35: invokestatic  #42                 // Method net/minecraft/util/GsonHelper.getAsJsonObject:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+      38: invokestatic  #48                 // Method net/minecraft/world/item/crafting/ShapedRecipe.itemStackFromJson:(Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/ItemStack;
+      41: astore        6
+      43: new           #10                 // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+      46: dup
+      47: aload_1
+      48: aload_3
+      49: aload         4
+      51: aload         5
+      53: aload         6
+      55: invokespecial #51                 // Method net/minecraft/world/item/crafting/SmithingTransformRecipe."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;)V
+      58: areturn
+
+  public net.minecraft.world.item.crafting.SmithingTransformRecipe fromNetwork(net.minecraft.resources.ResourceLocation, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_2
+       1: invokestatic  #66                 // Method net/minecraft/world/item/crafting/Ingredient.fromNetwork:(Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/Ingredient;
+       4: astore_3
+       5: aload_2
+       6: invokestatic  #66                 // Method net/minecraft/world/item/crafting/Ingredient.fromNetwork:(Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/Ingredient;
+       9: astore        4
+      11: aload_2
+      12: invokestatic  #66                 // Method net/minecraft/world/item/crafting/Ingredient.fromNetwork:(Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/Ingredient;
+      15: astore        5
+      17: aload_2
+      18: invokevirtual #72                 // Method net/minecraft/network/FriendlyByteBuf.readItem:()Lnet/minecraft/world/item/ItemStack;
+      21: astore        6
+      23: new           #10                 // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+      26: dup
+      27: aload_1
+      28: aload_3
+      29: aload         4
+      31: aload         5
+      33: aload         6
+      35: invokespecial #51                 // Method net/minecraft/world/item/crafting/SmithingTransformRecipe."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;)V
+      38: areturn
+
+  public void toNetwork(net.minecraft.network.FriendlyByteBuf, net.minecraft.world.item.crafting.SmithingTransformRecipe);
+    Code:
+       0: aload_2
+       1: getfield      #79                 // Field net/minecraft/world/item/crafting/SmithingTransformRecipe.template:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: aload_1
+       5: invokevirtual #82                 // Method net/minecraft/world/item/crafting/Ingredient.toNetwork:(Lnet/minecraft/network/FriendlyByteBuf;)V
+       8: aload_2
+       9: getfield      #84                 // Field net/minecraft/world/item/crafting/SmithingTransformRecipe.base:Lnet/minecraft/world/item/crafting/Ingredient;
+      12: aload_1
+      13: invokevirtual #82                 // Method net/minecraft/world/item/crafting/Ingredient.toNetwork:(Lnet/minecraft/network/FriendlyByteBuf;)V
+      16: aload_2
+      17: getfield      #86                 // Field net/minecraft/world/item/crafting/SmithingTransformRecipe.addition:Lnet/minecraft/world/item/crafting/Ingredient;
+      20: aload_1
+      21: invokevirtual #82                 // Method net/minecraft/world/item/crafting/Ingredient.toNetwork:(Lnet/minecraft/network/FriendlyByteBuf;)V
+      24: aload_1
+      25: aload_2
+      26: getfield      #88                 // Field net/minecraft/world/item/crafting/SmithingTransformRecipe.result:Lnet/minecraft/world/item/ItemStack;
+      29: invokevirtual #92                 // Method net/minecraft/network/FriendlyByteBuf.writeItem:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
+      32: pop
+      33: return
+
+  public void toNetwork(net.minecraft.network.FriendlyByteBuf, net.minecraft.world.item.crafting.Recipe);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: checkcast     #10                 // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+       6: invokevirtual #98                 // Method toNetwork:(Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/world/item/crafting/SmithingTransformRecipe;)V
+       9: return
+
+  public net.minecraft.world.item.crafting.Recipe fromNetwork(net.minecraft.resources.ResourceLocation, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #101                // Method fromNetwork:(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/item/crafting/SmithingTransformRecipe;
+       6: areturn
+
+  public net.minecraft.world.item.crafting.Recipe fromJson(net.minecraft.resources.ResourceLocation, com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #104                // Method fromJson:(Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/SmithingTransformRecipe;
+       6: areturn
+}

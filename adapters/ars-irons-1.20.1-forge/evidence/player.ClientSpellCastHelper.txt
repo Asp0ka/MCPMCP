@@ -1,0 +1,28 @@
+Compiled from "ClientSpellCastHelper.java"
+public class io.redspace.ironsspellbooks.player.ClientSpellCastHelper {
+  private static boolean suppressRightClicks;
+  public io.redspace.ironsspellbooks.player.ClientSpellCastHelper();
+  public static boolean shouldSuppressRightClicks();
+  public static void setSuppressRightClicks(boolean);
+  public static void openEldritchResearchScreen(net.minecraft.world.InteractionHand);
+  public static void handleCastErrorMessage(io.redspace.ironsspellbooks.network.casting.CastErrorPacket);
+  public static void handleClientboundBloodSiphonParticles(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static void handleClientboundFlamethrowerParticles(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static void handleClientboundShockwaveParticle(net.minecraft.world.phys.Vec3, float, net.minecraft.core.particles.ParticleType<?>);
+  public static void handleClientsideHealParticles(net.minecraft.world.phys.Vec3);
+  public static void handleClientsideAbsorptionParticles(net.minecraft.world.phys.Vec3);
+  public static void handleClientboundOakskinParticles(net.minecraft.world.phys.Vec3);
+  public static void handleClientsideRegenCloudParticles(net.minecraft.world.phys.Vec3);
+  public static void handleClientsideFortifyAreaParticles(net.minecraft.world.phys.Vec3);
+  public static void handleClientboundOnClientCast(java.lang.String, int, io.redspace.ironsspellbooks.api.spells.CastSource, io.redspace.ironsspellbooks.api.spells.ICastData);
+  public static void handleClientboundTeleport(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static void handleClientboundFieryExplosion(net.minecraft.world.phys.Vec3, float);
+  public static void handleClientboundFrostStep(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static void handleClientBoundOnCastStarted(java.util.UUID, java.lang.String, int);
+  public static void handleClientBoundOnCastFinished(java.util.UUID, java.lang.String, boolean);
+  public static void animatePlayerStart(net.minecraft.world.entity.player.Player, net.minecraft.resources.ResourceLocation);
+  public static void handleCastingMobAimingData(int, io.redspace.ironsspellbooks.spells.CastingMobAimingData);
+  private static void lambda$handleClientBoundOnCastFinished$2(net.minecraft.sounds.SoundEvent);
+  private static void lambda$handleClientBoundOnCastStarted$1(net.minecraft.world.entity.player.Player, net.minecraft.resources.ResourceLocation);
+  private static void lambda$handleClientboundFieryExplosion$0(net.minecraft.world.phys.Vec3, float, net.minecraft.world.entity.player.Player);
+}

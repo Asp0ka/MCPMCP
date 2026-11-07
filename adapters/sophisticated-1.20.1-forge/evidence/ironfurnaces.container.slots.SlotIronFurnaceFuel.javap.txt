@@ -1,0 +1,70 @@
+Compiled from "SlotIronFurnaceFuel.java"
+public class ironfurnaces.container.slots.SlotIronFurnaceFuel extends net.minecraft.world.inventory.Slot {
+  ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase te;
+
+  public ironfurnaces.container.slots.SlotIronFurnaceFuel(ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: invokespecial #12                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+       9: aload_0
+      10: aload_1
+      11: putfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: return
+
+  public boolean m_5857_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: getstatic     #28                 // Field net/minecraft/world/item/crafting/RecipeType.f_44108_:Lnet/minecraft/world/item/crafting/RecipeType;
+       4: invokestatic  #34                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemFuel:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/crafting/RecipeType;)Z
+       7: ifne          17
+      10: aload_1
+      11: invokestatic  #37                 // Method isBucket:(Lnet/minecraft/world/item/ItemStack;)Z
+      14: ifeq          21
+      17: iconst_1
+      18: goto          22
+      21: iconst_0
+      22: ireturn
+
+  public int m_5866_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokestatic  #37                 // Method isBucket:(Lnet/minecraft/world/item/ItemStack;)Z
+       4: ifeq          11
+       7: iconst_1
+       8: goto          16
+      11: aload_0
+      12: aload_1
+      13: invokespecial #43                 // Method net/minecraft/world/inventory/Slot.m_5866_:(Lnet/minecraft/world/item/ItemStack;)I
+      16: ireturn
+
+  public static boolean isBucket(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokevirtual #49                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       4: getstatic     #55                 // Field net/minecraft/world/item/Items.f_42446_:Lnet/minecraft/world/item/Item;
+       7: if_acmpne     14
+      10: iconst_1
+      11: goto          15
+      14: iconst_0
+      15: ireturn
+
+  public boolean m_6659_();
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #61                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+       7: ifne          24
+      10: aload_0
+      11: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: invokevirtual #64                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFurnace:()Z
+      17: ifeq          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

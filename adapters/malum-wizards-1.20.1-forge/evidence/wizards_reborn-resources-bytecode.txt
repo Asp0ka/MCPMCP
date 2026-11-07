@@ -1,0 +1,1555 @@
+Compiled from "WissenCellBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.wissen_cell.WissenCellBlockEntity extends mod.maxbogomol.fluffy_fur.common.block.entity.ExposedBlockSimpleInventory implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenBlockEntity {
+  public int wissen;
+
+  public mod.maxbogomol.wizards_reborn.common.block.wissen_cell.WissenCellBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #18                 // Method mod/maxbogomol/fluffy_fur/common/block/entity/ExposedBlockSimpleInventory."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: aload_0
+       8: iconst_0
+       9: putfield      #20                 // Field wissen:I
+      12: return
+
+  public mod.maxbogomol.wizards_reborn.common.block.wissen_cell.WissenCellBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #36                 // Field mod/maxbogomol/wizards_reborn/registry/common/block/WizardsRebornBlockEntities.WISSEN_CELL:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #42                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #44                 // class net/minecraft/world/level/block/entity/BlockEntityType
+      10: aload_1
+      11: aload_2
+      12: invokespecial #45                 // Method "<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      15: return
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: invokevirtual #57                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       7: ifne          259
+      10: iconst_0
+      11: istore_1
+      12: aload_0
+      13: invokevirtual #61                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+      16: astore_2
+      17: aload_0
+      18: getfield      #20                 // Field wissen:I
+      21: ifle          251
+      24: aload_2
+      25: iconst_0
+      26: invokeinterface #67,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      31: invokevirtual #72                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      34: ifne          251
+      37: aload_2
+      38: iconst_0
+      39: invokeinterface #67,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      44: astore_3
+      45: aload_3
+      46: invokevirtual #76                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      49: astore        5
+      51: aload         5
+      53: instanceof    #78                 // class mod/maxbogomol/wizards_reborn/api/wissen/IWissenItem
+      56: ifeq          251
+      59: aload         5
+      61: checkcast     #78                 // class mod/maxbogomol/wizards_reborn/api/wissen/IWissenItem
+      64: astore        4
+      66: aload_0
+      67: getfield      #20                 // Field wissen:I
+      70: aload_0
+      71: invokevirtual #82                 // Method getWissenPerReceive:()I
+      74: invokestatic  #88                 // Method mod/maxbogomol/wizards_reborn/api/wissen/WissenUtil.getRemoveWissenRemain:(II)I
+      77: istore        5
+      79: aload_0
+      80: invokevirtual #82                 // Method getWissenPerReceive:()I
+      83: iload         5
+      85: isub
+      86: istore        5
+      88: aload_3
+      89: invokestatic  #94                 // Method mod/maxbogomol/wizards_reborn/api/wissen/WissenItemUtil.existWissen:(Lnet/minecraft/world/item/ItemStack;)V
+      92: aload_3
+      93: iload         5
+      95: aload         4
+      97: invokeinterface #97,  1           // InterfaceMethod mod/maxbogomol/wizards_reborn/api/wissen/IWissenItem.getMaxWissen:()I
+     102: invokestatic  #101                // Method mod/maxbogomol/wizards_reborn/api/wissen/WissenItemUtil.getAddWissenRemain:(Lnet/minecraft/world/item/ItemStack;II)I
+     105: istore        6
+     107: iload         5
+     109: iload         6
+     111: isub
+     112: istore        5
+     114: iload         5
+     116: ifle          251
+     119: aload_3
+     120: iload         5
+     122: aload         4
+     124: invokeinterface #97,  1           // InterfaceMethod mod/maxbogomol/wizards_reborn/api/wissen/IWissenItem.getMaxWissen:()I
+     129: invokestatic  #105                // Method mod/maxbogomol/wizards_reborn/api/wissen/WissenItemUtil.addWissen:(Lnet/minecraft/world/item/ItemStack;II)V
+     132: aload_0
+     133: aload_0
+     134: getfield      #20                 // Field wissen:I
+     137: iload         5
+     139: isub
+     140: putfield      #20                 // Field wissen:I
+     143: aload_0
+     144: getfield      #109                // Field random:Ljava/util/Random;
+     147: invokevirtual #115                // Method java/util/Random.nextFloat:()F
+     150: f2d
+     151: ldc2_w        #116                // double 0.5d
+     154: dcmpg
+     155: ifge          180
+     158: aload_0
+     159: getfield      #51                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+     162: aload_0
+     163: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     166: new           #123                // class mod/maxbogomol/wizards_reborn/common/network/block/WissenCellSendPacket
+     169: dup
+     170: aload_0
+     171: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     174: invokespecial #126                // Method mod/maxbogomol/wizards_reborn/common/network/block/WissenCellSendPacket."<init>":(Lnet/minecraft/core/BlockPos;)V
+     177: invokestatic  #132                // Method mod/maxbogomol/wizards_reborn/common/network/WizardsRebornPacketHandler.sendToTracking:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Ljava/lang/Object;)V
+     180: aload_0
+     181: getfield      #109                // Field random:Ljava/util/Random;
+     184: invokevirtual #115                // Method java/util/Random.nextFloat:()F
+     187: f2d
+     188: ldc2_w        #133                // double 0.1d
+     191: dcmpg
+     192: ifge          249
+     195: aload_0
+     196: getfield      #51                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+     199: getstatic     #140                // Field mod/maxbogomol/wizards_reborn/WizardsReborn.proxy:Lmod/maxbogomol/fluffy_fur/common/proxy/ISidedProxy;
+     202: invokeinterface #146,  1          // InterfaceMethod mod/maxbogomol/fluffy_fur/common/proxy/ISidedProxy.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+     207: aload_0
+     208: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     211: getstatic     #151                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.WISSEN_BURST:Lnet/minecraftforge/registries/RegistryObject;
+     214: invokevirtual #42                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     217: checkcast     #153                // class net/minecraft/sounds/SoundEvent
+     220: getstatic     #159                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     223: ldc           #160                // float 0.15f
+     225: ldc2_w        #116                // double 0.5d
+     228: aload_0
+     229: getfield      #109                // Field random:Ljava/util/Random;
+     232: invokevirtual #115                // Method java/util/Random.nextFloat:()F
+     235: f2d
+     236: ldc2_w        #116                // double 0.5d
+     239: dsub
+     240: ldc2_w        #161                // double 4.0d
+     243: ddiv
+     244: dadd
+     245: d2f
+     246: invokevirtual #166                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     249: iconst_1
+     250: istore_1
+     251: iload_1
+     252: ifeq          259
+     255: aload_0
+     256: invokevirtual #169                // Method m_6596_:()V
+     259: aload_0
+     260: getfield      #51                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+     263: invokevirtual #57                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+     266: ifeq          625
+     269: aload_0
+     270: invokevirtual #172                // Method getWissen:()I
+     273: ifle          625
+     276: aload_0
+     277: getfield      #109                // Field random:Ljava/util/Random;
+     280: invokevirtual #115                // Method java/util/Random.nextFloat:()F
+     283: f2d
+     284: ldc2_w        #116                // double 0.5d
+     287: dcmpg
+     288: ifge          414
+     291: getstatic     #177                // Field mod/maxbogomol/fluffy_fur/registry/client/FluffyFurParticles.WISP:Lnet/minecraftforge/registries/RegistryObject;
+     294: invokestatic  #183                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.create:(Lnet/minecraftforge/registries/RegistryObject;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     297: invokestatic  #189                // Method mod/maxbogomol/wizards_reborn/config/WizardsRebornConfig.wissenColor:()Ljava/awt/Color;
+     300: invokestatic  #194                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData.create:(Ljava/awt/Color;)Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder;
+     303: invokevirtual #200                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;
+     306: invokevirtual #204                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setColorData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     309: ldc           #205                // float 0.25f
+     311: fconst_0
+     312: invokestatic  #210                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     315: invokevirtual #215                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     318: invokevirtual #219                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setTransparencyData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     321: ldc           #220                // float 0.3f
+     323: aload_0
+     324: invokevirtual #223                // Method getStage:()F
+     327: fmul
+     328: fconst_0
+     329: invokestatic  #210                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     332: invokevirtual #215                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     335: invokevirtual #226                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setScaleData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     338: bipush        20
+     340: invokevirtual #230                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setLifetime:(I)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     343: ldc           #231                // float 0.025f
+     345: aload_0
+     346: invokevirtual #223                // Method getStage:()F
+     349: fmul
+     350: f2d
+     351: ldc           #231                // float 0.025f
+     353: aload_0
+     354: invokevirtual #223                // Method getStage:()F
+     357: fmul
+     358: f2d
+     359: ldc           #231                // float 0.025f
+     361: aload_0
+     362: invokevirtual #223                // Method getStage:()F
+     365: fmul
+     366: f2d
+     367: invokevirtual #235                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.randomVelocity:(DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     370: aload_0
+     371: getfield      #51                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+     374: aload_0
+     375: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     378: invokevirtual #240                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     381: i2f
+     382: ldc           #241                // float 0.5f
+     384: fadd
+     385: f2d
+     386: aload_0
+     387: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     390: invokevirtual #244                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     393: i2f
+     394: ldc           #245                // float 0.9375f
+     396: fadd
+     397: f2d
+     398: aload_0
+     399: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     402: invokevirtual #248                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     405: i2f
+     406: ldc           #241                // float 0.5f
+     408: fadd
+     409: f2d
+     410: invokevirtual #252                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.spawn:(Lnet/minecraft/world/level/Level;DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     413: pop
+     414: aload_0
+     415: getfield      #109                // Field random:Ljava/util/Random;
+     418: invokevirtual #115                // Method java/util/Random.nextFloat:()F
+     421: f2d
+     422: ldc2_w        #253                // double 0.4d
+     425: dcmpg
+     426: ifge          625
+     429: aload_0
+     430: getfield      #109                // Field random:Ljava/util/Random;
+     433: invokevirtual #115                // Method java/util/Random.nextFloat:()F
+     436: f2d
+     437: ldc2_w        #255                // double 0.2d
+     440: dcmpg
+     441: ifge          448
+     444: iconst_1
+     445: goto          449
+     448: iconst_0
+     449: istore_1
+     450: iload_1
+     451: ifeq          459
+     454: ldc           #241                // float 0.5f
+     456: goto          460
+     459: fconst_1
+     460: fstore_2
+     461: iload_1
+     462: ifeq          471
+     465: getstatic     #259                // Field mod/maxbogomol/fluffy_fur/registry/client/FluffyFurParticles.SQUARE:Lnet/minecraftforge/registries/RegistryObject;
+     468: goto          474
+     471: getstatic     #262                // Field mod/maxbogomol/fluffy_fur/registry/client/FluffyFurParticles.SPARKLE:Lnet/minecraftforge/registries/RegistryObject;
+     474: invokestatic  #183                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.create:(Lnet/minecraftforge/registries/RegistryObject;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     477: invokestatic  #265                // Method mod/maxbogomol/wizards_reborn/config/WizardsRebornConfig.wissenColorR:()F
+     480: invokestatic  #268                // Method mod/maxbogomol/wizards_reborn/config/WizardsRebornConfig.wissenColorG:()F
+     483: invokestatic  #271                // Method mod/maxbogomol/wizards_reborn/config/WizardsRebornConfig.wissenColorB:()F
+     486: ldc           #241                // float 0.5f
+     488: ldc           #241                // float 0.5f
+     490: fconst_0
+     491: invokestatic  #274                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData.create:(FFFFFF)Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder;
+     494: invokevirtual #200                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;
+     497: invokevirtual #204                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setColorData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     500: ldc           #205                // float 0.25f
+     502: fconst_0
+     503: invokestatic  #210                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     506: invokevirtual #215                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     509: invokevirtual #219                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setTransparencyData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     512: ldc_w         #275                // float 0.1f
+     515: aload_0
+     516: invokevirtual #223                // Method getStage:()F
+     519: fmul
+     520: fload_2
+     521: fmul
+     522: ldc_w         #276                // float 0.2f
+     525: aload_0
+     526: invokevirtual #223                // Method getStage:()F
+     529: fmul
+     530: fload_2
+     531: fmul
+     532: fconst_0
+     533: invokestatic  #279                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FFF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     536: getstatic     #285                // Field mod/maxbogomol/fluffy_fur/common/easing/Easing.QUINTIC_IN_OUT:Lmod/maxbogomol/fluffy_fur/common/easing/Easing;
+     539: invokevirtual #289                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.setEasing:(Lmod/maxbogomol/fluffy_fur/common/easing/Easing;)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     542: invokevirtual #215                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     545: invokevirtual #226                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setScaleData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     548: invokestatic  #294                // Method mod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleData.create:()Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder;
+     551: ldc_w         #275                // float 0.1f
+     554: invokevirtual #300                // Method mod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder.randomSpin:(F)Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder;
+     557: invokevirtual #303                // Method mod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleData;
+     560: invokevirtual #307                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setSpinData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     563: bipush        100
+     565: invokevirtual #230                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setLifetime:(I)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     568: ldc           #231                // float 0.025f
+     570: aload_0
+     571: invokevirtual #223                // Method getStage:()F
+     574: fmul
+     575: fload_2
+     576: fmul
+     577: f2d
+     578: invokevirtual #310                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.randomVelocity:(D)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     581: aload_0
+     582: getfield      #51                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+     585: aload_0
+     586: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     589: invokevirtual #240                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     592: i2f
+     593: ldc           #241                // float 0.5f
+     595: fadd
+     596: f2d
+     597: aload_0
+     598: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     601: invokevirtual #244                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     604: i2f
+     605: ldc           #245                // float 0.9375f
+     607: fadd
+     608: f2d
+     609: aload_0
+     610: invokevirtual #121                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     613: invokevirtual #248                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     616: i2f
+     617: ldc           #241                // float 0.5f
+     619: fadd
+     620: f2d
+     621: invokevirtual #252                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.spawn:(Lnet/minecraft/world/level/Level;DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     624: pop
+     625: return
+
+  protected net.minecraft.world.SimpleContainer createItemHandler();
+    Code:
+       0: new           #327                // class net/minecraft/world/SimpleContainer
+       3: dup
+       4: iconst_1
+       5: invokespecial #330                // Method net/minecraft/world/SimpleContainer."<init>":(I)V
+       8: areturn
+
+  public boolean m_7155_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+    Code:
+       0: aload_2
+       1: invokevirtual #76                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       4: instanceof    #78                 // class mod/maxbogomol/wizards_reborn/api/wissen/IWissenItem
+       7: ireturn
+
+  public boolean m_7157_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #342                // Method mod/maxbogomol/fluffy_fur/common/block/entity/ExposedBlockSimpleInventory.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc_w         #343                // String wissen
+       9: aload_0
+      10: getfield      #20                 // Field wissen:I
+      13: invokevirtual #349                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      16: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #354                // Method mod/maxbogomol/fluffy_fur/common/block/entity/ExposedBlockSimpleInventory.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc_w         #343                // String wissen
+      10: invokevirtual #358                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      13: putfield      #20                 // Field wissen:I
+      16: return
+
+  public float getBlockRotate();
+    Code:
+       0: getstatic     #363                // Field mod/maxbogomol/wizards_reborn/common/block/wissen_cell/WissenCellBlockEntity$1.$SwitchMap$net$minecraft$core$Direction:[I
+       3: aload_0
+       4: invokevirtual #367                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+       7: getstatic     #373                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.f_61374_:Lnet/minecraft/world/level/block/state/properties/DirectionProperty;
+      10: invokevirtual #379                // Method net/minecraft/world/level/block/state/BlockState.m_61143_:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+      13: checkcast     #381                // class net/minecraft/core/Direction
+      16: invokevirtual #384                // Method net/minecraft/core/Direction.ordinal:()I
+      19: iaload
+      20: tableswitch   { // 1 to 4
+
+                     1: 52
+
+                     2: 56
+
+                     3: 62
+
+                     4: 68
+               default: 74
+          }
+      52: fconst_0
+      53: goto          75
+      56: ldc_w         #385                // float 180.0f
+      59: goto          75
+      62: ldc_w         #386                // float 90.0f
+      65: goto          75
+      68: ldc_w         #387                // float 270.0f
+      71: goto          75
+      74: fconst_0
+      75: freturn
+
+  public float getStage();
+    Code:
+       0: aload_0
+       1: invokevirtual #172                // Method getWissen:()I
+       4: i2f
+       5: aload_0
+       6: invokevirtual #388                // Method getMaxWissen:()I
+       9: i2f
+      10: fdiv
+      11: freturn
+
+  public int getWissenPerReceive();
+    Code:
+       0: sipush        250
+       3: ireturn
+
+  public int getWissen();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field wissen:I
+       4: ireturn
+
+  public int getMaxWissen();
+    Code:
+       0: ldc_w         #389                // int 100000
+       3: ireturn
+
+  public boolean canSendWissen();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean canReceiveWissen();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean canConnectSendWissen();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean canConnectReceiveWissen();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public void setWissen(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #20                 // Field wissen:I
+       5: return
+
+  public void addWissen(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #20                 // Field wissen:I
+       5: iload_1
+       6: iadd
+       7: putfield      #20                 // Field wissen:I
+      10: aload_0
+      11: getfield      #20                 // Field wissen:I
+      14: aload_0
+      15: invokevirtual #388                // Method getMaxWissen:()I
+      18: if_icmple     29
+      21: aload_0
+      22: aload_0
+      23: invokevirtual #388                // Method getMaxWissen:()I
+      26: putfield      #20                 // Field wissen:I
+      29: return
+
+  public void removeWissen(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #20                 // Field wissen:I
+       5: iload_1
+       6: isub
+       7: putfield      #20                 // Field wissen:I
+      10: aload_0
+      11: getfield      #20                 // Field wissen:I
+      14: ifge          22
+      17: aload_0
+      18: iconst_0
+      19: putfield      #20                 // Field wissen:I
+      22: return
+}
+Compiled from "CrystalBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity extends mod.maxbogomol.fluffy_fur.common.block.entity.BlockSimpleInventory implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.light.ILightBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenWandFunctionalBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenWandControlledBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IItemResultBlockEntity {
+  public int blockToX;
+
+  public int blockToY;
+
+  public int blockToZ;
+
+  public boolean isToBlock;
+
+  public int light;
+
+  public int cooldown;
+
+  public int maxCooldown;
+
+  public boolean startRitual;
+
+  public int tickRitual;
+
+  public net.minecraft.nbt.CompoundTag tagRitual;
+
+  public java.util.ArrayList<mod.maxbogomol.wizards_reborn.api.light.LightTypeStack> lightTypes;
+
+  public mod.maxbogomol.wizards_reborn.client.sound.CrystalSoundInstance sound;
+
+  public mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #42                 // Method mod/maxbogomol/fluffy_fur/common/block/entity/BlockSimpleInventory."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: aload_0
+       8: iconst_0
+       9: putfield      #44                 // Field blockToX:I
+      12: aload_0
+      13: iconst_0
+      14: putfield      #46                 // Field blockToY:I
+      17: aload_0
+      18: iconst_0
+      19: putfield      #48                 // Field blockToZ:I
+      22: aload_0
+      23: iconst_0
+      24: putfield      #50                 // Field isToBlock:Z
+      27: aload_0
+      28: iconst_0
+      29: putfield      #52                 // Field light:I
+      32: aload_0
+      33: iconst_0
+      34: putfield      #54                 // Field cooldown:I
+      37: aload_0
+      38: iconst_0
+      39: putfield      #56                 // Field maxCooldown:I
+      42: aload_0
+      43: iconst_0
+      44: putfield      #58                 // Field startRitual:Z
+      47: aload_0
+      48: iconst_0
+      49: putfield      #60                 // Field tickRitual:I
+      52: aload_0
+      53: new           #62                 // class net/minecraft/nbt/CompoundTag
+      56: dup
+      57: invokespecial #65                 // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      60: putfield      #67                 // Field tagRitual:Lnet/minecraft/nbt/CompoundTag;
+      63: aload_0
+      64: new           #69                 // class java/util/ArrayList
+      67: dup
+      68: invokespecial #70                 // Method java/util/ArrayList."<init>":()V
+      71: putfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+      74: return
+
+  public mod.maxbogomol.wizards_reborn.common.block.crystal.CrystalBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #88                 // Field mod/maxbogomol/wizards_reborn/registry/common/block/WizardsRebornBlockEntities.CRYSTAL:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #94                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #96                 // class net/minecraft/world/level/block/entity/BlockEntityType
+      10: aload_1
+      11: aload_2
+      12: invokespecial #97                 // Method "<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      15: return
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: invokevirtual #102                // Method getCrystalRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+       4: astore_1
+       5: iconst_0
+       6: istore_2
+       7: aload_0
+       8: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      11: invokevirtual #112                // Method net/minecraft/world/level/Level.m_5776_:()Z
+      14: ifne          69
+      17: aload_0
+      18: invokevirtual #116                // Method getLight:()I
+      21: ifle          53
+      24: aload_0
+      25: iconst_1
+      26: invokevirtual #120                // Method removeLight:(I)V
+      29: aload_0
+      30: aload_0
+      31: invokevirtual #124                // Method getLightTypes:()Ljava/util/ArrayList;
+      34: invokestatic  #130                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.tickLightTypeStack:(Lnet/minecraft/world/level/block/entity/BlockEntity;Ljava/util/ArrayList;)V
+      37: aload_0
+      38: invokevirtual #116                // Method getLight:()I
+      41: ifgt          48
+      44: aload_0
+      45: invokevirtual #133                // Method clearLightType:()V
+      48: iconst_1
+      49: istore_2
+      50: goto          69
+      53: aload_0
+      54: invokevirtual #124                // Method getLightTypes:()Ljava/util/ArrayList;
+      57: invokevirtual #138                // Method java/util/ArrayList.isEmpty:()Z
+      60: ifne          69
+      63: aload_0
+      64: invokevirtual #133                // Method clearLightType:()V
+      67: iconst_1
+      68: istore_2
+      69: aload_1
+      70: invokestatic  #143                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitualUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;)Z
+      73: ifne          301
+      76: aload_1
+      77: aload_0
+      78: invokevirtual #147                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.canStartWithCrystal:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Z
+      81: ifeq          285
+      84: aload_0
+      85: invokevirtual #116                // Method getLight:()I
+      88: ifle          269
+      91: aload_0
+      92: getfield      #58                 // Field startRitual:Z
+      95: ifeq          269
+      98: aload_0
+      99: getfield      #60                 // Field tickRitual:I
+     102: ifne          171
+     105: aload_1
+     106: aload_0
+     107: invokevirtual #150                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.canStart:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Z
+     110: ifeq          165
+     113: aload_1
+     114: aload_0
+     115: invokevirtual #154                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.start:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)V
+     118: aload_0
+     119: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     122: getstatic     #160                // Field mod/maxbogomol/wizards_reborn/WizardsReborn.proxy:Lmod/maxbogomol/fluffy_fur/common/proxy/ISidedProxy;
+     125: invokeinterface #166,  1          // InterfaceMethod mod/maxbogomol/fluffy_fur/common/proxy/ISidedProxy.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+     130: aload_0
+     131: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     134: getstatic     #175                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.CRYSTAL_RITUAL_START:Lnet/minecraftforge/registries/RegistryObject;
+     137: invokevirtual #94                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     140: checkcast     #177                // class net/minecraft/sounds/SoundEvent
+     143: getstatic     #183                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     146: fconst_1
+     147: fconst_1
+     148: invokevirtual #187                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     151: aload_0
+     152: new           #62                 // class net/minecraft/nbt/CompoundTag
+     155: dup
+     156: invokespecial #65                 // Method net/minecraft/nbt/CompoundTag."<init>":()V
+     159: putfield      #67                 // Field tagRitual:Lnet/minecraft/nbt/CompoundTag;
+     162: goto          171
+     165: aload_0
+     166: invokevirtual #190                // Method reload:()V
+     169: iconst_1
+     170: istore_2
+     171: aload_0
+     172: getfield      #58                 // Field startRitual:Z
+     175: ifeq          314
+     178: aload_1
+     179: aload_0
+     180: invokevirtual #193                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.canTick:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Z
+     183: ifeq          191
+     186: aload_1
+     187: aload_0
+     188: invokevirtual #195                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.tick:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)V
+     191: aload_1
+     192: aload_0
+     193: invokevirtual #198                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.canEnd:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Z
+     196: ifeq          244
+     199: aload_1
+     200: aload_0
+     201: invokevirtual #201                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.end:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)V
+     204: aload_0
+     205: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     208: getstatic     #160                // Field mod/maxbogomol/wizards_reborn/WizardsReborn.proxy:Lmod/maxbogomol/fluffy_fur/common/proxy/ISidedProxy;
+     211: invokeinterface #166,  1          // InterfaceMethod mod/maxbogomol/fluffy_fur/common/proxy/ISidedProxy.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+     216: aload_0
+     217: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     220: getstatic     #204                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.CRYSTAL_RITUAL_END:Lnet/minecraftforge/registries/RegistryObject;
+     223: invokevirtual #94                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     226: checkcast     #177                // class net/minecraft/sounds/SoundEvent
+     229: getstatic     #183                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     232: fconst_1
+     233: fconst_1
+     234: invokevirtual #187                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     237: aload_0
+     238: invokevirtual #190                // Method reload:()V
+     241: goto          314
+     244: aload_0
+     245: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     248: invokevirtual #112                // Method net/minecraft/world/level/Level.m_5776_:()Z
+     251: ifne          314
+     254: aload_0
+     255: dup
+     256: getfield      #60                 // Field tickRitual:I
+     259: iconst_1
+     260: iadd
+     261: putfield      #60                 // Field tickRitual:I
+     264: iconst_1
+     265: istore_2
+     266: goto          314
+     269: aload_0
+     270: getfield      #58                 // Field startRitual:Z
+     273: ifeq          314
+     276: aload_0
+     277: invokevirtual #190                // Method reload:()V
+     280: iconst_1
+     281: istore_2
+     282: goto          314
+     285: aload_0
+     286: getfield      #58                 // Field startRitual:Z
+     289: ifeq          314
+     292: aload_0
+     293: invokevirtual #190                // Method reload:()V
+     296: iconst_1
+     297: istore_2
+     298: goto          314
+     301: aload_0
+     302: getfield      #58                 // Field startRitual:Z
+     305: ifeq          314
+     308: aload_0
+     309: invokevirtual #190                // Method reload:()V
+     312: iconst_1
+     313: istore_2
+     314: aload_0
+     315: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     318: invokevirtual #112                // Method net/minecraft/world/level/Level.m_5776_:()Z
+     321: ifne          487
+     324: aload_0
+     325: getfield      #50                 // Field isToBlock:Z
+     328: ifeq          391
+     331: aload_1
+     332: invokestatic  #143                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitualUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;)Z
+     335: ifeq          346
+     338: aload_0
+     339: iconst_0
+     340: putfield      #50                 // Field isToBlock:Z
+     343: goto          389
+     346: aload_1
+     347: aload_0
+     348: invokevirtual #207                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.hasLightRay:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Z
+     351: ifeq          389
+     354: aload_0
+     355: invokevirtual #211                // Method setupLightRay:()Lmod/maxbogomol/wizards_reborn/api/light/LightRayHitResult;
+     358: astore_3
+     359: aload_3
+     360: ifnull        389
+     363: aload_3
+     364: invokevirtual #217                // Method mod/maxbogomol/wizards_reborn/api/light/LightRayHitResult.getBlockEntity:()Lnet/minecraft/world/level/block/entity/BlockEntity;
+     367: astore        4
+     369: aload_0
+     370: aload         4
+     372: invokestatic  #221                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.transferLight:(Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+     375: aload_0
+     376: aload_0
+     377: invokevirtual #124                // Method getLightTypes:()Ljava/util/ArrayList;
+     380: aload_3
+     381: invokestatic  #225                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.tickHitLightTypeStack:(Lnet/minecraft/world/level/block/entity/BlockEntity;Ljava/util/ArrayList;Lmod/maxbogomol/wizards_reborn/api/light/LightRayHitResult;)V
+     384: aload         4
+     386: invokestatic  #231                // Method mod/maxbogomol/fluffy_fur/common/network/BlockEntityUpdate.packet:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+     389: iconst_1
+     390: istore_2
+     391: aload_0
+     392: getfield      #235                // Field random:Ljava/util/Random;
+     395: invokevirtual #241                // Method java/util/Random.nextFloat:()F
+     398: ldc           #242                // float 0.001f
+     400: fcmpg
+     401: ifge          487
+     404: aload_0
+     405: invokevirtual #246                // Method getCrystalItem:()Lnet/minecraft/world/item/ItemStack;
+     408: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     411: ifne          487
+     414: aload_0
+     415: invokevirtual #246                // Method getCrystalItem:()Lnet/minecraft/world/item/ItemStack;
+     418: invokevirtual #255                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     421: astore        4
+     423: aload         4
+     425: instanceof    #257                // class mod/maxbogomol/wizards_reborn/common/item/CrystalItem
+     428: ifeq          487
+     431: aload         4
+     433: checkcast     #257                // class mod/maxbogomol/wizards_reborn/common/item/CrystalItem
+     436: astore_3
+     437: aload_3
+     438: invokevirtual #261                // Method mod/maxbogomol/wizards_reborn/common/item/CrystalItem.getPolishing:()Lmod/maxbogomol/wizards_reborn/api/crystal/PolishingType;
+     441: invokevirtual #266                // Method mod/maxbogomol/wizards_reborn/api/crystal/PolishingType.getPolishingLevel:()I
+     444: ifle          487
+     447: aload_0
+     448: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     451: aconst_null
+     452: aload_0
+     453: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     456: getstatic     #269                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.CRYSTAL_SHIMMER:Lnet/minecraftforge/registries/RegistryObject;
+     459: invokevirtual #94                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     462: checkcast     #177                // class net/minecraft/sounds/SoundEvent
+     465: getstatic     #183                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     468: fconst_1
+     469: fconst_1
+     470: aload_0
+     471: getfield      #235                // Field random:Ljava/util/Random;
+     474: invokevirtual #241                // Method java/util/Random.nextFloat:()F
+     477: ldc_w         #270                // float 0.5f
+     480: fsub
+     481: fconst_2
+     482: fdiv
+     483: fadd
+     484: invokevirtual #187                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     487: aload_0
+     488: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     491: invokevirtual #112                // Method net/minecraft/world/level/Level.m_5776_:()Z
+     494: ifne          505
+     497: iload_2
+     498: ifeq          505
+     501: aload_0
+     502: invokevirtual #273                // Method m_6596_:()V
+     505: aload_0
+     506: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     509: invokevirtual #112                // Method net/minecraft/world/level/Level.m_5776_:()Z
+     512: ifeq          768
+     515: aload_0
+     516: invokevirtual #116                // Method getLight:()I
+     519: ifle          529
+     522: aload_0
+     523: getfield      #50                 // Field isToBlock:Z
+     526: ifne          536
+     529: aload_0
+     530: getfield      #58                 // Field startRitual:Z
+     533: ifeq          586
+     536: aload_0
+     537: getfield      #275                // Field sound:Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     540: ifnonnull     561
+     543: aload_0
+     544: aload_0
+     545: invokestatic  #281                // Method mod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance.getSound:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     548: putfield      #275                // Field sound:Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     551: aload_0
+     552: getfield      #275                // Field sound:Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     555: invokevirtual #284                // Method mod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance.playSound:()V
+     558: goto          586
+     561: aload_0
+     562: getfield      #275                // Field sound:Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     565: invokevirtual #287                // Method mod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance.m_7801_:()Z
+     568: ifeq          586
+     571: aload_0
+     572: aload_0
+     573: invokestatic  #281                // Method mod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance.getSound:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     576: putfield      #275                // Field sound:Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     579: aload_0
+     580: getfield      #275                // Field sound:Lmod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance;
+     583: invokevirtual #284                // Method mod/maxbogomol/wizards_reborn/client/sound/CrystalSoundInstance.playSound:()V
+     586: aload_0
+     587: getfield      #58                 // Field startRitual:Z
+     590: ifeq          768
+     593: aload_1
+     594: invokestatic  #143                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitualUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;)Z
+     597: ifne          768
+     600: aload_0
+     601: getfield      #235                // Field random:Ljava/util/Random;
+     604: invokevirtual #241                // Method java/util/Random.nextFloat:()F
+     607: ldc_w         #288                // float 0.08f
+     610: fcmpg
+     611: ifge          768
+     614: getstatic     #293                // Field mod/maxbogomol/fluffy_fur/registry/client/FluffyFurParticles.SQUARE:Lnet/minecraftforge/registries/RegistryObject;
+     617: invokestatic  #299                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.create:(Lnet/minecraftforge/registries/RegistryObject;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     620: invokestatic  #304                // Method mod/maxbogomol/fluffy_fur/client/particle/behavior/SparkParticleBehavior.create:()Lmod/maxbogomol/fluffy_fur/client/particle/behavior/SparkParticleBehaviorBuilder;
+     623: fconst_1
+     624: ldc_w         #305                // float 3.0f
+     627: fconst_1
+     628: invokestatic  #310                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FFF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     631: invokevirtual #316                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     634: invokevirtual #322                // Method mod/maxbogomol/fluffy_fur/client/particle/behavior/SparkParticleBehaviorBuilder.setScaleData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/behavior/SparkParticleBehaviorBuilder;
+     637: invokevirtual #325                // Method mod/maxbogomol/fluffy_fur/client/particle/behavior/SparkParticleBehaviorBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/behavior/ParticleBehavior;
+     640: invokevirtual #329                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setBehavior:(Lmod/maxbogomol/fluffy_fur/client/particle/behavior/ParticleBehavior;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     643: aload_1
+     644: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.getColor:()Ljava/awt/Color;
+     647: invokestatic  #338                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData.create:(Ljava/awt/Color;)Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder;
+     650: invokevirtual #343                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;
+     653: invokevirtual #347                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setColorData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     656: ldc_w         #270                // float 0.5f
+     659: ldc_w         #348                // float 0.75f
+     662: fconst_0
+     663: invokestatic  #310                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FFF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     666: getstatic     #354                // Field mod/maxbogomol/fluffy_fur/common/easing/Easing.QUINTIC_IN_OUT:Lmod/maxbogomol/fluffy_fur/common/easing/Easing;
+     669: invokevirtual #358                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.setEasing:(Lmod/maxbogomol/fluffy_fur/common/easing/Easing;)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     672: invokevirtual #316                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     675: invokevirtual #362                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setTransparencyData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     678: ldc_w         #363                // float 0.025f
+     681: ldc_w         #364                // float 0.05f
+     684: fconst_0
+     685: invokestatic  #310                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FFF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     688: getstatic     #354                // Field mod/maxbogomol/fluffy_fur/common/easing/Easing.QUINTIC_IN_OUT:Lmod/maxbogomol/fluffy_fur/common/easing/Easing;
+     691: invokevirtual #358                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.setEasing:(Lmod/maxbogomol/fluffy_fur/common/easing/Easing;)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+     694: invokevirtual #316                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+     697: invokevirtual #366                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setScaleData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     700: bipush        50
+     702: invokevirtual #370                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setLifetime:(I)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     705: dconst_0
+     706: ldc2_w        #371                // double 0.05000000074505806d
+     709: dconst_0
+     710: invokevirtual #376                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setVelocity:(DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     713: ldc2_w        #377                // double 0.5d
+     716: dconst_0
+     717: ldc2_w        #377                // double 0.5d
+     720: invokevirtual #381                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.flatRandomOffset:(DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     723: invokevirtual #385                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.disablePhysics:()Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     726: aload_0
+     727: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     730: aload_0
+     731: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     734: invokevirtual #390                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     737: i2f
+     738: ldc_w         #270                // float 0.5f
+     741: fadd
+     742: f2d
+     743: aload_0
+     744: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     747: invokevirtual #393                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     750: i2d
+     751: aload_0
+     752: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     755: invokevirtual #396                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     758: i2f
+     759: ldc_w         #270                // float 0.5f
+     762: fadd
+     763: f2d
+     764: invokevirtual #400                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.spawn:(Lnet/minecraft/world/level/Level;DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+     767: pop
+     768: return
+
+  protected net.minecraft.world.SimpleContainer createItemHandler();
+    Code:
+       0: new           #19                 // class mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity$1
+       3: dup
+       4: aload_0
+       5: iconst_1
+       6: invokespecial #414                // Method mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity$1."<init>":(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;I)V
+       9: areturn
+
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #418                // Method mod/maxbogomol/fluffy_fur/common/block/entity/BlockSimpleInventory.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc_w         #419                // String blockToX
+       9: aload_0
+      10: getfield      #44                 // Field blockToX:I
+      13: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      16: aload_1
+      17: ldc_w         #424                // String blockToY
+      20: aload_0
+      21: getfield      #46                 // Field blockToY:I
+      24: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      27: aload_1
+      28: ldc_w         #425                // String blockToZ
+      31: aload_0
+      32: getfield      #48                 // Field blockToZ:I
+      35: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      38: aload_1
+      39: ldc_w         #426                // String isToBlock
+      42: aload_0
+      43: getfield      #50                 // Field isToBlock:Z
+      46: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      49: aload_1
+      50: ldc_w         #431                // String light
+      53: aload_0
+      54: getfield      #52                 // Field light:I
+      57: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      60: aload_1
+      61: ldc_w         #432                // String cooldown
+      64: aload_0
+      65: getfield      #54                 // Field cooldown:I
+      68: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      71: aload_1
+      72: ldc_w         #433                // String maxCooldown
+      75: aload_0
+      76: getfield      #56                 // Field maxCooldown:I
+      79: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      82: aload_1
+      83: ldc_w         #434                // String startRitual
+      86: aload_0
+      87: getfield      #58                 // Field startRitual:Z
+      90: invokevirtual #430                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      93: aload_1
+      94: ldc_w         #435                // String tickRitual
+      97: aload_0
+      98: getfield      #60                 // Field tickRitual:I
+     101: invokevirtual #423                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     104: aload_1
+     105: ldc_w         #436                // String tagRitual
+     108: aload_0
+     109: getfield      #67                 // Field tagRitual:Lnet/minecraft/nbt/CompoundTag;
+     112: invokevirtual #440                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     115: pop
+     116: aload_1
+     117: ldc_w         #441                // String lightTypes
+     120: aload_0
+     121: getfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+     124: invokestatic  #445                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.stacksToTag:(Ljava/util/ArrayList;)Lnet/minecraft/nbt/ListTag;
+     127: invokevirtual #440                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     130: pop
+     131: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #449                // Method mod/maxbogomol/fluffy_fur/common/block/entity/BlockSimpleInventory.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc_w         #419                // String blockToX
+      10: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      13: putfield      #44                 // Field blockToX:I
+      16: aload_0
+      17: aload_1
+      18: ldc_w         #424                // String blockToY
+      21: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      24: putfield      #46                 // Field blockToY:I
+      27: aload_0
+      28: aload_1
+      29: ldc_w         #425                // String blockToZ
+      32: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      35: putfield      #48                 // Field blockToZ:I
+      38: aload_0
+      39: aload_1
+      40: ldc_w         #426                // String isToBlock
+      43: invokevirtual #457                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      46: putfield      #50                 // Field isToBlock:Z
+      49: aload_0
+      50: aload_1
+      51: ldc_w         #431                // String light
+      54: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      57: putfield      #52                 // Field light:I
+      60: aload_0
+      61: aload_1
+      62: ldc_w         #432                // String cooldown
+      65: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      68: putfield      #54                 // Field cooldown:I
+      71: aload_0
+      72: aload_1
+      73: ldc_w         #433                // String maxCooldown
+      76: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      79: putfield      #56                 // Field maxCooldown:I
+      82: aload_0
+      83: aload_1
+      84: ldc_w         #434                // String startRitual
+      87: invokevirtual #457                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      90: putfield      #58                 // Field startRitual:Z
+      93: aload_0
+      94: aload_1
+      95: ldc_w         #435                // String tickRitual
+      98: invokevirtual #453                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     101: putfield      #60                 // Field tickRitual:I
+     104: aload_0
+     105: aload_1
+     106: ldc_w         #436                // String tagRitual
+     109: invokevirtual #461                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     112: putfield      #67                 // Field tagRitual:Lnet/minecraft/nbt/CompoundTag;
+     115: aload_0
+     116: aload_1
+     117: ldc_w         #441                // String lightTypes
+     120: bipush        10
+     122: invokevirtual #465                // Method net/minecraft/nbt/CompoundTag.m_128437_:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+     125: invokestatic  #469                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.stacksFromTag:(Lnet/minecraft/nbt/ListTag;)Ljava/util/ArrayList;
+     128: putfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+     131: return
+
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+    Code:
+       0: getstatic     #477                // Field net/minecraftforge/common/extensions/IForgeBlockEntity.INFINITE_EXTENT_AABB:Lnet/minecraft/world/phys/AABB;
+       3: areturn
+
+  public int getLight();
+    Code:
+       0: aload_0
+       1: getfield      #52                 // Field light:I
+       4: ireturn
+
+  public int getMaxLight();
+    Code:
+       0: bipush        10
+       2: ireturn
+
+  public boolean canSendLight();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean canReceiveLight();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean canConnectSendLight();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean canConnectReceiveLight();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void setLight(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #52                 // Field light:I
+       5: return
+
+  public void addLight(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #52                 // Field light:I
+       5: iload_1
+       6: iadd
+       7: putfield      #52                 // Field light:I
+      10: aload_0
+      11: getfield      #52                 // Field light:I
+      14: aload_0
+      15: invokevirtual #486                // Method getMaxLight:()I
+      18: if_icmple     29
+      21: aload_0
+      22: aload_0
+      23: invokevirtual #486                // Method getMaxLight:()I
+      26: putfield      #52                 // Field light:I
+      29: return
+
+  public void removeLight(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #52                 // Field light:I
+       5: iload_1
+       6: isub
+       7: putfield      #52                 // Field light:I
+      10: aload_0
+      11: getfield      #52                 // Field light:I
+      14: ifge          22
+      17: aload_0
+      18: iconst_0
+      19: putfield      #52                 // Field light:I
+      22: return
+
+  public net.minecraft.world.phys.Vec3 getLightLensPos();
+    Code:
+       0: new           #490                // class net/minecraft/world/phys/Vec3
+       3: dup
+       4: ldc2_w        #377                // double 0.5d
+       7: ldc2_w        #491                // double 0.3125d
+      10: ldc2_w        #377                // double 0.5d
+      13: invokespecial #495                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      16: areturn
+
+  public float getLightLensSize();
+    Code:
+       0: fconst_0
+       1: freturn
+
+  public java.util.ArrayList<mod.maxbogomol.wizards_reborn.api.light.LightTypeStack> getLightTypes();
+    Code:
+       0: aload_0
+       1: getfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+       4: areturn
+
+  public void setLightTypes(java.util.ArrayList<mod.maxbogomol.wizards_reborn.api.light.LightTypeStack>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+       5: return
+
+  public void addLightType(mod.maxbogomol.wizards_reborn.api.light.LightTypeStack);
+    Code:
+       0: aload_0
+       1: getfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+       4: aload_1
+       5: invokevirtual #506                // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+       8: pop
+       9: return
+
+  public void removeLightType(mod.maxbogomol.wizards_reborn.api.light.LightTypeStack);
+    Code:
+       0: aload_0
+       1: getfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+       4: aload_1
+       5: invokevirtual #512                // Method java/util/ArrayList.remove:(Ljava/lang/Object;)Z
+       8: pop
+       9: return
+
+  public void clearLightType();
+    Code:
+       0: aload_0
+       1: getfield      #72                 // Field lightTypes:Ljava/util/ArrayList;
+       4: invokevirtual #515                // Method java/util/ArrayList.clear:()V
+       7: return
+
+  public float getCooldown();
+    Code:
+       0: aload_0
+       1: invokevirtual #519                // Method getRitualCooldown:()F
+       4: fstore_1
+       5: fload_1
+       6: fconst_0
+       7: fcmpl
+       8: ifle          13
+      11: fload_1
+      12: freturn
+      13: fconst_0
+      14: freturn
+
+  public boolean wissenWandReceiveConnect(net.minecraft.world.item.ItemStack, net.minecraft.world.item.context.UseOnContext, net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean wissenWandSendConnect(net.minecraft.world.item.ItemStack, net.minecraft.world.item.context.UseOnContext, net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: aload_1
+       1: invokestatic  #535                // Method mod/maxbogomol/wizards_reborn/common/item/equipment/WissenWandItem.getBlockPos:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/core/BlockPos;
+       4: astore        4
+       6: aload_0
+       7: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      10: aload         4
+      12: invokevirtual #539                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      15: astore        5
+      17: aload         5
+      19: instanceof    #8                  // class mod/maxbogomol/wizards_reborn/api/light/ILightBlockEntity
+      22: ifeq          85
+      25: aload         5
+      27: checkcast     #8                  // class mod/maxbogomol/wizards_reborn/api/light/ILightBlockEntity
+      30: astore        6
+      32: aload         6
+      34: invokeinterface #541,  1          // InterfaceMethod mod/maxbogomol/wizards_reborn/api/light/ILightBlockEntity.canConnectSendLight:()Z
+      39: ifeq          85
+      42: aload_0
+      43: aload         4
+      45: invokevirtual #390                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      48: putfield      #44                 // Field blockToX:I
+      51: aload_0
+      52: aload         4
+      54: invokevirtual #393                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      57: putfield      #46                 // Field blockToY:I
+      60: aload_0
+      61: aload         4
+      63: invokevirtual #396                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      66: putfield      #48                 // Field blockToZ:I
+      69: aload_0
+      70: iconst_1
+      71: putfield      #50                 // Field isToBlock:Z
+      74: aload_1
+      75: iconst_0
+      76: invokestatic  #545                // Method mod/maxbogomol/wizards_reborn/common/item/equipment/WissenWandItem.setBlock:(Lnet/minecraft/world/item/ItemStack;Z)V
+      79: aload_0
+      80: invokestatic  #231                // Method mod/maxbogomol/fluffy_fur/common/network/BlockEntityUpdate.packet:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+      83: iconst_1
+      84: ireturn
+      85: iconst_0
+      86: ireturn
+
+  public boolean wissenWandReload(net.minecraft.world.item.ItemStack, net.minecraft.world.item.context.UseOnContext, net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #50                 // Field isToBlock:Z
+       5: aload_0
+       6: getfield      #58                 // Field startRitual:Z
+       9: ifeq          46
+      12: aload_0
+      13: invokevirtual #190                // Method reload:()V
+      16: aload_0
+      17: invokestatic  #231                // Method mod/maxbogomol/fluffy_fur/common/network/BlockEntityUpdate.packet:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+      20: aload_0
+      21: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      24: aconst_null
+      25: aload_0
+      26: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      29: getstatic     #204                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.CRYSTAL_RITUAL_END:Lnet/minecraftforge/registries/RegistryObject;
+      32: invokevirtual #94                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      35: checkcast     #177                // class net/minecraft/sounds/SoundEvent
+      38: getstatic     #183                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+      41: fconst_1
+      42: fconst_1
+      43: invokevirtual #187                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+      46: iconst_1
+      47: ireturn
+
+  public void wissenWandFunction();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #58                 // Field startRitual:Z
+       5: aload_0
+       6: invokestatic  #231                // Method mod/maxbogomol/fluffy_fur/common/network/BlockEntityUpdate.packet:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+       9: return
+
+  public mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual getCrystalRitual();
+    Code:
+       0: aload_0
+       1: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: aload_0
+       5: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       8: invokevirtual #556                // Method net/minecraft/core/BlockPos.m_7495_:()Lnet/minecraft/core/BlockPos;
+      11: invokevirtual #539                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      14: astore_2
+      15: aload_2
+      16: instanceof    #558                // class mod/maxbogomol/wizards_reborn/common/block/runic_pedestal/RunicPedestalBlockEntity
+      19: ifeq          32
+      22: aload_2
+      23: checkcast     #558                // class mod/maxbogomol/wizards_reborn/common/block/runic_pedestal/RunicPedestalBlockEntity
+      26: astore_1
+      27: aload_1
+      28: invokevirtual #559                // Method mod/maxbogomol/wizards_reborn/common/block/runic_pedestal/RunicPedestalBlockEntity.getCrystalRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+      31: areturn
+      32: aconst_null
+      33: areturn
+
+  public net.minecraft.world.item.ItemStack getCrystalItem();
+    Code:
+       0: aload_0
+       1: invokevirtual #565                // Method getItemHandler:()Lnet/minecraft/world/Container;
+       4: iconst_0
+       5: invokeinterface #571,  2          // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      10: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      13: ifne          53
+      16: aload_0
+      17: invokevirtual #565                // Method getItemHandler:()Lnet/minecraft/world/Container;
+      20: iconst_0
+      21: invokeinterface #571,  2          // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      26: invokevirtual #255                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      29: astore_2
+      30: aload_2
+      31: instanceof    #257                // class mod/maxbogomol/wizards_reborn/common/item/CrystalItem
+      34: ifeq          53
+      37: aload_2
+      38: checkcast     #257                // class mod/maxbogomol/wizards_reborn/common/item/CrystalItem
+      41: astore_1
+      42: aload_0
+      43: invokevirtual #565                // Method getItemHandler:()Lnet/minecraft/world/Container;
+      46: iconst_0
+      47: invokeinterface #571,  2          // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      52: areturn
+      53: getstatic     #574                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      56: areturn
+
+  public java.awt.Color getCrystalColor(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       4: ifne          38
+       7: aload_1
+       8: invokevirtual #255                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      11: astore_3
+      12: aload_3
+      13: instanceof    #257                // class mod/maxbogomol/wizards_reborn/common/item/CrystalItem
+      16: ifeq          38
+      19: aload_3
+      20: checkcast     #257                // class mod/maxbogomol/wizards_reborn/common/item/CrystalItem
+      23: astore_2
+      24: aload_2
+      25: invokevirtual #580                // Method mod/maxbogomol/wizards_reborn/common/item/CrystalItem.getType:()Lmod/maxbogomol/wizards_reborn/api/crystal/CrystalType;
+      28: astore_3
+      29: aload_3
+      30: ifnull        38
+      33: aload_3
+      34: invokevirtual #583                // Method mod/maxbogomol/wizards_reborn/api/crystal/CrystalType.getColor:()Ljava/awt/Color;
+      37: areturn
+      38: getstatic     #589                // Field java/awt/Color.WHITE:Ljava/awt/Color;
+      41: areturn
+
+  public java.awt.Color getCrystalColor();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #246                // Method getCrystalItem:()Lnet/minecraft/world/item/ItemStack;
+       5: invokevirtual #593                // Method getCrystalColor:(Lnet/minecraft/world/item/ItemStack;)Ljava/awt/Color;
+       8: areturn
+
+  public float getRitualCooldown();
+    Code:
+       0: aload_0
+       1: invokevirtual #102                // Method getCrystalRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+       4: astore_1
+       5: aload_1
+       6: invokestatic  #143                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitualUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;)Z
+       9: ifne          18
+      12: aload_1
+      13: aload_0
+      14: invokevirtual #597                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.getCrystalCooldown:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)F
+      17: freturn
+      18: fconst_0
+      19: freturn
+
+  public void reload();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #58                 // Field startRitual:Z
+       5: aload_0
+       6: iconst_0
+       7: putfield      #60                 // Field tickRitual:I
+      10: aload_0
+      11: iconst_0
+      12: putfield      #54                 // Field cooldown:I
+      15: aload_0
+      16: iconst_0
+      17: putfield      #56                 // Field maxCooldown:I
+      20: aload_0
+      21: new           #62                 // class net/minecraft/nbt/CompoundTag
+      24: dup
+      25: invokespecial #65                 // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      28: putfield      #67                 // Field tagRitual:Lnet/minecraft/nbt/CompoundTag;
+      31: aload_0
+      32: invokestatic  #600                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.clearItemHandler:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)V
+      35: return
+
+  public mod.maxbogomol.wizards_reborn.api.light.LightRayHitResult setupLightRay();
+    Code:
+       0: new           #387                // class net/minecraft/core/BlockPos
+       3: dup
+       4: aload_0
+       5: getfield      #44                 // Field blockToX:I
+       8: aload_0
+       9: getfield      #46                 // Field blockToY:I
+      12: aload_0
+      13: getfield      #48                 // Field blockToZ:I
+      16: invokespecial #603                // Method net/minecraft/core/BlockPos."<init>":(III)V
+      19: astore_1
+      20: aload_0
+      21: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      24: aload_1
+      25: invokevirtual #539                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      28: astore_2
+      29: aload_2
+      30: instanceof    #8                  // class mod/maxbogomol/wizards_reborn/api/light/ILightBlockEntity
+      33: ifeq          224
+      36: aload_2
+      37: checkcast     #8                  // class mod/maxbogomol/wizards_reborn/api/light/ILightBlockEntity
+      40: astore_3
+      41: aload_0
+      42: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      45: aload_0
+      46: invokevirtual #605                // Method getLightLensPos:()Lnet/minecraft/world/phys/Vec3;
+      49: invokestatic  #608                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.getLightLensPos:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+      52: astore        4
+      54: aload_1
+      55: aload_3
+      56: invokeinterface #609,  1          // InterfaceMethod mod/maxbogomol/wizards_reborn/api/light/ILightBlockEntity.getLightLensPos:()Lnet/minecraft/world/phys/Vec3;
+      61: invokestatic  #608                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.getLightLensPos:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+      64: astore        5
+      66: aload         5
+      68: invokevirtual #613                // Method net/minecraft/world/phys/Vec3.m_7096_:()D
+      71: aload         4
+      73: invokevirtual #613                // Method net/minecraft/world/phys/Vec3.m_7096_:()D
+      76: dsub
+      77: dstore        6
+      79: aload         5
+      81: invokevirtual #616                // Method net/minecraft/world/phys/Vec3.m_7098_:()D
+      84: aload         4
+      86: invokevirtual #616                // Method net/minecraft/world/phys/Vec3.m_7098_:()D
+      89: dsub
+      90: dstore        8
+      92: aload         5
+      94: invokevirtual #619                // Method net/minecraft/world/phys/Vec3.m_7094_:()D
+      97: aload         4
+      99: invokevirtual #619                // Method net/minecraft/world/phys/Vec3.m_7094_:()D
+     102: dsub
+     103: dstore        10
+     105: dload         10
+     107: dload         6
+     109: invokestatic  #625                // Method java/lang/Math.atan2:(DD)D
+     112: dstore        12
+     114: dload         10
+     116: dload         10
+     118: dmul
+     119: dload         6
+     121: dload         6
+     123: dmul
+     124: dadd
+     125: invokestatic  #629                // Method java/lang/Math.sqrt:(D)D
+     128: dload         8
+     130: invokestatic  #625                // Method java/lang/Math.atan2:(DD)D
+     133: ldc2_w        #630                // double 3.141592653589793d
+     136: dadd
+     137: dstore        14
+     139: ldc_w         #632                // float 0.33f
+     142: fstore        16
+     144: dload         14
+     146: invokestatic  #635                // Method java/lang/Math.sin:(D)D
+     149: dload         12
+     151: invokestatic  #638                // Method java/lang/Math.cos:(D)D
+     154: dmul
+     155: fload         16
+     157: f2d
+     158: dmul
+     159: dstore        17
+     161: dload         14
+     163: invokestatic  #638                // Method java/lang/Math.cos:(D)D
+     166: fload         16
+     168: f2d
+     169: dmul
+     170: dstore        19
+     172: dload         14
+     174: invokestatic  #635                // Method java/lang/Math.sin:(D)D
+     177: dload         12
+     179: invokestatic  #635                // Method java/lang/Math.sin:(D)D
+     182: dmul
+     183: fload         16
+     185: f2d
+     186: dmul
+     187: dstore        21
+     189: aload         4
+     191: dload         17
+     193: dneg
+     194: dload         19
+     196: dneg
+     197: dload         21
+     199: dneg
+     200: invokevirtual #642                // Method net/minecraft/world/phys/Vec3.m_82520_:(DDD)Lnet/minecraft/world/phys/Vec3;
+     203: astore        4
+     205: aload_0
+     206: getfield      #106                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     209: aload_0
+     210: invokevirtual #170                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     213: aload         4
+     215: aload         5
+     217: ldc_w         #643                // float 25.0f
+     220: invokestatic  #647                // Method mod/maxbogomol/wizards_reborn/api/light/LightUtil.getLightRayHitResult:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;F)Lmod/maxbogomol/wizards_reborn/api/light/LightRayHitResult;
+     223: areturn
+     224: aconst_null
+     225: areturn
+
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemsResult();
+    Code:
+       0: new           #69                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #70                 // Method java/util/ArrayList."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: invokevirtual #102                // Method getCrystalRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+      12: astore_2
+      13: aload_2
+      14: invokestatic  #143                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitualUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;)Z
+      17: ifne          26
+      20: aload_2
+      21: aload_0
+      22: invokevirtual #665                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.getItemsResult:(Lmod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity;)Ljava/util/List;
+      25: areturn
+      26: aload_1
+      27: areturn
+}

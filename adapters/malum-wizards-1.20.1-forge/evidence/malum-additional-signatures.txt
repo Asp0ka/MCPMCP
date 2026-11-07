@@ -1,0 +1,46 @@
+Compiled from "MalumRitualType.java"
+public abstract class com.sammy.malum.core.systems.ritual.MalumRitualType {
+  public final com.sammy.malum.core.systems.spirit.MalumSpiritType spirit;
+  public final net.minecraft.resources.ResourceLocation identifier;
+  protected com.sammy.malum.core.systems.ritual.MalumRitualRecipeData recipeData;
+  public com.sammy.malum.core.systems.ritual.MalumRitualType(net.minecraft.resources.ResourceLocation, com.sammy.malum.core.systems.spirit.MalumSpiritType);
+  public net.minecraft.world.InteractionResult onUsePlinth(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean isItemStackValid(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity, net.minecraft.world.item.ItemStack);
+  public abstract void triggerRitualEffect(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  public void setRecipeData(com.sammy.malum.core.systems.ritual.MalumRitualRecipeData);
+  public com.sammy.malum.core.systems.ritual.MalumRitualRecipeData getRecipeData();
+  public java.lang.String translationIdentifier();
+  public net.minecraft.resources.ResourceLocation getIcon();
+  public net.minecraft.nbt.CompoundTag createShardNBT(com.sammy.malum.core.systems.ritual.MalumRitualTier);
+  public java.util.List<net.minecraft.network.chat.Component> makeRitualShardDescriptor(com.sammy.malum.core.systems.ritual.MalumRitualTier);
+  public java.util.List<net.minecraft.network.chat.Component> makeCodexDetailedDescriptor();
+  public final net.minecraft.network.chat.Component makeDescriptorComponent(java.lang.String, java.lang.String);
+  public final net.minecraft.network.chat.Component makeDescriptorComponent(java.lang.String, java.lang.String, java.util.function.UnaryOperator<net.minecraft.network.chat.Style>);
+}
+Compiled from "RunicWorkbenchBlockEntity.java"
+public class com.sammy.malum.common.block.curiosities.runic_workbench.RunicWorkbenchBlockEntity extends com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity {
+  public static final net.minecraft.world.phys.Vec3 RUNIC_WORKBENCH_ITEM_OFFSET;
+  public com.sammy.malum.common.block.curiosities.runic_workbench.RunicWorkbenchBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.curiosities.runic_workbench.RunicWorkbenchBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.sammy.malum.common.block.curiosities.runic_workbench.RunicWorkbenchBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.phys.Vec3 getItemOffset(float);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  private net.minecraft.world.level.chunk.LevelChunk lambda$onUse$0();
+  static {};
+}
+Compiled from "WeaversWorkbenchBlockEntity.java"
+public class com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity extends team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity {
+  public final com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchItemHandler itemHandler;
+  private final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> handler;
+  public com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>);
+  public void onCraft();
+  public net.minecraft.world.item.ItemStack tryCraft();
+  public net.minecraft.world.item.ItemStack getOutput();
+  public net.minecraft.world.phys.Vec3 getItemPos();
+  public net.minecraft.world.phys.Vec3 itemOffset();
+  private net.minecraft.world.level.chunk.LevelChunk lambda$onCraft$3();
+  private void lambda$onUse$2(net.minecraft.network.FriendlyByteBuf);
+  private net.minecraft.world.inventory.AbstractContainerMenu lambda$onUse$1(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+}

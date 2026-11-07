@@ -1,0 +1,14 @@
+Compiled from "ArmorUpgradeRecipe.java"
+public class com.hollingsworth.arsnouveau.api.enchanting_apparatus.ArmorUpgradeRecipe extends com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe implements com.hollingsworth.arsnouveau.api.enchanting_apparatus.ITextOutput {
+  public int tier;
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.ArmorUpgradeRecipe(java.util.List<net.minecraft.world.item.crafting.Ingredient>, int, int);
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.ArmorUpgradeRecipe(net.minecraft.resources.ResourceLocation, java.util.List<net.minecraft.world.item.crafting.Ingredient>, int, int);
+  public boolean excludeJei();
+  public com.google.gson.JsonElement asRecipe();
+  public boolean doesReagentMatch(net.minecraft.world.item.ItemStack);
+  public boolean isMatch(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack getResult(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile);
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.network.chat.Component getOutputComponent();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+}

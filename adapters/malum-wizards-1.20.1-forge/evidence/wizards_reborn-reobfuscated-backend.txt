@@ -1,0 +1,1213 @@
+Compiled from "WizardsBackend.java"
+final class dev.mcpmcp.wizards.WizardsBackend extends dev.mcpmcp.magic.NativeMagicBackend {
+  dev.mcpmcp.wizards.WizardsBackend();
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String wizards_reborn
+       3: ldc           #11                 // String 1.20.1-0.2.9
+       5: ldc           #13                 // String 38f040319fe4dc16400b2507e3cb627a321cddba314de0d4acc4f2dcd8ffbfe7
+       7: ldc           #15                 // String mod.maxbogomol.wizards_reborn.common.recipe.
+       9: invokespecial #18                 // Method dev/mcpmcp/magic/NativeMagicBackend."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      12: return
+
+  protected java.util.List<java.lang.String> knownRecipeTypes();
+    Code:
+       0: bipush        11
+       2: anewarray     #25                 // class java/lang/String
+       5: dup
+       6: iconst_0
+       7: ldc           #27                 // String wizards_reborn:alchemy_machine
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: ldc           #29                 // String wizards_reborn:arcane_iterator
+      14: aastore
+      15: dup
+      16: iconst_2
+      17: ldc           #31                 // String wizards_reborn:arcane_workbench
+      19: aastore
+      20: dup
+      21: iconst_3
+      22: ldc           #33                 // String wizards_reborn:arcanum_dust_transmutation
+      24: aastore
+      25: dup
+      26: iconst_4
+      27: ldc           #35                 // String wizards_reborn:censer
+      29: aastore
+      30: dup
+      31: iconst_5
+      32: ldc           #37                 // String wizards_reborn:crystal_infusion
+      34: aastore
+      35: dup
+      36: bipush        6
+      38: ldc           #39                 // String wizards_reborn:crystal_ritual
+      40: aastore
+      41: dup
+      42: bipush        7
+      44: ldc           #41                 // String wizards_reborn:jeweler_table
+      46: aastore
+      47: dup
+      48: bipush        8
+      50: ldc           #43                 // String wizards_reborn:mortar
+      52: aastore
+      53: dup
+      54: bipush        9
+      56: ldc           #45                 // String wizards_reborn:wissen_altar
+      58: aastore
+      59: dup
+      60: bipush        10
+      62: ldc           #47                 // String wizards_reborn:wissen_crystallizer
+      64: aastore
+      65: invokestatic  #53                 // InterfaceMethod java/util/List.of:([Ljava/lang/Object;)Ljava/util/List;
+      68: areturn
+
+  protected java.util.List<java.lang.String> limitations();
+    Code:
+       0: ldc           #56                 // String Wissen, steam, light and fluid values refer to actual named mod resources, not an invented generic mana field.
+       2: ldc           #58                 // String Only six inspected block entity types expose synchronized resource/progress fields; other mod blocks return unknown.
+       4: ldc           #60                 // String Dynamic ritual effects, structure validity, recipe availability and server permissions are not inferred from client progress.
+       6: ldc           #62                 // String Current menu slots are mapped from native objects; core container.move/sequence must explicitly reuse the already-open menu.
+       8: ldc           #64                 // String Native right-click only; no wissenWandFunction, resource setters, ritual start/end, inventory injection or automatic crafting.
+      10: invokestatic  #67                 // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      13: areturn
+
+  protected com.google.gson.JsonObject specialRecipe(net.minecraft.world.item.crafting.Recipe<?>);
+    Code:
+       0: iconst_2
+       1: anewarray     #72                 // class java/lang/Object
+       4: dup
+       5: iconst_0
+       6: ldc           #74                 // String complete
+       8: aastore
+       9: dup
+      10: iconst_1
+      11: iconst_1
+      12: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: aastore
+      16: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      19: astore_2
+      20: aload_1
+      21: instanceof    #88                 // class mod/maxbogomol/wizards_reborn/common/recipe/WissenAltarRecipe
+      24: ifeq          77
+      27: aload_1
+      28: checkcast     #88                 // class mod/maxbogomol/wizards_reborn/common/recipe/WissenAltarRecipe
+      31: astore_3
+      32: aload_2
+      33: ldc           #90                 // String input
+      35: aload_3
+      36: invokevirtual #94                 // Method mod/maxbogomol/wizards_reborn/common/recipe/WissenAltarRecipe.getInput:()Lnet/minecraft/world/item/crafting/Ingredient;
+      39: invokestatic  #98                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+      42: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+      45: aload_2
+      46: ldc           #106                // String wissen
+      48: aload_3
+      49: invokevirtual #110                // Method mod/maxbogomol/wizards_reborn/common/recipe/WissenAltarRecipe.getWissen:()I
+      52: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      55: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+      58: aload_2
+      59: ldc           #121                // String wissen_role
+      61: ldc           #123                // String generation_recipe_value
+      63: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+      66: aload_2
+      67: ldc           #128                // String output
+      69: ldc           #130                // String resource_generation_not_static_item
+      71: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+      74: goto          1089
+      77: aload_1
+      78: instanceof    #132                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+      81: ifeq          286
+      84: aload_1
+      85: checkcast     #132                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+      88: astore        4
+      90: aload_2
+      91: ldc           #134                // String inputs
+      93: aload         4
+      95: invokevirtual #138                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_7527_:()Lnet/minecraft/core/NonNullList;
+      98: invokestatic  #142                // Method ingredients:(Ljava/util/List;)Lcom/google/gson/JsonArray;
+     101: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     104: aload_2
+     105: ldc           #128                // String output
+     107: aload         4
+     109: invokestatic  #148                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     112: getfield      #152                // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
+     115: invokevirtual #158                // Method net/minecraft/client/multiplayer/ClientLevel.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     118: invokevirtual #162                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     121: invokestatic  #166                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     124: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     127: aload_2
+     128: ldc           #106                // String wissen
+     130: aload         4
+     132: invokevirtual #167                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getWissen:()I
+     135: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     138: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     141: aload_2
+     142: ldc           #169                // String steam
+     144: aload         4
+     146: invokevirtual #172                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getSteam:()I
+     149: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     152: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     155: new           #174                // class com/google/gson/JsonArray
+     158: dup
+     159: invokespecial #176                // Method com/google/gson/JsonArray."<init>":()V
+     162: astore        8
+     164: aload         4
+     166: invokevirtual #179                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidInputs:()Lnet/minecraft/core/NonNullList;
+     169: invokevirtual #185                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+     172: astore        9
+     174: aload         9
+     176: invokeinterface #193,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     181: ifeq          209
+     184: aload         9
+     186: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     191: checkcast     #199                // class mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient
+     194: astore        10
+     196: aload         8
+     198: aload         10
+     200: invokevirtual #203                // Method mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient.serialize:()Lcom/google/gson/JsonElement;
+     203: invokevirtual #206                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     206: goto          174
+     209: aload_2
+     210: ldc           #208                // String fluid_inputs
+     212: aload         8
+     214: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     217: aload_2
+     218: ldc           #210                // String fluid_output
+     220: aload         4
+     222: invokevirtual #214                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     225: invokestatic  #218                // Method fluid:(Lnet/minecraftforge/fluids/FluidStack;)Lcom/google/gson/JsonObject;
+     228: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     231: aload_2
+     232: ldc           #220                // String alchemy_potion
+     234: aload         4
+     236: invokevirtual #224                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     239: ifnonnull     246
+     242: aconst_null
+     243: goto          254
+     246: aload         4
+     248: invokevirtual #224                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     251: invokevirtual #230                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion.getId:()Ljava/lang/String;
+     254: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     257: aload_2
+     258: ldc           #232                // String alchemy_potion_ingredient
+     260: aload         4
+     262: invokevirtual #235                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotionIngredient:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     265: ifnonnull     272
+     268: aconst_null
+     269: goto          280
+     272: aload         4
+     274: invokevirtual #235                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotionIngredient:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     277: invokevirtual #230                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion.getId:()Ljava/lang/String;
+     280: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     283: goto          1089
+     286: aload_1
+     287: instanceof    #237                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe
+     290: ifeq          485
+     293: aload_1
+     294: checkcast     #237                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe
+     297: astore        5
+     299: aload_2
+     300: ldc           #134                // String inputs
+     302: aload         5
+     304: invokevirtual #238                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.m_7527_:()Lnet/minecraft/core/NonNullList;
+     307: invokestatic  #142                // Method ingredients:(Ljava/util/List;)Lcom/google/gson/JsonArray;
+     310: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     313: aload_2
+     314: ldc           #128                // String output
+     316: aload_1
+     317: invokestatic  #148                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     320: getfield      #152                // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
+     323: invokevirtual #158                // Method net/minecraft/client/multiplayer/ClientLevel.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     326: invokeinterface #239,  2          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     331: invokestatic  #166                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     334: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     337: aload_2
+     338: ldc           #106                // String wissen
+     340: aload         5
+     342: invokevirtual #240                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getWissen:()I
+     345: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     348: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     351: aload_2
+     352: ldc           #242                // String health
+     354: aload         5
+     356: invokevirtual #245                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getHealth:()I
+     359: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     362: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     365: aload_2
+     366: ldc           #247                // String experience
+     368: aload         5
+     370: invokevirtual #250                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getExperience:()I
+     373: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     376: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     379: aload_2
+     380: ldc           #252                // String save_nbt
+     382: aload         5
+     384: invokevirtual #255                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getIsSaveNBT:()Z
+     387: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     390: invokevirtual #258                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     393: aload_2
+     394: ldc_w         #260                // String enchantment
+     397: aload         5
+     399: invokevirtual #264                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getEnchantment:()Lnet/minecraft/world/item/enchantment/Enchantment;
+     402: ifnonnull     409
+     405: aconst_null
+     406: goto          425
+     409: getstatic     #270                // Field net/minecraft/core/registries/BuiltInRegistries.f_256876_:Lnet/minecraft/core/Registry;
+     412: aload         5
+     414: invokevirtual #264                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getEnchantment:()Lnet/minecraft/world/item/enchantment/Enchantment;
+     417: invokeinterface #276,  2          // InterfaceMethod net/minecraft/core/Registry.m_7981_:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+     422: invokestatic  #282                // Method java/util/Objects.toString:(Ljava/lang/Object;)Ljava/lang/String;
+     425: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     428: aload_2
+     429: ldc_w         #284                // String arcane_enchantment
+     432: aload         5
+     434: invokevirtual #288                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getArcaneEnchantment:()Lmod/maxbogomol/wizards_reborn/api/arcaneenchantment/ArcaneEnchantment;
+     437: ifnonnull     444
+     440: aconst_null
+     441: goto          452
+     444: aload         5
+     446: invokevirtual #288                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getArcaneEnchantment:()Lmod/maxbogomol/wizards_reborn/api/arcaneenchantment/ArcaneEnchantment;
+     449: invokevirtual #291                // Method mod/maxbogomol/wizards_reborn/api/arcaneenchantment/ArcaneEnchantment.getId:()Ljava/lang/String;
+     452: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     455: aload_2
+     456: ldc_w         #293                // String crystal_ritual
+     459: aload         5
+     461: invokevirtual #297                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getCrystalRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+     464: ifnonnull     471
+     467: aconst_null
+     468: goto          479
+     471: aload         5
+     473: invokevirtual #297                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneIteratorRecipe.getCrystalRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+     476: invokevirtual #300                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.getId:()Ljava/lang/String;
+     479: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     482: goto          1089
+     485: aload_1
+     486: instanceof    #302                // class mod/maxbogomol/wizards_reborn/common/recipe/CenserRecipe
+     489: ifeq          680
+     492: aload_1
+     493: checkcast     #302                // class mod/maxbogomol/wizards_reborn/common/recipe/CenserRecipe
+     496: astore        6
+     498: aload_2
+     499: ldc           #90                 // String input
+     501: aload         6
+     503: invokevirtual #303                // Method mod/maxbogomol/wizards_reborn/common/recipe/CenserRecipe.getInput:()Lnet/minecraft/world/item/crafting/Ingredient;
+     506: invokestatic  #98                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+     509: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     512: new           #174                // class com/google/gson/JsonArray
+     515: dup
+     516: invokespecial #176                // Method com/google/gson/JsonArray."<init>":()V
+     519: astore        8
+     521: aload         6
+     523: invokevirtual #306                // Method mod/maxbogomol/wizards_reborn/common/recipe/CenserRecipe.getEffects:()Ljava/util/List;
+     526: invokeinterface #307,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     531: astore        9
+     533: aload         9
+     535: invokeinterface #193,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     540: ifeq          668
+     543: aload         9
+     545: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     550: checkcast     #309                // class net/minecraft/world/effect/MobEffectInstance
+     553: astore        10
+     555: aload         8
+     557: bipush        10
+     559: anewarray     #72                 // class java/lang/Object
+     562: dup
+     563: iconst_0
+     564: ldc_w         #311                // String effect_id
+     567: aastore
+     568: dup
+     569: iconst_1
+     570: getstatic     #314                // Field net/minecraft/core/registries/BuiltInRegistries.f_256974_:Lnet/minecraft/core/Registry;
+     573: aload         10
+     575: invokevirtual #318                // Method net/minecraft/world/effect/MobEffectInstance.m_19544_:()Lnet/minecraft/world/effect/MobEffect;
+     578: invokeinterface #276,  2          // InterfaceMethod net/minecraft/core/Registry.m_7981_:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+     583: invokestatic  #282                // Method java/util/Objects.toString:(Ljava/lang/Object;)Ljava/lang/String;
+     586: aastore
+     587: dup
+     588: iconst_2
+     589: ldc_w         #320                // String duration
+     592: aastore
+     593: dup
+     594: iconst_3
+     595: aload         10
+     597: invokevirtual #323                // Method net/minecraft/world/effect/MobEffectInstance.m_19557_:()I
+     600: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     603: aastore
+     604: dup
+     605: iconst_4
+     606: ldc_w         #325                // String amplifier
+     609: aastore
+     610: dup
+     611: iconst_5
+     612: aload         10
+     614: invokevirtual #328                // Method net/minecraft/world/effect/MobEffectInstance.m_19564_:()I
+     617: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     620: aastore
+     621: dup
+     622: bipush        6
+     624: ldc_w         #330                // String ambient
+     627: aastore
+     628: dup
+     629: bipush        7
+     631: aload         10
+     633: invokevirtual #333                // Method net/minecraft/world/effect/MobEffectInstance.m_19571_:()Z
+     636: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     639: aastore
+     640: dup
+     641: bipush        8
+     643: ldc_w         #335                // String visible
+     646: aastore
+     647: dup
+     648: bipush        9
+     650: aload         10
+     652: invokevirtual #338                // Method net/minecraft/world/effect/MobEffectInstance.m_19572_:()Z
+     655: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     658: aastore
+     659: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     662: invokevirtual #206                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     665: goto          533
+     668: aload_2
+     669: ldc_w         #340                // String effects
+     672: aload         8
+     674: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     677: goto          1089
+     680: aload_1
+     681: instanceof    #342                // class mod/maxbogomol/wizards_reborn/common/recipe/CrystalRitualRecipe
+     684: ifeq          747
+     687: aload_1
+     688: checkcast     #342                // class mod/maxbogomol/wizards_reborn/common/recipe/CrystalRitualRecipe
+     691: astore        7
+     693: aload_2
+     694: ldc           #134                // String inputs
+     696: aload_1
+     697: invokeinterface #343,  1          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.m_7527_:()Lnet/minecraft/core/NonNullList;
+     702: invokestatic  #142                // Method ingredients:(Ljava/util/List;)Lcom/google/gson/JsonArray;
+     705: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     708: aload_2
+     709: ldc_w         #345                // String ritual
+     712: aload         7
+     714: invokevirtual #348                // Method mod/maxbogomol/wizards_reborn/common/recipe/CrystalRitualRecipe.getRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+     717: ifnonnull     724
+     720: aconst_null
+     721: goto          732
+     724: aload         7
+     726: invokevirtual #348                // Method mod/maxbogomol/wizards_reborn/common/recipe/CrystalRitualRecipe.getRitual:()Lmod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual;
+     729: invokevirtual #300                // Method mod/maxbogomol/wizards_reborn/api/crystalritual/CrystalRitual.getId:()Ljava/lang/String;
+     732: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     735: aload_2
+     736: ldc           #128                // String output
+     738: ldc_w         #350                // String ritual_effect_not_static_item
+     741: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     744: goto          1089
+     747: aload_1
+     748: instanceof    #352                // class mod/maxbogomol/wizards_reborn/common/recipe/MortarRecipe
+     751: ifeq          777
+     754: aload_1
+     755: checkcast     #352                // class mod/maxbogomol/wizards_reborn/common/recipe/MortarRecipe
+     758: astore        8
+     760: aload_2
+     761: ldc           #90                 // String input
+     763: aload         8
+     765: invokevirtual #353                // Method mod/maxbogomol/wizards_reborn/common/recipe/MortarRecipe.getInput:()Lnet/minecraft/world/item/crafting/Ingredient;
+     768: invokestatic  #98                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+     771: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     774: goto          852
+     777: aload_1
+     778: instanceof    #355                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcanumDustTransmutationRecipe
+     781: ifeq          837
+     784: aload_1
+     785: checkcast     #355                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcanumDustTransmutationRecipe
+     788: astore        9
+     790: aload_2
+     791: ldc           #90                 // String input
+     793: aload         9
+     795: invokevirtual #356                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcanumDustTransmutationRecipe.getInput:()Lnet/minecraft/world/item/crafting/Ingredient;
+     798: invokestatic  #98                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+     801: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     804: aload_2
+     805: ldc_w         #358                // String place_block
+     808: aload         9
+     810: invokevirtual #361                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcanumDustTransmutationRecipe.getPlaceBlock:()Z
+     813: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     816: invokevirtual #258                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     819: aload_2
+     820: ldc_w         #363                // String display
+     823: aload         9
+     825: invokevirtual #367                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcanumDustTransmutationRecipe.getDisplay:()Lnet/minecraft/world/item/ItemStack;
+     828: invokestatic  #166                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     831: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     834: goto          852
+     837: aload_2
+     838: ldc           #134                // String inputs
+     840: aload_1
+     841: invokeinterface #343,  1          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.m_7527_:()Lnet/minecraft/core/NonNullList;
+     846: invokestatic  #142                // Method ingredients:(Ljava/util/List;)Lcom/google/gson/JsonArray;
+     849: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     852: aload_2
+     853: ldc           #128                // String output
+     855: aload_1
+     856: invokestatic  #148                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     859: getfield      #152                // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
+     862: invokevirtual #158                // Method net/minecraft/client/multiplayer/ClientLevel.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     865: invokeinterface #239,  2          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     870: invokestatic  #166                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     873: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     876: aload_1
+     877: instanceof    #369                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcaneWorkbenchRecipe
+     880: ifeq          921
+     883: aload_1
+     884: checkcast     #369                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcaneWorkbenchRecipe
+     887: astore        8
+     889: aload_2
+     890: ldc           #106                // String wissen
+     892: aload         8
+     894: invokevirtual #370                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneWorkbenchRecipe.getWissen:()I
+     897: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     900: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     903: aload_2
+     904: ldc_w         #372                // String save_nbt_slot
+     907: aload         8
+     909: invokevirtual #375                // Method mod/maxbogomol/wizards_reborn/common/recipe/ArcaneWorkbenchRecipe.getSaveNBT:()I
+     912: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     915: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     918: goto          1089
+     921: aload_1
+     922: instanceof    #377                // class mod/maxbogomol/wizards_reborn/common/recipe/JewelerTableRecipe
+     925: ifeq          965
+     928: aload_1
+     929: checkcast     #377                // class mod/maxbogomol/wizards_reborn/common/recipe/JewelerTableRecipe
+     932: astore        9
+     934: aload_2
+     935: ldc           #106                // String wissen
+     937: aload         9
+     939: invokevirtual #378                // Method mod/maxbogomol/wizards_reborn/common/recipe/JewelerTableRecipe.getWissen:()I
+     942: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     945: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     948: aload_2
+     949: ldc           #252                // String save_nbt
+     951: aload         9
+     953: invokevirtual #379                // Method mod/maxbogomol/wizards_reborn/common/recipe/JewelerTableRecipe.getIsSaveNBT:()Z
+     956: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     959: invokevirtual #258                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     962: goto          1089
+     965: aload_1
+     966: instanceof    #381                // class mod/maxbogomol/wizards_reborn/common/recipe/WissenCrystallizerRecipe
+     969: ifeq          1024
+     972: aload_1
+     973: checkcast     #381                // class mod/maxbogomol/wizards_reborn/common/recipe/WissenCrystallizerRecipe
+     976: astore        10
+     978: aload_2
+     979: ldc           #106                // String wissen
+     981: aload         10
+     983: invokevirtual #382                // Method mod/maxbogomol/wizards_reborn/common/recipe/WissenCrystallizerRecipe.getWissen:()I
+     986: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     989: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     992: aload_2
+     993: ldc_w         #384                // String nbt_crystal
+     996: aload         10
+     998: invokevirtual #387                // Method mod/maxbogomol/wizards_reborn/common/recipe/WissenCrystallizerRecipe.getIsNBTCrystal:()Z
+    1001: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1004: invokevirtual #258                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+    1007: aload_2
+    1008: ldc           #252                // String save_nbt
+    1010: aload         10
+    1012: invokevirtual #388                // Method mod/maxbogomol/wizards_reborn/common/recipe/WissenCrystallizerRecipe.getIsSaveNBT:()Z
+    1015: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1018: invokevirtual #258                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+    1021: goto          1089
+    1024: aload_1
+    1025: instanceof    #390                // class mod/maxbogomol/wizards_reborn/common/recipe/CrystalInfusionRecipe
+    1028: ifeq          1055
+    1031: aload_1
+    1032: checkcast     #390                // class mod/maxbogomol/wizards_reborn/common/recipe/CrystalInfusionRecipe
+    1035: astore        11
+    1037: aload_2
+    1038: ldc_w         #392                // String light
+    1041: aload         11
+    1043: invokevirtual #395                // Method mod/maxbogomol/wizards_reborn/common/recipe/CrystalInfusionRecipe.getLight:()I
+    1046: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1049: invokevirtual #119                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+    1052: goto          1089
+    1055: aload_1
+    1056: instanceof    #352                // class mod/maxbogomol/wizards_reborn/common/recipe/MortarRecipe
+    1059: ifne          1089
+    1062: aload_1
+    1063: instanceof    #355                // class mod/maxbogomol/wizards_reborn/common/recipe/ArcanumDustTransmutationRecipe
+    1066: ifne          1089
+    1069: aload_2
+    1070: ldc           #74                 // String complete
+    1072: iconst_0
+    1073: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1076: invokevirtual #258                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+    1079: aload_2
+    1080: ldc_w         #397                // String details
+    1083: ldc_w         #399                // String unknown_unmapped_recipe_class
+    1086: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+    1089: aload_2
+    1090: ldc_w         #401                // String dynamic_output_nbt
+    1093: ldc_w         #403                // String unknown_without_actual_inputs
+    1096: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+    1099: aload_2
+    1100: areturn
+
+  protected boolean supported(net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: aload_1
+       1: instanceof    #430                // class mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity
+       4: ifne          42
+       7: aload_1
+       8: instanceof    #432                // class mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity
+      11: ifne          42
+      14: aload_1
+      15: instanceof    #434                // class mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity
+      18: ifne          42
+      21: aload_1
+      22: instanceof    #436                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity
+      25: ifne          42
+      28: aload_1
+      29: instanceof    #438                // class mod/maxbogomol/wizards_reborn/common/block/wissen_cell/WissenCellBlockEntity
+      32: ifne          42
+      35: aload_1
+      36: instanceof    #440                // class mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity
+      39: ifeq          46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: ireturn
+
+  protected com.google.gson.JsonObject specialBlock(net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: invokestatic  #448                // Method unknown:()Lcom/google/gson/JsonObject;
+       3: astore_2
+       4: aload_1
+       5: instanceof    #430                // class mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity
+       8: ifeq          121
+      11: aload_1
+      12: checkcast     #430                // class mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity
+      15: astore_3
+      16: aload_2
+      17: ldc_w         #450                // String resources
+      20: iconst_4
+      21: anewarray     #72                 // class java/lang/Object
+      24: dup
+      25: iconst_0
+      26: ldc           #106                // String wissen
+      28: aastore
+      29: dup
+      30: iconst_1
+      31: aload_3
+      32: invokevirtual #451                // Method mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity.getWissen:()I
+      35: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      38: aastore
+      39: dup
+      40: iconst_2
+      41: ldc_w         #453                // String max_wissen
+      44: aastore
+      45: dup
+      46: iconst_3
+      47: aload_3
+      48: invokevirtual #456                // Method mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity.getMaxWissen:()I
+      51: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      54: aastore
+      55: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      58: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+      61: aload_2
+      62: ldc_w         #458                // String items
+      65: aload_3
+      66: invokestatic  #462                // Method inventory:(Lnet/minecraft/world/Container;)Lcom/google/gson/JsonObject;
+      69: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+      72: aload_2
+      73: ldc_w         #464                // String progress
+      76: iconst_4
+      77: anewarray     #72                 // class java/lang/Object
+      80: dup
+      81: iconst_0
+      82: ldc_w         #466                // String wissen_in_item
+      85: aastore
+      86: dup
+      87: iconst_1
+      88: aload_3
+      89: getfield      #470                // Field mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity.wissenInItem:I
+      92: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      95: aastore
+      96: dup
+      97: iconst_2
+      98: ldc_w         #472                // String wissen_is_craft
+     101: aastore
+     102: dup
+     103: iconst_3
+     104: aload_3
+     105: getfield      #475                // Field mod/maxbogomol/wizards_reborn/common/block/wissen_altar/WissenAltarBlockEntity.wissenIsCraft:I
+     108: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     111: aastore
+     112: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     115: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     118: goto          1128
+     121: aload_1
+     122: instanceof    #432                // class mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity
+     125: ifeq          296
+     128: aload_1
+     129: checkcast     #432                // class mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity
+     132: astore        4
+     134: aload_2
+     135: ldc_w         #450                // String resources
+     138: iconst_4
+     139: anewarray     #72                 // class java/lang/Object
+     142: dup
+     143: iconst_0
+     144: ldc           #106                // String wissen
+     146: aastore
+     147: dup
+     148: iconst_1
+     149: aload         4
+     151: invokevirtual #476                // Method mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.getWissen:()I
+     154: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     157: aastore
+     158: dup
+     159: iconst_2
+     160: ldc_w         #453                // String max_wissen
+     163: aastore
+     164: dup
+     165: iconst_3
+     166: aload         4
+     168: invokevirtual #477                // Method mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.getMaxWissen:()I
+     171: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     174: aastore
+     175: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     178: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     181: aload_2
+     182: ldc_w         #458                // String items
+     185: iconst_4
+     186: anewarray     #72                 // class java/lang/Object
+     189: dup
+     190: iconst_0
+     191: ldc           #90                 // String input
+     193: aastore
+     194: dup
+     195: iconst_1
+     196: aload         4
+     198: getfield      #481                // Field mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     201: invokestatic  #484                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     204: aastore
+     205: dup
+     206: iconst_2
+     207: ldc           #128                // String output
+     209: aastore
+     210: dup
+     211: iconst_3
+     212: aload         4
+     214: getfield      #487                // Field mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     217: invokestatic  #484                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     220: aastore
+     221: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     224: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     227: aload_2
+     228: ldc_w         #464                // String progress
+     231: bipush        6
+     233: anewarray     #72                 // class java/lang/Object
+     236: dup
+     237: iconst_0
+     238: ldc_w         #489                // String wissen_in_craft
+     241: aastore
+     242: dup
+     243: iconst_1
+     244: aload         4
+     246: getfield      #492                // Field mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.wissenInCraft:I
+     249: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     252: aastore
+     253: dup
+     254: iconst_2
+     255: ldc_w         #472                // String wissen_is_craft
+     258: aastore
+     259: dup
+     260: iconst_3
+     261: aload         4
+     263: getfield      #493                // Field mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.wissenIsCraft:I
+     266: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     269: aastore
+     270: dup
+     271: iconst_4
+     272: ldc_w         #495                // String start_craft
+     275: aastore
+     276: dup
+     277: iconst_5
+     278: aload         4
+     280: getfield      #499                // Field mod/maxbogomol/wizards_reborn/common/block/arcane_workbench/ArcaneWorkbenchBlockEntity.startCraft:Z
+     283: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     286: aastore
+     287: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     290: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     293: goto          1128
+     296: aload_1
+     297: instanceof    #434                // class mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity
+     300: ifeq          437
+     303: aload_1
+     304: checkcast     #434                // class mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity
+     307: astore        5
+     309: aload_2
+     310: ldc_w         #450                // String resources
+     313: iconst_4
+     314: anewarray     #72                 // class java/lang/Object
+     317: dup
+     318: iconst_0
+     319: ldc           #106                // String wissen
+     321: aastore
+     322: dup
+     323: iconst_1
+     324: aload         5
+     326: invokevirtual #500                // Method mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity.getWissen:()I
+     329: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     332: aastore
+     333: dup
+     334: iconst_2
+     335: ldc_w         #453                // String max_wissen
+     338: aastore
+     339: dup
+     340: iconst_3
+     341: aload         5
+     343: invokevirtual #501                // Method mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity.getMaxWissen:()I
+     346: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     349: aastore
+     350: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     353: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     356: aload_2
+     357: ldc_w         #458                // String items
+     360: aload         5
+     362: invokestatic  #462                // Method inventory:(Lnet/minecraft/world/Container;)Lcom/google/gson/JsonObject;
+     365: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     368: aload_2
+     369: ldc_w         #464                // String progress
+     372: bipush        6
+     374: anewarray     #72                 // class java/lang/Object
+     377: dup
+     378: iconst_0
+     379: ldc_w         #489                // String wissen_in_craft
+     382: aastore
+     383: dup
+     384: iconst_1
+     385: aload         5
+     387: getfield      #502                // Field mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity.wissenInCraft:I
+     390: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     393: aastore
+     394: dup
+     395: iconst_2
+     396: ldc_w         #472                // String wissen_is_craft
+     399: aastore
+     400: dup
+     401: iconst_3
+     402: aload         5
+     404: getfield      #503                // Field mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity.wissenIsCraft:I
+     407: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     410: aastore
+     411: dup
+     412: iconst_4
+     413: ldc_w         #495                // String start_craft
+     416: aastore
+     417: dup
+     418: iconst_5
+     419: aload         5
+     421: getfield      #504                // Field mod/maxbogomol/wizards_reborn/common/block/wissen_crystallizer/WissenCrystallizerBlockEntity.startCraft:Z
+     424: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     427: aastore
+     428: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     431: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     434: goto          1128
+     437: aload_1
+     438: instanceof    #438                // class mod/maxbogomol/wizards_reborn/common/block/wissen_cell/WissenCellBlockEntity
+     441: ifeq          512
+     444: aload_1
+     445: checkcast     #438                // class mod/maxbogomol/wizards_reborn/common/block/wissen_cell/WissenCellBlockEntity
+     448: astore        6
+     450: aload_2
+     451: ldc_w         #450                // String resources
+     454: iconst_4
+     455: anewarray     #72                 // class java/lang/Object
+     458: dup
+     459: iconst_0
+     460: ldc           #106                // String wissen
+     462: aastore
+     463: dup
+     464: iconst_1
+     465: aload         6
+     467: invokevirtual #505                // Method mod/maxbogomol/wizards_reborn/common/block/wissen_cell/WissenCellBlockEntity.getWissen:()I
+     470: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     473: aastore
+     474: dup
+     475: iconst_2
+     476: ldc_w         #453                // String max_wissen
+     479: aastore
+     480: dup
+     481: iconst_3
+     482: aload         6
+     484: invokevirtual #506                // Method mod/maxbogomol/wizards_reborn/common/block/wissen_cell/WissenCellBlockEntity.getMaxWissen:()I
+     487: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     490: aastore
+     491: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     494: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     497: aload_2
+     498: ldc_w         #458                // String items
+     501: aload         6
+     503: invokestatic  #462                // Method inventory:(Lnet/minecraft/world/Container;)Lcom/google/gson/JsonObject;
+     506: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     509: goto          1128
+     512: aload_1
+     513: instanceof    #436                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity
+     516: ifeq          967
+     519: aload_1
+     520: checkcast     #436                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity
+     523: astore        7
+     525: new           #174                // class com/google/gson/JsonArray
+     528: dup
+     529: invokespecial #176                // Method com/google/gson/JsonArray."<init>":()V
+     532: astore        9
+     534: iconst_0
+     535: istore        10
+     537: aload         7
+     539: getfield      #510                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.fluidHolder1:Lnet/minecraftforge/common/util/LazyOptional;
+     542: aload         7
+     544: getfield      #513                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.fluidHolder2:Lnet/minecraftforge/common/util/LazyOptional;
+     547: aload         7
+     549: getfield      #516                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.fluidHolder3:Lnet/minecraftforge/common/util/LazyOptional;
+     552: invokestatic  #519                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+     555: invokeinterface #307,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     560: astore        11
+     562: aload         11
+     564: invokeinterface #193,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     569: ifeq          764
+     572: aload         11
+     574: invokeinterface #197,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     579: checkcast     #523                // class net/minecraftforge/common/util/LazyOptional
+     582: astore        12
+     584: aload         12
+     586: invokevirtual #527                // Method net/minecraftforge/common/util/LazyOptional.resolve:()Ljava/util/Optional;
+     589: aconst_null
+     590: invokevirtual #533                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     593: checkcast     #535                // class net/minecraftforge/fluids/capability/IFluidHandler
+     596: astore        13
+     598: aload         13
+     600: ifnonnull     647
+     603: aload         9
+     605: iconst_4
+     606: anewarray     #72                 // class java/lang/Object
+     609: dup
+     610: iconst_0
+     611: ldc_w         #537                // String group
+     614: aastore
+     615: dup
+     616: iconst_1
+     617: iload         10
+     619: iinc          10, 1
+     622: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     625: aastore
+     626: dup
+     627: iconst_2
+     628: ldc_w         #539                // String state
+     631: aastore
+     632: dup
+     633: iconst_3
+     634: ldc_w         #541                // String unknown_capability_unavailable
+     637: aastore
+     638: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     641: invokevirtual #206                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     644: goto          761
+     647: iconst_0
+     648: istore        14
+     650: iload         14
+     652: bipush        16
+     654: aload         13
+     656: invokeinterface #544,  1          // InterfaceMethod net/minecraftforge/fluids/capability/IFluidHandler.getTanks:()I
+     661: invokestatic  #550                // Method java/lang/Math.min:(II)I
+     664: if_icmpge     758
+     667: aload         9
+     669: bipush        8
+     671: anewarray     #72                 // class java/lang/Object
+     674: dup
+     675: iconst_0
+     676: ldc_w         #537                // String group
+     679: aastore
+     680: dup
+     681: iconst_1
+     682: iload         10
+     684: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     687: aastore
+     688: dup
+     689: iconst_2
+     690: ldc_w         #552                // String tank
+     693: aastore
+     694: dup
+     695: iconst_3
+     696: iload         14
+     698: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     701: aastore
+     702: dup
+     703: iconst_4
+     704: ldc_w         #553                // String fluid
+     707: aastore
+     708: dup
+     709: iconst_5
+     710: aload         13
+     712: iload         14
+     714: invokeinterface #557,  2          // InterfaceMethod net/minecraftforge/fluids/capability/IFluidHandler.getFluidInTank:(I)Lnet/minecraftforge/fluids/FluidStack;
+     719: invokestatic  #218                // Method fluid:(Lnet/minecraftforge/fluids/FluidStack;)Lcom/google/gson/JsonObject;
+     722: aastore
+     723: dup
+     724: bipush        6
+     726: ldc_w         #559                // String capacity_mb
+     729: aastore
+     730: dup
+     731: bipush        7
+     733: aload         13
+     735: iload         14
+     737: invokeinterface #563,  2          // InterfaceMethod net/minecraftforge/fluids/capability/IFluidHandler.getTankCapacity:(I)I
+     742: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     745: aastore
+     746: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     749: invokevirtual #206                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     752: iinc          14, 1
+     755: goto          650
+     758: iinc          10, 1
+     761: goto          562
+     764: aload_2
+     765: ldc_w         #450                // String resources
+     768: bipush        6
+     770: anewarray     #72                 // class java/lang/Object
+     773: dup
+     774: iconst_0
+     775: ldc_w         #565                // String fluid_tanks
+     778: aastore
+     779: dup
+     780: iconst_1
+     781: aload         9
+     783: aastore
+     784: dup
+     785: iconst_2
+     786: ldc_w         #567                // String wissen_buffer
+     789: aastore
+     790: dup
+     791: iconst_3
+     792: ldc_w         #569                // String unknown_no_exposed_buffer
+     795: aastore
+     796: dup
+     797: iconst_4
+     798: ldc_w         #571                // String steam_buffer
+     801: aastore
+     802: dup
+     803: iconst_5
+     804: ldc_w         #569                // String unknown_no_exposed_buffer
+     807: aastore
+     808: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     811: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     814: aload_2
+     815: ldc_w         #458                // String items
+     818: iconst_4
+     819: anewarray     #72                 // class java/lang/Object
+     822: dup
+     823: iconst_0
+     824: ldc           #90                 // String input
+     826: aastore
+     827: dup
+     828: iconst_1
+     829: aload         7
+     831: getfield      #572                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     834: invokestatic  #484                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     837: aastore
+     838: dup
+     839: iconst_2
+     840: ldc           #128                // String output
+     842: aastore
+     843: dup
+     844: iconst_3
+     845: aload         7
+     847: getfield      #573                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     850: invokestatic  #484                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     853: aastore
+     854: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     857: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     860: aload_2
+     861: ldc_w         #464                // String progress
+     864: bipush        10
+     866: anewarray     #72                 // class java/lang/Object
+     869: dup
+     870: iconst_0
+     871: ldc_w         #489                // String wissen_in_craft
+     874: aastore
+     875: dup
+     876: iconst_1
+     877: aload         7
+     879: getfield      #574                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.wissenInCraft:I
+     882: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     885: aastore
+     886: dup
+     887: iconst_2
+     888: ldc_w         #472                // String wissen_is_craft
+     891: aastore
+     892: dup
+     893: iconst_3
+     894: aload         7
+     896: getfield      #575                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.wissenIsCraft:I
+     899: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     902: aastore
+     903: dup
+     904: iconst_4
+     905: ldc_w         #577                // String steam_in_craft
+     908: aastore
+     909: dup
+     910: iconst_5
+     911: aload         7
+     913: getfield      #580                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.steamInCraft:I
+     916: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     919: aastore
+     920: dup
+     921: bipush        6
+     923: ldc_w         #582                // String steam_is_craft
+     926: aastore
+     927: dup
+     928: bipush        7
+     930: aload         7
+     932: getfield      #585                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.steamIsCraft:I
+     935: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     938: aastore
+     939: dup
+     940: bipush        8
+     942: ldc_w         #495                // String start_craft
+     945: aastore
+     946: dup
+     947: bipush        9
+     949: aload         7
+     951: getfield      #586                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity.startCraft:Z
+     954: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     957: aastore
+     958: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     961: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     964: goto          1128
+     967: aload_1
+     968: instanceof    #440                // class mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity
+     971: ifeq          1128
+     974: aload_1
+     975: checkcast     #440                // class mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity
+     978: astore        8
+     980: aload_2
+     981: ldc_w         #450                // String resources
+     984: iconst_4
+     985: anewarray     #72                 // class java/lang/Object
+     988: dup
+     989: iconst_0
+     990: ldc_w         #392                // String light
+     993: aastore
+     994: dup
+     995: iconst_1
+     996: aload         8
+     998: invokevirtual #587                // Method mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.getLight:()I
+    1001: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1004: aastore
+    1005: dup
+    1006: iconst_2
+    1007: ldc_w         #589                // String max_light
+    1010: aastore
+    1011: dup
+    1012: iconst_3
+    1013: aload         8
+    1015: invokevirtual #592                // Method mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.getMaxLight:()I
+    1018: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1021: aastore
+    1022: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+    1025: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+    1028: aload_2
+    1029: ldc_w         #458                // String items
+    1032: aload         8
+    1034: invokevirtual #596                // Method mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.getItemHandler:()Lnet/minecraft/world/Container;
+    1037: invokestatic  #462                // Method inventory:(Lnet/minecraft/world/Container;)Lcom/google/gson/JsonObject;
+    1040: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+    1043: aload_2
+    1044: ldc_w         #464                // String progress
+    1047: bipush        8
+    1049: anewarray     #72                 // class java/lang/Object
+    1052: dup
+    1053: iconst_0
+    1054: ldc_w         #598                // String cooldown
+    1057: aastore
+    1058: dup
+    1059: iconst_1
+    1060: aload         8
+    1062: getfield      #600                // Field mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.cooldown:I
+    1065: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1068: aastore
+    1069: dup
+    1070: iconst_2
+    1071: ldc_w         #602                // String max_cooldown
+    1074: aastore
+    1075: dup
+    1076: iconst_3
+    1077: aload         8
+    1079: getfield      #605                // Field mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.maxCooldown:I
+    1082: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1085: aastore
+    1086: dup
+    1087: iconst_4
+    1088: ldc_w         #607                // String start_ritual
+    1091: aastore
+    1092: dup
+    1093: iconst_5
+    1094: aload         8
+    1096: getfield      #610                // Field mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.startRitual:Z
+    1099: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+    1102: aastore
+    1103: dup
+    1104: bipush        6
+    1106: ldc_w         #612                // String tick_ritual
+    1109: aastore
+    1110: dup
+    1111: bipush        7
+    1113: aload         8
+    1115: getfield      #615                // Field mod/maxbogomol/wizards_reborn/common/block/crystal/CrystalBlockEntity.tickRitual:I
+    1118: invokestatic  #115                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1121: aastore
+    1122: invokestatic  #86                 // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+    1125: invokevirtual #104                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+    1128: aload_2
+    1129: ldc_w         #617                // String provenance
+    1132: ldc_w         #619                // String Inspected load/save fields and Fluffy Fur update-tag path. Current client copy can lag or locally animate; sync age and server acceptance unknown.
+    1135: invokevirtual #126                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+    1138: aload_2
+    1139: areturn
+
+  protected net.minecraft.world.level.block.entity.BlockEntity menuOwner(net.minecraft.world.inventory.AbstractContainerMenu);
+    Code:
+       0: aload_1
+       1: instanceof    #637                // class mod/maxbogomol/wizards_reborn/client/gui/container/ArcaneWorkbenchContainer
+       4: ifeq          17
+       7: aload_1
+       8: checkcast     #637                // class mod/maxbogomol/wizards_reborn/client/gui/container/ArcaneWorkbenchContainer
+      11: astore_2
+      12: aload_2
+      13: getfield      #640                // Field mod/maxbogomol/wizards_reborn/client/gui/container/ArcaneWorkbenchContainer.blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      16: areturn
+      17: aload_1
+      18: instanceof    #642                // class mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyMachineContainer
+      21: ifeq          34
+      24: aload_1
+      25: checkcast     #642                // class mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyMachineContainer
+      28: astore_2
+      29: aload_2
+      30: getfield      #643                // Field mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyMachineContainer.blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      33: areturn
+      34: aload_1
+      35: instanceof    #645                // class mod/maxbogomol/wizards_reborn/client/gui/container/JewelerTableContainer
+      38: ifeq          51
+      41: aload_1
+      42: checkcast     #645                // class mod/maxbogomol/wizards_reborn/client/gui/container/JewelerTableContainer
+      45: astore_2
+      46: aload_2
+      47: getfield      #646                // Field mod/maxbogomol/wizards_reborn/client/gui/container/JewelerTableContainer.blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      50: areturn
+      51: aload_1
+      52: instanceof    #648                // class mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyFurnaceContainer
+      55: ifeq          68
+      58: aload_1
+      59: checkcast     #648                // class mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyFurnaceContainer
+      62: astore_2
+      63: aload_2
+      64: getfield      #649                // Field mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyFurnaceContainer.blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      67: areturn
+      68: aconst_null
+      69: areturn
+}

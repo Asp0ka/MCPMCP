@@ -1,0 +1,15 @@
+Compiled from "SpellSlot.java"
+public final class io.redspace.ironsspellbooks.api.spells.SpellSlot extends java.lang.Record {
+  private final io.redspace.ironsspellbooks.api.spells.SpellData spellData;
+  private final int index;
+  public io.redspace.ironsspellbooks.api.spells.SpellSlot(io.redspace.ironsspellbooks.api.spells.SpellData, int);
+  public io.redspace.ironsspellbooks.api.spells.AbstractSpell getSpell();
+  public int getLevel();
+  public boolean isLocked();
+  public int index();
+  public static io.redspace.ironsspellbooks.api.spells.SpellSlot of(io.redspace.ironsspellbooks.api.spells.SpellData, int);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final java.lang.String toString();
+  public io.redspace.ironsspellbooks.api.spells.SpellData spellData();
+}

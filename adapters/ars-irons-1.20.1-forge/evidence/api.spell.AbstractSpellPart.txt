@@ -1,0 +1,413 @@
+Compiled from "AbstractSpellPart.java"
+public abstract class com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart implements java.lang.Comparable<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> {
+  private final net.minecraft.resources.ResourceLocation registryName;
+
+  public java.lang.String name;
+
+  public com.hollingsworth.arsnouveau.common.items.Glyph glyphItem;
+
+  public java.util.List<com.hollingsworth.arsnouveau.api.spell.SpellSchool> spellSchools;
+
+  public java.util.Set<com.hollingsworth.arsnouveau.api.spell.AbstractAugment> compatibleAugments;
+
+  public com.hollingsworth.arsnouveau.common.util.SpellPartConfigUtil$ComboLimits invalidCombinations;
+
+  public net.minecraftforge.common.ForgeConfigSpec CONFIG;
+
+  public net.minecraftforge.common.ForgeConfigSpec$IntValue COST;
+
+  public net.minecraftforge.common.ForgeConfigSpec$BooleanValue ENABLED;
+
+  public net.minecraftforge.common.ForgeConfigSpec$BooleanValue STARTER_SPELL;
+
+  public net.minecraftforge.common.ForgeConfigSpec$IntValue PER_SPELL_LIMIT;
+
+  public net.minecraftforge.common.ForgeConfigSpec$IntValue GLYPH_TIER;
+
+  public com.hollingsworth.arsnouveau.common.util.SpellPartConfigUtil$AugmentLimits augmentLimits;
+
+  public com.hollingsworth.arsnouveau.common.util.SpellPartConfigUtil$AugmentCosts augmentCosts;
+
+  public abstract java.lang.Integer getTypeIndex();
+
+  public net.minecraft.resources.ResourceLocation getRegistryName();
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field registryName:Lnet/minecraft/resources/ResourceLocation;
+       4: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: new           #83                 // class net/minecraft/resources/ResourceLocation
+       4: dup
+       5: ldc           #85                 // String ars_nouveau
+       7: aload_1
+       8: invokespecial #87                 // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      11: aload_2
+      12: invokespecial #90                 // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;)V
+      15: return
+
+  public com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart(net.minecraft.resources.ResourceLocation, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #93                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #95                 // class java/util/concurrent/CopyOnWriteArrayList
+       8: dup
+       9: invokespecial #96                 // Method java/util/concurrent/CopyOnWriteArrayList."<init>":()V
+      12: putfield      #98                 // Field spellSchools:Ljava/util/List;
+      15: aload_0
+      16: invokestatic  #102                // Method java/util/concurrent/ConcurrentHashMap.newKeySet:()Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+      19: putfield      #104                // Field compatibleAugments:Ljava/util/Set;
+      22: aload_0
+      23: new           #15                 // class com/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$ComboLimits
+      26: dup
+      27: aconst_null
+      28: invokespecial #107                // Method com/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$ComboLimits."<init>":(Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;)V
+      31: putfield      #109                // Field invalidCombinations:Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$ComboLimits;
+      34: aload_0
+      35: aload_1
+      36: putfield      #77                 // Field registryName:Lnet/minecraft/resources/ResourceLocation;
+      39: aload_0
+      40: aload_2
+      41: putfield      #111                // Field name:Ljava/lang/String;
+      44: aload_0
+      45: invokevirtual #115                // Method getSchools:()Ljava/util/Set;
+      48: invokeinterface #121,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      53: astore_3
+      54: aload_3
+      55: invokeinterface #129,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      60: ifeq          96
+      63: aload_3
+      64: invokeinterface #133,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      69: checkcast     #135                // class com/hollingsworth/arsnouveau/api/spell/SpellSchool
+      72: astore        4
+      74: aload         4
+      76: aload_0
+      77: invokevirtual #139                // Method com/hollingsworth/arsnouveau/api/spell/SpellSchool.addSpellPart:(Lcom/hollingsworth/arsnouveau/api/spell/AbstractSpellPart;)Z
+      80: pop
+      81: aload_0
+      82: getfield      #98                 // Field spellSchools:Ljava/util/List;
+      85: aload         4
+      87: invokeinterface #145,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      92: pop
+      93: goto          54
+      96: aload_0
+      97: getfield      #104                // Field compatibleAugments:Ljava/util/Set;
+     100: aload_0
+     101: invokevirtual #148                // Method getCompatibleAugments:()Ljava/util/Set;
+     104: invokeinterface #152,  2          // InterfaceMethod java/util/Set.addAll:(Ljava/util/Collection;)Z
+     109: pop
+     110: return
+
+  public void onContextCanceled(com.hollingsworth.arsnouveau.api.spell.SpellContext);
+    Code:
+       0: return
+
+  public boolean contextCanceled(com.hollingsworth.arsnouveau.api.spell.SpellContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #162                // Method onContextCanceled:(Lcom/hollingsworth/arsnouveau/api/spell/SpellContext;)V
+       5: iconst_1
+       6: ireturn
+
+  protected abstract int getDefaultManaCost();
+
+  public int getCastingCost();
+    Code:
+       0: aload_0
+       1: getfield      #167                // Field COST:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+       4: ifnonnull     14
+       7: aload_0
+       8: invokevirtual #169                // Method getDefaultManaCost:()I
+      11: goto          27
+      14: aload_0
+      15: getfield      #167                // Field COST:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      18: invokevirtual #172                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      21: checkcast     #174                // class java/lang/Integer
+      24: invokevirtual #177                // Method java/lang/Integer.intValue:()I
+      27: ireturn
+
+  public java.lang.String getName();
+    Code:
+       0: aload_0
+       1: getfield      #111                // Field name:Ljava/lang/String;
+       4: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.SpellTier getConfigTier();
+    Code:
+       0: aload_0
+       1: getfield      #183                // Field GLYPH_TIER:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+       4: ifnonnull     14
+       7: aload_0
+       8: invokevirtual #186                // Method defaultTier:()Lcom/hollingsworth/arsnouveau/api/spell/SpellTier;
+      11: goto          30
+      14: getstatic     #192                // Field com/hollingsworth/arsnouveau/api/spell/SpellTier.SPELL_TIER_MAP:Ljava/util/concurrent/ConcurrentHashMap;
+      17: aload_0
+      18: getfield      #183                // Field GLYPH_TIER:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      21: invokevirtual #172                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      24: invokevirtual #195                // Method java/util/concurrent/ConcurrentHashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      27: checkcast     #188                // class com/hollingsworth/arsnouveau/api/spell/SpellTier
+      30: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.SpellTier defaultTier();
+    Code:
+       0: getstatic     #199                // Field com/hollingsworth/arsnouveau/api/spell/SpellTier.ONE:Lcom/hollingsworth/arsnouveau/api/spell/SpellTier;
+       3: areturn
+
+  public com.hollingsworth.arsnouveau.common.items.Glyph getGlyph();
+    Code:
+       0: aload_0
+       1: getfield      #203                // Field glyphItem:Lcom/hollingsworth/arsnouveau/common/items/Glyph;
+       4: ifnonnull     19
+       7: aload_0
+       8: new           #205                // class com/hollingsworth/arsnouveau/common/items/Glyph
+      11: dup
+      12: aload_0
+      13: invokespecial #208                // Method com/hollingsworth/arsnouveau/common/items/Glyph."<init>":(Lcom/hollingsworth/arsnouveau/api/spell/AbstractSpellPart;)V
+      16: putfield      #203                // Field glyphItem:Lcom/hollingsworth/arsnouveau/common/items/Glyph;
+      19: aload_0
+      20: getfield      #203                // Field glyphItem:Lcom/hollingsworth/arsnouveau/common/items/Glyph;
+      23: areturn
+
+  protected abstract java.util.Set<com.hollingsworth.arsnouveau.api.spell.AbstractAugment> getCompatibleAugments();
+
+  protected java.util.Set<com.hollingsworth.arsnouveau.api.spell.AbstractAugment> augmentSetOf(com.hollingsworth.arsnouveau.api.spell.AbstractAugment...);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #217                // Method setOf:([Ljava/lang/Object;)Ljava/util/Set;
+       5: areturn
+
+  protected java.util.Set<com.hollingsworth.arsnouveau.api.spell.SpellSchool> getSchools();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: anewarray     #135                // class com/hollingsworth/arsnouveau/api/spell/SpellSchool
+       5: invokevirtual #217                // Method setOf:([Ljava/lang/Object;)Ljava/util/Set;
+       8: areturn
+
+  protected final <T> java.util.Set<T> setOf(T...);
+    Code:
+       0: aload_1
+       1: invokestatic  #225                // InterfaceMethod java/util/Set.of:([Ljava/lang/Object;)Ljava/util/Set;
+       4: areturn
+
+  public int compareTo(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart);
+    Code:
+       0: aload_0
+       1: invokevirtual #232                // Method getConfigTier:()Lcom/hollingsworth/arsnouveau/api/spell/SpellTier;
+       4: getfield      #236                // Field com/hollingsworth/arsnouveau/api/spell/SpellTier.value:I
+       7: aload_1
+       8: invokevirtual #232                // Method getConfigTier:()Lcom/hollingsworth/arsnouveau/api/spell/SpellTier;
+      11: getfield      #236                // Field com/hollingsworth/arsnouveau/api/spell/SpellTier.value:I
+      14: isub
+      15: ireturn
+
+  public net.minecraft.network.chat.Component getBookDescLang();
+    Code:
+       0: aload_0
+       1: invokevirtual #241                // Method getRegistryName:()Lnet/minecraft/resources/ResourceLocation;
+       4: invokevirtual #244                // Method net/minecraft/resources/ResourceLocation.m_135827_:()Ljava/lang/String;
+       7: aload_0
+       8: invokevirtual #241                // Method getRegistryName:()Lnet/minecraft/resources/ResourceLocation;
+      11: invokevirtual #247                // Method net/minecraft/resources/ResourceLocation.m_135815_:()Ljava/lang/String;
+      14: invokedynamic #259,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      19: invokestatic  #265                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      22: areturn
+
+  public void buildConfig(net.minecraftforge.common.ForgeConfigSpec$Builder);
+    Code:
+       0: aload_1
+       1: ldc_w         #269                // String General settings
+       4: invokevirtual #273                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.comment:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+       7: ldc_w         #275                // String general
+      10: invokevirtual #278                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.push:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+      13: pop
+      14: aload_0
+      15: aload_1
+      16: ldc_w         #280                // String Is Enabled?
+      19: invokevirtual #273                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.comment:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+      22: ldc_w         #282                // String enabled
+      25: iconst_1
+      26: invokevirtual #286                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.define:(Ljava/lang/String;Z)Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+      29: putfield      #288                // Field ENABLED:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+      32: aload_0
+      33: aload_1
+      34: ldc_w         #290                // String Cost
+      37: invokevirtual #273                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.comment:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+      40: ldc_w         #292                // String cost
+      43: aload_0
+      44: invokevirtual #169                // Method getDefaultManaCost:()I
+      47: ldc_w         #293                // int -2147483648
+      50: ldc_w         #294                // int 2147483647
+      53: invokevirtual #298                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.defineInRange:(Ljava/lang/String;III)Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      56: putfield      #167                // Field COST:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      59: aload_0
+      60: aload_1
+      61: ldc_w         #300                // String Is Starter Glyph?
+      64: invokevirtual #273                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.comment:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+      67: ldc_w         #302                // String starter
+      70: aload_0
+      71: invokevirtual #305                // Method defaultedStarterGlyph:()Z
+      74: invokevirtual #286                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.define:(Ljava/lang/String;Z)Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+      77: putfield      #307                // Field STARTER_SPELL:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+      80: aload_0
+      81: aload_1
+      82: ldc_w         #309                // String The maximum number of times this glyph may appear in a single spell
+      85: invokevirtual #273                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.comment:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+      88: ldc_w         #311                // String per_spell_limit
+      91: ldc_w         #294                // int 2147483647
+      94: iconst_1
+      95: ldc_w         #294                // int 2147483647
+      98: invokevirtual #298                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.defineInRange:(Ljava/lang/String;III)Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+     101: putfield      #313                // Field PER_SPELL_LIMIT:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+     104: aload_0
+     105: aload_1
+     106: ldc_w         #315                // String The tier of the glyph
+     109: invokevirtual #273                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.comment:(Ljava/lang/String;)Lnet/minecraftforge/common/ForgeConfigSpec$Builder;
+     112: ldc_w         #317                // String glyph_tier
+     115: aload_0
+     116: invokevirtual #186                // Method defaultTier:()Lcom/hollingsworth/arsnouveau/api/spell/SpellTier;
+     119: getfield      #236                // Field com/hollingsworth/arsnouveau/api/spell/SpellTier.value:I
+     122: iconst_1
+     123: bipush        99
+     125: invokevirtual #298                // Method net/minecraftforge/common/ForgeConfigSpec$Builder.defineInRange:(Ljava/lang/String;III)Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+     128: putfield      #183                // Field GLYPH_TIER:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+     131: return
+
+  public boolean shouldShowInUnlock();
+    Code:
+       0: aload_0
+       1: invokevirtual #323                // Method isEnabled:()Z
+       4: ireturn
+
+  public boolean shouldShowInSpellBook();
+    Code:
+       0: aload_0
+       1: invokevirtual #323                // Method isEnabled:()Z
+       4: ireturn
+
+  public boolean isEnabled();
+    Code:
+       0: aload_0
+       1: getfield      #288                // Field ENABLED:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+       4: ifnull        27
+       7: aload_0
+       8: getfield      #288                // Field ENABLED:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+      11: invokevirtual #325                // Method net/minecraftforge/common/ForgeConfigSpec$BooleanValue.get:()Ljava/lang/Object;
+      14: checkcast     #327                // class java/lang/Boolean
+      17: invokevirtual #330                // Method java/lang/Boolean.booleanValue:()Z
+      20: ifeq          27
+      23: iconst_1
+      24: goto          28
+      27: iconst_0
+      28: ireturn
+
+  public int getAugmentLimit(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: getfield      #334                // Field augmentLimits:Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentLimits;
+       4: ifnonnull     11
+       7: ldc_w         #294                // int 2147483647
+      10: ireturn
+      11: aload_0
+      12: getfield      #334                // Field augmentLimits:Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentLimits;
+      15: aload_1
+      16: invokevirtual #336                // Method com/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentLimits.getAugmentLimit:(Lnet/minecraft/resources/ResourceLocation;)I
+      19: ireturn
+
+  protected void buildAugmentLimitsConfig(net.minecraftforge.common.ForgeConfigSpec$Builder, java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokestatic  #343                // Method com/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil.buildAugmentLimitsConfig:(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;Ljava/util/Map;)Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentLimits;
+       6: putfield      #334                // Field augmentLimits:Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentLimits;
+       9: return
+
+  protected void buildAugmentCostOverrideConfig(net.minecraftforge.common.ForgeConfigSpec$Builder, java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokestatic  #351                // Method com/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil.buildAugmentCosts:(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;Ljava/util/Map;)Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentCosts;
+       6: putfield      #353                // Field augmentCosts:Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$AugmentCosts;
+       9: return
+
+  protected void buildInvalidCombosConfig(net.minecraftforge.common.ForgeConfigSpec$Builder, java.util.Set<net.minecraft.resources.ResourceLocation>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokestatic  #359                // Method com/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil.buildInvalidCombosConfig:(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;Ljava/util/Set;)Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$ComboLimits;
+       6: putfield      #109                // Field invalidCombinations:Lcom/hollingsworth/arsnouveau/common/util/SpellPartConfigUtil$ComboLimits;
+       9: return
+
+  protected java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer> getDefaultAugmentLimits(java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #367                // Method addDefaultAugmentLimits:(Ljava/util/Map;)V
+       5: aload_1
+       6: areturn
+
+  protected void addDefaultAugmentLimits(java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer>);
+    Code:
+       0: return
+
+  protected void addAugmentCostOverrides(java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer>);
+    Code:
+       0: return
+
+  protected java.util.Set<net.minecraft.resources.ResourceLocation> getDefaultInvalidCombos(java.util.Set<net.minecraft.resources.ResourceLocation>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #376                // Method addDefaultInvalidCombos:(Ljava/util/Set;)V
+       5: aload_1
+       6: areturn
+
+  protected void addDefaultInvalidCombos(java.util.Set<net.minecraft.resources.ResourceLocation>);
+    Code:
+       0: return
+
+  public boolean defaultedStarterGlyph();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public java.lang.String getBookDescription();
+    Code:
+       0: ldc_w         #380                // String
+       3: areturn
+
+  public java.lang.String getLocalizationKey();
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field registryName:Lnet/minecraft/resources/ResourceLocation;
+       4: invokevirtual #244                // Method net/minecraft/resources/ResourceLocation.m_135827_:()Ljava/lang/String;
+       7: aload_0
+       8: getfield      #77                 // Field registryName:Lnet/minecraft/resources/ResourceLocation;
+      11: invokevirtual #247                // Method net/minecraft/resources/ResourceLocation.m_135815_:()Ljava/lang/String;
+      14: invokedynamic #384,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      19: areturn
+
+  public java.lang.String getLocaleName();
+    Code:
+       0: aload_0
+       1: invokevirtual #387                // Method getLocalizationKey:()Ljava/lang/String;
+       4: invokestatic  #265                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       7: invokevirtual #392                // Method net/minecraft/network/chat/MutableComponent.getString:()Ljava/lang/String;
+      10: areturn
+
+  public int compareTo(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #2                  // class com/hollingsworth/arsnouveau/api/spell/AbstractSpellPart
+       5: invokevirtual #395                // Method compareTo:(Lcom/hollingsworth/arsnouveau/api/spell/AbstractSpellPart;)I
+       8: ireturn
+}

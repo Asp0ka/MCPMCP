@@ -1,0 +1,8 @@
+Compiled from "CrushRecipe.java"
+public class com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput {
+  public net.minecraft.world.item.ItemStack stack;
+  public float chance;
+  public int maxRange;
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput(net.minecraft.world.item.ItemStack, float);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe$CrushOutput(net.minecraft.world.item.ItemStack, float, int);
+}

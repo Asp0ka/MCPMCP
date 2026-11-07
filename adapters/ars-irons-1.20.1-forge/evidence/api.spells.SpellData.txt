@@ -1,0 +1,275 @@
+Compiled from "SpellData.java"
+public class io.redspace.ironsspellbooks.api.spells.SpellData implements java.lang.Comparable<io.redspace.ironsspellbooks.api.spells.SpellData> {
+  public static final java.lang.String SPELL_ID;
+
+  public static final java.lang.String SPELL_LEVEL;
+
+  public static final java.lang.String SPELL_LOCKED;
+
+  public static final com.mojang.serialization.Codec<io.redspace.ironsspellbooks.api.spells.SpellData> CODEC;
+
+  public static final io.redspace.ironsspellbooks.api.spells.SpellData EMPTY;
+
+  protected final io.redspace.ironsspellbooks.api.spells.AbstractSpell spell;
+
+  protected final int spellLevel;
+
+  protected final boolean locked;
+
+  private io.redspace.ironsspellbooks.api.spells.SpellData() throws java.lang.Exception;
+    Code:
+       0: aload_0
+       1: invokespecial #49                 // Method java/lang/Object."<init>":()V
+       4: new           #47                 // class java/lang/Exception
+       7: dup
+       8: ldc           #51                 // String Cannot create empty spell slots.
+      10: invokespecial #54                 // Method java/lang/Exception."<init>":(Ljava/lang/String;)V
+      13: athrow
+
+  public io.redspace.ironsspellbooks.api.spells.SpellData(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #49                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokestatic  #62                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+       9: checkcast     #64                 // class io/redspace/ironsspellbooks/api/spells/AbstractSpell
+      12: putfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      15: aload_0
+      16: iload_2
+      17: putfield      #68                 // Field spellLevel:I
+      20: aload_0
+      21: iload_3
+      22: putfield      #70                 // Field locked:Z
+      25: return
+
+  public io.redspace.ironsspellbooks.api.spells.SpellData(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iconst_0
+       4: invokespecial #73                 // Method "<init>":(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZ)V
+       7: return
+
+  public io.redspace.ironsspellbooks.api.spells.SpellData(net.minecraft.resources.ResourceLocation, int, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #80                 // Method io/redspace/ironsspellbooks/api/registry/SpellRegistry.getSpell:(Lnet/minecraft/resources/ResourceLocation;)Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       5: iload_2
+       6: iload_3
+       7: invokespecial #73                 // Method "<init>":(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZ)V
+      10: return
+
+  public static void writeToBuffer(net.minecraft.network.FriendlyByteBuf, io.redspace.ironsspellbooks.api.spells.SpellData);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       5: invokevirtual #88                 // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getSpellResource:()Lnet/minecraft/resources/ResourceLocation;
+       8: invokevirtual #94                 // Method net/minecraft/network/FriendlyByteBuf.m_130085_:(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/FriendlyByteBuf;
+      11: pop
+      12: aload_0
+      13: aload_1
+      14: getfield      #68                 // Field spellLevel:I
+      17: invokevirtual #98                 // Method net/minecraft/network/FriendlyByteBuf.writeInt:(I)Lio/netty/buffer/ByteBuf;
+      20: pop
+      21: aload_0
+      22: aload_1
+      23: getfield      #70                 // Field locked:Z
+      26: invokevirtual #102                // Method net/minecraft/network/FriendlyByteBuf.writeBoolean:(Z)Lio/netty/buffer/ByteBuf;
+      29: pop
+      30: return
+
+  public static io.redspace.ironsspellbooks.api.spells.SpellData readFromBuffer(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #2                  // class io/redspace/ironsspellbooks/api/spells/SpellData
+       3: dup
+       4: aload_0
+       5: invokevirtual #110                // Method net/minecraft/network/FriendlyByteBuf.m_130281_:()Lnet/minecraft/resources/ResourceLocation;
+       8: aload_0
+       9: invokevirtual #114                // Method net/minecraft/network/FriendlyByteBuf.readInt:()I
+      12: aload_0
+      13: invokevirtual #118                // Method net/minecraft/network/FriendlyByteBuf.readBoolean:()Z
+      16: invokespecial #120                // Method "<init>":(Lnet/minecraft/resources/ResourceLocation;IZ)V
+      19: areturn
+
+  public io.redspace.ironsspellbooks.api.spells.AbstractSpell getSpell();
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       4: ifnonnull     13
+       7: invokestatic  #125                // Method io/redspace/ironsspellbooks/api/registry/SpellRegistry.none:()Lio/redspace/ironsspellbooks/spells/NoneSpell;
+      10: goto          17
+      13: aload_0
+      14: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      17: areturn
+
+  public int getLevel();
+    Code:
+       0: aload_0
+       1: getfield      #68                 // Field spellLevel:I
+       4: ireturn
+
+  public boolean isLocked();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field locked:Z
+       4: ireturn
+
+  public boolean canRemove();
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field locked:Z
+       4: ifne          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  public io.redspace.ironsspellbooks.api.spells.SpellRarity getRarity();
+    Code:
+       0: aload_0
+       1: invokevirtual #132                // Method getSpell:()Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       4: aload_0
+       5: invokevirtual #134                // Method getLevel:()I
+       8: invokevirtual #137                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getRarity:(I)Lio/redspace/ironsspellbooks/api/spells/SpellRarity;
+      11: areturn
+
+  public net.minecraft.network.chat.Component getDisplayName();
+    Code:
+       0: aload_0
+       1: invokevirtual #132                // Method getSpell:()Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       4: getstatic     #145                // Field io/redspace/ironsspellbooks/util/MinecraftInstanceHelper.instance:Lio/redspace/ironsspellbooks/util/IMinecraftInstanceHelper;
+       7: invokeinterface #151,  1          // InterfaceMethod io/redspace/ironsspellbooks/util/IMinecraftInstanceHelper.player:()Lnet/minecraft/world/entity/player/Player;
+      12: invokevirtual #154                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getDisplayName:(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/network/chat/MutableComponent;
+      15: ldc           #156                // String
+      17: invokevirtual #162                // Method net/minecraft/network/chat/MutableComponent.m_130946_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      20: getstatic     #168                // Field io/redspace/ironsspellbooks/registries/ItemRegistry.SCROLL:Lnet/minecraftforge/registries/RegistryObject;
+      23: invokevirtual #174                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      26: checkcast     #176                // class net/minecraft/world/item/Item
+      29: invokevirtual #180                // Method net/minecraft/world/item/Item.m_5524_:()Ljava/lang/String;
+      32: invokestatic  #185                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      35: invokevirtual #189                // Method net/minecraft/network/chat/MutableComponent.m_7220_:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+      38: areturn
+
+  public boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: if_acmpne     7
+       5: iconst_1
+       6: ireturn
+       7: aload_1
+       8: instanceof    #2                  // class io/redspace/ironsspellbooks/api/spells/SpellData
+      11: ifeq          50
+      14: aload_1
+      15: checkcast     #2                  // class io/redspace/ironsspellbooks/api/spells/SpellData
+      18: astore_2
+      19: aload_0
+      20: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      23: aload_2
+      24: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      27: invokevirtual #193                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.equals:(Ljava/lang/Object;)Z
+      30: ifeq          48
+      33: aload_0
+      34: getfield      #68                 // Field spellLevel:I
+      37: aload_2
+      38: getfield      #68                 // Field spellLevel:I
+      41: if_icmpne     48
+      44: iconst_1
+      45: goto          49
+      48: iconst_0
+      49: ireturn
+      50: iconst_0
+      51: ireturn
+
+  public int hashCode();
+    Code:
+       0: bipush        31
+       2: aload_0
+       3: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       6: invokevirtual #199                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.hashCode:()I
+       9: imul
+      10: aload_0
+      11: getfield      #68                 // Field spellLevel:I
+      14: iadd
+      15: ireturn
+
+  public int compareTo(io.redspace.ironsspellbooks.api.spells.SpellData);
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       4: invokevirtual #204                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getSpellId:()Ljava/lang/String;
+       7: aload_1
+       8: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      11: invokevirtual #204                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getSpellId:()Ljava/lang/String;
+      14: invokevirtual #209                // Method java/lang/String.compareTo:(Ljava/lang/String;)I
+      17: istore_2
+      18: iload_2
+      19: ifne          34
+      22: aload_0
+      23: getfield      #68                 // Field spellLevel:I
+      26: aload_1
+      27: getfield      #68                 // Field spellLevel:I
+      30: invokestatic  #215                // Method java/lang/Integer.compare:(II)I
+      33: istore_2
+      34: iload_2
+      35: ireturn
+
+  public int compareTo(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #2                  // class io/redspace/ironsspellbooks/api/spells/SpellData
+       5: invokevirtual #219                // Method compareTo:(Lio/redspace/ironsspellbooks/api/spells/SpellData;)I
+       8: ireturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$1(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+       0: aload_0
+       1: getstatic     #226                // Field net/minecraft/resources/ResourceLocation.f_135803_:Lcom/mojang/serialization/Codec;
+       4: ldc           #27                 // String id
+       6: invokeinterface #232,  2          // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      11: invokedynamic #250,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      16: invokevirtual #256                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      19: getstatic     #260                // Field com/mojang/serialization/Codec.INT:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      22: ldc           #30                 // String level
+      24: invokeinterface #263,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      29: invokedynamic #267,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      34: invokevirtual #256                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      37: getstatic     #270                // Field com/mojang/serialization/Codec.BOOL:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      40: ldc           #33                 // String locked
+      42: iconst_0
+      43: invokestatic  #276                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      46: invokeinterface #280,  3          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+      51: invokedynamic #286,  0            // InvokeDynamic #2:apply:()Ljava/util/function/Function;
+      56: invokevirtual #256                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      59: invokevirtual #290                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P3;
+      62: aload_0
+      63: invokedynamic #298,  0            // InvokeDynamic #3:apply:()Lcom/mojang/datafixers/util/Function3;
+      68: invokevirtual #301                // Method com/mojang/datafixers/Products$P3.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function3;)Lcom/mojang/datafixers/kinds/App;
+      71: areturn
+
+  private static net.minecraft.resources.ResourceLocation lambda$static$0(io.redspace.ironsspellbooks.api.spells.SpellData);
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field spell:Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+       4: invokevirtual #88                 // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getSpellResource:()Lnet/minecraft/resources/ResourceLocation;
+       7: areturn
+
+  static {};
+    Code:
+       0: invokedynamic #309,  0            // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+       5: invokestatic  #313                // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+       8: putstatic     #315                // Field CODEC:Lcom/mojang/serialization/Codec;
+      11: new           #2                  // class io/redspace/ironsspellbooks/api/spells/SpellData
+      14: dup
+      15: invokestatic  #125                // Method io/redspace/ironsspellbooks/api/registry/SpellRegistry.none:()Lio/redspace/ironsspellbooks/spells/NoneSpell;
+      18: iconst_0
+      19: iconst_0
+      20: invokespecial #73                 // Method "<init>":(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZ)V
+      23: putstatic     #317                // Field EMPTY:Lio/redspace/ironsspellbooks/api/spells/SpellData;
+      26: return
+}

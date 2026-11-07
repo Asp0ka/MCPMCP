@@ -1,0 +1,11 @@
+Compiled from "StackUtil.java"
+public class com.hollingsworth.arsnouveau.api.util.StackUtil {
+  public com.hollingsworth.arsnouveau.api.util.StackUtil();
+  public static net.minecraft.world.item.ItemStack getHeldSpellbook(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.InteractionHand getBookHand(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.InteractionHand getHeldCasterTool(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.InteractionHand getHeldCasterTool(net.minecraft.world.entity.player.Player, java.util.function.Predicate<com.hollingsworth.arsnouveau.api.item.ICasterTool>);
+  public static net.minecraft.world.InteractionHand getQuickCaster(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.item.ItemStack getHeldRadial(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.item.ItemStack getHeldCasterToolOrEmpty(net.minecraft.world.entity.player.Player);
+}

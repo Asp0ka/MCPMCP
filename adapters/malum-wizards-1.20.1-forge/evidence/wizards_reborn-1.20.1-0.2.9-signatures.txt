@@ -1,0 +1,505 @@
+Compiled from "IFluidBlockEntity.java"
+public interface mod.maxbogomol.wizards_reborn.api.alchemy.IFluidBlockEntity {
+  public abstract net.minecraftforge.fluids.FluidStack getFluidStack();
+  public abstract int getFluidAmount();
+  public abstract int getFluidMaxAmount();
+}
+Compiled from "IHeatBlockEntity.java"
+public interface mod.maxbogomol.wizards_reborn.api.alchemy.IHeatBlockEntity {
+  public abstract int getHeat();
+  public abstract int getMaxHeat();
+  public abstract void setHeat(int);
+  public abstract void addHeat(int);
+  public abstract void removeHeat(int);
+}
+Compiled from "ISteamBlockEntity.java"
+public interface mod.maxbogomol.wizards_reborn.api.alchemy.ISteamBlockEntity {
+  public abstract int getSteam();
+  public abstract int getMaxSteam();
+  public abstract void setSteam(int);
+  public abstract void addSteam(int);
+  public abstract void removeSteam(int);
+  public abstract boolean canSteamTransfer(net.minecraft.core.Direction);
+  public abstract boolean canSteamConnection(net.minecraft.core.Direction);
+}
+Compiled from "ILightBlockEntity.java"
+public interface mod.maxbogomol.wizards_reborn.api.light.ILightBlockEntity {
+  public abstract int getLight();
+  public abstract int getMaxLight();
+  public abstract boolean canSendLight();
+  public abstract boolean canReceiveLight();
+  public abstract boolean canConnectSendLight();
+  public abstract boolean canConnectReceiveLight();
+  public abstract void setLight(int);
+  public abstract void addLight(int);
+  public abstract void removeLight(int);
+  public abstract net.minecraft.world.phys.Vec3 getLightLensPos();
+  public abstract float getLightLensSize();
+  public abstract java.util.ArrayList<mod.maxbogomol.wizards_reborn.api.light.LightTypeStack> getLightTypes();
+  public abstract void setLightTypes(java.util.ArrayList<mod.maxbogomol.wizards_reborn.api.light.LightTypeStack>);
+  public abstract void addLightType(mod.maxbogomol.wizards_reborn.api.light.LightTypeStack);
+  public abstract void removeLightType(mod.maxbogomol.wizards_reborn.api.light.LightTypeStack);
+  public abstract void clearLightType();
+}
+Compiled from "ICooldownBlockEntity.java"
+public interface mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity {
+  public abstract float getCooldown();
+}
+Compiled from "IWissenBlockEntity.java"
+public interface mod.maxbogomol.wizards_reborn.api.wissen.IWissenBlockEntity {
+  public abstract int getWissen();
+  public abstract int getMaxWissen();
+  public abstract boolean canSendWissen();
+  public abstract boolean canReceiveWissen();
+  public abstract boolean canConnectSendWissen();
+  public abstract boolean canConnectReceiveWissen();
+  public abstract void setWissen(int);
+  public abstract void addWissen(int);
+  public abstract void removeWissen(int);
+}
+Compiled from "AlchemyMachineBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.alchemy_machine.AlchemyMachineBlockEntity extends mod.maxbogomol.wizards_reborn.common.block.pipe.PipeBaseBlockEntity implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenWandFunctionalBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IItemResultBlockEntity,net.minecraft.world.MenuProvider,net.minecraft.world.Nameable {
+  protected net.minecraftforge.fluids.capability.templates.FluidTank fluidTank1;
+  protected net.minecraftforge.fluids.capability.templates.FluidTank fluidTank2;
+  protected net.minecraftforge.fluids.capability.templates.FluidTank fluidTank3;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHolder1;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHolder2;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHolder3;
+  public final net.minecraftforge.items.ItemStackHandler itemHandler;
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> handler;
+  public final net.minecraftforge.items.ItemStackHandler itemOutputHandler;
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> outputHandler;
+  public static net.minecraft.core.Direction[] directions;
+  public int wissenInCraft;
+  public int wissenIsCraft;
+  public int steamInCraft;
+  public int steamIsCraft;
+  public boolean startCraft;
+  public net.minecraft.network.chat.Component name;
+  public mod.maxbogomol.wizards_reborn.common.block.alchemy_machine.AlchemyMachineBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public mod.maxbogomol.wizards_reborn.common.block.alchemy_machine.AlchemyMachineBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void tick();
+  private net.minecraftforge.items.ItemStackHandler createHandler(int);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  public net.minecraft.network.chat.Component m_7755_();
+  public void setCustomName(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component m_5446_();
+  public net.minecraft.network.chat.Component getDefaultName();
+  public net.minecraft.world.inventory.AbstractContainerMenu m_7208_(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  public void initConnections();
+  public int getMaxCapacity();
+  public int getCapacity(int);
+  public net.minecraftforge.fluids.FluidStack getFluidStack(int);
+  public net.minecraftforge.fluids.capability.templates.FluidTank getTank(int);
+  public void wissenWandFunction();
+  public boolean isCanCraft(net.minecraft.world.SimpleContainer, net.minecraft.world.item.ItemStack, mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe, boolean);
+  public boolean isCanCraftItem(net.minecraft.world.SimpleContainer, net.minecraft.world.item.ItemStack);
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemsResult();
+  public net.minecraft.world.item.ItemStack getAlchemyBottle();
+  public float getCooldown();
+  private static net.minecraftforge.items.wrapper.CombinedInvWrapper lambda$getCapability$5(net.minecraftforge.items.wrapper.CombinedInvWrapper);
+  private net.minecraftforge.items.IItemHandler lambda$new$4();
+  private net.minecraftforge.items.IItemHandler lambda$new$3();
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$2();
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$1();
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$0();
+  static {};
+}
+Compiled from "ArcaneWorkbenchBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.arcane_workbench.ArcaneWorkbenchBlockEntity extends mod.maxbogomol.fluffy_fur.common.block.entity.NameableBlockEntityBase implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenWandFunctionalBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IItemResultBlockEntity {
+  public final net.minecraftforge.items.ItemStackHandler itemHandler;
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> handler;
+  public final net.minecraftforge.items.ItemStackHandler itemOutputHandler;
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> outputHandler;
+  public int wissenInCraft;
+  public int wissenIsCraft;
+  public boolean startCraft;
+  public int wissen;
+  public mod.maxbogomol.wizards_reborn.client.sound.ArcaneWorkbenchSoundInstance sound;
+  public mod.maxbogomol.wizards_reborn.common.block.arcane_workbench.ArcaneWorkbenchBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public mod.maxbogomol.wizards_reborn.common.block.arcane_workbench.ArcaneWorkbenchBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void tick();
+  private net.minecraftforge.items.ItemStackHandler createHandler(int);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  public net.minecraft.network.chat.Component getDefaultName();
+  public net.minecraft.world.inventory.AbstractContainerMenu m_7208_(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public float getBlockRotate();
+  public float getStage();
+  public boolean isCanCraft(net.minecraft.world.SimpleContainer, net.minecraft.world.item.ItemStack);
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  public int getWissen();
+  public int getMaxWissen();
+  public boolean canSendWissen();
+  public boolean canReceiveWissen();
+  public boolean canConnectSendWissen();
+  public boolean canConnectReceiveWissen();
+  public void setWissen(int);
+  public void addWissen(int);
+  public void removeWissen(int);
+  public int getWissenPerTick();
+  public void wissenWandFunction();
+  public float getCooldown();
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemsResult();
+  private static net.minecraftforge.items.wrapper.CombinedInvWrapper lambda$getCapability$2(net.minecraftforge.items.wrapper.CombinedInvWrapper);
+  private net.minecraftforge.items.IItemHandler lambda$new$1();
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+}
+Compiled from "WissenAltarBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.wissen_altar.WissenAltarBlockEntity extends mod.maxbogomol.fluffy_fur.common.block.entity.ExposedBlockSimpleInventory implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity {
+  public int wissenInItem;
+  public int wissenIsCraft;
+  public int wissen;
+  public mod.maxbogomol.wizards_reborn.common.block.wissen_altar.WissenAltarBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public mod.maxbogomol.wizards_reborn.common.block.wissen_altar.WissenAltarBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void tick();
+  protected net.minecraft.world.SimpleContainer createItemHandler();
+  public boolean m_7155_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public boolean m_7157_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  public float getBlockRotate();
+  public float getStage();
+  public float getCraftingStage();
+  public int getWissenPerReceive();
+  public int getWissen();
+  public int getMaxWissen();
+  public boolean canSendWissen();
+  public boolean canReceiveWissen();
+  public boolean canConnectSendWissen();
+  public boolean canConnectReceiveWissen();
+  public void setWissen(int);
+  public void addWissen(int);
+  public void removeWissen(int);
+  public int getWissenPerTick();
+  public float getCooldown();
+}
+Compiled from "WissenCrystallizerBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.wissen_crystallizer.WissenCrystallizerBlockEntity extends mod.maxbogomol.fluffy_fur.common.block.entity.ExposedBlockSimpleInventory implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenWandFunctionalBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IItemResultBlockEntity {
+  public int wissenInCraft;
+  public int wissenIsCraft;
+  public boolean startCraft;
+  public int wissen;
+  public mod.maxbogomol.wizards_reborn.client.sound.WissenCrystallizerSoundInstance sound;
+  public mod.maxbogomol.wizards_reborn.common.block.wissen_crystallizer.WissenCrystallizerBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public mod.maxbogomol.wizards_reborn.common.block.wissen_crystallizer.WissenCrystallizerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void tick();
+  protected net.minecraft.world.SimpleContainer createItemHandler();
+  public float getStage();
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  public int getWissen();
+  public int getMaxWissen();
+  public boolean canSendWissen();
+  public boolean canReceiveWissen();
+  public boolean canConnectSendWissen();
+  public boolean canConnectReceiveWissen();
+  public void setWissen(int);
+  public void addWissen(int);
+  public void removeWissen(int);
+  public int getWissenPerTick();
+  public int getInventorySize();
+  public void wissenWandFunction();
+  public float getCooldown();
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemsResult();
+  public boolean sortItems();
+}
+Compiled from "AlchemyMachineRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe implements net.minecraft.world.item.crafting.Recipe<mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private net.minecraft.core.NonNullList<mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient> fluidInputs;
+  private net.minecraft.world.item.ItemStack output;
+  private net.minecraftforge.fluids.FluidStack fluidOutput;
+  private int wissen;
+  private int steam;
+  private mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion alchemyPotion;
+  private mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion alchemyPotionIngredient;
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe(net.minecraft.resources.ResourceLocation);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setOutput(net.minecraft.world.item.ItemStack);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setFluidOutput(net.minecraftforge.fluids.FluidStack);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setInputs(net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient>);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setFluidInputs(net.minecraft.core.NonNullList<mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient>);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setWissen(int);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setSteam(int);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setAlchemyPotion(mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion);
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setAlchemyPotionIngredient(mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion);
+  public boolean matches(mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container, mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe);
+  public boolean fluidMatches(mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext, net.minecraft.world.level.Level);
+  public static net.minecraft.world.item.ItemStack getAlchemyBottle(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack assemble(mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.core.NonNullList<mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient> getFluidInputs();
+  public net.minecraftforge.fluids.FluidStack getFluidResult();
+  public mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion getAlchemyPotion();
+  public mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion getAlchemyPotionIngredient();
+  public int getWissen();
+  public int getSteam();
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  static {};
+}
+Compiled from "ArcaneIteratorRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private final net.minecraft.world.item.ItemStack output;
+  private net.minecraft.world.item.enchantment.Enchantment enchantment;
+  private mod.maxbogomol.wizards_reborn.api.arcaneenchantment.ArcaneEnchantment arcaneEnchantment;
+  private mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual crystalRitual;
+  private int wissen;
+  private int health;
+  private int experience;
+  private boolean isSaveNBT;
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient>);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setEnchantment(net.minecraft.world.item.enchantment.Enchantment);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setArcaneEnchantment(mod.maxbogomol.wizards_reborn.api.arcaneenchantment.ArcaneEnchantment);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setCrystalRitual(mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setWissen(int);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setHealth(int);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setExperience(int);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneIteratorRecipe setIsSaveNBT(boolean);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container, boolean);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public int getWissen();
+  public int getHealth();
+  public int getExperience();
+  public net.minecraft.world.item.enchantment.Enchantment getEnchantment();
+  public mod.maxbogomol.wizards_reborn.api.arcaneenchantment.ArcaneEnchantment getArcaneEnchantment();
+  public mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual getCrystalRitual();
+  public boolean getIsSaveNBT();
+  public boolean hasEnchantment();
+  public boolean hasArcaneEnchantment();
+  public boolean hasCrystalRitual();
+  static {};
+}
+Compiled from "ArcaneWorkbenchRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.ArcaneWorkbenchRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.world.item.ItemStack output;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private final int wissen;
+  private int saveNBT;
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneWorkbenchRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, int, net.minecraft.world.item.crafting.Ingredient...);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneWorkbenchRecipe setSaveNBT(int);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public int getWissen();
+  public int getSaveNBT();
+  static {};
+}
+Compiled from "ArcanumDustTransmutationRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.ArcanumDustTransmutationRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.world.item.crafting.Ingredient input;
+  private final net.minecraft.world.item.ItemStack output;
+  private net.minecraft.world.item.ItemStack display;
+  private boolean placeBlock;
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcanumDustTransmutationRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcanumDustTransmutationRecipe setDisplay(net.minecraft.world.item.ItemStack);
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcanumDustTransmutationRecipe setPlaceBlock(boolean);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.crafting.Ingredient getInput();
+  public boolean getPlaceBlock();
+  public net.minecraft.world.item.ItemStack getDisplay();
+  static {};
+}
+Compiled from "CenserRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.CenserRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.world.item.crafting.Ingredient input;
+  private final java.util.List<net.minecraft.world.effect.MobEffectInstance> effects;
+  public mod.maxbogomol.wizards_reborn.common.recipe.CenserRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, java.util.List<net.minecraft.world.effect.MobEffectInstance>);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.crafting.Ingredient getInput();
+  public java.util.List<net.minecraft.world.effect.MobEffectInstance> getEffects();
+  static {};
+}
+Compiled from "CrystalInfusionRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.CrystalInfusionRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private final net.minecraft.world.item.ItemStack output;
+  private final int light;
+  public mod.maxbogomol.wizards_reborn.common.recipe.CrystalInfusionRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, int, net.minecraft.world.item.crafting.Ingredient...);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public int getLight();
+  static {};
+}
+Compiled from "CrystalRitualRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.CrystalRitualRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private final mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual ritual;
+  public mod.maxbogomol.wizards_reborn.common.recipe.CrystalRitualRecipe(net.minecraft.resources.ResourceLocation, mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual, net.minecraft.world.item.crafting.Ingredient...);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public mod.maxbogomol.wizards_reborn.api.crystalritual.CrystalRitual getRitual();
+  static {};
+}
+Compiled from "JewelerTableRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.JewelerTableRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private final net.minecraft.world.item.ItemStack output;
+  private final int wissen;
+  private boolean isSaveNBT;
+  public mod.maxbogomol.wizards_reborn.common.recipe.JewelerTableRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, int, net.minecraft.world.item.crafting.Ingredient...);
+  public mod.maxbogomol.wizards_reborn.common.recipe.JewelerTableRecipe setIsSaveNBT(boolean);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public int getWissen();
+  public boolean getIsSaveNBT();
+  static {};
+}
+Compiled from "MortarRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.MortarRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.world.item.crafting.Ingredient input;
+  private final net.minecraft.world.item.ItemStack output;
+  public mod.maxbogomol.wizards_reborn.common.recipe.MortarRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.world.item.crafting.Ingredient getInput();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  static {};
+}
+Compiled from "WissenAltarRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.WissenAltarRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.world.item.crafting.Ingredient input;
+  private final int wissen;
+  public mod.maxbogomol.wizards_reborn.common.recipe.WissenAltarRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, int);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.crafting.Ingredient getInput();
+  public int getWissen();
+  static {};
+}
+Compiled from "WissenCrystallizerRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.WissenCrystallizerRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+  private final net.minecraft.world.item.ItemStack output;
+  private final int wissen;
+  private boolean isNBTCrystal;
+  private boolean isSaveNBT;
+  public mod.maxbogomol.wizards_reborn.common.recipe.WissenCrystallizerRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, int, net.minecraft.world.item.crafting.Ingredient...);
+  public mod.maxbogomol.wizards_reborn.common.recipe.WissenCrystallizerRecipe setIsNBTCrystal(boolean);
+  public mod.maxbogomol.wizards_reborn.common.recipe.WissenCrystallizerRecipe setIsSaveNBT(boolean);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public boolean m_8004_(int, int);
+  public boolean m_5598_();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public int getWissen();
+  public boolean getIsNBTCrystal();
+  public boolean getIsSaveNBT();
+  static {};
+}

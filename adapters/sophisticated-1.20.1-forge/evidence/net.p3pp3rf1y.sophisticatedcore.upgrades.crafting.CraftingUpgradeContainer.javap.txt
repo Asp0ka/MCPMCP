@@ -1,0 +1,610 @@
+Compiled from "CraftingUpgradeContainer.java"
+public class net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer extends net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerBase<net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeWrapper, net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer> implements net.p3pp3rf1y.sophisticatedcore.common.gui.ICraftingContainer {
+  private static final java.lang.String DATA_SHIFT_CLICK_INTO_STORAGE;
+
+  private static final java.lang.String DATA_SELECT_RESULT;
+
+  private static final java.lang.String DATA_REFILL_CRAFTING_GRID;
+
+  private final net.minecraft.world.inventory.ResultContainer craftResult;
+
+  private final net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingItemHandler craftMatrix;
+
+  private final net.minecraft.world.inventory.ResultSlot craftingResultSlot;
+
+  private net.minecraft.world.item.crafting.CraftingRecipe lastRecipe;
+
+  private java.util.List<net.minecraft.world.item.crafting.CraftingRecipe> matchedCraftingRecipes;
+
+  private java.util.List<net.minecraft.world.item.ItemStack> matchedCraftingResults;
+
+  private int selectedCraftingResultIndex;
+
+  public net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer(net.minecraft.world.entity.player.Player, int, net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeWrapper, net.p3pp3rf1y.sophisticatedcore.common.gui.UpgradeContainerType<net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeWrapper, net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: aload_3
+       4: aload         4
+       6: invokespecial #49                 // Method net/p3pp3rf1y/sophisticatedcore/common/gui/UpgradeContainerBase."<init>":(Lnet/minecraft/world/entity/player/Player;ILnet/p3pp3rf1y/sophisticatedcore/upgrades/IUpgradeWrapper;Lnet/p3pp3rf1y/sophisticatedcore/common/gui/UpgradeContainerType;)V
+       9: aload_0
+      10: new           #51                 // class net/minecraft/world/inventory/ResultContainer
+      13: dup
+      14: invokespecial #54                 // Method net/minecraft/world/inventory/ResultContainer."<init>":()V
+      17: putfield      #56                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+      20: aload_0
+      21: aconst_null
+      22: putfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      25: aload_0
+      26: new           #60                 // class java/util/ArrayList
+      29: dup
+      30: invokespecial #61                 // Method java/util/ArrayList."<init>":()V
+      33: putfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+      36: aload_0
+      37: new           #60                 // class java/util/ArrayList
+      40: dup
+      41: invokespecial #61                 // Method java/util/ArrayList."<init>":()V
+      44: putfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+      47: aload_0
+      48: iconst_0
+      49: putfield      #67                 // Field selectedCraftingResultIndex:I
+      52: iconst_0
+      53: istore        5
+      55: iload         5
+      57: aload_3
+      58: invokevirtual #77                 // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper.getInventory:()Lnet/minecraftforge/items/ItemStackHandler;
+      61: invokevirtual #83                 // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+      64: if_icmpge     105
+      67: aload_0
+      68: getfield      #87                 // Field slots:Ljava/util/ArrayList;
+      71: new           #12                 // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer$1
+      74: dup
+      75: aload_0
+      76: aload_0
+      77: invokedynamic #103,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      82: invokevirtual #107                // Method supplyFromWrapper:(Ljava/util/function/Function;)Ljava/util/function/Supplier;
+      85: iload         5
+      87: bipush        -100
+      89: bipush        -100
+      91: aload_1
+      92: invokespecial #110                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer$1."<init>":(Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer;Ljava/util/function/Supplier;IIILnet/minecraft/world/entity/player/Player;)V
+      95: invokevirtual #114                // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      98: pop
+      99: iinc          5, 1
+     102: goto          55
+     105: aload_0
+     106: new           #116                // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler
+     109: dup
+     110: aload_0
+     111: invokedynamic #119,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+     116: invokevirtual #107                // Method supplyFromWrapper:(Ljava/util/function/Function;)Ljava/util/function/Supplier;
+     119: aload_0
+     120: invokedynamic #131,  0            // InvokeDynamic #2:accept:(Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer;)Ljava/util/function/Consumer;
+     125: invokespecial #134                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler."<init>":(Ljava/util/function/Supplier;Ljava/util/function/Consumer;)V
+     128: putfield      #136                // Field craftMatrix:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler;
+     131: aload_0
+     132: new           #10                 // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer$2
+     135: dup
+     136: aload_0
+     137: aload_1
+     138: aload_0
+     139: getfield      #136                // Field craftMatrix:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler;
+     142: aload_0
+     143: getfield      #56                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+     146: iload         5
+     148: bipush        -100
+     150: bipush        -100
+     152: aload_1
+     153: aload_3
+     154: invokespecial #139                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer$2."<init>":(Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/Container;IIILnet/minecraft/world/entity/player/Player;Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper;)V
+     157: putfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+     160: aload_0
+     161: getfield      #87                 // Field slots:Ljava/util/ArrayList;
+     164: aload_0
+     165: getfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+     168: invokevirtual #114                // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+     171: pop
+     172: return
+
+  public void onInit();
+    Code:
+       0: aload_0
+       1: invokespecial #155                // Method net/p3pp3rf1y/sophisticatedcore/common/gui/UpgradeContainerBase.onInit:()V
+       4: aload_0
+       5: aload_0
+       6: getfield      #136                // Field craftMatrix:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler;
+       9: invokevirtual #125                // Method onCraftMatrixChanged:(Lnet/minecraft/world/Container;)V
+      12: return
+
+  private void onCraftMatrixChanged(net.minecraft.world.Container);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+       5: invokevirtual #161                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       8: aload_0
+       9: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+      12: aload_0
+      13: getfield      #136                // Field craftMatrix:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler;
+      16: aload_0
+      17: getfield      #56                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+      20: aload_0
+      21: getfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+      24: invokevirtual #165                // Method updateCraftingResult:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/inventory/ResultContainer;Lnet/minecraft/world/inventory/ResultSlot;)V
+      27: return
+
+  private void updateCraftingResult(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.inventory.CraftingContainer, net.minecraft.world.inventory.ResultContainer, net.minecraft.world.inventory.ResultSlot);
+    Code:
+       0: aload_1
+       1: getfield      #173                // Field net/minecraft/world/level/Level.f_46443_:Z
+       4: ifne          244
+       7: aload_2
+       8: checkcast     #175                // class net/minecraft/server/level/ServerPlayer
+      11: astore        6
+      13: getstatic     #181                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      16: astore        7
+      18: aload_3
+      19: invokeinterface #187,  1          // InterfaceMethod net/minecraft/world/inventory/CraftingContainer.m_7983_:()Z
+      24: ifne          237
+      27: aload_0
+      28: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      31: ifnull        67
+      34: aload_0
+      35: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      38: aload_3
+      39: aload_1
+      40: invokeinterface #193,  3          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_5818_:(Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
+      45: ifeq          67
+      48: aload_0
+      49: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      52: aload_3
+      53: aload_1
+      54: invokevirtual #197                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+      57: invokeinterface #201,  3          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_5874_:(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+      62: astore        7
+      64: goto          237
+      67: getstatic     #207                // Field net/minecraft/world/item/crafting/RecipeType.f_44107_:Lnet/minecraft/world/item/crafting/RecipeType;
+      70: aload_3
+      71: aload_1
+      72: invokestatic  #213                // Method net/p3pp3rf1y/sophisticatedcore/util/RecipeHelper.safeGetRecipesFor:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/List;
+      75: astore        8
+      77: aload         8
+      79: invokeinterface #218,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      84: ifne          237
+      87: aload_0
+      88: aload         8
+      90: putfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+      93: aload_0
+      94: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+      97: invokeinterface #221,  1          // InterfaceMethod java/util/List.clear:()V
+     102: aload_0
+     103: iconst_0
+     104: putfield      #67                 // Field selectedCraftingResultIndex:I
+     107: aload_0
+     108: getfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+     111: iconst_0
+     112: invokeinterface #225,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     117: checkcast     #189                // class net/minecraft/world/item/crafting/CraftingRecipe
+     120: astore        9
+     122: aload         4
+     124: aload_1
+     125: aload         6
+     127: aload         9
+     129: invokevirtual #229                // Method net/minecraft/world/inventory/ResultContainer.m_40135_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/crafting/Recipe;)Z
+     132: ifeq          175
+     135: aload_0
+     136: aload         9
+     138: putfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+     141: aload_0
+     142: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+     145: aload_3
+     146: aload_1
+     147: invokevirtual #197                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     150: invokeinterface #201,  3          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_5874_:(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     155: astore        7
+     157: aload_0
+     158: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+     161: aload         7
+     163: invokevirtual #233                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     166: invokeinterface #234,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     171: pop
+     172: goto          180
+     175: aload_0
+     176: aconst_null
+     177: putfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+     180: iconst_1
+     181: istore        10
+     183: iload         10
+     185: aload_0
+     186: getfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+     189: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+     194: if_icmpge     237
+     197: aload_0
+     198: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+     201: aload_0
+     202: getfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+     205: iload         10
+     207: invokeinterface #225,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     212: checkcast     #189                // class net/minecraft/world/item/crafting/CraftingRecipe
+     215: aload_3
+     216: aload_1
+     217: invokevirtual #197                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     220: invokeinterface #201,  3          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_5874_:(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     225: invokeinterface #234,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     230: pop
+     231: iinc          10, 1
+     234: goto          183
+     237: aload         5
+     239: aload         7
+     241: invokevirtual #243                // Method net/minecraft/world/inventory/ResultSlot.m_5852_:(Lnet/minecraft/world/item/ItemStack;)V
+     244: return
+
+  public java.util.List<net.minecraft.world.item.ItemStack> getMatchedCraftingResults();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+       4: areturn
+
+  public void selectNextCraftingResult();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+       4: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+       9: iconst_1
+      10: if_icmple     33
+      13: aload_0
+      14: aload_0
+      15: getfield      #67                 // Field selectedCraftingResultIndex:I
+      18: iconst_1
+      19: iadd
+      20: aload_0
+      21: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+      24: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+      29: irem
+      30: invokevirtual #262                // Method selectCraftingResult:(I)V
+      33: return
+
+  public void selectPreviousCraftingResult();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+       4: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+       9: iconst_1
+      10: if_icmple     43
+      13: aload_0
+      14: aload_0
+      15: getfield      #67                 // Field selectedCraftingResultIndex:I
+      18: aload_0
+      19: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+      22: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+      27: iadd
+      28: iconst_1
+      29: isub
+      30: aload_0
+      31: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+      34: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+      39: irem
+      40: invokevirtual #262                // Method selectCraftingResult:(I)V
+      43: return
+
+  public void selectCraftingResult(int);
+    Code:
+       0: iload_1
+       1: iflt          17
+       4: iload_1
+       5: aload_0
+       6: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+       9: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+      14: if_icmplt     18
+      17: return
+      18: aload_0
+      19: iload_1
+      20: putfield      #67                 // Field selectedCraftingResultIndex:I
+      23: aload_0
+      24: aload_0
+      25: getfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+      28: iload_1
+      29: invokeinterface #225,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      34: checkcast     #189                // class net/minecraft/world/item/crafting/CraftingRecipe
+      37: putfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      40: aload_0
+      41: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+      44: astore_3
+      45: aload_3
+      46: instanceof    #175                // class net/minecraft/server/level/ServerPlayer
+      49: ifeq          105
+      52: aload_3
+      53: checkcast     #175                // class net/minecraft/server/level/ServerPlayer
+      56: astore_2
+      57: aload_0
+      58: getfield      #65                 // Field matchedCraftingResults:Ljava/util/List;
+      61: iload_1
+      62: invokeinterface #225,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      67: checkcast     #177                // class net/minecraft/world/item/ItemStack
+      70: invokevirtual #233                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      73: astore_3
+      74: aload_0
+      75: getfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+      78: aload_3
+      79: invokevirtual #243                // Method net/minecraft/world/inventory/ResultSlot.m_5852_:(Lnet/minecraft/world/item/ItemStack;)V
+      82: aload_0
+      83: getfield      #56                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+      86: aload_0
+      87: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+      90: invokevirtual #161                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      93: aload_2
+      94: aload_0
+      95: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      98: invokevirtual #229                // Method net/minecraft/world/inventory/ResultContainer.m_40135_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/crafting/Recipe;)Z
+     101: pop
+     102: goto          115
+     105: aload_0
+     106: iload_1
+     107: invokedynamic #275,  0            // InvokeDynamic #3:get:(I)Ljava/util/function/Supplier;
+     112: invokevirtual #279                // Method sendDataToServer:(Ljava/util/function/Supplier;)V
+     115: return
+
+  public void handleMessage(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: ldc           #21                 // String shiftClickIntoStorage
+       3: invokevirtual #290                // Method net/minecraft/nbt/CompoundTag.m_128441_:(Ljava/lang/String;)Z
+       6: ifeq          22
+       9: aload_0
+      10: aload_1
+      11: ldc           #21                 // String shiftClickIntoStorage
+      13: invokevirtual #293                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      16: invokevirtual #297                // Method setShiftClickIntoStorage:(Z)V
+      19: goto          41
+      22: aload_1
+      23: ldc           #24                 // String selectResult
+      25: invokevirtual #290                // Method net/minecraft/nbt/CompoundTag.m_128441_:(Ljava/lang/String;)Z
+      28: ifeq          41
+      31: aload_0
+      32: aload_1
+      33: ldc           #24                 // String selectResult
+      35: invokevirtual #301                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      38: invokevirtual #262                // Method selectCraftingResult:(I)V
+      41: aload_1
+      42: ldc           #27                 // String refill_crafting_grid
+      44: invokevirtual #290                // Method net/minecraft/nbt/CompoundTag.m_128441_:(Ljava/lang/String;)Z
+      47: ifeq          60
+      50: aload_0
+      51: aload_1
+      52: ldc           #27                 // String refill_crafting_grid
+      54: invokevirtual #293                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      57: invokevirtual #304                // Method setRefillCraftingGrid:(Z)V
+      60: return
+
+  public net.minecraft.world.item.ItemStack getSlotStackToTransfer(net.minecraft.world.inventory.Slot);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+       5: if_acmpne     34
+       8: aload_1
+       9: invokevirtual #313                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      12: astore_2
+      13: aload_2
+      14: invokevirtual #317                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      17: aload_2
+      18: aload_0
+      19: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+      22: invokevirtual #161                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      25: aload_0
+      26: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+      29: invokevirtual #323                // Method net/minecraft/world/item/Item.m_7836_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
+      32: aload_2
+      33: areturn
+      34: aload_0
+      35: aload_1
+      36: invokespecial #325                // Method net/p3pp3rf1y/sophisticatedcore/common/gui/UpgradeContainerBase.getSlotStackToTransfer:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/item/ItemStack;
+      39: areturn
+
+  public java.util.List<net.minecraft.world.inventory.Slot> getRecipeSlots();
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field slots:Ljava/util/ArrayList;
+       4: iconst_0
+       5: bipush        9
+       7: invokevirtual #333                // Method java/util/ArrayList.subList:(II)Ljava/util/List;
+      10: areturn
+
+  public net.minecraft.world.Container getCraftMatrix();
+    Code:
+       0: aload_0
+       1: getfield      #136                // Field craftMatrix:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingItemHandler;
+       4: areturn
+
+  public void setRecipeUsed(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+       4: ifnull        24
+       7: aload_0
+       8: getfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+      11: invokeinterface #341,  1          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_6423_:()Lnet/minecraft/resources/ResourceLocation;
+      16: aload_1
+      17: invokevirtual #346                // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      20: ifeq          24
+      23: return
+      24: aload_0
+      25: getfield      #157                // Field player:Lnet/minecraft/world/entity/player/Player;
+      28: invokevirtual #161                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      31: invokevirtual #350                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+      34: aload_1
+      35: invokevirtual #356                // Method net/minecraft/world/item/crafting/RecipeManager.m_44043_:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+      38: invokedynamic #367,  0            // InvokeDynamic #4:test:()Ljava/util/function/Predicate;
+      43: invokevirtual #373                // Method java/util/Optional.filter:(Ljava/util/function/Predicate;)Ljava/util/Optional;
+      46: invokedynamic #380,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+      51: invokevirtual #384                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      54: aload_0
+      55: aload_1
+      56: invokedynamic #394,  0            // InvokeDynamic #6:accept:(Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/function/Consumer;
+      61: invokevirtual #398                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      64: return
+
+  public net.minecraft.world.item.crafting.RecipeType<?> getRecipeType();
+    Code:
+       0: getstatic     #207                // Field net/minecraft/world/item/crafting/RecipeType.f_44107_:Lnet/minecraft/world/item/crafting/RecipeType;
+       3: areturn
+
+  public boolean shouldShiftClickIntoStorage();
+    Code:
+       0: aload_0
+       1: getfield      #407                // Field upgradeWrapper:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/IUpgradeWrapper;
+       4: checkcast     #71                 // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper
+       7: invokevirtual #409                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper.shouldShiftClickIntoStorage:()Z
+      10: ireturn
+
+  public void setShiftClickIntoStorage(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #407                // Field upgradeWrapper:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/IUpgradeWrapper;
+       4: checkcast     #71                 // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper
+       7: iload_1
+       8: invokevirtual #410                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper.setShiftClickIntoStorage:(Z)V
+      11: aload_0
+      12: iload_1
+      13: invokedynamic #418,  0            // InvokeDynamic #7:get:(Z)Ljava/util/function/Supplier;
+      18: invokevirtual #279                // Method sendDataToServer:(Ljava/util/function/Supplier;)V
+      21: return
+
+  public boolean shouldRefillCraftingGrid();
+    Code:
+       0: aload_0
+       1: getfield      #407                // Field upgradeWrapper:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/IUpgradeWrapper;
+       4: checkcast     #71                 // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper
+       7: invokevirtual #422                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper.shouldRefillCraftingGridNBT:()Z
+      10: ireturn
+
+  public void setRefillCraftingGrid(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #407                // Field upgradeWrapper:Lnet/p3pp3rf1y/sophisticatedcore/upgrades/IUpgradeWrapper;
+       4: checkcast     #71                 // class net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper
+       7: iload_1
+       8: invokevirtual #425                // Method net/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeWrapper.setRefillCraftingGridNBT:(Z)V
+      11: aload_0
+      12: iload_1
+      13: invokedynamic #430,  0            // InvokeDynamic #8:get:(Z)Ljava/util/function/Supplier;
+      18: invokevirtual #279                // Method sendDataToServer:(Ljava/util/function/Supplier;)V
+      21: return
+
+  public boolean mergeIntoStorageFirst(net.minecraft.world.inventory.Slot);
+    Code:
+       0: aload_1
+       1: instanceof    #239                // class net/minecraft/world/inventory/ResultSlot
+       4: ifeq          14
+       7: aload_0
+       8: invokevirtual #434                // Method shouldShiftClickIntoStorage:()Z
+      11: ifeq          18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  public boolean allowsPickupAll(net.minecraft.world.inventory.Slot);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+       5: if_acmpeq     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  public int getRepeatedQuickMoveLimit(net.minecraft.world.inventory.Slot, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #141                // Field craftingResultSlot:Lnet/minecraft/world/inventory/ResultSlot;
+       5: if_acmpne     22
+       8: aload_0
+       9: invokevirtual #439                // Method shouldRefillCraftingGrid:()Z
+      12: ifeq          22
+      15: aload_2
+      16: invokevirtual #442                // Method net/minecraft/world/item/ItemStack.m_41741_:()I
+      19: goto          23
+      22: iconst_0
+      23: ireturn
+
+  private static net.minecraft.nbt.CompoundTag lambda$setRefillCraftingGrid$5(boolean);
+    Code:
+       0: new           #286                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #444                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: ldc           #27                 // String refill_crafting_grid
+       9: iload_0
+      10: invokestatic  #450                // Method net/p3pp3rf1y/sophisticatedcore/util/NBTHelper.putBoolean:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Z)Lnet/minecraft/nbt/CompoundTag;
+      13: areturn
+
+  private static net.minecraft.nbt.CompoundTag lambda$setShiftClickIntoStorage$4(boolean);
+    Code:
+       0: new           #286                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #444                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: ldc           #21                 // String shiftClickIntoStorage
+       9: iload_0
+      10: invokestatic  #450                // Method net/p3pp3rf1y/sophisticatedcore/util/NBTHelper.putBoolean:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;Z)Lnet/minecraft/nbt/CompoundTag;
+      13: areturn
+
+  private void lambda$setRecipeUsed$3(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.CraftingRecipe);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: putfield      #58                 // Field lastRecipe:Lnet/minecraft/world/item/crafting/CraftingRecipe;
+       5: iconst_0
+       6: istore_3
+       7: iload_3
+       8: aload_0
+       9: getfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+      12: invokeinterface #237,  1          // InterfaceMethod java/util/List.size:()I
+      17: if_icmpge     57
+      20: aload_0
+      21: getfield      #63                 // Field matchedCraftingRecipes:Ljava/util/List;
+      24: iload_3
+      25: invokeinterface #225,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      30: checkcast     #189                // class net/minecraft/world/item/crafting/CraftingRecipe
+      33: invokeinterface #341,  1          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_6423_:()Lnet/minecraft/resources/ResourceLocation;
+      38: aload_1
+      39: invokevirtual #346                // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      42: ifeq          51
+      45: aload_0
+      46: iload_3
+      47: invokevirtual #262                // Method selectCraftingResult:(I)V
+      50: return
+      51: iinc          3, 1
+      54: goto          7
+      57: return
+
+  private static net.minecraft.world.item.crafting.CraftingRecipe lambda$setRecipeUsed$2(net.minecraft.world.item.crafting.Recipe);
+    Code:
+       0: aload_0
+       1: checkcast     #189                // class net/minecraft/world/item/crafting/CraftingRecipe
+       4: areturn
+
+  private static boolean lambda$setRecipeUsed$1(net.minecraft.world.item.crafting.Recipe);
+    Code:
+       0: aload_0
+       1: invokeinterface #458,  1          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.m_6671_:()Lnet/minecraft/world/item/crafting/RecipeType;
+       6: getstatic     #207                // Field net/minecraft/world/item/crafting/RecipeType.f_44107_:Lnet/minecraft/world/item/crafting/RecipeType;
+       9: if_acmpne     16
+      12: iconst_1
+      13: goto          17
+      16: iconst_0
+      17: ireturn
+
+  private static net.minecraft.nbt.CompoundTag lambda$selectCraftingResult$0(int);
+    Code:
+       0: new           #286                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #444                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: ldc           #24                 // String selectResult
+       9: iload_0
+      10: invokestatic  #462                // Method net/p3pp3rf1y/sophisticatedcore/util/NBTHelper.putInt:(Lnet/minecraft/nbt/CompoundTag;Ljava/lang/String;I)Lnet/minecraft/nbt/CompoundTag;
+      13: areturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

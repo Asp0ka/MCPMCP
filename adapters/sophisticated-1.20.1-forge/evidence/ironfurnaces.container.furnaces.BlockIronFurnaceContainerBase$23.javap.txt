@@ -1,0 +1,52 @@
+Compiled from "BlockIronFurnaceContainerBase.java"
+class ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$23 extends net.minecraft.world.inventory.DataSlot {
+  final ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase this$0;
+
+  ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$23(ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #21                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       5: aload_0
+       6: invokespecial #23                 // Method net/minecraft/world/inventory/DataSlot."<init>":()V
+       9: return
+
+  public int m_6501_();
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: invokevirtual #30                 // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.getEnergy:()I
+       7: ldc           #31                 // int 65535
+       9: iand
+      10: ireturn
+
+  public void m_6422_(int);
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: getfield      #37                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       7: getstatic     #43                 // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ENERGY:Lnet/minecraftforge/common/capabilities/Capability;
+      10: invokevirtual #49                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;)Lnet/minecraftforge/common/util/LazyOptional;
+      13: iload_1
+      14: invokedynamic #69,  0             // InvokeDynamic #0:accept:(I)Lnet/minecraftforge/common/util/NonNullConsumer;
+      19: invokevirtual #75                 // Method net/minecraftforge/common/util/LazyOptional.ifPresent:(Lnet/minecraftforge/common/util/NonNullConsumer;)V
+      22: return
+
+  private static void lambda$set$0(int, net.minecraftforge.energy.IEnergyStorage);
+    Code:
+       0: aload_1
+       1: invokeinterface #82,  1           // InterfaceMethod net/minecraftforge/energy/IEnergyStorage.getEnergyStored:()I
+       6: ldc           #83                 // int -65536
+       8: iand
+       9: istore_2
+      10: aload_1
+      11: checkcast     #85                 // class ironfurnaces/energy/FEnergyStorage
+      14: iload_2
+      15: iload_0
+      16: ldc           #31                 // int 65535
+      18: iand
+      19: iadd
+      20: invokevirtual #88                 // Method ironfurnaces/energy/FEnergyStorage.setEnergy:(I)V
+      23: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

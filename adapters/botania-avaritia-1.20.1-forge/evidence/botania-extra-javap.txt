@@ -1,0 +1,1707 @@
+Compiled from "StateIngredient.java"
+public interface vazkii.botania.api.recipe.StateIngredient extends java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState> {
+  public abstract boolean test(net.minecraft.world.level.block.state.BlockState);
+
+  public abstract net.minecraft.world.level.block.state.BlockState pick(net.minecraft.util.RandomSource);
+
+  public abstract com.google.gson.JsonObject serialize();
+
+  public abstract void write(net.minecraft.network.FriendlyByteBuf);
+
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getDisplayedStacks();
+
+  public default java.util.List<net.minecraft.network.chat.Component> descriptionTooltip();
+    Code:
+       0: invokestatic  #26                 // Method java/util/Collections.emptyList:()Ljava/util/List;
+       3: areturn
+
+  public abstract java.util.List<net.minecraft.world.level.block.state.BlockState> getDisplayed();
+
+  public default boolean test(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #33                 // class net/minecraft/world/level/block/state/BlockState
+       5: invokeinterface #35,  2           // InterfaceMethod test:(Lnet/minecraft/world/level/block/state/BlockState;)Z
+      10: ireturn
+}
+
+Compiled from "RecipeWithReagent.java"
+public interface vazkii.botania.api.recipe.RecipeWithReagent extends net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public abstract net.minecraft.world.item.crafting.Ingredient getReagent();
+
+  public default boolean m_8004_(int, int);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public default boolean m_5598_();
+    Code:
+       0: iconst_1
+       1: ireturn
+}
+
+Compiled from "BotaniaBlockEntity.java"
+public class vazkii.botania.common.block.block_entity.BotaniaBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public vazkii.botania.common.block.block_entity.BotaniaBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #10                 // Method net/minecraft/world/level/block/entity/BlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: return
+
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #23                 // Method net/minecraft/world/level/block/entity/BlockEntity.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: invokevirtual #26                 // Method writePacketNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+      10: return
+
+  public final net.minecraft.nbt.CompoundTag m_5995_();
+    Code:
+       0: new           #33                 // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #36                 // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: aload_1
+      10: invokevirtual #26                 // Method writePacketNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+      13: aload_1
+      14: areturn
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #39                 // Method net/minecraft/world/level/block/entity/BlockEntity.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: invokevirtual #42                 // Method readPacketNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+      10: return
+
+  public void writePacketNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: return
+
+  public void readPacketNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: return
+
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> m_58483_();
+    Code:
+       0: aload_0
+       1: invokestatic  #53                 // Method net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket.m_195640_:(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+       4: areturn
+}
+
+Compiled from "BreweryBlockEntity.java"
+public class vazkii.botania.common.block.block_entity.BreweryBlockEntity extends vazkii.botania.common.block.block_entity.SimpleInventoryBlockEntity implements vazkii.botania.api.mana.ManaReceiver {
+  private static final java.lang.String TAG_MANA;
+
+  private static final int CRAFT_EFFECT_EVENT;
+
+  public vazkii.botania.api.recipe.BotanicalBreweryRecipe recipe;
+
+  private int mana;
+
+  private int manaLastTick;
+
+  public int signal;
+
+  public vazkii.botania.common.block.block_entity.BreweryBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #36                 // Field vazkii/botania/common/block/block_entity/BotaniaBlockEntities.BREWERY:Lnet/minecraft/world/level/block/entity/BlockEntityType;
+       4: aload_1
+       5: aload_2
+       6: invokespecial #39                 // Method vazkii/botania/common/block/block_entity/SimpleInventoryBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       9: aload_0
+      10: iconst_0
+      11: putfield      #41                 // Field mana:I
+      14: aload_0
+      15: iconst_0
+      16: putfield      #43                 // Field manaLastTick:I
+      19: aload_0
+      20: iconst_0
+      21: putfield      #45                 // Field signal:I
+      24: return
+
+  public boolean addItem(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_0
+       1: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+       4: ifnonnull     83
+       7: aload_2
+       8: invokevirtual #62                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      11: ifne          83
+      14: aload_2
+      15: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      18: astore        5
+      20: aload         5
+      22: instanceof    #68                 // class vazkii/botania/api/brew/BrewItem
+      25: ifeq          60
+      28: aload         5
+      30: checkcast     #68                 // class vazkii/botania/api/brew/BrewItem
+      33: astore        4
+      35: aload         4
+      37: aload_2
+      38: invokeinterface #72,  2           // InterfaceMethod vazkii/botania/api/brew/BrewItem.getBrew:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/botania/api/brew/Brew;
+      43: ifnull        60
+      46: aload         4
+      48: aload_2
+      49: invokeinterface #72,  2           // InterfaceMethod vazkii/botania/api/brew/BrewItem.getBrew:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/botania/api/brew/Brew;
+      54: getstatic     #78                 // Field vazkii/botania/common/brew/BotaniaBrews.fallbackBrew:Lvazkii/botania/api/brew/Brew;
+      57: if_acmpne     83
+      60: aload_0
+      61: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+      64: iconst_0
+      65: invokeinterface #88,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      70: invokevirtual #62                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      73: aload_2
+      74: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      77: instanceof    #90                 // class vazkii/botania/api/brew/BrewContainer
+      80: if_icmpeq     85
+      83: iconst_0
+      84: ireturn
+      85: iconst_0
+      86: istore        4
+      88: iconst_0
+      89: istore        5
+      91: iload         5
+      93: aload_0
+      94: invokevirtual #94                 // Method inventorySize:()I
+      97: if_icmpge     187
+     100: aload_0
+     101: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+     104: iload         5
+     106: invokeinterface #88,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+     111: invokevirtual #62                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     114: ifeq          181
+     117: iconst_1
+     118: istore        4
+     120: aload_2
+     121: iconst_1
+     122: invokevirtual #97                 // Method net/minecraft/world/item/ItemStack.m_255036_:(I)Lnet/minecraft/world/item/ItemStack;
+     125: astore        6
+     127: aload_0
+     128: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+     131: iload         5
+     133: aload         6
+     135: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     140: aload_1
+     141: ifnull        154
+     144: aload_1
+     145: invokevirtual #107                // Method net/minecraft/world/entity/player/Player.m_150110_:()Lnet/minecraft/world/entity/player/Abilities;
+     148: getfield      #113                // Field net/minecraft/world/entity/player/Abilities.f_35937_:Z
+     151: ifne          187
+     154: aload_2
+     155: iconst_1
+     156: invokevirtual #117                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+     159: aload_2
+     160: invokevirtual #62                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     163: ifeq          187
+     166: aload_1
+     167: ifnull        187
+     170: aload_1
+     171: aload_3
+     172: getstatic     #121                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     175: invokevirtual #125                // Method net/minecraft/world/entity/player/Player.m_21008_:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+     178: goto          187
+     181: iinc          5, 1
+     184: goto          91
+     187: iload         4
+     189: ifeq          200
+     192: aload_0
+     193: invokestatic  #131                // Method vazkii/botania/api/internal/VanillaPacketDispatcher.dispatchTEToNearbyPlayers:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+     196: aload_0
+     197: invokevirtual #135                // Method findRecipe:()V
+     200: iconst_1
+     201: ireturn
+
+  private void findRecipe();
+    Code:
+       0: aload_0
+       1: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: invokevirtual #155                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+       7: getstatic     #161                // Field vazkii/botania/common/crafting/BotaniaRecipeTypes.BREW_TYPE:Lnet/minecraft/world/item/crafting/RecipeType;
+      10: aload_0
+      11: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+      14: aload_0
+      15: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      18: invokevirtual #167                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+      21: astore_1
+      22: aload_1
+      23: aload_0
+      24: invokedynamic #186,  0            // InvokeDynamic #0:accept:(Lvazkii/botania/common/block/block_entity/BreweryBlockEntity;)Ljava/util/function/Consumer;
+      29: invokevirtual #192                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      32: return
+
+  public static void commonTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, vazkii.botania.common.block.block_entity.BreweryBlockEntity);
+    Code:
+       0: aload_3
+       1: getfield      #41                 // Field mana:I
+       4: ifle          30
+       7: aload_3
+       8: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+      11: ifnonnull     30
+      14: aload_3
+      15: invokevirtual #135                // Method findRecipe:()V
+      18: aload_3
+      19: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+      22: ifnonnull     30
+      25: aload_3
+      26: iconst_0
+      27: putfield      #41                 // Field mana:I
+      30: aload_3
+      31: iconst_0
+      32: invokevirtual #200                // Method receiveMana:(I)V
+      35: aload_0
+      36: getfield      #203                // Field net/minecraft/world/level/Level.f_46443_:Z
+      39: ifne          176
+      42: aload_3
+      43: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+      46: ifnonnull     176
+      49: aload_0
+      50: ldc           #205                // class net/minecraft/world/entity/item/ItemEntity
+      52: new           #207                // class net/minecraft/world/phys/AABB
+      55: dup
+      56: aload_1
+      57: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      60: i2d
+      61: aload_1
+      62: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      65: i2d
+      66: aload_1
+      67: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      70: i2d
+      71: aload_1
+      72: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      75: iconst_1
+      76: iadd
+      77: i2d
+      78: aload_1
+      79: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      82: iconst_1
+      83: iadd
+      84: i2d
+      85: aload_1
+      86: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      89: iconst_1
+      90: iadd
+      91: i2d
+      92: invokespecial #221                // Method net/minecraft/world/phys/AABB."<init>":(DDDDDD)V
+      95: invokevirtual #225                // Method net/minecraft/world/level/Level.m_45976_:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+      98: astore        4
+     100: aload         4
+     102: invokeinterface #231,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     107: astore        5
+     109: aload         5
+     111: invokeinterface #236,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     116: ifeq          176
+     119: aload         5
+     121: invokeinterface #240,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     126: checkcast     #205                // class net/minecraft/world/entity/item/ItemEntity
+     129: astore        6
+     131: aload         6
+     133: invokevirtual #243                // Method net/minecraft/world/entity/item/ItemEntity.m_6084_:()Z
+     136: ifeq          173
+     139: aload         6
+     141: invokevirtual #247                // Method net/minecraft/world/entity/item/ItemEntity.m_32055_:()Lnet/minecraft/world/item/ItemStack;
+     144: invokevirtual #62                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     147: ifne          173
+     150: aload         6
+     152: invokevirtual #247                // Method net/minecraft/world/entity/item/ItemEntity.m_32055_:()Lnet/minecraft/world/item/ItemStack;
+     155: astore        7
+     157: aload_3
+     158: aconst_null
+     159: aload         7
+     161: aconst_null
+     162: invokevirtual #249                // Method addItem:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)Z
+     165: ifeq          173
+     168: aload         6
+     170: invokestatic  #255                // Method vazkii/botania/common/helper/EntityHelper.syncItem:(Lnet/minecraft/world/entity/item/ItemEntity;)V
+     173: goto          109
+     176: aload_3
+     177: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     180: ifnull        728
+     183: aload_3
+     184: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     187: aload_3
+     188: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+     191: aload_0
+     192: invokeinterface #261,  3          // InterfaceMethod vazkii/botania/api/recipe/BotanicalBreweryRecipe.m_5818_:(Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
+     197: ifne          217
+     200: aload_3
+     201: aconst_null
+     202: putfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     205: aload_0
+     206: aload_1
+     207: getstatic     #267                // Field vazkii/botania/common/block/BotaniaBlocks.brewery:Lnet/minecraft/world/level/block/Block;
+     210: invokevirtual #273                // Method net/minecraft/world/level/block/Block.m_49966_:()Lnet/minecraft/world/level/block/state/BlockState;
+     213: invokevirtual #277                // Method net/minecraft/world/level/Level.m_46597_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+     216: pop
+     217: aload_3
+     218: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     221: ifnull        728
+     224: aload_3
+     225: getfield      #41                 // Field mana:I
+     228: aload_3
+     229: getfield      #43                 // Field manaLastTick:I
+     232: if_icmpeq     575
+     235: aload_3
+     236: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     239: invokeinterface #280,  1          // InterfaceMethod vazkii/botania/api/recipe/BotanicalBreweryRecipe.getBrew:()Lvazkii/botania/api/brew/Brew;
+     244: aload_3
+     245: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+     248: iconst_0
+     249: invokeinterface #88,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+     254: invokevirtual #286                // Method vazkii/botania/api/brew/Brew.getColor:(Lnet/minecraft/world/item/ItemStack;)I
+     257: istore        4
+     259: iload         4
+     261: bipush        16
+     263: ishr
+     264: sipush        255
+     267: iand
+     268: i2f
+     269: ldc_w         #287                // float 255.0f
+     272: fdiv
+     273: fstore        5
+     275: iload         4
+     277: bipush        8
+     279: ishr
+     280: sipush        255
+     283: iand
+     284: i2f
+     285: ldc_w         #287                // float 255.0f
+     288: fdiv
+     289: fstore        6
+     291: iload         4
+     293: sipush        255
+     296: iand
+     297: i2f
+     298: ldc_w         #287                // float 255.0f
+     301: fdiv
+     302: fstore        7
+     304: iconst_0
+     305: istore        8
+     307: iload         8
+     309: iconst_5
+     310: if_icmpge     575
+     313: ldc_w         #290                // float 0.1f
+     316: invokestatic  #296                // Method java/lang/Math.random:()D
+     319: d2f
+     320: ldc_w         #297                // float 0.05f
+     323: fmul
+     324: fadd
+     325: fload         5
+     327: fload         6
+     329: fload         7
+     331: invokestatic  #303                // Method vazkii/botania/client/fx/WispParticleData.wisp:(FFFF)Lvazkii/botania/client/fx/WispParticleData;
+     334: astore        9
+     336: aload_0
+     337: aload         9
+     339: aload_1
+     340: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     343: i2d
+     344: ldc2_w        #304                // double 0.7d
+     347: dadd
+     348: invokestatic  #296                // Method java/lang/Math.random:()D
+     351: ldc2_w        #306                // double 0.4d
+     354: dmul
+     355: dsub
+     356: aload_1
+     357: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     360: i2d
+     361: ldc2_w        #308                // double 0.9d
+     364: dadd
+     365: invokestatic  #296                // Method java/lang/Math.random:()D
+     368: ldc2_w        #310                // double 0.2d
+     371: dmul
+     372: dsub
+     373: aload_1
+     374: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     377: i2d
+     378: ldc2_w        #304                // double 0.7d
+     381: dadd
+     382: invokestatic  #296                // Method java/lang/Math.random:()D
+     385: ldc2_w        #306                // double 0.4d
+     388: dmul
+     389: dsub
+     390: ldc_w         #312                // float 0.03f
+     393: invokestatic  #296                // Method java/lang/Math.random:()D
+     396: d2f
+     397: ldc_w         #313                // float 0.06f
+     400: fmul
+     401: fsub
+     402: f2d
+     403: ldc_w         #312                // float 0.03f
+     406: invokestatic  #296                // Method java/lang/Math.random:()D
+     409: d2f
+     410: ldc_w         #314                // float 0.015f
+     413: fmul
+     414: fadd
+     415: f2d
+     416: ldc_w         #312                // float 0.03f
+     419: invokestatic  #296                // Method java/lang/Math.random:()D
+     422: d2f
+     423: ldc_w         #313                // float 0.06f
+     426: fmul
+     427: fsub
+     428: f2d
+     429: invokevirtual #318                // Method net/minecraft/world/level/Level.m_7106_:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+     432: iconst_0
+     433: istore        10
+     435: iload         10
+     437: iconst_2
+     438: if_icmpge     569
+     441: ldc_w         #290                // float 0.1f
+     444: invokestatic  #296                // Method java/lang/Math.random:()D
+     447: d2f
+     448: ldc_w         #319                // float 0.2f
+     451: fmul
+     452: fadd
+     453: ldc_w         #319                // float 0.2f
+     456: ldc_w         #319                // float 0.2f
+     459: ldc_w         #319                // float 0.2f
+     462: invokestatic  #303                // Method vazkii/botania/client/fx/WispParticleData.wisp:(FFFF)Lvazkii/botania/client/fx/WispParticleData;
+     465: astore        11
+     467: aload_0
+     468: aload         11
+     470: aload_1
+     471: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     474: i2d
+     475: ldc2_w        #304                // double 0.7d
+     478: dadd
+     479: invokestatic  #296                // Method java/lang/Math.random:()D
+     482: ldc2_w        #306                // double 0.4d
+     485: dmul
+     486: dsub
+     487: aload_1
+     488: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     491: i2d
+     492: ldc2_w        #308                // double 0.9d
+     495: dadd
+     496: invokestatic  #296                // Method java/lang/Math.random:()D
+     499: ldc2_w        #310                // double 0.2d
+     502: dmul
+     503: dsub
+     504: aload_1
+     505: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     508: i2d
+     509: ldc2_w        #304                // double 0.7d
+     512: dadd
+     513: invokestatic  #296                // Method java/lang/Math.random:()D
+     516: ldc2_w        #306                // double 0.4d
+     519: dmul
+     520: dsub
+     521: ldc_w         #312                // float 0.03f
+     524: invokestatic  #296                // Method java/lang/Math.random:()D
+     527: d2f
+     528: ldc_w         #313                // float 0.06f
+     531: fmul
+     532: fsub
+     533: f2d
+     534: ldc_w         #312                // float 0.03f
+     537: invokestatic  #296                // Method java/lang/Math.random:()D
+     540: d2f
+     541: ldc_w         #314                // float 0.015f
+     544: fmul
+     545: fadd
+     546: f2d
+     547: ldc_w         #312                // float 0.03f
+     550: invokestatic  #296                // Method java/lang/Math.random:()D
+     553: d2f
+     554: ldc_w         #313                // float 0.06f
+     557: fmul
+     558: fsub
+     559: f2d
+     560: invokevirtual #318                // Method net/minecraft/world/level/Level.m_7106_:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+     563: iinc          10, 1
+     566: goto          435
+     569: iinc          8, 1
+     572: goto          307
+     575: aload_3
+     576: getfield      #41                 // Field mana:I
+     579: aload_3
+     580: invokevirtual #322                // Method getManaCost:()I
+     583: if_icmplt     728
+     586: aload_0
+     587: getfield      #203                // Field net/minecraft/world/level/Level.f_46443_:Z
+     590: ifne          728
+     593: aload_3
+     594: invokevirtual #322                // Method getManaCost:()I
+     597: istore        4
+     599: aload_3
+     600: iload         4
+     602: ineg
+     603: invokevirtual #200                // Method receiveMana:(I)V
+     606: aload_3
+     607: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     610: aload_3
+     611: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+     614: iconst_0
+     615: invokeinterface #88,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+     620: invokeinterface #326,  2          // InterfaceMethod vazkii/botania/api/recipe/BotanicalBreweryRecipe.getOutput:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+     625: astore        5
+     627: new           #205                // class net/minecraft/world/entity/item/ItemEntity
+     630: dup
+     631: aload_0
+     632: aload_1
+     633: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     636: i2d
+     637: ldc2_w        #327                // double 0.5d
+     640: dadd
+     641: aload_1
+     642: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     645: i2d
+     646: ldc2_w        #329                // double 1.5d
+     649: dadd
+     650: aload_1
+     651: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     654: i2d
+     655: ldc2_w        #327                // double 0.5d
+     658: dadd
+     659: aload         5
+     661: invokespecial #333                // Method net/minecraft/world/entity/item/ItemEntity."<init>":(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+     664: astore        6
+     666: aload_0
+     667: aload         6
+     669: invokevirtual #337                // Method net/minecraft/world/level/Level.m_7967_:(Lnet/minecraft/world/entity/Entity;)Z
+     672: pop
+     673: aload_0
+     674: aload_1
+     675: getstatic     #267                // Field vazkii/botania/common/block/BotaniaBlocks.brewery:Lnet/minecraft/world/level/block/Block;
+     678: iconst_0
+     679: aload_3
+     680: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     683: invokeinterface #280,  1          // InterfaceMethod vazkii/botania/api/recipe/BotanicalBreweryRecipe.getBrew:()Lvazkii/botania/api/brew/Brew;
+     688: aload         5
+     690: invokevirtual #286                // Method vazkii/botania/api/brew/Brew.getColor:(Lnet/minecraft/world/item/ItemStack;)I
+     693: invokevirtual #341                // Method net/minecraft/world/level/Level.m_7696_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;II)V
+     696: iconst_0
+     697: istore        7
+     699: iload         7
+     701: aload_3
+     702: invokevirtual #94                 // Method inventorySize:()I
+     705: if_icmpge     728
+     708: aload_3
+     709: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+     712: iload         7
+     714: getstatic     #121                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     717: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     722: iinc          7, 1
+     725: goto          699
+     728: iconst_0
+     729: istore        4
+     731: aload_3
+     732: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+     735: ifnull        741
+     738: iinc          4, 1
+     741: iload         4
+     743: aload_3
+     744: getfield      #45                 // Field signal:I
+     747: if_icmpeq     765
+     750: aload_3
+     751: iload         4
+     753: putfield      #45                 // Field signal:I
+     756: aload_0
+     757: aload_1
+     758: aload_2
+     759: invokevirtual #345                // Method net/minecraft/world/level/block/state/BlockState.m_60734_:()Lnet/minecraft/world/level/block/Block;
+     762: invokevirtual #349                // Method net/minecraft/world/level/Level.m_46717_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
+     765: aload_3
+     766: aload_3
+     767: getfield      #41                 // Field mana:I
+     770: putfield      #43                 // Field manaLastTick:I
+     773: return
+
+  public boolean m_7531_(int, int);
+    Code:
+       0: iload_1
+       1: ifne          365
+       4: aload_0
+       5: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       8: getfield      #203                // Field net/minecraft/world/level/Level.f_46443_:Z
+      11: ifeq          363
+      14: iconst_0
+      15: istore_3
+      16: iload_3
+      17: bipush        25
+      19: if_icmpge     312
+      22: iload_2
+      23: bipush        16
+      25: ishr
+      26: sipush        255
+      29: iand
+      30: i2f
+      31: ldc_w         #287                // float 255.0f
+      34: fdiv
+      35: fstore        4
+      37: iload_2
+      38: bipush        8
+      40: ishr
+      41: sipush        255
+      44: iand
+      45: i2f
+      46: ldc_w         #287                // float 255.0f
+      49: fdiv
+      50: fstore        5
+      52: iload_2
+      53: sipush        255
+      56: iand
+      57: i2f
+      58: ldc_w         #287                // float 255.0f
+      61: fdiv
+      62: fstore        6
+      64: invokestatic  #296                // Method java/lang/Math.random:()D
+      67: d2f
+      68: fconst_2
+      69: fmul
+      70: ldc_w         #372                // float 0.5f
+      73: fadd
+      74: fload         4
+      76: fload         5
+      78: fload         6
+      80: bipush        10
+      82: invokestatic  #378                // Method vazkii/botania/client/fx/SparkleParticleData.sparkle:(FFFFI)Lvazkii/botania/client/fx/SparkleParticleData;
+      85: astore        7
+      87: aload_0
+      88: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      91: aload         7
+      93: aload_0
+      94: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      97: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     100: i2d
+     101: ldc2_w        #327                // double 0.5d
+     104: dadd
+     105: invokestatic  #296                // Method java/lang/Math.random:()D
+     108: ldc2_w        #306                // double 0.4d
+     111: dmul
+     112: dadd
+     113: ldc2_w        #310                // double 0.2d
+     116: dsub
+     117: aload_0
+     118: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     121: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     124: iconst_1
+     125: iadd
+     126: i2d
+     127: aload_0
+     128: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     131: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     134: i2d
+     135: ldc2_w        #327                // double 0.5d
+     138: dadd
+     139: invokestatic  #296                // Method java/lang/Math.random:()D
+     142: ldc2_w        #306                // double 0.4d
+     145: dmul
+     146: dadd
+     147: ldc2_w        #310                // double 0.2d
+     150: dsub
+     151: dconst_0
+     152: dconst_0
+     153: dconst_0
+     154: invokevirtual #318                // Method net/minecraft/world/level/Level.m_7106_:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+     157: iconst_0
+     158: istore        8
+     160: iload         8
+     162: iconst_2
+     163: if_icmpge     306
+     166: ldc_w         #290                // float 0.1f
+     169: invokestatic  #296                // Method java/lang/Math.random:()D
+     172: d2f
+     173: ldc_w         #319                // float 0.2f
+     176: fmul
+     177: fadd
+     178: ldc_w         #319                // float 0.2f
+     181: ldc_w         #319                // float 0.2f
+     184: ldc_w         #319                // float 0.2f
+     187: invokestatic  #303                // Method vazkii/botania/client/fx/WispParticleData.wisp:(FFFF)Lvazkii/botania/client/fx/WispParticleData;
+     190: astore        9
+     192: aload_0
+     193: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     196: aload         9
+     198: aload_0
+     199: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     202: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     205: i2d
+     206: ldc2_w        #304                // double 0.7d
+     209: dadd
+     210: invokestatic  #296                // Method java/lang/Math.random:()D
+     213: ldc2_w        #306                // double 0.4d
+     216: dmul
+     217: dsub
+     218: aload_0
+     219: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     222: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     225: i2d
+     226: ldc2_w        #308                // double 0.9d
+     229: dadd
+     230: invokestatic  #296                // Method java/lang/Math.random:()D
+     233: ldc2_w        #310                // double 0.2d
+     236: dmul
+     237: dsub
+     238: aload_0
+     239: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     242: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     245: i2d
+     246: ldc2_w        #304                // double 0.7d
+     249: dadd
+     250: invokestatic  #296                // Method java/lang/Math.random:()D
+     253: ldc2_w        #306                // double 0.4d
+     256: dmul
+     257: dsub
+     258: ldc_w         #297                // float 0.05f
+     261: invokestatic  #296                // Method java/lang/Math.random:()D
+     264: d2f
+     265: ldc_w         #290                // float 0.1f
+     268: fmul
+     269: fsub
+     270: f2d
+     271: ldc_w         #297                // float 0.05f
+     274: invokestatic  #296                // Method java/lang/Math.random:()D
+     277: d2f
+     278: ldc_w         #312                // float 0.03f
+     281: fmul
+     282: fadd
+     283: f2d
+     284: ldc_w         #297                // float 0.05f
+     287: invokestatic  #296                // Method java/lang/Math.random:()D
+     290: d2f
+     291: ldc_w         #290                // float 0.1f
+     294: fmul
+     295: fsub
+     296: f2d
+     297: invokevirtual #318                // Method net/minecraft/world/level/Level.m_7106_:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+     300: iinc          8, 1
+     303: goto          160
+     306: iinc          3, 1
+     309: goto          16
+     312: aload_0
+     313: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     316: aload_0
+     317: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     320: invokevirtual #212                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     323: i2d
+     324: aload_0
+     325: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     328: invokevirtual #215                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     331: i2d
+     332: aload_0
+     333: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     336: invokevirtual #218                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     339: i2d
+     340: getstatic     #387                // Field vazkii/botania/common/handler/BotaniaSounds.potionCreate:Lnet/minecraft/sounds/SoundEvent;
+     343: getstatic     #393                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     346: fconst_1
+     347: ldc_w         #394                // float 1.5f
+     350: invokestatic  #296                // Method java/lang/Math.random:()D
+     353: d2f
+     354: ldc_w         #395                // float 0.25f
+     357: fmul
+     358: fadd
+     359: iconst_0
+     360: invokevirtual #399                // Method net/minecraft/world/level/Level.m_7785_:(DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFZ)V
+     363: iconst_1
+     364: ireturn
+     365: aload_0
+     366: iload_1
+     367: iload_2
+     368: invokespecial #401                // Method vazkii/botania/common/block/block_entity/SimpleInventoryBlockEntity.m_7531_:(II)Z
+     371: ireturn
+
+  public int getManaCost();
+    Code:
+       0: aload_0
+       1: invokevirtual #82                 // Method getItemHandler:()Lnet/minecraft/world/Container;
+       4: iconst_0
+       5: invokeinterface #88,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      10: astore_1
+      11: aload_0
+      12: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+      15: ifnull        45
+      18: aload_1
+      19: invokevirtual #62                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      22: ifne          45
+      25: aload_1
+      26: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      29: astore_3
+      30: aload_3
+      31: instanceof    #90                 // class vazkii/botania/api/brew/BrewContainer
+      34: ifeq          45
+      37: aload_3
+      38: checkcast     #90                 // class vazkii/botania/api/brew/BrewContainer
+      41: astore_2
+      42: goto          47
+      45: iconst_0
+      46: ireturn
+      47: aload_2
+      48: aload_0
+      49: getfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+      52: invokeinterface #280,  1          // InterfaceMethod vazkii/botania/api/recipe/BotanicalBreweryRecipe.getBrew:()Lvazkii/botania/api/brew/Brew;
+      57: aload_1
+      58: invokeinterface #407,  3          // InterfaceMethod vazkii/botania/api/brew/BrewContainer.getManaCost:(Lvazkii/botania/api/brew/Brew;Lnet/minecraft/world/item/ItemStack;)I
+      63: ireturn
+
+  public void writePacketNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #413                // Method vazkii/botania/common/block/block_entity/SimpleInventoryBlockEntity.writePacketNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc           #21                 // String mana
+       8: aload_0
+       9: getfield      #41                 // Field mana:I
+      12: invokevirtual #419                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      15: return
+
+  public void readPacketNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #424                // Method vazkii/botania/common/block/block_entity/SimpleInventoryBlockEntity.readPacketNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc           #21                 // String mana
+       9: invokevirtual #428                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      12: putfield      #41                 // Field mana:I
+      15: return
+
+  protected net.minecraft.world.SimpleContainer createItemHandler();
+    Code:
+       0: new           #11                 // class vazkii/botania/common/block/block_entity/BreweryBlockEntity$1
+       3: dup
+       4: aload_0
+       5: bipush        7
+       7: invokespecial #433                // Method vazkii/botania/common/block/block_entity/BreweryBlockEntity$1."<init>":(Lvazkii/botania/common/block/block_entity/BreweryBlockEntity;I)V
+      10: areturn
+
+  public net.minecraft.world.level.Level getManaReceiverLevel();
+    Code:
+       0: aload_0
+       1: invokevirtual #438                // Method m_58904_:()Lnet/minecraft/world/level/Level;
+       4: areturn
+
+  public net.minecraft.core.BlockPos getManaReceiverPos();
+    Code:
+       0: aload_0
+       1: invokevirtual #443                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: areturn
+
+  public int getCurrentMana();
+    Code:
+       0: aload_0
+       1: getfield      #41                 // Field mana:I
+       4: ireturn
+
+  public boolean isFull();
+    Code:
+       0: aload_0
+       1: getfield      #41                 // Field mana:I
+       4: aload_0
+       5: invokevirtual #322                // Method getManaCost:()I
+       8: if_icmplt     15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  public void receiveMana(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #41                 // Field mana:I
+       5: iload_1
+       6: iadd
+       7: aload_0
+       8: invokevirtual #322                // Method getManaCost:()I
+      11: invokestatic  #449                // Method java/lang/Math.min:(II)I
+      14: putfield      #41                 // Field mana:I
+      17: return
+
+  public boolean canReceiveManaFromBursts();
+    Code:
+       0: aload_0
+       1: invokevirtual #452                // Method isFull:()Z
+       4: ifne          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  private void lambda$findRecipe$0(vazkii.botania.api.recipe.BotanicalBreweryRecipe);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #56                 // Field recipe:Lvazkii/botania/api/recipe/BotanicalBreweryRecipe;
+       5: aload_0
+       6: getfield      #149                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       9: aload_0
+      10: getfield      #381                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      13: getstatic     #267                // Field vazkii/botania/common/block/BotaniaBlocks.brewery:Lnet/minecraft/world/level/block/Block;
+      16: invokevirtual #273                // Method net/minecraft/world/level/block/Block.m_49966_:()Lnet/minecraft/world/level/block/state/BlockState;
+      19: getstatic     #458                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.f_61448_:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+      22: iconst_1
+      23: invokestatic  #464                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      26: invokevirtual #468                // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+      29: checkcast     #289                // class net/minecraft/world/level/block/state/BlockState
+      32: invokevirtual #277                // Method net/minecraft/world/level/Level.m_46597_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+      35: pop
+      36: return
+}
+
+Compiled from "TerrestrialAgglomerationPlateBlockEntity.java"
+public class vazkii.botania.common.block.block_entity.TerrestrialAgglomerationPlateBlockEntity extends vazkii.botania.common.block.block_entity.BotaniaBlockEntity implements vazkii.botania.api.mana.spark.SparkAttachable,vazkii.botania.api.mana.ManaReceiver {
+  public static final java.util.function.Supplier<vazkii.patchouli.api.IMultiblock> MULTIBLOCK;
+
+  private static final java.lang.String TAG_MANA;
+
+  private int mana;
+
+  public vazkii.botania.common.block.block_entity.TerrestrialAgglomerationPlateBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #40                 // Field vazkii/botania/common/block/block_entity/BotaniaBlockEntities.TERRA_PLATE:Lnet/minecraft/world/level/block/entity/BlockEntityType;
+       4: aload_1
+       5: aload_2
+       6: invokespecial #43                 // Method vazkii/botania/common/block/block_entity/BotaniaBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       9: return
+
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, vazkii.botania.common.block.block_entity.TerrestrialAgglomerationPlateBlockEntity);
+    Code:
+       0: iconst_1
+       1: istore        4
+       3: aload_3
+       4: invokevirtual #55                 // Method hasValidPlatform:()Z
+       7: ifeq          431
+      10: aload_3
+      11: invokevirtual #59                 // Method getItemEntities:()Ljava/util/List;
+      14: astore        5
+      16: aload_3
+      17: aload         5
+      19: invokevirtual #63                 // Method getItems:(Ljava/util/List;)Ljava/util/List;
+      22: astore        6
+      24: aload_3
+      25: aload         5
+      27: invokevirtual #67                 // Method getInventory:(Ljava/util/List;)Lnet/minecraft/world/SimpleContainer;
+      30: astore        7
+      32: aload_3
+      33: aload         7
+      35: invokevirtual #71                 // Method getCurrentRecipe:(Lnet/minecraft/world/SimpleContainer;)Lvazkii/botania/api/recipe/TerrestrialAgglomerationRecipe;
+      38: astore        8
+      40: aload         8
+      42: ifnull        431
+      45: iconst_0
+      46: istore        4
+      48: aload_3
+      49: invokevirtual #75                 // Method getAttachedSpark:()Lvazkii/botania/api/mana/spark/ManaSpark;
+      52: astore        9
+      54: aload         9
+      56: ifnull        162
+      59: aload_0
+      60: aload_1
+      61: invokevirtual #81                 // Method net/minecraft/core/BlockPos.m_123341_:()I
+      64: i2d
+      65: ldc2_w        #82                 // double 0.5d
+      68: dadd
+      69: aload_1
+      70: invokevirtual #86                 // Method net/minecraft/core/BlockPos.m_123342_:()I
+      73: i2d
+      74: ldc2_w        #82                 // double 0.5d
+      77: dadd
+      78: aload_1
+      79: invokevirtual #89                 // Method net/minecraft/core/BlockPos.m_123343_:()I
+      82: i2d
+      83: ldc2_w        #82                 // double 0.5d
+      86: dadd
+      87: aload         9
+      89: invokeinterface #95,  1           // InterfaceMethod vazkii/botania/api/mana/spark/ManaSpark.getNetwork:()Lnet/minecraft/world/item/DyeColor;
+      94: invokestatic  #101                // Method vazkii/botania/api/mana/spark/SparkHelper.getSparksAround:(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/DyeColor;)Ljava/util/List;
+      97: astore        10
+      99: aload         10
+     101: invokeinterface #107,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     106: astore        11
+     108: aload         11
+     110: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     115: ifeq          162
+     118: aload         11
+     120: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     125: checkcast     #91                 // class vazkii/botania/api/mana/spark/ManaSpark
+     128: astore        12
+     130: aload         9
+     132: aload         12
+     134: if_acmpeq     159
+     137: aload         12
+     139: invokeinterface #128,  1          // InterfaceMethod vazkii/botania/api/mana/spark/ManaSpark.getAttachedManaReceiver:()Lvazkii/botania/api/mana/ManaReceiver;
+     144: instanceof    #130                // class vazkii/botania/api/mana/ManaPool
+     147: ifeq          159
+     150: aload         12
+     152: aload         9
+     154: invokeinterface #134,  2          // InterfaceMethod vazkii/botania/api/mana/spark/ManaSpark.registerTransfer:(Lvazkii/botania/api/mana/spark/ManaSpark;)V
+     159: goto          108
+     162: aload_3
+     163: getfield      #136                // Field mana:I
+     166: ifle          225
+     169: aload_3
+     170: invokestatic  #142                // Method vazkii/botania/api/internal/VanillaPacketDispatcher.dispatchTEToNearbyPlayers:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+     173: aload_3
+     174: invokevirtual #146                // Method getCompletion:()F
+     177: invokestatic  #152                // Method java/lang/Float.floatToIntBits:(F)I
+     180: istore        10
+     182: getstatic     #158                // Field vazkii/botania/xplat/XplatAbstractions.INSTANCE:Lvazkii/botania/xplat/XplatAbstractions;
+     185: aload_0
+     186: aload_1
+     187: new           #160                // class vazkii/botania/network/clientbound/BotaniaEffectPacket
+     190: dup
+     191: getstatic     #165                // Field vazkii/botania/network/EffectType.TERRA_PLATE:Lvazkii/botania/network/EffectType;
+     194: aload_1
+     195: invokevirtual #81                 // Method net/minecraft/core/BlockPos.m_123341_:()I
+     198: i2d
+     199: aload_1
+     200: invokevirtual #86                 // Method net/minecraft/core/BlockPos.m_123342_:()I
+     203: i2d
+     204: aload_1
+     205: invokevirtual #89                 // Method net/minecraft/core/BlockPos.m_123343_:()I
+     208: i2d
+     209: iconst_1
+     210: newarray       int
+     212: dup
+     213: iconst_0
+     214: iload         10
+     216: iastore
+     217: invokespecial #168                // Method vazkii/botania/network/clientbound/BotaniaEffectPacket."<init>":(Lvazkii/botania/network/EffectType;DDD[I)V
+     220: invokeinterface #172,  4          // InterfaceMethod vazkii/botania/xplat/XplatAbstractions.sendToNear:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lvazkii/botania/network/BotaniaPacket;)V
+     225: aload_3
+     226: getfield      #136                // Field mana:I
+     229: aload         8
+     231: invokeinterface #175,  1          // InterfaceMethod vazkii/botania/api/recipe/TerrestrialAgglomerationRecipe.getMana:()I
+     236: if_icmplt     431
+     239: aload         5
+     241: invokestatic  #179                // Method getCraftingPlayer:(Ljava/util/List;)Lnet/minecraft/world/entity/player/Player;
+     244: astore        10
+     246: aload         8
+     248: aload         7
+     250: aload_0
+     251: invokevirtual #183                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     254: invokeinterface #187,  3          // InterfaceMethod vazkii/botania/api/recipe/TerrestrialAgglomerationRecipe.m_5874_:(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     259: astore        11
+     261: aload         10
+     263: ifnull        291
+     266: aload         10
+     268: aload         8
+     270: aload         11
+     272: invokestatic  #191                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     275: invokevirtual #197                // Method net/minecraft/world/entity/player/Player.m_280300_:(Lnet/minecraft/world/item/crafting/Recipe;Ljava/util/List;)V
+     278: aload         11
+     280: aload_0
+     281: aload         10
+     283: aload         11
+     285: invokevirtual #202                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     288: invokevirtual #206                // Method net/minecraft/world/item/ItemStack.m_41678_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;I)V
+     291: aload         6
+     293: invokeinterface #107,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     298: astore        12
+     300: aload         12
+     302: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     307: ifeq          331
+     310: aload         12
+     312: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     317: checkcast     #199                // class net/minecraft/world/item/ItemStack
+     320: astore        13
+     322: aload         13
+     324: iconst_0
+     325: invokevirtual #210                // Method net/minecraft/world/item/ItemStack.m_41764_:(I)V
+     328: goto          300
+     331: new           #212                // class net/minecraft/world/entity/item/ItemEntity
+     334: dup
+     335: aload_0
+     336: aload_1
+     337: invokevirtual #81                 // Method net/minecraft/core/BlockPos.m_123341_:()I
+     340: i2d
+     341: ldc2_w        #82                 // double 0.5d
+     344: dadd
+     345: aload_1
+     346: invokevirtual #86                 // Method net/minecraft/core/BlockPos.m_123342_:()I
+     349: i2d
+     350: ldc2_w        #213                // double 0.2d
+     353: dadd
+     354: aload_1
+     355: invokevirtual #89                 // Method net/minecraft/core/BlockPos.m_123343_:()I
+     358: i2d
+     359: ldc2_w        #82                 // double 0.5d
+     362: dadd
+     363: aload         11
+     365: invokespecial #217                // Method net/minecraft/world/entity/item/ItemEntity."<init>":(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+     368: astore        12
+     370: aload         12
+     372: getstatic     #223                // Field net/minecraft/world/phys/Vec3.f_82478_:Lnet/minecraft/world/phys/Vec3;
+     375: invokevirtual #227                // Method net/minecraft/world/entity/item/ItemEntity.m_20256_:(Lnet/minecraft/world/phys/Vec3;)V
+     378: aload_0
+     379: aload         12
+     381: invokevirtual #231                // Method net/minecraft/world/level/Level.m_7967_:(Lnet/minecraft/world/entity/Entity;)Z
+     384: pop
+     385: aload_0
+     386: aconst_null
+     387: aload         12
+     389: invokevirtual #235                // Method net/minecraft/world/entity/item/ItemEntity.m_20185_:()D
+     392: aload         12
+     394: invokevirtual #238                // Method net/minecraft/world/entity/item/ItemEntity.m_20186_:()D
+     397: aload         12
+     399: invokevirtual #241                // Method net/minecraft/world/entity/item/ItemEntity.m_20189_:()D
+     402: getstatic     #247                // Field vazkii/botania/common/handler/BotaniaSounds.terrasteelCraft:Lnet/minecraft/sounds/SoundEvent;
+     405: getstatic     #253                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     408: fconst_1
+     409: fconst_1
+     410: invokevirtual #257                // Method net/minecraft/world/level/Level.m_6263_:(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     413: aload_3
+     414: iconst_0
+     415: putfield      #136                // Field mana:I
+     418: aload_0
+     419: aload_1
+     420: aload_2
+     421: invokevirtual #261                // Method net/minecraft/world/level/block/state/BlockState.m_60734_:()Lnet/minecraft/world/level/block/Block;
+     424: invokevirtual #265                // Method net/minecraft/world/level/Level.m_46717_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
+     427: aload_3
+     428: invokestatic  #142                // Method vazkii/botania/api/internal/VanillaPacketDispatcher.dispatchTEToNearbyPlayers:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+     431: iload         4
+     433: ifeq          443
+     436: aload_3
+     437: sipush        -1000
+     440: invokevirtual #268                // Method receiveMana:(I)V
+     443: return
+
+  private static net.minecraft.world.entity.player.Player getCraftingPlayer(java.util.List<net.minecraft.world.entity.item.ItemEntity>);
+    Code:
+       0: aconst_null
+       1: astore_1
+       2: ldc_w         #298                // int 2147483647
+       5: istore_2
+       6: aload_0
+       7: invokeinterface #107,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      12: astore_3
+      13: aload_3
+      14: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      19: ifeq          76
+      22: aload_3
+      23: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      28: checkcast     #212                // class net/minecraft/world/entity/item/ItemEntity
+      31: astore        4
+      33: aload         4
+      35: invokevirtual #302                // Method net/minecraft/world/entity/item/ItemEntity.m_19749_:()Lnet/minecraft/world/entity/Entity;
+      38: astore        6
+      40: aload         6
+      42: instanceof    #193                // class net/minecraft/world/entity/player/Player
+      45: ifeq          73
+      48: aload         6
+      50: checkcast     #193                // class net/minecraft/world/entity/player/Player
+      53: astore        5
+      55: aload         4
+      57: invokevirtual #305                // Method net/minecraft/world/entity/item/ItemEntity.m_32059_:()I
+      60: iload_2
+      61: if_icmpge     73
+      64: aload         5
+      66: astore_1
+      67: aload         4
+      69: invokevirtual #305                // Method net/minecraft/world/entity/item/ItemEntity.m_32059_:()I
+      72: istore_2
+      73: goto          13
+      76: aload_1
+      77: areturn
+
+  private java.util.List<net.minecraft.world.item.ItemStack> getItems(java.util.List<net.minecraft.world.entity.item.ItemEntity>);
+    Code:
+       0: new           #311                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #314                // Method java/util/ArrayList."<init>":()V
+       7: astore_2
+       8: aload_1
+       9: invokeinterface #107,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      14: astore_3
+      15: aload_3
+      16: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          61
+      24: aload_3
+      25: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      30: checkcast     #212                // class net/minecraft/world/entity/item/ItemEntity
+      33: astore        4
+      35: aload         4
+      37: invokevirtual #318                // Method net/minecraft/world/entity/item/ItemEntity.m_32055_:()Lnet/minecraft/world/item/ItemStack;
+      40: invokevirtual #321                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      43: ifne          58
+      46: aload_2
+      47: aload         4
+      49: invokevirtual #318                // Method net/minecraft/world/entity/item/ItemEntity.m_32055_:()Lnet/minecraft/world/item/ItemStack;
+      52: invokeinterface #325,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      57: pop
+      58: goto          15
+      61: aload_2
+      62: areturn
+
+  private java.util.List<net.minecraft.world.entity.item.ItemEntity> getItemEntities();
+    Code:
+       0: aload_0
+       1: getfield      #330                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: ldc           #212                // class net/minecraft/world/entity/item/ItemEntity
+       6: new           #332                // class net/minecraft/world/phys/AABB
+       9: dup
+      10: aload_0
+      11: getfield      #335                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      14: aload_0
+      15: getfield      #335                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      18: iconst_1
+      19: iconst_1
+      20: iconst_1
+      21: invokevirtual #339                // Method net/minecraft/core/BlockPos.m_7918_:(III)Lnet/minecraft/core/BlockPos;
+      24: invokespecial #342                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
+      27: getstatic     #348                // Field net/minecraft/world/entity/EntitySelector.f_20402_:Ljava/util/function/Predicate;
+      30: invokevirtual #352                // Method net/minecraft/world/level/Level.m_6443_:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+      33: areturn
+
+  private net.minecraft.world.SimpleContainer getInventory(java.util.List<net.minecraft.world.entity.item.ItemEntity>);
+    Code:
+       0: new           #113                // class net/minecraft/world/SimpleContainer
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #63                 // Method getItems:(Ljava/util/List;)Ljava/util/List;
+       9: invokestatic  #357                // Method flattenStacks:(Ljava/util/List;)[Lnet/minecraft/world/item/ItemStack;
+      12: invokespecial #360                // Method net/minecraft/world/SimpleContainer."<init>":([Lnet/minecraft/world/item/ItemStack;)V
+      15: areturn
+
+  private static net.minecraft.world.item.ItemStack[] flattenStacks(java.util.List<net.minecraft.world.item.ItemStack>);
+    Code:
+       0: iconst_0
+       1: istore_2
+       2: aload_0
+       3: invokeinterface #107,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       8: astore_3
+       9: aload_3
+      10: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      15: ifeq          40
+      18: aload_3
+      19: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      24: checkcast     #199                // class net/minecraft/world/item/ItemStack
+      27: astore        4
+      29: iload_2
+      30: aload         4
+      32: invokevirtual #202                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      35: iadd
+      36: istore_2
+      37: goto          9
+      40: iload_2
+      41: bipush        64
+      43: if_icmple     51
+      46: iconst_0
+      47: anewarray     #199                // class net/minecraft/world/item/ItemStack
+      50: areturn
+      51: iload_2
+      52: anewarray     #199                // class net/minecraft/world/item/ItemStack
+      55: astore_1
+      56: iconst_0
+      57: istore_3
+      58: aload_0
+      59: invokeinterface #107,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      64: astore        4
+      66: aload         4
+      68: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      73: ifeq          149
+      76: aload         4
+      78: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      83: checkcast     #199                // class net/minecraft/world/item/ItemStack
+      86: astore        5
+      88: aload         5
+      90: invokevirtual #202                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      93: iconst_1
+      94: if_icmple     138
+      97: aload         5
+      99: iconst_1
+     100: invokevirtual #367                // Method net/minecraft/world/item/ItemStack.m_255036_:(I)Lnet/minecraft/world/item/ItemStack;
+     103: astore        6
+     105: iconst_0
+     106: istore        7
+     108: iload         7
+     110: aload         5
+     112: invokevirtual #202                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     115: if_icmpge     135
+     118: aload_1
+     119: iload_3
+     120: aload         6
+     122: invokevirtual #370                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     125: aastore
+     126: iinc          3, 1
+     129: iinc          7, 1
+     132: goto          108
+     135: goto          146
+     138: aload_1
+     139: iload_3
+     140: aload         5
+     142: aastore
+     143: iinc          3, 1
+     146: goto          66
+     149: aload_1
+     150: areturn
+
+  private vazkii.botania.api.recipe.TerrestrialAgglomerationRecipe getCurrentRecipe(net.minecraft.world.SimpleContainer);
+    Code:
+       0: aload_1
+       1: invokevirtual #377                // Method net/minecraft/world/SimpleContainer.m_7983_:()Z
+       4: ifeq          9
+       7: aconst_null
+       8: areturn
+       9: aload_0
+      10: getfield      #330                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      13: invokevirtual #381                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+      16: getstatic     #387                // Field vazkii/botania/common/crafting/BotaniaRecipeTypes.TERRA_PLATE_TYPE:Lnet/minecraft/world/item/crafting/RecipeType;
+      19: aload_1
+      20: aload_0
+      21: getfield      #330                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      24: invokevirtual #393                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+      27: aconst_null
+      28: invokevirtual #399                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      31: checkcast     #115                // class vazkii/botania/api/recipe/TerrestrialAgglomerationRecipe
+      34: areturn
+
+  private boolean isActive();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: aload_0
+       3: invokevirtual #59                 // Method getItemEntities:()Ljava/util/List;
+       6: invokevirtual #67                 // Method getInventory:(Ljava/util/List;)Lnet/minecraft/world/SimpleContainer;
+       9: invokevirtual #71                 // Method getCurrentRecipe:(Lnet/minecraft/world/SimpleContainer;)Lvazkii/botania/api/recipe/TerrestrialAgglomerationRecipe;
+      12: ifnull        19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: ireturn
+
+  private boolean hasValidPlatform();
+    Code:
+       0: getstatic     #402                // Field MULTIBLOCK:Ljava/util/function/Supplier;
+       3: invokeinterface #407,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       8: checkcast     #409                // class vazkii/patchouli/api/IMultiblock
+      11: aload_0
+      12: getfield      #330                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      15: aload_0
+      16: invokevirtual #413                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      19: invokevirtual #416                // Method net/minecraft/core/BlockPos.m_7495_:()Lnet/minecraft/core/BlockPos;
+      22: invokeinterface #420,  3          // InterfaceMethod vazkii/patchouli/api/IMultiblock.validate:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/Rotation;
+      27: ifnull        34
+      30: iconst_1
+      31: goto          35
+      34: iconst_0
+      35: ireturn
+
+  public void writePacketNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: ldc           #31                 // String mana
+       3: aload_0
+       4: getfield      #136                // Field mana:I
+       7: invokevirtual #428                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      10: return
+
+  public void readPacketNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: ldc           #31                 // String mana
+       4: invokevirtual #435                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+       7: putfield      #136                // Field mana:I
+      10: return
+
+  public net.minecraft.world.level.Level getManaReceiverLevel();
+    Code:
+       0: aload_0
+       1: invokevirtual #440                // Method m_58904_:()Lnet/minecraft/world/level/Level;
+       4: areturn
+
+  public net.minecraft.core.BlockPos getManaReceiverPos();
+    Code:
+       0: aload_0
+       1: invokevirtual #413                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: areturn
+
+  public int getCurrentMana();
+    Code:
+       0: aload_0
+       1: getfield      #136                // Field mana:I
+       4: ireturn
+
+  public boolean isFull();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: aload_0
+       3: invokevirtual #59                 // Method getItemEntities:()Ljava/util/List;
+       6: invokevirtual #67                 // Method getInventory:(Ljava/util/List;)Lnet/minecraft/world/SimpleContainer;
+       9: invokevirtual #71                 // Method getCurrentRecipe:(Lnet/minecraft/world/SimpleContainer;)Lvazkii/botania/api/recipe/TerrestrialAgglomerationRecipe;
+      12: astore_1
+      13: aload_1
+      14: ifnull        30
+      17: aload_0
+      18: invokevirtual #445                // Method getCurrentMana:()I
+      21: aload_1
+      22: invokeinterface #175,  1          // InterfaceMethod vazkii/botania/api/recipe/TerrestrialAgglomerationRecipe.getMana:()I
+      27: if_icmplt     34
+      30: iconst_1
+      31: goto          35
+      34: iconst_0
+      35: ireturn
+
+  public void receiveMana(int);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: aload_0
+       3: getfield      #136                // Field mana:I
+       6: iload_1
+       7: iadd
+       8: invokestatic  #451                // Method java/lang/Math.max:(II)I
+      11: putfield      #136                // Field mana:I
+      14: aload_0
+      15: getfield      #330                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      18: aload_0
+      19: getfield      #335                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      22: aload_0
+      23: invokevirtual #455                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+      26: invokevirtual #261                // Method net/minecraft/world/level/block/state/BlockState.m_60734_:()Lnet/minecraft/world/level/block/Block;
+      29: invokevirtual #265                // Method net/minecraft/world/level/Level.m_46717_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
+      32: return
+
+  public boolean canReceiveManaFromBursts();
+    Code:
+       0: aload_0
+       1: invokevirtual #458                // Method isActive:()Z
+       4: ireturn
+
+  public boolean canAttachSpark(net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public vazkii.botania.api.mana.spark.ManaSpark getAttachedSpark();
+    Code:
+       0: aload_0
+       1: getfield      #330                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: ldc_w         #463                // class net/minecraft/world/entity/Entity
+       7: new           #332                // class net/minecraft/world/phys/AABB
+      10: dup
+      11: aload_0
+      12: getfield      #335                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      15: invokevirtual #466                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+      18: aload_0
+      19: getfield      #335                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      22: invokevirtual #466                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+      25: iconst_1
+      26: iconst_1
+      27: iconst_1
+      28: invokevirtual #339                // Method net/minecraft/core/BlockPos.m_7918_:(III)Lnet/minecraft/core/BlockPos;
+      31: invokespecial #342                // Method net/minecraft/world/phys/AABB."<init>":(Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;)V
+      34: ldc           #91                 // class vazkii/botania/api/mana/spark/ManaSpark
+      36: invokestatic  #472                // Method com/google/common/base/Predicates.instanceOf:(Ljava/lang/Class;)Lcom/google/common/base/Predicate;
+      39: invokevirtual #352                // Method net/minecraft/world/level/Level.m_6443_:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;Ljava/util/function/Predicate;)Ljava/util/List;
+      42: astore_1
+      43: aload_1
+      44: invokeinterface #475,  1          // InterfaceMethod java/util/List.size:()I
+      49: iconst_1
+      50: if_icmpne     69
+      53: aload_1
+      54: iconst_0
+      55: invokeinterface #478,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      60: checkcast     #463                // class net/minecraft/world/entity/Entity
+      63: astore_2
+      64: aload_2
+      65: checkcast     #91                 // class vazkii/botania/api/mana/spark/ManaSpark
+      68: areturn
+      69: aconst_null
+      70: areturn
+
+  public boolean areIncomingTranfersDone();
+    Code:
+       0: aload_0
+       1: invokevirtual #458                // Method isActive:()Z
+       4: ifne          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  public int getAvailableSpaceForMana();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: aload_0
+       3: invokevirtual #59                 // Method getItemEntities:()Ljava/util/List;
+       6: invokevirtual #67                 // Method getInventory:(Ljava/util/List;)Lnet/minecraft/world/SimpleContainer;
+       9: invokevirtual #71                 // Method getCurrentRecipe:(Lnet/minecraft/world/SimpleContainer;)Lvazkii/botania/api/recipe/TerrestrialAgglomerationRecipe;
+      12: astore_1
+      13: aload_1
+      14: ifnonnull     21
+      17: iconst_0
+      18: goto          36
+      21: iconst_0
+      22: aload_1
+      23: invokeinterface #175,  1          // InterfaceMethod vazkii/botania/api/recipe/TerrestrialAgglomerationRecipe.getMana:()I
+      28: aload_0
+      29: invokevirtual #445                // Method getCurrentMana:()I
+      32: isub
+      33: invokestatic  #451                // Method java/lang/Math.max:(II)I
+      36: ireturn
+
+  public float getCompletion();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: aload_0
+       3: invokevirtual #59                 // Method getItemEntities:()Ljava/util/List;
+       6: invokevirtual #67                 // Method getInventory:(Ljava/util/List;)Lnet/minecraft/world/SimpleContainer;
+       9: invokevirtual #71                 // Method getCurrentRecipe:(Lnet/minecraft/world/SimpleContainer;)Lvazkii/botania/api/recipe/TerrestrialAgglomerationRecipe;
+      12: astore_1
+      13: aload_1
+      14: ifnonnull     19
+      17: fconst_0
+      18: freturn
+      19: aload_0
+      20: invokevirtual #445                // Method getCurrentMana:()I
+      23: i2f
+      24: aload_1
+      25: invokeinterface #175,  1          // InterfaceMethod vazkii/botania/api/recipe/TerrestrialAgglomerationRecipe.getMana:()I
+      30: i2f
+      31: fdiv
+      32: freturn
+
+  public int getComparatorLevel();
+    Code:
+       0: aload_0
+       1: invokevirtual #146                // Method getCompletion:()F
+       4: f2d
+       5: ldc2_w        #486                // double 15.0d
+       8: dmul
+       9: d2i
+      10: istore_1
+      11: aload_0
+      12: invokevirtual #445                // Method getCurrentMana:()I
+      15: ifle          24
+      18: iload_1
+      19: iconst_1
+      20: invokestatic  #451                // Method java/lang/Math.max:(II)I
+      23: istore_1
+      24: iload_1
+      25: ireturn
+
+  private static vazkii.patchouli.api.IMultiblock lambda$static$0();
+    Code:
+       0: invokestatic  #493                // Method vazkii/patchouli/api/PatchouliAPI.get:()Lvazkii/patchouli/api/PatchouliAPI$IPatchouliAPI;
+       3: iconst_2
+       4: anewarray     #495                // class "[Ljava/lang/String;"
+       7: dup
+       8: iconst_0
+       9: iconst_3
+      10: anewarray     #497                // class java/lang/String
+      13: dup
+      14: iconst_0
+      15: ldc_w         #499                // String ___
+      18: aastore
+      19: dup
+      20: iconst_1
+      21: ldc_w         #501                // String _P_
+      24: aastore
+      25: dup
+      26: iconst_2
+      27: ldc_w         #499                // String ___
+      30: aastore
+      31: aastore
+      32: dup
+      33: iconst_1
+      34: iconst_3
+      35: anewarray     #497                // class java/lang/String
+      38: dup
+      39: iconst_0
+      40: ldc_w         #503                // String RLR
+      43: aastore
+      44: dup
+      45: iconst_1
+      46: ldc_w         #505                // String L0L
+      49: aastore
+      50: dup
+      51: iconst_2
+      52: ldc_w         #503                // String RLR
+      55: aastore
+      56: aastore
+      57: bipush        8
+      59: anewarray     #507                // class java/lang/Object
+      62: dup
+      63: iconst_0
+      64: bipush        80
+      66: invokestatic  #513                // Method java/lang/Character.valueOf:(C)Ljava/lang/Character;
+      69: aastore
+      70: dup
+      71: iconst_1
+      72: getstatic     #519                // Field vazkii/botania/common/block/BotaniaBlocks.terraPlate:Lnet/minecraft/world/level/block/Block;
+      75: aastore
+      76: dup
+      77: iconst_2
+      78: bipush        82
+      80: invokestatic  #513                // Method java/lang/Character.valueOf:(C)Ljava/lang/Character;
+      83: aastore
+      84: dup
+      85: iconst_3
+      86: invokestatic  #493                // Method vazkii/patchouli/api/PatchouliAPI.get:()Lvazkii/patchouli/api/PatchouliAPI$IPatchouliAPI;
+      89: getstatic     #523                // Field vazkii/botania/common/lib/BotaniaTags$Blocks.TERRA_PLATE_BASE:Lnet/minecraft/tags/TagKey;
+      92: invokeinterface #527,  2          // InterfaceMethod vazkii/patchouli/api/PatchouliAPI$IPatchouliAPI.tagMatcher:(Lnet/minecraft/tags/TagKey;)Lvazkii/patchouli/api/IStateMatcher;
+      97: aastore
+      98: dup
+      99: iconst_4
+     100: bipush        48
+     102: invokestatic  #513                // Method java/lang/Character.valueOf:(C)Ljava/lang/Character;
+     105: aastore
+     106: dup
+     107: iconst_5
+     108: invokestatic  #493                // Method vazkii/patchouli/api/PatchouliAPI.get:()Lvazkii/patchouli/api/PatchouliAPI$IPatchouliAPI;
+     111: getstatic     #523                // Field vazkii/botania/common/lib/BotaniaTags$Blocks.TERRA_PLATE_BASE:Lnet/minecraft/tags/TagKey;
+     114: invokeinterface #527,  2          // InterfaceMethod vazkii/patchouli/api/PatchouliAPI$IPatchouliAPI.tagMatcher:(Lnet/minecraft/tags/TagKey;)Lvazkii/patchouli/api/IStateMatcher;
+     119: aastore
+     120: dup
+     121: bipush        6
+     123: bipush        76
+     125: invokestatic  #513                // Method java/lang/Character.valueOf:(C)Ljava/lang/Character;
+     128: aastore
+     129: dup
+     130: bipush        7
+     132: invokestatic  #493                // Method vazkii/patchouli/api/PatchouliAPI.get:()Lvazkii/patchouli/api/PatchouliAPI$IPatchouliAPI;
+     135: getstatic     #158                // Field vazkii/botania/xplat/XplatAbstractions.INSTANCE:Lvazkii/botania/xplat/XplatAbstractions;
+     138: invokeinterface #530,  1          // InterfaceMethod vazkii/botania/xplat/XplatAbstractions.isFabric:()Z
+     143: ifeq          168
+     146: getstatic     #536                // Field net/minecraft/core/registries/Registries.f_256747_:Lnet/minecraft/resources/ResourceKey;
+     149: new           #538                // class net/minecraft/resources/ResourceLocation
+     152: dup
+     153: ldc_w         #540                // String c
+     156: ldc_w         #542                // String lapis_blocks
+     159: invokespecial #545                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     162: invokestatic  #551                // Method net/minecraft/tags/TagKey.m_203882_:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/tags/TagKey;
+     165: goto          187
+     168: getstatic     #536                // Field net/minecraft/core/registries/Registries.f_256747_:Lnet/minecraft/resources/ResourceKey;
+     171: new           #538                // class net/minecraft/resources/ResourceLocation
+     174: dup
+     175: ldc_w         #557                // String forge
+     178: ldc_w         #559                // String storage_blocks/lapis
+     181: invokespecial #545                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     184: invokestatic  #551                // Method net/minecraft/tags/TagKey.m_203882_:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/tags/TagKey;
+     187: invokeinterface #527,  2          // InterfaceMethod vazkii/patchouli/api/PatchouliAPI$IPatchouliAPI.tagMatcher:(Lnet/minecraft/tags/TagKey;)Lvazkii/patchouli/api/IStateMatcher;
+     192: aastore
+     193: invokeinterface #563,  3          // InterfaceMethod vazkii/patchouli/api/PatchouliAPI$IPatchouliAPI.makeMultiblock:([[Ljava/lang/String;[Ljava/lang/Object;)Lvazkii/patchouli/api/IMultiblock;
+     198: areturn
+
+  static {};
+    Code:
+       0: invokedynamic #579,  0            // InvokeDynamic #0:get:()Lcom/google/common/base/Supplier;
+       5: invokestatic  #585                // Method com/google/common/base/Suppliers.memoize:(Lcom/google/common/base/Supplier;)Lcom/google/common/base/Supplier;
+       8: putstatic     #402                // Field MULTIBLOCK:Ljava/util/function/Supplier;
+      11: return
+}

@@ -1,0 +1,23 @@
+Compiled from "ScryRitualRecipe.java"
+public final class com.hollingsworth.arsnouveau.api.recipe.ScryRitualRecipe extends java.lang.Record implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.tags.TagKey<net.minecraft.world.item.Item> augment;
+  private final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> highlight;
+  public com.hollingsworth.arsnouveau.api.recipe.ScryRitualRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.tags.TagKey<net.minecraft.world.item.Item>, net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public boolean matches(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_8004_(int, int);
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public boolean m_5598_();
+  public com.google.gson.JsonElement asRecipe();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceLocation id();
+  public net.minecraft.tags.TagKey<net.minecraft.world.item.Item> augment();
+  public net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> highlight();
+}

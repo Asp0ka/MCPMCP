@@ -1,0 +1,47 @@
+Compiled from "BlockIronFurnaceContainerBase.java"
+class ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$13 extends net.minecraft.world.inventory.DataSlot {
+  final ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase this$0;
+
+  ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$13(ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       5: aload_0
+       6: invokespecial #18                 // Method net/minecraft/world/inventory/DataSlot."<init>":()V
+       9: return
+
+  public int m_6501_();
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: getfield      #26                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       7: getfield      #32                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.generatorBurn:D
+      10: d2i
+      11: ldc           #33                 // int 65535
+      13: iand
+      14: ireturn
+
+  public void m_6422_(int);
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: getfield      #26                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       7: getfield      #32                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.generatorBurn:D
+      10: d2i
+      11: ldc           #36                 // int -65536
+      13: iand
+      14: istore_2
+      15: aload_0
+      16: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+      19: getfield      #26                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      22: iload_2
+      23: iload_1
+      24: ldc           #33                 // int 65535
+      26: iand
+      27: iadd
+      28: i2d
+      29: putfield      #32                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.generatorBurn:D
+      32: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

@@ -1,0 +1,315 @@
+{
+  "counts": {
+    "missing": 43,
+    "minecraft:crafting_shaped": 93,
+    "irons_spellbooks:alchemist_cauldron_brew": 15,
+    "irons_spellbooks:alchemist_cauldron_empty": 16,
+    "irons_spellbooks:alchemist_cauldron_fill": 16,
+    "minecraft:blasting": 5,
+    "minecraft:crafting_shapeless": 44,
+    "minecraft:smithing_transform": 38,
+    "minecraft:campfire_cooking": 1,
+    "minecraft:smelting": 1,
+    "minecraft:smoking": 1,
+    "create:emptying": 15,
+    "create:filling": 15,
+    "minecraft:stonecutting": 2
+  },
+  "examples": {
+    "missing": [
+      [
+        "data/irons_spellbooks/advancement/recipes/misc/archevoker_boots_crafting.json",
+        {
+          "parent": "minecraft:recipes/root",
+          "criteria": {
+            "has_the_recipe": {
+              "conditions": {
+                "recipe": "irons_spellbooks:archevoker_boots_crafting"
+              },
+              "trigger": "minecraft:recipe_unlocked"
+            },
+            "unlocked": {
+              "conditions": {
+                "items": [
+                  {
+                    "items": "#irons_spellbooks:wizard_base_boots"
+                  }
+                ]
+              },
+              "trigger": "minecraft:inventory_changed"
+            }
+          },
+          "requirements": [
+            [
+              "has_the_recipe",
+              "unlocked"
+            ]
+          ],
+          "rewards": {
+            "recipes": [
+              "irons_spellbooks:archevoker_boots_crafting"
+            ]
+          }
+        }
+      ]
+    ],
+    "minecraft:crafting_shaped": [
+      [
+        "data/irons_spellbooks/recipes/affinity_ring.json",
+        {
+          "type": "minecraft:crafting_shaped",
+          "key": {
+            "M": {
+              "item": "minecraft:bucket"
+            },
+            "X": {
+              "item": "irons_spellbooks:mithril_scrap"
+            }
+          },
+          "pattern": [
+            "M ",
+            " X"
+          ],
+          "result": {
+            "count": 1,
+            "item": "irons_spellbooks:affinity_ring"
+          }
+        }
+      ]
+    ],
+    "irons_spellbooks:alchemist_cauldron_brew": [
+      [
+        "data/irons_spellbooks/recipes/alchemist_cauldron/brew_epic_ink.json",
+        {
+          "type": "irons_spellbooks:alchemist_cauldron_brew",
+          "base_fluid": {
+            "Amount": 1000,
+            "FluidName": "irons_spellbooks:rare_ink"
+          },
+          "input": {
+            "tag": "forge:ingots/gold"
+          },
+          "results": [
+            {
+              "Amount": 250,
+              "FluidName": "irons_spellbooks:epic_ink"
+            }
+          ]
+        }
+      ]
+    ],
+    "irons_spellbooks:alchemist_cauldron_empty": [
+      [
+        "data/irons_spellbooks/recipes/alchemist_cauldron/empty_blood_vial.json",
+        {
+          "type": "irons_spellbooks:alchemist_cauldron_empty",
+          "fluid": {
+            "Amount": 250,
+            "FluidName": "irons_spellbooks:blood"
+          },
+          "input": {
+            "item": "minecraft:glass_bottle"
+          },
+          "result": {
+            "count": 1,
+            "item": "irons_spellbooks:blood_vial"
+          }
+        }
+      ]
+    ],
+    "irons_spellbooks:alchemist_cauldron_fill": [
+      [
+        "data/irons_spellbooks/recipes/alchemist_cauldron/fill_blood_vial.json",
+        {
+          "type": "irons_spellbooks:alchemist_cauldron_fill",
+          "fluid": {
+            "Amount": 250,
+            "FluidName": "irons_spellbooks:blood"
+          },
+          "input": {
+            "item": "irons_spellbooks:blood_vial"
+          },
+          "result": {
+            "count": 1,
+            "item": "minecraft:glass_bottle"
+          }
+        }
+      ]
+    ],
+    "minecraft:blasting": [
+      [
+        "data/irons_spellbooks/recipes/ancient_debris_from_pyrium.json",
+        {
+          "type": "minecraft:blasting",
+          "cookingtime": 200,
+          "experience": 0.0,
+          "ingredient": {
+            "item": "irons_spellbooks:pyrium_ingot"
+          },
+          "result": {
+            "item": "minecraft:ancient_debris",
+            "count": 5
+          }
+        }
+      ]
+    ],
+    "minecraft:crafting_shapeless": [
+      [
+        "data/irons_spellbooks/recipes/archevoker_boots_crafting.json",
+        {
+          "type": "minecraft:crafting_shapeless",
+          "ingredients": [
+            {
+              "tag": "irons_spellbooks:wizard_base_boots"
+            },
+            {
+              "item": "irons_spellbooks:evocation_rune"
+            },
+            {
+              "item": "irons_spellbooks:arcane_essence"
+            }
+          ],
+          "result": {
+            "count": 1,
+            "item": "irons_spellbooks:archevoker_boots"
+          }
+        }
+      ]
+    ],
+    "minecraft:smithing_transform": [
+      [
+        "data/irons_spellbooks/recipes/archevoker_boots_smithing.json",
+        {
+          "type": "minecraft:smithing_transform",
+          "addition": {
+            "item": "irons_spellbooks:arcane_essence"
+          },
+          "base": {
+            "tag": "irons_spellbooks:wizard_base_boots"
+          },
+          "result": {
+            "count": 1,
+            "item": "irons_spellbooks:archevoker_boots"
+          },
+          "template": {
+            "item": "irons_spellbooks:evocation_rune"
+          }
+        }
+      ]
+    ],
+    "minecraft:campfire_cooking": [
+      [
+        "data/irons_spellbooks/recipes/cooked_ice_spider_egg_from_campfire_cooking.json",
+        {
+          "type": "minecraft:campfire_cooking",
+          "category": "food",
+          "cookingtime": 600,
+          "experience": 0.35,
+          "ingredient": {
+            "item": "irons_spellbooks:prepared_ice_spider_egg"
+          },
+          "result": "irons_spellbooks:cooked_ice_spider_egg"
+        }
+      ]
+    ],
+    "minecraft:smelting": [
+      [
+        "data/irons_spellbooks/recipes/cooked_ice_spider_egg_from_smelting.json",
+        {
+          "type": "minecraft:smelting",
+          "category": "food",
+          "cookingtime": 200,
+          "experience": 0.35,
+          "ingredient": {
+            "item": "irons_spellbooks:prepared_ice_spider_egg"
+          },
+          "result": "irons_spellbooks:cooked_ice_spider_egg"
+        }
+      ]
+    ],
+    "minecraft:smoking": [
+      [
+        "data/irons_spellbooks/recipes/cooked_ice_spider_egg_from_smoking.json",
+        {
+          "type": "minecraft:smoking",
+          "category": "food",
+          "cookingtime": 100,
+          "experience": 0.35,
+          "ingredient": {
+            "item": "irons_spellbooks:prepared_ice_spider_egg"
+          },
+          "result": "irons_spellbooks:cooked_ice_spider_egg"
+        }
+      ]
+    ],
+    "create:emptying": [
+      [
+        "data/irons_spellbooks/recipes/create_compat/create_empty_blood_vial.json",
+        {
+          "conditions": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "create"
+            }
+          ],
+          "type": "create:emptying",
+          "ingredients": [
+            {
+              "item": "irons_spellbooks:blood_vial"
+            }
+          ],
+          "results": [
+            {
+              "item": "minecraft:glass_bottle"
+            },
+            {
+              "fluid": "irons_spellbooks:blood",
+              "amount": 250
+            }
+          ]
+        }
+      ]
+    ],
+    "create:filling": [
+      [
+        "data/irons_spellbooks/recipes/create_compat/create_fill_blood_vial.json",
+        {
+          "conditions": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "create"
+            }
+          ],
+          "type": "create:filling",
+          "ingredients": [
+            {
+              "item": "minecraft:glass_bottle"
+            },
+            {
+              "fluid": "irons_spellbooks:blood",
+              "amount": 250
+            }
+          ],
+          "results": [
+            {
+              "item": "irons_spellbooks:blood_vial"
+            }
+          ]
+        }
+      ]
+    ],
+    "minecraft:stonecutting": [
+      [
+        "data/irons_spellbooks/recipes/nether_brick_pillar.json",
+        {
+          "type": "minecraft:stonecutting",
+          "ingredient": {
+            "item": "minecraft:nether_bricks"
+          },
+          "result": "irons_spellbooks:nether_brick_pillar",
+          "count": 1
+        }
+      ]
+    ]
+  }
+}

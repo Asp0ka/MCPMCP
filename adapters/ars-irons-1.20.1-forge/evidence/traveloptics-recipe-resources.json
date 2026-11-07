@@ -1,0 +1,122 @@
+{
+  "counts": {
+    "minecraft:crafting_shaped": 46,
+    "minecraft:blasting": 1,
+    "minecraft:crafting_shapeless": 7,
+    "minecraft:smithing_transform": 75,
+    "cataclysm:weapon_fusion": 4
+  },
+  "examples": {
+    "minecraft:crafting_shaped": [
+      [
+        "data/traveloptics/recipes/abyssal_upgrade_smithing_template.json",
+        {
+          "type": "minecraft:crafting_shaped",
+          "category": "misc",
+          "pattern": [
+            "ABA",
+            "CDE",
+            "ABA"
+          ],
+          "key": {
+            "A": {
+              "item": "irons_spellbooks:arcane_ingot"
+            },
+            "B": {
+              "item": "minecraft:nautilus_shell"
+            },
+            "C": {
+              "item": "minecraft:amethyst_shard"
+            },
+            "E": {
+              "item": "cataclysm:coral_chunk"
+            },
+            "D": {
+              "item": "minecraft:netherite_upgrade_smithing_template"
+            }
+          },
+          "result": {
+            "item": "traveloptics:abyssal_upgrade_smithing_template",
+            "count": 1
+          },
+          "show_notification": true
+        }
+      ]
+    ],
+    "minecraft:blasting": [
+      [
+        "data/traveloptics/recipes/blasting/resonant_scrap.json",
+        {
+          "type": "minecraft:blasting",
+          "category": "misc",
+          "ingredient": {
+            "tag": "traveloptics:echo_curio"
+          },
+          "result": "traveloptics:resonant_scrap",
+          "experience": 15,
+          "cookingtime": 400
+        }
+      ]
+    ],
+    "minecraft:crafting_shapeless": [
+      [
+        "data/traveloptics/recipes/deepling_mage_armor_boots.json",
+        {
+          "type": "minecraft:crafting_shapeless",
+          "ingredients": [
+            {
+              "item": "irons_spellbooks:wizard_boots"
+            },
+            {
+              "item": "traveloptics:aqua_rune"
+            },
+            {
+              "item": "irons_spellbooks:arcane_essence"
+            }
+          ],
+          "result": {
+            "count": 1,
+            "item": "traveloptics:deepling_mage_armor_boots"
+          }
+        }
+      ]
+    ],
+    "minecraft:smithing_transform": [
+      [
+        "data/traveloptics/recipes/smithing/abyssal_hide_armor_boots.json",
+        {
+          "type": "minecraft:smithing_transform",
+          "addition": {
+            "item": "traveloptics:abyssal_spellweave_ingot"
+          },
+          "base": {
+            "item": "irons_spellbooks:netherite_mage_boots"
+          },
+          "result": {
+            "item": "traveloptics:abyssal_hide_armor_boots"
+          },
+          "template": {
+            "item": "traveloptics:abyssal_upgrade_smithing_template"
+          }
+        }
+      ]
+    ],
+    "cataclysm:weapon_fusion": [
+      [
+        "data/traveloptics/recipes/weapon_infusion/charged_sands.json",
+        {
+          "type": "cataclysm:weapon_fusion",
+          "base": {
+            "item": "cataclysm:astrape"
+          },
+          "addition": {
+            "item": "cataclysm:ancient_spear"
+          },
+          "result": {
+            "item": "traveloptics:charged_sands"
+          }
+        }
+      ]
+    ]
+  }
+}

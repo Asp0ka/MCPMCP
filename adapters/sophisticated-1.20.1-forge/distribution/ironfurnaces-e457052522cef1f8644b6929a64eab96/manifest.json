@@ -1,0 +1,9 @@
+{
+  "api": 1,
+  "id": "mcpmcp.ironfurnaces",
+  "mod_id": "ironfurnaces",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "4.1.8",
+  "target_sha256": "e457052522cef1f8644b6929a64eab96de04ce9e6e32a715f1d68d79da26d66b"
+}

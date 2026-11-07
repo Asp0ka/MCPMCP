@@ -1,0 +1,15 @@
+Compiled from "KeyMappings.java"
+public final class io.redspace.ironsspellbooks.player.KeyMappings {
+  public static final java.lang.String KEY_BIND_GENERAL_CATEGORY;
+  public static final java.lang.String KEY_BIND_QUICK_CAST_CATEGORY;
+  public static final io.redspace.ironsspellbooks.player.ExtendedKeyMapping SPELL_WHEEL_KEYMAP;
+  public static final io.redspace.ironsspellbooks.player.ExtendedKeyMapping SPELL_WHEEL_TOGGLE_KEYMAP;
+  public static final io.redspace.ironsspellbooks.player.ExtendedKeyMapping SPELLBOOK_CAST_ACTIVE_KEYMAP;
+  public static final io.redspace.ironsspellbooks.player.ExtendedKeyMapping SPELLBAR_SCROLL_MODIFIER_KEYMAP;
+  public static final java.util.List<io.redspace.ironsspellbooks.player.ExtendedKeyMapping> QUICK_CAST_MAPPINGS;
+  public io.redspace.ironsspellbooks.player.KeyMappings();
+  private static java.lang.String getResourceName(java.lang.String);
+  public static void onRegisterKeybinds(net.minecraftforge.client.event.RegisterKeyMappingsEvent);
+  private static java.util.List<io.redspace.ironsspellbooks.player.ExtendedKeyMapping> createQuickCastKeybinds();
+  static {};
+}

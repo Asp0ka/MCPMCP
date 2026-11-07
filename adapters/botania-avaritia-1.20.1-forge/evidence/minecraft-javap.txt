@@ -1,0 +1,327 @@
+Compiled from "ClientboundLevelChunkWithLightPacket.java"
+public class net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+  private final int x;
+  private final int z;
+  private final net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData chunkData;
+  private final net.minecraft.network.protocol.game.ClientboundLightUpdatePacketData lightData;
+  public net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket(net.minecraft.world.level.chunk.LevelChunk, net.minecraft.world.level.lighting.LevelLightEngine, java.util.BitSet, java.util.BitSet);
+  public net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener);
+  public int getX();
+  public int getZ();
+  public net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData getChunkData();
+  public net.minecraft.network.protocol.game.ClientboundLightUpdatePacketData getLightData();
+  public void handle(net.minecraft.network.PacketListener);
+}
+
+Compiled from "ClientboundLevelChunkPacketData.java"
+public class net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData {
+  private static final int TWO_MEGABYTES;
+  private final net.minecraft.nbt.CompoundTag heightmaps;
+  private final byte[] buffer;
+  private final java.util.List<net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData$BlockEntityInfo> blockEntitiesData;
+  public net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData(net.minecraft.world.level.chunk.LevelChunk);
+  public net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData(net.minecraft.network.FriendlyByteBuf, int, int);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  private static int calculateChunkSize(net.minecraft.world.level.chunk.LevelChunk);
+  private io.netty.buffer.ByteBuf getWriteBuffer();
+  public static void extractChunkData(net.minecraft.network.FriendlyByteBuf, net.minecraft.world.level.chunk.LevelChunk);
+  public java.util.function.Consumer<net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData$BlockEntityTagOutput> getBlockEntitiesTagsConsumer(int, int);
+  private void getBlockEntitiesTags(net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData$BlockEntityTagOutput, int, int);
+  public net.minecraft.network.FriendlyByteBuf getReadBuffer();
+  public net.minecraft.nbt.CompoundTag getHeightmaps();
+  private void lambda$getBlockEntitiesTagsConsumer$1(int, int, net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData$BlockEntityTagOutput);
+  private static void lambda$write$0(net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData$BlockEntityInfo);
+}
+
+Compiled from "ClientboundBlockEntityDataPacket.java"
+public class net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+  private final net.minecraft.core.BlockPos pos;
+  private final net.minecraft.world.level.block.entity.BlockEntityType<?> type;
+  private final net.minecraft.nbt.CompoundTag tag;
+  public static net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket create(net.minecraft.world.level.block.entity.BlockEntity, java.util.function.Function<net.minecraft.world.level.block.entity.BlockEntity, net.minecraft.nbt.CompoundTag>);
+  public static net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket create(net.minecraft.world.level.block.entity.BlockEntity);
+  private net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket(net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.nbt.CompoundTag);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener);
+  public net.minecraft.core.BlockPos getPos();
+  public net.minecraft.world.level.block.entity.BlockEntityType<?> getType();
+  public net.minecraft.nbt.CompoundTag getTag();
+  public void handle(net.minecraft.network.PacketListener);
+}
+
+Compiled from "ClientboundContainerSetDataPacket.java"
+public class net.minecraft.network.protocol.game.ClientboundContainerSetDataPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+  private final int containerId;
+  private final int id;
+  private final int value;
+  public net.minecraft.network.protocol.game.ClientboundContainerSetDataPacket(int, int, int);
+  public net.minecraft.network.protocol.game.ClientboundContainerSetDataPacket(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener);
+  public int getContainerId();
+  public int getId();
+  public int getValue();
+  public void handle(net.minecraft.network.PacketListener);
+}
+
+Compiled from "ClientboundContainerSetContentPacket.java"
+public class net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+  private final int containerId;
+  private final int stateId;
+  private final java.util.List<net.minecraft.world.item.ItemStack> items;
+  private final net.minecraft.world.item.ItemStack carriedItem;
+  public net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket(int, int, net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack);
+  public net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener);
+  public int getContainerId();
+  public java.util.List<net.minecraft.world.item.ItemStack> getItems();
+  public net.minecraft.world.item.ItemStack getCarriedItem();
+  public int getStateId();
+  public void handle(net.minecraft.network.PacketListener);
+}
+
+Compiled from "ClientboundOpenScreenPacket.java"
+public class net.minecraft.network.protocol.game.ClientboundOpenScreenPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+  private final int containerId;
+  private final net.minecraft.world.inventory.MenuType<?> type;
+  private final net.minecraft.network.chat.Component title;
+  public net.minecraft.network.protocol.game.ClientboundOpenScreenPacket(int, net.minecraft.world.inventory.MenuType<?>, net.minecraft.network.chat.Component);
+  public net.minecraft.network.protocol.game.ClientboundOpenScreenPacket(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener);
+  public int getContainerId();
+  public net.minecraft.world.inventory.MenuType<?> getType();
+  public net.minecraft.network.chat.Component getTitle();
+  public void handle(net.minecraft.network.PacketListener);
+}
+
+Compiled from "ClientboundForgetLevelChunkPacket.java"
+public class net.minecraft.network.protocol.game.ClientboundForgetLevelChunkPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> {
+  private final int x;
+  private final int z;
+  public net.minecraft.network.protocol.game.ClientboundForgetLevelChunkPacket(int, int);
+  public net.minecraft.network.protocol.game.ClientboundForgetLevelChunkPacket(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public void handle(net.minecraft.network.protocol.game.ClientGamePacketListener);
+  public int getX();
+  public int getZ();
+  public void handle(net.minecraft.network.PacketListener);
+}
+
+Compiled from "Connection.java"
+public class net.minecraft.network.Connection extends io.netty.channel.SimpleChannelInboundHandler<net.minecraft.network.protocol.Packet<?>> {
+  private static final float AVERAGE_PACKETS_SMOOTHING;
+  private static final org.slf4j.Logger LOGGER;
+  public static final org.slf4j.Marker ROOT_MARKER;
+  public static final org.slf4j.Marker PACKET_MARKER;
+  public static final org.slf4j.Marker PACKET_RECEIVED_MARKER;
+  public static final org.slf4j.Marker PACKET_SENT_MARKER;
+  public static final io.netty.util.AttributeKey<net.minecraft.network.ConnectionProtocol> ATTRIBUTE_PROTOCOL;
+  public static final net.minecraft.util.LazyLoadedValue<io.netty.channel.nio.NioEventLoopGroup> NETWORK_WORKER_GROUP;
+  public static final net.minecraft.util.LazyLoadedValue<io.netty.channel.epoll.EpollEventLoopGroup> NETWORK_EPOLL_WORKER_GROUP;
+  public static final net.minecraft.util.LazyLoadedValue<io.netty.channel.DefaultEventLoopGroup> LOCAL_WORKER_GROUP;
+  private final net.minecraft.network.protocol.PacketFlow receiving;
+  private final java.util.Queue<net.minecraft.network.Connection$PacketHolder> queue;
+  private io.netty.channel.Channel channel;
+  private java.net.SocketAddress address;
+  private net.minecraft.network.PacketListener packetListener;
+  private net.minecraft.network.chat.Component disconnectedReason;
+  private boolean encrypted;
+  private boolean disconnectionHandled;
+  private int receivedPackets;
+  private int sentPackets;
+  private float averageReceivedPackets;
+  private float averageSentPackets;
+  private int tickCount;
+  private boolean handlingFault;
+  private volatile net.minecraft.network.chat.Component delayedDisconnect;
+  private java.util.function.Consumer<net.minecraft.network.Connection> activationHandler;
+  public net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow);
+  public void channelActive(io.netty.channel.ChannelHandlerContext) throws java.lang.Exception;
+  public void setProtocol(net.minecraft.network.ConnectionProtocol);
+  public void channelInactive(io.netty.channel.ChannelHandlerContext);
+  public void exceptionCaught(io.netty.channel.ChannelHandlerContext, java.lang.Throwable);
+  protected void channelRead0(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>);
+  private static <T extends net.minecraft.network.PacketListener> void genericsFtw(net.minecraft.network.protocol.Packet<T>, net.minecraft.network.PacketListener);
+  public void setListener(net.minecraft.network.PacketListener);
+  public void send(net.minecraft.network.protocol.Packet<?>);
+  public void send(net.minecraft.network.protocol.Packet<?>, net.minecraft.network.PacketSendListener);
+  private void sendPacket(net.minecraft.network.protocol.Packet<?>, net.minecraft.network.PacketSendListener);
+  private void doSendPacket(net.minecraft.network.protocol.Packet<?>, net.minecraft.network.PacketSendListener, net.minecraft.network.ConnectionProtocol, net.minecraft.network.ConnectionProtocol);
+  private net.minecraft.network.ConnectionProtocol getCurrentProtocol();
+  private void flushQueue();
+  public void tick();
+  protected void tickSecond();
+  public java.net.SocketAddress getRemoteAddress();
+  public void disconnect(net.minecraft.network.chat.Component);
+  public boolean isMemoryConnection();
+  public net.minecraft.network.protocol.PacketFlow getReceiving();
+  public net.minecraft.network.protocol.PacketFlow getSending();
+  public static net.minecraft.network.Connection connectToServer(java.net.InetSocketAddress, boolean);
+  public static io.netty.channel.ChannelFuture connect(java.net.InetSocketAddress, boolean, net.minecraft.network.Connection);
+  public static void configureSerialization(io.netty.channel.ChannelPipeline, net.minecraft.network.protocol.PacketFlow);
+  public static net.minecraft.network.Connection connectToLocalServer(java.net.SocketAddress);
+  public void setEncryptionKey(javax.crypto.Cipher, javax.crypto.Cipher);
+  public boolean isEncrypted();
+  public boolean isConnected();
+  public boolean isConnecting();
+  public net.minecraft.network.PacketListener getPacketListener();
+  public net.minecraft.network.chat.Component getDisconnectedReason();
+  public void setReadOnly();
+  public void setupCompression(int, boolean);
+  public void handleDisconnection();
+  public float getAverageReceivedPackets();
+  public float getAverageSentPackets();
+  public io.netty.channel.Channel channel();
+  public net.minecraft.network.protocol.PacketFlow getDirection();
+  protected void channelRead0(io.netty.channel.ChannelHandlerContext, java.lang.Object) throws java.lang.Exception;
+  private void lambda$doSendPacket$9(net.minecraft.network.PacketSendListener, io.netty.util.concurrent.Future) throws java.lang.Exception;
+  private void lambda$sendPacket$8(net.minecraft.network.protocol.Packet, net.minecraft.network.PacketSendListener, net.minecraft.network.ConnectionProtocol, net.minecraft.network.ConnectionProtocol);
+  private void lambda$exceptionCaught$7(net.minecraft.network.chat.Component);
+  private void lambda$setProtocol$6();
+  private static io.netty.channel.DefaultEventLoopGroup lambda$static$5();
+  private static io.netty.channel.epoll.EpollEventLoopGroup lambda$static$4();
+  private static io.netty.channel.nio.NioEventLoopGroup lambda$static$3();
+  private static void lambda$static$2(org.slf4j.Marker);
+  private static void lambda$static$1(org.slf4j.Marker);
+  private static void lambda$static$0(org.slf4j.Marker);
+  static {};
+}
+
+Compiled from "RecipeManager.java"
+public class net.minecraft.world.item.crafting.RecipeManager extends net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener {
+  private static final com.google.gson.Gson GSON;
+  private static final org.slf4j.Logger LOGGER;
+  private java.util.Map<net.minecraft.world.item.crafting.RecipeType<?>, java.util.Map<net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>>> recipes;
+  private java.util.Map<net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Recipe<?>> byName;
+  private boolean hasErrors;
+  private final net.minecraftforge.common.crafting.conditions.ICondition$IContext context;
+  public net.minecraft.world.item.crafting.RecipeManager();
+  public net.minecraft.world.item.crafting.RecipeManager(net.minecraftforge.common.crafting.conditions.ICondition$IContext);
+  protected void apply(java.util.Map<net.minecraft.resources.ResourceLocation, com.google.gson.JsonElement>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  public boolean hadErrorsLoading();
+  public <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> java.util.Optional<T> getRecipeFor(net.minecraft.world.item.crafting.RecipeType<T>, C, net.minecraft.world.level.Level);
+  public <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> java.util.Optional<com.mojang.datafixers.util.Pair<net.minecraft.resources.ResourceLocation, T>> getRecipeFor(net.minecraft.world.item.crafting.RecipeType<T>, C, net.minecraft.world.level.Level, net.minecraft.resources.ResourceLocation);
+  public <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> java.util.List<T> getAllRecipesFor(net.minecraft.world.item.crafting.RecipeType<T>);
+  public <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> java.util.List<T> getRecipesFor(net.minecraft.world.item.crafting.RecipeType<T>, C, net.minecraft.world.level.Level);
+  private <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> java.util.Map<net.minecraft.resources.ResourceLocation, T> byType(net.minecraft.world.item.crafting.RecipeType<T>);
+  public <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getRemainingItemsFor(net.minecraft.world.item.crafting.RecipeType<T>, C, net.minecraft.world.level.Level);
+  public java.util.Optional<? extends net.minecraft.world.item.crafting.Recipe<?>> byKey(net.minecraft.resources.ResourceLocation);
+  public java.util.Collection<net.minecraft.world.item.crafting.Recipe<?>> getRecipes();
+  public java.util.stream.Stream<net.minecraft.resources.ResourceLocation> getRecipeIds();
+  public static net.minecraft.world.item.crafting.Recipe<?> fromJson(net.minecraft.resources.ResourceLocation, com.google.gson.JsonObject);
+  public static net.minecraft.world.item.crafting.Recipe<?> fromJson(net.minecraft.resources.ResourceLocation, com.google.gson.JsonObject, net.minecraftforge.common.crafting.conditions.ICondition$IContext);
+  public void replaceRecipes(java.lang.Iterable<net.minecraft.world.item.crafting.Recipe<?>>);
+  public static <C extends net.minecraft.world.Container, T extends net.minecraft.world.item.crafting.Recipe<C>> net.minecraft.world.item.crafting.RecipeManager$CachedCheck<C, T> createCheck(net.minecraft.world.item.crafting.RecipeType<T>);
+  protected void apply(java.lang.Object, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  private static void lambda$replaceRecipes$11(java.util.Map, com.google.common.collect.ImmutableMap$Builder, net.minecraft.world.item.crafting.Recipe);
+  private static java.util.Map lambda$replaceRecipes$10(net.minecraft.world.item.crafting.RecipeType);
+  private static com.google.gson.JsonSyntaxException lambda$fromJson$9(java.lang.String);
+  private static java.util.stream.Stream lambda$getRecipeIds$8(java.util.Map);
+  private static java.util.stream.Stream lambda$getRecipes$7(java.util.Map);
+  private static java.lang.String lambda$getRecipesFor$6(net.minecraft.world.level.Level, net.minecraft.world.item.crafting.Recipe);
+  private static boolean lambda$getRecipesFor$5(net.minecraft.world.Container, net.minecraft.world.level.Level, net.minecraft.world.item.crafting.Recipe);
+  private static com.mojang.datafixers.util.Pair lambda$getRecipeFor$4(java.util.Map$Entry);
+  private static boolean lambda$getRecipeFor$3(net.minecraft.world.Container, net.minecraft.world.level.Level, java.util.Map$Entry);
+  private static boolean lambda$getRecipeFor$2(net.minecraft.world.Container, net.minecraft.world.level.Level, net.minecraft.world.item.crafting.Recipe);
+  private static java.util.Map lambda$apply$1(java.util.Map$Entry);
+  private static com.google.common.collect.ImmutableMap$Builder lambda$apply$0(net.minecraft.world.item.crafting.RecipeType);
+  static {};
+}
+
+Compiled from "AbstractContainerMenu.java"
+public abstract class net.minecraft.world.inventory.AbstractContainerMenu {
+  private static final org.slf4j.Logger LOGGER;
+  public static final int SLOT_CLICKED_OUTSIDE;
+  public static final int QUICKCRAFT_TYPE_CHARITABLE;
+  public static final int QUICKCRAFT_TYPE_GREEDY;
+  public static final int QUICKCRAFT_TYPE_CLONE;
+  public static final int QUICKCRAFT_HEADER_START;
+  public static final int QUICKCRAFT_HEADER_CONTINUE;
+  public static final int QUICKCRAFT_HEADER_END;
+  public static final int CARRIED_SLOT_SIZE;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> lastSlots;
+  public final net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot> slots;
+  private final java.util.List<net.minecraft.world.inventory.DataSlot> dataSlots;
+  private net.minecraft.world.item.ItemStack carried;
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> remoteSlots;
+  private final it.unimi.dsi.fastutil.ints.IntList remoteDataSlots;
+  private net.minecraft.world.item.ItemStack remoteCarried;
+  private int stateId;
+  private final net.minecraft.world.inventory.MenuType<?> menuType;
+  public final int containerId;
+  private int quickcraftType;
+  private int quickcraftStatus;
+  private final java.util.Set<net.minecraft.world.inventory.Slot> quickcraftSlots;
+  private final java.util.List<net.minecraft.world.inventory.ContainerListener> containerListeners;
+  private net.minecraft.world.inventory.ContainerSynchronizer synchronizer;
+  private boolean suppressRemoteUpdates;
+  protected net.minecraft.world.inventory.AbstractContainerMenu(net.minecraft.world.inventory.MenuType<?>, int);
+  protected static boolean stillValid(net.minecraft.world.inventory.ContainerLevelAccess, net.minecraft.world.entity.player.Player, net.minecraft.world.level.block.Block);
+  public net.minecraft.world.inventory.MenuType<?> getType();
+  protected static void checkContainerSize(net.minecraft.world.Container, int);
+  protected static void checkContainerDataCount(net.minecraft.world.inventory.ContainerData, int);
+  public boolean isValidSlotIndex(int);
+  protected net.minecraft.world.inventory.Slot addSlot(net.minecraft.world.inventory.Slot);
+  protected net.minecraft.world.inventory.DataSlot addDataSlot(net.minecraft.world.inventory.DataSlot);
+  protected void addDataSlots(net.minecraft.world.inventory.ContainerData);
+  public void addSlotListener(net.minecraft.world.inventory.ContainerListener);
+  public void setSynchronizer(net.minecraft.world.inventory.ContainerSynchronizer);
+  public void sendAllDataToRemote();
+  public void removeSlotListener(net.minecraft.world.inventory.ContainerListener);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  public void broadcastChanges();
+  public void broadcastFullState();
+  private void updateDataSlotListeners(int, int);
+  private void triggerSlotListeners(int, net.minecraft.world.item.ItemStack, java.util.function.Supplier<net.minecraft.world.item.ItemStack>);
+  private void synchronizeSlotToRemote(int, net.minecraft.world.item.ItemStack, java.util.function.Supplier<net.minecraft.world.item.ItemStack>);
+  private void synchronizeDataSlotToRemote(int, int);
+  private void synchronizeCarriedToRemote();
+  public void setRemoteSlot(int, net.minecraft.world.item.ItemStack);
+  public void setRemoteSlotNoCopy(int, net.minecraft.world.item.ItemStack);
+  public void setRemoteCarried(net.minecraft.world.item.ItemStack);
+  public boolean clickMenuButton(net.minecraft.world.entity.player.Player, int);
+  public net.minecraft.world.inventory.Slot getSlot(int);
+  public abstract net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void clicked(int, int, net.minecraft.world.inventory.ClickType, net.minecraft.world.entity.player.Player);
+  private void doClick(int, int, net.minecraft.world.inventory.ClickType, net.minecraft.world.entity.player.Player);
+  private boolean tryItemClickBehaviourOverride(net.minecraft.world.entity.player.Player, net.minecraft.world.inventory.ClickAction, net.minecraft.world.inventory.Slot, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  private net.minecraft.world.entity.SlotAccess createCarriedSlotAccess();
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public void removed(net.minecraft.world.entity.player.Player);
+  protected void clearContainer(net.minecraft.world.entity.player.Player, net.minecraft.world.Container);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void setItem(int, int, net.minecraft.world.item.ItemStack);
+  public void initializeContents(int, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack);
+  public void setData(int, int);
+  public abstract boolean stillValid(net.minecraft.world.entity.player.Player);
+  protected boolean moveItemStackTo(net.minecraft.world.item.ItemStack, int, int, boolean);
+  public static int getQuickcraftType(int);
+  public static int getQuickcraftHeader(int);
+  public static int getQuickcraftMask(int, int);
+  public static boolean isValidQuickcraftType(int, net.minecraft.world.entity.player.Player);
+  protected void resetQuickCraft();
+  public static boolean canItemQuickReplace(net.minecraft.world.inventory.Slot, net.minecraft.world.item.ItemStack, boolean);
+  public static int getQuickCraftPlaceCount(java.util.Set<net.minecraft.world.inventory.Slot>, int, net.minecraft.world.item.ItemStack);
+  public boolean canDragTo(net.minecraft.world.inventory.Slot);
+  public static int getRedstoneSignalFromBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public static int getRedstoneSignalFromContainer(net.minecraft.world.Container);
+  public void setCarried(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack getCarried();
+  public void suppressRemoteUpdates();
+  public void resumeRemoteUpdates();
+  public void transferState(net.minecraft.world.inventory.AbstractContainerMenu);
+  public java.util.OptionalInt findSlot(net.minecraft.world.Container, int);
+  public int getStateId();
+  public int incrementStateId();
+  private static void lambda$doClick$4(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot, net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  private void lambda$doClick$3(net.minecraft.world.inventory.Slot, net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  private java.lang.String lambda$clicked$2() throws java.lang.Exception;
+  private java.lang.String lambda$clicked$1() throws java.lang.Exception;
+  private static java.lang.Boolean lambda$stillValid$0(net.minecraft.world.entity.player.Player, net.minecraft.world.level.block.Block, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  static {};
+}

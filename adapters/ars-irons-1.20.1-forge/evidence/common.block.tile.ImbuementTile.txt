@@ -1,0 +1,793 @@
+Compiled from "ImbuementTile.java"
+public class com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile extends com.hollingsworth.arsnouveau.api.source.AbstractSourceMachine implements net.minecraft.world.Container,com.hollingsworth.arsnouveau.common.block.ITickable,software.bernie.geckolib.animatable.GeoBlockEntity,com.hollingsworth.arsnouveau.api.client.ITooltipProvider,com.hollingsworth.arsnouveau.api.block.IPedestalMachine {
+  private final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> itemHandler;
+
+  public net.minecraft.world.item.ItemStack stack;
+
+  public net.minecraft.world.entity.item.ItemEntity entity;
+
+  public boolean draining;
+
+  com.hollingsworth.arsnouveau.api.imbuement_chamber.IImbuementRecipe recipe;
+
+  int backoff;
+
+  public float frames;
+
+  boolean hasRecipe;
+
+  int craftTicks;
+
+  software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache factory;
+
+  public com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #57                 // Field com/hollingsworth/arsnouveau/setup/registry/BlockRegistry.IMBUEMENT_TILE:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+       4: aload_1
+       5: aload_2
+       6: invokespecial #60                 // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine."<init>":(Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       9: aload_0
+      10: aload_0
+      11: invokedynamic #79,  0             // InvokeDynamic #0:get:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      16: invokestatic  #85                 // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      19: putfield      #87                 // Field itemHandler:Lnet/minecraftforge/common/util/LazyOptional;
+      22: aload_0
+      23: getstatic     #92                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      26: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      29: aload_0
+      30: aload_0
+      31: invokestatic  #100                // Method software/bernie/geckolib/util/GeckoLibUtil.createInstanceCache:(Lsoftware/bernie/geckolib/core/animatable/GeoAnimatable;)Lsoftware/bernie/geckolib/core/animatable/instance/AnimatableInstanceCache;
+      34: putfield      #102                // Field factory:Lsoftware/bernie/geckolib/core/animatable/instance/AnimatableInstanceCache;
+      37: return
+
+  public int getTransferRate();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void lightPedestal(net.minecraft.world.level.Level);
+    Code:
+       0: aload_1
+       1: ifnull        69
+       4: aload_0
+       5: aload_0
+       6: invokevirtual #116                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       9: iconst_1
+      10: aload_1
+      11: invokevirtual #120                // Method pedestalList:(Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/level/Level;)Ljava/util/List;
+      14: invokeinterface #126,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      19: astore_2
+      20: aload_2
+      21: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      26: ifeq          69
+      29: aload_2
+      30: invokeinterface #135,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      35: checkcast     #137                // class net/minecraft/core/BlockPos
+      38: astore_3
+      39: aload_1
+      40: sipush        255
+      43: sipush        255
+      46: sipush        255
+      49: aload_1
+      50: getfield      #143                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+      53: invokestatic  #149                // Method com/hollingsworth/arsnouveau/client/particle/ParticleColor.makeRandomColor:(IIILnet/minecraft/util/RandomSource;)Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+      56: aload_3
+      57: invokevirtual #152                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+      60: sipush        300
+      63: invokestatic  #158                // Method com/hollingsworth/arsnouveau/client/particle/ParticleUtil.spawnOrb:(Lnet/minecraft/world/level/Level;Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;Lnet/minecraft/core/BlockPos;I)V
+      66: goto          20
+      69: return
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: ifnonnull     8
+       7: return
+       8: aload_0
+       9: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      12: getfield      #168                // Field net/minecraft/world/level/Level.f_46443_:Z
+      15: ifeq          283
+      18: aload_0
+      19: getfield      #170                // Field draining:Z
+      22: ifeq          30
+      25: bipush        20
+      27: goto          32
+      30: bipush        40
+      32: istore_1
+      33: aload_0
+      34: getfield      #170                // Field draining:Z
+      37: ifeq          44
+      40: iconst_3
+      41: goto          46
+      44: bipush        6
+      46: istore_2
+      47: aload_0
+      48: getfield      #170                // Field draining:Z
+      51: ifeq          58
+      54: iconst_2
+      55: goto          59
+      58: iconst_1
+      59: istore_3
+      60: aload_0
+      61: getfield      #170                // Field draining:Z
+      64: ifeq          80
+      67: ldc2_w        #171                // double 0.1d
+      70: ldc2_w        #173                // double 0.2d
+      73: invokestatic  #178                // Method com/hollingsworth/arsnouveau/client/particle/ParticleUtil.inRange:(DD)D
+      76: d2f
+      77: goto          90
+      80: ldc2_w        #179                // double 0.05d
+      83: ldc2_w        #181                // double 0.15d
+      86: invokestatic  #178                // Method com/hollingsworth/arsnouveau/client/particle/ParticleUtil.inRange:(DD)D
+      89: d2f
+      90: fstore        4
+      92: aload_0
+      93: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      96: getfield      #143                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+      99: iload_2
+     100: invokeinterface #188,  2          // InterfaceMethod net/minecraft/util/RandomSource.m_188503_:(I)I
+     105: ifne          257
+     108: invokestatic  #194                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     111: invokevirtual #197                // Method net/minecraft/client/Minecraft.m_91104_:()Z
+     114: ifne          257
+     117: iconst_0
+     118: istore        5
+     120: iload         5
+     122: iload_3
+     123: if_icmpge     257
+     126: new           #199                // class net/minecraft/world/phys/Vec3
+     129: dup
+     130: aload_0
+     131: invokevirtual #203                // Method getX:()D
+     134: aload_0
+     135: invokevirtual #206                // Method getY:()D
+     138: aload_0
+     139: invokevirtual #209                // Method getZ:()D
+     142: invokespecial #212                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+     145: ldc2_w        #213                // double 0.5d
+     148: ldc2_w        #213                // double 0.5d
+     151: ldc2_w        #213                // double 0.5d
+     154: invokevirtual #218                // Method net/minecraft/world/phys/Vec3.m_82520_:(DDD)Lnet/minecraft/world/phys/Vec3;
+     157: astore        6
+     159: aload         6
+     161: invokestatic  #222                // Method com/hollingsworth/arsnouveau/client/particle/ParticleUtil.pointInSphere:()Lnet/minecraft/world/phys/Vec3;
+     164: invokevirtual #226                // Method net/minecraft/world/phys/Vec3.m_82549_:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+     167: astore        6
+     169: aload_0
+     170: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     173: new           #145                // class com/hollingsworth/arsnouveau/client/particle/ParticleColor
+     176: dup
+     177: sipush        255
+     180: bipush        25
+     182: sipush        180
+     185: invokespecial #229                // Method com/hollingsworth/arsnouveau/client/particle/ParticleColor."<init>":(III)V
+     188: fload         4
+     190: iload_1
+     191: aload_0
+     192: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     195: getfield      #143                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     198: bipush        20
+     200: invokeinterface #188,  2          // InterfaceMethod net/minecraft/util/RandomSource.m_188503_:(I)I
+     205: iadd
+     206: invokestatic  #235                // Method com/hollingsworth/arsnouveau/client/particle/ParticleLineData.createData:(Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;FI)Lnet/minecraft/core/particles/ParticleOptions;
+     209: aload         6
+     211: invokevirtual #238                // Method net/minecraft/world/phys/Vec3.m_7096_:()D
+     214: aload         6
+     216: invokevirtual #241                // Method net/minecraft/world/phys/Vec3.m_7098_:()D
+     219: aload         6
+     221: invokevirtual #244                // Method net/minecraft/world/phys/Vec3.m_7094_:()D
+     224: aload_0
+     225: invokevirtual #203                // Method getX:()D
+     228: ldc2_w        #213                // double 0.5d
+     231: dadd
+     232: aload_0
+     233: invokevirtual #206                // Method getY:()D
+     236: ldc2_w        #213                // double 0.5d
+     239: dadd
+     240: aload_0
+     241: invokevirtual #209                // Method getZ:()D
+     244: ldc2_w        #213                // double 0.5d
+     247: dadd
+     248: invokevirtual #248                // Method net/minecraft/world/level/Level.m_7106_:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+     251: iinc          5, 1
+     254: goto          120
+     257: aload_0
+     258: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+     261: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     264: ifne          282
+     267: aload_0
+     268: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     271: ifnonnull     282
+     274: aload_0
+     275: aload_0
+     276: invokevirtual #257                // Method getRecipeNow:()Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     279: putfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     282: return
+     283: aload_0
+     284: aload_0
+     285: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     288: ifnull        295
+     291: iconst_1
+     292: goto          296
+     295: iconst_0
+     296: putfield      #259                // Field hasRecipe:Z
+     299: aload_0
+     300: getfield      #261                // Field backoff:I
+     303: ifle          317
+     306: aload_0
+     307: dup
+     308: getfield      #261                // Field backoff:I
+     311: iconst_1
+     312: isub
+     313: putfield      #261                // Field backoff:I
+     316: return
+     317: aload_0
+     318: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+     321: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     324: ifeq          328
+     327: return
+     328: aload_0
+     329: getfield      #263                // Field craftTicks:I
+     332: ifle          345
+     335: aload_0
+     336: dup
+     337: getfield      #263                // Field craftTicks:I
+     340: iconst_1
+     341: isub
+     342: putfield      #263                // Field craftTicks:I
+     345: aload_0
+     346: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     349: ifnonnull     372
+     352: aload_0
+     353: invokevirtual #257                // Method getRecipeNow:()Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     356: astore_1
+     357: aload_1
+     358: ifnull        372
+     361: aload_0
+     362: aload_1
+     363: putfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     366: aload_0
+     367: bipush        100
+     369: putfield      #263                // Field craftTicks:I
+     372: aload_0
+     373: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     376: ifnull        392
+     379: aload_0
+     380: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     383: aload_0
+     384: invokeinterface #269,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.isMatch:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Z
+     389: ifne          421
+     392: aload_0
+     393: bipush        20
+     395: putfield      #261                // Field backoff:I
+     398: aload_0
+     399: aconst_null
+     400: putfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     403: aload_0
+     404: getfield      #170                // Field draining:Z
+     407: ifeq          420
+     410: aload_0
+     411: iconst_0
+     412: putfield      #170                // Field draining:Z
+     415: aload_0
+     416: invokevirtual #272                // Method updateBlock:()Z
+     419: pop
+     420: return
+     421: sipush        200
+     424: istore_1
+     425: aload_0
+     426: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     429: aload_0
+     430: invokeinterface #276,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.getSourceCost:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)I
+     435: istore_2
+     436: aload_0
+     437: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     440: invokevirtual #280                // Method net/minecraft/world/level/Level.m_46467_:()J
+     443: ldc2_w        #281                // long 20l
+     446: lrem
+     447: lconst_0
+     448: lcmp
+     449: ifne          601
+     452: aload_0
+     453: invokevirtual #285                // Method getSource:()I
+     456: iload_2
+     457: if_icmpge     601
+     460: aload_0
+     461: sipush        200
+     464: iload_2
+     465: invokestatic  #291                // Method java/lang/Math.min:(II)I
+     468: invokevirtual #295                // Method canAcceptSource:(I)Z
+     471: ifne          475
+     474: return
+     475: aload_0
+     476: getfield      #298                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     479: aload_0
+     480: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     483: iconst_2
+     484: sipush        200
+     487: iload_2
+     488: invokestatic  #291                // Method java/lang/Math.min:(II)I
+     491: invokestatic  #304                // Method com/hollingsworth/arsnouveau/api/util/SourceUtil.takeSource:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Level;II)Lcom/hollingsworth/arsnouveau/api/source/ISpecialSourceProvider;
+     494: astore_3
+     495: aload_3
+     496: ifnull        577
+     499: aload_0
+     500: iload_1
+     501: invokevirtual #307                // Method addSource:(I)I
+     504: pop
+     505: new           #309                // class com/hollingsworth/arsnouveau/common/entity/EntityFlyingItem
+     508: dup
+     509: aload_0
+     510: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     513: aload_3
+     514: invokeinterface #314,  1          // InterfaceMethod com/hollingsworth/arsnouveau/api/source/ISpecialSourceProvider.getCurrentPos:()Lnet/minecraft/core/BlockPos;
+     519: invokevirtual #152                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+     522: aload_0
+     523: getfield      #298                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     526: sipush        255
+     529: bipush        50
+     531: bipush        80
+     533: invokespecial #317                // Method com/hollingsworth/arsnouveau/common/entity/EntityFlyingItem."<init>":(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;III)V
+     536: invokevirtual #321                // Method com/hollingsworth/arsnouveau/common/entity/EntityFlyingItem.withNoTouch:()Lcom/hollingsworth/arsnouveau/common/entity/EntityFlyingItem;
+     539: astore        4
+     541: aload         4
+     543: fconst_2
+     544: invokevirtual #325                // Method com/hollingsworth/arsnouveau/common/entity/EntityFlyingItem.setDistanceAdjust:(F)V
+     547: aload_0
+     548: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     551: aload         4
+     553: invokevirtual #329                // Method net/minecraft/world/level/Level.m_7967_:(Lnet/minecraft/world/entity/Entity;)Z
+     556: pop
+     557: aload_0
+     558: getfield      #170                // Field draining:Z
+     561: ifne          574
+     564: aload_0
+     565: iconst_1
+     566: putfield      #170                // Field draining:Z
+     569: aload_0
+     570: invokevirtual #272                // Method updateBlock:()Z
+     573: pop
+     574: goto          601
+     577: aload_0
+     578: bipush        10
+     580: invokevirtual #307                // Method addSource:(I)I
+     583: pop
+     584: aload_0
+     585: getfield      #170                // Field draining:Z
+     588: ifeq          601
+     591: aload_0
+     592: iconst_0
+     593: putfield      #170                // Field draining:Z
+     596: aload_0
+     597: invokevirtual #272                // Method updateBlock:()Z
+     600: pop
+     601: aload_0
+     602: invokevirtual #285                // Method getSource:()I
+     605: iload_2
+     606: if_icmplt     660
+     609: aload_0
+     610: getfield      #263                // Field craftTicks:I
+     613: ifgt          660
+     616: aload_0
+     617: iconst_0
+     618: aload_0
+     619: getfield      #253                // Field recipe:Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+     622: aload_0
+     623: invokeinterface #333,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.getResult:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Lnet/minecraft/world/item/ItemStack;
+     628: invokevirtual #337                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     631: invokevirtual #341                // Method m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     634: aload_0
+     635: iload_2
+     636: ineg
+     637: invokevirtual #307                // Method addSource:(I)I
+     640: pop
+     641: aload_0
+     642: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     645: aload_0
+     646: getfield      #298                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+     649: invokestatic  #345                // Method com/hollingsworth/arsnouveau/client/particle/ParticleColor.defaultParticleColor:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+     652: invokestatic  #349                // Method com/hollingsworth/arsnouveau/client/particle/ParticleUtil.spawnTouchPacket:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;)V
+     655: aload_0
+     656: invokevirtual #272                // Method updateBlock:()Z
+     659: pop
+     660: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: ldc_w         #367                // String itemStack
+       5: invokevirtual #373                // Method net/minecraft/nbt/CompoundTag.m_128423_:(Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
+       8: checkcast     #369                // class net/minecraft/nbt/CompoundTag
+      11: invokestatic  #377                // Method net/minecraft/world/item/ItemStack.m_41712_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/item/ItemStack;
+      14: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      17: aload_0
+      18: aload_1
+      19: ldc_w         #378                // String draining
+      22: invokevirtual #382                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      25: putfield      #170                // Field draining:Z
+      28: aload_0
+      29: aload_1
+      30: ldc_w         #383                // String hasRecipe
+      33: invokevirtual #382                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      36: putfield      #259                // Field hasRecipe:Z
+      39: aload_0
+      40: aload_1
+      41: ldc_w         #384                // String craftTicks
+      44: invokevirtual #388                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      47: putfield      #263                // Field craftTicks:I
+      50: aload_0
+      51: aload_1
+      52: invokespecial #390                // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+      55: return
+
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #395                // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       9: ifnull        38
+      12: new           #369                // class net/minecraft/nbt/CompoundTag
+      15: dup
+      16: invokespecial #397                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      19: astore_2
+      20: aload_0
+      21: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      24: aload_2
+      25: invokevirtual #401                // Method net/minecraft/world/item/ItemStack.m_41739_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      28: pop
+      29: aload_1
+      30: ldc_w         #367                // String itemStack
+      33: aload_2
+      34: invokevirtual #405                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      37: pop
+      38: aload_1
+      39: ldc_w         #378                // String draining
+      42: aload_0
+      43: getfield      #170                // Field draining:Z
+      46: invokevirtual #409                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      49: aload_1
+      50: ldc_w         #383                // String hasRecipe
+      53: aload_0
+      54: getfield      #259                // Field hasRecipe:Z
+      57: invokevirtual #409                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+      60: aload_1
+      61: ldc_w         #384                // String craftTicks
+      64: aload_0
+      65: getfield      #263                // Field craftTicks:I
+      68: invokevirtual #413                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      71: return
+
+  public int getMaxSource();
+    Code:
+       0: ldc_w         #416                // int 10000000
+       3: ireturn
+
+  public int m_6643_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public int m_6893_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean m_7013_(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_2
+       1: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       4: ifne          17
+       7: aload_0
+       8: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      11: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      14: ifne          19
+      17: iconst_0
+      18: ireturn
+      19: aload_0
+      20: aload_2
+      21: invokevirtual #337                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      24: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      27: aload_0
+      28: invokevirtual #257                // Method getRecipeNow:()Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+      31: astore_3
+      32: aload_0
+      33: getstatic     #92                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      36: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      39: aload_3
+      40: ifnull        47
+      43: iconst_1
+      44: goto          48
+      47: iconst_0
+      48: ireturn
+
+  public boolean m_7983_();
+    Code:
+       0: aload_0
+       1: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       7: ireturn
+
+  public net.minecraft.world.item.ItemStack m_8020_(int);
+    Code:
+       0: aload_0
+       1: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack m_7407_(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: iload_2
+       5: invokevirtual #430                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+       8: astore_3
+       9: aload_0
+      10: invokevirtual #272                // Method updateBlock:()Z
+      13: pop
+      14: aload_3
+      15: areturn
+
+  public net.minecraft.world.item.ItemStack m_8016_(int);
+    Code:
+       0: aload_0
+       1: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #337                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+       7: astore_2
+       8: aload_0
+       9: getstatic     #92                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      12: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      15: aload_0
+      16: invokevirtual #436                // Method m_6596_:()V
+      19: aload_2
+      20: areturn
+
+  public void m_6836_(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       5: aload_0
+       6: bipush        100
+       8: putfield      #263                // Field craftTicks:I
+      11: aload_0
+      12: invokevirtual #272                // Method updateBlock:()Z
+      15: pop
+      16: return
+
+  public boolean m_6542_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public void m_6211_();
+    Code:
+       0: aload_0
+       1: getstatic     #92                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       4: putfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       7: aload_0
+       8: invokevirtual #272                // Method updateBlock:()Z
+      11: pop
+      12: return
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+    Code:
+       0: aload_1
+       1: getstatic     #452                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     15
+       7: aload_0
+       8: getfield      #87                 // Field itemHandler:Lnet/minecraftforge/common/util/LazyOptional;
+      11: invokevirtual #456                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      14: areturn
+      15: aload_0
+      16: aload_1
+      17: aload_2
+      18: invokespecial #458                // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/core/Direction;)Lnet/minecraftforge/common/util/LazyOptional;
+      21: areturn
+
+  public void invalidateCaps();
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field itemHandler:Lnet/minecraftforge/common/util/LazyOptional;
+       4: invokevirtual #466                // Method net/minecraftforge/common/util/LazyOptional.invalidate:()V
+       7: aload_0
+       8: invokespecial #468                // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine.invalidateCaps:()V
+      11: return
+
+  public void registerControllers(software.bernie.geckolib.core.animation.AnimatableManager$ControllerRegistrar);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #19                 // class software/bernie/geckolib/core/animation/AnimationController
+       5: dup
+       6: iconst_0
+       7: new           #19                 // class software/bernie/geckolib/core/animation/AnimationController
+      10: dup
+      11: aload_0
+      12: ldc_w         #472                // String controller
+      15: iconst_1
+      16: aload_0
+      17: invokedynamic #482,  0            // InvokeDynamic #1:handle:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Lsoftware/bernie/geckolib/core/animation/AnimationController$AnimationStateHandler;
+      22: invokespecial #485                // Method software/bernie/geckolib/core/animation/AnimationController."<init>":(Lsoftware/bernie/geckolib/core/animatable/GeoAnimatable;Ljava/lang/String;ILsoftware/bernie/geckolib/core/animation/AnimationController$AnimationStateHandler;)V
+      25: aastore
+      26: invokevirtual #489                // Method software/bernie/geckolib/core/animation/AnimatableManager$ControllerRegistrar.add:([Lsoftware/bernie/geckolib/core/animation/AnimationController;)Lsoftware/bernie/geckolib/core/animation/AnimatableManager$ControllerRegistrar;
+      29: pop
+      30: aload_1
+      31: iconst_1
+      32: anewarray     #19                 // class software/bernie/geckolib/core/animation/AnimationController
+      35: dup
+      36: iconst_0
+      37: new           #19                 // class software/bernie/geckolib/core/animation/AnimationController
+      40: dup
+      41: aload_0
+      42: ldc_w         #491                // String slowcraft_controller
+      45: iconst_1
+      46: aload_0
+      47: invokedynamic #496,  0            // InvokeDynamic #2:handle:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Lsoftware/bernie/geckolib/core/animation/AnimationController$AnimationStateHandler;
+      52: invokespecial #485                // Method software/bernie/geckolib/core/animation/AnimationController."<init>":(Lsoftware/bernie/geckolib/core/animatable/GeoAnimatable;Ljava/lang/String;ILsoftware/bernie/geckolib/core/animation/AnimationController$AnimationStateHandler;)V
+      55: aastore
+      56: invokevirtual #489                // Method software/bernie/geckolib/core/animation/AnimatableManager$ControllerRegistrar.add:([Lsoftware/bernie/geckolib/core/animation/AnimationController;)Lsoftware/bernie/geckolib/core/animation/AnimatableManager$ControllerRegistrar;
+      59: pop
+      60: return
+
+  private software.bernie.geckolib.core.object.PlayState slowCraftPredicate(software.bernie.geckolib.core.animation.AnimationState<?>);
+    Code:
+       0: aload_1
+       1: invokevirtual #505                // Method software/bernie/geckolib/core/animation/AnimationState.getController:()Lsoftware/bernie/geckolib/core/animation/AnimationController;
+       4: invokestatic  #511                // Method software/bernie/geckolib/core/animation/RawAnimation.begin:()Lsoftware/bernie/geckolib/core/animation/RawAnimation;
+       7: ldc_w         #513                // String imbue_slow
+      10: invokevirtual #517                // Method software/bernie/geckolib/core/animation/RawAnimation.thenPlay:(Ljava/lang/String;)Lsoftware/bernie/geckolib/core/animation/RawAnimation;
+      13: invokevirtual #521                // Method software/bernie/geckolib/core/animation/AnimationController.setAnimation:(Lsoftware/bernie/geckolib/core/animation/RawAnimation;)V
+      16: getstatic     #527                // Field software/bernie/geckolib/core/object/PlayState.CONTINUE:Lsoftware/bernie/geckolib/core/object/PlayState;
+      19: areturn
+
+  private software.bernie.geckolib.core.object.PlayState idlePredicate(software.bernie.geckolib.core.animation.AnimationState<?>);
+    Code:
+       0: aload_1
+       1: invokevirtual #505                // Method software/bernie/geckolib/core/animation/AnimationState.getController:()Lsoftware/bernie/geckolib/core/animation/AnimationController;
+       4: invokestatic  #511                // Method software/bernie/geckolib/core/animation/RawAnimation.begin:()Lsoftware/bernie/geckolib/core/animation/RawAnimation;
+       7: ldc_w         #532                // String float
+      10: invokevirtual #517                // Method software/bernie/geckolib/core/animation/RawAnimation.thenPlay:(Ljava/lang/String;)Lsoftware/bernie/geckolib/core/animation/RawAnimation;
+      13: invokevirtual #521                // Method software/bernie/geckolib/core/animation/AnimationController.setAnimation:(Lsoftware/bernie/geckolib/core/animation/RawAnimation;)V
+      16: getstatic     #527                // Field software/bernie/geckolib/core/object/PlayState.CONTINUE:Lsoftware/bernie/geckolib/core/object/PlayState;
+      19: areturn
+
+  public software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache getAnimatableInstanceCache();
+    Code:
+       0: aload_0
+       1: getfield      #102                // Field factory:Lsoftware/bernie/geckolib/core/animatable/instance/AnimatableInstanceCache;
+       4: areturn
+
+  public java.util.List<net.minecraft.world.item.ItemStack> getPedestalItems();
+    Code:
+       0: new           #539                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #540                // Method java/util/ArrayList."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: invokevirtual #543                // Method getNearbyPedestals:()Ljava/util/List;
+      12: invokeinterface #126,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore_2
+      18: aload_2
+      19: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          86
+      27: aload_2
+      28: invokeinterface #135,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #137                // class net/minecraft/core/BlockPos
+      36: astore_3
+      37: aload_0
+      38: getfield      #165                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      41: aload_3
+      42: invokevirtual #547                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      45: astore        5
+      47: aload         5
+      49: instanceof    #549                // class com/hollingsworth/arsnouveau/common/block/tile/ArcanePedestalTile
+      52: ifeq          83
+      55: aload         5
+      57: checkcast     #549                // class com/hollingsworth/arsnouveau/common/block/tile/ArcanePedestalTile
+      60: astore        4
+      62: aload         4
+      64: invokevirtual #552                // Method com/hollingsworth/arsnouveau/common/block/tile/ArcanePedestalTile.getStack:()Lnet/minecraft/world/item/ItemStack;
+      67: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      70: ifne          83
+      73: aload_1
+      74: aload         4
+      76: invokevirtual #552                // Method com/hollingsworth/arsnouveau/common/block/tile/ArcanePedestalTile.getStack:()Lnet/minecraft/world/item/ItemStack;
+      79: invokevirtual #555                // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      82: pop
+      83: goto          18
+      86: aload_1
+      87: areturn
+
+  public java.util.List<net.minecraft.core.BlockPos> getNearbyPedestals();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #116                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       5: iconst_1
+       6: aload_0
+       7: invokevirtual #566                // Method m_58904_:()Lnet/minecraft/world/level/Level;
+      10: invokevirtual #120                // Method pedestalList:(Lnet/minecraft/core/BlockPos;ILnet/minecraft/world/level/Level;)Ljava/util/List;
+      13: areturn
+
+  public com.hollingsworth.arsnouveau.api.imbuement_chamber.IImbuementRecipe getRecipeNow();
+    Code:
+       0: getstatic     #572                // Field com/hollingsworth/arsnouveau/api/registry/ImbuementRecipeRegistry.INSTANCE:Lcom/hollingsworth/arsnouveau/api/registry/ImbuementRecipeRegistry;
+       3: invokevirtual #575                // Method com/hollingsworth/arsnouveau/api/registry/ImbuementRecipeRegistry.getRecipes:()Ljava/util/List;
+       6: invokeinterface #579,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      11: aload_0
+      12: invokedynamic #590,  0            // InvokeDynamic #3:test:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Ljava/util/function/Predicate;
+      17: invokeinterface #596,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      22: invokeinterface #600,  1          // InterfaceMethod java/util/stream/Stream.findFirst:()Ljava/util/Optional;
+      27: aconst_null
+      28: invokevirtual #606                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      31: checkcast     #265                // class com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe
+      34: areturn
+
+  public void getTooltip(java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: aload_0
+       1: invokevirtual #257                // Method getRecipeNow:()Lcom/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe;
+       4: astore_2
+       5: aload_2
+       6: ifnull        97
+       9: aload_2
+      10: aload_0
+      11: invokeinterface #333,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.getResult:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Lnet/minecraft/world/item/ItemStack;
+      16: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      19: ifne          97
+      22: aload_0
+      23: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      26: ifnull        97
+      29: aload_0
+      30: getfield      #94                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      33: invokevirtual #251                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      36: ifne          97
+      39: aload_2
+      40: aload_0
+      41: invokeinterface #276,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.getSourceCost:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)I
+      46: istore_3
+      47: aload_1
+      48: aload_2
+      49: aload_0
+      50: invokeinterface #613,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.getCraftingText:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Lnet/minecraft/network/chat/Component;
+      55: invokeinterface #614,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      60: pop
+      61: iload_3
+      62: ifle          97
+      65: bipush        100
+      67: aload_0
+      68: invokevirtual #285                // Method getSource:()I
+      71: bipush        100
+      73: imul
+      74: iload_3
+      75: idiv
+      76: invokestatic  #291                // Method java/lang/Math.min:(II)I
+      79: istore        4
+      81: aload_1
+      82: aload_2
+      83: aload_0
+      84: iload         4
+      86: invokeinterface #618,  3          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.getCraftingProgressText:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;I)Lnet/minecraft/network/chat/Component;
+      91: invokeinterface #614,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      96: pop
+      97: return
+
+  private boolean lambda$getRecipeNow$1(com.hollingsworth.arsnouveau.api.imbuement_chamber.IImbuementRecipe);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokeinterface #269,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/imbuement_chamber/IImbuementRecipe.isMatch:(Lcom/hollingsworth/arsnouveau/common/block/tile/ImbuementTile;)Z
+       7: ireturn
+
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+    Code:
+       0: new           #625                // class net/minecraftforge/items/wrapper/InvWrapper
+       3: dup
+       4: aload_0
+       5: invokespecial #628                // Method net/minecraftforge/items/wrapper/InvWrapper."<init>":(Lnet/minecraft/world/Container;)V
+       8: areturn
+}

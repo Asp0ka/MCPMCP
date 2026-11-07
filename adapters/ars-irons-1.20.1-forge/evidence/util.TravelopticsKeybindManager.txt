@@ -1,0 +1,154 @@
+Compiled from "TravelopticsKeybindManager.java"
+public class com.gametechbc.traveloptics.util.TravelopticsKeybindManager {
+  private static final java.util.Map<net.minecraft.client.KeyMapping, java.lang.Boolean> keyStates;
+
+  public com.gametechbc.traveloptics.util.TravelopticsKeybindManager();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static boolean wasKeyJustPressed(net.minecraft.client.KeyMapping);
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+       4: istore_1
+       5: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+       8: aload_0
+       9: iconst_0
+      10: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      13: invokeinterface #45,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      18: checkcast     #35                 // class java/lang/Boolean
+      21: invokevirtual #48                 // Method java/lang/Boolean.booleanValue:()Z
+      24: istore_2
+      25: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+      28: aload_0
+      29: iload_1
+      30: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      33: invokeinterface #51,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      38: pop
+      39: iload_1
+      40: ifeq          51
+      43: iload_2
+      44: ifne          51
+      47: iconst_1
+      48: goto          52
+      51: iconst_0
+      52: ireturn
+
+  public static boolean wasKeyJustReleased(net.minecraft.client.KeyMapping);
+    Code:
+       0: aload_0
+       1: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+       4: istore_1
+       5: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+       8: aload_0
+       9: iconst_0
+      10: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      13: invokeinterface #45,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      18: checkcast     #35                 // class java/lang/Boolean
+      21: invokevirtual #48                 // Method java/lang/Boolean.booleanValue:()Z
+      24: istore_2
+      25: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+      28: aload_0
+      29: iload_1
+      30: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      33: invokeinterface #51,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      38: pop
+      39: iload_1
+      40: ifne          51
+      43: iload_2
+      44: ifeq          51
+      47: iconst_1
+      48: goto          52
+      51: iconst_0
+      52: ireturn
+
+  public static boolean isKeyDown(int);
+    Code:
+       0: iload_0
+       1: iconst_1
+       2: if_icmpne     12
+       5: getstatic     #64                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_Z:Lnet/minecraft/client/KeyMapping;
+       8: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      11: ireturn
+      12: iload_0
+      13: iconst_2
+      14: if_icmpne     24
+      17: getstatic     #67                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_X:Lnet/minecraft/client/KeyMapping;
+      20: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      23: ireturn
+      24: iload_0
+      25: iconst_3
+      26: if_icmpne     36
+      29: getstatic     #70                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_C:Lnet/minecraft/client/KeyMapping;
+      32: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      35: ireturn
+      36: iload_0
+      37: iconst_4
+      38: if_icmpne     48
+      41: getstatic     #73                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_B:Lnet/minecraft/client/KeyMapping;
+      44: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      47: ireturn
+      48: iconst_0
+      49: ireturn
+
+  public static net.minecraft.world.entity.player.Player getClientSidePlayer();
+    Code:
+       0: getstatic     #81                 // Field net/minecraftforge/api/distmarker/Dist.CLIENT:Lnet/minecraftforge/api/distmarker/Dist;
+       3: invokedynamic #100,  0            // InvokeDynamic #0:get:()Ljava/util/function/Supplier;
+       8: invokestatic  #106                // Method net/minecraftforge/fml/DistExecutor.unsafeCallWhenOn:(Lnet/minecraftforge/api/distmarker/Dist;Ljava/util/function/Supplier;)Ljava/lang/Object;
+      11: checkcast     #108                // class net/minecraft/world/entity/player/Player
+      14: areturn
+
+  public static void updateKeyStates();
+    Code:
+       0: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+       3: getstatic     #64                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_Z:Lnet/minecraft/client/KeyMapping;
+       6: getstatic     #64                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_Z:Lnet/minecraft/client/KeyMapping;
+       9: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      12: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #51,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      20: pop
+      21: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+      24: getstatic     #67                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_X:Lnet/minecraft/client/KeyMapping;
+      27: getstatic     #67                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_X:Lnet/minecraft/client/KeyMapping;
+      30: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      33: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      36: invokeinterface #51,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      41: pop
+      42: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+      45: getstatic     #70                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_C:Lnet/minecraft/client/KeyMapping;
+      48: getstatic     #70                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_C:Lnet/minecraft/client/KeyMapping;
+      51: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      54: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      57: invokeinterface #51,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      62: pop
+      63: getstatic     #33                 // Field keyStates:Ljava/util/Map;
+      66: getstatic     #73                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_B:Lnet/minecraft/client/KeyMapping;
+      69: getstatic     #73                 // Field com/gametechbc/traveloptics/init/TravelopticsKeybinds.KEY_B:Lnet/minecraft/client/KeyMapping;
+      72: invokevirtual #31                 // Method net/minecraft/client/KeyMapping.m_90857_:()Z
+      75: invokestatic  #39                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      78: invokeinterface #51,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      83: pop
+      84: return
+
+  private static java.util.concurrent.Callable lambda$getClientSidePlayer$1();
+    Code:
+       0: invokedynamic #118,  0            // InvokeDynamic #1:call:()Ljava/util/concurrent/Callable;
+       5: areturn
+
+  private static net.minecraft.client.player.LocalPlayer lambda$getClientSidePlayer$0() throws java.lang.Exception;
+    Code:
+       0: invokestatic  #126                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+       3: getfield      #130                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       6: areturn
+
+  static {};
+    Code:
+       0: new           #133                // class java/util/HashMap
+       3: dup
+       4: invokespecial #134                // Method java/util/HashMap."<init>":()V
+       7: putstatic     #33                 // Field keyStates:Ljava/util/Map;
+      10: return
+}

@@ -1,0 +1,98 @@
+Compiled from "SlotIronFurnaceInputFactory.java"
+public class ironfurnaces.container.slots.SlotIronFurnaceInputFactory extends net.minecraft.world.inventory.Slot {
+  ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase te;
+
+  public int index;
+
+  public ironfurnaces.container.slots.SlotIronFurnaceInputFactory(int, ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: iload_3
+       3: iload         4
+       5: iload         5
+       7: invokespecial #14                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+      10: aload_0
+      11: aload_2
+      12: putfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      15: aload_0
+      16: iload_1
+      17: putfield      #18                 // Field index:I
+      20: return
+
+  public boolean m_5857_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: aload_1
+       5: invokevirtual #30                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.hasRecipe:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ireturn
+
+  public boolean m_6659_();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field index:I
+       4: ifeq          15
+       7: aload_0
+       8: getfield      #18                 // Field index:I
+      11: iconst_5
+      12: if_icmpne     54
+      15: aload_0
+      16: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      19: invokevirtual #38                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getTier:()I
+      22: iconst_1
+      23: if_icmple     52
+      26: aload_0
+      27: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      30: invokevirtual #41                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+      33: ifeq          50
+      36: aload_0
+      37: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      40: invokevirtual #44                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+      43: ifne          50
+      46: iconst_1
+      47: goto          51
+      50: iconst_0
+      51: ireturn
+      52: iconst_0
+      53: ireturn
+      54: aload_0
+      55: getfield      #18                 // Field index:I
+      58: iconst_1
+      59: if_icmpeq     70
+      62: aload_0
+      63: getfield      #18                 // Field index:I
+      66: iconst_4
+      67: if_icmpne     108
+      70: aload_0
+      71: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      74: invokevirtual #38                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getTier:()I
+      77: ifle          106
+      80: aload_0
+      81: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      84: invokevirtual #41                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+      87: ifeq          104
+      90: aload_0
+      91: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      94: invokevirtual #44                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+      97: ifne          104
+     100: iconst_1
+     101: goto          105
+     104: iconst_0
+     105: ireturn
+     106: iconst_0
+     107: ireturn
+     108: aload_0
+     109: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     112: invokevirtual #41                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+     115: ifeq          132
+     118: aload_0
+     119: getfield      #16                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     122: invokevirtual #44                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+     125: ifne          132
+     128: iconst_1
+     129: goto          133
+     132: iconst_0
+     133: ireturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

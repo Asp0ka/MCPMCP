@@ -1,0 +1,163 @@
+Compiled from "ISpellContainer.java"
+public interface io.redspace.ironsspellbooks.api.spells.ISpellContainer {
+  public static final java.lang.String NBT;
+
+  public static final java.lang.String LEGACY_NBT;
+
+  public abstract io.redspace.ironsspellbooks.api.spells.SpellSlot[] getAllSpells();
+
+  public abstract java.util.List<io.redspace.ironsspellbooks.api.spells.SpellSlot> getActiveSpells();
+
+  public abstract int getMaxSpellCount();
+
+  public abstract int getActiveSpellCount();
+
+  public abstract int getNextAvailableIndex();
+
+  public abstract boolean mustEquip();
+
+  public abstract boolean isImproved();
+
+  public abstract boolean isSpellWheel();
+
+  public abstract io.redspace.ironsspellbooks.api.spells.SpellData getSpellAtIndex(int);
+
+  public abstract int getIndexForSpell(io.redspace.ironsspellbooks.api.spells.AbstractSpell);
+
+  public abstract boolean isEmpty();
+
+  public abstract io.redspace.ironsspellbooks.api.spells.ISpellContainerMutable mutableCopy();
+
+  public static boolean isSpellContainer(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: ifnull        26
+       4: aload_0
+       5: invokevirtual #40                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       8: ifne          26
+      11: aload_0
+      12: ldc           #9                  // String irons_spellbooks:spell_container
+      14: ldc           #12                 // String ISB_Spells
+      16: invokestatic  #46                 // Method io/redspace/ironsspellbooks/api/backwards_compat/CodecHelper.hasWithLegacy:(Lnet/minecraft/world/item/ItemStack;Ljava/lang/String;Ljava/lang/String;)Z
+      19: ifeq          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: ireturn
+
+  public static io.redspace.ironsspellbooks.api.spells.ISpellContainer create(int, boolean, boolean);
+    Code:
+       0: new           #52                 // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer
+       3: dup
+       4: iload_0
+       5: iload_1
+       6: iload_2
+       7: invokespecial #56                 // Method io/redspace/ironsspellbooks/capabilities/magic/SpellContainer."<init>":(IZZ)V
+      10: areturn
+
+  public static io.redspace.ironsspellbooks.api.spells.ISpellContainer createScrollContainer(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_1
+       1: iconst_0
+       2: iconst_0
+       3: invokestatic  #65                 // InterfaceMethod create:(IZZ)Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+       6: invokeinterface #67,  1           // InterfaceMethod mutableCopy:()Lio/redspace/ironsspellbooks/api/spells/ISpellContainerMutable;
+      11: astore_3
+      12: aload_3
+      13: aload_0
+      14: iload_1
+      15: iconst_0
+      16: iconst_1
+      17: invokeinterface #73,  5           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainerMutable.addSpellAtIndex:(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IIZ)Z
+      22: pop
+      23: aload_3
+      24: invokeinterface #77,  1           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainerMutable.toImmutable:()Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+      29: astore        4
+      31: aload_2
+      32: aload         4
+      34: invokestatic  #81                 // InterfaceMethod set:(Lnet/minecraft/world/item/ItemStack;Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;)V
+      37: aload         4
+      39: areturn
+
+  public static io.redspace.ironsspellbooks.api.spells.ISpellContainer createImbuedContainer(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_1
+       1: iconst_1
+       2: aload_2
+       3: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       6: instanceof    #95                 // class net/minecraft/world/item/ArmorItem
+       9: ifne          22
+      12: aload_2
+      13: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      16: instanceof    #97                 // class top/theillusivec4/curios/api/type/capability/ICurioItem
+      19: ifeq          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: invokestatic  #65                 // InterfaceMethod create:(IZZ)Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+      30: invokeinterface #67,  1           // InterfaceMethod mutableCopy:()Lio/redspace/ironsspellbooks/api/spells/ISpellContainerMutable;
+      35: astore_3
+      36: aload_3
+      37: aload_0
+      38: iload_1
+      39: iconst_0
+      40: iconst_1
+      41: invokeinterface #73,  5           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainerMutable.addSpellAtIndex:(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IIZ)Z
+      46: pop
+      47: aload_3
+      48: invokeinterface #77,  1           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainerMutable.toImmutable:()Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+      53: astore        4
+      55: aload_2
+      56: aload         4
+      58: invokestatic  #81                 // InterfaceMethod set:(Lnet/minecraft/world/item/ItemStack;Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;)V
+      61: aload         4
+      63: areturn
+
+  public static io.redspace.ironsspellbooks.api.spells.ISpellContainer get(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String irons_spellbooks:spell_container
+       3: getstatic     #105                // Field io/redspace/ironsspellbooks/capabilities/magic/SpellContainer.CODEC:Lcom/mojang/serialization/Codec;
+       6: aconst_null
+       7: ldc           #12                 // String ISB_Spells
+       9: getstatic     #108                // Field io/redspace/ironsspellbooks/capabilities/magic/SpellContainer.LEGACY_CODEC:Lcom/mojang/serialization/Codec;
+      12: invokestatic  #112                // Method io/redspace/ironsspellbooks/api/backwards_compat/CodecHelper.getOrElseWithLegacy:(Lnet/minecraft/world/item/ItemStack;Ljava/lang/String;Lcom/mojang/serialization/Codec;Ljava/lang/Object;Ljava/lang/String;Lcom/mojang/serialization/Codec;)Ljava/lang/Object;
+      15: checkcast     #2                  // class io/redspace/ironsspellbooks/api/spells/ISpellContainer
+      18: areturn
+
+  public static io.redspace.ironsspellbooks.api.spells.ISpellContainer getOrCreate(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #115                // InterfaceMethod isSpellContainer:(Lnet/minecraft/world/item/ItemStack;)Z
+       4: ifeq          12
+       7: aload_0
+       8: invokestatic  #117                // InterfaceMethod get:(Lnet/minecraft/world/item/ItemStack;)Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+      11: areturn
+      12: new           #52                 // class io/redspace/ironsspellbooks/capabilities/magic/SpellContainer
+      15: dup
+      16: iconst_1
+      17: iconst_1
+      18: iconst_0
+      19: invokespecial #56                 // Method io/redspace/ironsspellbooks/capabilities/magic/SpellContainer."<init>":(IZZ)V
+      22: areturn
+
+  public static void set(net.minecraft.world.item.ItemStack, io.redspace.ironsspellbooks.api.spells.ISpellContainer);
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String irons_spellbooks:spell_container
+       3: getstatic     #105                // Field io/redspace/ironsspellbooks/capabilities/magic/SpellContainer.CODEC:Lcom/mojang/serialization/Codec;
+       6: aload_1
+       7: invokestatic  #120                // Method io/redspace/ironsspellbooks/api/backwards_compat/CodecHelper.set:(Lnet/minecraft/world/item/ItemStack;Ljava/lang/String;Lcom/mojang/serialization/Codec;Ljava/lang/Object;)V
+      10: return
+
+  public static void remove(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: ldc           #9                  // String irons_spellbooks:spell_container
+       3: invokevirtual #128                // Method net/minecraft/world/item/ItemStack.m_41749_:(Ljava/lang/String;)V
+       6: return
+
+  public abstract boolean addSpell(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int, boolean, net.minecraft.world.item.ItemStack);
+
+  public abstract void save(net.minecraft.world.item.ItemStack);
+}

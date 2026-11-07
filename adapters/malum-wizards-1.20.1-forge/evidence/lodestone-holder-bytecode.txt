@@ -1,0 +1,90 @@
+Compiled from "ItemHolderBlockEntity.java"
+public abstract class team.lodestar.lodestone.systems.blockentity.ItemHolderBlockEntity extends team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity {
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory inventory;
+
+  public team.lodestar.lodestone.systems.blockentity.ItemHolderBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #12                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: return
+
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: aload_1
+       5: invokevirtual #31                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       8: aload_1
+       9: aload_2
+      10: invokevirtual #37                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.interact:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+      13: pop
+      14: getstatic     #43                 // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+      17: areturn
+
+  public void onBreak(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: aload_0
+       5: getfield      #54                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+       8: aload_0
+       9: getfield      #57                 // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      12: invokevirtual #61                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.dumpItems:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+      15: return
+
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: aload_1
+       5: invokevirtual #66                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.save:(Lnet/minecraft/nbt/CompoundTag;)V
+       8: aload_0
+       9: aload_1
+      10: invokespecial #68                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+      13: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: aload_1
+       5: invokevirtual #74                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.load:(Lnet/minecraft/nbt/CompoundTag;)V
+       8: aload_0
+       9: aload_1
+      10: invokespecial #76                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+      13: return
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>);
+    Code:
+       0: aload_1
+       1: getstatic     #86                 // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     18
+       7: aload_0
+       8: getfield      #25                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      11: getfield      #90                 // Field team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.inventoryOptional:Lnet/minecraftforge/common/util/LazyOptional;
+      14: invokevirtual #96                 // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      17: areturn
+      18: aload_0
+      19: aload_1
+      20: invokespecial #98                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;)Lnet/minecraftforge/common/util/LazyOptional;
+      23: areturn
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+    Code:
+       0: aload_1
+       1: getstatic     #86                 // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     18
+       7: aload_0
+       8: getfield      #25                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      11: getfield      #90                 // Field team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.inventoryOptional:Lnet/minecraftforge/common/util/LazyOptional;
+      14: invokevirtual #96                 // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      17: areturn
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokespecial #104                // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntity.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/core/Direction;)Lnet/minecraftforge/common/util/LazyOptional;
+      24: areturn
+}

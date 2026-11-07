@@ -1,0 +1,82 @@
+Compiled from "SyncContainerClientDataMessage.java"
+public class net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage {
+  private final net.minecraft.nbt.CompoundTag data;
+
+  public net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: invokespecial #23                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #25                 // Field data:Lnet/minecraft/nbt/CompoundTag;
+       9: return
+
+  public static void encode(net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #25                 // Field data:Lnet/minecraft/nbt/CompoundTag;
+       5: invokevirtual #35                 // Method net/minecraft/network/FriendlyByteBuf.m_130079_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/network/FriendlyByteBuf;
+       8: pop
+       9: return
+
+  public static net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage decode(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #2                  // class net/p3pp3rf1y/sophisticatedcore/network/SyncContainerClientDataMessage
+       3: dup
+       4: aload_0
+       5: invokevirtual #44                 // Method net/minecraft/network/FriendlyByteBuf.m_130260_:()Lnet/minecraft/nbt/CompoundTag;
+       8: invokespecial #46                 // Method "<init>":(Lnet/minecraft/nbt/CompoundTag;)V
+      11: areturn
+
+  public static void onMessage(net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+    Code:
+       0: aload_1
+       1: invokeinterface #55,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: astore_2
+      10: aload_2
+      11: aload_1
+      12: aload_0
+      13: invokedynamic #72,  0             // InvokeDynamic #0:run:(Ljava/util/function/Supplier;Lnet/p3pp3rf1y/sophisticatedcore/network/SyncContainerClientDataMessage;)Ljava/lang/Runnable;
+      18: invokevirtual #76                 // Method net/minecraftforge/network/NetworkEvent$Context.enqueueWork:(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+      21: pop
+      22: aload_2
+      23: iconst_1
+      24: invokevirtual #80                 // Method net/minecraftforge/network/NetworkEvent$Context.setPacketHandled:(Z)V
+      27: return
+
+  private static void handleMessage(net.minecraft.server.level.ServerPlayer, net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage);
+    Code:
+       0: aload_0
+       1: ifnull        11
+       4: aload_1
+       5: getfield      #25                 // Field data:Lnet/minecraft/nbt/CompoundTag;
+       8: ifnonnull     12
+      11: return
+      12: aload_0
+      13: getfield      #93                 // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      16: astore_3
+      17: aload_3
+      18: instanceof    #95                 // class net/p3pp3rf1y/sophisticatedcore/common/gui/ISyncedContainer
+      21: ifeq          39
+      24: aload_3
+      25: checkcast     #95                 // class net/p3pp3rf1y/sophisticatedcore/common/gui/ISyncedContainer
+      28: astore_2
+      29: aload_2
+      30: aload_1
+      31: getfield      #25                 // Field data:Lnet/minecraft/nbt/CompoundTag;
+      34: invokeinterface #97,  2           // InterfaceMethod net/p3pp3rf1y/sophisticatedcore/common/gui/ISyncedContainer.handleMessage:(Lnet/minecraft/nbt/CompoundTag;)V
+      39: return
+
+  private static void lambda$onMessage$0(java.util.function.Supplier, net.p3pp3rf1y.sophisticatedcore.network.SyncContainerClientDataMessage);
+    Code:
+       0: aload_0
+       1: invokeinterface #55,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: invokevirtual #106                // Method net/minecraftforge/network/NetworkEvent$Context.getSender:()Lnet/minecraft/server/level/ServerPlayer;
+      12: aload_1
+      13: invokestatic  #108                // Method handleMessage:(Lnet/minecraft/server/level/ServerPlayer;Lnet/p3pp3rf1y/sophisticatedcore/network/SyncContainerClientDataMessage;)V
+      16: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

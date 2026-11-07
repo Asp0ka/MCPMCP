@@ -1,0 +1,29 @@
+Compiled from "PlayerCooldowns.java"
+public class io.redspace.ironsspellbooks.capabilities.magic.PlayerCooldowns {
+  public static final java.lang.String SPELL_ID;
+  public static final java.lang.String SPELL_COOLDOWN;
+  public static final java.lang.String COOLDOWN_REMAINING;
+  private final java.util.Map<java.lang.String, io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance> spellCooldowns;
+  private int tickBuffer;
+  public io.redspace.ironsspellbooks.capabilities.magic.PlayerCooldowns();
+  public void setTickBuffer(int);
+  public void tick(int);
+  public boolean hasCooldownsActive();
+  public java.util.Map<java.lang.String, io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance> getSpellCooldowns();
+  public boolean removeCooldown(java.lang.String);
+  public void clearCooldowns();
+  public void addCooldown(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int);
+  public void addCooldown(io.redspace.ironsspellbooks.api.spells.AbstractSpell, int, int);
+  public void addCooldown(java.lang.String, int);
+  public void addCooldown(java.lang.String, int, int);
+  public boolean isOnCooldown(io.redspace.ironsspellbooks.api.spells.AbstractSpell);
+  public float getCooldownPercent(io.redspace.ironsspellbooks.api.spells.AbstractSpell);
+  public boolean decrementCooldown(io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance, int);
+  public void syncToPlayer(net.minecraft.server.level.ServerPlayer);
+  public net.minecraft.nbt.ListTag saveNBTData();
+  public void loadNBTData(net.minecraft.nbt.ListTag);
+  private void lambda$loadNBTData$3(net.minecraft.nbt.Tag);
+  private static void lambda$saveNBTData$2(net.minecraft.nbt.ListTag, java.lang.String, io.redspace.ironsspellbooks.capabilities.magic.CooldownInstance);
+  private void lambda$tick$1(java.util.Map$Entry);
+  private boolean lambda$tick$0(int, java.util.Map$Entry);
+}

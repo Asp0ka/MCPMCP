@@ -1,0 +1,522 @@
+Compiled from "ICasterTool.java"
+public interface com.hollingsworth.arsnouveau.api.item.ICasterTool extends com.hollingsworth.arsnouveau.api.item.IScribeable,com.hollingsworth.arsnouveau.api.client.IDisplayMana,com.hollingsworth.arsnouveau.api.item.ISpellHotkeyListener,com.hollingsworth.arsnouveau.api.spell.ISpellCasterProvider {
+  public default boolean onScribe(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_3
+       1: aload         4
+       3: invokevirtual #21                 // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+       6: astore        6
+       8: aload         5
+      10: invokestatic  #27                 // Method com/hollingsworth/arsnouveau/api/util/CasterUtil.getCaster:(Lnet/minecraft/world/item/ItemStack;)Lcom/hollingsworth/arsnouveau/api/spell/ISpellCaster;
+      13: astore        7
+      15: aload         6
+      17: invokevirtual #33                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      20: instanceof    #35                 // class com/hollingsworth/arsnouveau/common/items/SpellBook
+      23: ifne          53
+      26: aload         6
+      28: invokevirtual #33                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      31: instanceof    #37                 // class com/hollingsworth/arsnouveau/common/items/SpellParchment
+      34: ifne          53
+      37: aload         6
+      39: invokevirtual #33                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      42: getstatic     #43                 // Field com/hollingsworth/arsnouveau/setup/registry/ItemsRegistry.MANIPULATION_ESSENCE:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+      45: invokevirtual #48                 // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.m_5456_:()Lnet/minecraft/world/item/Item;
+      48: if_acmpeq     53
+      51: iconst_0
+      52: ireturn
+      53: new           #52                 // class com/hollingsworth/arsnouveau/api/spell/Spell
+      56: dup
+      57: invokespecial #56                 // Method com/hollingsworth/arsnouveau/api/spell/Spell."<init>":()V
+      60: astore        9
+      62: aload         6
+      64: invokevirtual #33                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      67: instanceof    #2                  // class com/hollingsworth/arsnouveau/api/item/ICasterTool
+      70: ifeq          146
+      73: aload         6
+      75: invokestatic  #27                 // Method com/hollingsworth/arsnouveau/api/util/CasterUtil.getCaster:(Lnet/minecraft/world/item/ItemStack;)Lcom/hollingsworth/arsnouveau/api/spell/ISpellCaster;
+      78: astore        10
+      80: aload         10
+      82: invokeinterface #60,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getSpell:()Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+      87: astore        9
+      89: aload         7
+      91: aload         10
+      93: invokeinterface #64,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getColor:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+      98: invokeinterface #68,  2           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setColor:(Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;)V
+     103: aload         7
+     105: aload         10
+     107: invokeinterface #72,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getFlavorText:()Ljava/lang/String;
+     112: invokeinterface #76,  2           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setFlavorText:(Ljava/lang/String;)V
+     117: aload         7
+     119: aload         10
+     121: invokeinterface #79,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getSpellName:()Ljava/lang/String;
+     126: invokeinterface #82,  2           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setSpellName:(Ljava/lang/String;)V
+     131: aload         7
+     133: aload         9
+     135: getfield      #86                 // Field com/hollingsworth/arsnouveau/api/spell/Spell.sound:Lcom/hollingsworth/arsnouveau/api/sound/ConfiguredSpellSound;
+     138: invokeinterface #90,  2           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setSound:(Lcom/hollingsworth/arsnouveau/api/sound/ConfiguredSpellSound;)V
+     143: goto          629
+     146: aload         6
+     148: invokevirtual #33                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     151: getstatic     #43                 // Field com/hollingsworth/arsnouveau/setup/registry/ItemsRegistry.MANIPULATION_ESSENCE:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+     154: invokevirtual #48                 // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.m_5456_:()Lnet/minecraft/world/item/Item;
+     157: if_acmpne     629
+     160: bipush        62
+     162: anewarray     #92                 // class java/lang/String
+     165: dup
+     166: iconst_0
+     167: ldc           #94                 // String the
+     169: aastore
+     170: dup
+     171: iconst_1
+     172: ldc           #96                 // String elder
+     174: aastore
+     175: dup
+     176: iconst_2
+     177: ldc           #98                 // String scrolls
+     179: aastore
+     180: dup
+     181: iconst_3
+     182: ldc           #100                // String klaatu
+     184: aastore
+     185: dup
+     186: iconst_4
+     187: ldc           #102                // String berata
+     189: aastore
+     190: dup
+     191: iconst_5
+     192: ldc           #104                // String niktu
+     194: aastore
+     195: dup
+     196: bipush        6
+     198: ldc           #106                // String xyzzy
+     200: aastore
+     201: dup
+     202: bipush        7
+     204: ldc           #108                // String bless
+     206: aastore
+     207: dup
+     208: bipush        8
+     210: ldc           #110                // String curse
+     212: aastore
+     213: dup
+     214: bipush        9
+     216: ldc           #112                // String light
+     218: aastore
+     219: dup
+     220: bipush        10
+     222: ldc           #114                // String darkness
+     224: aastore
+     225: dup
+     226: bipush        11
+     228: ldc           #116                // String fire
+     230: aastore
+     231: dup
+     232: bipush        12
+     234: ldc           #118                // String air
+     236: aastore
+     237: dup
+     238: bipush        13
+     240: ldc           #120                // String earth
+     242: aastore
+     243: dup
+     244: bipush        14
+     246: ldc           #122                // String water
+     248: aastore
+     249: dup
+     250: bipush        15
+     252: ldc           #124                // String hot
+     254: aastore
+     255: dup
+     256: bipush        16
+     258: ldc           #126                // String dry
+     260: aastore
+     261: dup
+     262: bipush        17
+     264: ldc           #128                // String cold
+     266: aastore
+     267: dup
+     268: bipush        18
+     270: ldc           #130                // String wet
+     272: aastore
+     273: dup
+     274: bipush        19
+     276: ldc           #132                // String ignite
+     278: aastore
+     279: dup
+     280: bipush        20
+     282: ldc           #134                // String snuff
+     284: aastore
+     285: dup
+     286: bipush        21
+     288: ldc           #136                // String embiggen
+     290: aastore
+     291: dup
+     292: bipush        22
+     294: ldc           #138                // String twist
+     296: aastore
+     297: dup
+     298: bipush        23
+     300: ldc           #140                // String shorten
+     302: aastore
+     303: dup
+     304: bipush        24
+     306: ldc           #142                // String stretch
+     308: aastore
+     309: dup
+     310: bipush        25
+     312: ldc           #144                // String fiddle
+     314: aastore
+     315: dup
+     316: bipush        26
+     318: ldc           #146                // String destroy
+     320: aastore
+     321: dup
+     322: bipush        27
+     324: ldc           #148                // String imbue
+     326: aastore
+     327: dup
+     328: bipush        28
+     330: ldc           #150                // String galvanize
+     332: aastore
+     333: dup
+     334: bipush        29
+     336: ldc           #152                // String enchant
+     338: aastore
+     339: dup
+     340: bipush        30
+     342: ldc           #154                // String free
+     344: aastore
+     345: dup
+     346: bipush        31
+     348: ldc           #156                // String limited
+     350: aastore
+     351: dup
+     352: bipush        32
+     354: ldc           #158                // String range
+     356: aastore
+     357: dup
+     358: bipush        33
+     360: ldc           #160                // String of
+     362: aastore
+     363: dup
+     364: bipush        34
+     366: ldc           #162                // String towards
+     368: aastore
+     369: dup
+     370: bipush        35
+     372: ldc           #164                // String inside
+     374: aastore
+     375: dup
+     376: bipush        36
+     378: ldc           #166                // String sphere
+     380: aastore
+     381: dup
+     382: bipush        37
+     384: ldc           #168                // String cube
+     386: aastore
+     387: dup
+     388: bipush        38
+     390: ldc           #170                // String self
+     392: aastore
+     393: dup
+     394: bipush        39
+     396: ldc           #172                // String other
+     398: aastore
+     399: dup
+     400: bipush        40
+     402: ldc           #174                // String ball
+     404: aastore
+     405: dup
+     406: bipush        41
+     408: ldc           #176                // String mental
+     410: aastore
+     411: dup
+     412: bipush        42
+     414: ldc           #178                // String physical
+     416: aastore
+     417: dup
+     418: bipush        43
+     420: ldc           #180                // String grow
+     422: aastore
+     423: dup
+     424: bipush        44
+     426: ldc           #182                // String shrink
+     428: aastore
+     429: dup
+     430: bipush        45
+     432: ldc           #184                // String demon
+     434: aastore
+     435: dup
+     436: bipush        46
+     438: ldc           #186                // String elemental
+     440: aastore
+     441: dup
+     442: bipush        47
+     444: ldc           #188                // String spirit
+     446: aastore
+     447: dup
+     448: bipush        48
+     450: ldc           #190                // String animal
+     452: aastore
+     453: dup
+     454: bipush        49
+     456: ldc           #192                // String creature
+     458: aastore
+     459: dup
+     460: bipush        50
+     462: ldc           #194                // String beast
+     464: aastore
+     465: dup
+     466: bipush        51
+     468: ldc           #196                // String humanoid
+     470: aastore
+     471: dup
+     472: bipush        52
+     474: ldc           #198                // String undead
+     476: aastore
+     477: dup
+     478: bipush        53
+     480: ldc           #200                // String fresh
+     482: aastore
+     483: dup
+     484: bipush        54
+     486: ldc           #202                // String stale
+     488: aastore
+     489: dup
+     490: bipush        55
+     492: ldc           #204                // String phnglui
+     494: aastore
+     495: dup
+     496: bipush        56
+     498: ldc           #206                // String mglwnafh
+     500: aastore
+     501: dup
+     502: bipush        57
+     504: ldc           #208                // String cthulhu
+     506: aastore
+     507: dup
+     508: bipush        58
+     510: ldc           #210                // String rlyeh
+     512: aastore
+     513: dup
+     514: bipush        59
+     516: ldc           #212                // String wgahnagl
+     518: aastore
+     519: dup
+     520: bipush        60
+     522: ldc           #214                // String fhtagn
+     524: aastore
+     525: dup
+     526: bipush        61
+     528: ldc           #216                // String baguette
+     530: aastore
+     531: astore        10
+     533: aload_1
+     534: getfield      #222                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     537: iconst_3
+     538: invokeinterface #228,  2          // InterfaceMethod net/minecraft/util/RandomSource.m_188503_:(I)I
+     543: iconst_3
+     544: iadd
+     545: istore        11
+     547: new           #230                // class java/lang/StringBuilder
+     550: dup
+     551: invokespecial #231                // Method java/lang/StringBuilder."<init>":()V
+     554: astore        12
+     556: iconst_0
+     557: istore        13
+     559: iload         13
+     561: iload         11
+     563: if_icmpge     598
+     566: aload         12
+     568: aload         10
+     570: aload_1
+     571: getfield      #222                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+     574: aload         10
+     576: arraylength
+     577: invokeinterface #228,  2          // InterfaceMethod net/minecraft/util/RandomSource.m_188503_:(I)I
+     582: aaload
+     583: invokevirtual #241                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     586: ldc           #243                // String
+     588: invokevirtual #241                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     591: pop
+     592: iinc          13, 1
+     595: goto          559
+     598: aload         7
+     600: iconst_1
+     601: invokeinterface #247,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setSpellHidden:(Z)V
+     606: aload         7
+     608: aload         12
+     610: invokevirtual #250                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     613: invokeinterface #253,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setHiddenRecipe:(Ljava/lang/String;)V
+     618: aload_3
+     619: ldc           #255                // String ars_nouveau.spell_hidden
+     621: invokestatic  #261                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     624: invokestatic  #267                // Method com/hollingsworth/arsnouveau/common/util/PortUtil.sendMessageNoSpam:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/chat/Component;)V
+     627: iconst_1
+     628: ireturn
+     629: aload_0
+     630: aload         7
+     632: aload_3
+     633: aload         4
+     635: aload         5
+     637: aload         9
+     639: invokeinterface #271,  6          // InterfaceMethod isScribedSpellValid:(Lcom/hollingsworth/arsnouveau/api/spell/ISpellCaster;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lcom/hollingsworth/arsnouveau/api/spell/Spell;)Z
+     644: ifeq          678
+     647: aload_0
+     648: aload         7
+     650: aload_3
+     651: aload         4
+     653: aload         5
+     655: aload         9
+     657: invokeinterface #274,  6          // InterfaceMethod setSpell:(Lcom/hollingsworth/arsnouveau/api/spell/ISpellCaster;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;Lcom/hollingsworth/arsnouveau/api/spell/Spell;)Z
+     662: istore        8
+     664: iload         8
+     666: ifeq          685
+     669: aload_0
+     670: aload_3
+     671: invokeinterface #278,  2          // InterfaceMethod sendSetMessage:(Lnet/minecraft/world/entity/player/Player;)V
+     676: iconst_1
+     677: ireturn
+     678: aload_0
+     679: aload_3
+     680: invokeinterface #281,  2          // InterfaceMethod sendInvalidMessage:(Lnet/minecraft/world/entity/player/Player;)V
+     685: iconst_0
+     686: ireturn
+
+  public default void sendSetMessage(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_1
+       1: ldc_w         #309                // String ars_nouveau.set_spell
+       4: invokestatic  #261                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       7: invokestatic  #267                // Method com/hollingsworth/arsnouveau/common/util/PortUtil.sendMessageNoSpam:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/chat/Component;)V
+      10: return
+
+  public default void sendInvalidMessage(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_1
+       1: ldc_w         #311                // String ars_nouveau.invalid_spell
+       4: invokestatic  #261                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       7: invokestatic  #267                // Method com/hollingsworth/arsnouveau/common/util/PortUtil.sendMessageNoSpam:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/chat/Component;)V
+      10: return
+
+  public default com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster(net.minecraft.world.item.ItemStack);
+    Code:
+       0: new           #315                // class com/hollingsworth/arsnouveau/api/spell/SpellCaster
+       3: dup
+       4: aload_1
+       5: invokespecial #318                // Method com/hollingsworth/arsnouveau/api/spell/SpellCaster."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+       8: areturn
+
+  public default com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster();
+    Code:
+       0: aload_0
+       1: new           #322                // class net/minecraft/nbt/CompoundTag
+       4: dup
+       5: invokespecial #323                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       8: invokeinterface #326,  2          // InterfaceMethod getSpellCaster:(Lnet/minecraft/nbt/CompoundTag;)Lcom/hollingsworth/arsnouveau/api/spell/ISpellCaster;
+      13: areturn
+
+  public default com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: new           #315                // class com/hollingsworth/arsnouveau/api/spell/SpellCaster
+       3: dup
+       4: aload_1
+       5: invokespecial #329                // Method com/hollingsworth/arsnouveau/api/spell/SpellCaster."<init>":(Lnet/minecraft/nbt/CompoundTag;)V
+       8: areturn
+
+  public default boolean setSpell(com.hollingsworth.arsnouveau.api.spell.ISpellCaster, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.api.spell.Spell);
+    Code:
+       0: aload_1
+       1: aload         5
+       3: invokeinterface #334,  2          // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.setSpell:(Lcom/hollingsworth/arsnouveau/api/spell/Spell;)V
+       8: iconst_1
+       9: ireturn
+
+  public default boolean isScribedSpellValid(com.hollingsworth.arsnouveau.api.spell.ISpellCaster, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.api.spell.Spell);
+    Code:
+       0: aload         5
+       2: invokevirtual #340                // Method com/hollingsworth/arsnouveau/api/spell/Spell.isValid:()Z
+       5: ireturn
+
+  public default boolean shouldDisplay(net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default void getInformation(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level, java.util.List<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag);
+    Code:
+       0: aload_2
+       1: ifnonnull     5
+       4: return
+       5: aload_0
+       6: aload_1
+       7: invokeinterface #348,  2          // InterfaceMethod getSpellCaster:(Lnet/minecraft/world/item/ItemStack;)Lcom/hollingsworth/arsnouveau/api/spell/ISpellCaster;
+      12: astore        5
+      14: aload         5
+      16: invokeinterface #60,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getSpell:()Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+      21: invokevirtual #351                // Method com/hollingsworth/arsnouveau/api/spell/Spell.isEmpty:()Z
+      24: ifeq          41
+      27: aload_3
+      28: ldc_w         #353                // String ars_nouveau.tooltip.can_inscribe
+      31: invokestatic  #261                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      34: invokeinterface #359,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      39: pop
+      40: return
+      41: aload         5
+      43: invokeinterface #79,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getSpellName:()Ljava/lang/String;
+      48: invokevirtual #360                // Method java/lang/String.isEmpty:()Z
+      51: ifne          71
+      54: aload_3
+      55: aload         5
+      57: invokeinterface #79,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getSpellName:()Ljava/lang/String;
+      62: invokestatic  #363                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      65: invokeinterface #359,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      70: pop
+      71: aload         5
+      73: invokeinterface #366,  1          // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.isSpellHidden:()Z
+      78: ifeq          129
+      81: aload_3
+      82: aload         5
+      84: invokeinterface #369,  1          // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getHiddenRecipe:()Ljava/lang/String;
+      89: invokestatic  #363                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      92: getstatic     #375                // Field net/minecraft/network/chat/Style.f_131099_:Lnet/minecraft/network/chat/Style;
+      95: new           #377                // class net/minecraft/resources/ResourceLocation
+      98: dup
+      99: ldc_w         #379                // String minecraft
+     102: ldc_w         #381                // String alt
+     105: invokespecial #384                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+     108: invokevirtual #388                // Method net/minecraft/network/chat/Style.m_131150_:(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/chat/Style;
+     111: getstatic     #394                // Field net/minecraft/ChatFormatting.GOLD:Lnet/minecraft/ChatFormatting;
+     114: invokevirtual #398                // Method net/minecraft/network/chat/Style.m_131140_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
+     117: invokevirtual #404                // Method net/minecraft/network/chat/MutableComponent.m_130948_:(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+     120: invokeinterface #359,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     125: pop
+     126: goto          153
+     129: aload         5
+     131: invokeinterface #60,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getSpell:()Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+     136: astore        6
+     138: aload_3
+     139: aload         6
+     141: invokevirtual #407                // Method com/hollingsworth/arsnouveau/api/spell/Spell.getDisplayString:()Ljava/lang/String;
+     144: invokestatic  #363                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     147: invokeinterface #359,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     152: pop
+     153: aload         5
+     155: invokeinterface #72,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getFlavorText:()Ljava/lang/String;
+     160: invokevirtual #360                // Method java/lang/String.isEmpty:()Z
+     163: ifne          202
+     166: aload_3
+     167: aload         5
+     169: invokeinterface #72,  1           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ISpellCaster.getFlavorText:()Ljava/lang/String;
+     174: invokestatic  #363                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     177: getstatic     #375                // Field net/minecraft/network/chat/Style.f_131099_:Lnet/minecraft/network/chat/Style;
+     180: iconst_1
+     181: invokestatic  #413                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     184: invokevirtual #417                // Method net/minecraft/network/chat/Style.m_131155_:(Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
+     187: getstatic     #420                // Field net/minecraft/ChatFormatting.BLUE:Lnet/minecraft/ChatFormatting;
+     190: invokevirtual #398                // Method net/minecraft/network/chat/Style.m_131140_:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
+     193: invokevirtual #404                // Method net/minecraft/network/chat/MutableComponent.m_130948_:(Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+     196: invokeinterface #359,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     201: pop
+     202: return
+}

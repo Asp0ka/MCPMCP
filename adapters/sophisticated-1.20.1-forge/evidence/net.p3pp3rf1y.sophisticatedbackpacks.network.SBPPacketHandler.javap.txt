@@ -1,0 +1,122 @@
+Compiled from "SBPPacketHandler.java"
+public class net.p3pp3rf1y.sophisticatedbackpacks.network.SBPPacketHandler extends net.p3pp3rf1y.sophisticatedcore.network.PacketHandler {
+  public static final net.p3pp3rf1y.sophisticatedbackpacks.network.SBPPacketHandler INSTANCE;
+
+  private net.p3pp3rf1y.sophisticatedbackpacks.network.SBPPacketHandler(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #16                 // Method net/p3pp3rf1y/sophisticatedcore/network/PacketHandler."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+       6: return
+
+  public void registerMessages();
+    Code:
+       0: aload_0
+       1: ldc           #24                 // class net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackOpenMessage
+       3: invokedynamic #43,  0             // InvokeDynamic #0:accept:()Ljava/util/function/BiConsumer;
+       8: invokedynamic #55,  0             // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      13: invokedynamic #62,  0             // InvokeDynamic #2:accept:()Ljava/util/function/BiConsumer;
+      18: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      21: aload_0
+      22: ldc           #68                 // class net/p3pp3rf1y/sophisticatedbackpacks/network/UpgradeToggleMessage
+      24: invokedynamic #74,  0             // InvokeDynamic #3:accept:()Ljava/util/function/BiConsumer;
+      29: invokedynamic #80,  0             // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+      34: invokedynamic #86,  0             // InvokeDynamic #5:accept:()Ljava/util/function/BiConsumer;
+      39: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      42: aload_0
+      43: ldc           #88                 // class net/p3pp3rf1y/sophisticatedbackpacks/network/RequestBackpackInventoryContentsMessage
+      45: invokedynamic #94,  0             // InvokeDynamic #6:accept:()Ljava/util/function/BiConsumer;
+      50: invokedynamic #100,  0            // InvokeDynamic #7:apply:()Ljava/util/function/Function;
+      55: invokedynamic #106,  0            // InvokeDynamic #8:accept:()Ljava/util/function/BiConsumer;
+      60: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      63: aload_0
+      64: ldc           #108                // class net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackContentsMessage
+      66: invokedynamic #114,  0            // InvokeDynamic #9:accept:()Ljava/util/function/BiConsumer;
+      71: invokedynamic #120,  0            // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+      76: invokedynamic #126,  0            // InvokeDynamic #11:accept:()Ljava/util/function/BiConsumer;
+      81: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      84: aload_0
+      85: ldc           #128                // class net/p3pp3rf1y/sophisticatedbackpacks/network/InventoryInteractionMessage
+      87: invokedynamic #134,  0            // InvokeDynamic #12:accept:()Ljava/util/function/BiConsumer;
+      92: invokedynamic #140,  0            // InvokeDynamic #13:apply:()Ljava/util/function/Function;
+      97: invokedynamic #146,  0            // InvokeDynamic #14:accept:()Ljava/util/function/BiConsumer;
+     102: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     105: aload_0
+     106: ldc           #148                // class net/p3pp3rf1y/sophisticatedbackpacks/network/BlockToolSwapMessage
+     108: invokedynamic #154,  0            // InvokeDynamic #15:accept:()Ljava/util/function/BiConsumer;
+     113: invokedynamic #160,  0            // InvokeDynamic #16:apply:()Ljava/util/function/Function;
+     118: invokedynamic #166,  0            // InvokeDynamic #17:accept:()Ljava/util/function/BiConsumer;
+     123: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     126: aload_0
+     127: ldc           #168                // class net/p3pp3rf1y/sophisticatedbackpacks/network/EntityToolSwapMessage
+     129: invokedynamic #174,  0            // InvokeDynamic #18:accept:()Ljava/util/function/BiConsumer;
+     134: invokedynamic #180,  0            // InvokeDynamic #19:apply:()Ljava/util/function/Function;
+     139: invokedynamic #186,  0            // InvokeDynamic #20:accept:()Ljava/util/function/BiConsumer;
+     144: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     147: aload_0
+     148: ldc           #188                // class net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackCloseMessage
+     150: invokedynamic #195,  0            // InvokeDynamic #21:accept:()Ljava/util/function/BiConsumer;
+     155: invokedynamic #202,  0            // InvokeDynamic #22:apply:()Ljava/util/function/Function;
+     160: invokedynamic #209,  0            // InvokeDynamic #23:accept:()Ljava/util/function/BiConsumer;
+     165: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     168: aload_0
+     169: ldc           #211                // class net/p3pp3rf1y/sophisticatedbackpacks/network/SyncClientInfoMessage
+     171: invokedynamic #217,  0            // InvokeDynamic #24:accept:()Ljava/util/function/BiConsumer;
+     176: invokedynamic #223,  0            // InvokeDynamic #25:apply:()Ljava/util/function/Function;
+     181: invokedynamic #229,  0            // InvokeDynamic #26:accept:()Ljava/util/function/BiConsumer;
+     186: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     189: aload_0
+     190: ldc           #231                // class net/p3pp3rf1y/sophisticatedbackpacks/network/AnotherPlayerBackpackOpenMessage
+     192: invokedynamic #237,  0            // InvokeDynamic #27:accept:()Ljava/util/function/BiConsumer;
+     197: invokedynamic #243,  0            // InvokeDynamic #28:apply:()Ljava/util/function/Function;
+     202: invokedynamic #249,  0            // InvokeDynamic #29:accept:()Ljava/util/function/BiConsumer;
+     207: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     210: aload_0
+     211: ldc           #251                // class net/p3pp3rf1y/sophisticatedbackpacks/network/BlockPickMessage
+     213: invokedynamic #257,  0            // InvokeDynamic #30:accept:()Ljava/util/function/BiConsumer;
+     218: invokedynamic #263,  0            // InvokeDynamic #31:apply:()Ljava/util/function/Function;
+     223: invokedynamic #269,  0            // InvokeDynamic #32:accept:()Ljava/util/function/BiConsumer;
+     228: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     231: aload_0
+     232: ldc_w         #271                // class net/p3pp3rf1y/sophisticatedbackpacks/network/MobCatcherCaptureEffectMessage
+     235: invokedynamic #277,  0            // InvokeDynamic #33:accept:()Ljava/util/function/BiConsumer;
+     240: invokedynamic #283,  0            // InvokeDynamic #34:apply:()Ljava/util/function/Function;
+     245: invokedynamic #289,  0            // InvokeDynamic #35:accept:()Ljava/util/function/BiConsumer;
+     250: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     253: aload_0
+     254: ldc_w         #291                // class net/p3pp3rf1y/sophisticatedbackpacks/network/MobCatcherReleaseMessage
+     257: invokedynamic #297,  0            // InvokeDynamic #36:accept:()Ljava/util/function/BiConsumer;
+     262: invokedynamic #303,  0            // InvokeDynamic #37:apply:()Ljava/util/function/Function;
+     267: invokedynamic #309,  0            // InvokeDynamic #38:accept:()Ljava/util/function/BiConsumer;
+     272: invokevirtual #66                 // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     275: return
+
+  private static void lambda$registerMessages$2(net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackCloseMessage, java.util.function.Supplier);
+    Code:
+       0: aload_1
+       1: invokestatic  #312                // Method net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackCloseMessage.onMessage:(Ljava/util/function/Supplier;)V
+       4: return
+
+  private static net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackCloseMessage lambda$registerMessages$1(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #188                // class net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackCloseMessage
+       3: dup
+       4: invokespecial #318                // Method net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackCloseMessage."<init>":()V
+       7: areturn
+
+  private static void lambda$registerMessages$0(net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackCloseMessage, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: return
+
+  static {};
+    Code:
+       0: new           #2                  // class net/p3pp3rf1y/sophisticatedbackpacks/network/SBPPacketHandler
+       3: dup
+       4: ldc_w         #323                // String sophisticatedbackpacks
+       7: invokestatic  #329                // Method net/p3pp3rf1y/sophisticatedbackpacks/SophisticatedBackpacks.getNetworkProtocolVersion:()Ljava/lang/String;
+      10: invokespecial #330                // Method "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      13: putstatic     #332                // Field INSTANCE:Lnet/p3pp3rf1y/sophisticatedbackpacks/network/SBPPacketHandler;
+      16: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

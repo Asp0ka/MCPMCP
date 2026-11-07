@@ -1,0 +1,137 @@
+Compiled from "AlchemyMachineContainer.java"
+public class mod.maxbogomol.wizards_reborn.client.gui.container.AlchemyMachineContainer extends mod.maxbogomol.fluffy_fur.client.gui.screen.ContainerMenuBase {
+  public final net.minecraft.world.level.block.entity.BlockEntity blockEntity;
+
+  public mod.maxbogomol.wizards_reborn.client.gui.container.AlchemyMachineContainer(int, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getstatic     #20                 // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornMenuTypes.ALCHEMY_MACHINE_CONTAINER:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #26                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #28                 // class net/minecraft/world/inventory/MenuType
+      10: iload_1
+      11: invokespecial #31                 // Method mod/maxbogomol/fluffy_fur/client/gui/screen/ContainerMenuBase."<init>":(Lnet/minecraft/world/inventory/MenuType;I)V
+      14: aload_0
+      15: aload_2
+      16: aload_3
+      17: invokevirtual #37                 // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      20: putfield      #39                 // Field blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      23: aload_0
+      24: aload         5
+      26: putfield      #43                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+      29: aload_0
+      30: new           #45                 // class net/minecraftforge/items/wrapper/InvWrapper
+      33: dup
+      34: aload         4
+      36: invokespecial #48                 // Method net/minecraftforge/items/wrapper/InvWrapper."<init>":(Lnet/minecraft/world/Container;)V
+      39: putfield      #52                 // Field playerInventory:Lnet/minecraftforge/items/IItemHandler;
+      42: aload_0
+      43: bipush        8
+      45: bipush        127
+      47: invokevirtual #56                 // Method layoutPlayerInventorySlots:(II)V
+      50: aload_0
+      51: getfield      #39                 // Field blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      54: ifnull        76
+      57: aload_0
+      58: getfield      #39                 // Field blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      61: getstatic     #62                 // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+      64: invokevirtual #68                 // Method net/minecraft/world/level/block/entity/BlockEntity.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;)Lnet/minecraftforge/common/util/LazyOptional;
+      67: aload_0
+      68: invokedynamic #87,  0             // InvokeDynamic #0:accept:(Lmod/maxbogomol/wizards_reborn/client/gui/container/AlchemyMachineContainer;)Lnet/minecraftforge/common/util/NonNullConsumer;
+      73: invokevirtual #93                 // Method net/minecraftforge/common/util/LazyOptional.ifPresent:(Lnet/minecraftforge/common/util/NonNullConsumer;)V
+      76: return
+
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+       4: invokevirtual #115                // Method net/minecraft/world/level/block/entity/BlockEntity.m_58904_:()Lnet/minecraft/world/level/Level;
+       7: aload_0
+       8: getfield      #39                 // Field blockEntity:Lnet/minecraft/world/level/block/entity/BlockEntity;
+      11: invokevirtual #119                // Method net/minecraft/world/level/block/entity/BlockEntity.m_58899_:()Lnet/minecraft/core/BlockPos;
+      14: invokestatic  #125                // InterfaceMethod net/minecraft/world/inventory/ContainerLevelAccess.m_39289_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/inventory/ContainerLevelAccess;
+      17: aload_1
+      18: getstatic     #130                // Field mod/maxbogomol/wizards_reborn/registry/common/block/WizardsRebornBlocks.ALCHEMY_MACHINE:Lnet/minecraftforge/registries/RegistryObject;
+      21: invokevirtual #26                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      24: checkcast     #132                // class net/minecraft/world/level/block/Block
+      27: invokestatic  #136                // Method m_38889_:(Lnet/minecraft/world/inventory/ContainerLevelAccess;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/Block;)Z
+      30: ireturn
+
+  public int getInventorySize();
+    Code:
+       0: bipush        7
+       2: ireturn
+
+  private void lambda$new$0(net.minecraftforge.items.IItemHandler);
+    Code:
+       0: aload_0
+       1: new           #140                // class mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot
+       4: dup
+       5: aload_1
+       6: iconst_0
+       7: bipush        29
+       9: bipush        18
+      11: invokespecial #143                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+      14: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      17: pop
+      18: aload_0
+      19: new           #140                // class mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot
+      22: dup
+      23: aload_1
+      24: iconst_1
+      25: bipush        47
+      27: bipush        18
+      29: invokespecial #143                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+      32: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      35: pop
+      36: aload_0
+      37: new           #140                // class mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot
+      40: dup
+      41: aload_1
+      42: iconst_2
+      43: bipush        65
+      45: bipush        18
+      47: invokespecial #143                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+      50: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      53: pop
+      54: aload_0
+      55: new           #140                // class mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot
+      58: dup
+      59: aload_1
+      60: iconst_3
+      61: bipush        29
+      63: bipush        36
+      65: invokespecial #143                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+      68: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      71: pop
+      72: aload_0
+      73: new           #140                // class mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot
+      76: dup
+      77: aload_1
+      78: iconst_4
+      79: bipush        47
+      81: bipush        36
+      83: invokespecial #143                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+      86: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      89: pop
+      90: aload_0
+      91: new           #140                // class mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot
+      94: dup
+      95: aload_1
+      96: iconst_5
+      97: bipush        65
+      99: bipush        36
+     101: invokespecial #143                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/InputSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+     104: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     107: pop
+     108: aload_0
+     109: new           #149                // class mod/maxbogomol/fluffy_fur/client/gui/screen/ResultSlot
+     112: dup
+     113: aload_1
+     114: bipush        6
+     116: sipush        132
+     119: bipush        54
+     121: invokespecial #150                // Method mod/maxbogomol/fluffy_fur/client/gui/screen/ResultSlot."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+     124: invokevirtual #147                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     127: pop
+     128: return
+}

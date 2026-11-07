@@ -1,0 +1,18 @@
+Compiled from "ISourceTile.java"
+public interface com.hollingsworth.arsnouveau.api.source.ISourceTile {
+  public abstract int getTransferRate();
+
+  public abstract boolean canAcceptSource();
+
+  public abstract int getSource();
+
+  public abstract int getMaxSource();
+
+  public abstract void setMaxSource(int);
+
+  public abstract int setSource(int);
+
+  public abstract int addSource(int);
+
+  public abstract int removeSource(int);
+}

@@ -1,0 +1,56 @@
+Compiled from "BlockEntityBase.java"
+public abstract class mod.maxbogomol.fluffy_fur.common.block.entity.BlockEntityBase extends net.minecraft.world.level.block.entity.BlockEntity {
+  public java.util.Random random;
+  public mod.maxbogomol.fluffy_fur.common.block.entity.BlockEntityBase(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public void onDataPacket(net.minecraft.network.Connection, net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+  public net.minecraft.nbt.CompoundTag m_5995_();
+  public void m_6596_();
+  public net.minecraft.network.protocol.Packet m_58483_();
+}
+Compiled from "ExposedBlockSimpleInventory.java"
+public abstract class mod.maxbogomol.fluffy_fur.common.block.entity.ExposedBlockSimpleInventory extends mod.maxbogomol.fluffy_fur.common.block.entity.BlockSimpleInventory implements net.minecraft.world.WorldlyContainer {
+  private final java.util.function.Supplier<int[]> slots;
+  protected mod.maxbogomol.fluffy_fur.common.block.entity.ExposedBlockSimpleInventory(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean m_7983_();
+  public int m_6643_();
+  public net.minecraft.world.item.ItemStack m_8020_(int);
+  public net.minecraft.world.item.ItemStack m_7407_(int, int);
+  public net.minecraft.world.item.ItemStack m_8016_(int);
+  public void m_6836_(int, net.minecraft.world.item.ItemStack);
+  public boolean m_6542_(net.minecraft.world.entity.player.Player);
+  public int m_6893_();
+  public void m_5856_(net.minecraft.world.entity.player.Player);
+  public void m_5785_(net.minecraft.world.entity.player.Player);
+  public boolean m_7013_(int, net.minecraft.world.item.ItemStack);
+  public int m_18947_(net.minecraft.world.item.Item);
+  public boolean m_18949_(java.util.Set<net.minecraft.world.item.Item>);
+  public int[] m_7071_(net.minecraft.core.Direction);
+  public boolean m_7155_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public boolean m_7157_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public void m_6211_();
+  private int[] lambda$new$0();
+}
+Compiled from "FluidIngredient.java"
+public abstract class mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient {
+  public static final mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient EMPTY;
+  public java.util.List<net.minecraftforge.fluids.FluidStack> displayFluids;
+  public mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient();
+  public abstract boolean test(net.minecraft.world.level.material.Fluid);
+  public abstract int getAmount(net.minecraft.world.level.material.Fluid);
+  public boolean test(net.minecraftforge.fluids.FluidStack);
+  public java.util.List<net.minecraftforge.fluids.FluidStack> getFluids();
+  public abstract java.util.List<net.minecraftforge.fluids.FluidStack> getAllFluids();
+  public abstract com.google.gson.JsonElement serialize();
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient of(net.minecraft.world.level.material.Fluid, int);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient of(net.minecraftforge.fluids.FluidStack);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient of(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, int);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient of(mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient...);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient deserialize(com.google.gson.JsonObject, java.lang.String);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient deserialize(com.google.gson.JsonElement, java.lang.String);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient deserializeObject(com.google.gson.JsonObject);
+  public static mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient read(net.minecraft.network.FriendlyByteBuf);
+  private static boolean lambda$getFluids$0(net.minecraftforge.fluids.FluidStack);
+  static {};
+}

@@ -1,0 +1,15 @@
+Compiled from "IPlayerCap.java"
+public interface com.hollingsworth.arsnouveau.common.capability.IPlayerCap extends net.minecraftforge.common.util.INBTSerializable<net.minecraft.nbt.CompoundTag> {
+  public abstract java.util.Collection<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> getKnownGlyphs();
+  public abstract void setKnownGlyphs(java.util.Collection<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart>);
+  public abstract boolean unlockGlyph(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart);
+  public abstract boolean knowsGlyph(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart);
+  public abstract boolean unlockFamiliar(com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder);
+  public abstract boolean ownsFamiliar(com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder);
+  public abstract java.util.Collection<com.hollingsworth.arsnouveau.common.capability.FamiliarData> getUnlockedFamiliars();
+  public abstract com.hollingsworth.arsnouveau.common.capability.FamiliarData getFamiliarData(net.minecraft.resources.ResourceLocation);
+  public abstract com.hollingsworth.arsnouveau.common.capability.FamiliarData getLastSummonedFamiliar();
+  public abstract void setLastSummonedFamiliar(net.minecraft.resources.ResourceLocation);
+  public abstract void setUnlockedFamiliars(java.util.Collection<com.hollingsworth.arsnouveau.common.capability.FamiliarData>);
+  public abstract boolean removeFamiliar(com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder);
+}

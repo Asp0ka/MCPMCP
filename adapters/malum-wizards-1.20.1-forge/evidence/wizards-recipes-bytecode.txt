@@ -1,0 +1,855 @@
+Compiled from "WissenAltarRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.WissenAltarRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+
+  private final net.minecraft.resources.ResourceLocation id;
+
+  private final net.minecraft.world.item.crafting.Ingredient input;
+
+  private final int wissen;
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.WissenAltarRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, int);
+    Code:
+       0: aload_0
+       1: invokespecial #23                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #25                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       9: aload_0
+      10: aload_2
+      11: putfield      #27                 // Field input:Lnet/minecraft/world/item/crafting/Ingredient;
+      14: aload_0
+      15: iload_3
+      16: putfield      #29                 // Field wissen:I
+      19: return
+
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field input:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: aload_1
+       5: iconst_0
+       6: invokeinterface #39,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      11: invokevirtual #45                 // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+      14: ireturn
+
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+    Code:
+       0: getstatic     #57                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: areturn
+
+  public net.minecraft.world.item.ItemStack m_8042_();
+    Code:
+       0: new           #53                 // class net/minecraft/world/item/ItemStack
+       3: dup
+       4: getstatic     #67                 // Field mod/maxbogomol/wizards_reborn/registry/common/item/WizardsRebornItems.WISSEN_ALTAR:Lnet/minecraftforge/registries/RegistryObject;
+       7: invokevirtual #73                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      10: checkcast     #75                 // class net/minecraft/world/level/ItemLike
+      13: invokespecial #78                 // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      16: areturn
+
+  public net.minecraft.resources.ResourceLocation m_6423_();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       4: areturn
+
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+    Code:
+       0: getstatic     #89                 // Field net/minecraft/core/registries/BuiltInRegistries.f_256990_:Lnet/minecraft/core/Registry;
+       3: getstatic     #91                 // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+       6: invokeinterface #97,  2           // InterfaceMethod net/minecraft/core/Registry.m_6612_:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+      11: invokevirtual #100                // Method java/util/Optional.get:()Ljava/lang/Object;
+      14: checkcast     #102                // class net/minecraft/world/item/crafting/RecipeType
+      17: areturn
+
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+    Code:
+       0: getstatic     #110                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornRecipes.WISSEN_ALTAR_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+       3: invokevirtual #73                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       6: checkcast     #112                // class net/minecraft/world/item/crafting/RecipeSerializer
+       9: areturn
+
+  public boolean m_8004_(int, int);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean m_5598_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+    Code:
+       0: getstatic     #57                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: areturn
+
+  public net.minecraft.world.item.crafting.Ingredient getInput();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field input:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: areturn
+
+  public int getWissen();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field wissen:I
+       4: ireturn
+
+  static {};
+    Code:
+       0: new           #127                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc           #129                // String wizards_reborn
+       6: ldc           #131                // String wissen_altar
+       8: invokespecial #134                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      11: putstatic     #91                 // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+      14: return
+}
+Compiled from "ArcaneWorkbenchRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.ArcaneWorkbenchRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+
+  private final net.minecraft.resources.ResourceLocation id;
+
+  private final net.minecraft.world.item.ItemStack output;
+
+  private final net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+
+  private final int wissen;
+
+  private int saveNBT;
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneWorkbenchRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, int, net.minecraft.world.item.crafting.Ingredient...);
+    Code:
+       0: aload_0
+       1: invokespecial #27                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_m1
+       6: putfield      #29                 // Field saveNBT:I
+       9: aload_0
+      10: aload_1
+      11: putfield      #31                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+      14: aload_0
+      15: aload_2
+      16: putfield      #33                 // Field output:Lnet/minecraft/world/item/ItemStack;
+      19: aload_0
+      20: getstatic     #39                 // Field net/minecraft/world/item/crafting/Ingredient.f_43901_:Lnet/minecraft/world/item/crafting/Ingredient;
+      23: aload         4
+      25: invokestatic  #45                 // Method net/minecraft/core/NonNullList.m_122783_:(Ljava/lang/Object;[Ljava/lang/Object;)Lnet/minecraft/core/NonNullList;
+      28: putfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+      31: aload_0
+      32: iload_3
+      33: putfield      #49                 // Field wissen:I
+      36: return
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.ArcaneWorkbenchRecipe setSaveNBT(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #29                 // Field saveNBT:I
+       5: aload_0
+       6: areturn
+
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+       4: aload_1
+       5: invokestatic  #60                 // Method matches:(Ljava/util/List;Lnet/minecraft/world/Container;)Z
+       8: ireturn
+
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container);
+    Code:
+       0: iconst_1
+       1: istore_2
+       2: iconst_0
+       3: istore_3
+       4: iload_3
+       5: aload_0
+       6: invokeinterface #71,  1           // InterfaceMethod java/util/List.size:()I
+      11: if_icmpge     45
+      14: aload_0
+      15: iload_3
+      16: invokeinterface #75,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      21: checkcast     #35                 // class net/minecraft/world/item/crafting/Ingredient
+      24: aload_1
+      25: iload_3
+      26: invokeinterface #81,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      31: invokevirtual #85                 // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+      34: ifne          39
+      37: iconst_0
+      38: istore_2
+      39: iinc          3, 1
+      42: goto          4
+      45: iload_2
+      46: ireturn
+
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field output:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack m_8042_();
+    Code:
+       0: new           #98                 // class net/minecraft/world/item/ItemStack
+       3: dup
+       4: getstatic     #104                // Field mod/maxbogomol/wizards_reborn/registry/common/item/WizardsRebornItems.ARCANE_WORKBENCH:Lnet/minecraftforge/registries/RegistryObject;
+       7: invokevirtual #109                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      10: checkcast     #111                // class net/minecraft/world/level/ItemLike
+      13: invokespecial #114                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      16: areturn
+
+  public net.minecraft.resources.ResourceLocation m_6423_();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       4: areturn
+
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+    Code:
+       0: getstatic     #125                // Field net/minecraft/core/registries/BuiltInRegistries.f_256990_:Lnet/minecraft/core/Registry;
+       3: getstatic     #127                // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+       6: invokeinterface #133,  2          // InterfaceMethod net/minecraft/core/Registry.m_6612_:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+      11: invokevirtual #136                // Method java/util/Optional.get:()Ljava/lang/Object;
+      14: checkcast     #138                // class net/minecraft/world/item/crafting/RecipeType
+      17: areturn
+
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+    Code:
+       0: getstatic     #146                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornRecipes.ARCANE_WORKBENCH_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+       3: invokevirtual #109                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       6: checkcast     #148                // class net/minecraft/world/item/crafting/RecipeSerializer
+       9: areturn
+
+  public boolean m_8004_(int, int);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean m_5598_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field output:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public int getWissen();
+    Code:
+       0: aload_0
+       1: getfield      #49                 // Field wissen:I
+       4: ireturn
+
+  public int getSaveNBT();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field saveNBT:I
+       4: ireturn
+
+  static {};
+    Code:
+       0: new           #165                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc           #167                // String wizards_reborn
+       6: ldc           #169                // String arcane_workbench
+       8: invokespecial #172                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      11: putstatic     #127                // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+      14: return
+}
+Compiled from "AlchemyMachineRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe implements net.minecraft.world.item.crafting.Recipe<mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+
+  private final net.minecraft.resources.ResourceLocation id;
+
+  private net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> inputs;
+
+  private net.minecraft.core.NonNullList<mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient> fluidInputs;
+
+  private net.minecraft.world.item.ItemStack output;
+
+  private net.minecraftforge.fluids.FluidStack fluidOutput;
+
+  private int wissen;
+
+  private int steam;
+
+  private mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion alchemyPotion;
+
+  private mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion alchemyPotionIngredient;
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: invokespecial #39                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: invokestatic  #45                 // Method net/minecraft/core/NonNullList.m_122779_:()Lnet/minecraft/core/NonNullList;
+       8: putfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+      11: aload_0
+      12: invokestatic  #45                 // Method net/minecraft/core/NonNullList.m_122779_:()Lnet/minecraft/core/NonNullList;
+      15: putfield      #49                 // Field fluidInputs:Lnet/minecraft/core/NonNullList;
+      18: aload_0
+      19: getstatic     #54                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      22: putfield      #56                 // Field output:Lnet/minecraft/world/item/ItemStack;
+      25: aload_0
+      26: getstatic     #61                 // Field net/minecraftforge/fluids/FluidStack.EMPTY:Lnet/minecraftforge/fluids/FluidStack;
+      29: putfield      #63                 // Field fluidOutput:Lnet/minecraftforge/fluids/FluidStack;
+      32: aload_0
+      33: iconst_0
+      34: putfield      #65                 // Field wissen:I
+      37: aload_0
+      38: iconst_0
+      39: putfield      #67                 // Field steam:I
+      42: aload_0
+      43: aconst_null
+      44: putfield      #69                 // Field alchemyPotion:Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+      47: aload_0
+      48: aconst_null
+      49: putfield      #71                 // Field alchemyPotionIngredient:Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+      52: aload_0
+      53: aload_1
+      54: putfield      #73                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+      57: return
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setOutput(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #56                 // Field output:Lnet/minecraft/world/item/ItemStack;
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setFluidOutput(net.minecraftforge.fluids.FluidStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #63                 // Field fluidOutput:Lnet/minecraftforge/fluids/FluidStack;
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setInputs(net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setFluidInputs(net.minecraft.core.NonNullList<mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #49                 // Field fluidInputs:Lnet/minecraft/core/NonNullList;
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setWissen(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #65                 // Field wissen:I
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setSteam(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #67                 // Field steam:I
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setAlchemyPotion(mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #69                 // Field alchemyPotion:Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+       5: aload_0
+       6: areturn
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe setAlchemyPotionIngredient(mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #71                 // Field alchemyPotionIngredient:Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+       5: aload_0
+       6: areturn
+
+  public boolean matches(mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+       4: aload_1
+       5: getfield      #98                 // Field mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext.container:Lnet/minecraft/world/Container;
+       8: aload_0
+       9: invokestatic  #101                // Method matches:(Ljava/util/List;Lnet/minecraft/world/Container;Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe;)Z
+      12: ifeq          34
+      15: aload_0
+      16: getfield      #49                 // Field fluidInputs:Lnet/minecraft/core/NonNullList;
+      19: invokevirtual #105                // Method net/minecraft/core/NonNullList.isEmpty:()Z
+      22: ifne          32
+      25: aload_0
+      26: aload_1
+      27: aload_2
+      28: invokevirtual #108                // Method fluidMatches:(Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext;Lnet/minecraft/world/level/Level;)Z
+      31: ireturn
+      32: iconst_1
+      33: ireturn
+      34: iconst_0
+      35: ireturn
+
+  public static boolean matches(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.Container, mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe);
+    Code:
+       0: new           #115                // class java/util/ArrayList
+       3: dup
+       4: aload_0
+       5: invokespecial #118                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+       8: astore_3
+       9: new           #115                // class java/util/ArrayList
+      12: dup
+      13: invokespecial #119                // Method java/util/ArrayList."<init>":()V
+      16: astore        4
+      18: iconst_0
+      19: istore        5
+      21: iload         5
+      23: bipush        6
+      25: if_icmpge     62
+      28: aload_1
+      29: iload         5
+      31: invokeinterface #127,  2          // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      36: astore        6
+      38: aload         6
+      40: invokevirtual #130                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      43: ifne          56
+      46: aload         4
+      48: aload         6
+      50: invokeinterface #134,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      55: pop
+      56: iinc          5, 1
+      59: goto          21
+      62: aload         4
+      64: invokeinterface #138,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      69: astore        5
+      71: aload         5
+      73: invokeinterface #143,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      78: ifeq          214
+      81: aload         5
+      83: invokeinterface #147,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      88: checkcast     #51                 // class net/minecraft/world/item/ItemStack
+      91: astore        6
+      93: iconst_1
+      94: istore        7
+      96: iconst_m1
+      97: istore        8
+      99: aload         6
+     101: invokestatic  #151                // Method getAlchemyBottle:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+     104: invokevirtual #130                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     107: ifne          136
+     110: aload         6
+     112: invokevirtual #155                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     115: instanceof    #157                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyPotionItem
+     118: ifeq          136
+     121: aload         6
+     123: invokestatic  #163                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.getPotion:(Lnet/minecraft/world/item/ItemStack;)Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     126: aload_2
+     127: invokevirtual #167                // Method getAlchemyPotionIngredient:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     130: if_acmpeq     136
+     133: iconst_0
+     134: istore        7
+     136: iconst_0
+     137: istore        9
+     139: iload         9
+     141: aload_3
+     142: invokeinterface #171,  1          // InterfaceMethod java/util/List.size:()I
+     147: if_icmpge     186
+     150: aload_3
+     151: iload         9
+     153: invokeinterface #175,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     158: checkcast     #177                // class net/minecraft/world/item/crafting/Ingredient
+     161: astore        10
+     163: aload         10
+     165: aload         6
+     167: invokevirtual #181                // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+     170: ifeq          180
+     173: iload         9
+     175: istore        8
+     177: goto          186
+     180: iinc          9, 1
+     183: goto          139
+     186: iload         8
+     188: iconst_m1
+     189: if_icmpeq     209
+     192: iload         7
+     194: ifeq          209
+     197: aload_3
+     198: iload         8
+     200: invokeinterface #184,  2          // InterfaceMethod java/util/List.remove:(I)Ljava/lang/Object;
+     205: pop
+     206: goto          211
+     209: iconst_0
+     210: ireturn
+     211: goto          71
+     214: aload_3
+     215: invokeinterface #185,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     220: ireturn
+
+  public boolean fluidMatches(mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext, net.minecraft.world.level.Level);
+    Code:
+       0: new           #201                // class java/util/HashSet
+       3: dup
+       4: invokespecial #202                // Method java/util/HashSet."<init>":()V
+       7: astore_3
+       8: aload_3
+       9: aload_0
+      10: getfield      #49                 // Field fluidInputs:Lnet/minecraft/core/NonNullList;
+      13: invokevirtual #206                // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+      16: pop
+      17: aload_1
+      18: getfield      #210                // Field mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext.fluids:[Lnet/minecraftforge/fluids/capability/IFluidHandler;
+      21: astore        4
+      23: aload         4
+      25: arraylength
+      26: istore        5
+      28: iconst_0
+      29: istore        6
+      31: iload         6
+      33: iload         5
+      35: if_icmpge     187
+      38: aload         4
+      40: iload         6
+      42: aaload
+      43: astore        7
+      45: iconst_0
+      46: istore        8
+      48: aload_3
+      49: invokevirtual #214                // Method java/util/HashSet.iterator:()Ljava/util/Iterator;
+      52: astore        9
+      54: aload         9
+      56: invokeinterface #143,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      61: ifeq          157
+      64: aload         9
+      66: invokeinterface #147,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      71: checkcast     #216                // class mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient
+      74: astore        10
+      76: aload         10
+      78: invokevirtual #220                // Method mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient.getAllFluids:()Ljava/util/List;
+      81: invokeinterface #138,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      86: astore        11
+      88: aload         11
+      90: invokeinterface #143,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      95: ifeq          146
+      98: aload         11
+     100: invokeinterface #147,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     105: checkcast     #58                 // class net/minecraftforge/fluids/FluidStack
+     108: astore        12
+     110: aload         10
+     112: aload         7
+     114: aload         12
+     116: getstatic     #224                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     119: invokeinterface #228,  3          // InterfaceMethod net/minecraftforge/fluids/capability/IFluidHandler.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     124: invokevirtual #231                // Method mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient.test:(Lnet/minecraftforge/fluids/FluidStack;)Z
+     127: ifeq          143
+     130: aload_3
+     131: aload         10
+     133: invokevirtual #233                // Method java/util/HashSet.remove:(Ljava/lang/Object;)Z
+     136: pop
+     137: iconst_1
+     138: istore        8
+     140: goto          146
+     143: goto          88
+     146: iload         8
+     148: ifeq          154
+     151: goto          157
+     154: goto          54
+     157: iload         8
+     159: ifne          181
+     162: aload         7
+     164: iconst_1
+     165: getstatic     #224                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     168: invokeinterface #236,  3          // InterfaceMethod net/minecraftforge/fluids/capability/IFluidHandler.drain:(ILnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     173: invokevirtual #237                // Method net/minecraftforge/fluids/FluidStack.isEmpty:()Z
+     176: ifne          181
+     179: iconst_0
+     180: ireturn
+     181: iinc          6, 1
+     184: goto          31
+     187: aload_3
+     188: invokevirtual #238                // Method java/util/HashSet.isEmpty:()Z
+     191: ireturn
+
+  public static net.minecraft.world.item.ItemStack getAlchemyBottle(net.minecraft.world.item.ItemStack);
+    Code:
+       0: getstatic     #54                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: astore_1
+       4: aload_0
+       5: invokevirtual #155                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       8: astore_3
+       9: aload_3
+      10: instanceof    #249                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyBottleItem
+      13: ifeq          26
+      16: aload_3
+      17: checkcast     #249                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyBottleItem
+      20: astore_2
+      21: aload_2
+      22: invokevirtual #253                // Method mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyBottleItem.getPotionItem:()Lnet/minecraft/world/item/ItemStack;
+      25: astore_1
+      26: aload_0
+      27: invokevirtual #155                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      30: astore_3
+      31: aload_3
+      32: instanceof    #157                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyPotionItem
+      35: ifeq          48
+      38: aload_3
+      39: checkcast     #157                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyPotionItem
+      42: astore_2
+      43: aload_0
+      44: invokevirtual #256                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      47: astore_1
+      48: aload_1
+      49: areturn
+
+  public net.minecraft.world.item.ItemStack assemble(mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineContext, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: getfield      #56                 // Field output:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack m_8042_();
+    Code:
+       0: new           #51                 // class net/minecraft/world/item/ItemStack
+       3: dup
+       4: getstatic     #270                // Field mod/maxbogomol/wizards_reborn/registry/common/item/WizardsRebornItems.ALCHEMY_MACHINE:Lnet/minecraftforge/registries/RegistryObject;
+       7: invokevirtual #274                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      10: checkcast     #276                // class net/minecraft/world/level/ItemLike
+      13: invokespecial #279                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      16: areturn
+
+  public net.minecraft.resources.ResourceLocation m_6423_();
+    Code:
+       0: aload_0
+       1: getfield      #73                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       4: areturn
+
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+    Code:
+       0: getstatic     #290                // Field net/minecraft/core/registries/BuiltInRegistries.f_256990_:Lnet/minecraft/core/Registry;
+       3: getstatic     #292                // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+       6: invokeinterface #298,  2          // InterfaceMethod net/minecraft/core/Registry.m_6612_:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+      11: invokevirtual #301                // Method java/util/Optional.get:()Ljava/lang/Object;
+      14: checkcast     #303                // class net/minecraft/world/item/crafting/RecipeType
+      17: areturn
+
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+    Code:
+       0: getstatic     #311                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornRecipes.ALCHEMY_MACHINE_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+       3: invokevirtual #274                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       6: checkcast     #313                // class net/minecraft/world/item/crafting/RecipeSerializer
+       9: areturn
+
+  public boolean m_8004_(int, int);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean m_5598_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.crafting.Ingredient> m_7527_();
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field inputs:Lnet/minecraft/core/NonNullList;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: getfield      #56                 // Field output:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public net.minecraft.core.NonNullList<mod.maxbogomol.fluffy_fur.common.recipe.FluidIngredient> getFluidInputs();
+    Code:
+       0: aload_0
+       1: getfield      #49                 // Field fluidInputs:Lnet/minecraft/core/NonNullList;
+       4: areturn
+
+  public net.minecraftforge.fluids.FluidStack getFluidResult();
+    Code:
+       0: aload_0
+       1: getfield      #63                 // Field fluidOutput:Lnet/minecraftforge/fluids/FluidStack;
+       4: areturn
+
+  public mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion getAlchemyPotion();
+    Code:
+       0: aload_0
+       1: getfield      #69                 // Field alchemyPotion:Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+       4: areturn
+
+  public mod.maxbogomol.wizards_reborn.api.alchemy.AlchemyPotion getAlchemyPotionIngredient();
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field alchemyPotionIngredient:Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+       4: areturn
+
+  public int getWissen();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field wissen:I
+       4: ireturn
+
+  public int getSteam();
+    Code:
+       0: aload_0
+       1: getfield      #67                 // Field steam:I
+       4: ireturn
+
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #94                 // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext
+       5: aload_2
+       6: invokevirtual #334                // Method assemble:(Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+       9: areturn
+
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #94                 // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext
+       5: aload_2
+       6: invokevirtual #338                // Method matches:(Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext;Lnet/minecraft/world/level/Level;)Z
+       9: ireturn
+
+  static {};
+    Code:
+       0: new           #341                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc_w         #343                // String wizards_reborn
+       7: ldc_w         #345                // String alchemy_machine
+      10: invokespecial #348                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      13: putstatic     #292                // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+      16: return
+}
+Compiled from "CenserRecipe.java"
+public class mod.maxbogomol.wizards_reborn.common.recipe.CenserRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  public static net.minecraft.resources.ResourceLocation TYPE_ID;
+
+  private final net.minecraft.resources.ResourceLocation id;
+
+  private final net.minecraft.world.item.crafting.Ingredient input;
+
+  private final java.util.List<net.minecraft.world.effect.MobEffectInstance> effects;
+
+  public mod.maxbogomol.wizards_reborn.common.recipe.CenserRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, java.util.List<net.minecraft.world.effect.MobEffectInstance>);
+    Code:
+       0: aload_0
+       1: invokespecial #25                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #27                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       9: aload_0
+      10: aload_2
+      11: putfield      #29                 // Field input:Lnet/minecraft/world/item/crafting/Ingredient;
+      14: aload_0
+      15: aload_3
+      16: putfield      #31                 // Field effects:Ljava/util/List;
+      19: return
+
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field input:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: aload_1
+       5: iconst_0
+       6: invokeinterface #41,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      11: invokevirtual #47                 // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+      14: ireturn
+
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+    Code:
+       0: getstatic     #59                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: areturn
+
+  public net.minecraft.world.item.ItemStack m_8042_();
+    Code:
+       0: new           #55                 // class net/minecraft/world/item/ItemStack
+       3: dup
+       4: getstatic     #69                 // Field mod/maxbogomol/wizards_reborn/registry/common/item/WizardsRebornItems.ARCANE_CENSER:Lnet/minecraftforge/registries/RegistryObject;
+       7: invokevirtual #75                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      10: checkcast     #77                 // class net/minecraft/world/level/ItemLike
+      13: invokespecial #80                 // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      16: areturn
+
+  public net.minecraft.resources.ResourceLocation m_6423_();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       4: areturn
+
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+    Code:
+       0: getstatic     #91                 // Field net/minecraft/core/registries/BuiltInRegistries.f_256990_:Lnet/minecraft/core/Registry;
+       3: getstatic     #93                 // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+       6: invokeinterface #99,  2           // InterfaceMethod net/minecraft/core/Registry.m_6612_:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+      11: invokevirtual #102                // Method java/util/Optional.get:()Ljava/lang/Object;
+      14: checkcast     #104                // class net/minecraft/world/item/crafting/RecipeType
+      17: areturn
+
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+    Code:
+       0: getstatic     #112                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornRecipes.CENSER_SERIALIZER:Lnet/minecraftforge/registries/RegistryObject;
+       3: invokevirtual #75                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       6: checkcast     #114                // class net/minecraft/world/item/crafting/RecipeSerializer
+       9: areturn
+
+  public boolean m_8004_(int, int);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean m_5598_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+    Code:
+       0: getstatic     #59                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: areturn
+
+  public net.minecraft.world.item.crafting.Ingredient getInput();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field input:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: areturn
+
+  public java.util.List<net.minecraft.world.effect.MobEffectInstance> getEffects();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field effects:Ljava/util/List;
+       4: areturn
+
+  static {};
+    Code:
+       0: new           #131                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc           #133                // String wizards_reborn
+       6: ldc           #135                // String censer
+       8: invokespecial #138                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      11: putstatic     #93                 // Field TYPE_ID:Lnet/minecraft/resources/ResourceLocation;
+      14: return
+}

@@ -1,0 +1,35 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+group = 'dev.mcpmcp.adapters'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+repositories { mavenCentral() }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+def platformRoot = file('../..')
+def rsJar = providers.gradleProperty('rsJar').map { file(it) }.getOrElse(file('D:/Games/mc/Cheat/versions/神秘启旅/mods/refinedstorage-1.12.4.jar'))
+def expectedHash = 'd8ae3926c2121336efcd6956c43d91f21ce405b77ac7c7201c559d4c19f380d2'
+if (!rsJar.isFile() || rsJar.name != 'refinedstorage-1.12.4.jar') throw new GradleException('Provide -PrsJar=<path/refinedstorage-1.12.4.jar>')
+def actualHash = java.security.MessageDigest.getInstance('SHA-256').digest(rsJar.bytes).encodeHex().toString()
+if (actualHash != expectedHash) throw new GradleException('Refined Storage target hash mismatch; this adapter is pinned to the inspected JAR')
+repositories { flatDir { dirs rsJar.parentFile } }
+def mappedRs = fg.deobf('local.mcpmcp.' + expectedHash + ':refinedstorage:1.12.4')
+dependencies {
+ compileOnly mappedRs
+ testImplementation mappedRs
+ minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+ compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ compileOnly 'com.google.code.gson:gson:2.10'
+ testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ testImplementation 'com.google.code.gson:gson:2.10'
+}
+compileJava.doFirst { if (!rsJar.isFile()) throw new GradleException('Provide -PrsJar=<exact refinedstorage-1.12.4.jar>') }
+jar { archiveFileName = 'adapter.jar'; manifest { attributes 'Implementation-Title':'MCPMCP Refined Storage adapter', 'Implementation-Version':project.version } }
+jar.finalizedBy('reobfJar')
+tasks.register('adapterContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.rs.AdapterTest' }
+check.dependsOn adapterContractTest
+tasks.register('stageDistribution', Copy) {
+ dependsOn tasks.named('reobfJar')
+ from(tasks.named('jar').flatMap { it.archiveFile })
+ into layout.projectDirectory.dir('distribution')
+}
+tasks.named('build') { dependsOn tasks.named('stageDistribution') }

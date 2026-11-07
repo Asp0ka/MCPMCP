@@ -1,0 +1,41 @@
+Compiled from "SlotIronFurnaceInput.java"
+public class ironfurnaces.container.slots.SlotIronFurnaceInput extends net.minecraft.world.inventory.Slot {
+  private ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase te;
+
+  public ironfurnaces.container.slots.SlotIronFurnaceInput(ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: invokespecial #12                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+       9: aload_0
+      10: aload_1
+      11: putfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: return
+
+  public boolean m_5857_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: aload_1
+       5: invokevirtual #27                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.hasRecipe:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ireturn
+
+  public boolean m_6659_();
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #35                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+       7: ifne          24
+      10: aload_0
+      11: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: invokevirtual #38                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFurnace:()Z
+      17: ifeq          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

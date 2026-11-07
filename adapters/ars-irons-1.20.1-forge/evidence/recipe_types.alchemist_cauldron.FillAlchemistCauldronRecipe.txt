@@ -1,0 +1,26 @@
+Compiled from "FillAlchemistCauldronRecipe.java"
+public final class io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.FillAlchemistCauldronRecipe extends java.lang.Record implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  private final net.minecraft.resources.ResourceLocation getId;
+  private final net.minecraft.world.item.crafting.Ingredient input;
+  private final net.minecraft.world.item.ItemStack returned;
+  private final net.minecraftforge.fluids.FluidStack result;
+  private final boolean mustFitAll;
+  private final net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> fillSound;
+  public io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.FillAlchemistCauldronRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, net.minecraftforge.fluids.FluidStack, boolean, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>);
+  public net.minecraftforge.fluids.FluidStack result();
+  public net.minecraft.world.item.ItemStack returned();
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_5598_();
+  public boolean m_8004_(int, int);
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.Ingredient input();
+  public boolean mustFitAll();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> fillSound();
+}

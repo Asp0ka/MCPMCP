@@ -1,0 +1,32 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+group = 'dev.mcpmcp.adapters'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+repositories { mavenCentral() }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+def platformRoot = file('../..')
+dependencies {
+ minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+ compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ compileOnly 'com.google.code.gson:gson:2.10'
+ testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ testImplementation 'com.google.code.gson:gson:2.10'
+}
+jar { enabled = false }
+tasks.configureEach { if (name == 'reobfJar') enabled = false }
+['storage':'StoragePlugin', 'backpack':'BackpackPlugin', 'furnace':'FurnacePlugin'].each { key, provider ->
+ tasks.register(key+'Jar', Jar) {
+  from(sourceSets.main.output) { exclude 'dev/mcpmcp/sophisticated/*Plugin.class' }
+  from(sourceSets.main.output) { include 'dev/mcpmcp/sophisticated/'+provider+'.class' }
+  from('src/'+key+'/resources')
+  archiveFileName = key+'-adapter.jar'
+  manifest { attributes 'Implementation-Title':'MCPMCP '+key+' adapter', 'Implementation-Version':project.version }
+ }
+}
+reobf { storageJar {}; backpackJar {}; furnaceJar {} }
+['storage','backpack','furnace'].each { key -> tasks.named(key+'Jar') { finalizedBy('reobf'+key.capitalize()+'Jar') } }
+tasks.register('adapterContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.sophisticated.AdapterContractTest' }
+check.dependsOn adapterContractTest
+assemble.dependsOn storageJar, backpackJar, furnaceJar
+tasks.register('distributionTest', JavaExec) { dependsOn testClasses, 'reobfStorageJar', 'reobfBackpackJar', 'reobfFurnaceJar'; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.sophisticated.DistributionTest' }

@@ -1,0 +1,53 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="[46,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+
+license="GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007"
+
+[[mods]] #mandatory
+
+modId="ironfurnaces" #mandatory
+
+version="4.1.8" #mandatory
+
+displayName="Iron Furnaces" #mandatory
+
+itemIcon="ironfurnaces:iron_furnace"
+
+logoFile="ironfurnaces_logo.png"
+
+displayURL="https://www.curseforge.com/minecraft/mc-mods/iron-furnaces/" #optional
+
+credits="Java, JetBrains, Minecraft, MinecraftForge, LexManos, mezz, Ellpeck, KingLemming" #optional
+
+authors="Qelifern (pizzaatime), XenoMustache, BOLT_M4G1C"
+
+description='''IronFurnaces introduces a selection of metal furnaces, offering different tiers to fulfill your smelting needs effortlessly.'''
+
+# Display Test controls the display for your mod in the server connection screen
+# MATCH_VERSION means that your mod will cause a red X if the versions on client and server differ. This is the default behaviour and should be what you choose if you have server and client elements to your mod.
+# IGNORE_SERVER_VERSION means that your mod will not cause a red X if it's present on the server but not on the client. This is what you should use if you're a server only mod.
+# IGNORE_ALL_VERSION means that your mod will not cause a red X if it's present on the client or the server. This is a special case and should only be used if your mod has no server component.
+# NONE means that no display test is set on your mod. You need to do this yourself, see IExtensionPoint.DisplayTest for more information. You can define any scheme you wish with this value.
+# IMPORTANT NOTE: this is NOT an instruction as to which environments (CLIENT or DEDICATED SERVER) your mod loads on. Your mod should load (and maybe do nothing!) whereever it finds itself.
+#displayTest="MATCH_VERSION" # MATCH_VERSION is the default if nothing is specified (#optional)
+
+[[dependencies.ironfurnaces]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[46,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+# Here's another dependency
+[[dependencies.ironfurnaces]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20, 1.21)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.ironfurnaces]]
+   modId="jei"
+   mandatory=false
+   versionRange="[13,)"
+   ordering="NONE"
+   side="BOTH"

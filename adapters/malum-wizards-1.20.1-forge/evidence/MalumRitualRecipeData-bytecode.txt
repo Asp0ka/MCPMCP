@@ -1,0 +1,23 @@
+Compiled from "MalumRitualRecipeData.java"
+public class com.sammy.malum.core.systems.ritual.MalumRitualRecipeData {
+  public final com.sammy.malum.core.systems.ritual.MalumRitualType ritualType;
+
+  public final team.lodestar.lodestone.systems.recipe.IngredientWithCount input;
+
+  public final java.util.List<team.lodestar.lodestone.systems.recipe.IngredientWithCount> extraItems;
+
+  public com.sammy.malum.core.systems.ritual.MalumRitualRecipeData(com.sammy.malum.core.systems.ritual.MalumRitualType, team.lodestar.lodestone.systems.recipe.IngredientWithCount, java.util.List<team.lodestar.lodestone.systems.recipe.IngredientWithCount>);
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #20                 // Field ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+       9: aload_0
+      10: aload_2
+      11: putfield      #22                 // Field input:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+      14: aload_0
+      15: aload_3
+      16: putfield      #24                 // Field extraItems:Ljava/util/List;
+      19: return
+}

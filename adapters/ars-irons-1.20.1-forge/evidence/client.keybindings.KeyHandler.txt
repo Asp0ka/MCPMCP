@@ -1,0 +1,388 @@
+Compiled from "KeyHandler.java"
+public class com.hollingsworth.arsnouveau.client.keybindings.KeyHandler {
+  private static final net.minecraft.client.Minecraft MINECRAFT;
+
+  public static net.minecraft.client.KeyMapping[] CURIO_MAPPINGS;
+
+  public com.hollingsworth.arsnouveau.client.keybindings.KeyHandler();
+    Code:
+       0: aload_0
+       1: invokespecial #48                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void checkKeysPressed(int);
+    Code:
+       0: iload_0
+       1: invokestatic  #55                 // Method checkCurioHotkey:(I)V
+       4: iload_0
+       5: getstatic     #61                 // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.FAMILIAR_TOGGLE:Lnet/minecraft/client/KeyMapping;
+       8: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      11: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+      14: if_icmpne     36
+      17: getstatic     #61                 // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.FAMILIAR_TOGGLE:Lnet/minecraft/client/KeyMapping;
+      20: invokevirtual #75                 // Method net/minecraft/client/KeyMapping.m_90862_:()Z
+      23: ifne          36
+      26: new           #77                 // class com/hollingsworth/arsnouveau/common/network/PacketToggleFamiliar
+      29: dup
+      30: invokespecial #78                 // Method com/hollingsworth/arsnouveau/common/network/PacketToggleFamiliar."<init>":()V
+      33: invokestatic  #84                 // Method com/hollingsworth/arsnouveau/common/network/Networking.sendToServer:(Ljava/lang/Object;)V
+      36: iload_0
+      37: getstatic     #87                 // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.OPEN_RADIAL_HUD:Lnet/minecraft/client/KeyMapping;
+      40: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      43: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+      46: if_icmpne     80
+      49: getstatic     #87                 // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.OPEN_RADIAL_HUD:Lnet/minecraft/client/KeyMapping;
+      52: invokevirtual #75                 // Method net/minecraft/client/KeyMapping.m_90862_:()Z
+      55: ifne          80
+      58: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      61: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      64: instanceof    #97                 // class com/hollingsworth/arsnouveau/client/gui/radial_menu/GuiRadialMenu
+      67: ifeq          80
+      70: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      73: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      76: invokevirtual #106                // Method net/minecraft/client/player/LocalPlayer.m_6915_:()V
+      79: return
+      80: iload_0
+      81: invokestatic  #109                // Method checkCasterKeys:(I)V
+      84: return
+
+  public static void checkCasterKeys(int);
+    Code:
+       0: iload_0
+       1: iconst_m1
+       2: if_icmpne     6
+       5: return
+       6: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+       9: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      12: astore_1
+      13: aload_1
+      14: invokestatic  #117                // Method com/hollingsworth/arsnouveau/api/util/StackUtil.getHeldRadial:(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
+      17: astore_2
+      18: aload_2
+      19: invokevirtual #123                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      22: astore        4
+      24: aload         4
+      26: instanceof    #125                // class com/hollingsworth/arsnouveau/api/item/IRadialProvider
+      29: ifeq          94
+      32: aload         4
+      34: checkcast     #125                // class com/hollingsworth/arsnouveau/api/item/IRadialProvider
+      37: astore_3
+      38: iload_0
+      39: aload_2
+      40: invokevirtual #123                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      43: checkcast     #125                // class com/hollingsworth/arsnouveau/api/item/IRadialProvider
+      46: invokeinterface #128,  1          // InterfaceMethod com/hollingsworth/arsnouveau/api/item/IRadialProvider.forKey:()I
+      51: if_icmpne     94
+      54: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      57: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      60: ifnonnull     72
+      63: aload_3
+      64: aload_2
+      65: aload_1
+      66: invokeinterface #132,  3          // InterfaceMethod com/hollingsworth/arsnouveau/api/item/IRadialProvider.onRadialKeyPressed:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
+      71: return
+      72: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      75: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      78: instanceof    #97                 // class com/hollingsworth/arsnouveau/client/gui/radial_menu/GuiRadialMenu
+      81: ifeq          94
+      84: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      87: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      90: invokevirtual #106                // Method net/minecraft/client/player/LocalPlayer.m_6915_:()V
+      93: return
+      94: aload_1
+      95: invokestatic  #138                // Method com/hollingsworth/arsnouveau/api/util/StackUtil.getHeldCasterTool:(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/InteractionHand;
+      98: astore_3
+      99: aload_3
+     100: ifnonnull     104
+     103: return
+     104: aload_1
+     105: aload_3
+     106: invokevirtual #144                // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+     109: astore        4
+     111: aload         4
+     113: invokevirtual #147                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     116: ifeq          120
+     119: return
+     120: aload         4
+     122: invokevirtual #123                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     125: astore        6
+     127: aload         6
+     129: instanceof    #149                // class com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener
+     132: ifeq          145
+     135: aload         6
+     137: checkcast     #149                // class com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener
+     140: astore        5
+     142: goto          146
+     145: return
+     146: iload_0
+     147: getstatic     #152                // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.NEXT_SLOT:Lnet/minecraft/client/KeyMapping;
+     150: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+     153: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+     156: if_icmpne     166
+     159: getstatic     #156                // Field com/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key.NEXT:Lcom/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key;
+     162: invokestatic  #160                // Method sendHotkeyPacket:(Lcom/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key;)V
+     165: return
+     166: iload_0
+     167: getstatic     #163                // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.PREVIOUS_SLOT:Lnet/minecraft/client/KeyMapping;
+     170: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+     173: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+     176: if_icmpne     186
+     179: getstatic     #166                // Field com/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key.PREVIOUS:Lcom/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key;
+     182: invokestatic  #160                // Method sendHotkeyPacket:(Lcom/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key;)V
+     185: return
+     186: iload_0
+     187: getstatic     #169                // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.OPEN_BOOK:Lnet/minecraft/client/KeyMapping;
+     190: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+     193: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+     196: if_icmpne     368
+     199: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     202: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+     205: instanceof    #171                // class com/hollingsworth/arsnouveau/client/gui/book/GuiSpellBook
+     208: ifeq          239
+     211: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     214: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+     217: checkcast     #171                // class com/hollingsworth/arsnouveau/client/gui/book/GuiSpellBook
+     220: getfield      #175                // Field com/hollingsworth/arsnouveau/client/gui/book/GuiSpellBook.spell_name:Lnet/minecraft/client/gui/components/EditBox;
+     223: invokevirtual #180                // Method net/minecraft/client/gui/components/EditBox.m_93696_:()Z
+     226: ifne          239
+     229: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     232: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     235: invokevirtual #106                // Method net/minecraft/client/player/LocalPlayer.m_6915_:()V
+     238: return
+     239: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     242: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+     245: ifnonnull     368
+     248: aload_1
+     249: invokestatic  #183                // Method com/hollingsworth/arsnouveau/api/util/StackUtil.getHeldSpellbook:(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/item/ItemStack;
+     252: astore        6
+     254: aload         6
+     256: invokevirtual #147                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     259: ifne          275
+     262: aload         5
+     264: aload         6
+     266: aload_1
+     267: invokeinterface #186,  3          // InterfaceMethod com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener.onOpenBookMenuKeyPressed:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
+     272: goto          368
+     275: aload         4
+     277: invokevirtual #123                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     280: astore        8
+     282: aload         8
+     284: instanceof    #149                // class com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener
+     287: ifeq          310
+     290: aload         8
+     292: checkcast     #149                // class com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener
+     295: astore        7
+     297: aload         7
+     299: aload         4
+     301: aload_1
+     302: invokeinterface #186,  3          // InterfaceMethod com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener.onOpenBookMenuKeyPressed:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
+     307: goto          368
+     310: aload_3
+     311: getstatic     #190                // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+     314: if_acmpne     323
+     317: getstatic     #193                // Field net/minecraft/world/InteractionHand.OFF_HAND:Lnet/minecraft/world/InteractionHand;
+     320: goto          326
+     323: getstatic     #190                // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+     326: astore        8
+     328: aload_1
+     329: aload         8
+     331: invokevirtual #144                // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+     334: astore        9
+     336: aload         9
+     338: invokevirtual #123                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     341: astore        11
+     343: aload         11
+     345: instanceof    #149                // class com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener
+     348: ifeq          368
+     351: aload         11
+     353: checkcast     #149                // class com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener
+     356: astore        10
+     358: aload         10
+     360: aload         9
+     362: aload_1
+     363: invokeinterface #186,  3          // InterfaceMethod com/hollingsworth/arsnouveau/api/item/ISpellHotkeyListener.onOpenBookMenuKeyPressed:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
+     368: iload_0
+     369: invokestatic  #197                // Method com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.usedQuickSlot:(I)I
+     372: istore        6
+     374: iload         6
+     376: iconst_m1
+     377: if_icmpeq     395
+     380: getstatic     #201                // Field com/hollingsworth/arsnouveau/common/network/Networking.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+     383: new           #203                // class com/hollingsworth/arsnouveau/common/network/PacketQuickCast
+     386: dup
+     387: iload         6
+     389: invokespecial #205                // Method com/hollingsworth/arsnouveau/common/network/PacketQuickCast."<init>":(I)V
+     392: invokevirtual #208                // Method net/minecraftforge/network/simple/SimpleChannel.sendToServer:(Ljava/lang/Object;)V
+     395: return
+
+  public static void checkCurioHotkey(int);
+    Code:
+       0: getstatic     #226                // Field CURIO_MAPPINGS:[Lnet/minecraft/client/KeyMapping;
+       3: astore_1
+       4: aload_1
+       5: arraylength
+       6: istore_2
+       7: iconst_0
+       8: istore_3
+       9: iload_3
+      10: iload_2
+      11: if_icmpge     162
+      14: aload_1
+      15: iload_3
+      16: aaload
+      17: astore        4
+      19: aload         4
+      21: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      24: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+      27: iload_0
+      28: if_icmpne     156
+      31: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      34: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      37: invokestatic  #233                // Method com/hollingsworth/arsnouveau/api/util/CuriosUtil.getAllWornItems:(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraftforge/common/util/LazyOptional;
+      40: astore        5
+      42: aload         5
+      44: invokevirtual #238                // Method net/minecraftforge/common/util/LazyOptional.isPresent:()Z
+      47: ifne          51
+      50: return
+      51: aload         5
+      53: aconst_null
+      54: invokevirtual #242                // Method net/minecraftforge/common/util/LazyOptional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      57: checkcast     #244                // class net/minecraftforge/items/IItemHandlerModifiable
+      60: astore        6
+      62: iconst_0
+      63: istore        7
+      65: iload         7
+      67: aload         6
+      69: invokeinterface #247,  1          // InterfaceMethod net/minecraftforge/items/IItemHandlerModifiable.getSlots:()I
+      74: if_icmpge     155
+      77: aload         6
+      79: iload         7
+      81: invokeinterface #251,  2          // InterfaceMethod net/minecraftforge/items/IItemHandlerModifiable.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      86: astore        8
+      88: aload         8
+      90: invokevirtual #123                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      93: astore        10
+      95: aload         10
+      97: instanceof    #125                // class com/hollingsworth/arsnouveau/api/item/IRadialProvider
+     100: ifeq          149
+     103: aload         10
+     105: checkcast     #125                // class com/hollingsworth/arsnouveau/api/item/IRadialProvider
+     108: astore        9
+     110: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     113: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+     116: instanceof    #97                 // class com/hollingsworth/arsnouveau/client/gui/radial_menu/GuiRadialMenu
+     119: ifeq          134
+     122: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     125: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     128: invokevirtual #106                // Method net/minecraft/client/player/LocalPlayer.m_6915_:()V
+     131: goto          149
+     134: aload         9
+     136: aload         8
+     138: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+     141: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     144: invokeinterface #132,  3          // InterfaceMethod com/hollingsworth/arsnouveau/api/item/IRadialProvider.onRadialKeyPressed:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V
+     149: iinc          7, 1
+     152: goto          65
+     155: return
+     156: iinc          3, 1
+     159: goto          9
+     162: return
+
+  public static void mouseEvent(net.minecraftforge.client.event.InputEvent$MouseButton$Post);
+    Code:
+       0: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+       3: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       6: ifnull        17
+       9: aload_0
+      10: invokevirtual #265                // Method net/minecraftforge/client/event/InputEvent$MouseButton$Post.getAction:()I
+      13: iconst_1
+      14: if_icmpeq     18
+      17: return
+      18: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      21: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      24: ifnull        39
+      27: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      30: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      33: instanceof    #97                 // class com/hollingsworth/arsnouveau/client/gui/radial_menu/GuiRadialMenu
+      36: ifeq          46
+      39: aload_0
+      40: invokevirtual #268                // Method net/minecraftforge/client/event/InputEvent$MouseButton$Post.getButton:()I
+      43: invokestatic  #270                // Method checkKeysPressed:(I)V
+      46: return
+
+  public static void keyEvent(net.minecraftforge.client.event.InputEvent$Key);
+    Code:
+       0: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+       3: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       6: ifnull        17
+       9: aload_0
+      10: invokevirtual #275                // Method net/minecraftforge/client/event/InputEvent$Key.getAction:()I
+      13: iconst_1
+      14: if_icmpeq     18
+      17: return
+      18: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      21: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      24: ifnull        39
+      27: getstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+      30: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+      33: instanceof    #97                 // class com/hollingsworth/arsnouveau/client/gui/radial_menu/GuiRadialMenu
+      36: ifeq          46
+      39: aload_0
+      40: invokevirtual #277                // Method net/minecraftforge/client/event/InputEvent$Key.getKey:()I
+      43: invokestatic  #270                // Method checkKeysPressed:(I)V
+      46: aload_0
+      47: invokevirtual #277                // Method net/minecraftforge/client/event/InputEvent$Key.getKey:()I
+      50: invokestatic  #281                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      53: getfield      #285                // Field net/minecraft/client/Minecraft.f_91066_:Lnet/minecraft/client/Options;
+      56: getfield      #290                // Field net/minecraft/client/Options.f_92089_:Lnet/minecraft/client/KeyMapping;
+      59: invokevirtual #67                 // Method net/minecraft/client/KeyMapping.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      62: invokevirtual #71                 // Method com/mojang/blaze3d/platform/InputConstants$Key.m_84873_:()I
+      65: if_icmpne     135
+      68: invokestatic  #281                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      71: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      74: ifnull        135
+      77: invokestatic  #281                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      80: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      83: invokevirtual #293                // Method net/minecraft/client/player/LocalPlayer.m_20096_:()Z
+      86: ifne          135
+      89: invokestatic  #281                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+      92: getfield      #101                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      95: getstatic     #299                // Field com/hollingsworth/arsnouveau/setup/registry/ItemsRegistry.JUMP_RING:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+      98: invokevirtual #305                // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.get:()Ljava/lang/Object;
+     101: checkcast     #307                // class net/minecraft/world/item/Item
+     104: invokestatic  #311                // Method com/hollingsworth/arsnouveau/api/util/CuriosUtil.hasItem:(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/Item;)Z
+     107: ifeq          135
+     110: invokestatic  #281                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     113: getfield      #95                 // Field net/minecraft/client/Minecraft.f_91080_:Lnet/minecraft/client/gui/screens/Screen;
+     116: ifnonnull     135
+     119: getstatic     #201                // Field com/hollingsworth/arsnouveau/common/network/Networking.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+     122: new           #34                 // class com/hollingsworth/arsnouveau/common/network/PacketGenericClientMessage
+     125: dup
+     126: getstatic     #314                // Field com/hollingsworth/arsnouveau/common/network/PacketGenericClientMessage$Action.JUMP_RING:Lcom/hollingsworth/arsnouveau/common/network/PacketGenericClientMessage$Action;
+     129: invokespecial #317                // Method com/hollingsworth/arsnouveau/common/network/PacketGenericClientMessage."<init>":(Lcom/hollingsworth/arsnouveau/common/network/PacketGenericClientMessage$Action;)V
+     132: invokevirtual #208                // Method net/minecraftforge/network/simple/SimpleChannel.sendToServer:(Ljava/lang/Object;)V
+     135: return
+
+  public static void sendHotkeyPacket(com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed$Key);
+    Code:
+       0: getstatic     #201                // Field com/hollingsworth/arsnouveau/common/network/Networking.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+       3: new           #20                 // class com/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed
+       6: dup
+       7: aload_0
+       8: invokespecial #320                // Method com/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed."<init>":(Lcom/hollingsworth/arsnouveau/common/network/PacketHotkeyPressed$Key;)V
+      11: invokevirtual #208                // Method net/minecraftforge/network/simple/SimpleChannel.sendToServer:(Ljava/lang/Object;)V
+      14: return
+
+  static {};
+    Code:
+       0: invokestatic  #281                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+       3: putstatic     #89                 // Field MINECRAFT:Lnet/minecraft/client/Minecraft;
+       6: iconst_1
+       7: anewarray     #63                 // class net/minecraft/client/KeyMapping
+      10: dup
+      11: iconst_0
+      12: getstatic     #324                // Field com/hollingsworth/arsnouveau/client/registry/ModKeyBindings.HEAD_CURIO_HOTKEY:Lnet/minecraft/client/KeyMapping;
+      15: aastore
+      16: putstatic     #226                // Field CURIO_MAPPINGS:[Lnet/minecraft/client/KeyMapping;
+      19: return
+}

@@ -1,6 +1,6 @@
 # MCP Minecraft Plus（MCPMCP）
 
-Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.28 / Java 17**，版本 `0.1.2`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
+Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.21+ / Java 17**，版本 `0.1.2`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
 
 这是独立重写工程。协议、权限与任务位于 `core`，插件API位于 `plugin-api`，Minecraft类型与Forge实现位于 `versions/1.20.1-forge`，Python桥接位于 `bridge`。后续版本/加载器仍需实现各自适配层，当前JAR不能直接跨版本或直接用于Fabric/NeoForge。
 
@@ -46,6 +46,10 @@ Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.
 ## 原生聊天输入与运行上下文
 
 `chat.submit` 接受AI编写的完整单行文本，不补前缀、不按用途分类；普通消息、`/命令`、`#Baritone`、`.`模组命令走客户端原生提交链。`get_context` 只读返回当前 mode、transport、服务器作弊开关和玩家命令权限，远程未公开值返回 unknown。详见 [0.1.2 更新记录](docs/native-chat-0.1.2.md)。
+
+## 模组适配插件
+
+可选 Java 插件按目标 JAR 的完整 SHA-256 与实际版本绑定，覆盖 JEI、精妙存储/背包、更多熔炉、RS、植物魔法、无尽贪婪、灵灾、术士的重生、新生魔艺、铁咒与附属。安装与边界见 [模组适配插件](docs/adapters-0.1.2.md)。JEI 为可选依赖，核心原版合成不依赖它。
 
 ## 插件设置与语言
 

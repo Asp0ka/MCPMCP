@@ -26,8 +26,8 @@ def main():
     source = subprocess.check_output(['git', 'archive', '--format=zip', 'HEAD'], cwd=ROOT)
     jar = JAR.read_bytes()
     manifest = {'name': 'MCP Minecraft Plus', 'version': VERSION, 'minecraft': '1.20.1',
-                'forge': '47.4.28', 'git_commit': commit, 'jar_sha256': digest(jar),
-                'sources_sha256': digest(source), 'requires': ['Java 17', 'Forge 47.4.28', 'Python 3.10+ for MCP'],
+                'forge': '47.4.21', 'git_commit': commit, 'jar_sha256': digest(jar),
+                'sources_sha256': digest(source), 'requires': ['Java 17', 'Forge 47.4.21+', 'Python 3.10+ for MCP'],
                 'optional': ['compatible Baritone for movement'], 'jei_required': False}
     install = '''# MCPMCP 0.1.2 / Minecraft 1.20.1 Forge
 

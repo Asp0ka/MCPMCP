@@ -1,0 +1,28 @@
+plugins { id 'net.minecraftforge.gradle' version '6.0.54' apply false }
+tasks.register('verifyTargets', Exec) { workingDir rootDir; commandLine 'python', 'verify_targets.py' }
+tasks.register('packageAdapters', Exec) { dependsOn ':botania:check', ':avaritia:check', ':botania:reobfJar', ':avaritia:reobfJar'; workingDir rootDir; commandLine 'python', 'package_adapters.py' }
+
+subprojects {
+ apply plugin: 'java'
+ apply plugin: 'net.minecraftforge.gradle'
+ group = 'dev.mcpmcp.adapters'
+ version = '0.1.0'
+ java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+ tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17; dependsOn rootProject.tasks.named('verifyTargets') }
+ repositories { mavenCentral() }
+ minecraft { mappings channel: 'official', version: '1.20.1' }
+ sourceSets.main.java.srcDir rootProject.file('shared/src/main/java')
+ sourceSets.test.java.srcDir rootProject.file('shared/src/test/java')
+ def platformRoot = rootProject.file('../..')
+ dependencies {
+  minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+  compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+  compileOnly 'com.google.code.gson:gson:2.10'
+  testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+  testImplementation 'com.google.code.gson:gson:2.10'
+ }
+ jar { archiveFileName = 'adapter.jar'; manifest { attributes 'Implementation-Title':('MCPMCP '+project.name+' adapter'), 'Implementation-Version':project.version, 'Target-Mod-Id':project.name, 'Target-Mod-Version':(project.name=='botania'?'1.20.1-453-FORGE':'1.3.9.0'), 'Target-Implementation-Version':(project.name=='botania'?'1.20.1-453-FORGE':'1.20.1-1.3.9.0-beta4'), 'Target-SHA256':(project.name=='botania'?'222755726437ed9d908c58462b604c10d137c3756a4a228ab459dbbaf8bd4c19':'a2f823fb0f226bfb25d10534a880150403aca5ce6b593f93a5e8ee6a7fb47d51') } }
+ jar.finalizedBy('reobfJar')
+ tasks.register('adapterContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.magic.ContractTest' }
+ check.dependsOn adapterContractTest
+}

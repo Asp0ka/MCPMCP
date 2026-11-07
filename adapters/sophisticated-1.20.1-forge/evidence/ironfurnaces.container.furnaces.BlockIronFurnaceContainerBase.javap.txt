@@ -1,0 +1,1447 @@
+Compiled from "BlockIronFurnaceContainerBase.java"
+public abstract class ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase extends net.minecraft.world.inventory.AbstractContainerMenu {
+  protected ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase te;
+
+  protected net.minecraft.world.entity.player.Player playerEntity;
+
+  protected net.minecraftforge.items.IItemHandler playerInventory;
+
+  protected final net.minecraft.world.level.Level world;
+
+  public ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase(net.minecraft.world.inventory.MenuType<?>, int, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #72                 // Method net/minecraft/world/inventory/AbstractContainerMenu."<init>":(Lnet/minecraft/world/inventory/MenuType;I)V
+       6: aload_0
+       7: aload_3
+       8: aload         4
+      10: invokevirtual #78                 // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      13: checkcast     #80                 // class ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase
+      16: putfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      19: aload_0
+      20: aload         6
+      22: putfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+      25: aload_0
+      26: new           #86                 // class net/minecraftforge/items/wrapper/InvWrapper
+      29: dup
+      30: aload         5
+      32: invokespecial #89                 // Method net/minecraftforge/items/wrapper/InvWrapper."<init>":(Lnet/minecraft/world/Container;)V
+      35: putfield      #91                 // Field playerInventory:Lnet/minecraftforge/items/IItemHandler;
+      38: aload_0
+      39: aload         5
+      41: getfield      #96                 // Field net/minecraft/world/entity/player/Inventory.f_35978_:Lnet/minecraft/world/entity/player/Player;
+      44: invokevirtual #102                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      47: putfield      #104                // Field world:Lnet/minecraft/world/level/Level;
+      50: aload_0
+      51: new           #106                // class ironfurnaces/container/slots/SlotIronFurnaceInput
+      54: dup
+      55: aload_0
+      56: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      59: iconst_0
+      60: bipush        56
+      62: bipush        17
+      64: invokespecial #109                // Method ironfurnaces/container/slots/SlotIronFurnaceInput."<init>":(Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+      67: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      70: pop
+      71: aload_0
+      72: new           #115                // class ironfurnaces/container/slots/SlotIronFurnaceFuel
+      75: dup
+      76: aload_0
+      77: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      80: iconst_1
+      81: bipush        56
+      83: bipush        53
+      85: invokespecial #116                // Method ironfurnaces/container/slots/SlotIronFurnaceFuel."<init>":(Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+      88: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      91: pop
+      92: aload_0
+      93: new           #118                // class ironfurnaces/container/slots/SlotIronFurnace
+      96: dup
+      97: aload_0
+      98: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     101: aload_0
+     102: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     105: iconst_2
+     106: bipush        116
+     108: bipush        35
+     110: invokespecial #121                // Method ironfurnaces/container/slots/SlotIronFurnace."<init>":(Lnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     113: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     116: pop
+     117: aload_0
+     118: new           #123                // class ironfurnaces/container/slots/SlotIronFurnaceAugmentRed
+     121: dup
+     122: aload_0
+     123: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     126: iconst_3
+     127: bipush        26
+     129: bipush        35
+     131: invokespecial #124                // Method ironfurnaces/container/slots/SlotIronFurnaceAugmentRed."<init>":(Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     134: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     137: pop
+     138: aload_0
+     139: new           #126                // class ironfurnaces/container/slots/SlotIronFurnaceAugmentGreen
+     142: dup
+     143: aload_0
+     144: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     147: iconst_4
+     148: bipush        80
+     150: bipush        35
+     152: invokespecial #127                // Method ironfurnaces/container/slots/SlotIronFurnaceAugmentGreen."<init>":(Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     155: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     158: pop
+     159: aload_0
+     160: new           #129                // class ironfurnaces/container/slots/SlotIronFurnaceAugmentBlue
+     163: dup
+     164: aload_0
+     165: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     168: iconst_5
+     169: sipush        134
+     172: bipush        35
+     174: invokespecial #130                // Method ironfurnaces/container/slots/SlotIronFurnaceAugmentBlue."<init>":(Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     177: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     180: pop
+     181: aload_0
+     182: new           #132                // class ironfurnaces/container/slots/SlotIronFurnaceInputGenerator
+     185: dup
+     186: aload_0
+     187: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     190: bipush        6
+     192: bipush        56
+     194: bipush        40
+     196: invokespecial #133                // Method ironfurnaces/container/slots/SlotIronFurnaceInputGenerator."<init>":(Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     199: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     202: pop
+     203: aload_0
+     204: new           #135                // class ironfurnaces/container/slots/SlotIronFurnaceInputFactory
+     207: dup
+     208: iconst_0
+     209: aload_0
+     210: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     213: bipush        7
+     215: bipush        28
+     217: bipush        6
+     219: invokespecial #138                // Method ironfurnaces/container/slots/SlotIronFurnaceInputFactory."<init>":(ILironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     222: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     225: pop
+     226: aload_0
+     227: new           #135                // class ironfurnaces/container/slots/SlotIronFurnaceInputFactory
+     230: dup
+     231: iconst_1
+     232: aload_0
+     233: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     236: bipush        8
+     238: bipush        49
+     240: bipush        6
+     242: invokespecial #138                // Method ironfurnaces/container/slots/SlotIronFurnaceInputFactory."<init>":(ILironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     245: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     248: pop
+     249: aload_0
+     250: new           #135                // class ironfurnaces/container/slots/SlotIronFurnaceInputFactory
+     253: dup
+     254: iconst_2
+     255: aload_0
+     256: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     259: bipush        9
+     261: bipush        70
+     263: bipush        6
+     265: invokespecial #138                // Method ironfurnaces/container/slots/SlotIronFurnaceInputFactory."<init>":(ILironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     268: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     271: pop
+     272: aload_0
+     273: new           #135                // class ironfurnaces/container/slots/SlotIronFurnaceInputFactory
+     276: dup
+     277: iconst_3
+     278: aload_0
+     279: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     282: bipush        10
+     284: bipush        91
+     286: bipush        6
+     288: invokespecial #138                // Method ironfurnaces/container/slots/SlotIronFurnaceInputFactory."<init>":(ILironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     291: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     294: pop
+     295: aload_0
+     296: new           #135                // class ironfurnaces/container/slots/SlotIronFurnaceInputFactory
+     299: dup
+     300: iconst_4
+     301: aload_0
+     302: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     305: bipush        11
+     307: bipush        112
+     309: bipush        6
+     311: invokespecial #138                // Method ironfurnaces/container/slots/SlotIronFurnaceInputFactory."<init>":(ILironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     314: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     317: pop
+     318: aload_0
+     319: new           #135                // class ironfurnaces/container/slots/SlotIronFurnaceInputFactory
+     322: dup
+     323: iconst_5
+     324: aload_0
+     325: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     328: bipush        12
+     330: sipush        133
+     333: bipush        6
+     335: invokespecial #138                // Method ironfurnaces/container/slots/SlotIronFurnaceInputFactory."<init>":(ILironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     338: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     341: pop
+     342: aload_0
+     343: new           #140                // class ironfurnaces/container/slots/SlotIronFurnaceOutputFactory
+     346: dup
+     347: iconst_0
+     348: aload_0
+     349: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     352: aload_0
+     353: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     356: bipush        13
+     358: bipush        28
+     360: bipush        55
+     362: invokespecial #143                // Method ironfurnaces/container/slots/SlotIronFurnaceOutputFactory."<init>":(ILnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     365: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     368: pop
+     369: aload_0
+     370: new           #140                // class ironfurnaces/container/slots/SlotIronFurnaceOutputFactory
+     373: dup
+     374: iconst_1
+     375: aload_0
+     376: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     379: aload_0
+     380: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     383: bipush        14
+     385: bipush        49
+     387: bipush        55
+     389: invokespecial #143                // Method ironfurnaces/container/slots/SlotIronFurnaceOutputFactory."<init>":(ILnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     392: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     395: pop
+     396: aload_0
+     397: new           #140                // class ironfurnaces/container/slots/SlotIronFurnaceOutputFactory
+     400: dup
+     401: iconst_2
+     402: aload_0
+     403: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     406: aload_0
+     407: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     410: bipush        15
+     412: bipush        70
+     414: bipush        55
+     416: invokespecial #143                // Method ironfurnaces/container/slots/SlotIronFurnaceOutputFactory."<init>":(ILnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     419: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     422: pop
+     423: aload_0
+     424: new           #140                // class ironfurnaces/container/slots/SlotIronFurnaceOutputFactory
+     427: dup
+     428: iconst_3
+     429: aload_0
+     430: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     433: aload_0
+     434: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     437: bipush        16
+     439: bipush        91
+     441: bipush        55
+     443: invokespecial #143                // Method ironfurnaces/container/slots/SlotIronFurnaceOutputFactory."<init>":(ILnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     446: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     449: pop
+     450: aload_0
+     451: new           #140                // class ironfurnaces/container/slots/SlotIronFurnaceOutputFactory
+     454: dup
+     455: iconst_4
+     456: aload_0
+     457: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     460: aload_0
+     461: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     464: bipush        17
+     466: bipush        112
+     468: bipush        55
+     470: invokespecial #143                // Method ironfurnaces/container/slots/SlotIronFurnaceOutputFactory."<init>":(ILnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     473: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     476: pop
+     477: aload_0
+     478: new           #140                // class ironfurnaces/container/slots/SlotIronFurnaceOutputFactory
+     481: dup
+     482: iconst_5
+     483: aload_0
+     484: getfield      #84                 // Field playerEntity:Lnet/minecraft/world/entity/player/Player;
+     487: aload_0
+     488: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     491: bipush        18
+     493: sipush        133
+     496: bipush        55
+     498: invokespecial #143                // Method ironfurnaces/container/slots/SlotIronFurnaceOutputFactory."<init>":(ILnet/minecraft/world/entity/player/Player;Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;III)V
+     501: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     504: pop
+     505: aload_0
+     506: bipush        8
+     508: bipush        84
+     510: invokevirtual #147                // Method layoutPlayerInventorySlots:(II)V
+     513: aload_0
+     514: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     517: bipush        19
+     519: invokestatic  #151                // Method m_38869_:(Lnet/minecraft/world/Container;I)V
+     522: aload_0
+     523: invokevirtual #155                // Method addDataSlots:()V
+     526: return
+
+  public void addDataSlots();
+    Code:
+       0: aload_0
+       1: new           #53                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$1
+       4: dup
+       5: aload_0
+       6: invokespecial #169                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$1."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+       9: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      12: pop
+      13: aload_0
+      14: new           #51                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$2
+      17: dup
+      18: aload_0
+      19: invokespecial #174                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$2."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      22: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      25: pop
+      26: aload_0
+      27: new           #49                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$3
+      30: dup
+      31: aload_0
+      32: invokespecial #175                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$3."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      35: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      38: pop
+      39: aload_0
+      40: new           #47                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$4
+      43: dup
+      44: aload_0
+      45: invokespecial #176                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$4."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      48: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      51: pop
+      52: aload_0
+      53: invokevirtual #179                // Method addEnergyData:()V
+      56: aload_0
+      57: invokevirtual #182                // Method addFurnaceData:()V
+      60: aload_0
+      61: invokevirtual #185                // Method addGeneratorData:()V
+      64: aload_0
+      65: invokevirtual #188                // Method addFactoryData:()V
+      68: return
+
+  public void addFurnaceData();
+    Code:
+       0: aload_0
+       1: new           #45                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$5
+       4: dup
+       5: aload_0
+       6: invokespecial #189                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$5."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+       9: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      12: pop
+      13: aload_0
+      14: new           #43                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$6
+      17: dup
+      18: aload_0
+      19: invokespecial #190                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$6."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      22: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      25: pop
+      26: aload_0
+      27: new           #41                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$7
+      30: dup
+      31: aload_0
+      32: invokespecial #191                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$7."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      35: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      38: pop
+      39: aload_0
+      40: new           #39                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$8
+      43: dup
+      44: aload_0
+      45: invokespecial #192                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$8."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      48: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      51: pop
+      52: aload_0
+      53: new           #37                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$9
+      56: dup
+      57: aload_0
+      58: invokespecial #193                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$9."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      61: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      64: pop
+      65: aload_0
+      66: new           #35                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$10
+      69: dup
+      70: aload_0
+      71: invokespecial #194                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$10."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      74: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      77: pop
+      78: aload_0
+      79: new           #33                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$11
+      82: dup
+      83: aload_0
+      84: invokespecial #195                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$11."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      87: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      90: pop
+      91: aload_0
+      92: new           #31                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$12
+      95: dup
+      96: aload_0
+      97: invokespecial #196                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$12."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+     100: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+     103: pop
+     104: return
+
+  public void addGeneratorData();
+    Code:
+       0: aload_0
+       1: new           #29                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$13
+       4: dup
+       5: aload_0
+       6: invokespecial #197                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$13."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+       9: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      12: pop
+      13: aload_0
+      14: new           #27                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$14
+      17: dup
+      18: aload_0
+      19: invokespecial #198                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$14."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      22: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      25: pop
+      26: aload_0
+      27: new           #25                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$15
+      30: dup
+      31: aload_0
+      32: invokespecial #199                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$15."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      35: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      38: pop
+      39: aload_0
+      40: new           #23                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$16
+      43: dup
+      44: aload_0
+      45: invokespecial #200                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$16."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      48: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      51: pop
+      52: return
+
+  public void addFactoryData();
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iload_1
+       3: aload_0
+       4: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       7: getfield      #204                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.factoryCookTime:[I
+      10: arraylength
+      11: if_icmpge     48
+      14: aload_0
+      15: new           #21                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$17
+      18: dup
+      19: aload_0
+      20: iload_1
+      21: invokespecial #207                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$17."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;I)V
+      24: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      27: pop
+      28: aload_0
+      29: new           #19                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$18
+      32: dup
+      33: aload_0
+      34: iload_1
+      35: invokespecial #208                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$18."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;I)V
+      38: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      41: pop
+      42: iinc          1, 1
+      45: goto          2
+      48: iconst_0
+      49: istore_1
+      50: iload_1
+      51: aload_0
+      52: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      55: getfield      #211                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.factoryTotalCookTime:[I
+      58: arraylength
+      59: if_icmpge     96
+      62: aload_0
+      63: new           #17                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$19
+      66: dup
+      67: aload_0
+      68: iload_1
+      69: invokespecial #212                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$19."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;I)V
+      72: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      75: pop
+      76: aload_0
+      77: new           #15                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$20
+      80: dup
+      81: aload_0
+      82: iload_1
+      83: invokespecial #213                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$20."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;I)V
+      86: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      89: pop
+      90: iinc          1, 1
+      93: goto          50
+      96: return
+
+  public int getEnergy();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getstatic     #222                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ENERGY:Lnet/minecraftforge/common/capabilities/Capability;
+       7: invokevirtual #226                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;)Lnet/minecraftforge/common/util/LazyOptional;
+      10: invokedynamic #247,  0            // InvokeDynamic #0:apply:()Lnet/minecraftforge/common/util/NonNullFunction;
+      15: invokevirtual #253                // Method net/minecraftforge/common/util/LazyOptional.map:(Lnet/minecraftforge/common/util/NonNullFunction;)Ljava/util/Optional;
+      18: iconst_0
+      19: invokestatic  #259                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      22: invokevirtual #264                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      25: checkcast     #255                // class java/lang/Integer
+      28: invokevirtual #267                // Method java/lang/Integer.intValue:()I
+      31: ireturn
+
+  public int getMaxEnergy();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getstatic     #222                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ENERGY:Lnet/minecraftforge/common/capabilities/Capability;
+       7: invokevirtual #226                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;)Lnet/minecraftforge/common/util/LazyOptional;
+      10: invokedynamic #273,  0            // InvokeDynamic #1:apply:()Lnet/minecraftforge/common/util/NonNullFunction;
+      15: invokevirtual #253                // Method net/minecraftforge/common/util/LazyOptional.map:(Lnet/minecraftforge/common/util/NonNullFunction;)Ljava/util/Optional;
+      18: iconst_0
+      19: invokestatic  #259                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      22: invokevirtual #264                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      25: checkcast     #255                // class java/lang/Integer
+      28: invokevirtual #267                // Method java/lang/Integer.intValue:()I
+      31: ireturn
+
+  private void addEnergyData();
+    Code:
+       0: aload_0
+       1: new           #13                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$21
+       4: dup
+       5: aload_0
+       6: invokespecial #274                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$21."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+       9: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      12: pop
+      13: aload_0
+      14: new           #11                 // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$22
+      17: dup
+      18: aload_0
+      19: invokespecial #275                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$22."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      22: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      25: pop
+      26: aload_0
+      27: new           #9                  // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$23
+      30: dup
+      31: aload_0
+      32: invokespecial #276                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$23."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      35: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      38: pop
+      39: aload_0
+      40: new           #7                  // class ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$24
+      43: dup
+      44: aload_0
+      45: invokespecial #277                // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase$24."<init>":(Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;)V
+      48: invokevirtual #173                // Method m_38895_:(Lnet/minecraft/world/inventory/DataSlot;)Lnet/minecraft/world/inventory/DataSlot;
+      51: pop
+      52: return
+
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: aload_1
+       5: invokevirtual #282                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_6542_:(Lnet/minecraft/world/entity/player/Player;)Z
+       8: ireturn
+
+  public int getTier();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #285                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getTier:()I
+       7: ireturn
+
+  public boolean isAutoSplit();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #289                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isAutoSplit:()Z
+       7: ireturn
+
+  public int getRedstoneMode();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #293                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getRedstoneSetting:()I
+       7: ireturn
+
+  public int getComSub();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #297                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getRedstoneComSub:()I
+       7: ireturn
+
+  public boolean getAutoInput();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #300                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAutoInput:()I
+       7: iconst_1
+       8: if_icmpne     15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  public boolean getAugmentGUI();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #303                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+       7: iconst_1
+       8: if_icmpne     15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  public boolean getIsFactory();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #307                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+       7: ireturn
+
+  public boolean getIsFurnace();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #311                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFurnace:()Z
+       7: ireturn
+
+  public boolean getIsGenerator();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #315                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isGenerator:()Z
+       7: ireturn
+
+  public boolean getAutoOutput();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #318                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAutoOutput:()I
+       7: iconst_1
+       8: if_icmpne     15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  public net.minecraft.network.chat.Component getTooltip(int);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #324                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.furnaceSettings:Lironfurnaces/util/FurnaceSettings;
+       7: iload_1
+       8: invokevirtual #330                // Method ironfurnaces/util/FurnaceSettings.get:(I)I
+      11: tableswitch   { // 1 to 4
+
+                     1: 40
+
+                     2: 47
+
+                     3: 54
+
+                     4: 61
+               default: 68
+          }
+      40: ldc_w         #332                // String tooltip.ironfurnaces.gui_input
+      43: invokestatic  #338                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      46: areturn
+      47: ldc_w         #340                // String tooltip.ironfurnaces.gui_output
+      50: invokestatic  #338                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      53: areturn
+      54: ldc_w         #342                // String tooltip.ironfurnaces.gui_input_output
+      57: invokestatic  #338                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      60: areturn
+      61: ldc_w         #344                // String tooltip.ironfurnaces.gui_fuel
+      64: invokestatic  #338                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      67: areturn
+      68: ldc_w         #346                // String tooltip.ironfurnaces.gui_none
+      71: invokestatic  #338                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      74: areturn
+
+  public int getSettingTop();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #350                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSettingTop:()I
+       7: ireturn
+
+  public int getSettingBottom();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #353                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSettingBottom:()I
+       7: ireturn
+
+  public int getSettingFront();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #356                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSettingFront:()I
+       7: ireturn
+
+  public int getSettingBack();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #359                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSettingBack:()I
+       7: ireturn
+
+  public int getSettingLeft();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #362                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSettingLeft:()I
+       7: ireturn
+
+  public int getSettingRight();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #365                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSettingRight:()I
+       7: ireturn
+
+  public int getIndexFront();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #368                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getIndexFront:()I
+       7: ireturn
+
+  public int getIndexBack();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #371                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getIndexBack:()I
+       7: ireturn
+
+  public int getIndexLeft();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #374                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getIndexLeft:()I
+       7: ireturn
+
+  public int getIndexRight();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #377                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getIndexRight:()I
+       7: ireturn
+
+  public net.minecraft.core.BlockPos getPos();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #382                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_58899_:()Lnet/minecraft/core/BlockPos;
+       7: areturn
+
+  public boolean isBurning();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #385                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isBurning:()Z
+       7: ireturn
+
+  public boolean isRainbowFurnace();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #388                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isRainbowFurnace:()Z
+       7: ireturn
+
+  public int getCookScaled(int);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #392                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.cookTime:I
+       7: istore_2
+       8: aload_0
+       9: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      12: getfield      #395                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.totalCookTime:I
+      15: istore_3
+      16: iload_3
+      17: ifeq          32
+      20: iload_2
+      21: ifeq          32
+      24: iload_2
+      25: iload_1
+      26: imul
+      27: iload_3
+      28: idiv
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public int getFactoryCookScaled(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #204                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.factoryCookTime:[I
+       7: iload_1
+       8: iaload
+       9: istore_3
+      10: aload_0
+      11: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: getfield      #211                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.factoryTotalCookTime:[I
+      17: iload_1
+      18: iaload
+      19: istore        4
+      21: iload         4
+      23: ifeq          39
+      26: iload_3
+      27: ifeq          39
+      30: iload_3
+      31: iload_2
+      32: imul
+      33: iload         4
+      35: idiv
+      36: goto          40
+      39: iconst_0
+      40: ireturn
+
+  public int getFactoryCooktimeSize();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #204                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.factoryCookTime:[I
+       7: arraylength
+       8: ireturn
+
+  public int getBurnLeftScaled(int);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #404                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.recipesUsed:I
+       7: istore_2
+       8: iload_2
+       9: ifne          16
+      12: sipush        200
+      15: istore_2
+      16: aload_0
+      17: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      20: getfield      #407                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.furnaceBurnTime:I
+      23: iload_1
+      24: imul
+      25: iload_2
+      26: idiv
+      27: ireturn
+
+  public int getGeneratorBurnScaled(int);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #411                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.generatorRecentRecipeRF:I
+       7: istore_2
+       8: iload_2
+       9: ifne          16
+      12: sipush        200
+      15: istore_2
+      16: aload_0
+      17: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      20: getfield      #415                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.generatorBurn:D
+      23: d2i
+      24: iload_1
+      25: imul
+      26: iload_2
+      27: idiv
+      28: ireturn
+
+  public boolean isGeneratorBurning();
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: getfield      #415                // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.generatorBurn:D
+       7: dconst_0
+       8: dcmpl
+       9: ifle          16
+      12: iconst_1
+      13: goto          17
+      16: iconst_0
+      17: ireturn
+
+  public int getEnergyScaled(int);
+    Code:
+       0: aload_0
+       1: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #419                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getEnergy:()I
+       7: istore_2
+       8: aload_0
+       9: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      12: invokevirtual #422                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getCapacity:()I
+      15: istore_3
+      16: iload_3
+      17: ifeq          32
+      20: iload_2
+      21: ifeq          32
+      24: iload_2
+      25: iload_1
+      26: imul
+      27: iload_3
+      28: idiv
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public net.minecraft.world.item.ItemStack m_7648_(net.minecraft.world.entity.player.Player, int);
+    Code:
+       0: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: astore_3
+       4: aload_0
+       5: getfield      #434                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+       8: iload_2
+       9: invokevirtual #439                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      12: checkcast     #441                // class net/minecraft/world/inventory/Slot
+      15: astore        4
+      17: aload         4
+      19: ifnull        981
+      22: aload         4
+      24: invokevirtual #444                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+      27: ifeq          981
+      30: aload         4
+      32: invokevirtual #448                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      35: astore        5
+      37: aload         5
+      39: invokevirtual #451                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      42: astore_3
+      43: aload_0
+      44: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      47: invokevirtual #315                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isGenerator:()Z
+      50: ifeq          363
+      53: iload_2
+      54: bipush        6
+      56: if_icmpeq     345
+      59: iload_2
+      60: iconst_3
+      61: if_icmpeq     345
+      64: iload_2
+      65: iconst_4
+      66: if_icmpeq     345
+      69: iload_2
+      70: iconst_5
+      71: if_icmpeq     345
+      74: aload_0
+      75: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      78: iconst_3
+      79: invokevirtual #455                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      82: invokevirtual #459                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      85: instanceof    #461                // class ironfurnaces/items/augments/ItemAugmentSmoking
+      88: ifeq          122
+      91: aload_0
+      92: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      95: pop
+      96: aload         5
+      98: invokestatic  #465                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSmokingBurn:(Lnet/minecraft/world/item/ItemStack;)I
+     101: ifle          209
+     104: aload_0
+     105: aload         5
+     107: bipush        6
+     109: bipush        7
+     111: iconst_0
+     112: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     115: ifne          209
+     118: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     121: areturn
+     122: aload_0
+     123: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     126: iconst_3
+     127: invokevirtual #455                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+     130: invokevirtual #459                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     133: instanceof    #471                // class ironfurnaces/items/augments/ItemAugmentBlasting
+     136: ifeq          169
+     139: aload_0
+     140: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     143: aload         5
+     145: invokevirtual #475                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.hasGeneratorBlastingRecipe:(Lnet/minecraft/world/item/ItemStack;)Z
+     148: ifeq          209
+     151: aload_0
+     152: aload         5
+     154: bipush        6
+     156: bipush        7
+     158: iconst_0
+     159: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     162: ifne          209
+     165: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     168: areturn
+     169: aload         5
+     171: getstatic     #481                // Field net/minecraft/world/item/crafting/RecipeType.f_44108_:Lnet/minecraft/world/item/crafting/RecipeType;
+     174: invokestatic  #485                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemFuel:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/crafting/RecipeType;)Z
+     177: ifeq          209
+     180: aload         5
+     182: invokevirtual #459                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+     185: instanceof    #487                // class ironfurnaces/items/ItemHeater
+     188: ifne          209
+     191: aload_0
+     192: aload         5
+     194: bipush        6
+     196: bipush        7
+     198: iconst_0
+     199: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     202: ifne          209
+     205: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     208: areturn
+     209: aload         5
+     211: iconst_0
+     212: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     215: ifeq          234
+     218: aload_0
+     219: aload         5
+     221: iconst_3
+     222: iconst_4
+     223: iconst_0
+     224: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     227: ifne          363
+     230: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     233: areturn
+     234: aload         5
+     236: iconst_1
+     237: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     240: ifeq          259
+     243: aload_0
+     244: aload         5
+     246: iconst_4
+     247: iconst_5
+     248: iconst_0
+     249: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     252: ifne          363
+     255: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     258: areturn
+     259: aload         5
+     261: iconst_2
+     262: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     265: ifeq          285
+     268: aload_0
+     269: aload         5
+     271: iconst_5
+     272: bipush        6
+     274: iconst_0
+     275: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     278: ifne          363
+     281: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     284: areturn
+     285: iload_2
+     286: bipush        19
+     288: if_icmplt     315
+     291: iload_2
+     292: bipush        45
+     294: if_icmpge     315
+     297: aload_0
+     298: aload         5
+     300: bipush        45
+     302: bipush        54
+     304: iconst_0
+     305: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     308: ifne          363
+     311: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     314: areturn
+     315: iload_2
+     316: bipush        45
+     318: if_icmplt     363
+     321: iload_2
+     322: bipush        54
+     324: if_icmpge     363
+     327: aload_0
+     328: aload         5
+     330: bipush        19
+     332: bipush        45
+     334: iconst_0
+     335: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     338: ifne          363
+     341: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     344: areturn
+     345: aload_0
+     346: aload         5
+     348: bipush        19
+     350: bipush        54
+     352: iconst_0
+     353: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     356: ifne          363
+     359: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     362: areturn
+     363: aload_0
+     364: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     367: invokevirtual #307                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+     370: ifeq          656
+     373: iload_2
+     374: bipush        12
+     376: if_icmplt     414
+     379: iload_2
+     380: bipush        18
+     382: if_icmpgt     414
+     385: aload_0
+     386: aload         5
+     388: bipush        19
+     390: bipush        54
+     392: iconst_1
+     393: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     396: ifne          403
+     399: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     402: areturn
+     403: aload         4
+     405: aload         5
+     407: aload_3
+     408: invokevirtual #495                // Method net/minecraft/world/inventory/Slot.m_40234_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+     411: goto          656
+     414: iload_2
+     415: bipush        19
+     417: if_icmplt     638
+     420: aload_0
+     421: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     424: aload         5
+     426: invokevirtual #498                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.hasRecipe:(Lnet/minecraft/world/item/ItemStack;)Z
+     429: ifeq          502
+     432: aload_0
+     433: invokevirtual #499                // Method getTier:()I
+     436: iconst_2
+     437: if_icmpne     458
+     440: aload_0
+     441: aload         5
+     443: bipush        7
+     445: bipush        13
+     447: iconst_0
+     448: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     451: ifne          656
+     454: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     457: areturn
+     458: aload_0
+     459: invokevirtual #499                // Method getTier:()I
+     462: iconst_1
+     463: if_icmpne     484
+     466: aload_0
+     467: aload         5
+     469: bipush        8
+     471: bipush        12
+     473: iconst_0
+     474: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     477: ifne          656
+     480: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     483: areturn
+     484: aload_0
+     485: aload         5
+     487: bipush        9
+     489: bipush        11
+     491: iconst_0
+     492: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     495: ifne          656
+     498: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     501: areturn
+     502: aload         5
+     504: iconst_0
+     505: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     508: ifeq          527
+     511: aload_0
+     512: aload         5
+     514: iconst_3
+     515: iconst_4
+     516: iconst_0
+     517: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     520: ifne          656
+     523: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     526: areturn
+     527: aload         5
+     529: iconst_1
+     530: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     533: ifeq          552
+     536: aload_0
+     537: aload         5
+     539: iconst_4
+     540: iconst_5
+     541: iconst_0
+     542: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     545: ifne          656
+     548: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     551: areturn
+     552: aload         5
+     554: iconst_2
+     555: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     558: ifeq          578
+     561: aload_0
+     562: aload         5
+     564: iconst_5
+     565: bipush        6
+     567: iconst_0
+     568: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     571: ifne          656
+     574: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     577: areturn
+     578: iload_2
+     579: bipush        19
+     581: if_icmplt     608
+     584: iload_2
+     585: bipush        45
+     587: if_icmpge     608
+     590: aload_0
+     591: aload         5
+     593: bipush        45
+     595: bipush        54
+     597: iconst_0
+     598: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     601: ifne          656
+     604: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     607: areturn
+     608: iload_2
+     609: bipush        45
+     611: if_icmplt     656
+     614: iload_2
+     615: bipush        54
+     617: if_icmpge     656
+     620: aload_0
+     621: aload         5
+     623: bipush        19
+     625: bipush        45
+     627: iconst_0
+     628: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     631: ifne          656
+     634: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     637: areturn
+     638: aload_0
+     639: aload         5
+     641: bipush        19
+     643: bipush        54
+     645: iconst_0
+     646: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     649: ifne          656
+     652: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     655: areturn
+     656: aload_0
+     657: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     660: invokevirtual #311                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFurnace:()Z
+     663: ifeq          933
+     666: iload_2
+     667: iconst_2
+     668: if_icmpne     700
+     671: aload_0
+     672: aload         5
+     674: bipush        19
+     676: bipush        54
+     678: iconst_1
+     679: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     682: ifne          689
+     685: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     688: areturn
+     689: aload         4
+     691: aload         5
+     693: aload_3
+     694: invokevirtual #495                // Method net/minecraft/world/inventory/Slot.m_40234_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+     697: goto          933
+     700: iload_2
+     701: iconst_1
+     702: if_icmpeq     915
+     705: iload_2
+     706: ifeq          915
+     709: iload_2
+     710: iconst_3
+     711: if_icmpeq     915
+     714: iload_2
+     715: iconst_4
+     716: if_icmpeq     915
+     719: iload_2
+     720: iconst_5
+     721: if_icmpeq     915
+     724: aload_0
+     725: getfield      #82                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     728: aload         5
+     730: invokevirtual #498                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.hasRecipe:(Lnet/minecraft/world/item/ItemStack;)Z
+     733: ifeq          752
+     736: aload_0
+     737: aload         5
+     739: iconst_0
+     740: iconst_1
+     741: iconst_0
+     742: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     745: ifne          933
+     748: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     751: areturn
+     752: aload         5
+     754: getstatic     #481                // Field net/minecraft/world/item/crafting/RecipeType.f_44108_:Lnet/minecraft/world/item/crafting/RecipeType;
+     757: invokestatic  #485                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemFuel:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/crafting/RecipeType;)Z
+     760: ifeq          779
+     763: aload_0
+     764: aload         5
+     766: iconst_1
+     767: iconst_2
+     768: iconst_0
+     769: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     772: ifne          933
+     775: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     778: areturn
+     779: aload         5
+     781: iconst_0
+     782: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     785: ifeq          804
+     788: aload_0
+     789: aload         5
+     791: iconst_3
+     792: iconst_4
+     793: iconst_0
+     794: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     797: ifne          933
+     800: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     803: areturn
+     804: aload         5
+     806: iconst_1
+     807: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     810: ifeq          829
+     813: aload_0
+     814: aload         5
+     816: iconst_4
+     817: iconst_5
+     818: iconst_0
+     819: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     822: ifne          933
+     825: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     828: areturn
+     829: aload         5
+     831: iconst_2
+     832: invokestatic  #491                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemAugment:(Lnet/minecraft/world/item/ItemStack;I)Z
+     835: ifeq          855
+     838: aload_0
+     839: aload         5
+     841: iconst_5
+     842: bipush        6
+     844: iconst_0
+     845: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     848: ifne          933
+     851: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     854: areturn
+     855: iload_2
+     856: bipush        19
+     858: if_icmplt     885
+     861: iload_2
+     862: bipush        45
+     864: if_icmpge     885
+     867: aload_0
+     868: aload         5
+     870: bipush        45
+     872: bipush        54
+     874: iconst_0
+     875: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     878: ifne          933
+     881: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     884: areturn
+     885: iload_2
+     886: bipush        45
+     888: if_icmplt     933
+     891: iload_2
+     892: bipush        54
+     894: if_icmpge     933
+     897: aload_0
+     898: aload         5
+     900: bipush        19
+     902: bipush        45
+     904: iconst_0
+     905: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     908: ifne          933
+     911: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     914: areturn
+     915: aload_0
+     916: aload         5
+     918: bipush        19
+     920: bipush        54
+     922: iconst_0
+     923: invokevirtual #469                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     926: ifne          933
+     929: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     932: areturn
+     933: aload         5
+     935: invokevirtual #502                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     938: ifeq          952
+     941: aload         4
+     943: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     946: invokevirtual #506                // Method net/minecraft/world/inventory/Slot.m_5852_:(Lnet/minecraft/world/item/ItemStack;)V
+     949: goto          957
+     952: aload         4
+     954: invokevirtual #509                // Method net/minecraft/world/inventory/Slot.m_6654_:()V
+     957: aload         5
+     959: invokevirtual #512                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     962: aload_3
+     963: invokevirtual #512                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     966: if_icmpne     973
+     969: getstatic     #430                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     972: areturn
+     973: aload         4
+     975: aload_1
+     976: aload         5
+     978: invokevirtual #516                // Method net/minecraft/world/inventory/Slot.m_142406_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+     981: aload_3
+     982: areturn
+
+  private int addSlotRange(net.minecraftforge.items.IItemHandler, int, int, int, int, int);
+    Code:
+       0: iconst_0
+       1: istore        7
+       3: iload         7
+       5: iload         5
+       7: if_icmpge     41
+      10: aload_0
+      11: new           #525                // class net/minecraftforge/items/SlotItemHandler
+      14: dup
+      15: aload_1
+      16: iload_2
+      17: iload_3
+      18: iload         4
+      20: invokespecial #528                // Method net/minecraftforge/items/SlotItemHandler."<init>":(Lnet/minecraftforge/items/IItemHandler;III)V
+      23: invokevirtual #113                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      26: pop
+      27: iload_3
+      28: iload         6
+      30: iadd
+      31: istore_3
+      32: iinc          2, 1
+      35: iinc          7, 1
+      38: goto          3
+      41: iload_2
+      42: ireturn
+
+  private int addSlotBox(net.minecraftforge.items.IItemHandler, int, int, int, int, int, int, int);
+    Code:
+       0: iconst_0
+       1: istore        9
+       3: iload         9
+       5: iload         7
+       7: if_icmpge     37
+      10: aload_0
+      11: aload_1
+      12: iload_2
+      13: iload_3
+      14: iload         4
+      16: iload         5
+      18: iload         6
+      20: invokevirtual #537                // Method addSlotRange:(Lnet/minecraftforge/items/IItemHandler;IIIII)I
+      23: istore_2
+      24: iload         4
+      26: iload         8
+      28: iadd
+      29: istore        4
+      31: iinc          9, 1
+      34: goto          3
+      37: iload_2
+      38: ireturn
+
+  private void layoutPlayerInventorySlots(int, int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #91                 // Field playerInventory:Lnet/minecraftforge/items/IItemHandler;
+       5: bipush        9
+       7: iload_1
+       8: iload_2
+       9: bipush        9
+      11: bipush        18
+      13: iconst_3
+      14: bipush        18
+      16: invokevirtual #542                // Method addSlotBox:(Lnet/minecraftforge/items/IItemHandler;IIIIIII)I
+      19: pop
+      20: iinc          2, 58
+      23: aload_0
+      24: aload_0
+      25: getfield      #91                 // Field playerInventory:Lnet/minecraftforge/items/IItemHandler;
+      28: iconst_0
+      29: iload_1
+      30: iload_2
+      31: bipush        9
+      33: bipush        18
+      35: invokevirtual #537                // Method addSlotRange:(Lnet/minecraftforge/items/IItemHandler;IIIII)I
+      38: pop
+      39: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

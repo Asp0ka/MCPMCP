@@ -1,0 +1,146 @@
+Compiled from "MalumItemHolderBlockEntity.java"
+public abstract class com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity extends team.lodestar.lodestone.systems.blockentity.ItemHolderBlockEntity implements com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint {
+  public com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #14                 // Method team/lodestar/lodestone/systems/blockentity/ItemHolderBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: aload_0
+       8: new           #9                  // class com/sammy/malum/common/block/storage/MalumItemHolderBlockEntity$1
+      11: dup
+      12: aload_0
+      13: iconst_1
+      14: bipush        64
+      16: invokespecial #17                 // Method com/sammy/malum/common/block/storage/MalumItemHolderBlockEntity$1."<init>":(Lcom/sammy/malum/common/block/storage/MalumItemHolderBlockEntity;II)V
+      19: putfield      #21                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      22: return
+
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory getSuppliedInventory();
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+       4: areturn
+
+  public net.minecraft.world.phys.Vec3 getItemPos(float);
+    Code:
+       0: aload_0
+       1: invokevirtual #38                 // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: astore_2
+       5: aload_0
+       6: fload_1
+       7: invokevirtual #41                 // Method getItemOffset:(F)Lnet/minecraft/world/phys/Vec3;
+      10: astore_3
+      11: new           #43                 // class net/minecraft/world/phys/Vec3
+      14: dup
+      15: aload_2
+      16: invokevirtual #49                 // Method net/minecraft/core/BlockPos.m_123341_:()I
+      19: i2d
+      20: aload_3
+      21: getfield      #53                 // Field net/minecraft/world/phys/Vec3.f_82479_:D
+      24: dadd
+      25: aload_2
+      26: invokevirtual #56                 // Method net/minecraft/core/BlockPos.m_123342_:()I
+      29: i2d
+      30: aload_3
+      31: getfield      #59                 // Field net/minecraft/world/phys/Vec3.f_82480_:D
+      34: dadd
+      35: aload_2
+      36: invokevirtual #62                 // Method net/minecraft/core/BlockPos.m_123343_:()I
+      39: i2d
+      40: aload_3
+      41: getfield      #65                 // Field net/minecraft/world/phys/Vec3.f_82481_:D
+      44: dadd
+      45: invokespecial #68                 // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+      48: areturn
+
+  public net.minecraft.core.BlockPos getAccessPointBlockPos();
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field f_58858_:Lnet/minecraft/core/BlockPos;
+       4: areturn
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: getfield      #83                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: getfield      #89                 // Field net/minecraft/world/level/Level.f_46443_:Z
+       7: ifeq          54
+      10: aload_0
+      11: getfield      #21                 // Field inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      14: iconst_0
+      15: invokevirtual #95                 // Method team/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      18: invokevirtual #101                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      21: astore_2
+      22: aload_2
+      23: instanceof    #103                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+      26: ifeq          54
+      29: aload_2
+      30: checkcast     #103                // class com/sammy/malum/common/item/spirit/SpiritShardItem
+      33: astore_1
+      34: aload_1
+      35: getfield      #106                // Field com/sammy/malum/common/item/spirit/SpiritShardItem.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+      38: astore_2
+      39: aload_0
+      40: getfield      #83                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+      43: aload_0
+      44: invokevirtual #109                // Method getItemPos:()Lnet/minecraft/world/phys/Vec3;
+      47: aload_2
+      48: ldc           #110                // float 0.4f
+      50: iconst_2
+      51: invokestatic  #116                // Method com/sammy/malum/visual_effects/SpiritLightSpecs.rotatingLightSpecs:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;FI)V
+      54: return
+
+  public abstract net.minecraft.world.phys.Vec3 getItemOffset(float);
+
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field f_58858_:Lnet/minecraft/core/BlockPos;
+       4: astore_1
+       5: new           #122                // class net/minecraft/world/phys/AABB
+       8: dup
+       9: aload_1
+      10: invokevirtual #49                 // Method net/minecraft/core/BlockPos.m_123341_:()I
+      13: iconst_1
+      14: isub
+      15: i2d
+      16: aload_1
+      17: invokevirtual #56                 // Method net/minecraft/core/BlockPos.m_123342_:()I
+      20: i2d
+      21: aload_1
+      22: invokevirtual #62                 // Method net/minecraft/core/BlockPos.m_123343_:()I
+      25: iconst_1
+      26: isub
+      27: i2d
+      28: aload_1
+      29: invokevirtual #49                 // Method net/minecraft/core/BlockPos.m_123341_:()I
+      32: iconst_1
+      33: iadd
+      34: i2d
+      35: aload_1
+      36: invokevirtual #56                 // Method net/minecraft/core/BlockPos.m_123342_:()I
+      39: iconst_2
+      40: iadd
+      41: i2d
+      42: aload_1
+      43: invokevirtual #62                 // Method net/minecraft/core/BlockPos.m_123343_:()I
+      46: iconst_1
+      47: iadd
+      48: i2d
+      49: invokespecial #125                // Method net/minecraft/world/phys/AABB."<init>":(DDDDDD)V
+      52: areturn
+
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #83                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: areturn
+
+  static net.minecraft.core.BlockPos access$100(com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity);
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field f_58858_:Lnet/minecraft/core/BlockPos;
+       4: areturn
+}

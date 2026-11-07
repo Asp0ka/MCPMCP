@@ -1,0 +1,457 @@
+Compiled from "SpellCaster.java"
+public class com.hollingsworth.arsnouveau.api.spell.SpellCaster implements com.hollingsworth.arsnouveau.api.spell.ISpellCaster {
+  private java.util.Map<java.lang.Integer, com.hollingsworth.arsnouveau.api.spell.Spell> spells;
+
+  private int slot;
+
+  public net.minecraft.world.item.ItemStack stack;
+
+  public java.lang.String flavorText;
+
+  public boolean isHidden;
+
+  public java.lang.String hiddenText;
+
+  public com.hollingsworth.arsnouveau.api.spell.SpellCaster(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #32                 // Method net/minecraft/world/item/ItemStack.m_41784_:()Lnet/minecraft/nbt/CompoundTag;
+       5: invokespecial #35                 // Method "<init>":(Lnet/minecraft/nbt/CompoundTag;)V
+       8: aload_0
+       9: aload_1
+      10: putfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      13: return
+
+  public com.hollingsworth.arsnouveau.api.spell.Spell getSpell();
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field spells:Ljava/util/Map;
+       4: aload_0
+       5: invokevirtual #48                 // Method getCurrentSlot:()I
+       8: invokestatic  #54                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      11: new           #56                 // class com/hollingsworth/arsnouveau/api/spell/Spell
+      14: dup
+      15: invokespecial #59                 // Method com/hollingsworth/arsnouveau/api/spell/Spell."<init>":()V
+      18: invokeinterface #65,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      23: checkcast     #56                 // class com/hollingsworth/arsnouveau/api/spell/Spell
+      26: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.Spell getSpell(int);
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field spells:Ljava/util/Map;
+       4: iload_1
+       5: invokestatic  #54                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       8: new           #56                 // class com/hollingsworth/arsnouveau/api/spell/Spell
+      11: dup
+      12: invokespecial #59                 // Method com/hollingsworth/arsnouveau/api/spell/Spell."<init>":()V
+      15: invokeinterface #65,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      20: checkcast     #56                 // class com/hollingsworth/arsnouveau/api/spell/Spell
+      23: areturn
+
+  public int getMaxSlots();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public int getCurrentSlot();
+    Code:
+       0: aload_0
+       1: getfield      #69                 // Field slot:I
+       4: ireturn
+
+  public void setCurrentSlot(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #69                 // Field slot:I
+       5: aload_0
+       6: aload_0
+       7: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      10: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      13: return
+
+  public void setSpell(com.hollingsworth.arsnouveau.api.spell.Spell, int);
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field spells:Ljava/util/Map;
+       4: iload_2
+       5: invokestatic  #54                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       8: aload_1
+       9: invokeinterface #79,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      14: pop
+      15: aload_0
+      16: aload_0
+      17: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      20: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      23: return
+
+  public void setSpell(com.hollingsworth.arsnouveau.api.spell.Spell);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_0
+       3: invokevirtual #48                 // Method getCurrentSlot:()I
+       6: invokevirtual #84                 // Method setSpell:(Lcom/hollingsworth/arsnouveau/api/spell/Spell;I)V
+       9: return
+
+  public com.hollingsworth.arsnouveau.client.particle.ParticleColor getColor(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       5: getfield      #92                 // Field com/hollingsworth/arsnouveau/api/spell/Spell.color:Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+       8: areturn
+
+  public void setFlavorText(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #96                 // Field flavorText:Ljava/lang/String;
+       5: aload_0
+       6: aload_0
+       7: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      10: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      13: return
+
+  public java.lang.String getSpellName(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       5: getfield      #102                // Field com/hollingsworth/arsnouveau/api/spell/Spell.name:Ljava/lang/String;
+       8: areturn
+
+  public java.lang.String getSpellName();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #48                 // Method getCurrentSlot:()I
+       5: invokevirtual #105                // Method getSpellName:(I)Ljava/lang/String;
+       8: areturn
+
+  public void setSpellName(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_0
+       3: invokevirtual #48                 // Method getCurrentSlot:()I
+       6: invokevirtual #109                // Method setSpellName:(Ljava/lang/String;I)V
+       9: return
+
+  public void setSpellName(java.lang.String, int);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       5: aload_1
+       6: putfield      #102                // Field com/hollingsworth/arsnouveau/api/spell/Spell.name:Ljava/lang/String;
+       9: aload_0
+      10: aload_0
+      11: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      14: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      17: return
+
+  public void setSpellHidden(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #113                // Field isHidden:Z
+       5: aload_0
+       6: aload_0
+       7: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      10: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      13: return
+
+  public boolean isSpellHidden();
+    Code:
+       0: aload_0
+       1: getfield      #113                // Field isHidden:Z
+       4: ireturn
+
+  public void setHiddenRecipe(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #119                // Field hiddenText:Ljava/lang/String;
+       5: aload_0
+       6: aload_0
+       7: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      10: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      13: return
+
+  public java.lang.String getHiddenRecipe();
+    Code:
+       0: aload_0
+       1: getfield      #119                // Field hiddenText:Ljava/lang/String;
+       4: areturn
+
+  public java.lang.String getFlavorText();
+    Code:
+       0: aload_0
+       1: getfield      #96                 // Field flavorText:Ljava/lang/String;
+       4: ifnonnull     12
+       7: ldc           #124                // String
+       9: goto          16
+      12: aload_0
+      13: getfield      #96                 // Field flavorText:Ljava/lang/String;
+      16: areturn
+
+  public void setColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_0
+       3: invokevirtual #48                 // Method getCurrentSlot:()I
+       6: invokevirtual #131                // Method setColor:(Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;I)V
+       9: return
+
+  public void setColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor, int);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       5: aload_1
+       6: putfield      #92                 // Field com/hollingsworth/arsnouveau/api/spell/Spell.color:Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+       9: aload_0
+      10: aload_0
+      11: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      14: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      17: return
+
+  public com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound getSound(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       5: getfield      #137                // Field com/hollingsworth/arsnouveau/api/spell/Spell.sound:Lcom/hollingsworth/arsnouveau/api/sound/ConfiguredSpellSound;
+       8: areturn
+
+  public void setSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_0
+       3: invokevirtual #48                 // Method getCurrentSlot:()I
+       6: invokevirtual #142                // Method setSound:(Lcom/hollingsworth/arsnouveau/api/sound/ConfiguredSpellSound;I)V
+       9: return
+
+  public void setSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound, int);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       5: aload_1
+       6: putfield      #137                // Field com/hollingsworth/arsnouveau/api/spell/Spell.sound:Lcom/hollingsworth/arsnouveau/api/sound/ConfiguredSpellSound;
+       9: aload_0
+      10: aload_0
+      11: getfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      14: invokevirtual #74                 // Method writeItem:(Lnet/minecraft/world/item/ItemStack;)V
+      17: return
+
+  public com.hollingsworth.arsnouveau.client.particle.ParticleColor getColor();
+    Code:
+       0: aload_0
+       1: invokevirtual #145                // Method getSpell:()Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+       4: getfield      #92                 // Field com/hollingsworth/arsnouveau/api/spell/Spell.color:Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+       7: areturn
+
+  public java.util.Map<java.lang.Integer, com.hollingsworth.arsnouveau.api.spell.Spell> getSpells();
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field spells:Ljava/util/Map;
+       4: areturn
+
+  public net.minecraft.nbt.CompoundTag writeTag(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: ldc           #152                // String current_slot
+       3: aload_0
+       4: invokevirtual #48                 // Method getCurrentSlot:()I
+       7: invokevirtual #157                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      10: aload_1
+      11: ldc           #159                // String flavor
+      13: aload_0
+      14: invokevirtual #161                // Method getFlavorText:()Ljava/lang/String;
+      17: invokevirtual #165                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      20: new           #154                // class net/minecraft/nbt/CompoundTag
+      23: dup
+      24: invokespecial #166                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      27: astore_2
+      28: iconst_0
+      29: istore_3
+      30: iload_3
+      31: aload_0
+      32: invokevirtual #168                // Method getMaxSlots:()I
+      35: if_icmpge     67
+      38: aload_0
+      39: iload_3
+      40: invokevirtual #88                 // Method getSpell:(I)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+      43: astore        4
+      45: aload_2
+      46: iload_3
+      47: invokedynamic #179,  0            // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+      52: aload         4
+      54: invokevirtual #182                // Method com/hollingsworth/arsnouveau/api/spell/Spell.serialize:()Lnet/minecraft/nbt/CompoundTag;
+      57: invokevirtual #186                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      60: pop
+      61: iinc          3, 1
+      64: goto          30
+      67: aload_1
+      68: ldc           #187                // String spells
+      70: aload_2
+      71: invokevirtual #186                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      74: pop
+      75: aload_1
+      76: ldc           #189                // String spell_count
+      78: aload_0
+      79: invokevirtual #191                // Method getSpells:()Ljava/util/Map;
+      82: invokeinterface #194,  1          // InterfaceMethod java/util/Map.size:()I
+      87: invokevirtual #157                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+      90: aload_1
+      91: ldc           #196                // String is_hidden
+      93: aload_0
+      94: invokevirtual #198                // Method isSpellHidden:()Z
+      97: invokevirtual #202                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     100: aload_1
+     101: ldc           #204                // String hidden_recipe
+     103: aload_0
+     104: invokevirtual #206                // Method getHiddenRecipe:()Ljava/lang/String;
+     107: invokevirtual #165                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+     110: aload_1
+     111: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.SpellCaster(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: invokespecial #211                // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #213                // class java/util/HashMap
+       8: dup
+       9: invokespecial #214                // Method java/util/HashMap."<init>":()V
+      12: putfield      #44                 // Field spells:Ljava/util/Map;
+      15: aload_0
+      16: getstatic     #217                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      19: putfield      #37                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      22: aload_0
+      23: ldc           #124                // String
+      25: putfield      #96                 // Field flavorText:Ljava/lang/String;
+      28: aload_0
+      29: ldc           #124                // String
+      31: putfield      #119                // Field hiddenText:Ljava/lang/String;
+      34: aload_1
+      35: aload_0
+      36: invokevirtual #221                // Method getTagID:()Lnet/minecraft/resources/ResourceLocation;
+      39: invokevirtual #226                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      42: invokevirtual #230                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      45: astore_2
+      46: aload_0
+      47: aload_2
+      48: ldc           #152                // String current_slot
+      50: invokevirtual #234                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      53: putfield      #69                 // Field slot:I
+      56: aload_0
+      57: aload_2
+      58: ldc           #159                // String flavor
+      60: invokevirtual #238                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      63: putfield      #96                 // Field flavorText:Ljava/lang/String;
+      66: aload_0
+      67: aload_2
+      68: ldc           #196                // String is_hidden
+      70: invokevirtual #242                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+      73: putfield      #113                // Field isHidden:Z
+      76: aload_0
+      77: aload_2
+      78: ldc           #204                // String hidden_recipe
+      80: invokevirtual #238                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      83: putfield      #119                // Field hiddenText:Ljava/lang/String;
+      86: aload_2
+      87: ldc           #187                // String spells
+      89: invokevirtual #230                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      92: astore_3
+      93: iconst_0
+      94: istore        4
+      96: iload         4
+      98: aload_0
+      99: invokevirtual #168                // Method getMaxSlots:()I
+     102: if_icmpge     158
+     105: aload_3
+     106: iload         4
+     108: invokedynamic #179,  0            // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+     113: invokevirtual #245                // Method net/minecraft/nbt/CompoundTag.m_128441_:(Ljava/lang/String;)Z
+     116: ifeq          152
+     119: aload_3
+     120: iload         4
+     122: invokedynamic #179,  0            // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+     127: invokevirtual #230                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     130: invokestatic  #249                // Method com/hollingsworth/arsnouveau/api/spell/Spell.fromTag:(Lnet/minecraft/nbt/CompoundTag;)Lcom/hollingsworth/arsnouveau/api/spell/Spell;
+     133: astore        5
+     135: aload_0
+     136: getfield      #44                 // Field spells:Ljava/util/Map;
+     139: iload         4
+     141: invokestatic  #54                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     144: aload         5
+     146: invokeinterface #79,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     151: pop
+     152: iinc          4, 1
+     155: goto          96
+     158: return
+
+  public void writeItem(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: ifnull        11
+       4: aload_1
+       5: invokevirtual #253                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       8: ifeq          12
+      11: return
+      12: aload_1
+      13: invokevirtual #32                 // Method net/minecraft/world/item/ItemStack.m_41784_:()Lnet/minecraft/nbt/CompoundTag;
+      16: astore_2
+      17: new           #154                // class net/minecraft/nbt/CompoundTag
+      20: dup
+      21: invokespecial #166                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      24: astore_3
+      25: aload_0
+      26: aload_3
+      27: invokevirtual #255                // Method writeTag:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      30: pop
+      31: aload_2
+      32: aload_0
+      33: invokevirtual #221                // Method getTagID:()Lnet/minecraft/resources/ResourceLocation;
+      36: invokevirtual #226                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      39: aload_3
+      40: invokevirtual #186                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      43: pop
+      44: aload_1
+      45: aload_2
+      46: invokevirtual #258                // Method net/minecraft/world/item/ItemStack.m_41751_:(Lnet/minecraft/nbt/CompoundTag;)V
+      49: return
+
+  public void serializeOnTag(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: new           #154                // class net/minecraft/nbt/CompoundTag
+       4: dup
+       5: invokespecial #166                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       8: invokevirtual #255                // Method writeTag:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      11: astore_2
+      12: aload_1
+      13: aload_0
+      14: invokevirtual #221                // Method getTagID:()Lnet/minecraft/resources/ResourceLocation;
+      17: invokevirtual #226                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      20: aload_2
+      21: invokevirtual #186                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      24: pop
+      25: return
+
+  public net.minecraft.resources.ResourceLocation getTagID();
+    Code:
+       0: new           #223                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc_w         #263                // String ars_nouveau
+       7: ldc_w         #265                // String caster
+      10: invokespecial #267                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      13: areturn
+}

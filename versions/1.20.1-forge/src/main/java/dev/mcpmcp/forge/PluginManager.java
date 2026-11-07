@@ -325,13 +325,16 @@ if(!found)throw new IllegalArgumentException("constructor_not_found");
 public Optional<JsonObject> observe(String kind,JsonObject args){
 List<Observer> o=observers.get(kind);
 if(o==null)return Optional.empty();
+JsonObject failure=null;
 for(Observer observer:o)try{
 JsonObject r=observer.handler.call(args.deepCopy());
 if(r!=null&&!r.has("error"))return Optional.of(r);
+if(r!=null)failure=r;
 }
-catch(Exception ignored){
+catch(Exception|LinkageError ex){
+failure=Jsons.obj("error","plugin_observer_failed","reason",ex.getClass().getSimpleName()+": "+String.valueOf(ex.getMessage()));
 }
-return Optional.empty();
+return Optional.ofNullable(failure);
 }
 public JsonObject readFile(String path){
 return Jsons.obj("path",path,"text",files.read(path));

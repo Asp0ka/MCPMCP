@@ -1,0 +1,26 @@
+[
+  {
+    "mod_id": "botania",
+    "adapter": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\botania-avaritia-1.20.1-forge\\dist\\MCPMCP-Plugin\\botania-222755726437ed9d908c58462b604c10\\adapter.jar",
+    "adapter_sha256": "65d6486eac7f8c5a64e8026c96e08c8bd4abd882f3de57ea0bdf14f5d79d5fa0",
+    "target_sha256": "222755726437ed9d908c58462b604c10d137c3756a4a228ab459dbbaf8bd4c19",
+    "target_mod_version": "1.20.1-453-FORGE",
+    "target_implementation_version": "1.20.1-453-FORGE",
+    "service_providers": [
+      "dev.mcpmcp.magic.BotaniaProvider"
+    ],
+    "reobfuscated": true
+  },
+  {
+    "mod_id": "avaritia",
+    "adapter": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\botania-avaritia-1.20.1-forge\\dist\\MCPMCP-Plugin\\avaritia-a2f823fb0f226bfb25d10534a8801504\\adapter.jar",
+    "adapter_sha256": "0a82e7b48c190992446dec0df779d7030e792f3a7243dfb768f4109bf5d66a54",
+    "target_sha256": "a2f823fb0f226bfb25d10534a880150403aca5ce6b593f93a5e8ee6a7fb47d51",
+    "target_mod_version": "1.3.9.0",
+    "target_implementation_version": "1.20.1-1.3.9.0-beta4",
+    "service_providers": [
+      "dev.mcpmcp.magic.AvaritiaProvider"
+    ],
+    "reobfuscated": true
+  }
+]

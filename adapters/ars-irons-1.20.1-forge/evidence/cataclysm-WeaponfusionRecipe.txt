@@ -1,0 +1,21 @@
+Compiled from "WeaponfusionRecipe.java"
+public class com.github.L_Ender.cataclysm.crafting.WeaponfusionRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.Container> {
+  final net.minecraft.world.item.crafting.Ingredient base;
+  final net.minecraft.world.item.crafting.Ingredient addition;
+  final net.minecraft.world.item.ItemStack result;
+  private final net.minecraft.resources.ResourceLocation id;
+  public com.github.L_Ender.cataclysm.crafting.WeaponfusionRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_8004_(int, int);
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.item.crafting.Ingredient getbaseIngredient();
+  public net.minecraft.world.item.crafting.Ingredient getAdditionIngredient();
+  public boolean isAdditionIngredient(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack m_8042_();
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public boolean m_142505_();
+  private static boolean lambda$isIncomplete$0(net.minecraft.world.item.crafting.Ingredient);
+}

@@ -1,0 +1,27 @@
+Compiled from "ScrollForgeTile.java"
+public class io.redspace.ironsspellbooks.block.scroll_forge.ScrollForgeTile extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.MenuProvider,net.minecraft.world.Clearable {
+  private io.redspace.ironsspellbooks.gui.scroll_forge.ScrollForgeMenu menu;
+  private final net.minecraftforge.items.ItemStackHandler itemHandler;
+  private final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> lazyItemHandler;
+  public io.redspace.ironsspellbooks.block.scroll_forge.ScrollForgeTile(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  private void updateMenuSlots(int);
+  public net.minecraftforge.items.ItemStackHandler getItemHandler();
+  public net.minecraft.world.item.ItemStack getStackInSlot(int);
+  public net.minecraft.network.chat.MutableComponent getDisplayName();
+  public net.minecraft.world.inventory.AbstractContainerMenu m_7208_(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public void setRecipeSpell(java.lang.String);
+  public void drops();
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public void m_7651_();
+  public void invalidateCaps();
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.nbt.CompoundTag m_5995_();
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public void onDataPacket(net.minecraft.network.Connection, net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+  public void handleUpdateTag(net.minecraft.nbt.CompoundTag);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  public void m_6211_();
+  public net.minecraft.network.protocol.Packet m_58483_();
+  public net.minecraft.network.chat.Component m_5446_();
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+}

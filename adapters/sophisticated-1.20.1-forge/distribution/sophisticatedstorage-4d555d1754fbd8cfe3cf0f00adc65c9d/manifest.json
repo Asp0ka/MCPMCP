@@ -1,0 +1,9 @@
+{
+  "api": 1,
+  "id": "mcpmcp.sophisticatedstorage",
+  "mod_id": "sophisticatedstorage",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "1.4.79.2069",
+  "target_sha256": "4d555d1754fbd8cfe3cf0f00adc65c9d13189dd12e7f9a7b9ad3a355b1210e74"
+}

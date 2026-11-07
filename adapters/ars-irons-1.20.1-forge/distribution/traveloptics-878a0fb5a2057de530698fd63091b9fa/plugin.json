@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.traveloptics",
+  "mod_id": "traveloptics",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "6.3.0-1.20.1",
+  "target_sha256": "878a0fb5a2057de530698fd63091b9fa1c23af0139054af108e9d566840a0fa9",
+  "actions": []
+}

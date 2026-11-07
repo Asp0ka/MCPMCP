@@ -1,0 +1,46 @@
+Compiled from "BlockIronFurnaceContainerBase.java"
+class ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$12 extends net.minecraft.world.inventory.DataSlot {
+  final ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase this$0;
+
+  ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$12(ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       5: aload_0
+       6: invokespecial #18                 // Method net/minecraft/world/inventory/DataSlot."<init>":()V
+       9: return
+
+  public int m_6501_();
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: getfield      #26                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       7: getfield      #32                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.totalCookTime:I
+      10: bipush        16
+      12: ishr
+      13: ldc           #33                 // int 65535
+      15: iand
+      16: ireturn
+
+  public void m_6422_(int);
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: getfield      #26                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       7: getfield      #32                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.totalCookTime:I
+      10: ldc           #33                 // int 65535
+      12: iand
+      13: istore_2
+      14: aload_0
+      15: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+      18: getfield      #26                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      21: iload_2
+      22: iload_1
+      23: bipush        16
+      25: ishl
+      26: ior
+      27: putfield      #32                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.totalCookTime:I
+      30: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

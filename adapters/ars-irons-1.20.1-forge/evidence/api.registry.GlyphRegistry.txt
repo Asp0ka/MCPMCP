@@ -1,0 +1,12 @@
+Compiled from "GlyphRegistry.java"
+public class com.hollingsworth.arsnouveau.api.registry.GlyphRegistry {
+  private static final java.util.concurrent.ConcurrentHashMap<net.minecraft.resources.ResourceLocation, com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> spellpartMap;
+  private static final java.util.concurrent.ConcurrentHashMap<net.minecraft.resources.ResourceLocation, java.util.function.Supplier<com.hollingsworth.arsnouveau.common.items.Glyph>> glyphItemMap;
+  public com.hollingsworth.arsnouveau.api.registry.GlyphRegistry();
+  public static com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart registerSpell(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart);
+  public static java.util.List<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> getDefaultStartingSpells();
+  public static com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart getSpellPart(net.minecraft.resources.ResourceLocation);
+  public static java.util.Map<net.minecraft.resources.ResourceLocation, com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> getSpellpartMap();
+  public static java.util.Map<net.minecraft.resources.ResourceLocation, java.util.function.Supplier<com.hollingsworth.arsnouveau.common.items.Glyph>> getGlyphItemMap();
+  static {};
+}

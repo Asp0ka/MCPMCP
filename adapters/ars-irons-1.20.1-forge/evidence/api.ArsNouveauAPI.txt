@@ -1,0 +1,23 @@
+Compiled from "ArsNouveauAPI.java"
+public class com.hollingsworth.arsnouveau.api.ArsNouveauAPI {
+  public static boolean ENABLE_DEBUG_NUMBERS;
+  private java.util.concurrent.ConcurrentHashMap<net.minecraft.resources.ResourceLocation, com.hollingsworth.arsnouveau.api.scrying.IScryer> scryerMap;
+  private java.util.Set<net.minecraft.world.item.crafting.RecipeType<? extends com.hollingsworth.arsnouveau.api.enchanting_apparatus.IEnchantingRecipe>> enchantingRecipeTypes;
+  private com.hollingsworth.arsnouveau.api.spell.ISpellValidator craftingSpellValidator;
+  private com.hollingsworth.arsnouveau.api.spell.ISpellValidator castingSpellValidator;
+  private java.util.List<com.hollingsworth.arsnouveau.api.enchanting_apparatus.IEnchantingRecipe> enchantingApparatusRecipes;
+  private java.util.List<net.minecraftforge.common.brewing.BrewingRecipe> brewingRecipes;
+  private static final com.hollingsworth.arsnouveau.api.ArsNouveauAPI INSTANCE;
+  public java.util.Set<net.minecraft.world.item.crafting.RecipeType<? extends com.hollingsworth.arsnouveau.api.enchanting_apparatus.IEnchantingRecipe>> getEnchantingRecipeTypes();
+  public java.util.List<com.hollingsworth.arsnouveau.api.enchanting_apparatus.IEnchantingRecipe> getEnchantingApparatusRecipes(net.minecraft.world.level.Level);
+  public java.util.List<net.minecraftforge.common.brewing.BrewingRecipe> getAllPotionRecipes();
+  public com.hollingsworth.arsnouveau.api.spell.ISpellValidator getSpellCraftingSpellValidator();
+  public com.hollingsworth.arsnouveau.api.spell.ISpellValidator getSpellCastingSpellValidator();
+  public com.hollingsworth.arsnouveau.api.scrying.IScryer getScryer(net.minecraft.resources.ResourceLocation);
+  public boolean registerScryer(com.hollingsworth.arsnouveau.api.scrying.IScryer);
+  public void onResourceReload();
+  private com.hollingsworth.arsnouveau.api.ArsNouveauAPI();
+  public static com.hollingsworth.arsnouveau.api.ArsNouveauAPI getInstance();
+  private void lambda$getAllPotionRecipes$0(net.minecraftforge.common.brewing.IBrewingRecipe);
+  static {};
+}

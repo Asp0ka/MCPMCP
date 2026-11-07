@@ -1,0 +1,3 @@
+pluginManagement { repositories { gradlePluginPortal(); maven { url = 'https://maven.minecraftforge.net/' } } }
+rootProject.name = 'mcpmcp-botania-avaritia'
+include 'botania', 'avaritia'

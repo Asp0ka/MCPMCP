@@ -1,0 +1,407 @@
+Compiled from "ManaUtil.java"
+public class com.hollingsworth.arsnouveau.api.util.ManaUtil {
+  static final java.util.UUID MAX_MANA_MODIFIER;
+  static final java.util.UUID MANA_REGEN_MODIFIER;
+  public com.hollingsworth.arsnouveau.api.util.ManaUtil();
+  public static int getPlayerDiscounts(net.minecraft.world.entity.LivingEntity, com.hollingsworth.arsnouveau.api.spell.Spell, net.minecraft.world.item.ItemStack);
+  public static double getCurrentMana(net.minecraft.world.entity.LivingEntity);
+  public static com.hollingsworth.arsnouveau.api.util.ManaUtil$Mana calcMaxMana(net.minecraft.world.entity.player.Player);
+  public static int getMaxMana(net.minecraft.world.entity.player.Player);
+  public static double getManaRegen(net.minecraft.world.entity.player.Player);
+  private static void lambda$getPlayerDiscounts$0(java.util.concurrent.atomic.AtomicInteger, com.hollingsworth.arsnouveau.api.spell.Spell, net.minecraftforge.items.IItemHandlerModifiable);
+  static {};
+}
+
+Compiled from "IManaCap.java"
+public interface com.hollingsworth.arsnouveau.api.mana.IManaCap extends net.minecraftforge.common.util.INBTSerializable<net.minecraft.nbt.CompoundTag> {
+  public abstract double getCurrentMana();
+  public abstract int getMaxMana();
+  public abstract void setMaxMana(int);
+  public abstract double setMana(double);
+  public abstract double addMana(double);
+  public abstract double removeMana(double);
+  public default int getGlyphBonus();
+  public default int getBookTier();
+  public default void setGlyphBonus(int);
+  public default void setBookTier(int);
+}
+
+Compiled from "ISpellCaster.java"
+public interface com.hollingsworth.arsnouveau.api.spell.ISpellCaster {
+  public abstract com.hollingsworth.arsnouveau.api.spell.Spell getSpell();
+  public abstract com.hollingsworth.arsnouveau.api.spell.Spell getSpell(int);
+  public abstract int getMaxSlots();
+  public abstract int getCurrentSlot();
+  public abstract void setCurrentSlot(int);
+  public default void setNextSlot();
+  public default void setPreviousSlot();
+  public abstract void setSpell(com.hollingsworth.arsnouveau.api.spell.Spell, int);
+  public abstract void setSpell(com.hollingsworth.arsnouveau.api.spell.Spell);
+  public abstract com.hollingsworth.arsnouveau.client.particle.ParticleColor getColor(int);
+  public abstract com.hollingsworth.arsnouveau.client.particle.ParticleColor getColor();
+  public abstract void setColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor);
+  public abstract void setColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor, int);
+  public abstract com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound getSound(int);
+  public abstract void setSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound);
+  public abstract void setSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound, int);
+  public default com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound getCurrentSound();
+  public abstract void setFlavorText(java.lang.String);
+  public abstract java.lang.String getSpellName(int);
+  public abstract java.lang.String getSpellName();
+  public abstract void setSpellName(java.lang.String);
+  public abstract void setSpellName(java.lang.String, int);
+  public abstract void setSpellHidden(boolean);
+  public abstract boolean isSpellHidden();
+  public abstract void setHiddenRecipe(java.lang.String);
+  public abstract java.lang.String getHiddenRecipe();
+  public abstract java.lang.String getFlavorText();
+  public abstract java.util.Map<java.lang.Integer, com.hollingsworth.arsnouveau.api.spell.Spell> getSpells();
+  public default com.hollingsworth.arsnouveau.api.spell.Spell getSpell(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.InteractionHand, com.hollingsworth.arsnouveau.api.spell.ISpellCaster);
+  public default com.hollingsworth.arsnouveau.api.spell.Spell modifySpellBeforeCasting(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, net.minecraft.world.InteractionHand, com.hollingsworth.arsnouveau.api.spell.Spell);
+  public default net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> castSpell(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.InteractionHand, net.minecraft.network.chat.Component, com.hollingsworth.arsnouveau.api.spell.Spell);
+  public default net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> castSpell(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.InteractionHand, net.minecraft.network.chat.Component);
+  public default void copyFromCaster(com.hollingsworth.arsnouveau.api.spell.ISpellCaster);
+  public default com.hollingsworth.arsnouveau.api.spell.SpellResolver getSpellResolver(com.hollingsworth.arsnouveau.api.spell.SpellContext, net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.InteractionHand);
+  public default void playSound(net.minecraft.core.BlockPos, net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound, net.minecraft.sounds.SoundSource);
+  public abstract net.minecraft.resources.ResourceLocation getTagID();
+}
+
+Compiled from "ISpellCasterProvider.java"
+public interface com.hollingsworth.arsnouveau.api.spell.ISpellCasterProvider {
+  public abstract com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster();
+  public default com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster(net.minecraft.world.item.ItemStack);
+  public abstract com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster(net.minecraft.nbt.CompoundTag);
+}
+
+Compiled from "SpellCaster.java"
+public class com.hollingsworth.arsnouveau.api.spell.SpellCaster implements com.hollingsworth.arsnouveau.api.spell.ISpellCaster {
+  private java.util.Map<java.lang.Integer, com.hollingsworth.arsnouveau.api.spell.Spell> spells;
+  private int slot;
+  public net.minecraft.world.item.ItemStack stack;
+  public java.lang.String flavorText;
+  public boolean isHidden;
+  public java.lang.String hiddenText;
+  public com.hollingsworth.arsnouveau.api.spell.SpellCaster(net.minecraft.world.item.ItemStack);
+  public com.hollingsworth.arsnouveau.api.spell.Spell getSpell();
+  public com.hollingsworth.arsnouveau.api.spell.Spell getSpell(int);
+  public int getMaxSlots();
+  public int getCurrentSlot();
+  public void setCurrentSlot(int);
+  public void setSpell(com.hollingsworth.arsnouveau.api.spell.Spell, int);
+  public void setSpell(com.hollingsworth.arsnouveau.api.spell.Spell);
+  public com.hollingsworth.arsnouveau.client.particle.ParticleColor getColor(int);
+  public void setFlavorText(java.lang.String);
+  public java.lang.String getSpellName(int);
+  public java.lang.String getSpellName();
+  public void setSpellName(java.lang.String);
+  public void setSpellName(java.lang.String, int);
+  public void setSpellHidden(boolean);
+  public boolean isSpellHidden();
+  public void setHiddenRecipe(java.lang.String);
+  public java.lang.String getHiddenRecipe();
+  public java.lang.String getFlavorText();
+  public void setColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor);
+  public void setColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor, int);
+  public com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound getSound(int);
+  public void setSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound);
+  public void setSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound, int);
+  public com.hollingsworth.arsnouveau.client.particle.ParticleColor getColor();
+  public java.util.Map<java.lang.Integer, com.hollingsworth.arsnouveau.api.spell.Spell> getSpells();
+  public net.minecraft.nbt.CompoundTag writeTag(net.minecraft.nbt.CompoundTag);
+  public com.hollingsworth.arsnouveau.api.spell.SpellCaster(net.minecraft.nbt.CompoundTag);
+  public void writeItem(net.minecraft.world.item.ItemStack);
+  public void serializeOnTag(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.resources.ResourceLocation getTagID();
+}
+
+Compiled from "Spell.java"
+public class com.hollingsworth.arsnouveau.api.spell.Spell implements java.lang.Cloneable {
+  public java.util.List<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> recipe;
+  public java.lang.String name;
+  public com.hollingsworth.arsnouveau.client.particle.ParticleColor color;
+  public com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound sound;
+  public com.hollingsworth.arsnouveau.api.spell.Spell(java.util.List<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart>);
+  public com.hollingsworth.arsnouveau.api.spell.Spell();
+  public com.hollingsworth.arsnouveau.api.spell.Spell(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart...);
+  public com.hollingsworth.arsnouveau.api.spell.Spell add(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart);
+  public com.hollingsworth.arsnouveau.api.spell.Spell add(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart...);
+  public com.hollingsworth.arsnouveau.api.spell.Spell add(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart, int);
+  public com.hollingsworth.arsnouveau.api.spell.Spell setRecipe(java.util.List<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart>);
+  public com.hollingsworth.arsnouveau.api.spell.Spell withColor(com.hollingsworth.arsnouveau.client.particle.ParticleColor);
+  public com.hollingsworth.arsnouveau.api.spell.Spell withSound(com.hollingsworth.arsnouveau.api.sound.ConfiguredSpellSound);
+  public int getSpellSize();
+  public com.hollingsworth.arsnouveau.api.spell.AbstractCastMethod getCastMethod();
+  public java.util.List<com.hollingsworth.arsnouveau.api.spell.AbstractAugment> getAugments(int, net.minecraft.world.entity.LivingEntity);
+  public int getInstanceCount(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart);
+  public int getBuffsAtIndex(int, net.minecraft.world.entity.LivingEntity, com.hollingsworth.arsnouveau.api.spell.AbstractAugment);
+  public int getCost();
+  public boolean isEmpty();
+  public net.minecraft.nbt.CompoundTag serialize();
+  public static com.hollingsworth.arsnouveau.api.spell.Spell fromTag(net.minecraft.nbt.CompoundTag);
+  public java.lang.String getDisplayString();
+  public boolean isValid();
+  public com.hollingsworth.arsnouveau.api.spell.Spell add(com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart, int, int);
+  public java.util.List<net.minecraft.resources.ResourceLocation> serializeRecipe();
+  public com.hollingsworth.arsnouveau.api.spell.Spell clone();
+  public java.lang.Object clone() throws java.lang.CloneNotSupportedException;
+  private static boolean lambda$getBuffsAtIndex$0(com.hollingsworth.arsnouveau.api.spell.AbstractAugment, com.hollingsworth.arsnouveau.api.spell.AbstractAugment);
+}
+
+Compiled from "SpellBook.java"
+public class com.hollingsworth.arsnouveau.common.items.SpellBook extends com.hollingsworth.arsnouveau.common.items.ModItem implements software.bernie.geckolib.animatable.GeoItem,com.hollingsworth.arsnouveau.api.item.ICasterTool,com.hollingsworth.arsnouveau.common.crafting.recipes.IDyeable,com.hollingsworth.arsnouveau.api.item.IRadialProvider {
+  public com.hollingsworth.arsnouveau.api.spell.SpellTier tier;
+  software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache factory;
+  public com.hollingsworth.arsnouveau.common.items.SpellBook(com.hollingsworth.arsnouveau.api.spell.SpellTier);
+  public com.hollingsworth.arsnouveau.common.items.SpellBook(net.minecraft.world.item.Item$Properties, com.hollingsworth.arsnouveau.api.spell.SpellTier);
+  public boolean m_41465_();
+  public net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> m_7203_(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public int m_8105_(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.UseAnim m_6164_(net.minecraft.world.item.ItemStack);
+  public boolean doesSneakBypassUse(net.minecraft.world.item.ItemStack, net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  public void m_7373_(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level, java.util.List<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag);
+  public com.hollingsworth.arsnouveau.api.spell.SpellTier getTier();
+  public void registerControllers(software.bernie.geckolib.core.animation.AnimatableManager$ControllerRegistrar);
+  public software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache getAnimatableInstanceCache();
+  public com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster(net.minecraft.world.item.ItemStack);
+  public com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster();
+  public com.hollingsworth.arsnouveau.api.spell.ISpellCaster getSpellCaster(net.minecraft.nbt.CompoundTag);
+  public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions>);
+  public void onOpenBookMenuKeyPressed(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.player.Player);
+  public void onRadialKeyPressed(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.player.Player);
+  public com.hollingsworth.arsnouveau.client.gui.radial_menu.RadialMenu<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart> getRadialMenuProviderForSpellpart(net.minecraft.world.item.ItemStack);
+  public java.util.List<com.hollingsworth.arsnouveau.client.gui.radial_menu.RadialMenuSlot<com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart>> getRadialMenuSlotsForSpellpart(net.minecraft.world.item.ItemStack);
+  public boolean canQuickCast();
+  private static void lambda$getRadialMenuProviderForSpellpart$1(net.minecraft.world.item.ItemStack, int);
+  private void lambda$use$0(net.minecraft.world.entity.player.Player, com.hollingsworth.arsnouveau.api.mana.IManaCap);
+}
+
+Compiled from "SourceJarTile.java"
+public class com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile extends com.hollingsworth.arsnouveau.api.source.AbstractSourceMachine implements com.hollingsworth.arsnouveau.api.client.ITooltipProvider,com.hollingsworth.arsnouveau.common.block.ITickable {
+  public com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile(com.hollingsworth.arsnouveau.common.util.RegistryWrapper<? extends net.minecraft.world.level.block.entity.BlockEntityType<?>>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getMaxSource();
+  public boolean updateBlock();
+  public int getTransferRate();
+  public void getTooltip(java.util.List<net.minecraft.network.chat.Component>);
+}
+
+Compiled from "ISourceTile.java"
+public interface com.hollingsworth.arsnouveau.api.source.ISourceTile {
+  public abstract int getTransferRate();
+  public abstract boolean canAcceptSource();
+  public abstract int getSource();
+  public abstract int getMaxSource();
+  public abstract void setMaxSource(int);
+  public abstract int setSource(int);
+  public abstract int addSource(int);
+  public abstract int removeSource(int);
+}
+
+Compiled from "KeyHandler.java"
+public class com.hollingsworth.arsnouveau.client.keybindings.KeyHandler {
+  private static final net.minecraft.client.Minecraft MINECRAFT;
+  public static net.minecraft.client.KeyMapping[] CURIO_MAPPINGS;
+  public com.hollingsworth.arsnouveau.client.keybindings.KeyHandler();
+  public static void checkKeysPressed(int);
+  public static void checkCasterKeys(int);
+  public static void checkCurioHotkey(int);
+  public static void mouseEvent(net.minecraftforge.client.event.InputEvent$MouseButton$Post);
+  public static void keyEvent(net.minecraftforge.client.event.InputEvent$Key);
+  public static void sendHotkeyPacket(com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed$Key);
+  static {};
+}
+
+Compiled from "ModKeyBindings.java"
+public class com.hollingsworth.arsnouveau.client.registry.ModKeyBindings {
+  public static final java.lang.String CATEGORY;
+  public static final net.minecraft.client.KeyMapping OPEN_BOOK;
+  public static final net.minecraft.client.KeyMapping OPEN_RADIAL_HUD;
+  public static final net.minecraft.client.KeyMapping NEXT_SLOT;
+  public static final net.minecraft.client.KeyMapping PREVIOUS_SLOT;
+  public static final net.minecraft.client.KeyMapping HEAD_CURIO_HOTKEY;
+  public static final net.minecraft.client.KeyMapping FAMILIAR_TOGGLE;
+  public static final net.minecraft.client.KeyMapping QC_1;
+  public static final net.minecraft.client.KeyMapping QC_2;
+  public static final net.minecraft.client.KeyMapping QC_3;
+  public static final net.minecraft.client.KeyMapping QC_4;
+  public static final net.minecraft.client.KeyMapping QC_5;
+  public static final net.minecraft.client.KeyMapping QC_6;
+  public static final net.minecraft.client.KeyMapping QC_7;
+  public static final net.minecraft.client.KeyMapping QC_8;
+  public static final net.minecraft.client.KeyMapping QC_9;
+  public static final net.minecraft.client.KeyMapping QC_10;
+  public com.hollingsworth.arsnouveau.client.registry.ModKeyBindings();
+  public static int usedQuickSlot(int);
+  public static void registerKeyBindings(net.minecraftforge.client.event.RegisterKeyMappingsEvent);
+  static {};
+}
+
+Compiled from "PacketUpdateMana.java"
+public class com.hollingsworth.arsnouveau.common.network.PacketUpdateMana {
+  public double mana;
+  public int maxMana;
+  public int glyphBonus;
+  public int tierBonus;
+  public float reserved;
+  public com.hollingsworth.arsnouveau.common.network.PacketUpdateMana(net.minecraft.network.FriendlyByteBuf);
+  public void toBytes(net.minecraft.network.FriendlyByteBuf);
+  public com.hollingsworth.arsnouveau.common.network.PacketUpdateMana(double, int, int, int, float);
+  public com.hollingsworth.arsnouveau.common.network.PacketUpdateMana(double, int, int, int);
+  public void handle(java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+  private void lambda$handle$1(java.util.function.Supplier);
+  private void lambda$handle$0(com.hollingsworth.arsnouveau.api.mana.IManaCap);
+}
+
+Compiled from "EnchantingApparatusRecipe.java"
+public class com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe implements com.hollingsworth.arsnouveau.api.enchanting_apparatus.IEnchantingRecipe {
+  public net.minecraft.world.item.crafting.Ingredient reagent;
+  public net.minecraft.world.item.ItemStack result;
+  public java.util.List<net.minecraft.world.item.crafting.Ingredient> pedestalItems;
+  public net.minecraft.resources.ResourceLocation id;
+  public int sourceCost;
+  public boolean keepNbtOfReagent;
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe(net.minecraft.world.item.ItemStack, net.minecraft.world.item.crafting.Ingredient, java.util.List<net.minecraft.world.item.crafting.Ingredient>);
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe(net.minecraft.resources.ResourceLocation, java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack);
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe(net.minecraft.resources.ResourceLocation, java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, int, boolean);
+  public com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe();
+  public boolean excludeJei();
+  public boolean isMatch(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.world.entity.player.Player);
+  public boolean doesReagentMatch(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack getResult(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile);
+  public static boolean doItemsMatch(java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.crafting.Ingredient>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public com.google.gson.JsonElement asRecipe();
+  public boolean consumesSource();
+  public int getSourceCost();
+  public boolean matches(com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.world.level.Level);
+  public boolean matches(com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack assemble(com.hollingsworth.arsnouveau.common.block.tile.EnchantingApparatusTile, net.minecraft.core.RegistryAccess);
+  public boolean m_8004_(int, int);
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  private static boolean lambda$isMatch$0(net.minecraft.world.item.ItemStack);
+}
+
+Compiled from "ImbuementRecipe.java"
+public class com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe implements com.hollingsworth.arsnouveau.api.imbuement_chamber.IImbuementRecipe {
+  public final net.minecraft.world.item.crafting.Ingredient input;
+  public final net.minecraft.world.item.ItemStack output;
+  public final int source;
+  public final net.minecraft.resources.ResourceLocation id;
+  public java.util.List<net.minecraft.world.item.crafting.Ingredient> pedestalItems;
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, int, java.util.List<net.minecraft.world.item.crafting.Ingredient>);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe(java.lang.String, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, int, java.util.List<net.minecraft.world.item.crafting.Ingredient>);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe(java.lang.String, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, int);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe withPedestalItem(net.minecraft.world.item.crafting.Ingredient);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe withPedestalItem(net.minecraftforge.registries.RegistryObject<? extends net.minecraft.world.level.ItemLike>);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe withPedestalItem(net.minecraft.world.item.ItemStack);
+  public com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe withPedestalItem(net.minecraft.world.level.ItemLike);
+  public boolean isMatch(com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile);
+  public net.minecraft.world.item.ItemStack getResult(com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile);
+  public int getSourceCost(com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile);
+  public boolean doesReagentMatch(net.minecraft.world.item.ItemStack);
+  public boolean matches(com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack assemble(com.hollingsworth.arsnouveau.common.block.tile.ImbuementTile, net.minecraft.core.RegistryAccess);
+  public boolean m_8004_(int, int);
+  public net.minecraft.world.item.ItemStack m_8043_(net.minecraft.core.RegistryAccess);
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public com.google.gson.JsonElement asRecipe();
+  public net.minecraft.world.item.ItemStack m_5874_(net.minecraft.world.Container, net.minecraft.core.RegistryAccess);
+  public boolean m_5818_(net.minecraft.world.Container, net.minecraft.world.level.Level);
+  private static boolean lambda$isMatch$0(net.minecraft.world.item.crafting.Ingredient);
+}
+
+Compiled from "RecipeRegistry.java"
+public class com.hollingsworth.arsnouveau.setup.registry.RecipeRegistry {
+  public static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.item.crafting.RecipeSerializer<?>> RECIPE_SERIALIZERS;
+  public static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.item.crafting.RecipeType<?>> RECIPE_TYPES;
+  public static final java.lang.String ENCHANTING_APPARATUS_RECIPE_ID;
+  public static final java.lang.String ENCHANTMENT_RECIPE_ID;
+  public static final java.lang.String CRUSH_RECIPE_ID;
+  public static final java.lang.String IMBUEMENT_RECIPE_ID;
+  public static final java.lang.String REACTIVE_RECIPE_ID;
+  public static final java.lang.String SPELL_WRITE_RECIPE_ID;
+  public static final java.lang.String GLYPH_RECIPE_ID;
+  public static final java.lang.String DYE_RECIPE_ID;
+  public static final java.lang.String ARMOR_RECIPE_ID;
+  public static final java.lang.String TOME_DATAPACK;
+  public static final java.lang.String SUMMON_RITUAL_DATAPACK;
+  public static final java.lang.String BUDDING_CONVERSION_RECIPE_ID;
+  public static final java.lang.String DISPEL_ENTITY_RECIPE_ID;
+  public static final java.lang.String SCRY_RITUAL_RECIPE_ID;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe>> APPARATUS_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe>> APPARATUS_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantmentRecipe>> ENCHANTMENT_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantmentRecipe>> ENCHANTMENT_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe>> CRUSH_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.crafting.recipes.CrushRecipe>> CRUSH_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe>> IMBUEMENT_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe>> IMBUEMENT_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.crafting.recipes.BookUpgradeRecipe>> BOOK_UPGRADE_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.crafting.recipes.BookUpgradeRecipe>> BOOK_UPGRADE_RECIPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.crafting.recipes.PotionFlaskRecipe>> POTION_FLASK_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.crafting.recipes.PotionFlaskRecipe>> POTION_FLASK_RECIPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.crafting.recipes.DyeRecipe>> DYE_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.crafting.recipes.DyeRecipe>> DYE_RECIPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.enchanting_apparatus.ReactiveEnchantmentRecipe>> REACTIVE_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.enchanting_apparatus.ReactiveEnchantmentRecipe>> REACTIVE_RECIPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.enchanting_apparatus.SpellWriteRecipe>> SPELL_WRITE_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.enchanting_apparatus.SpellWriteRecipe>> SPELL_WRITE_RECIPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe>> GLYPH_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe>> GLYPH_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.enchanting_apparatus.ArmorUpgradeRecipe>> ARMOR_UPGRADE_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.enchanting_apparatus.ArmorUpgradeRecipe>> ARMOR_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.common.tomes.CasterTomeData>> CASTER_TOME_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.common.tomes.CasterTomeData>> CASTER_TOME_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.recipe.SummonRitualRecipe>> SUMMON_RITUAL_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.recipe.SummonRitualRecipe>> SUMMON_RITUAL_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.recipe.BuddingConversionRecipe>> BUDDING_CONVERSION_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.recipe.BuddingConversionRecipe>> BUDDING_CONVERSION_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.recipe.DispelEntityRecipe>> DISPEL_ENTITY_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.recipe.DispelEntityRecipe>> DISPEL_ENTITY_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.hollingsworth.arsnouveau.api.recipe.ScryRitualRecipe>> SCRY_RITUAL_TYPE;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.hollingsworth.arsnouveau.api.recipe.ScryRitualRecipe>> SCRY_RITUAL_SERIALIZER;
+  public com.hollingsworth.arsnouveau.setup.registry.RecipeRegistry();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$31();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$30();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$29();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$28();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$27();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$26();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$25();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$24();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$23();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$22();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$21();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$20();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$19();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$18();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$17();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$16();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$15();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$14();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$13();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$12();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$11();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$10();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$9();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$8();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$7();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$6();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$5();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$4();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$3();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$2();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$1();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$0();
+  static {};
+}

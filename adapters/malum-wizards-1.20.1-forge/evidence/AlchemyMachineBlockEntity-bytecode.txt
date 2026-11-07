@@ -1,0 +1,1805 @@
+Compiled from "AlchemyMachineBlockEntity.java"
+public class mod.maxbogomol.wizards_reborn.common.block.alchemy_machine.AlchemyMachineBlockEntity extends mod.maxbogomol.wizards_reborn.common.block.pipe.PipeBaseBlockEntity implements mod.maxbogomol.fluffy_fur.common.block.entity.TickableBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IWissenWandFunctionalBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.ICooldownBlockEntity,mod.maxbogomol.wizards_reborn.api.wissen.IItemResultBlockEntity,net.minecraft.world.MenuProvider,net.minecraft.world.Nameable {
+  protected net.minecraftforge.fluids.capability.templates.FluidTank fluidTank1;
+
+  protected net.minecraftforge.fluids.capability.templates.FluidTank fluidTank2;
+
+  protected net.minecraftforge.fluids.capability.templates.FluidTank fluidTank3;
+
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHolder1;
+
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHolder2;
+
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHolder3;
+
+  public final net.minecraftforge.items.ItemStackHandler itemHandler;
+
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> handler;
+
+  public final net.minecraftforge.items.ItemStackHandler itemOutputHandler;
+
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> outputHandler;
+
+  public static net.minecraft.core.Direction[] directions;
+
+  public int wissenInCraft;
+
+  public int wissenIsCraft;
+
+  public int steamInCraft;
+
+  public int steamIsCraft;
+
+  public boolean startCraft;
+
+  public net.minecraft.network.chat.Component name;
+
+  public mod.maxbogomol.wizards_reborn.common.block.alchemy_machine.AlchemyMachineBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #77                 // Method mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: aload_0
+       8: new           #25                 // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$1
+      11: dup
+      12: aload_0
+      13: aload_0
+      14: invokevirtual #81                 // Method getMaxCapacity:()I
+      17: invokespecial #84                 // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$1."<init>":(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;I)V
+      20: putfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      23: aload_0
+      24: new           #23                 // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$2
+      27: dup
+      28: aload_0
+      29: aload_0
+      30: invokevirtual #81                 // Method getMaxCapacity:()I
+      33: invokespecial #87                 // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$2."<init>":(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;I)V
+      36: putfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      39: aload_0
+      40: new           #21                 // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$3
+      43: dup
+      44: aload_0
+      45: aload_0
+      46: invokevirtual #81                 // Method getMaxCapacity:()I
+      49: invokespecial #90                 // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$3."<init>":(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;I)V
+      52: putfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      55: aload_0
+      56: aload_0
+      57: invokedynamic #111,  0            // InvokeDynamic #0:get:(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      62: invokestatic  #117                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      65: putfield      #119                // Field fluidHolder1:Lnet/minecraftforge/common/util/LazyOptional;
+      68: aload_0
+      69: aload_0
+      70: invokedynamic #124,  0            // InvokeDynamic #1:get:(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      75: invokestatic  #117                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      78: putfield      #126                // Field fluidHolder2:Lnet/minecraftforge/common/util/LazyOptional;
+      81: aload_0
+      82: aload_0
+      83: invokedynamic #131,  0            // InvokeDynamic #2:get:(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      88: invokestatic  #117                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      91: putfield      #133                // Field fluidHolder3:Lnet/minecraftforge/common/util/LazyOptional;
+      94: aload_0
+      95: aload_0
+      96: bipush        6
+      98: invokevirtual #137                // Method createHandler:(I)Lnet/minecraftforge/items/ItemStackHandler;
+     101: putfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     104: aload_0
+     105: aload_0
+     106: invokedynamic #146,  0            // InvokeDynamic #3:get:(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+     111: invokestatic  #117                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+     114: putfield      #148                // Field handler:Lnet/minecraftforge/common/util/LazyOptional;
+     117: aload_0
+     118: aload_0
+     119: iconst_1
+     120: invokevirtual #137                // Method createHandler:(I)Lnet/minecraftforge/items/ItemStackHandler;
+     123: putfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     126: aload_0
+     127: aload_0
+     128: invokedynamic #155,  0            // InvokeDynamic #4:get:(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;)Lnet/minecraftforge/common/util/NonNullSupplier;
+     133: invokestatic  #117                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+     136: putfield      #157                // Field outputHandler:Lnet/minecraftforge/common/util/LazyOptional;
+     139: aload_0
+     140: iconst_0
+     141: putfield      #159                // Field wissenInCraft:I
+     144: aload_0
+     145: iconst_0
+     146: putfield      #161                // Field wissenIsCraft:I
+     149: aload_0
+     150: iconst_0
+     151: putfield      #163                // Field steamInCraft:I
+     154: aload_0
+     155: iconst_0
+     156: putfield      #165                // Field steamIsCraft:I
+     159: aload_0
+     160: iconst_0
+     161: putfield      #167                // Field startCraft:Z
+     164: return
+
+  public mod.maxbogomol.wizards_reborn.common.block.alchemy_machine.AlchemyMachineBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #183                // Field mod/maxbogomol/wizards_reborn/registry/common/block/WizardsRebornBlockEntities.ALCHEMY_MACHINE:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #187                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #189                // class net/minecraft/world/level/block/entity/BlockEntityType
+      10: aload_1
+      11: aload_2
+      12: invokespecial #190                // Method "<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      15: return
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: invokevirtual #202                // Method net/minecraft/world/level/Level.m_5776_:()Z
+       7: ifne          1370
+      10: aload_0
+      11: invokevirtual #205                // Method initConnections:()V
+      14: iconst_0
+      15: istore_1
+      16: aload_0
+      17: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      20: aload_0
+      21: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      24: invokevirtual #214                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+      27: invokevirtual #218                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      30: astore_3
+      31: aload_3
+      32: instanceof    #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+      35: ifeq          1331
+      38: aload_3
+      39: checkcast     #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+      42: astore_2
+      43: new           #222                // class net/minecraft/world/SimpleContainer
+      46: dup
+      47: bipush        7
+      49: invokespecial #225                // Method net/minecraft/world/SimpleContainer."<init>":(I)V
+      52: astore_3
+      53: iconst_0
+      54: istore        4
+      56: iload         4
+      58: aload_0
+      59: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      62: invokevirtual #230                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+      65: if_icmpge     89
+      68: aload_3
+      69: iload         4
+      71: aload_0
+      72: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      75: iload         4
+      77: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      80: invokevirtual #238                // Method net/minecraft/world/SimpleContainer.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+      83: iinc          4, 1
+      86: goto          56
+      89: aload_3
+      90: bipush        6
+      92: aload_0
+      93: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      96: iconst_0
+      97: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     100: invokevirtual #238                // Method net/minecraft/world/SimpleContainer.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     103: aload_3
+     104: invokevirtual #241                // Method net/minecraft/world/SimpleContainer.m_7983_:()Z
+     107: ifne          1272
+     110: new           #243                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext
+     113: dup
+     114: aload_3
+     115: iconst_3
+     116: anewarray     #29                 // class net/minecraftforge/fluids/capability/IFluidHandler
+     119: dup
+     120: iconst_0
+     121: aload_0
+     122: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+     125: aastore
+     126: dup
+     127: iconst_1
+     128: aload_0
+     129: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+     132: aastore
+     133: dup
+     134: iconst_2
+     135: aload_0
+     136: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+     139: aastore
+     140: invokespecial #246                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext."<init>":(Lnet/minecraft/world/Container;[Lnet/minecraftforge/fluids/capability/IFluidHandler;)V
+     143: astore        4
+     145: aload_0
+     146: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     149: invokevirtual #250                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+     152: getstatic     #253                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornRecipes.ALCHEMY_MACHINE:Lnet/minecraftforge/registries/RegistryObject;
+     155: invokevirtual #187                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     158: checkcast     #255                // class net/minecraft/world/item/crafting/RecipeType
+     161: aload         4
+     163: aload_0
+     164: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     167: invokevirtual #261                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+     170: astore        5
+     172: aload_0
+     173: aload         5
+     175: invokedynamic #275,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+     180: invokevirtual #281                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+     183: iconst_0
+     184: invokestatic  #287                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     187: invokevirtual #290                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     190: checkcast     #283                // class java/lang/Integer
+     193: invokevirtual #293                // Method java/lang/Integer.intValue:()I
+     196: putfield      #159                // Field wissenInCraft:I
+     199: aload_0
+     200: aload         5
+     202: invokedynamic #298,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+     207: invokevirtual #281                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+     210: iconst_0
+     211: invokestatic  #287                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     214: invokevirtual #290                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     217: checkcast     #283                // class java/lang/Integer
+     220: invokevirtual #293                // Method java/lang/Integer.intValue:()I
+     223: putfield      #163                // Field steamInCraft:I
+     226: aload_0
+     227: getfield      #159                // Field wissenInCraft:I
+     230: ifgt          285
+     233: aload_0
+     234: getfield      #161                // Field wissenIsCraft:I
+     237: ifgt          247
+     240: aload_0
+     241: getfield      #167                // Field startCraft:Z
+     244: ifeq          285
+     247: aload_0
+     248: getfield      #163                // Field steamInCraft:I
+     251: ifgt          285
+     254: aload_0
+     255: getfield      #165                // Field steamIsCraft:I
+     258: ifgt          268
+     261: aload_0
+     262: getfield      #167                // Field startCraft:Z
+     265: ifeq          285
+     268: aload_0
+     269: iconst_0
+     270: putfield      #161                // Field wissenIsCraft:I
+     273: aload_0
+     274: iconst_0
+     275: putfield      #165                // Field steamIsCraft:I
+     278: aload_0
+     279: iconst_0
+     280: putfield      #167                // Field startCraft:Z
+     283: iconst_1
+     284: istore_1
+     285: aload         5
+     287: invokevirtual #301                // Method java/util/Optional.isPresent:()Z
+     290: ifeq          1269
+     293: aload_2
+     294: invokevirtual #305                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getTank:()Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+     297: aload         5
+     299: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     302: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     305: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     308: getstatic     #314                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     311: invokevirtual #320                // Method net/minecraftforge/fluids/capability/templates/FluidTank.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+     314: istore        6
+     316: iload         6
+     318: aload         5
+     320: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     323: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     326: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     329: invokevirtual #325                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+     332: if_icmpne     339
+     335: iconst_1
+     336: goto          340
+     339: iconst_0
+     340: istore        7
+     342: aload_0
+     343: getfield      #167                // Field startCraft:Z
+     346: ifeq          498
+     349: aload         5
+     351: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     354: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     357: getstatic     #329                // Field net/minecraft/core/RegistryAccess.f_243945_:Lnet/minecraft/core/RegistryAccess$Frozen;
+     360: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     363: astore        8
+     365: aload_0
+     366: getfield      #159                // Field wissenInCraft:I
+     369: ifle          459
+     372: aload_2
+     373: getfield      #336                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.wissen:I
+     376: ifle          459
+     379: aload_0
+     380: aload_3
+     381: aload         8
+     383: aload         5
+     385: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     388: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     391: iload         7
+     393: invokevirtual #340                // Method isCanCraft:(Lnet/minecraft/world/SimpleContainer;Lnet/minecraft/world/item/ItemStack;Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe;Z)Z
+     396: ifeq          459
+     399: aload_0
+     400: getfield      #161                // Field wissenIsCraft:I
+     403: bipush        6
+     405: aload_0
+     406: getfield      #159                // Field wissenInCraft:I
+     409: invokestatic  #346                // Method mod/maxbogomol/wizards_reborn/api/wissen/WissenUtil.getAddWissenRemain:(III)I
+     412: istore        9
+     414: aload_2
+     415: invokevirtual #347                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getWissen:()I
+     418: bipush        6
+     420: iload         9
+     422: isub
+     423: invokestatic  #351                // Method mod/maxbogomol/wizards_reborn/api/wissen/WissenUtil.getRemoveWissenRemain:(II)I
+     426: istore        10
+     428: aload_0
+     429: aload_0
+     430: getfield      #161                // Field wissenIsCraft:I
+     433: bipush        6
+     435: iload         9
+     437: isub
+     438: iload         10
+     440: isub
+     441: iadd
+     442: putfield      #161                // Field wissenIsCraft:I
+     445: aload_2
+     446: bipush        6
+     448: iload         9
+     450: isub
+     451: iload         10
+     453: isub
+     454: invokevirtual #354                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.removeWissen:(I)V
+     457: iconst_1
+     458: istore_1
+     459: aload_0
+     460: getfield      #360                // Field random:Ljava/util/Random;
+     463: invokevirtual #366                // Method java/util/Random.nextFloat:()F
+     466: ldc_w         #367                // float 0.01f
+     469: fcmpg
+     470: ifge          495
+     473: aload_0
+     474: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     477: aconst_null
+     478: aload_0
+     479: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     482: getstatic     #373                // Field net/minecraft/sounds/SoundEvents.f_12540_:Lnet/minecraft/sounds/SoundEvent;
+     485: getstatic     #379                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     488: ldc_w         #380                // float 0.6f
+     491: fconst_1
+     492: invokevirtual #384                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     495: goto          510
+     498: aload_0
+     499: iconst_0
+     500: putfield      #161                // Field wissenIsCraft:I
+     503: aload_0
+     504: iconst_0
+     505: putfield      #167                // Field startCraft:Z
+     508: iconst_1
+     509: istore_1
+     510: aload_0
+     511: getfield      #163                // Field steamInCraft:I
+     514: ifle          665
+     517: aload_2
+     518: getfield      #387                // Field mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.steam:I
+     521: ifle          665
+     524: aload_0
+     525: getfield      #167                // Field startCraft:Z
+     528: ifeq          665
+     531: aload         5
+     533: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     536: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     539: getstatic     #329                // Field net/minecraft/core/RegistryAccess.f_243945_:Lnet/minecraft/core/RegistryAccess$Frozen;
+     542: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     545: astore        8
+     547: aload_0
+     548: aload_3
+     549: aload         8
+     551: aload         5
+     553: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     556: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     559: iload         7
+     561: invokevirtual #340                // Method isCanCraft:(Lnet/minecraft/world/SimpleContainer;Lnet/minecraft/world/item/ItemStack;Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe;Z)Z
+     564: ifeq          623
+     567: aload_0
+     568: getfield      #165                // Field steamIsCraft:I
+     571: iconst_3
+     572: aload_0
+     573: getfield      #163                // Field steamInCraft:I
+     576: invokestatic  #392                // Method mod/maxbogomol/wizards_reborn/api/alchemy/SteamUtil.getAddSteamRemain:(III)I
+     579: istore        9
+     581: aload_2
+     582: invokevirtual #393                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getSteam:()I
+     585: iconst_3
+     586: iload         9
+     588: isub
+     589: invokestatic  #396                // Method mod/maxbogomol/wizards_reborn/api/alchemy/SteamUtil.getRemoveSteamRemain:(II)I
+     592: istore        10
+     594: aload_0
+     595: aload_0
+     596: getfield      #165                // Field steamIsCraft:I
+     599: iconst_3
+     600: iload         9
+     602: isub
+     603: iload         10
+     605: isub
+     606: iadd
+     607: putfield      #165                // Field steamIsCraft:I
+     610: aload_2
+     611: iconst_3
+     612: iload         9
+     614: isub
+     615: iload         10
+     617: isub
+     618: invokevirtual #399                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.removeSteam:(I)V
+     621: iconst_1
+     622: istore_1
+     623: aload_0
+     624: getfield      #360                // Field random:Ljava/util/Random;
+     627: invokevirtual #366                // Method java/util/Random.nextFloat:()F
+     630: ldc_w         #367                // float 0.01f
+     633: fcmpg
+     634: ifge          665
+     637: aload_0
+     638: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     641: aconst_null
+     642: aload_0
+     643: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     646: getstatic     #404                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.STEAM_BURST:Lnet/minecraftforge/registries/RegistryObject;
+     649: invokevirtual #187                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     652: checkcast     #406                // class net/minecraft/sounds/SoundEvent
+     655: getstatic     #379                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     658: ldc_w         #407                // float 0.1f
+     661: fconst_1
+     662: invokevirtual #384                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     665: aload_0
+     666: getfield      #159                // Field wissenInCraft:I
+     669: ifgt          679
+     672: aload_0
+     673: getfield      #163                // Field steamInCraft:I
+     676: ifle          1269
+     679: aload_0
+     680: getfield      #167                // Field startCraft:Z
+     683: ifeq          1269
+     686: aload_0
+     687: getfield      #159                // Field wissenInCraft:I
+     690: aload_0
+     691: getfield      #161                // Field wissenIsCraft:I
+     694: if_icmpgt     1269
+     697: aload_0
+     698: getfield      #163                // Field steamInCraft:I
+     701: aload_0
+     702: getfield      #165                // Field steamIsCraft:I
+     705: if_icmpgt     1269
+     708: aload         5
+     710: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     713: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     716: getstatic     #329                // Field net/minecraft/core/RegistryAccess.f_243945_:Lnet/minecraft/core/RegistryAccess$Frozen;
+     719: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     722: invokevirtual #411                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     725: astore        8
+     727: aload_0
+     728: aload_3
+     729: aload         8
+     731: aload         5
+     733: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     736: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     739: iload         7
+     741: invokevirtual #340                // Method isCanCraft:(Lnet/minecraft/world/SimpleContainer;Lnet/minecraft/world/item/ItemStack;Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe;Z)Z
+     744: ifeq          1269
+     747: aload_0
+     748: iconst_0
+     749: putfield      #159                // Field wissenInCraft:I
+     752: aload_0
+     753: iconst_0
+     754: putfield      #161                // Field wissenIsCraft:I
+     757: aload_0
+     758: iconst_0
+     759: putfield      #163                // Field steamInCraft:I
+     762: aload_0
+     763: iconst_0
+     764: putfield      #165                // Field steamIsCraft:I
+     767: aload_0
+     768: iconst_0
+     769: putfield      #167                // Field startCraft:Z
+     772: aload         8
+     774: aload_0
+     775: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     778: iconst_0
+     779: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     782: invokevirtual #414                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     785: aload         8
+     787: invokevirtual #414                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     790: iadd
+     791: invokevirtual #417                // Method net/minecraft/world/item/ItemStack.m_41764_:(I)V
+     794: aload         5
+     796: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     799: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     802: invokevirtual #421                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     805: invokestatic  #427                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;)Z
+     808: ifne          833
+     811: aload_0
+     812: invokevirtual #430                // Method getAlchemyBottle:()Lnet/minecraft/world/item/ItemStack;
+     815: astore        8
+     817: aload         8
+     819: aload         5
+     821: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     824: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     827: invokevirtual #421                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     830: invokestatic  #434                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.setPotion:(Lnet/minecraft/world/item/ItemStack;Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;)V
+     833: aload_0
+     834: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     837: iconst_0
+     838: aload         8
+     840: invokevirtual #437                // Method net/minecraftforge/items/ItemStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+     843: iconst_0
+     844: istore        9
+     846: iload         9
+     848: bipush        6
+     850: if_icmpge     907
+     853: aload_0
+     854: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     857: iconst_0
+     858: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     861: invokevirtual #440                // Method net/minecraft/world/item/ItemStack.hasCraftingRemainingItem:()Z
+     864: ifeq          889
+     867: aload_0
+     868: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     871: iconst_0
+     872: aload_0
+     873: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     876: iconst_0
+     877: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     880: invokevirtual #443                // Method net/minecraft/world/item/ItemStack.getCraftingRemainingItem:()Lnet/minecraft/world/item/ItemStack;
+     883: invokevirtual #437                // Method net/minecraftforge/items/ItemStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+     886: goto          901
+     889: aload_0
+     890: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     893: iload         9
+     895: iconst_1
+     896: iconst_0
+     897: invokevirtual #447                // Method net/minecraftforge/items/ItemStackHandler.extractItem:(IIZ)Lnet/minecraft/world/item/ItemStack;
+     900: pop
+     901: iinc          9, 1
+     904: goto          846
+     907: iconst_0
+     908: istore        9
+     910: iconst_0
+     911: istore        10
+     913: iconst_0
+     914: istore        11
+     916: iconst_0
+     917: istore        12
+     919: iload         12
+     921: aload         5
+     923: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     926: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     929: invokevirtual #451                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidInputs:()Lnet/minecraft/core/NonNullList;
+     932: invokevirtual #456                // Method net/minecraft/core/NonNullList.size:()I
+     935: if_icmpge     1166
+     938: aload         5
+     940: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     943: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     946: invokevirtual #451                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidInputs:()Lnet/minecraft/core/NonNullList;
+     949: iload         12
+     951: invokevirtual #459                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     954: checkcast     #461                // class mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient
+     957: invokevirtual #465                // Method mod/maxbogomol/fluffy_fur/common/recipe/FluidIngredient.getFluids:()Ljava/util/List;
+     960: invokeinterface #471,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     965: astore        13
+     967: aload         13
+     969: invokeinterface #476,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     974: ifeq          1160
+     977: aload         13
+     979: invokeinterface #479,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     984: checkcast     #322                // class net/minecraftforge/fluids/FluidStack
+     987: astore        14
+     989: aload_0
+     990: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+     993: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+     996: aload         14
+     998: invokevirtual #486                // Method net/minecraftforge/fluids/FluidStack.isFluidEqual:(Lnet/minecraftforge/fluids/FluidStack;)Z
+    1001: iload         9
+    1003: ifne          1010
+    1006: iconst_1
+    1007: goto          1011
+    1010: iconst_0
+    1011: iand
+    1012: ifeq          1045
+    1015: aload_0
+    1016: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1019: aload         14
+    1021: getstatic     #314                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1024: invokevirtual #490                // Method net/minecraftforge/fluids/capability/templates/FluidTank.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+    1027: astore        15
+    1029: aload_0
+    1030: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1033: aload         15
+    1035: getstatic     #493                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1038: invokevirtual #490                // Method net/minecraftforge/fluids/capability/templates/FluidTank.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+    1041: pop
+    1042: iconst_1
+    1043: istore        9
+    1045: aload_0
+    1046: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1049: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+    1052: aload         14
+    1054: invokevirtual #486                // Method net/minecraftforge/fluids/FluidStack.isFluidEqual:(Lnet/minecraftforge/fluids/FluidStack;)Z
+    1057: iload         10
+    1059: ifne          1066
+    1062: iconst_1
+    1063: goto          1067
+    1066: iconst_0
+    1067: iand
+    1068: ifeq          1101
+    1071: aload_0
+    1072: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1075: aload         14
+    1077: getstatic     #314                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1080: invokevirtual #490                // Method net/minecraftforge/fluids/capability/templates/FluidTank.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+    1083: astore        15
+    1085: aload_0
+    1086: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1089: aload         15
+    1091: getstatic     #493                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1094: invokevirtual #490                // Method net/minecraftforge/fluids/capability/templates/FluidTank.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+    1097: pop
+    1098: iconst_1
+    1099: istore        10
+    1101: aload_0
+    1102: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1105: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+    1108: aload         14
+    1110: invokevirtual #486                // Method net/minecraftforge/fluids/FluidStack.isFluidEqual:(Lnet/minecraftforge/fluids/FluidStack;)Z
+    1113: iload         11
+    1115: ifne          1122
+    1118: iconst_1
+    1119: goto          1123
+    1122: iconst_0
+    1123: iand
+    1124: ifeq          1157
+    1127: aload_0
+    1128: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1131: aload         14
+    1133: getstatic     #314                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1136: invokevirtual #490                // Method net/minecraftforge/fluids/capability/templates/FluidTank.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+    1139: astore        15
+    1141: aload_0
+    1142: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1145: aload         15
+    1147: getstatic     #493                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1150: invokevirtual #490                // Method net/minecraftforge/fluids/capability/templates/FluidTank.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+    1153: pop
+    1154: iconst_1
+    1155: istore        11
+    1157: goto          967
+    1160: iinc          12, 1
+    1163: goto          919
+    1166: aload         5
+    1168: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+    1171: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+    1174: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+    1177: invokevirtual #495                // Method net/minecraftforge/fluids/FluidStack.isEmpty:()Z
+    1180: ifne          1239
+    1183: aload_2
+    1184: invokevirtual #305                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getTank:()Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1187: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+    1190: aload         5
+    1192: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+    1195: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+    1198: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+    1201: invokevirtual #486                // Method net/minecraftforge/fluids/FluidStack.isFluidEqual:(Lnet/minecraftforge/fluids/FluidStack;)Z
+    1204: ifne          1217
+    1207: aload_2
+    1208: invokevirtual #305                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getTank:()Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1211: invokevirtual #496                // Method net/minecraftforge/fluids/capability/templates/FluidTank.isEmpty:()Z
+    1214: ifeq          1239
+    1217: aload_2
+    1218: invokevirtual #305                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getTank:()Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+    1221: aload         5
+    1223: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+    1226: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+    1229: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+    1232: getstatic     #493                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+    1235: invokevirtual #320                // Method net/minecraftforge/fluids/capability/templates/FluidTank.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+    1238: pop
+    1239: aload_0
+    1240: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1243: aconst_null
+    1244: aload_0
+    1245: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1248: getstatic     #404                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornSounds.STEAM_BURST:Lnet/minecraftforge/registries/RegistryObject;
+    1251: invokevirtual #187                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+    1254: checkcast     #406                // class net/minecraft/sounds/SoundEvent
+    1257: getstatic     #379                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+    1260: ldc_w         #407                // float 0.1f
+    1263: fconst_1
+    1264: invokevirtual #384                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+    1267: iconst_1
+    1268: istore_1
+    1269: goto          1331
+    1272: aload_0
+    1273: getfield      #159                // Field wissenInCraft:I
+    1276: ifgt          1331
+    1279: aload_0
+    1280: getfield      #161                // Field wissenIsCraft:I
+    1283: ifgt          1293
+    1286: aload_0
+    1287: getfield      #167                // Field startCraft:Z
+    1290: ifeq          1331
+    1293: aload_0
+    1294: getfield      #163                // Field steamInCraft:I
+    1297: ifgt          1331
+    1300: aload_0
+    1301: getfield      #165                // Field steamIsCraft:I
+    1304: ifgt          1314
+    1307: aload_0
+    1308: getfield      #167                // Field startCraft:Z
+    1311: ifeq          1331
+    1314: aload_0
+    1315: iconst_0
+    1316: putfield      #161                // Field wissenIsCraft:I
+    1319: aload_0
+    1320: iconst_0
+    1321: putfield      #165                // Field steamIsCraft:I
+    1324: aload_0
+    1325: iconst_0
+    1326: putfield      #167                // Field startCraft:Z
+    1329: iconst_1
+    1330: istore_1
+    1331: iload_1
+    1332: ifeq          1370
+    1335: aload_0
+    1336: invokestatic  #502                // Method mod/maxbogomol/fluffy_fur/common/network/BlockEntityUpdate.packet:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+    1339: aload_0
+    1340: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1343: aload_0
+    1344: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1347: invokevirtual #214                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+    1350: invokevirtual #218                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+    1353: astore_3
+    1354: aload_3
+    1355: instanceof    #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+    1358: ifeq          1370
+    1361: aload_3
+    1362: checkcast     #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+    1365: astore_2
+    1366: aload_2
+    1367: invokestatic  #502                // Method mod/maxbogomol/fluffy_fur/common/network/BlockEntityUpdate.packet:(Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+    1370: aload_0
+    1371: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1374: invokevirtual #202                // Method net/minecraft/world/level/Level.m_5776_:()Z
+    1377: ifeq          1572
+    1380: aload_0
+    1381: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1384: aload_0
+    1385: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1388: invokevirtual #214                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+    1391: invokevirtual #218                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+    1394: astore_2
+    1395: aload_2
+    1396: instanceof    #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+    1399: ifeq          1572
+    1402: aload_2
+    1403: checkcast     #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+    1406: astore_1
+    1407: aload_0
+    1408: getfield      #161                // Field wissenIsCraft:I
+    1411: ifgt          1421
+    1414: aload_0
+    1415: getfield      #165                // Field steamIsCraft:I
+    1418: ifle          1572
+    1421: aload_0
+    1422: getfield      #360                // Field random:Ljava/util/Random;
+    1425: invokevirtual #366                // Method java/util/Random.nextFloat:()F
+    1428: ldc_w         #380                // float 0.6f
+    1431: fcmpg
+    1432: ifge          1572
+    1435: getstatic     #507                // Field mod/maxbogomol/fluffy_fur/registry/client/FluffyFurParticles.SMOKE:Lnet/minecraftforge/registries/RegistryObject;
+    1438: invokestatic  #513                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.create:(Lnet/minecraftforge/registries/RegistryObject;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1441: getstatic     #519                // Field java/awt/Color.WHITE:Ljava/awt/Color;
+    1444: invokestatic  #524                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData.create:(Ljava/awt/Color;)Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder;
+    1447: invokevirtual #530                // Method mod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;
+    1450: invokevirtual #534                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setColorData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/ColorParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1453: ldc_w         #535                // float 0.4f
+    1456: fconst_0
+    1457: invokestatic  #540                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+    1460: invokevirtual #545                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+    1463: invokevirtual #549                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setTransparencyData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1466: ldc_w         #407                // float 0.1f
+    1469: ldc_w         #550                // float 0.5f
+    1472: invokestatic  #540                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData.create:(FF)Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder;
+    1475: invokevirtual #545                // Method mod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;
+    1478: invokevirtual #553                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setScaleData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/GenericParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1481: invokestatic  #558                // Method mod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleData.create:()Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder;
+    1484: ldc_w         #550                // float 0.5f
+    1487: invokevirtual #564                // Method mod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder.randomSpin:(F)Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder;
+    1490: invokevirtual #567                // Method mod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleDataBuilder.build:()Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleData;
+    1493: invokevirtual #571                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setSpinData:(Lmod/maxbogomol/fluffy_fur/client/particle/data/SpinParticleData;)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1496: bipush        30
+    1498: invokevirtual #575                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.setLifetime:(I)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1501: ldc2_w        #576                // double 0.012500000186264515d
+    1504: dconst_0
+    1505: ldc2_w        #576                // double 0.012500000186264515d
+    1508: invokevirtual #581                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.randomVelocity:(DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1511: dconst_0
+    1512: ldc2_w        #582                // double 0.02500000037252903d
+    1515: dconst_0
+    1516: invokevirtual #586                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.flatRandomVelocity:(DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1519: dconst_0
+    1520: ldc2_w        #587                // double 0.005d
+    1523: dconst_0
+    1524: invokevirtual #591                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.addVelocity:(DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1527: aload_0
+    1528: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+    1531: aload_0
+    1532: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1535: invokevirtual #594                // Method net/minecraft/core/BlockPos.m_123341_:()I
+    1538: i2f
+    1539: ldc_w         #550                // float 0.5f
+    1542: fadd
+    1543: f2d
+    1544: aload_0
+    1545: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1548: invokevirtual #597                // Method net/minecraft/core/BlockPos.m_123342_:()I
+    1551: i2f
+    1552: fconst_2
+    1553: fadd
+    1554: f2d
+    1555: aload_0
+    1556: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+    1559: invokevirtual #600                // Method net/minecraft/core/BlockPos.m_123343_:()I
+    1562: i2f
+    1563: ldc_w         #550                // float 0.5f
+    1566: fadd
+    1567: f2d
+    1568: invokevirtual #604                // Method mod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder.spawn:(Lnet/minecraft/world/level/Level;DDD)Lmod/maxbogomol/fluffy_fur/client/particle/ParticleBuilder;
+    1571: pop
+    1572: return
+
+  private net.minecraftforge.items.ItemStackHandler createHandler(int);
+    Code:
+       0: new           #19                 // class mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$4
+       3: dup
+       4: aload_0
+       5: iload_1
+       6: invokespecial #628                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity$4."<init>":(Lmod/maxbogomol/wizards_reborn/common/block/alchemy_machine/AlchemyMachineBlockEntity;I)V
+       9: areturn
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+    Code:
+       0: aload_1
+       1: getstatic     #638                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.FLUID_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     85
+       7: aload_0
+       8: invokevirtual #642                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+      11: getstatic     #648                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.f_61374_:Lnet/minecraft/world/level/block/state/properties/DirectionProperty;
+      14: invokevirtual #654                // Method net/minecraft/world/level/block/state/BlockState.m_61143_:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+      17: checkcast     #656                // class net/minecraft/core/Direction
+      20: invokevirtual #660                // Method net/minecraft/core/Direction.m_122427_:()Lnet/minecraft/core/Direction;
+      23: astore_3
+      24: aload_3
+      25: aload_2
+      26: if_acmpne     41
+      29: getstatic     #638                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.FLUID_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+      32: aload_1
+      33: aload_0
+      34: getfield      #119                // Field fluidHolder1:Lnet/minecraftforge/common/util/LazyOptional;
+      37: invokevirtual #666                // Method net/minecraftforge/common/capabilities/Capability.orEmpty:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraftforge/common/util/LazyOptional;)Lnet/minecraftforge/common/util/LazyOptional;
+      40: areturn
+      41: aload_3
+      42: invokevirtual #660                // Method net/minecraft/core/Direction.m_122427_:()Lnet/minecraft/core/Direction;
+      45: astore_3
+      46: aload_3
+      47: aload_2
+      48: if_acmpne     63
+      51: getstatic     #638                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.FLUID_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+      54: aload_1
+      55: aload_0
+      56: getfield      #126                // Field fluidHolder2:Lnet/minecraftforge/common/util/LazyOptional;
+      59: invokevirtual #666                // Method net/minecraftforge/common/capabilities/Capability.orEmpty:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraftforge/common/util/LazyOptional;)Lnet/minecraftforge/common/util/LazyOptional;
+      62: areturn
+      63: aload_3
+      64: invokevirtual #660                // Method net/minecraft/core/Direction.m_122427_:()Lnet/minecraft/core/Direction;
+      67: astore_3
+      68: aload_3
+      69: aload_2
+      70: if_acmpne     85
+      73: getstatic     #638                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.FLUID_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+      76: aload_1
+      77: aload_0
+      78: getfield      #133                // Field fluidHolder3:Lnet/minecraftforge/common/util/LazyOptional;
+      81: invokevirtual #666                // Method net/minecraftforge/common/capabilities/Capability.orEmpty:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraftforge/common/util/LazyOptional;)Lnet/minecraftforge/common/util/LazyOptional;
+      84: areturn
+      85: aload_1
+      86: getstatic     #669                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+      89: if_acmpne     158
+      92: aload_2
+      93: ifnonnull     135
+      96: new           #671                // class net/minecraftforge/items/wrapper/CombinedInvWrapper
+      99: dup
+     100: iconst_2
+     101: anewarray     #673                // class net/minecraftforge/items/IItemHandlerModifiable
+     104: dup
+     105: iconst_0
+     106: aload_0
+     107: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     110: aastore
+     111: dup
+     112: iconst_1
+     113: aload_0
+     114: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+     117: aastore
+     118: invokespecial #676                // Method net/minecraftforge/items/wrapper/CombinedInvWrapper."<init>":([Lnet/minecraftforge/items/IItemHandlerModifiable;)V
+     121: astore_3
+     122: aload_3
+     123: invokedynamic #686,  0            // InvokeDynamic #7:get:(Lnet/minecraftforge/items/wrapper/CombinedInvWrapper;)Lnet/minecraftforge/common/util/NonNullSupplier;
+     128: invokestatic  #117                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+     131: invokevirtual #690                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+     134: areturn
+     135: aload_2
+     136: getstatic     #694                // Field net/minecraft/core/Direction.DOWN:Lnet/minecraft/core/Direction;
+     139: if_acmpne     150
+     142: aload_0
+     143: getfield      #157                // Field outputHandler:Lnet/minecraftforge/common/util/LazyOptional;
+     146: invokevirtual #690                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+     149: areturn
+     150: aload_0
+     151: getfield      #148                // Field handler:Lnet/minecraftforge/common/util/LazyOptional;
+     154: invokevirtual #690                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+     157: areturn
+     158: aload_0
+     159: aload_1
+     160: aload_2
+     161: invokespecial #696                // Method mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/core/Direction;)Lnet/minecraftforge/common/util/LazyOptional;
+     164: areturn
+
+  public net.minecraft.network.chat.Component m_7755_();
+    Code:
+       0: aload_0
+       1: getfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+       4: areturn
+
+  public void setCustomName(net.minecraft.network.chat.Component);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+       5: return
+
+  public net.minecraft.network.chat.Component m_5446_();
+    Code:
+       0: aload_0
+       1: getfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+       4: ifnull        14
+       7: aload_0
+       8: getfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+      11: goto          18
+      14: aload_0
+      15: invokevirtual #713                // Method getDefaultName:()Lnet/minecraft/network/chat/Component;
+      18: areturn
+
+  public net.minecraft.network.chat.Component getDefaultName();
+    Code:
+       0: ldc_w         #715                // String gui.wizards_reborn.alchemy_machine.title
+       3: invokestatic  #719                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       6: areturn
+
+  public net.minecraft.world.inventory.AbstractContainerMenu m_7208_(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: new           #723                // class mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyMachineContainer
+       3: dup
+       4: iload_1
+       5: aload_0
+       6: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       9: aload_0
+      10: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      13: aload_2
+      14: aload_3
+      15: invokespecial #726                // Method mod/maxbogomol/wizards_reborn/client/gui/container/AlchemyMachineContainer."<init>":(ILnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/entity/player/Player;)V
+      18: areturn
+
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #734                // Method mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_1
+       6: ldc_w         #735                // String fluidTank1
+       9: aload_0
+      10: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      13: new           #737                // class net/minecraft/nbt/CompoundTag
+      16: dup
+      17: invokespecial #739                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      20: invokevirtual #743                // Method net/minecraftforge/fluids/capability/templates/FluidTank.writeToNBT:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      23: invokevirtual #747                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      26: pop
+      27: aload_1
+      28: ldc_w         #748                // String fluidTank2
+      31: aload_0
+      32: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      35: new           #737                // class net/minecraft/nbt/CompoundTag
+      38: dup
+      39: invokespecial #739                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      42: invokevirtual #743                // Method net/minecraftforge/fluids/capability/templates/FluidTank.writeToNBT:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      45: invokevirtual #747                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      48: pop
+      49: aload_1
+      50: ldc_w         #749                // String fluidTank3
+      53: aload_0
+      54: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      57: new           #737                // class net/minecraft/nbt/CompoundTag
+      60: dup
+      61: invokespecial #739                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      64: invokevirtual #743                // Method net/minecraftforge/fluids/capability/templates/FluidTank.writeToNBT:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      67: invokevirtual #747                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      70: pop
+      71: aload_1
+      72: ldc_w         #750                // String inv
+      75: aload_0
+      76: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      79: invokevirtual #754                // Method net/minecraftforge/items/ItemStackHandler.serializeNBT:()Lnet/minecraft/nbt/CompoundTag;
+      82: invokevirtual #747                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      85: pop
+      86: aload_1
+      87: ldc_w         #755                // String output
+      90: aload_0
+      91: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      94: invokevirtual #754                // Method net/minecraftforge/items/ItemStackHandler.serializeNBT:()Lnet/minecraft/nbt/CompoundTag;
+      97: invokevirtual #747                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     100: pop
+     101: aload_1
+     102: ldc_w         #756                // String wissenInCraft
+     105: aload_0
+     106: getfield      #159                // Field wissenInCraft:I
+     109: invokevirtual #760                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     112: aload_1
+     113: ldc_w         #761                // String wissenIsCraft
+     116: aload_0
+     117: getfield      #161                // Field wissenIsCraft:I
+     120: invokevirtual #760                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     123: aload_1
+     124: ldc_w         #762                // String steamInCraft
+     127: aload_0
+     128: getfield      #163                // Field steamInCraft:I
+     131: invokevirtual #760                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     134: aload_1
+     135: ldc_w         #763                // String steamIsCraft
+     138: aload_0
+     139: getfield      #165                // Field steamIsCraft:I
+     142: invokevirtual #760                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     145: aload_1
+     146: ldc_w         #764                // String startCraft
+     149: aload_0
+     150: getfield      #167                // Field startCraft:Z
+     153: invokevirtual #768                // Method net/minecraft/nbt/CompoundTag.m_128379_:(Ljava/lang/String;Z)V
+     156: aload_0
+     157: getfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+     160: ifnull        177
+     163: aload_1
+     164: ldc_w         #770                // String CustomName
+     167: aload_0
+     168: getfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+     171: invokestatic  #774                // Method net/minecraft/network/chat/Component$Serializer.m_130703_:(Lnet/minecraft/network/chat/Component;)Ljava/lang/String;
+     174: invokevirtual #778                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+     177: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #783                // Method mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+       9: aload_1
+      10: ldc_w         #735                // String fluidTank1
+      13: invokevirtual #787                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      16: invokevirtual #791                // Method net/minecraftforge/fluids/capability/templates/FluidTank.readFromNBT:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      19: pop
+      20: aload_0
+      21: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      24: aload_1
+      25: ldc_w         #748                // String fluidTank2
+      28: invokevirtual #787                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      31: invokevirtual #791                // Method net/minecraftforge/fluids/capability/templates/FluidTank.readFromNBT:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      34: pop
+      35: aload_0
+      36: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      39: aload_1
+      40: ldc_w         #749                // String fluidTank3
+      43: invokevirtual #787                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      46: invokevirtual #791                // Method net/minecraftforge/fluids/capability/templates/FluidTank.readFromNBT:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      49: pop
+      50: aload_0
+      51: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      54: aload_1
+      55: ldc_w         #750                // String inv
+      58: invokevirtual #787                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      61: invokevirtual #794                // Method net/minecraftforge/items/ItemStackHandler.deserializeNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+      64: aload_0
+      65: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      68: aload_1
+      69: ldc_w         #755                // String output
+      72: invokevirtual #787                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      75: invokevirtual #794                // Method net/minecraftforge/items/ItemStackHandler.deserializeNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+      78: aload_0
+      79: aload_1
+      80: ldc_w         #756                // String wissenInCraft
+      83: invokevirtual #798                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      86: putfield      #159                // Field wissenInCraft:I
+      89: aload_0
+      90: aload_1
+      91: ldc_w         #761                // String wissenIsCraft
+      94: invokevirtual #798                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+      97: putfield      #161                // Field wissenIsCraft:I
+     100: aload_0
+     101: aload_1
+     102: ldc_w         #762                // String steamInCraft
+     105: invokevirtual #798                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     108: putfield      #163                // Field steamInCraft:I
+     111: aload_0
+     112: aload_1
+     113: ldc_w         #763                // String steamIsCraft
+     116: invokevirtual #798                // Method net/minecraft/nbt/CompoundTag.m_128451_:(Ljava/lang/String;)I
+     119: putfield      #165                // Field steamIsCraft:I
+     122: aload_0
+     123: aload_1
+     124: ldc_w         #764                // String startCraft
+     127: invokevirtual #802                // Method net/minecraft/nbt/CompoundTag.m_128471_:(Ljava/lang/String;)Z
+     130: putfield      #167                // Field startCraft:Z
+     133: aload_1
+     134: ldc_w         #770                // String CustomName
+     137: bipush        8
+     139: invokevirtual #806                // Method net/minecraft/nbt/CompoundTag.m_128425_:(Ljava/lang/String;I)Z
+     142: ifeq          159
+     145: aload_0
+     146: aload_1
+     147: ldc_w         #770                // String CustomName
+     150: invokevirtual #810                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+     153: invokestatic  #813                // Method net/minecraft/network/chat/Component$Serializer.m_130701_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     156: putfield      #706                // Field name:Lnet/minecraft/network/chat/Component;
+     159: return
+
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+    Code:
+       0: aload_0
+       1: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       4: astore_1
+       5: new           #817                // class net/minecraft/world/phys/AABB
+       8: dup
+       9: aload_1
+      10: invokevirtual #594                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      13: i2f
+      14: ldc_w         #550                // float 0.5f
+      17: fsub
+      18: f2d
+      19: aload_1
+      20: invokevirtual #597                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      23: i2f
+      24: ldc_w         #550                // float 0.5f
+      27: fsub
+      28: f2d
+      29: aload_1
+      30: invokevirtual #600                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      33: i2f
+      34: ldc_w         #550                // float 0.5f
+      37: fsub
+      38: f2d
+      39: aload_1
+      40: invokevirtual #594                // Method net/minecraft/core/BlockPos.m_123341_:()I
+      43: i2f
+      44: ldc_w         #818                // float 1.5f
+      47: fadd
+      48: f2d
+      49: aload_1
+      50: invokevirtual #597                // Method net/minecraft/core/BlockPos.m_123342_:()I
+      53: i2f
+      54: ldc_w         #819                // float 2.5f
+      57: fadd
+      58: f2d
+      59: aload_1
+      60: invokevirtual #600                // Method net/minecraft/core/BlockPos.m_123343_:()I
+      63: i2f
+      64: ldc_w         #818                // float 1.5f
+      67: fadd
+      68: f2d
+      69: invokespecial #822                // Method net/minecraft/world/phys/AABB."<init>":(DDDDDD)V
+      72: areturn
+
+  public void initConnections();
+    Code:
+       0: aload_0
+       1: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: aload_0
+       5: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+       8: invokevirtual #826                // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+      11: invokevirtual #830                // Method net/minecraft/world/level/block/state/BlockState.m_60734_:()Lnet/minecraft/world/level/block/Block;
+      14: astore_1
+      15: getstatic     #832                // Field directions:[Lnet/minecraft/core/Direction;
+      18: astore_2
+      19: aload_2
+      20: arraylength
+      21: istore_3
+      22: iconst_0
+      23: istore        4
+      25: iload         4
+      27: iload_3
+      28: if_icmpge     162
+      31: aload_2
+      32: iload         4
+      34: aaload
+      35: astore        5
+      37: aload_0
+      38: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      41: aload_0
+      42: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      45: aload         5
+      47: invokevirtual #839                // Method net/minecraft/core/BlockPos.m_121945_:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+      50: invokevirtual #826                // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+      53: astore        6
+      55: aload_0
+      56: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      59: aload_0
+      60: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+      63: aload         5
+      65: invokevirtual #839                // Method net/minecraft/core/BlockPos.m_121945_:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+      68: invokevirtual #218                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      71: astore        7
+      73: aload         6
+      75: getstatic     #845                // Field mod/maxbogomol/wizards_reborn/registry/common/block/WizardsRebornBlockTags.FLUID_PIPE_CONNECTION:Lnet/minecraft/tags/TagKey;
+      78: invokevirtual #849                // Method net/minecraft/world/level/block/state/BlockState.m_204336_:(Lnet/minecraft/tags/TagKey;)Z
+      81: ifeq          143
+      84: aload         7
+      86: instanceof    #4                  // class mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity
+      89: ifeq          127
+      92: aload         7
+      94: checkcast     #4                  // class mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity
+      97: aload         5
+      99: invokevirtual #852                // Method net/minecraft/core/Direction.m_122424_:()Lnet/minecraft/core/Direction;
+     102: invokevirtual #856                // Method mod/maxbogomol/wizards_reborn/common/block/pipe/PipeBaseBlockEntity.getConnection:(Lnet/minecraft/core/Direction;)Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     105: getfield      #861                // Field mod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection.transfer:Z
+     108: ifne          127
+     111: aload_0
+     112: getfield      #865                // Field connections:[Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     115: aload         5
+     117: invokevirtual #868                // Method net/minecraft/core/Direction.m_122411_:()I
+     120: getstatic     #872                // Field mod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection.NONE:Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     123: aastore
+     124: goto          156
+     127: aload_0
+     128: getfield      #865                // Field connections:[Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     131: aload         5
+     133: invokevirtual #868                // Method net/minecraft/core/Direction.m_122411_:()I
+     136: getstatic     #877                // Field mod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection.PIPE:Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     139: aastore
+     140: goto          156
+     143: aload_0
+     144: getfield      #865                // Field connections:[Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     147: aload         5
+     149: invokevirtual #868                // Method net/minecraft/core/Direction.m_122411_:()I
+     152: getstatic     #872                // Field mod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection.NONE:Lmod/maxbogomol/wizards_reborn/api/alchemy/PipeConnection;
+     155: aastore
+     156: iinc          4, 1
+     159: goto          25
+     162: aload_0
+     163: iconst_1
+     164: putfield      #880                // Field loaded:Z
+     167: aload_0
+     168: invokevirtual #883                // Method m_6596_:()V
+     171: aload_0
+     172: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     175: aload_0
+     176: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     179: invokevirtual #887                // Method net/minecraft/world/level/Level.m_46745_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/chunk/LevelChunk;
+     182: iconst_1
+     183: invokevirtual #893                // Method net/minecraft/world/level/chunk/LevelChunk.m_8092_:(Z)V
+     186: aload_0
+     187: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     190: aload_0
+     191: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     194: aload_1
+     195: invokevirtual #897                // Method net/minecraft/world/level/Level.m_46717_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;)V
+     198: return
+
+  public int getMaxCapacity();
+    Code:
+       0: sipush        5000
+       3: ireturn
+
+  public int getCapacity(int);
+    Code:
+       0: iload_1
+       1: tableswitch   { // 0 to 2
+
+                     0: 28
+
+                     1: 38
+
+                     2: 48
+               default: 58
+          }
+      28: aload_0
+      29: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      32: invokevirtual #907                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getCapacity:()I
+      35: goto          65
+      38: aload_0
+      39: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      42: invokevirtual #907                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getCapacity:()I
+      45: goto          65
+      48: aload_0
+      49: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      52: invokevirtual #907                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getCapacity:()I
+      55: goto          65
+      58: aload_0
+      59: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      62: invokevirtual #907                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getCapacity:()I
+      65: ireturn
+
+  public net.minecraftforge.fluids.FluidStack getFluidStack(int);
+    Code:
+       0: iload_1
+       1: tableswitch   { // 0 to 2
+
+                     0: 28
+
+                     1: 38
+
+                     2: 48
+               default: 58
+          }
+      28: aload_0
+      29: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      32: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+      35: goto          65
+      38: aload_0
+      39: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      42: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+      45: goto          65
+      48: aload_0
+      49: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      52: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+      55: goto          65
+      58: aload_0
+      59: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      62: invokevirtual #482                // Method net/minecraftforge/fluids/capability/templates/FluidTank.getFluid:()Lnet/minecraftforge/fluids/FluidStack;
+      65: areturn
+
+  public net.minecraftforge.fluids.capability.templates.FluidTank getTank(int);
+    Code:
+       0: iload_1
+       1: tableswitch   { // 0 to 2
+
+                     0: 28
+
+                     1: 35
+
+                     2: 42
+               default: 49
+          }
+      28: aload_0
+      29: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      32: goto          53
+      35: aload_0
+      36: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      39: goto          53
+      42: aload_0
+      43: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      46: goto          53
+      49: aload_0
+      50: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      53: areturn
+
+  public void wissenWandFunction();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #167                // Field startCraft:Z
+       5: return
+
+  public boolean isCanCraft(net.minecraft.world.SimpleContainer, net.minecraft.world.item.ItemStack, mod.maxbogomol.wizards_reborn.common.recipe.AlchemyMachineRecipe, boolean);
+    Code:
+       0: aload_3
+       1: invokevirtual #915                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotionIngredient:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+       4: invokestatic  #427                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;)Z
+       7: ifne          43
+      10: aload_0
+      11: invokevirtual #430                // Method getAlchemyBottle:()Lnet/minecraft/world/item/ItemStack;
+      14: astore        5
+      16: aload         5
+      18: invokevirtual #919                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      21: instanceof    #921                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyPotionItem
+      24: ifeq          41
+      27: aload         5
+      29: invokestatic  #925                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.getPotion:(Lnet/minecraft/world/item/ItemStack;)Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+      32: aload_3
+      33: invokevirtual #915                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotionIngredient:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+      36: if_acmpeq     43
+      39: iconst_0
+      40: ireturn
+      41: iconst_0
+      42: ireturn
+      43: aload_3
+      44: invokevirtual #451                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidInputs:()Lnet/minecraft/core/NonNullList;
+      47: invokevirtual #456                // Method net/minecraft/core/NonNullList.size:()I
+      50: ifne          82
+      53: iconst_0
+      54: istore        5
+      56: iload         5
+      58: iconst_3
+      59: if_icmpge     82
+      62: aload_0
+      63: iload         5
+      65: invokevirtual #927                // Method getTank:(I)Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      68: invokevirtual #496                // Method net/minecraftforge/fluids/capability/templates/FluidTank.isEmpty:()Z
+      71: ifne          76
+      74: iconst_0
+      75: ireturn
+      76: iinc          5, 1
+      79: goto          56
+      82: aload_3
+      83: invokevirtual #421                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+      86: invokestatic  #427                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;)Z
+      89: ifne          94
+      92: iconst_1
+      93: ireturn
+      94: aload_3
+      95: invokevirtual #451                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidInputs:()Lnet/minecraft/core/NonNullList;
+      98: invokevirtual #928                // Method net/minecraft/core/NonNullList.isEmpty:()Z
+     101: ifne          107
+     104: iload         4
+     106: ireturn
+     107: aload_3
+     108: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     111: invokevirtual #495                // Method net/minecraftforge/fluids/FluidStack.isEmpty:()Z
+     114: ifne          142
+     117: aload_3
+     118: getstatic     #329                // Field net/minecraft/core/RegistryAccess.f_243945_:Lnet/minecraft/core/RegistryAccess$Frozen;
+     121: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     124: invokevirtual #931                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     127: ifne          142
+     130: iload         4
+     132: ifeq          142
+     135: aload_0
+     136: aload_1
+     137: aload_2
+     138: invokevirtual #935                // Method isCanCraftItem:(Lnet/minecraft/world/SimpleContainer;Lnet/minecraft/world/item/ItemStack;)Z
+     141: ireturn
+     142: aload_3
+     143: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     146: invokevirtual #495                // Method net/minecraftforge/fluids/FluidStack.isEmpty:()Z
+     149: ifne          155
+     152: iload         4
+     154: ireturn
+     155: aload_3
+     156: getstatic     #329                // Field net/minecraft/core/RegistryAccess.f_243945_:Lnet/minecraft/core/RegistryAccess$Frozen;
+     159: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     162: invokevirtual #931                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     165: ifne          175
+     168: aload_0
+     169: aload_1
+     170: aload_2
+     171: invokevirtual #935                // Method isCanCraftItem:(Lnet/minecraft/world/SimpleContainer;Lnet/minecraft/world/item/ItemStack;)Z
+     174: ireturn
+     175: iconst_0
+     176: ireturn
+
+  public boolean isCanCraftItem(net.minecraft.world.SimpleContainer, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: bipush        6
+       3: invokevirtual #940                // Method net/minecraft/world/SimpleContainer.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+       6: invokevirtual #931                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       9: ifeq          14
+      12: iconst_1
+      13: ireturn
+      14: aload_2
+      15: aload_1
+      16: bipush        6
+      18: invokevirtual #940                // Method net/minecraft/world/SimpleContainer.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      21: invokestatic  #946                // Method net/minecraftforge/items/ItemHandlerHelper.canItemStacksStack:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+      24: ifeq          52
+      27: aload_1
+      28: bipush        6
+      30: invokevirtual #940                // Method net/minecraft/world/SimpleContainer.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      33: invokevirtual #414                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      36: aload_2
+      37: invokevirtual #414                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      40: iadd
+      41: aload_2
+      42: invokevirtual #949                // Method net/minecraft/world/item/ItemStack.m_41741_:()I
+      45: if_icmpgt     52
+      48: iconst_1
+      49: goto          53
+      52: iconst_0
+      53: ireturn
+
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemsResult();
+    Code:
+       0: new           #953                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #954                // Method java/util/ArrayList."<init>":()V
+       7: astore_1
+       8: new           #222                // class net/minecraft/world/SimpleContainer
+      11: dup
+      12: bipush        7
+      14: invokespecial #225                // Method net/minecraft/world/SimpleContainer."<init>":(I)V
+      17: astore_2
+      18: iconst_0
+      19: istore_3
+      20: iload_3
+      21: aload_0
+      22: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      25: invokevirtual #230                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+      28: if_icmpge     50
+      31: aload_2
+      32: iload_3
+      33: aload_0
+      34: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      37: iload_3
+      38: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      41: invokevirtual #238                // Method net/minecraft/world/SimpleContainer.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+      44: iinc          3, 1
+      47: goto          20
+      50: aload_2
+      51: bipush        6
+      53: aload_0
+      54: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      57: iconst_0
+      58: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      61: invokevirtual #238                // Method net/minecraft/world/SimpleContainer.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+      64: new           #243                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext
+      67: dup
+      68: aload_2
+      69: iconst_3
+      70: anewarray     #29                 // class net/minecraftforge/fluids/capability/IFluidHandler
+      73: dup
+      74: iconst_0
+      75: aload_0
+      76: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      79: aastore
+      80: dup
+      81: iconst_1
+      82: aload_0
+      83: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      86: aastore
+      87: dup
+      88: iconst_2
+      89: aload_0
+      90: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+      93: aastore
+      94: invokespecial #246                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineContext."<init>":(Lnet/minecraft/world/Container;[Lnet/minecraftforge/fluids/capability/IFluidHandler;)V
+      97: astore_3
+      98: aload_0
+      99: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     102: invokevirtual #250                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+     105: getstatic     #253                // Field mod/maxbogomol/wizards_reborn/registry/common/WizardsRebornRecipes.ALCHEMY_MACHINE:Lnet/minecraftforge/registries/RegistryObject;
+     108: invokevirtual #187                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     111: checkcast     #255                // class net/minecraft/world/item/crafting/RecipeType
+     114: aload_3
+     115: aload_0
+     116: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     119: invokevirtual #261                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+     122: astore        4
+     124: aload         4
+     126: invokevirtual #301                // Method java/util/Optional.isPresent:()Z
+     129: ifeq          367
+     132: aload         4
+     134: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     137: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     140: getstatic     #329                // Field net/minecraft/core/RegistryAccess.f_243945_:Lnet/minecraft/core/RegistryAccess$Frozen;
+     143: invokevirtual #333                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.m_8043_:(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     146: invokevirtual #411                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     149: astore        5
+     151: aload_0
+     152: getfield      #196                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     155: aload_0
+     156: invokevirtual #209                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     159: invokevirtual #214                // Method net/minecraft/core/BlockPos.m_7494_:()Lnet/minecraft/core/BlockPos;
+     162: invokevirtual #218                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+     165: astore        7
+     167: aload         7
+     169: instanceof    #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+     172: ifeq          367
+     175: aload         7
+     177: checkcast     #220                // class mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity
+     180: astore        6
+     182: aload         6
+     184: invokevirtual #305                // Method mod/maxbogomol/wizards_reborn/common/block/alchemy_boiler/AlchemyBoilerBlockEntity.getTank:()Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+     187: aload         4
+     189: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     192: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     195: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     198: getstatic     #314                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     201: invokevirtual #320                // Method net/minecraftforge/fluids/capability/templates/FluidTank.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+     204: istore        7
+     206: iload         7
+     208: aload         4
+     210: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     213: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     216: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     219: invokevirtual #325                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+     222: if_icmpne     229
+     225: iconst_1
+     226: goto          230
+     229: iconst_0
+     230: istore        8
+     232: aload_0
+     233: aload_2
+     234: aload         5
+     236: aload         4
+     238: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     241: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     244: iload         8
+     246: invokevirtual #340                // Method isCanCraft:(Lnet/minecraft/world/SimpleContainer;Lnet/minecraft/world/item/ItemStack;Lmod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe;Z)Z
+     249: ifeq          367
+     252: aload         5
+     254: invokevirtual #931                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     257: ifne          272
+     260: aload_1
+     261: aload         5
+     263: invokeinterface #958,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     268: pop
+     269: goto          320
+     272: aload         4
+     274: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     277: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     280: invokevirtual #421                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     283: invokestatic  #427                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.isEmpty:(Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;)Z
+     286: ifne          320
+     289: aload_0
+     290: invokevirtual #430                // Method getAlchemyBottle:()Lnet/minecraft/world/item/ItemStack;
+     293: astore        9
+     295: aload         9
+     297: aload         4
+     299: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     302: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     305: invokevirtual #421                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getAlchemyPotion:()Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;
+     308: invokestatic  #434                // Method mod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotionUtil.setPotion:(Lnet/minecraft/world/item/ItemStack;Lmod/maxbogomol/wizards_reborn/api/alchemy/AlchemyPotion;)V
+     311: aload_1
+     312: aload         9
+     314: invokeinterface #958,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     319: pop
+     320: aload         4
+     322: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     325: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     328: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     331: invokevirtual #495                // Method net/minecraftforge/fluids/FluidStack.isEmpty:()Z
+     334: ifne          367
+     337: aload_1
+     338: aload         4
+     340: invokevirtual #306                // Method java/util/Optional.get:()Ljava/lang/Object;
+     343: checkcast     #265                // class mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe
+     346: invokevirtual #310                // Method mod/maxbogomol/wizards_reborn/common/recipe/AlchemyMachineRecipe.getFluidResult:()Lnet/minecraftforge/fluids/FluidStack;
+     349: invokevirtual #961                // Method net/minecraftforge/fluids/FluidStack.getFluid:()Lnet/minecraft/world/level/material/Fluid;
+     352: invokevirtual #966                // Method net/minecraft/world/level/material/Fluid.m_6859_:()Lnet/minecraft/world/item/Item;
+     355: invokevirtual #971                // Method net/minecraft/world/item/Item.m_7968_:()Lnet/minecraft/world/item/ItemStack;
+     358: invokevirtual #411                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     361: invokeinterface #958,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     366: pop
+     367: aload_1
+     368: areturn
+
+  public net.minecraft.world.item.ItemStack getAlchemyBottle();
+    Code:
+       0: getstatic     #978                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: astore_1
+       4: iconst_0
+       5: istore_2
+       6: iload_2
+       7: aload_0
+       8: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      11: invokevirtual #230                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+      14: if_icmpge     94
+      17: aload_0
+      18: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      21: iload_2
+      22: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      25: invokevirtual #919                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      28: astore        4
+      30: aload         4
+      32: instanceof    #980                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyBottleItem
+      35: ifeq          49
+      38: aload         4
+      40: checkcast     #980                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyBottleItem
+      43: astore_3
+      44: aload_3
+      45: invokevirtual #983                // Method mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyBottleItem.getPotionItem:()Lnet/minecraft/world/item/ItemStack;
+      48: astore_1
+      49: aload_0
+      50: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      53: iload_2
+      54: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      57: invokevirtual #919                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      60: astore        4
+      62: aload         4
+      64: instanceof    #921                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyPotionItem
+      67: ifeq          88
+      70: aload         4
+      72: checkcast     #921                // class mod/maxbogomol/wizards_reborn/common/item/equipment/AlchemyPotionItem
+      75: astore_3
+      76: aload_0
+      77: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+      80: iload_2
+      81: invokevirtual #234                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      84: invokevirtual #411                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      87: astore_1
+      88: iinc          2, 1
+      91: goto          6
+      94: aload_1
+      95: areturn
+
+  public float getCooldown();
+    Code:
+       0: aload_0
+       1: getfield      #159                // Field wissenInCraft:I
+       4: ifgt          14
+       7: aload_0
+       8: getfield      #163                // Field steamInCraft:I
+      11: ifle          36
+      14: aload_0
+      15: getfield      #159                // Field wissenInCraft:I
+      18: aload_0
+      19: getfield      #163                // Field steamInCraft:I
+      22: iadd
+      23: i2f
+      24: aload_0
+      25: getfield      #161                // Field wissenIsCraft:I
+      28: aload_0
+      29: getfield      #165                // Field steamIsCraft:I
+      32: iadd
+      33: i2f
+      34: fdiv
+      35: freturn
+      36: fconst_0
+      37: freturn
+
+  private static net.minecraftforge.items.wrapper.CombinedInvWrapper lambda$getCapability$5(net.minecraftforge.items.wrapper.CombinedInvWrapper);
+    Code:
+       0: aload_0
+       1: areturn
+
+  private net.minecraftforge.items.IItemHandler lambda$new$4();
+    Code:
+       0: aload_0
+       1: getfield      #150                // Field itemOutputHandler:Lnet/minecraftforge/items/ItemStackHandler;
+       4: areturn
+
+  private net.minecraftforge.items.IItemHandler lambda$new$3();
+    Code:
+       0: aload_0
+       1: getfield      #139                // Field itemHandler:Lnet/minecraftforge/items/ItemStackHandler;
+       4: areturn
+
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$2();
+    Code:
+       0: aload_0
+       1: getfield      #92                 // Field fluidTank3:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+       4: areturn
+
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$1();
+    Code:
+       0: aload_0
+       1: getfield      #89                 // Field fluidTank2:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+       4: areturn
+
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$0();
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field fluidTank1:Lnet/minecraftforge/fluids/capability/templates/FluidTank;
+       4: areturn
+
+  static {};
+    Code:
+       0: iconst_4
+       1: anewarray     #656                // class net/minecraft/core/Direction
+       4: dup
+       5: iconst_0
+       6: getstatic     #990                // Field net/minecraft/core/Direction.NORTH:Lnet/minecraft/core/Direction;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #993                // Field net/minecraft/core/Direction.SOUTH:Lnet/minecraft/core/Direction;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #996                // Field net/minecraft/core/Direction.WEST:Lnet/minecraft/core/Direction;
+      21: aastore
+      22: dup
+      23: iconst_3
+      24: getstatic     #999                // Field net/minecraft/core/Direction.EAST:Lnet/minecraft/core/Direction;
+      27: aastore
+      28: putstatic     #832                // Field directions:[Lnet/minecraft/core/Direction;
+      31: return
+}

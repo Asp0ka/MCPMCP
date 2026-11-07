@@ -1,0 +1,23 @@
+Compiled from "ClientInfo.java"
+public class com.hollingsworth.arsnouveau.client.ClientInfo {
+  public static net.minecraft.nbt.CompoundTag persistentData;
+  public static int ticksInGame;
+  public static int redOverlayTicks;
+  public static float redOverlayMana;
+  public static float reservedOverlayMana;
+  public static float partialTicks;
+  public static java.util.List<net.minecraft.core.BlockPos> scryingPositions;
+  public static java.util.List<com.hollingsworth.arsnouveau.client.particle.ColorPos> highlightPositions;
+  public static int highlightTicks;
+  public static com.mojang.blaze3d.pipeline.TextureTarget skyRenderTarget;
+  public static net.minecraft.client.renderer.ShaderInstance skyShader;
+  public static net.minecraft.client.renderer.ShaderInstance blameShader;
+  public static net.minecraft.client.renderer.ShaderInstance rainbowShader;
+  public static boolean isSupporter;
+  public static net.minecraft.network.chat.Component[] storageTooltip;
+  private com.hollingsworth.arsnouveau.client.ClientInfo();
+  public static void setTooltip(net.minecraft.network.chat.Component...);
+  public static void highlightPosition(java.util.List<com.hollingsworth.arsnouveau.client.particle.ColorPos>, int);
+  public static boolean redTicks();
+  static {};
+}

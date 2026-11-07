@@ -1,0 +1,44 @@
+{
+  "targets": [
+    {
+      "mod_id": "ars_nouveau",
+      "version": "4.12.7",
+      "sha256": "1f1debc282a0c379c1141f2840ea294eede6f6b544c589663f40bbe17b59a1af",
+      "path": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅\\mods\\[魔法][新生魔艺]ars_nouveau-1.20.1-4.12.7-all.jar"
+    },
+    {
+      "mod_id": "irons_spellbooks",
+      "version": "1.20.1-3.16.3",
+      "sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb",
+      "path": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅\\mods\\irons_spellbooks-1.20.1-3.16.3.jar"
+    },
+    {
+      "mod_id": "traveloptics",
+      "version": "6.3.0-1.20.1",
+      "sha256": "878a0fb5a2057de530698fd63091b9fa1c23af0139054af108e9d566840a0fa9",
+      "path": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅\\mods\\[魔法][铁咒附属]traveloptics-6.3.0-1.20.1.jar"
+    }
+  ],
+  "api_symbols_checked": 80,
+  "artifacts": [
+    {
+      "path": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\ars_nouveau-1f1debc282a0c379c1141f2840ea294e\\adapter.jar",
+      "sha256": "488098cf77af4744fed060f2f7eccc1e0e51430d1dccad28862f2a3fe0210268",
+      "bytes": 33230,
+      "provider": "dev.mcpmcp.magic.ArsProvider"
+    },
+    {
+      "path": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\irons_spellbooks-54b5aaa52887c38f570fbd8202881712\\adapter.jar",
+      "sha256": "5902804aa24ca7a26fc1b9fbf8b441db8fc5100e60cf48f1cdd67ce85a1ea5b9",
+      "bytes": 33243,
+      "provider": "dev.mcpmcp.magic.IronsProvider"
+    },
+    {
+      "path": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\traveloptics-878a0fb5a2057de530698fd63091b9fa\\adapter.jar",
+      "sha256": "c8142f05ddcb3892caa161fb8066daaa56b74dbbc274f9aeef45c2a5ea867431",
+      "bytes": 33240,
+      "provider": "dev.mcpmcp.magic.TravelProvider"
+    }
+  ],
+  "game_started": false
+}

@@ -1,0 +1,197 @@
+Compiled from "SlotIronFurnaceOutputFactory.java"
+public class ironfurnaces.container.slots.SlotIronFurnaceOutputFactory extends net.minecraft.world.inventory.Slot {
+  private final net.minecraft.world.entity.player.Player player;
+
+  private int removeCount;
+
+  private ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase te;
+
+  public int index;
+
+  public ironfurnaces.container.slots.SlotIronFurnaceOutputFactory(int, net.minecraft.world.entity.player.Player, ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_3
+       2: iload         4
+       4: iload         5
+       6: iload         6
+       8: invokespecial #17                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+      11: aload_0
+      12: aload_2
+      13: putfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      16: aload_0
+      17: aload_3
+      18: putfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      21: aload_0
+      22: iload_1
+      23: putfield      #23                 // Field index:I
+      26: return
+
+  public boolean m_6659_();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field index:I
+       4: ifeq          15
+       7: aload_0
+       8: getfield      #23                 // Field index:I
+      11: iconst_5
+      12: if_icmpne     52
+      15: aload_0
+      16: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      19: invokevirtual #36                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getTier:()I
+      22: iconst_1
+      23: if_icmple     130
+      26: aload_0
+      27: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      30: invokevirtual #39                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+      33: ifeq          50
+      36: aload_0
+      37: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      40: invokevirtual #42                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+      43: ifne          50
+      46: iconst_1
+      47: goto          51
+      50: iconst_0
+      51: ireturn
+      52: aload_0
+      53: getfield      #23                 // Field index:I
+      56: iconst_1
+      57: if_icmpeq     68
+      60: aload_0
+      61: getfield      #23                 // Field index:I
+      64: iconst_4
+      65: if_icmpne     104
+      68: aload_0
+      69: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      72: invokevirtual #36                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getTier:()I
+      75: ifle          130
+      78: aload_0
+      79: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      82: invokevirtual #39                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+      85: ifeq          102
+      88: aload_0
+      89: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      92: invokevirtual #42                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+      95: ifne          102
+      98: iconst_1
+      99: goto          103
+     102: iconst_0
+     103: ireturn
+     104: aload_0
+     105: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     108: invokevirtual #39                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isFactory:()Z
+     111: ifeq          128
+     114: aload_0
+     115: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+     118: invokevirtual #42                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+     121: ifne          128
+     124: iconst_1
+     125: goto          129
+     128: iconst_0
+     129: ireturn
+     130: iconst_0
+     131: ireturn
+
+  public boolean m_5857_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void m_142406_(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: invokevirtual #52                 // Method m_5845_:(Lnet/minecraft/world/item/ItemStack;)V
+       5: aload_0
+       6: aload_1
+       7: aload_2
+       8: invokespecial #54                 // Method net/minecraft/world/inventory/Slot.m_142406_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+      11: return
+
+  public net.minecraft.world.item.ItemStack m_6201_(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #61                 // Method m_6657_:()Z
+       4: ifeq          27
+       7: aload_0
+       8: dup
+       9: getfield      #63                 // Field removeCount:I
+      12: iload_1
+      13: aload_0
+      14: invokevirtual #67                 // Method m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      17: invokevirtual #72                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      20: invokestatic  #78                 // Method java/lang/Math.min:(II)I
+      23: iadd
+      24: putfield      #63                 // Field removeCount:I
+      27: aload_0
+      28: iload_1
+      29: invokespecial #80                 // Method net/minecraft/world/inventory/Slot.m_6201_:(I)Lnet/minecraft/world/item/ItemStack;
+      32: areturn
+
+  protected void m_7169_(net.minecraft.world.item.ItemStack, int);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+       5: invokevirtual #89                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       8: aload_0
+       9: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      12: aload_0
+      13: getfield      #63                 // Field removeCount:I
+      16: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41678_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;I)V
+      19: aload_0
+      20: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      23: invokevirtual #89                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      26: getfield      #99                 // Field net/minecraft/world/level/Level.f_46443_:Z
+      29: ifne          56
+      32: aload_0
+      33: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      36: instanceof    #32                 // class ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase
+      39: ifeq          56
+      42: aload_0
+      43: getfield      #21                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      46: aload_0
+      47: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      50: checkcast     #101                // class net/minecraft/server/level/ServerPlayer
+      53: invokevirtual #105                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.unlockRecipes:(Lnet/minecraft/server/level/ServerPlayer;)V
+      56: aload_0
+      57: iconst_0
+      58: putfield      #63                 // Field removeCount:I
+      61: return
+
+  protected void m_5845_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+       5: invokevirtual #89                 // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       8: aload_0
+       9: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      12: aload_0
+      13: getfield      #63                 // Field removeCount:I
+      16: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41678_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;I)V
+      19: aload_0
+      20: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      23: instanceof    #101                // class net/minecraft/server/level/ServerPlayer
+      26: ifeq          56
+      29: aload_0
+      30: getfield      #110                // Field f_40218_:Lnet/minecraft/world/Container;
+      33: instanceof    #32                 // class ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase
+      36: ifeq          56
+      39: aload_0
+      40: getfield      #110                // Field f_40218_:Lnet/minecraft/world/Container;
+      43: checkcast     #32                 // class ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase
+      46: aload_0
+      47: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      50: checkcast     #101                // class net/minecraft/server/level/ServerPlayer
+      53: invokevirtual #105                // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.unlockRecipes:(Lnet/minecraft/server/level/ServerPlayer;)V
+      56: aload_0
+      57: iconst_0
+      58: putfield      #63                 // Field removeCount:I
+      61: aload_0
+      62: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+      65: aload_1
+      66: invokestatic  #115                // Method net/minecraftforge/event/ForgeEventFactory.firePlayerSmeltedEvent:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+      69: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

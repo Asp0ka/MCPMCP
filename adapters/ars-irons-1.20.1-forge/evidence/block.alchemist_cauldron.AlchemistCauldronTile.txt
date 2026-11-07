@@ -1,0 +1,1388 @@
+Compiled from "AlchemistCauldronTile.java"
+public class io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.WorldlyContainer {
+  public static int INPUT_SIZE;
+
+  public final net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> inputItems;
+
+  private final int[] cooktimes;
+
+  public io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile$AlchemistCauldronFluidHandler fluidInventory;
+
+  private net.minecraftforge.common.util.LazyOptional<net.minecraftforge.fluids.capability.IFluidHandler> fluidHandlerLazyOptional;
+
+  public static final net.minecraftforge.common.capabilities.Capability<net.minecraftforge.fluids.capability.IFluidHandler> FLUID_HANDLER;
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+    Code:
+       0: aload_1
+       1: getstatic     #66                 // Field net/minecraftforge/common/capabilities/ForgeCapabilities.FLUID_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     15
+       7: aload_0
+       8: getfield      #68                 // Field fluidHandlerLazyOptional:Lnet/minecraftforge/common/util/LazyOptional;
+      11: invokevirtual #74                 // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      14: areturn
+      15: aload_0
+      16: aload_1
+      17: aload_2
+      18: invokespecial #76                 // Method net/minecraft/world/level/block/entity/BlockEntity.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/core/Direction;)Lnet/minecraftforge/common/util/LazyOptional;
+      21: areturn
+
+  public void invalidateCaps();
+    Code:
+       0: aload_0
+       1: invokespecial #86                 // Method net/minecraft/world/level/block/entity/BlockEntity.invalidateCaps:()V
+       4: aload_0
+       5: getfield      #68                 // Field fluidHandlerLazyOptional:Lnet/minecraftforge/common/util/LazyOptional;
+       8: invokevirtual #89                 // Method net/minecraftforge/common/util/LazyOptional.invalidate:()V
+      11: return
+
+  public io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #97                 // Field io/redspace/ironsspellbooks/registries/BlockRegistry.ALCHEMIST_CAULDRON_TILE:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #105                // class net/minecraft/world/level/block/entity/BlockEntityType
+      10: aload_1
+      11: aload_2
+      12: invokespecial #108                // Method net/minecraft/world/level/block/entity/BlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      15: aload_0
+      16: getstatic     #110                // Field INPUT_SIZE:I
+      19: getstatic     #116                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      22: invokestatic  #122                // Method net/minecraft/core/NonNullList.m_122780_:(ILjava/lang/Object;)Lnet/minecraft/core/NonNullList;
+      25: putfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      28: aload_0
+      29: getstatic     #110                // Field INPUT_SIZE:I
+      32: newarray       int
+      34: putfield      #126                // Field cooktimes:[I
+      37: aload_0
+      38: aload_0
+      39: invokedynamic #143,  0            // InvokeDynamic #0:get:(Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      44: invokestatic  #147                // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      47: putfield      #68                 // Field fluidHandlerLazyOptional:Lnet/minecraftforge/common/util/LazyOptional;
+      50: aload_0
+      51: new           #9                  // class io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler
+      54: dup
+      55: aload_0
+      56: invokespecial #150                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler."<init>":(Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile;)V
+      59: putfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      62: return
+
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile);
+    Code:
+       0: iconst_0
+       1: istore        4
+       3: iload         4
+       5: aload_3
+       6: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       9: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      12: if_icmpge     99
+      15: aload_3
+      16: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      19: iload         4
+      21: invokevirtual #165                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      24: checkcast     #112                // class net/minecraft/world/item/ItemStack
+      27: astore        5
+      29: aload         5
+      31: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      34: ifne          45
+      37: aload_3
+      38: aload_2
+      39: invokevirtual #173                // Method isBoiling:(Lnet/minecraft/world/level/block/state/BlockState;)Z
+      42: ifne          56
+      45: aload_3
+      46: getfield      #126                // Field cooktimes:[I
+      49: iload         4
+      51: iconst_0
+      52: iastore
+      53: goto          67
+      56: aload_3
+      57: getfield      #126                // Field cooktimes:[I
+      60: iload         4
+      62: dup2
+      63: iaload
+      64: iconst_1
+      65: iadd
+      66: iastore
+      67: aload_3
+      68: getfield      #126                // Field cooktimes:[I
+      71: iload         4
+      73: iaload
+      74: bipush        100
+      76: if_icmple     93
+      79: aload_3
+      80: aload         5
+      82: invokevirtual #177                // Method tryMeltInput:(Lnet/minecraft/world/item/ItemStack;)V
+      85: aload_3
+      86: getfield      #126                // Field cooktimes:[I
+      89: iload         4
+      91: iconst_0
+      92: iastore
+      93: iinc          4, 1
+      96: goto          3
+      99: getstatic     #183                // Field io/redspace/ironsspellbooks/api/util/Utils.random:Lnet/minecraft/util/RandomSource;
+     102: astore        4
+     104: aload_3
+     105: aload_2
+     106: invokevirtual #173                // Method isBoiling:(Lnet/minecraft/world/level/block/state/BlockState;)Z
+     109: ifeq          192
+     112: aload_3
+     113: invokevirtual #186                // Method getFluidAmount:()I
+     116: i2f
+     117: ldc           #187                // float 1000.0f
+     119: fdiv
+     120: ldc           #188                // float 0.25f
+     122: ldc           #189                // float 0.9f
+     124: invokestatic  #195                // Method net/minecraft/util/Mth.m_14179_:(FFF)F
+     127: fstore        5
+     129: aload_0
+     130: new           #197                // class io/redspace/ironsspellbooks/particle/TintedBubblePopParticleOptions
+     133: dup
+     134: aload_1
+     135: invokespecial #200                // Method io/redspace/ironsspellbooks/particle/TintedBubblePopParticleOptions."<init>":(Lnet/minecraft/core/BlockPos;)V
+     138: aload_1
+     139: invokevirtual #205                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     142: i2f
+     143: aload         4
+     145: ldc           #206                // float 0.2f
+     147: ldc           #207                // float 0.8f
+     149: invokestatic  #211                // Method net/minecraft/util/Mth.m_216283_:(Lnet/minecraft/util/RandomSource;FF)F
+     152: fadd
+     153: f2d
+     154: aload_1
+     155: invokevirtual #214                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     158: i2f
+     159: fload         5
+     161: fadd
+     162: f2d
+     163: ldc2_w        #215                // double 0.01d
+     166: dadd
+     167: aload_1
+     168: invokevirtual #219                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     171: i2f
+     172: aload         4
+     174: ldc           #206                // float 0.2f
+     176: ldc           #207                // float 0.8f
+     178: invokestatic  #211                // Method net/minecraft/util/Mth.m_216283_:(Lnet/minecraft/util/RandomSource;FF)F
+     181: fadd
+     182: f2d
+     183: iconst_1
+     184: dconst_0
+     185: dconst_0
+     186: dconst_0
+     187: dconst_0
+     188: iconst_0
+     189: invokestatic  #225                // Method io/redspace/ironsspellbooks/capabilities/magic/MagicManager.spawnParticles:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/particles/ParticleOptions;DDDIDDDDZ)V
+     192: return
+
+  public net.minecraft.world.item.ItemStack tryExecuteRecipeInteractions(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack);
+    Code:
+       0: new           #240                // class net/minecraft/world/SimpleContainer
+       3: dup
+       4: iconst_1
+       5: anewarray     #112                // class net/minecraft/world/item/ItemStack
+       8: dup
+       9: iconst_0
+      10: aload_2
+      11: aastore
+      12: invokespecial #243                // Method net/minecraft/world/SimpleContainer."<init>":([Lnet/minecraft/world/item/ItemStack;)V
+      15: astore_3
+      16: aload_1
+      17: invokevirtual #249                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+      20: astore        4
+      22: aload         4
+      24: getstatic     #254                // Field io/redspace/ironsspellbooks/registries/RecipeRegistry.ALCHEMIST_CAULDRON_FILL_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+      27: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      30: checkcast     #256                // class net/minecraft/world/item/crafting/RecipeType
+      33: aload_3
+      34: aload_1
+      35: invokevirtual #262                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+      38: astore        5
+      40: aload         5
+      42: invokevirtual #267                // Method java/util/Optional.isEmpty:()Z
+      45: ifeq          139
+      48: aload_2
+      49: invokestatic  #273                // Method io/redspace/ironsspellbooks/api/backwards_compat/FluidHelper.hasPotionContents:(Lnet/minecraft/world/item/ItemStack;)Z
+      52: ifeq          139
+      55: aload_2
+      56: invokestatic  #276                // Method io/redspace/ironsspellbooks/api/backwards_compat/FluidHelper.isWater:(Lnet/minecraft/world/item/ItemStack;)Z
+      59: ifeq          80
+      62: new           #278                // class net/minecraftforge/fluids/FluidStack
+      65: dup
+      66: getstatic     #284                // Field net/minecraft/world/level/material/Fluids.f_76193_:Lnet/minecraft/world/level/material/FlowingFluid;
+      69: sipush        250
+      72: invokespecial #287                // Method net/minecraftforge/fluids/FluidStack."<init>":(Lnet/minecraft/world/level/material/Fluid;I)V
+      75: astore        6
+      77: goto          86
+      80: aload_2
+      81: invokestatic  #293                // Method io/redspace/ironsspellbooks/fluids/PotionFluid.from:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraftforge/fluids/FluidStack;
+      84: astore        6
+      86: new           #295                // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe
+      89: dup
+      90: ldc_w         #297                // String generated
+      93: invokestatic  #303                // Method io/redspace/ironsspellbooks/IronsSpellbooks.id:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      96: iconst_1
+      97: anewarray     #112                // class net/minecraft/world/item/ItemStack
+     100: dup
+     101: iconst_0
+     102: aload_2
+     103: aastore
+     104: invokestatic  #309                // Method net/minecraft/world/item/crafting/Ingredient.m_43927_:([Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/crafting/Ingredient;
+     107: new           #112                // class net/minecraft/world/item/ItemStack
+     110: dup
+     111: getstatic     #315                // Field net/minecraft/world/item/Items.f_42590_:Lnet/minecraft/world/item/Item;
+     114: invokespecial #318                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     117: aload         6
+     119: iconst_1
+     120: getstatic     #324                // Field net/minecraft/core/registries/BuiltInRegistries.f_256894_:Lnet/minecraft/core/Registry;
+     123: getstatic     #330                // Field net/minecraft/sounds/SoundEvents.f_11769_:Lnet/minecraft/sounds/SoundEvent;
+     126: invokeinterface #336,  2          // InterfaceMethod net/minecraft/core/Registry.m_263177_:(Ljava/lang/Object;)Lnet/minecraft/core/Holder;
+     131: invokespecial #339                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;ZLnet/minecraft/core/Holder;)V
+     134: invokestatic  #342                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+     137: astore        5
+     139: aload         5
+     141: invokevirtual #345                // Method java/util/Optional.isPresent:()Z
+     144: ifeq          256
+     147: aload         5
+     149: invokevirtual #346                // Method java/util/Optional.get:()Ljava/lang/Object;
+     152: checkcast     #295                // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe
+     155: astore        6
+     157: aload_0
+     158: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     161: aload         6
+     163: invokevirtual #350                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe.result:()Lnet/minecraftforge/fluids/FluidStack;
+     166: getstatic     #354                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     169: invokevirtual #358                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+     172: istore        7
+     174: aload         6
+     176: invokevirtual #361                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe.mustFitAll:()Z
+     179: ifeq          195
+     182: iload         7
+     184: aload         6
+     186: invokevirtual #350                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe.result:()Lnet/minecraftforge/fluids/FluidStack;
+     189: invokevirtual #364                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+     192: if_icmpne     256
+     195: iload         7
+     197: ifeq          256
+     200: aload_0
+     201: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     204: aload         6
+     206: invokevirtual #350                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe.result:()Lnet/minecraftforge/fluids/FluidStack;
+     209: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     212: invokevirtual #358                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+     215: pop
+     216: aload_0
+     217: invokevirtual #370                // Method m_6596_:()V
+     220: aload_1
+     221: aconst_null
+     222: aload_0
+     223: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     226: aload         6
+     228: invokevirtual #378                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe.fillSound:()Lnet/minecraft/core/Holder;
+     231: invokeinterface #383,  1          // InterfaceMethod net/minecraft/core/Holder.m_203334_:()Ljava/lang/Object;
+     236: checkcast     #385                // class net/minecraft/sounds/SoundEvent
+     239: getstatic     #391                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     242: invokevirtual #395                // Method net/minecraft/world/level/Level.m_247517_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;)V
+     245: aload         6
+     247: aload_3
+     248: aload_1
+     249: invokevirtual #399                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     252: invokevirtual #403                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/FillAlchemistCauldronRecipe.m_5874_:(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     255: areturn
+     256: aload_0
+     257: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     260: sipush        1000
+     263: getstatic     #354                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.SIMULATE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     266: invokevirtual #407                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.drain:(ILnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     269: astore        6
+     271: new           #21                 // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe$Input
+     274: dup
+     275: aload_2
+     276: aload         6
+     278: invokespecial #410                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe$Input."<init>":(Lnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)V
+     281: astore        7
+     283: aload         4
+     285: getstatic     #413                // Field io/redspace/ironsspellbooks/registries/RecipeRegistry.ALCHEMIST_CAULDRON_EMPTY_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+     288: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     291: checkcast     #256                // class net/minecraft/world/item/crafting/RecipeType
+     294: aload         7
+     296: aload_1
+     297: invokevirtual #262                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+     300: astore        8
+     302: aload         8
+     304: invokevirtual #267                // Method java/util/Optional.isEmpty:()Z
+     307: ifeq          377
+     310: aload_2
+     311: getstatic     #315                // Field net/minecraft/world/item/Items.f_42590_:Lnet/minecraft/world/item/Item;
+     314: invokevirtual #417                // Method net/minecraft/world/item/ItemStack.m_150930_:(Lnet/minecraft/world/item/Item;)Z
+     317: ifeq          377
+     320: aload         6
+     322: invokestatic  #420                // Method io/redspace/ironsspellbooks/fluids/PotionFluid.from:(Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;
+     325: astore        9
+     327: aload         9
+     329: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     332: ifne          377
+     335: new           #23                 // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe
+     338: dup
+     339: ldc_w         #297                // String generated
+     342: invokestatic  #303                // Method io/redspace/ironsspellbooks/IronsSpellbooks.id:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     345: getstatic     #424                // Field net/minecraft/world/item/crafting/Ingredient.f_43901_:Lnet/minecraft/world/item/crafting/Ingredient;
+     348: aload         9
+     350: aload         6
+     352: sipush        250
+     355: invokestatic  #428                // Method io/redspace/ironsspellbooks/api/backwards_compat/FluidHelper.copyWithAmount:(Lnet/minecraftforge/fluids/FluidStack;I)Lnet/minecraftforge/fluids/FluidStack;
+     358: getstatic     #324                // Field net/minecraft/core/registries/BuiltInRegistries.f_256894_:Lnet/minecraft/core/Registry;
+     361: getstatic     #431                // Field net/minecraft/sounds/SoundEvents.f_11770_:Lnet/minecraft/sounds/SoundEvent;
+     364: invokeinterface #336,  2          // InterfaceMethod net/minecraft/core/Registry.m_263177_:(Ljava/lang/Object;)Lnet/minecraft/core/Holder;
+     369: invokespecial #434                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraft/core/Holder;)V
+     372: invokestatic  #342                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+     375: astore        8
+     377: aload         8
+     379: invokevirtual #345                // Method java/util/Optional.isPresent:()Z
+     382: ifeq          452
+     385: aload         8
+     387: invokevirtual #346                // Method java/util/Optional.get:()Ljava/lang/Object;
+     390: checkcast     #23                 // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe
+     393: astore        9
+     395: aload_0
+     396: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     399: aload         9
+     401: invokevirtual #437                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe.fluid:()Lnet/minecraftforge/fluids/FluidStack;
+     404: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     407: invokevirtual #440                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     410: pop
+     411: aload_1
+     412: aconst_null
+     413: aload_0
+     414: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     417: aload         9
+     419: invokevirtual #443                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe.emptySound:()Lnet/minecraft/core/Holder;
+     422: invokeinterface #383,  1          // InterfaceMethod net/minecraft/core/Holder.m_203334_:()Ljava/lang/Object;
+     427: checkcast     #385                // class net/minecraft/sounds/SoundEvent
+     430: getstatic     #391                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+     433: invokevirtual #395                // Method net/minecraft/world/level/Level.m_247517_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;)V
+     436: aload_0
+     437: invokevirtual #370                // Method m_6596_:()V
+     440: aload         9
+     442: aload         7
+     444: aload_1
+     445: invokevirtual #399                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     448: invokevirtual #447                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe.assemble:(Lio/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/EmptyAlchemistCauldronRecipe$Input;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     451: areturn
+     452: getstatic     #116                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     455: areturn
+
+  public net.minecraft.world.InteractionResult handleUse(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload         4
+       2: aload         5
+       4: invokevirtual #473                // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+       7: astore        6
+       9: aload_0
+      10: aload_2
+      11: aload         6
+      13: invokevirtual #475                // Method tryExecuteRecipeInteractions:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+      16: astore        7
+      18: aload         7
+      20: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      23: ifne          51
+      26: aload         4
+      28: aload         5
+      30: aload         4
+      32: aload         5
+      34: invokevirtual #473                // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+      37: aload         4
+      39: aload         7
+      41: invokestatic  #481                // Method net/minecraft/world/item/ItemUtils.m_41813_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+      44: invokevirtual #485                // Method net/minecraft/world/entity/player/Player.m_21008_:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+      47: getstatic     #491                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+      50: areturn
+      51: aload_0
+      52: aload         6
+      54: invokevirtual #494                // Method isValidInput:(Lnet/minecraft/world/item/ItemStack;)Z
+      57: ifeq          175
+      60: aload_2
+      61: getfield      #498                // Field net/minecraft/world/level/Level.f_46443_:Z
+      64: ifne          171
+      67: iconst_0
+      68: istore        8
+      70: iload         8
+      72: aload_0
+      73: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      76: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      79: if_icmpge     171
+      82: aload_0
+      83: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      86: iload         8
+      88: invokevirtual #165                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      91: checkcast     #112                // class net/minecraft/world/item/ItemStack
+      94: astore        9
+      96: aload         9
+      98: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     101: ifeq          165
+     104: aload         4
+     106: invokevirtual #502                // Method net/minecraft/world/entity/player/Player.m_150110_:()Lnet/minecraft/world/entity/player/Abilities;
+     109: getfield      #507                // Field net/minecraft/world/entity/player/Abilities.f_35937_:Z
+     112: ifeq          123
+     115: aload         6
+     117: invokevirtual #511                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     120: goto          129
+     123: aload         6
+     125: iconst_1
+     126: invokevirtual #515                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     129: astore        10
+     131: aload         10
+     133: iconst_1
+     134: invokevirtual #519                // Method net/minecraft/world/item/ItemStack.m_41764_:(I)V
+     137: aload_0
+     138: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+     141: iload         8
+     143: aload         10
+     145: invokevirtual #523                // Method net/minecraft/core/NonNullList.set:(ILjava/lang/Object;)Ljava/lang/Object;
+     148: pop
+     149: aload         4
+     151: aload         5
+     153: aload         6
+     155: invokevirtual #485                // Method net/minecraft/world/entity/player/Player.m_21008_:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+     158: aload_0
+     159: invokevirtual #370                // Method m_6596_:()V
+     162: goto          171
+     165: iinc          8, 1
+     168: goto          70
+     171: getstatic     #491                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+     174: areturn
+     175: aload         6
+     177: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     180: ifne          191
+     183: aload         4
+     185: invokevirtual #526                // Method net/minecraft/world/entity/player/Player.m_6047_:()Z
+     188: ifeq          314
+     191: aload         5
+     193: getstatic     #532                // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+     196: invokevirtual #536                // Method net/minecraft/world/InteractionHand.equals:(Ljava/lang/Object;)Z
+     199: ifeq          314
+     202: aload_0
+     203: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+     206: invokevirtual #540                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+     209: astore        8
+     211: aload         8
+     213: invokeinterface #545,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     218: ifeq          314
+     221: aload         8
+     223: invokeinterface #548,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     228: checkcast     #112                // class net/minecraft/world/item/ItemStack
+     231: astore        9
+     233: aload         9
+     235: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     238: ifne          311
+     241: aload_2
+     242: getfield      #498                // Field net/minecraft/world/level/Level.f_46443_:Z
+     245: ifne          307
+     248: aload         9
+     250: iconst_1
+     251: invokevirtual #515                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     254: astore        10
+     256: aload         4
+     258: aload         5
+     260: invokevirtual #473                // Method net/minecraft/world/entity/player/Player.m_21120_:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+     263: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     266: ifeq          281
+     269: aload         4
+     271: aload         5
+     273: aload         10
+     275: invokevirtual #485                // Method net/minecraft/world/entity/player/Player.m_21008_:(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V
+     278: goto          303
+     281: aload         4
+     283: invokevirtual #552                // Method net/minecraft/world/entity/player/Player.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     286: aload         10
+     288: invokevirtual #557                // Method net/minecraft/world/entity/player/Inventory.m_36054_:(Lnet/minecraft/world/item/ItemStack;)Z
+     291: ifne          303
+     294: aload         4
+     296: aload         10
+     298: iconst_0
+     299: invokevirtual #561                // Method net/minecraft/world/entity/player/Player.m_36176_:(Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/entity/item/ItemEntity;
+     302: pop
+     303: aload_0
+     304: invokevirtual #370                // Method m_6596_:()V
+     307: getstatic     #491                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+     310: areturn
+     311: goto          211
+     314: getstatic     #564                // Field net/minecraft/world/InteractionResult.CONSUME:Lnet/minecraft/world/InteractionResult;
+     317: areturn
+
+  public void tryMeltInput(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: ifnull        27
+       7: aload_0
+       8: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      11: astore_3
+      12: aload_3
+      13: instanceof    #577                // class net/minecraft/server/level/ServerLevel
+      16: ifeq          27
+      19: aload_3
+      20: checkcast     #577                // class net/minecraft/server/level/ServerLevel
+      23: astore_2
+      24: goto          28
+      27: return
+      28: iconst_0
+      29: istore_3
+      30: iconst_1
+      31: istore        4
+      33: invokestatic  #581                // Method java/util/Optional.empty:()Ljava/util/Optional;
+      36: astore        5
+      38: aload_1
+      39: getstatic     #586                // Field io/redspace/ironsspellbooks/registries/ItemRegistry.SCROLL:Lnet/minecraftforge/registries/RegistryObject;
+      42: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      45: checkcast     #588                // class net/minecraft/world/item/Item
+      48: invokevirtual #417                // Method net/minecraft/world/item/ItemStack.m_150930_:(Lnet/minecraft/world/item/Item;)Z
+      51: ifeq          163
+      54: aload_0
+      55: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      58: getstatic     #594                // Field net/minecraft/tags/FluidTags.f_13131_:Lnet/minecraft/tags/TagKey;
+      61: sipush        250
+      64: invokevirtual #598                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.contains:(Lnet/minecraft/tags/TagKey;I)Z
+      67: ifeq          163
+      70: getstatic     #183                // Field io/redspace/ironsspellbooks/api/util/Utils.random:Lnet/minecraft/util/RandomSource;
+      73: invokeinterface #602,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      78: f2d
+      79: getstatic     #608                // Field io/redspace/ironsspellbooks/config/ServerConfigs.SCROLL_RECYCLE_CHANCE:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+      82: invokevirtual #609                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+      85: checkcast     #611                // class java/lang/Double
+      88: invokevirtual #615                // Method java/lang/Double.doubleValue:()D
+      91: dcmpg
+      92: ifge          158
+      95: aload_0
+      96: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      99: new           #278                // class net/minecraftforge/fluids/FluidStack
+     102: dup
+     103: getstatic     #284                // Field net/minecraft/world/level/material/Fluids.f_76193_:Lnet/minecraft/world/level/material/FlowingFluid;
+     106: sipush        250
+     109: invokespecial #287                // Method net/minecraftforge/fluids/FluidStack."<init>":(Lnet/minecraft/world/level/material/Fluid;I)V
+     112: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     115: invokevirtual #440                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     118: pop
+     119: aload_0
+     120: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     123: new           #278                // class net/minecraftforge/fluids/FluidStack
+     126: dup
+     127: aload_1
+     128: invokestatic  #619                // Method getInkFromScroll:(Lnet/minecraft/world/item/ItemStack;)Lio/redspace/ironsspellbooks/item/InkItem;
+     131: invokevirtual #624                // Method io/redspace/ironsspellbooks/item/InkItem.fluid:()Ljava/util/function/Supplier;
+     134: invokeinterface #627,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+     139: checkcast     #629                // class net/minecraft/world/level/material/Fluid
+     142: sipush        250
+     145: invokespecial #287                // Method net/minecraftforge/fluids/FluidStack."<init>":(Lnet/minecraft/world/level/material/Fluid;I)V
+     148: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     151: invokevirtual #358                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+     154: pop
+     155: goto          161
+     158: iconst_0
+     159: istore        4
+     161: iconst_1
+     162: istore_3
+     163: iload_3
+     164: ifne          369
+     167: aload_0
+     168: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     171: invokevirtual #633                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fluids:()Ljava/util/List;
+     174: invokeinterface #636,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     179: astore        6
+     181: aload         6
+     183: invokeinterface #545,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     188: ifeq          369
+     191: aload         6
+     193: invokeinterface #548,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     198: checkcast     #278                // class net/minecraftforge/fluids/FluidStack
+     201: astore        7
+     203: new           #31                 // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe$Input
+     206: dup
+     207: aload         7
+     209: aload_1
+     210: invokespecial #639                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe$Input."<init>":(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraft/world/item/ItemStack;)V
+     213: astore        8
+     215: aload_2
+     216: invokevirtual #640                // Method net/minecraft/server/level/ServerLevel.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+     219: getstatic     #643                // Field io/redspace/ironsspellbooks/registries/RecipeRegistry.ALCHEMIST_CAULDRON_BREW_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+     222: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+     225: checkcast     #256                // class net/minecraft/world/item/crafting/RecipeType
+     228: aload         8
+     230: aload_2
+     231: invokevirtual #262                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+     234: astore        9
+     236: aload         9
+     238: invokevirtual #345                // Method java/util/Optional.isPresent:()Z
+     241: ifeq          366
+     244: aload         9
+     246: invokevirtual #346                // Method java/util/Optional.get:()Ljava/lang/Object;
+     249: checkcast     #33                 // class io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe
+     252: astore        10
+     254: aload         10
+     256: invokevirtual #646                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.results:()Ljava/util/List;
+     259: invokeinterface #650,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     264: invokedynamic #659,  0            // InvokeDynamic #1:applyAsInt:()Ljava/util/function/ToIntFunction;
+     269: invokeinterface #665,  2          // InterfaceMethod java/util/stream/Stream.mapToInt:(Ljava/util/function/ToIntFunction;)Ljava/util/stream/IntStream;
+     274: invokeinterface #670,  1          // InterfaceMethod java/util/stream/IntStream.sum:()I
+     279: istore        11
+     281: aload_0
+     282: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     285: iload         11
+     287: aload         10
+     289: invokevirtual #673                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.fluidIn:()Lnet/minecraftforge/fluids/FluidStack;
+     292: invokevirtual #364                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+     295: isub
+     296: invokevirtual #677                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.canFit:(I)Z
+     299: ifeq          366
+     302: aload_0
+     303: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     306: aload         10
+     308: invokevirtual #673                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.fluidIn:()Lnet/minecraftforge/fluids/FluidStack;
+     311: aload         10
+     313: invokevirtual #673                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.fluidIn:()Lnet/minecraftforge/fluids/FluidStack;
+     316: invokevirtual #364                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+     319: invokevirtual #680                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.contains:(Lnet/minecraftforge/fluids/FluidStack;I)Z
+     322: ifeq          366
+     325: iconst_1
+     326: istore_3
+     327: aload_0
+     328: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     331: aload         10
+     333: invokevirtual #673                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.fluidIn:()Lnet/minecraftforge/fluids/FluidStack;
+     336: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     339: invokevirtual #440                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     342: pop
+     343: aload         10
+     345: invokevirtual #646                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.results:()Ljava/util/List;
+     348: aload_0
+     349: invokedynamic #692,  0            // InvokeDynamic #2:accept:(Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile;)Ljava/util/function/Consumer;
+     354: invokeinterface #696,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+     359: aload         10
+     361: invokevirtual #699                // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.byproduct:()Ljava/util/Optional;
+     364: astore        5
+     366: goto          181
+     369: iload_3
+     370: ifne          513
+     373: aload_0
+     374: aload_1
+     375: invokevirtual #702                // Method isBrewable:(Lnet/minecraft/world/item/ItemStack;)Z
+     378: ifeq          513
+     381: aload_0
+     382: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     385: invokevirtual #633                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fluids:()Ljava/util/List;
+     388: invokeinterface #636,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     393: astore        6
+     395: aload         6
+     397: invokeinterface #545,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     402: ifeq          513
+     405: aload         6
+     407: invokeinterface #548,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     412: checkcast     #278                // class net/minecraftforge/fluids/FluidStack
+     415: astore        7
+     417: aload         7
+     419: invokestatic  #420                // Method io/redspace/ironsspellbooks/fluids/PotionFluid.from:(Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;
+     422: astore        8
+     424: aload         8
+     426: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     429: ifeq          435
+     432: goto          395
+     435: aload         8
+     437: aload_1
+     438: aload_2
+     439: invokestatic  #706                // Method io/redspace/ironsspellbooks/api/backwards_compat/FluidHelper.getNonDestructiveBrewingResult:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/item/ItemStack;
+     442: astore        9
+     444: aload         9
+     446: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     449: ifne          510
+     452: aload         9
+     454: invokestatic  #293                // Method io/redspace/ironsspellbooks/fluids/PotionFluid.from:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraftforge/fluids/FluidStack;
+     457: astore        10
+     459: aload         10
+     461: invokevirtual #707                // Method net/minecraftforge/fluids/FluidStack.isEmpty:()Z
+     464: ifeq          470
+     467: goto          395
+     470: aload         10
+     472: aload         7
+     474: invokevirtual #364                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+     477: invokestatic  #428                // Method io/redspace/ironsspellbooks/api/backwards_compat/FluidHelper.copyWithAmount:(Lnet/minecraftforge/fluids/FluidStack;I)Lnet/minecraftforge/fluids/FluidStack;
+     480: astore        10
+     482: aload_0
+     483: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     486: aload         7
+     488: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     491: invokevirtual #440                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.drain:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)Lnet/minecraftforge/fluids/FluidStack;
+     494: pop
+     495: aload_0
+     496: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+     499: aload         10
+     501: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+     504: invokevirtual #358                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+     507: pop
+     508: iconst_1
+     509: istore_3
+     510: goto          395
+     513: iload_3
+     514: ifeq          730
+     517: aload_1
+     518: iconst_1
+     519: invokevirtual #710                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+     522: aload         5
+     524: invokevirtual #345                // Method java/util/Optional.isPresent:()Z
+     527: ifeq          646
+     530: iconst_0
+     531: istore        6
+     533: iload         6
+     535: aload_0
+     536: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+     539: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+     542: if_icmpge     602
+     545: aload_0
+     546: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+     549: iload         6
+     551: invokevirtual #165                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     554: checkcast     #112                // class net/minecraft/world/item/ItemStack
+     557: astore        7
+     559: aload         7
+     561: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     564: ifeq          596
+     567: aload         5
+     569: invokevirtual #346                // Method java/util/Optional.get:()Ljava/lang/Object;
+     572: checkcast     #112                // class net/minecraft/world/item/ItemStack
+     575: iconst_1
+     576: invokevirtual #515                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     579: astore        8
+     581: aload_0
+     582: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+     585: iload         6
+     587: aload         8
+     589: invokevirtual #523                // Method net/minecraft/core/NonNullList.set:(ILjava/lang/Object;)Ljava/lang/Object;
+     592: pop
+     593: goto          602
+     596: iinc          6, 1
+     599: goto          533
+     602: aload_0
+     603: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     606: dconst_1
+     607: invokestatic  #716                // Method net/minecraft/world/phys/Vec3.m_82514_:(Lnet/minecraft/core/Vec3i;D)Lnet/minecraft/world/phys/Vec3;
+     610: astore        6
+     612: aload_0
+     613: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     616: aload         6
+     618: getfield      #720                // Field net/minecraft/world/phys/Vec3.f_82479_:D
+     621: aload         6
+     623: getfield      #723                // Field net/minecraft/world/phys/Vec3.f_82480_:D
+     626: aload         6
+     628: getfield      #726                // Field net/minecraft/world/phys/Vec3.f_82481_:D
+     631: aload         5
+     633: invokevirtual #346                // Method java/util/Optional.get:()Ljava/lang/Object;
+     636: checkcast     #112                // class net/minecraft/world/item/ItemStack
+     639: iconst_1
+     640: invokevirtual #515                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     643: invokestatic  #732                // Method net/minecraft/world/Containers.m_18992_:(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+     646: aload_0
+     647: invokevirtual #370                // Method m_6596_:()V
+     650: iload         4
+     652: ifeq          710
+     655: aload_0
+     656: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     659: aconst_null
+     660: aload_0
+     661: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     664: getstatic     #735                // Field net/minecraft/sounds/SoundEvents.f_11772_:Lnet/minecraft/sounds/SoundEvent;
+     667: getstatic     #738                // Field net/minecraft/sounds/SoundSource.MASTER:Lnet/minecraft/sounds/SoundSource;
+     670: fconst_1
+     671: fconst_1
+     672: invokevirtual #742                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     675: aload_0
+     676: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     679: aload_0
+     680: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     683: aload_0
+     684: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     687: aload_0
+     688: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     691: invokevirtual #746                // Method net/minecraft/world/level/Level.m_46745_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/chunk/LevelChunk;
+     694: aload_0
+     695: invokevirtual #750                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+     698: aload_0
+     699: invokevirtual #750                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+     702: iconst_1
+     703: iconst_1
+     704: invokevirtual #754                // Method net/minecraft/world/level/Level.markAndNotifyBlock:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;II)V
+     707: goto          730
+     710: aload_0
+     711: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+     714: aconst_null
+     715: aload_0
+     716: invokevirtual #374                // Method m_58899_:()Lnet/minecraft/core/BlockPos;
+     719: getstatic     #757                // Field net/minecraft/sounds/SoundEvents.f_11914_:Lnet/minecraft/sounds/SoundEvent;
+     722: getstatic     #738                // Field net/minecraft/sounds/SoundSource.MASTER:Lnet/minecraft/sounds/SoundSource;
+     725: fconst_1
+     726: fconst_1
+     727: invokevirtual #742                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+     730: return
+
+  public boolean isValidInput(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: getstatic     #586                // Field io/redspace/ironsspellbooks/registries/ItemRegistry.SCROLL:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #588                // class net/minecraft/world/item/Item
+      10: invokevirtual #417                // Method net/minecraft/world/item/ItemStack.m_150930_:(Lnet/minecraft/world/item/Item;)Z
+      13: ifne          69
+      16: aload_0
+      17: aload_1
+      18: invokevirtual #702                // Method isBrewable:(Lnet/minecraft/world/item/ItemStack;)Z
+      21: ifne          69
+      24: aload_0
+      25: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      28: ifnull        73
+      31: aload_0
+      32: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      35: invokevirtual #249                // Method net/minecraft/world/level/Level.m_7465_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+      38: getstatic     #643                // Field io/redspace/ironsspellbooks/registries/RecipeRegistry.ALCHEMIST_CAULDRON_BREW_TYPE:Lnet/minecraftforge/registries/RegistryObject;
+      41: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      44: checkcast     #256                // class net/minecraft/world/item/crafting/RecipeType
+      47: invokevirtual #775                // Method net/minecraft/world/item/crafting/RecipeManager.m_44013_:(Lnet/minecraft/world/item/crafting/RecipeType;)Ljava/util/List;
+      50: invokeinterface #650,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      55: aload_1
+      56: invokedynamic #787,  0            // InvokeDynamic #3:test:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/function/Predicate;
+      61: invokeinterface #791,  2          // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+      66: ifeq          73
+      69: iconst_1
+      70: goto          74
+      73: iconst_0
+      74: ireturn
+
+  public boolean isBrewable(net.minecraft.world.item.ItemStack);
+    Code:
+       0: getstatic     #794                // Field io/redspace/ironsspellbooks/config/ServerConfigs.ALLOW_CAULDRON_BREWING:Lnet/minecraftforge/common/ForgeConfigSpec$ConfigValue;
+       3: invokevirtual #609                // Method net/minecraftforge/common/ForgeConfigSpec$ConfigValue.get:()Ljava/lang/Object;
+       6: checkcast     #796                // class java/lang/Boolean
+       9: invokevirtual #799                // Method java/lang/Boolean.booleanValue:()Z
+      12: ifeq          37
+      15: aload_0
+      16: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      19: ifnull        37
+      22: aload_1
+      23: aload_0
+      24: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      27: invokestatic  #803                // Method io/redspace/ironsspellbooks/api/backwards_compat/FluidHelper.isBrewingIngredient:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)Z
+      30: ifeq          37
+      33: iconst_1
+      34: goto          38
+      37: iconst_0
+      38: ireturn
+
+  public static io.redspace.ironsspellbooks.item.InkItem getInkFromScroll(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #808                // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.get:(Lnet/minecraft/world/item/ItemStack;)Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+       4: astore_1
+       5: aload_1
+       6: iconst_0
+       7: invokeinterface #812,  2          // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.getSpellAtIndex:(I)Lio/redspace/ironsspellbooks/api/spells/SpellData;
+      12: astore_2
+      13: aload_2
+      14: invokevirtual #818                // Method io/redspace/ironsspellbooks/api/spells/SpellData.getSpell:()Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;
+      17: aload_2
+      18: invokevirtual #821                // Method io/redspace/ironsspellbooks/api/spells/SpellData.getLevel:()I
+      21: invokevirtual #827                // Method io/redspace/ironsspellbooks/api/spells/AbstractSpell.getRarity:(I)Lio/redspace/ironsspellbooks/api/spells/SpellRarity;
+      24: astore_3
+      25: aload_3
+      26: invokestatic  #831                // Method io/redspace/ironsspellbooks/item/InkItem.getInkForRarity:(Lio/redspace/ironsspellbooks/api/spells/SpellRarity;)Lio/redspace/ironsspellbooks/item/InkItem;
+      29: areturn
+
+  public void m_6596_();
+    Code:
+       0: aload_0
+       1: invokespecial #839                // Method net/minecraft/world/level/block/entity/BlockEntity.m_6596_:()V
+       4: aload_0
+       5: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       8: ifnull        31
+      11: aload_0
+      12: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      15: aload_0
+      16: getfield      #842                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      19: aload_0
+      20: invokevirtual #750                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+      23: aload_0
+      24: invokevirtual #750                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+      27: iconst_2
+      28: invokevirtual #846                // Method net/minecraft/world/level/Level.m_7260_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V
+      31: return
+
+  public boolean m_6542_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       5: ldc_w         #853                // String Items
+       8: invokestatic  #857                // Method io/redspace/ironsspellbooks/api/util/Utils.loadAllItems:(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/NonNullList;Ljava/lang/String;)V
+      11: aload_0
+      12: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      15: ldc_w         #859                // String Results
+      18: aload_1
+      19: aload_0
+      20: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      23: ifnonnull     30
+      26: aconst_null
+      27: goto          37
+      30: aload_0
+      31: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      34: invokevirtual #399                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+      37: invokevirtual #867                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.load:(Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)V
+      40: aload_0
+      41: aload_1
+      42: invokespecial #869                // Method net/minecraft/world/level/block/entity/BlockEntity.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+      45: return
+
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       5: ldc_w         #853                // String Items
+       8: invokestatic  #877                // Method io/redspace/ironsspellbooks/api/util/Utils.saveAllItems:(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/NonNullList;Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      11: pop
+      12: aload_0
+      13: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      16: ldc_w         #859                // String Results
+      19: aload_1
+      20: aload_0
+      21: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      24: ifnonnull     31
+      27: aconst_null
+      28: goto          38
+      31: aload_0
+      32: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      35: invokevirtual #399                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+      38: invokevirtual #880                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.save:(Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)V
+      41: aload_0
+      42: aload_1
+      43: invokespecial #882                // Method net/minecraft/world/level/block/entity/BlockEntity.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+      46: return
+
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+    Code:
+       0: aload_0
+       1: invokestatic  #890                // Method net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket.m_195640_:(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+       4: astore_1
+       5: aload_1
+       6: areturn
+
+  public void onDataPacket(net.minecraft.network.Connection, net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: invokevirtual #898                // Method net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket.m_131708_:()Lnet/minecraft/nbt/CompoundTag;
+       5: invokevirtual #901                // Method handleUpdateTag:(Lnet/minecraft/nbt/CompoundTag;)V
+       8: aload_0
+       9: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      12: ifnull        35
+      15: aload_0
+      16: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      19: aload_0
+      20: getfield      #842                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      23: aload_0
+      24: invokevirtual #750                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+      27: aload_0
+      28: invokevirtual #750                // Method m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+      31: iconst_3
+      32: invokevirtual #846                // Method net/minecraft/world/level/Level.m_7260_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V
+      35: return
+
+  public net.minecraft.nbt.CompoundTag m_5995_();
+    Code:
+       0: new           #861                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #907                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: aload_1
+      10: invokevirtual #908                // Method m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+      13: aload_1
+      14: areturn
+
+  public void handleUpdateTag(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       4: invokevirtual #911                // Method net/minecraft/core/NonNullList.clear:()V
+       7: aload_0
+       8: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      11: invokevirtual #912                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.clear:()V
+      14: aload_1
+      15: ifnull        23
+      18: aload_0
+      19: aload_1
+      20: invokevirtual #913                // Method m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+      23: return
+
+  public void drops();
+    Code:
+       0: new           #240                // class net/minecraft/world/SimpleContainer
+       3: dup
+       4: aload_0
+       5: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       8: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      11: invokespecial #916                // Method net/minecraft/world/SimpleContainer."<init>":(I)V
+      14: astore_1
+      15: iconst_0
+      16: istore_2
+      17: iload_2
+      18: aload_0
+      19: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      22: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      25: if_icmpge     50
+      28: aload_1
+      29: iload_2
+      30: aload_0
+      31: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      34: iload_2
+      35: invokevirtual #165                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      38: checkcast     #112                // class net/minecraft/world/item/ItemStack
+      41: invokevirtual #920                // Method net/minecraft/world/SimpleContainer.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+      44: iinc          2, 1
+      47: goto          17
+      50: aload_0
+      51: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      54: ifnull        69
+      57: aload_0
+      58: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      61: aload_0
+      62: getfield      #842                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      65: aload_1
+      66: invokestatic  #924                // Method net/minecraft/world/Containers.m_19002_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/Container;)V
+      69: return
+
+  public int[] m_7071_(net.minecraft.core.Direction);
+    Code:
+       0: iconst_4
+       1: newarray       int
+       3: dup
+       4: iconst_0
+       5: iconst_0
+       6: iastore
+       7: dup
+       8: iconst_1
+       9: iconst_1
+      10: iastore
+      11: dup
+      12: iconst_2
+      13: iconst_2
+      14: iastore
+      15: dup
+      16: iconst_3
+      17: iconst_3
+      18: iastore
+      19: areturn
+
+  public boolean m_7155_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+    Code:
+       0: aload_3
+       1: getstatic     #936                // Field net/minecraft/core/Direction.DOWN:Lnet/minecraft/core/Direction;
+       4: if_acmpeq     30
+       7: aload_0
+       8: aload_2
+       9: invokevirtual #494                // Method isValidInput:(Lnet/minecraft/world/item/ItemStack;)Z
+      12: ifeq          30
+      15: aload_0
+      16: iload_1
+      17: invokevirtual #939                // Method m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      20: invokevirtual #169                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      23: ifeq          30
+      26: iconst_1
+      27: goto          31
+      30: iconst_0
+      31: ireturn
+
+  public boolean m_7157_(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+    Code:
+       0: aload_3
+       1: getstatic     #936                // Field net/minecraft/core/Direction.DOWN:Lnet/minecraft/core/Direction;
+       4: if_acmpne     11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  public void m_6211_();
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       4: invokevirtual #911                // Method net/minecraft/core/NonNullList.clear:()V
+       7: aload_0
+       8: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      11: invokevirtual #912                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.clear:()V
+      14: return
+
+  public int m_6643_();
+    Code:
+       0: getstatic     #110                // Field INPUT_SIZE:I
+       3: ireturn
+
+  public boolean m_7983_();
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       4: invokevirtual #948                // Method net/minecraft/core/NonNullList.stream:()Ljava/util/stream/Stream;
+       7: invokedynamic #953,  0            // InvokeDynamic #4:test:()Ljava/util/function/Predicate;
+      12: invokeinterface #956,  2          // InterfaceMethod java/util/stream/Stream.allMatch:(Ljava/util/function/Predicate;)Z
+      17: ireturn
+
+  public net.minecraft.world.item.ItemStack m_8020_(int);
+    Code:
+       0: iload_1
+       1: iflt          29
+       4: iload_1
+       5: aload_0
+       6: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       9: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      12: if_icmpgt     29
+      15: aload_0
+      16: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      19: iload_1
+      20: invokevirtual #165                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      23: checkcast     #112                // class net/minecraft/world/item/ItemStack
+      26: goto          32
+      29: getstatic     #116                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      32: areturn
+
+  public net.minecraft.world.item.ItemStack m_7407_(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       4: iload_1
+       5: iload_2
+       6: invokestatic  #965                // Method net/minecraft/world/ContainerHelper.m_18969_:(Ljava/util/List;II)Lnet/minecraft/world/item/ItemStack;
+       9: areturn
+
+  public net.minecraft.world.item.ItemStack m_8016_(int);
+    Code:
+       0: iload_1
+       1: iflt          29
+       4: iload_1
+       5: aload_0
+       6: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       9: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      12: if_icmpgt     29
+      15: aload_0
+      16: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      19: iload_1
+      20: invokevirtual #970                // Method net/minecraft/core/NonNullList.remove:(I)Ljava/lang/Object;
+      23: checkcast     #112                // class net/minecraft/world/item/ItemStack
+      26: goto          32
+      29: getstatic     #116                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      32: areturn
+
+  public void m_6836_(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: iload_1
+       1: iflt          25
+       4: iload_1
+       5: aload_0
+       6: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+       9: invokevirtual #162                // Method net/minecraft/core/NonNullList.size:()I
+      12: if_icmpgt     25
+      15: aload_0
+      16: getfield      #124                // Field inputItems:Lnet/minecraft/core/NonNullList;
+      19: iload_1
+      20: aload_2
+      21: invokevirtual #523                // Method net/minecraft/core/NonNullList.set:(ILjava/lang/Object;)Ljava/lang/Object;
+      24: pop
+      25: return
+
+  public boolean isBoiling(net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: invokevirtual #186                // Method getFluidAmount:()I
+       4: iconst_1
+       5: if_icmplt     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  public int getFluidAmount();
+    Code:
+       0: aload_0
+       1: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+       4: invokevirtual #973                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fluidAmount:()I
+       7: ireturn
+
+  public int getAverageWaterColor();
+    Code:
+       0: aload_0
+       1: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+       4: ifnonnull     9
+       7: iconst_m1
+       8: ireturn
+       9: aload_0
+      10: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+      13: invokevirtual #633                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fluids:()Ljava/util/List;
+      16: astore_1
+      17: aload_0
+      18: invokevirtual #186                // Method getFluidAmount:()I
+      21: istore_2
+      22: aload_1
+      23: invokeinterface #975,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      28: ifne          35
+      31: iload_2
+      32: ifne          37
+      35: iconst_m1
+      36: ireturn
+      37: lconst_0
+      38: lstore_3
+      39: lconst_0
+      40: lstore        5
+      42: lconst_0
+      43: lstore        7
+      45: aload_1
+      46: invokeinterface #636,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      51: astore        9
+      53: aload         9
+      55: invokeinterface #545,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      60: ifeq          142
+      63: aload         9
+      65: invokeinterface #548,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      70: checkcast     #278                // class net/minecraftforge/fluids/FluidStack
+      73: astore        10
+      75: aload_0
+      76: aload         10
+      78: invokevirtual #978                // Method getFluidTintColor:(Lnet/minecraftforge/fluids/FluidStack;)I
+      81: istore        11
+      83: aload         10
+      85: invokevirtual #364                // Method net/minecraftforge/fluids/FluidStack.getAmount:()I
+      88: istore        12
+      90: lload_3
+      91: iload         11
+      93: bipush        16
+      95: ishr
+      96: sipush        255
+      99: iand
+     100: iload         12
+     102: imul
+     103: i2l
+     104: ladd
+     105: lstore_3
+     106: lload         5
+     108: iload         11
+     110: bipush        8
+     112: ishr
+     113: sipush        255
+     116: iand
+     117: iload         12
+     119: imul
+     120: i2l
+     121: ladd
+     122: lstore        5
+     124: lload         7
+     126: iload         11
+     128: sipush        255
+     131: iand
+     132: iload         12
+     134: imul
+     135: i2l
+     136: ladd
+     137: lstore        7
+     139: goto          53
+     142: ldc_w         #979                // int -16777216
+     145: lload_3
+     146: iload_2
+     147: i2l
+     148: ldiv
+     149: l2i
+     150: bipush        16
+     152: ishl
+     153: ior
+     154: lload         5
+     156: iload_2
+     157: i2l
+     158: ldiv
+     159: l2i
+     160: bipush        8
+     162: ishl
+     163: ior
+     164: lload         7
+     166: iload_2
+     167: i2l
+     168: ldiv
+     169: l2i
+     170: ior
+     171: ireturn
+
+  private int getFluidTintColor(net.minecraftforge.fluids.FluidStack);
+    Code:
+       0: aload_1
+       1: invokevirtual #992                // Method net/minecraftforge/fluids/FluidStack.getFluid:()Lnet/minecraft/world/level/material/Fluid;
+       4: getstatic     #997                // Field io/redspace/ironsspellbooks/registries/FluidRegistry.BLOOD:Lnet/minecraftforge/registries/RegistryObject;
+       7: invokevirtual #103                // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      10: invokevirtual #1000               // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+      13: ifeq          20
+      16: ldc_w         #1001               // int 5701633
+      19: ireturn
+      20: aload_1
+      21: invokevirtual #992                // Method net/minecraftforge/fluids/FluidStack.getFluid:()Lnet/minecraft/world/level/material/Fluid;
+      24: invokestatic  #1006               // InterfaceMethod net/minecraftforge/client/extensions/common/IClientFluidTypeExtensions.of:(Lnet/minecraft/world/level/material/Fluid;)Lnet/minecraftforge/client/extensions/common/IClientFluidTypeExtensions;
+      27: astore_2
+      28: aload_2
+      29: aload_1
+      30: invokeinterface #1009,  2         // InterfaceMethod net/minecraftforge/client/extensions/common/IClientFluidTypeExtensions.getTintColor:(Lnet/minecraftforge/fluids/FluidStack;)I
+      35: aload_2
+      36: aload_1
+      37: invokevirtual #992                // Method net/minecraftforge/fluids/FluidStack.getFluid:()Lnet/minecraft/world/level/material/Fluid;
+      40: invokevirtual #1013               // Method net/minecraft/world/level/material/Fluid.m_76145_:()Lnet/minecraft/world/level/material/FluidState;
+      43: aload_0
+      44: getfield      #575                // Field f_58857_:Lnet/minecraft/world/level/Level;
+      47: aload_0
+      48: getfield      #842                // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      51: invokeinterface #1016,  4         // InterfaceMethod net/minecraftforge/client/extensions/common/IClientFluidTypeExtensions.getTintColor:(Lnet/minecraft/world/level/material/FluidState;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/BlockPos;)I
+      56: iand
+      57: ireturn
+
+  public net.minecraft.network.protocol.Packet m_58483_();
+    Code:
+       0: aload_0
+       1: invokevirtual #1022               // Method getUpdatePacket:()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+       4: areturn
+
+  private static boolean lambda$isValidInput$2(net.minecraft.world.item.ItemStack, io.redspace.ironsspellbooks.recipe_types.alchemist_cauldron.BrewAlchemistCauldronRecipe);
+    Code:
+       0: aload_1
+       1: invokevirtual #1026               // Method io/redspace/ironsspellbooks/recipe_types/alchemist_cauldron/BrewAlchemistCauldronRecipe.reagent:()Lnet/minecraft/world/item/crafting/Ingredient;
+       4: aload_0
+       5: invokevirtual #1028               // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ireturn
+
+  private void lambda$tryMeltInput$1(net.minecraftforge.fluids.FluidStack);
+    Code:
+       0: aload_0
+       1: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+       4: aload_1
+       5: getstatic     #367                // Field net/minecraftforge/fluids/capability/IFluidHandler$FluidAction.EXECUTE:Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;
+       8: invokevirtual #358                // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler.fill:(Lnet/minecraftforge/fluids/FluidStack;Lnet/minecraftforge/fluids/capability/IFluidHandler$FluidAction;)I
+      11: pop
+      12: return
+
+  private net.minecraftforge.fluids.capability.IFluidHandler lambda$new$0();
+    Code:
+       0: aload_0
+       1: getfield      #152                // Field fluidInventory:Lio/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$AlchemistCauldronFluidHandler;
+       4: areturn
+
+  static {};
+    Code:
+       0: iconst_4
+       1: putstatic     #110                // Field INPUT_SIZE:I
+       4: new           #13                 // class io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$1
+       7: dup
+       8: invokespecial #1031               // Method io/redspace/ironsspellbooks/block/alchemist_cauldron/AlchemistCauldronTile$1."<init>":()V
+      11: invokestatic  #1036               // Method net/minecraftforge/common/capabilities/CapabilityManager.get:(Lnet/minecraftforge/common/capabilities/CapabilityToken;)Lnet/minecraftforge/common/capabilities/Capability;
+      14: putstatic     #1037               // Field FLUID_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+      17: return
+}

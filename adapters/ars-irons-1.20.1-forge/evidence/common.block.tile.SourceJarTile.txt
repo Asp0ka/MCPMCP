@@ -1,0 +1,117 @@
+Compiled from "SourceJarTile.java"
+public class com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile extends com.hollingsworth.arsnouveau.api.source.AbstractSourceMachine implements com.hollingsworth.arsnouveau.api.client.ITooltipProvider,com.hollingsworth.arsnouveau.common.block.ITickable {
+  public com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: getstatic     #17                 // Field com/hollingsworth/arsnouveau/setup/registry/BlockRegistry.SOURCE_JAR_TILE:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+       4: aload_1
+       5: aload_2
+       6: invokespecial #20                 // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine."<init>":(Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       9: return
+
+  public com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #30                 // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: return
+
+  public com.hollingsworth.arsnouveau.common.block.tile.SourceJarTile(com.hollingsworth.arsnouveau.common.util.RegistryWrapper<? extends net.minecraft.world.level.block.entity.BlockEntityType<?>>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #40                 // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.get:()Ljava/lang/Object;
+       5: checkcast     #42                 // class net/minecraft/world/level/block/entity/BlockEntityType
+       8: aload_2
+       9: aload_3
+      10: invokespecial #30                 // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      13: return
+
+  public int getMaxSource();
+    Code:
+       0: sipush        10000
+       3: ireturn
+
+  public boolean updateBlock();
+    Code:
+       0: aload_0
+       1: invokespecial #50                 // Method com/hollingsworth/arsnouveau/api/source/AbstractSourceMachine.updateBlock:()Z
+       4: pop
+       5: aload_0
+       6: getfield      #54                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+       9: aload_0
+      10: getfield      #57                 // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      13: invokevirtual #63                 // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+      16: astore_1
+      17: iconst_0
+      18: istore_2
+      19: aload_0
+      20: invokevirtual #66                 // Method getSource:()I
+      23: ifle          41
+      26: aload_0
+      27: invokevirtual #66                 // Method getSource:()I
+      30: sipush        1000
+      33: if_icmpge     41
+      36: iconst_1
+      37: istore_2
+      38: goto          59
+      41: aload_0
+      42: invokevirtual #66                 // Method getSource:()I
+      45: ifeq          59
+      48: aload_0
+      49: invokevirtual #66                 // Method getSource:()I
+      52: sipush        1000
+      55: idiv
+      56: iconst_1
+      57: iadd
+      58: istore_2
+      59: aload_1
+      60: getstatic     #74                 // Field com/hollingsworth/arsnouveau/common/block/SourceJar.fill:Lnet/minecraft/world/level/block/state/properties/Property;
+      63: invokevirtual #78                 // Method net/minecraft/world/level/block/state/BlockState.m_61138_:(Lnet/minecraft/world/level/block/state/properties/Property;)Z
+      66: ifeq          96
+      69: aload_0
+      70: getfield      #54                 // Field f_58857_:Lnet/minecraft/world/level/Level;
+      73: aload_0
+      74: getfield      #57                 // Field f_58858_:Lnet/minecraft/core/BlockPos;
+      77: aload_1
+      78: getstatic     #74                 // Field com/hollingsworth/arsnouveau/common/block/SourceJar.fill:Lnet/minecraft/world/level/block/state/properties/Property;
+      81: iload_2
+      82: invokestatic  #84                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      85: invokevirtual #88                 // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+      88: checkcast     #68                 // class net/minecraft/world/level/block/state/BlockState
+      91: iconst_3
+      92: invokevirtual #92                 // Method net/minecraft/world/level/Level.m_7731_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
+      95: pop
+      96: iconst_1
+      97: ireturn
+
+  public int getTransferRate();
+    Code:
+       0: aload_0
+       1: invokevirtual #97                 // Method getMaxSource:()I
+       4: ireturn
+
+  public void getTooltip(java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: aload_1
+       1: ldc           #102                // String ars_nouveau.source_jar.fullness
+       3: iconst_1
+       4: anewarray     #104                // class java/lang/Object
+       7: dup
+       8: iconst_0
+       9: aload_0
+      10: invokevirtual #66                 // Method getSource:()I
+      13: bipush        100
+      15: imul
+      16: aload_0
+      17: invokevirtual #97                 // Method getMaxSource:()I
+      20: idiv
+      21: invokestatic  #84                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      24: aastore
+      25: invokestatic  #110                // InterfaceMethod net/minecraft/network/chat/Component.m_237110_:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+      28: invokeinterface #116,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      33: pop
+      34: return
+}

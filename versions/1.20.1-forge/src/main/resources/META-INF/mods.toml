@@ -10,7 +10,7 @@ description="Client automation and extensible MCP operations, without a recipe-v
 [[dependencies.mcpmcp]]
 modId="forge"
 mandatory=true
-versionRange="[47.4.28,48)"
+versionRange="[47.4.21,48)"
 ordering="NONE"
 side="CLIENT"
 [[dependencies.mcpmcp]]

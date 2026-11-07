@@ -1,0 +1,343 @@
+Compiled from "RitualPlinthBlockEntity.java"
+public class com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity extends team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity {
+  private static final net.minecraft.world.phys.Vec3 PLINTH_ITEM_OFFSET;
+  public com.sammy.malum.core.systems.ritual.MalumRitualType ritualType;
+  public com.sammy.malum.core.systems.ritual.MalumRitualTier ritualTier;
+  public int spiritAmount;
+  public int progress;
+  public float activeDuration;
+  public boolean setupComplete;
+  public java.util.Map<java.lang.Object, java.lang.Integer> absorptionProgress;
+  public com.sammy.malum.core.systems.ritual.MalumRitualRecipeData ritualRecipe;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory inventory;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory extrasInventory;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> internalInventory;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> exposedInventory;
+  public com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public void onBreak(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void init();
+  public void tick();
+  public boolean consume();
+  public void beginCharging();
+  public void eatSpirits();
+  public void completeCharging();
+  public net.minecraft.world.phys.Vec3 getItemPos();
+  public net.minecraft.world.phys.Vec3 getCentralItemOffset();
+  public net.minecraft.world.phys.Vec3 getRitualIconPos();
+  public net.minecraft.world.phys.Vec3 getRitualIconOffset(float);
+  public net.minecraft.world.phys.Vec3 getParticlePositionPosition(net.minecraft.core.Direction);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  private static java.lang.Integer lambda$eatSpirits$10(java.lang.Object, java.lang.Integer);
+  private static java.lang.Integer lambda$eatSpirits$9(java.lang.Object, java.lang.Integer);
+  private static java.lang.Integer lambda$eatSpirits$8(java.lang.Object, java.lang.Integer);
+  private static boolean lambda$eatSpirits$7(net.minecraft.world.entity.item.ItemEntity);
+  private static boolean lambda$init$6(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  private static boolean lambda$init$5(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  private static boolean lambda$init$4(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  private static boolean lambda$init$3(net.minecraft.world.item.ItemStack, com.sammy.malum.core.systems.ritual.MalumRitualRecipeData);
+  private boolean lambda$new$2(net.minecraft.world.item.ItemStack);
+  private net.minecraftforge.items.IItemHandler lambda$new$1();
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  static net.minecraft.core.BlockPos access$100(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  static net.minecraft.world.level.Level access$200(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  static net.minecraft.core.BlockPos access$300(com.sammy.malum.common.block.curiosities.ritual_plinth.RitualPlinthBlockEntity);
+  static {};
+}
+Compiled from "SpiritAltarBlockEntity.java"
+public class com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity extends team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity {
+  private static final net.minecraft.world.phys.Vec3 ALTAR_ITEM_OFFSET;
+  public static final int HORIZONTAL_RANGE;
+  public static final int VERTICAL_RANGE;
+  public float speed;
+  public int progress;
+  public int idleProgress;
+  public float spiritYLevel;
+  public java.util.List<net.minecraft.core.BlockPos> acceleratorPositions;
+  public java.util.List<com.sammy.malum.common.block.curiosities.spirit_altar.IAltarAccelerator> accelerators;
+  public float spiritAmount;
+  public float spiritSpin;
+  public boolean isCrafting;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory inventory;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory extrasInventory;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory spiritInventory;
+  public java.util.Map<com.sammy.malum.common.recipe.SpiritInfusionRecipe, com.sammy.malum.common.block.curiosities.spirit_altar.AltarCraftingHelper$Ranking> possibleRecipes;
+  public com.sammy.malum.common.recipe.SpiritInfusionRecipe recipe;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> internalInventory;
+  public net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> exposedInventory;
+  public com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public void onBreak(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void init();
+  public void tick();
+  private void recalculateRecipes();
+  public boolean consume();
+  public void craft();
+  public void recalibrateAccelerators();
+  public net.minecraft.world.phys.Vec3 getCentralItemOffset();
+  public net.minecraft.world.phys.Vec3 getItemPos();
+  public net.minecraft.world.phys.Vec3 getSpiritItemOffset(int, float);
+  public float getSpinUp(team.lodestar.lodestone.systems.easing.Easing);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  private static java.lang.Integer lambda$recalibrateAccelerators$5(com.sammy.malum.common.block.curiosities.spirit_altar.IAltarAccelerator$AltarAcceleratorType);
+  private static boolean lambda$recalculateRecipes$4(java.util.Map$Entry);
+  private boolean lambda$recalculateRecipes$3(net.minecraft.world.item.ItemStack, com.sammy.malum.common.recipe.SpiritInfusionRecipe);
+  private static boolean lambda$new$2(net.minecraft.world.item.ItemStack);
+  private net.minecraftforge.items.IItemHandler lambda$new$1();
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity);
+  static net.minecraft.core.BlockPos access$100(com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity);
+  static net.minecraft.world.level.Level access$200(com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity);
+  static net.minecraft.core.BlockPos access$300(com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity);
+  static net.minecraft.world.level.Level access$400(com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity);
+  static net.minecraft.core.BlockPos access$500(com.sammy.malum.common.block.curiosities.spirit_altar.SpiritAltarBlockEntity);
+  static {};
+}
+Compiled from "SpiritCrucibleCoreBlockEntity.java"
+public class com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity extends team.lodestar.lodestone.systems.multiblock.MultiBlockCoreEntity implements com.sammy.malum.common.block.curiosities.spirit_crucible.ICatalyzerAccelerationTarget,com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint {
+  private static final net.minecraft.world.phys.Vec3 CRUCIBLE_ITEM_OFFSET;
+  public static final java.util.function.Supplier<team.lodestar.lodestone.systems.multiblock.MultiBlockStructure> STRUCTURE;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory inventory;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory spiritInventory;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory augmentInventory;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory coreAugmentInventory;
+  public com.sammy.malum.common.recipe.SpiritFocusingRecipe recipe;
+  public float spiritAmount;
+  public float spiritSpin;
+  public float progress;
+  public int queuedCracks;
+  public int crackTimer;
+  public com.sammy.malum.common.block.curiosities.spirit_crucible.CrucibleAccelerationData acceleratorData;
+  public com.sammy.malum.common.block.curiosities.spirit_crucible.CrucibleTuning$CrucibleAttributeType tuningType;
+  private final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> combinedInventory;
+  public com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity>, team.lodestar.lodestone.systems.multiblock.MultiBlockStructure, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void onBreak(net.minecraft.world.entity.player.Player);
+  public void init();
+  public void tick();
+  public void craft();
+  public net.minecraft.world.phys.Vec3 getAccelerationPoint();
+  public java.util.List<net.minecraft.world.item.ItemStack> getAugments();
+  public net.minecraft.world.item.ItemStack getCoreAugment();
+  public boolean canBeAccelerated();
+  public com.sammy.malum.common.block.curiosities.spirit_crucible.CrucibleAccelerationData getAccelerationData();
+  public void setAccelerationData(com.sammy.malum.common.block.curiosities.spirit_crucible.CrucibleAccelerationData);
+  public com.sammy.malum.common.block.curiosities.spirit_crucible.CrucibleTuning$CrucibleAttributeType getTuningType();
+  public com.sammy.malum.core.systems.spirit.MalumSpiritType getActiveSpiritType();
+  public net.minecraft.world.phys.Vec3 getItemPos(float);
+  public net.minecraft.core.BlockPos getAccessPointBlockPos();
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory getSuppliedInventory();
+  public net.minecraft.world.phys.Vec3 getCentralItemOffset();
+  public net.minecraft.world.phys.Vec3 getSpiritItemOffset(int, float);
+  public net.minecraft.world.phys.Vec3 getAugmentItemOffset(int, float);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  private static boolean lambda$new$3(net.minecraft.world.item.ItemStack);
+  private static boolean lambda$new$2(net.minecraft.world.item.ItemStack);
+  private net.minecraftforge.items.IItemHandler lambda$new$1();
+  private static team.lodestar.lodestone.systems.multiblock.MultiBlockStructure lambda$static$0();
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.core.BlockPos access$100(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.world.level.Level access$200(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.core.BlockPos access$300(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.world.level.Level access$400(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.core.BlockPos access$500(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.world.level.Level access$600(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static net.minecraft.core.BlockPos access$700(com.sammy.malum.common.block.curiosities.spirit_crucible.SpiritCrucibleCoreBlockEntity);
+  static {};
+}
+Compiled from "MalumItemHolderBlockEntity.java"
+public abstract class com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity extends team.lodestar.lodestone.systems.blockentity.ItemHolderBlockEntity implements com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint {
+  public com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory getSuppliedInventory();
+  public net.minecraft.world.phys.Vec3 getItemPos(float);
+  public net.minecraft.core.BlockPos getAccessPointBlockPos();
+  public void tick();
+  public abstract net.minecraft.world.phys.Vec3 getItemOffset(float);
+  public net.minecraft.world.phys.AABB getRenderBoundingBox();
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity);
+  static net.minecraft.core.BlockPos access$100(com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity);
+}
+Compiled from "SpiritJarBlockEntity.java"
+public class com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity extends team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity {
+  public com.sammy.malum.core.systems.spirit.MalumSpiritType type;
+  public int count;
+  private long lastClickTime;
+  private java.util.UUID lastClickUUID;
+  private final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> inventory;
+  public com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public int insertHeldItem(net.minecraft.world.entity.player.Player);
+  public int insertAllSpirits(net.minecraft.world.entity.player.Player);
+  public int insertFromStack(net.minecraft.world.item.ItemStack);
+  public void onPlace(net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack);
+  protected void m_183515_(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public void tick();
+  public net.minecraft.world.phys.Vec3 getItemPos();
+  public void spawnUseParticles(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, com.sammy.malum.core.systems.spirit.MalumSpiritType);
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+  static net.minecraft.world.level.Level access$000(com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity);
+  static net.minecraft.world.level.Level access$100(com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity);
+  static net.minecraft.core.BlockPos access$200(com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity);
+  static net.minecraft.world.level.Level access$300(com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity);
+  static net.minecraft.world.level.Level access$400(com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity);
+  static net.minecraft.core.BlockPos access$500(com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity);
+}
+Compiled from "AbstractMalumRecipe.java"
+public abstract class com.sammy.malum.common.recipe.AbstractMalumRecipe extends team.lodestar.lodestone.systems.recipe.ILodestoneRecipe {
+  private final net.minecraft.resources.ResourceLocation id;
+  private final net.minecraft.world.item.crafting.RecipeSerializer<?> recipeSerializer;
+  private final net.minecraft.world.item.crafting.RecipeType<?> recipeType;
+  protected com.sammy.malum.common.recipe.AbstractMalumRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.RecipeSerializer<?>, net.minecraft.world.item.crafting.RecipeType<?>);
+  public net.minecraft.resources.ResourceLocation m_6423_();
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> m_7707_();
+  public net.minecraft.world.item.crafting.RecipeType<?> m_6671_();
+  public static <T extends com.sammy.malum.common.recipe.AbstractMalumRecipe> T getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.crafting.RecipeType<T>, java.util.function.Predicate<T>);
+  public static <T extends com.sammy.malum.common.recipe.AbstractMalumRecipe> java.util.List<T> getRecipes(net.minecraft.world.level.Level, net.minecraft.world.item.crafting.RecipeType<T>);
+}
+Compiled from "AbstractSpiritListMalumRecipe.java"
+public abstract class com.sammy.malum.common.recipe.AbstractSpiritListMalumRecipe extends com.sammy.malum.common.recipe.AbstractMalumRecipe {
+  public final java.util.List<com.sammy.malum.core.systems.recipe.SpiritWithCount> spirits;
+  protected com.sammy.malum.common.recipe.AbstractSpiritListMalumRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.RecipeSerializer<?>, net.minecraft.world.item.crafting.RecipeType<?>, java.util.List<com.sammy.malum.core.systems.recipe.SpiritWithCount>);
+  public java.util.List<net.minecraft.world.item.ItemStack> getSortedSpirits(java.util.List<net.minecraft.world.item.ItemStack>);
+  public boolean doSpiritsMatch(java.util.List<net.minecraft.world.item.ItemStack>);
+}
+Compiled from "FavorOfTheVoidRecipe.java"
+public class com.sammy.malum.common.recipe.FavorOfTheVoidRecipe extends com.sammy.malum.common.recipe.AbstractMalumRecipe {
+  public static final java.lang.String NAME;
+  public final net.minecraft.world.item.crafting.Ingredient input;
+  public final net.minecraft.world.item.ItemStack output;
+  public com.sammy.malum.common.recipe.FavorOfTheVoidRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack);
+  public boolean doesInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesOutputMatch(net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.FavorOfTheVoidRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.FavorOfTheVoidRecipe getRecipe(net.minecraft.world.level.Level, java.util.function.Predicate<com.sammy.malum.common.recipe.FavorOfTheVoidRecipe>);
+  public static java.util.List<com.sammy.malum.common.recipe.FavorOfTheVoidRecipe> getRecipes(net.minecraft.world.level.Level);
+  private static boolean lambda$getRecipe$0(net.minecraft.world.item.ItemStack, com.sammy.malum.common.recipe.FavorOfTheVoidRecipe);
+}
+Compiled from "RunicWorkbenchRecipe.java"
+public class com.sammy.malum.common.recipe.RunicWorkbenchRecipe extends com.sammy.malum.common.recipe.AbstractMalumRecipe {
+  public static final java.lang.String NAME;
+  public final team.lodestar.lodestone.systems.recipe.IngredientWithCount primaryInput;
+  public final team.lodestar.lodestone.systems.recipe.IngredientWithCount secondaryInput;
+  public final net.minecraft.world.item.ItemStack output;
+  public com.sammy.malum.common.recipe.RunicWorkbenchRecipe(net.minecraft.resources.ResourceLocation, team.lodestar.lodestone.systems.recipe.IngredientWithCount, team.lodestar.lodestone.systems.recipe.IngredientWithCount, net.minecraft.world.item.ItemStack);
+  public boolean doesPrimaryInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesSecondaryInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesOutputMatch(net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.RunicWorkbenchRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.RunicWorkbenchRecipe getRecipe(net.minecraft.world.level.Level, java.util.function.Predicate<com.sammy.malum.common.recipe.RunicWorkbenchRecipe>);
+  public static java.util.List<com.sammy.malum.common.recipe.RunicWorkbenchRecipe> getRecipes(net.minecraft.world.level.Level);
+  private static boolean lambda$getRecipe$0(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, com.sammy.malum.common.recipe.RunicWorkbenchRecipe);
+}
+Compiled from "SpiritFocusingRecipe.java"
+public class com.sammy.malum.common.recipe.SpiritFocusingRecipe extends com.sammy.malum.common.recipe.AbstractSpiritListMalumRecipe {
+  public static final java.lang.String NAME;
+  public final int time;
+  public final int durabilityCost;
+  public final net.minecraft.world.item.crafting.Ingredient input;
+  public final net.minecraft.world.item.ItemStack output;
+  public com.sammy.malum.common.recipe.SpiritFocusingRecipe(net.minecraft.resources.ResourceLocation, int, int, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, java.util.List<com.sammy.malum.core.systems.recipe.SpiritWithCount>);
+  public boolean doesInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesOutputMatch(net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.SpiritFocusingRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, java.util.List<net.minecraft.world.item.ItemStack>);
+  public static com.sammy.malum.common.recipe.SpiritFocusingRecipe getRecipe(net.minecraft.world.level.Level, java.util.function.Predicate<com.sammy.malum.common.recipe.SpiritFocusingRecipe>);
+  public static java.util.List<com.sammy.malum.common.recipe.SpiritFocusingRecipe> getRecipes(net.minecraft.world.level.Level);
+  private static boolean lambda$getRecipe$0(net.minecraft.world.item.ItemStack, java.util.List, com.sammy.malum.common.recipe.SpiritFocusingRecipe);
+}
+Compiled from "SpiritInfusionRecipe.java"
+public class com.sammy.malum.common.recipe.SpiritInfusionRecipe extends com.sammy.malum.common.recipe.AbstractSpiritListMalumRecipe {
+  public static final java.lang.String NAME;
+  public final team.lodestar.lodestone.systems.recipe.IngredientWithCount input;
+  public final boolean useNbtFromInput;
+  public final net.minecraft.world.item.ItemStack output;
+  public final java.util.List<team.lodestar.lodestone.systems.recipe.IngredientWithCount> extraItems;
+  public com.sammy.malum.common.recipe.SpiritInfusionRecipe(net.minecraft.resources.ResourceLocation, team.lodestar.lodestone.systems.recipe.IngredientWithCount, boolean, net.minecraft.world.item.ItemStack, java.util.List<com.sammy.malum.core.systems.recipe.SpiritWithCount>, java.util.List<team.lodestar.lodestone.systems.recipe.IngredientWithCount>);
+  public boolean doesInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesOutputMatch(net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.SpiritInfusionRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, java.util.List<net.minecraft.world.item.ItemStack>);
+  public static com.sammy.malum.common.recipe.SpiritInfusionRecipe getRecipe(net.minecraft.world.level.Level, java.util.function.Predicate<com.sammy.malum.common.recipe.SpiritInfusionRecipe>);
+  public static java.util.List<com.sammy.malum.common.recipe.SpiritInfusionRecipe> getRecipes(net.minecraft.world.level.Level);
+  private static boolean lambda$getRecipe$0(net.minecraft.world.item.ItemStack, java.util.List, com.sammy.malum.common.recipe.SpiritInfusionRecipe);
+}
+Compiled from "SpiritRepairRecipe.java"
+public class com.sammy.malum.common.recipe.SpiritRepairRecipe extends com.sammy.malum.common.recipe.AbstractSpiritListMalumRecipe {
+  public static final java.lang.String NAME;
+  public final float durabilityPercentage;
+  public final java.util.List<net.minecraft.world.item.Item> inputs;
+  public final team.lodestar.lodestone.systems.recipe.IngredientWithCount repairMaterial;
+  public com.sammy.malum.common.recipe.SpiritRepairRecipe(net.minecraft.resources.ResourceLocation, float, java.util.List<net.minecraft.world.item.Item>, team.lodestar.lodestone.systems.recipe.IngredientWithCount, java.util.List<com.sammy.malum.core.systems.recipe.SpiritWithCount>);
+  public boolean doesInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesRepairMatch(net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.SpiritRepairRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, java.util.List<net.minecraft.world.item.ItemStack>);
+  public static com.sammy.malum.common.recipe.SpiritRepairRecipe getRecipe(net.minecraft.world.level.Level, java.util.function.Predicate<com.sammy.malum.common.recipe.SpiritRepairRecipe>);
+  public static java.util.List<com.sammy.malum.common.recipe.SpiritRepairRecipe> getRecipes(net.minecraft.world.level.Level);
+  public static net.minecraft.world.item.ItemStack getRepairRecipeOutput(net.minecraft.world.item.ItemStack);
+  private static boolean lambda$getRecipe$1(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, java.util.List, com.sammy.malum.common.recipe.SpiritRepairRecipe);
+  private static boolean lambda$doesInputMatch$0(net.minecraft.world.item.ItemStack, net.minecraft.world.item.Item);
+}
+Compiled from "SpiritTransmutationRecipe.java"
+public class com.sammy.malum.common.recipe.SpiritTransmutationRecipe extends com.sammy.malum.common.recipe.AbstractMalumRecipe {
+  public static final java.lang.String NAME;
+  public final net.minecraft.world.item.crafting.Ingredient ingredient;
+  public final net.minecraft.world.item.ItemStack output;
+  public final java.lang.String group;
+  public com.sammy.malum.common.recipe.SpiritTransmutationRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, java.lang.String);
+  public boolean doesInputMatch(net.minecraft.world.item.ItemStack);
+  public boolean doesOutputMatch(net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.SpiritTransmutationRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.Item);
+  public static com.sammy.malum.common.recipe.SpiritTransmutationRecipe getRecipe(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack);
+  public static com.sammy.malum.common.recipe.SpiritTransmutationRecipe getRecipe(net.minecraft.world.level.Level, java.util.function.Predicate<com.sammy.malum.common.recipe.SpiritTransmutationRecipe>);
+  public static java.util.List<com.sammy.malum.common.recipe.SpiritTransmutationRecipe> getRecipes(net.minecraft.world.level.Level);
+  private static boolean lambda$getRecipe$0(net.minecraft.world.item.ItemStack, com.sammy.malum.common.recipe.SpiritTransmutationRecipe);
+}
+Compiled from "RecipeSerializerRegistry.java"
+public class com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry {
+  public static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.item.crafting.RecipeSerializer<?>> RECIPE_SERIALIZERS;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.vanilla.MetalNodeBlastingRecipe>> METAL_NODE_BLASTING_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.vanilla.MetalNodeSmeltingRecipe>> METAL_NODE_SMELTING_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.SpiritInfusionRecipe>> INFUSION_RECIPE_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.RunicWorkbenchRecipe>> RUNEWORKING_RECIPE_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.SpiritFocusingRecipe>> FOCUSING_RECIPE_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.SpiritRepairRecipe>> REPAIR_RECIPE_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.SpiritTransmutationRecipe>> SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeSerializer<com.sammy.malum.common.recipe.FavorOfTheVoidRecipe>> VOID_FAVOR_RECIPE_SERIALIZER;
+  public com.sammy.malum.registry.common.recipe.RecipeSerializerRegistry();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$1();
+  private static net.minecraft.world.item.crafting.RecipeSerializer lambda$static$0();
+  static {};
+}
+Compiled from "RecipeTypeRegistry.java"
+public class com.sammy.malum.registry.common.recipe.RecipeTypeRegistry {
+  public static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.item.crafting.RecipeType<?>> RECIPE_TYPES;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.sammy.malum.common.recipe.FavorOfTheVoidRecipe>> VOID_FAVOR;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.sammy.malum.common.recipe.SpiritInfusionRecipe>> SPIRIT_INFUSION;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.sammy.malum.common.recipe.RunicWorkbenchRecipe>> RUNEWORKING;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.sammy.malum.common.recipe.SpiritFocusingRecipe>> SPIRIT_FOCUSING;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.sammy.malum.common.recipe.SpiritTransmutationRecipe>> SPIRIT_TRANSMUTATION;
+  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.item.crafting.RecipeType<com.sammy.malum.common.recipe.SpiritRepairRecipe>> SPIRIT_REPAIR;
+  public com.sammy.malum.registry.common.recipe.RecipeTypeRegistry();
+  public static <T extends net.minecraft.world.item.crafting.Recipe<?>> net.minecraft.world.item.crafting.RecipeType<T> registerRecipeType(java.lang.String);
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$5();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$4();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$3();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$2();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$1();
+  private static net.minecraft.world.item.crafting.RecipeType lambda$static$0();
+  static {};
+}

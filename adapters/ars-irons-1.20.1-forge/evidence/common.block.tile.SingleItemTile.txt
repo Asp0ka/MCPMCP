@@ -1,0 +1,210 @@
+Compiled from "SingleItemTile.java"
+public class com.hollingsworth.arsnouveau.common.block.tile.SingleItemTile extends com.hollingsworth.arsnouveau.common.block.tile.ModdedTile implements net.minecraft.world.Container {
+  private final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> itemHandler;
+
+  protected net.minecraft.world.item.ItemStack stack;
+
+  public net.minecraft.world.entity.item.ItemEntity renderEntity;
+
+  public com.hollingsworth.arsnouveau.common.block.tile.SingleItemTile(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #24                 // Method com/hollingsworth/arsnouveau/common/block/tile/ModdedTile."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: aload_0
+       8: aload_0
+       9: invokedynamic #43,  0             // InvokeDynamic #0:get:(Lcom/hollingsworth/arsnouveau/common/block/tile/SingleItemTile;)Lnet/minecraftforge/common/util/NonNullSupplier;
+      14: invokestatic  #49                 // Method net/minecraftforge/common/util/LazyOptional.of:(Lnet/minecraftforge/common/util/NonNullSupplier;)Lnet/minecraftforge/common/util/LazyOptional;
+      17: putfield      #51                 // Field itemHandler:Lnet/minecraftforge/common/util/LazyOptional;
+      20: aload_0
+      21: getstatic     #56                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      24: putfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      27: return
+
+  public com.hollingsworth.arsnouveau.common.block.tile.SingleItemTile(com.hollingsworth.arsnouveau.common.util.RegistryWrapper<? extends net.minecraft.world.level.block.entity.BlockEntityType<?>>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #73                 // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.get:()Ljava/lang/Object;
+       5: checkcast     #75                 // class net/minecraft/world/level/block/entity/BlockEntityType
+       8: aload_2
+       9: aload_3
+      10: invokespecial #76                 // Method "<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+      13: return
+
+  public int m_6643_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean m_7983_();
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       7: ireturn
+
+  public net.minecraft.world.item.ItemStack m_8020_(int);
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack m_7407_(int, int);
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #95                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+       7: iload_2
+       8: invokevirtual #98                 // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+      11: astore_3
+      12: aload_0
+      13: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      16: iload_2
+      17: invokevirtual #102                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+      20: aload_0
+      21: invokevirtual #105                // Method updateBlock:()Z
+      24: pop
+      25: aload_3
+      26: areturn
+
+  public net.minecraft.world.item.ItemStack m_8016_(int);
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #95                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+       7: astore_2
+       8: aload_0
+       9: getstatic     #56                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      12: putfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      15: aload_0
+      16: invokevirtual #105                // Method updateBlock:()Z
+      19: pop
+      20: aload_2
+      21: areturn
+
+  public void m_6836_(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: putfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       5: aload_0
+       6: invokevirtual #105                // Method updateBlock:()Z
+       9: pop
+      10: return
+
+  public boolean m_7013_(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       7: ireturn
+
+  public boolean m_6542_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public int m_6893_();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public void m_6211_();
+    Code:
+       0: aload_0
+       1: getstatic     #56                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       4: putfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       7: aload_0
+       8: invokevirtual #105                // Method updateBlock:()Z
+      11: pop
+      12: return
+
+  public net.minecraft.world.item.ItemStack getStack();
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public void setStack(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       5: aload_0
+       6: invokevirtual #105                // Method updateBlock:()Z
+       9: pop
+      10: return
+
+  public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T>, net.minecraft.core.Direction);
+    Code:
+       0: aload_1
+       1: getstatic     #136                // Field net/minecraftforge/common/capabilities/ForgeCapabilities.ITEM_HANDLER:Lnet/minecraftforge/common/capabilities/Capability;
+       4: if_acmpne     15
+       7: aload_0
+       8: getfield      #51                 // Field itemHandler:Lnet/minecraftforge/common/util/LazyOptional;
+      11: invokevirtual #140                // Method net/minecraftforge/common/util/LazyOptional.cast:()Lnet/minecraftforge/common/util/LazyOptional;
+      14: areturn
+      15: aload_0
+      16: aload_1
+      17: aload_2
+      18: invokespecial #142                // Method com/hollingsworth/arsnouveau/common/block/tile/ModdedTile.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;Lnet/minecraft/core/Direction;)Lnet/minecraftforge/common/util/LazyOptional;
+      21: areturn
+
+  public void invalidateCaps();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field itemHandler:Lnet/minecraftforge/common/util/LazyOptional;
+       4: invokevirtual #150                // Method net/minecraftforge/common/util/LazyOptional.invalidate:()V
+       7: aload_0
+       8: invokespecial #152                // Method com/hollingsworth/arsnouveau/common/block/tile/ModdedTile.invalidateCaps:()V
+      11: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #156                // Method com/hollingsworth/arsnouveau/common/block/tile/ModdedTile.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: aload_1
+       7: ldc           #158                // String itemStack
+       9: invokevirtual #164                // Method net/minecraft/nbt/CompoundTag.m_128423_:(Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
+      12: checkcast     #160                // class net/minecraft/nbt/CompoundTag
+      15: invokestatic  #168                // Method net/minecraft/world/item/ItemStack.m_41712_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/item/ItemStack;
+      18: putfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      21: return
+
+  public void m_183515_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #173                // Method com/hollingsworth/arsnouveau/common/block/tile/ModdedTile.m_183515_:(Lnet/minecraft/nbt/CompoundTag;)V
+       5: aload_0
+       6: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+       9: ifnull        37
+      12: new           #160                // class net/minecraft/nbt/CompoundTag
+      15: dup
+      16: invokespecial #175                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      19: astore_2
+      20: aload_0
+      21: getfield      #58                 // Field stack:Lnet/minecraft/world/item/ItemStack;
+      24: aload_2
+      25: invokevirtual #179                // Method net/minecraft/world/item/ItemStack.m_41739_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      28: pop
+      29: aload_1
+      30: ldc           #158                // String itemStack
+      32: aload_2
+      33: invokevirtual #183                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      36: pop
+      37: return
+
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+    Code:
+       0: new           #187                // class net/minecraftforge/items/wrapper/InvWrapper
+       3: dup
+       4: aload_0
+       5: invokespecial #190                // Method net/minecraftforge/items/wrapper/InvWrapper."<init>":(Lnet/minecraft/world/Container;)V
+       8: areturn
+}

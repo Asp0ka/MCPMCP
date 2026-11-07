@@ -1,0 +1,10 @@
+Compiled from "CapabilityRegistry.java"
+public class com.hollingsworth.arsnouveau.setup.registry.CapabilityRegistry {
+  public static final net.minecraftforge.common.capabilities.Capability<com.hollingsworth.arsnouveau.api.mana.IManaCap> MANA_CAPABILITY;
+  public static final net.minecraftforge.common.capabilities.Capability<com.hollingsworth.arsnouveau.common.capability.IPlayerCap> PLAYER_DATA_CAP;
+  public static final net.minecraft.core.Direction DEFAULT_FACING;
+  public com.hollingsworth.arsnouveau.setup.registry.CapabilityRegistry();
+  public static net.minecraftforge.common.util.LazyOptional<com.hollingsworth.arsnouveau.api.mana.IManaCap> getMana(net.minecraft.world.entity.LivingEntity);
+  public static net.minecraftforge.common.util.LazyOptional<com.hollingsworth.arsnouveau.common.capability.IPlayerCap> getPlayerDataCap(net.minecraft.world.entity.LivingEntity);
+  static {};
+}

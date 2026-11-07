@@ -1,0 +1,563 @@
+{
+  "counts": {
+    "missing": 275,
+    "minecraft:crafting_shaped": 108,
+    "minecraft:crafting_shapeless": 107,
+    "ars_nouveau:enchanting_apparatus": 75,
+    "ars_nouveau:book_upgrade": 2,
+    "ars_nouveau:enchantment": 96,
+    "ars_nouveau:budding_conversion": 1,
+    "ars_nouveau:glyph": 81,
+    "ars_nouveau:crush": 26,
+    "ars_nouveau:dispel_entity": 1,
+    "ars_nouveau:dye": 15,
+    "minecraft:stonecutting": 63,
+    "ars_nouveau:imbuement": 13,
+    "ars_nouveau:potion_flask": 3,
+    "ars_nouveau:reactive_enchantment": 1,
+    "ars_nouveau:scry_ritual": 12,
+    "ars_nouveau:spell_write": 1,
+    "ars_nouveau:summon_ritual": 1,
+    "ars_nouveau:caster_tome": 27,
+    "ars_nouveau:armor_upgrade": 2
+  },
+  "examples": {
+    "missing": [
+      [
+        "data/ars_nouveau/advancements/recipes/building_blocks/archwood_button.json",
+        {
+          "parent": "minecraft:recipes/root",
+          "criteria": {
+            "has_journal": {
+              "conditions": {
+                "items": [
+                  {
+                    "items": [
+                      "ars_nouveau:worn_notebook"
+                    ]
+                  }
+                ]
+              },
+              "trigger": "minecraft:inventory_changed"
+            },
+            "has_the_recipe": {
+              "conditions": {
+                "recipe": "ars_nouveau:archwood_button"
+              },
+              "trigger": "minecraft:recipe_unlocked"
+            }
+          },
+          "requirements": [
+            [
+              "has_journal",
+              "has_the_recipe"
+            ]
+          ],
+          "rewards": {
+            "recipes": [
+              "ars_nouveau:archwood_button"
+            ]
+          },
+          "sends_telemetry_event": false
+        }
+      ]
+    ],
+    "minecraft:crafting_shaped": [
+      [
+        "data/ars_nouveau/recipes/agronomic_sourcelink.json",
+        {
+          "type": "minecraft:crafting_shaped",
+          "category": "misc",
+          "key": {
+            "g": {
+              "tag": "forge:ingots/gold"
+            },
+            "i": {
+              "item": "minecraft:wheat"
+            },
+            "s": {
+              "tag": "forge:gems/source"
+            }
+          },
+          "pattern": [
+            " s ",
+            "gig",
+            " s "
+          ],
+          "result": {
+            "item": "ars_nouveau:agronomic_sourcelink"
+          },
+          "show_notification": true
+        }
+      ]
+    ],
+    "minecraft:crafting_shapeless": [
+      [
+        "data/ars_nouveau/recipes/air_essence_to_snow_bucket.json",
+        {
+          "type": "minecraft:crafting_shapeless",
+          "category": "misc",
+          "ingredients": [
+            {
+              "item": "ars_nouveau:air_essence"
+            },
+            {
+              "item": "minecraft:bucket"
+            },
+            {
+              "item": "minecraft:snow_block"
+            }
+          ],
+          "result": {
+            "item": "minecraft:powder_snow_bucket"
+          }
+        }
+      ]
+    ],
+    "ars_nouveau:enchanting_apparatus": [
+      [
+        "data/ars_nouveau/recipes/alchemists_crown.json",
+        {
+          "type": "ars_nouveau:enchanting_apparatus",
+          "keepNbtOfReagent": false,
+          "output": {
+            "item": "ars_nouveau:alchemists_crown"
+          },
+          "pedestalItems": [
+            {
+              "item": "minecraft:glass_bottle"
+            },
+            {
+              "item": "minecraft:glass_bottle"
+            },
+            {
+              "item": "minecraft:glass_bottle"
+            }
+          ],
+          "reagent": [
+            {
+              "item": "minecraft:golden_helmet"
+            }
+          ],
+          "sourceCost": 0
+        }
+      ]
+    ],
+    "ars_nouveau:book_upgrade": [
+      [
+        "data/ars_nouveau/recipes/apprentice_spell_book_upgrade.json",
+        {
+          "type": "ars_nouveau:book_upgrade",
+          "pattern": [
+            "   ",
+            " y ",
+            "   "
+          ],
+          "key": {
+            "y": {
+              "item": "ars_nouveau:spell_book"
+            }
+          },
+          "ingredients": [
+            {
+              "item": "ars_nouveau:novice_spell_book"
+            },
+            {
+              "item": "minecraft:obsidian"
+            },
+            {
+              "item": "minecraft:diamond"
+            },
+            {
+              "item": "minecraft:diamond"
+            },
+            {
+              "item": "minecraft:diamond"
+            },
+            {
+              "item": "minecraft:quartz_block"
+            },
+            {
+              "item": "minecraft:quartz_block"
+            },
+            {
+              "item": "minecraft:blaze_rod"
+            },
+            {
+              "item": "minecraft:blaze_rod"
+            }
+          ],
+          "result": {
+            "item": "ars_nouveau:apprentice_spell_book"
+          }
+        }
+      ]
+    ],
+    "ars_nouveau:enchantment": [
+      [
+        "data/ars_nouveau/recipes/aqua_affinity_1.json",
+        {
+          "type": "ars_nouveau:enchantment",
+          "enchantment": "minecraft:aqua_affinity",
+          "level": 1,
+          "pedestalItems": [
+            {
+              "item": {
+                "tag": "minecraft:fishes"
+              }
+            },
+            {
+              "item": {
+                "tag": "minecraft:fishes"
+              }
+            },
+            {
+              "item": {
+                "tag": "minecraft:fishes"
+              }
+            },
+            {
+              "item": {
+                "tag": "minecraft:fishes"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:storage_blocks/source"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:storage_blocks/source"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:storage_blocks/lapis"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:storage_blocks/lapis"
+              }
+            }
+          ],
+          "sourceCost": 5000
+        }
+      ]
+    ],
+    "ars_nouveau:budding_conversion": [
+      [
+        "data/ars_nouveau/recipes/budding_conversion/budding_amethyst.json",
+        {
+          "type": "ars_nouveau:budding_conversion",
+          "id": "ars_nouveau:budding_amethyst",
+          "input": "minecraft:amethyst_block",
+          "result": "minecraft:budding_amethyst"
+        }
+      ]
+    ],
+    "ars_nouveau:glyph": [
+      [
+        "data/ars_nouveau/recipes/burst.json",
+        {
+          "type": "ars_nouveau:glyph",
+          "count": 1,
+          "exp": 160,
+          "inputItems": [
+            {
+              "item": {
+                "item": "ars_nouveau:manipulation_essence"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:tnt"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:tnt"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:tnt"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:tnt"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:tnt"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:firework_star"
+              }
+            }
+          ],
+          "output": "ars_nouveau:burst"
+        }
+      ]
+    ],
+    "ars_nouveau:crush": [
+      [
+        "data/ars_nouveau/recipes/crush_blue_dye.json",
+        {
+          "type": "ars_nouveau:crush",
+          "input": {
+            "item": "minecraft:cornflower"
+          },
+          "output": [
+            {
+              "chance": 1.0,
+              "count": 2,
+              "item": "minecraft:blue_dye",
+              "maxRange": 1
+            }
+          ],
+          "skip_block_place": false
+        }
+      ]
+    ],
+    "ars_nouveau:dispel_entity": [
+      [
+        "data/ars_nouveau/recipes/dispel_entity/blaze_powder.json",
+        {
+          "type": "ars_nouveau:dispel_entity",
+          "entity": "minecraft:blaze",
+          "id": "ars_nouveau:blaze_powder",
+          "loot_conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "flags": {
+                  "is_on_fire": true
+                }
+              }
+            }
+          ],
+          "loot_table": "minecraft:entities/blaze"
+        }
+      ]
+    ],
+    "ars_nouveau:dye": [
+      [
+        "data/ars_nouveau/recipes/dye_apprentice_spell_book.json",
+        {
+          "type": "ars_nouveau:dye",
+          "ingredients": [
+            {
+              "tag": "forge:dyes"
+            },
+            {
+              "item": "ars_nouveau:apprentice_spell_book"
+            }
+          ],
+          "result": {
+            "item": "ars_nouveau:apprentice_spell_book"
+          }
+        }
+      ]
+    ],
+    "minecraft:stonecutting": [
+      [
+        "data/ars_nouveau/recipes/gilded_sourcestone_alternating_stone_cutterslab.json",
+        {
+          "type": "minecraft:stonecutting",
+          "count": 2,
+          "ingredient": {
+            "item": "ars_nouveau:gilded_sourcestone_alternating"
+          },
+          "result": "ars_nouveau:gilded_sourcestone_alternating_slab"
+        }
+      ]
+    ],
+    "ars_nouveau:imbuement": [
+      [
+        "data/ars_nouveau/recipes/imbuement_abjuration_essence.json",
+        {
+          "type": "ars_nouveau:imbuement",
+          "count": 1,
+          "input": {
+            "tag": "forge:gems/source"
+          },
+          "output": "ars_nouveau:abjuration_essence",
+          "pedestalItems": [
+            {
+              "item": {
+                "item": "minecraft:fermented_spider_eye"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:sugar"
+              }
+            },
+            {
+              "item": {
+                "item": "minecraft:milk_bucket"
+              }
+            }
+          ],
+          "source": 2000
+        }
+      ]
+    ],
+    "ars_nouveau:potion_flask": [
+      [
+        "data/ars_nouveau/recipes/potion_flask_amp_fill.json",
+        {
+          "type": "ars_nouveau:potion_flask",
+          "ingredients": [
+            {
+              "item": "ars_nouveau:potion_flask_amplify"
+            },
+            {
+              "item": "minecraft:potion"
+            }
+          ],
+          "result": {
+            "item": "ars_nouveau:potion_flask_amplify"
+          }
+        }
+      ]
+    ],
+    "ars_nouveau:reactive_enchantment": [
+      [
+        "data/ars_nouveau/recipes/reactive_1.json",
+        {
+          "type": "ars_nouveau:reactive_enchantment",
+          "pedestalItems": [
+            {
+              "item": {
+                "item": "ars_nouveau:spell_parchment"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:storage_blocks/lapis"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:storage_blocks/source"
+              }
+            }
+          ],
+          "sourceCost": 3000
+        }
+      ]
+    ],
+    "ars_nouveau:scry_ritual": [
+      [
+        "data/ars_nouveau/recipes/scry_ritual/amethyst_blocks.json",
+        {
+          "type": "ars_nouveau:scry_ritual",
+          "augment": "forge:storage_blocks/amethyst",
+          "highlight": "forge:storage_blocks/amethyst",
+          "id": "ars_nouveau:amethyst_blocks"
+        }
+      ]
+    ],
+    "ars_nouveau:spell_write": [
+      [
+        "data/ars_nouveau/recipes/spell_write.json",
+        {
+          "type": "ars_nouveau:spell_write",
+          "pedestalItems": [
+            {
+              "item": {
+                "item": "ars_nouveau:spell_parchment"
+              }
+            }
+          ],
+          "sourceCost": 0
+        }
+      ]
+    ],
+    "ars_nouveau:summon_ritual": [
+      [
+        "data/ars_nouveau/recipes/summon_ritual/bats.json",
+        {
+          "type": "ars_nouveau:summon_ritual",
+          "augment": {
+            "item": "minecraft:amethyst_shard"
+          },
+          "count": 5,
+          "mobs": [
+            {
+              "mob": "minecraft:bat",
+              "weight": 1
+            }
+          ],
+          "source": "MOB_LIST"
+        }
+      ]
+    ],
+    "ars_nouveau:caster_tome": [
+      [
+        "data/ars_nouveau/recipes/tomes/alex_tome.json",
+        {
+          "type": "ars_nouveau:caster_tome",
+          "color": {
+            "type": "ars_nouveau:rainbow",
+            "blue": 214,
+            "green": 255,
+            "red": 1
+          },
+          "flavour_text": "For those who can't settle with just a tiny hut.",
+          "name": "Alex's Magnificent Mansion",
+          "sound": {
+            "family": "ars_nouveau:tempestry_family",
+            "pitch": 1.0,
+            "volume": 1.0
+          },
+          "spell": [
+            "ars_nouveau:glyph_self",
+            "ars_nouveau:burst",
+            "ars_nouveau:glyph_sensitive",
+            "ars_nouveau:glyph_dampen",
+            "ars_nouveau:glyph_aoe",
+            "ars_nouveau:glyph_aoe",
+            "ars_nouveau:glyph_aoe",
+            "ars_nouveau:glyph_aoe",
+            "ars_nouveau:glyph_aoe",
+            "ars_nouveau:glyph_phantom_block",
+            "ars_nouveau:glyph_amplify",
+            "ars_nouveau:glyph_pierce"
+          ],
+          "tome_type": "ars_nouveau:caster_tome"
+        }
+      ]
+    ],
+    "ars_nouveau:armor_upgrade": [
+      [
+        "data/ars_nouveau/recipes/upgrade_1.json",
+        {
+          "type": "ars_nouveau:armor_upgrade",
+          "pedestalItems": [
+            {
+              "item": {
+                "tag": "forge:rods/blaze"
+              }
+            },
+            {
+              "item": {
+                "tag": "forge:rods/blaze"
+              }
+            }
+          ],
+          "sourceCost": 2500,
+          "tier": 1
+        }
+      ]
+    ]
+  }
+}

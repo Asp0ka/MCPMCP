@@ -1,0 +1,107 @@
+Compiled from "LodestoneBlockEntity.java"
+public class team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public boolean needsSync;
+
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #12                 // Method net/minecraft/world/level/block/entity/BlockEntity."<init>":(Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+       7: return
+
+  public void onBreak(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method invalidateCaps:()V
+       4: return
+
+  public void onPlace(net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack);
+    Code:
+       0: return
+
+  public void onNeighborUpdate(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+    Code:
+       0: return
+
+  public net.minecraft.world.item.ItemStack onClone(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.HitResult, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+    Code:
+       0: getstatic     #46                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: areturn
+
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+       0: getstatic     #58                 // Field net/minecraft/world/InteractionResult.PASS:Lnet/minecraft/world/InteractionResult;
+       3: areturn
+
+  public void onEntityInside(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity);
+    Code:
+       0: return
+
+  public net.minecraft.nbt.CompoundTag m_5995_();
+    Code:
+       0: aload_0
+       1: invokevirtual #70                 // Method m_187482_:()Lnet/minecraft/nbt/CompoundTag;
+       4: areturn
+
+  public void handleUpdateTag(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: ifnull        9
+       4: aload_0
+       5: aload_1
+       6: invokespecial #74                 // Method net/minecraft/world/level/block/entity/BlockEntity.handleUpdateTag:(Lnet/minecraft/nbt/CompoundTag;)V
+       9: return
+
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #79                 // Field needsSync:Z
+       5: aload_0
+       6: aload_1
+       7: invokespecial #81                 // Method net/minecraft/world/level/block/entity/BlockEntity.m_142466_:(Lnet/minecraft/nbt/CompoundTag;)V
+      10: return
+
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+    Code:
+       0: aload_0
+       1: invokestatic  #90                 // Method net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket.m_195640_:(Lnet/minecraft/world/level/block/entity/BlockEntity;)Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+       4: areturn
+
+  public void onDataPacket(net.minecraft.network.Connection, net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #94                 // Method net/minecraft/world/level/block/entity/BlockEntity.onDataPacket:(Lnet/minecraft/network/Connection;Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;)V
+       6: aload_0
+       7: aload_0
+       8: invokevirtual #96                 // Method getUpdatePacket:()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+      11: invokevirtual #99                 // Method net/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket.m_131708_:()Lnet/minecraft/nbt/CompoundTag;
+      14: invokevirtual #100                // Method handleUpdateTag:(Lnet/minecraft/nbt/CompoundTag;)V
+      17: return
+
+  public void tick();
+    Code:
+       0: aload_0
+       1: getfield      #79                 // Field needsSync:Z
+       4: ifeq          16
+       7: aload_0
+       8: invokevirtual #108                // Method init:()V
+      11: aload_0
+      12: iconst_0
+      13: putfield      #79                 // Field needsSync:Z
+      16: return
+
+  public void init();
+    Code:
+       0: return
+
+  public net.minecraft.network.protocol.Packet m_58483_();
+    Code:
+       0: aload_0
+       1: invokevirtual #96                 // Method getUpdatePacket:()Lnet/minecraft/network/protocol/game/ClientboundBlockEntityDataPacket;
+       4: areturn
+}

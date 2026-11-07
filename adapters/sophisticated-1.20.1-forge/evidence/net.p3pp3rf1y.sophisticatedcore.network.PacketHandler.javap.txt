@@ -1,0 +1,526 @@
+Compiled from "PacketHandler.java"
+public class net.p3pp3rf1y.sophisticatedcore.network.PacketHandler {
+  private static final int PAYLOAD_TO_CLIENT_MAX;
+
+  private static final int PART_SIZE;
+
+  private final java.util.Map<java.lang.Class<?>, net.p3pp3rf1y.sophisticatedcore.network.PacketHandler$MessageType<?>> byType;
+
+  private final java.util.Map<java.lang.Integer, net.p3pp3rf1y.sophisticatedcore.network.PacketHandler$MessageType<?>> byId;
+
+  public static final net.p3pp3rf1y.sophisticatedcore.network.PacketHandler INSTANCE;
+
+  private final net.minecraftforge.network.simple.SimpleChannel networkWrapper;
+
+  private int idx;
+
+  private final net.p3pp3rf1y.sophisticatedcore.network.PacketSplitter splitter;
+
+  protected net.p3pp3rf1y.sophisticatedcore.network.PacketHandler(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #53                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #55                 // class java/util/HashMap
+       8: dup
+       9: invokespecial #56                 // Method java/util/HashMap."<init>":()V
+      12: putfield      #58                 // Field byType:Ljava/util/Map;
+      15: aload_0
+      16: new           #55                 // class java/util/HashMap
+      19: dup
+      20: invokespecial #56                 // Method java/util/HashMap."<init>":()V
+      23: putfield      #60                 // Field byId:Ljava/util/Map;
+      26: aload_0
+      27: iconst_0
+      28: putfield      #62                 // Field idx:I
+      31: aload_0
+      32: new           #64                 // class net/p3pp3rf1y/sophisticatedcore/network/PacketSplitter
+      35: dup
+      36: ldc           #36                 // int 1048570
+      38: invokespecial #67                 // Method net/p3pp3rf1y/sophisticatedcore/network/PacketSplitter."<init>":(I)V
+      41: putfield      #69                 // Field splitter:Lnet/p3pp3rf1y/sophisticatedcore/network/PacketSplitter;
+      44: aload_0
+      45: new           #71                 // class net/minecraft/resources/ResourceLocation
+      48: dup
+      49: aload_1
+      50: ldc           #73                 // String channel
+      52: invokespecial #75                 // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      55: aload_2
+      56: invokedynamic #95,  0             // InvokeDynamic #0:get:(Ljava/lang/String;)Ljava/util/function/Supplier;
+      61: aload_2
+      62: dup
+      63: invokestatic  #101                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      66: pop
+      67: invokedynamic #115,  0            // InvokeDynamic #1:test:(Ljava/lang/String;)Ljava/util/function/Predicate;
+      72: aload_2
+      73: dup
+      74: invokestatic  #101                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      77: pop
+      78: invokedynamic #115,  0            // InvokeDynamic #1:test:(Ljava/lang/String;)Ljava/util/function/Predicate;
+      83: invokestatic  #121                // Method net/minecraftforge/network/NetworkRegistry.newSimpleChannel:(Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Supplier;Ljava/util/function/Predicate;Ljava/util/function/Predicate;)Lnet/minecraftforge/network/simple/SimpleChannel;
+      86: putfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+      89: return
+
+  public final void init();
+    Code:
+       0: aload_0
+       1: invokevirtual #131                // Method registerSplitPacket:()V
+       4: aload_0
+       5: invokevirtual #134                // Method registerMessages:()V
+       8: return
+
+  public void registerSplitPacket();
+    Code:
+       0: aload_0
+       1: ldc           #136                // class net/p3pp3rf1y/sophisticatedcore/network/SplitPacket
+       3: invokedynamic #148,  0            // InvokeDynamic #2:accept:()Ljava/util/function/BiConsumer;
+       8: invokedynamic #159,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+      13: aload_0
+      14: invokedynamic #168,  0            // InvokeDynamic #4:accept:(Lnet/p3pp3rf1y/sophisticatedcore/network/PacketHandler;)Ljava/util/function/BiConsumer;
+      19: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      22: return
+
+  public void registerMessages();
+    Code:
+       0: aload_0
+       1: ldc           #174                // class net/p3pp3rf1y/sophisticatedcore/network/SyncContainerClientDataMessage
+       3: invokedynamic #180,  0            // InvokeDynamic #5:accept:()Ljava/util/function/BiConsumer;
+       8: invokedynamic #186,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+      13: invokedynamic #193,  0            // InvokeDynamic #7:accept:()Ljava/util/function/BiConsumer;
+      18: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      21: aload_0
+      22: ldc           #195                // class net/p3pp3rf1y/sophisticatedcore/network/TransferFullSlotMessage
+      24: invokedynamic #201,  0            // InvokeDynamic #8:accept:()Ljava/util/function/BiConsumer;
+      29: invokedynamic #207,  0            // InvokeDynamic #9:apply:()Ljava/util/function/Function;
+      34: invokedynamic #213,  0            // InvokeDynamic #10:accept:()Ljava/util/function/BiConsumer;
+      39: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      42: aload_0
+      43: ldc           #215                // class net/p3pp3rf1y/sophisticatedcore/network/SyncContainerStacksMessage
+      45: invokedynamic #221,  0            // InvokeDynamic #11:accept:()Ljava/util/function/BiConsumer;
+      50: invokedynamic #227,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+      55: invokedynamic #233,  0            // InvokeDynamic #13:accept:()Ljava/util/function/BiConsumer;
+      60: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      63: aload_0
+      64: ldc           #235                // class net/p3pp3rf1y/sophisticatedcore/network/SyncSlotStackMessage
+      66: invokedynamic #241,  0            // InvokeDynamic #14:accept:()Ljava/util/function/BiConsumer;
+      71: invokedynamic #247,  0            // InvokeDynamic #15:apply:()Ljava/util/function/Function;
+      76: invokedynamic #253,  0            // InvokeDynamic #16:accept:()Ljava/util/function/BiConsumer;
+      81: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      84: aload_0
+      85: ldc           #255                // class net/p3pp3rf1y/sophisticatedcore/network/SyncRecentCraftedResultsMessage
+      87: invokedynamic #261,  0            // InvokeDynamic #17:accept:()Ljava/util/function/BiConsumer;
+      92: invokedynamic #267,  0            // InvokeDynamic #18:apply:()Ljava/util/function/Function;
+      97: invokedynamic #273,  0            // InvokeDynamic #19:accept:()Ljava/util/function/BiConsumer;
+     102: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     105: aload_0
+     106: ldc_w         #275                // class net/p3pp3rf1y/sophisticatedcore/network/SyncPlayerSettingsMessage
+     109: invokedynamic #281,  0            // InvokeDynamic #20:accept:()Ljava/util/function/BiConsumer;
+     114: invokedynamic #287,  0            // InvokeDynamic #21:apply:()Ljava/util/function/Function;
+     119: invokedynamic #293,  0            // InvokeDynamic #22:accept:()Ljava/util/function/BiConsumer;
+     124: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     127: aload_0
+     128: ldc_w         #295                // class net/p3pp3rf1y/sophisticatedcore/upgrades/jukebox/PlayDiscMessage
+     131: invokedynamic #301,  0            // InvokeDynamic #23:accept:()Ljava/util/function/BiConsumer;
+     136: invokedynamic #307,  0            // InvokeDynamic #24:apply:()Ljava/util/function/Function;
+     141: invokedynamic #313,  0            // InvokeDynamic #25:accept:()Ljava/util/function/BiConsumer;
+     146: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     149: aload_0
+     150: ldc_w         #315                // class net/p3pp3rf1y/sophisticatedcore/upgrades/jukebox/StopDiscPlaybackMessage
+     153: invokedynamic #321,  0            // InvokeDynamic #26:accept:()Ljava/util/function/BiConsumer;
+     158: invokedynamic #327,  0            // InvokeDynamic #27:apply:()Ljava/util/function/Function;
+     163: invokedynamic #333,  0            // InvokeDynamic #28:accept:()Ljava/util/function/BiConsumer;
+     168: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     171: aload_0
+     172: ldc_w         #335                // class net/p3pp3rf1y/sophisticatedcore/upgrades/tank/TankClickMessage
+     175: invokedynamic #341,  0            // InvokeDynamic #29:accept:()Ljava/util/function/BiConsumer;
+     180: invokedynamic #347,  0            // InvokeDynamic #30:apply:()Ljava/util/function/Function;
+     185: invokedynamic #353,  0            // InvokeDynamic #31:accept:()Ljava/util/function/BiConsumer;
+     190: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     193: aload_0
+     194: ldc_w         #355                // class net/p3pp3rf1y/sophisticatedcore/network/SyncTemplateSettingsMessage
+     197: invokedynamic #361,  0            // InvokeDynamic #32:accept:()Ljava/util/function/BiConsumer;
+     202: invokedynamic #367,  0            // InvokeDynamic #33:apply:()Ljava/util/function/Function;
+     207: invokedynamic #373,  0            // InvokeDynamic #34:accept:()Ljava/util/function/BiConsumer;
+     212: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     215: aload_0
+     216: ldc_w         #375                // class net/p3pp3rf1y/sophisticatedcore/network/SyncAdditionalSlotInfoMessage
+     219: invokedynamic #381,  0            // InvokeDynamic #35:accept:()Ljava/util/function/BiConsumer;
+     224: invokedynamic #387,  0            // InvokeDynamic #36:apply:()Ljava/util/function/Function;
+     229: invokedynamic #393,  0            // InvokeDynamic #37:accept:()Ljava/util/function/BiConsumer;
+     234: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     237: aload_0
+     238: ldc_w         #395                // class net/p3pp3rf1y/sophisticatedcore/network/SyncEmptySlotIconsMessage
+     241: invokedynamic #401,  0            // InvokeDynamic #38:accept:()Ljava/util/function/BiConsumer;
+     246: invokedynamic #407,  0            // InvokeDynamic #39:apply:()Ljava/util/function/Function;
+     251: invokedynamic #413,  0            // InvokeDynamic #40:accept:()Ljava/util/function/BiConsumer;
+     256: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     259: aload_0
+     260: ldc_w         #415                // class net/p3pp3rf1y/sophisticatedcore/network/SyncSlotChangeErrorMessage
+     263: invokedynamic #421,  0            // InvokeDynamic #41:accept:()Ljava/util/function/BiConsumer;
+     268: invokedynamic #427,  0            // InvokeDynamic #42:apply:()Ljava/util/function/Function;
+     273: invokedynamic #433,  0            // InvokeDynamic #43:accept:()Ljava/util/function/BiConsumer;
+     278: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     281: aload_0
+     282: ldc_w         #435                // class net/p3pp3rf1y/sophisticatedcore/network/SyncDatapackSettingsTemplateMessage
+     285: invokedynamic #441,  0            // InvokeDynamic #44:accept:()Ljava/util/function/BiConsumer;
+     290: invokedynamic #447,  0            // InvokeDynamic #45:apply:()Ljava/util/function/Function;
+     295: invokedynamic #453,  0            // InvokeDynamic #46:accept:()Ljava/util/function/BiConsumer;
+     300: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     303: aload_0
+     304: ldc_w         #455                // class net/p3pp3rf1y/sophisticatedcore/network/TransferItemsMessage
+     307: invokedynamic #461,  0            // InvokeDynamic #47:accept:()Ljava/util/function/BiConsumer;
+     312: invokedynamic #467,  0            // InvokeDynamic #48:apply:()Ljava/util/function/Function;
+     317: invokedynamic #473,  0            // InvokeDynamic #49:accept:()Ljava/util/function/BiConsumer;
+     322: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     325: aload_0
+     326: ldc_w         #475                // class net/p3pp3rf1y/sophisticatedcore/network/SyncBlockHighlightsMessage
+     329: invokedynamic #481,  0            // InvokeDynamic #50:accept:()Ljava/util/function/BiConsumer;
+     334: invokedynamic #487,  0            // InvokeDynamic #51:apply:()Ljava/util/function/Function;
+     339: invokedynamic #493,  0            // InvokeDynamic #52:accept:()Ljava/util/function/BiConsumer;
+     344: invokevirtual #172                // Method registerMessage:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     347: return
+
+  public <M> void registerMessage(java.lang.Class<M>, java.util.function.BiConsumer<M, net.minecraft.network.FriendlyByteBuf>, java.util.function.Function<net.minecraft.network.FriendlyByteBuf, M>, java.util.function.BiConsumer<M, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>>);
+    Code:
+       0: aload_0
+       1: dup
+       2: getfield      #62                 // Field idx:I
+       5: dup_x1
+       6: iconst_1
+       7: iadd
+       8: putfield      #62                 // Field idx:I
+      11: istore        5
+      13: new           #7                  // class net/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType
+      16: dup
+      17: iload         5
+      19: aload_1
+      20: aload_2
+      21: aload_3
+      22: aload         4
+      24: invokespecial #497                // Method net/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType."<init>":(ILjava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      27: astore        6
+      29: aload_0
+      30: getfield      #58                 // Field byType:Ljava/util/Map;
+      33: aload_1
+      34: aload         6
+      36: invokeinterface #503,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      41: pop
+      42: aload_0
+      43: getfield      #60                 // Field byId:Ljava/util/Map;
+      46: iload         5
+      48: invokestatic  #509                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      51: aload         6
+      53: invokeinterface #503,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      58: pop
+      59: aload_0
+      60: getfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+      63: iload         5
+      65: aload_1
+      66: aload_2
+      67: aload_3
+      68: aload         4
+      70: invokevirtual #514                // Method net/minecraftforge/network/simple/SimpleChannel.registerMessage:(ILjava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)Lnet/minecraftforge/network/simple/IndexedMessageCodec$MessageHandler;
+      73: pop
+      74: return
+
+  public <M> void sendToServer(M);
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+       4: aload_1
+       5: invokevirtual #534                // Method net/minecraftforge/network/simple/SimpleChannel.sendToServer:(Ljava/lang/Object;)V
+       8: return
+
+  public <M> void sendToClient(net.minecraft.server.level.ServerPlayer, M);
+    Code:
+       0: aload_0
+       1: getstatic     #544                // Field net/minecraftforge/network/PacketDistributor.PLAYER:Lnet/minecraftforge/network/PacketDistributor;
+       4: aload_1
+       5: invokedynamic #554,  0            // InvokeDynamic #53:get:(Lnet/minecraft/server/level/ServerPlayer;)Ljava/util/function/Supplier;
+      10: invokevirtual #558                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      13: aload_2
+      14: invokevirtual #562                // Method sendPossiblySplit:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      17: return
+
+  public <M> void sendToAllTracking(M, net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: getstatic     #570                // Field net/minecraftforge/network/PacketDistributor.TRACKING_ENTITY:Lnet/minecraftforge/network/PacketDistributor;
+       4: aload_2
+       5: invokedynamic #580,  0            // InvokeDynamic #54:get:(Lnet/minecraft/world/entity/Entity;)Ljava/util/function/Supplier;
+      10: invokevirtual #558                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      13: aload_1
+      14: invokevirtual #562                // Method sendPossiblySplit:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      17: return
+
+  public <M> void sentToAllTrackingChunkOf(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, M);
+    Code:
+       0: aload_0
+       1: getstatic     #588                // Field net/minecraftforge/network/PacketDistributor.TRACKING_CHUNK:Lnet/minecraftforge/network/PacketDistributor;
+       4: aload_1
+       5: aload_2
+       6: invokedynamic #598,  0            // InvokeDynamic #55:get:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Ljava/util/function/Supplier;
+      11: invokevirtual #558                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      14: aload_3
+      15: invokevirtual #562                // Method sendPossiblySplit:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      18: return
+
+  private <M> void sendPossiblySplit(net.minecraftforge.network.PacketDistributor$PacketTarget, M);
+    Code:
+       0: aload_2
+       1: instanceof    #605                // class net/p3pp3rf1y/sophisticatedcore/network/ISplittableMessage
+       4: ifne          17
+       7: aload_0
+       8: getfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+      11: aload_1
+      12: aload_2
+      13: invokevirtual #608                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      16: return
+      17: aload_1
+      18: invokevirtual #612                // Method net/minecraftforge/network/PacketDistributor$PacketTarget.getDirection:()Lnet/minecraftforge/network/NetworkDirection;
+      21: getstatic     #618                // Field net/minecraftforge/network/NetworkDirection.PLAY_TO_CLIENT:Lnet/minecraftforge/network/NetworkDirection;
+      24: if_acmpeq     37
+      27: aload_0
+      28: getfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+      31: aload_1
+      32: aload_2
+      33: invokevirtual #608                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      36: return
+      37: aload_0
+      38: aload_2
+      39: invokevirtual #622                // Method typeFor:(Ljava/lang/Object;)Lnet/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType;
+      42: astore_3
+      43: aload_3
+      44: getfield      #624                // Field net/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType.id:I
+      47: aload_3
+      48: dup
+      49: invokestatic  #101                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      52: pop
+      53: invokedynamic #633,  0            // InvokeDynamic #56:accept:(Lnet/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType;)Ljava/util/function/BiConsumer;
+      58: aload_2
+      59: invokestatic  #637                // Method encodeVirtualStream:(ILjava/util/function/BiConsumer;Ljava/lang/Object;)[B
+      62: astore        4
+      64: aload         4
+      66: arraylength
+      67: ldc           #36                 // int 1048570
+      69: if_icmpgt     82
+      72: aload_0
+      73: getfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+      76: aload_1
+      77: aload_2
+      78: invokevirtual #608                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      81: return
+      82: aload_0
+      83: getfield      #69                 // Field splitter:Lnet/p3pp3rf1y/sophisticatedcore/network/PacketSplitter;
+      86: aload         4
+      88: aload_0
+      89: aload_1
+      90: invokedynamic #650,  0            // InvokeDynamic #57:accept:(Lnet/p3pp3rf1y/sophisticatedcore/network/PacketHandler;Lnet/minecraftforge/network/PacketDistributor$PacketTarget;)Ljava/util/function/Consumer;
+      95: invokevirtual #654                // Method net/p3pp3rf1y/sophisticatedcore/network/PacketSplitter.splitAndSend:([BLjava/util/function/Consumer;)V
+      98: return
+
+  private <M> net.p3pp3rf1y.sophisticatedcore.network.PacketHandler$MessageType<M> typeFor(M);
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field byType:Ljava/util/Map;
+       4: aload_1
+       5: invokevirtual #662                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       8: invokeinterface #664,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      13: checkcast     #7                  // class net/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType
+      16: astore_2
+      17: aload_2
+      18: ifnonnull     41
+      21: new           #666                // class java/lang/IllegalStateException
+      24: dup
+      25: aload_1
+      26: invokevirtual #662                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      29: invokevirtual #671                // Method java/lang/Class.getName:()Ljava/lang/String;
+      32: invokedynamic #682,  0            // InvokeDynamic #58:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      37: invokespecial #685                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      40: athrow
+      41: aload_2
+      42: areturn
+
+  public <M> void sendToAllNear(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.phys.Vec3, int, M);
+    Code:
+       0: aload_0
+       1: getstatic     #693                // Field net/minecraftforge/network/PacketDistributor.NEAR:Lnet/minecraftforge/network/PacketDistributor;
+       4: aload_2
+       5: iload_3
+       6: aload_1
+       7: invokedynamic #703,  0            // InvokeDynamic #59:get:(Lnet/minecraft/world/phys/Vec3;ILnet/minecraft/resources/ResourceKey;)Ljava/util/function/Supplier;
+      12: invokevirtual #558                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      15: aload         4
+      17: invokevirtual #562                // Method sendPossiblySplit:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      20: return
+
+  private static <M> byte[] encodeVirtualStream(int, java.util.function.BiConsumer<M, net.minecraft.network.FriendlyByteBuf>, M);
+    Code:
+       0: new           #712                // class net/minecraft/network/FriendlyByteBuf
+       3: dup
+       4: invokestatic  #718                // Method io/netty/buffer/Unpooled.buffer:()Lio/netty/buffer/ByteBuf;
+       7: invokespecial #721                // Method net/minecraft/network/FriendlyByteBuf."<init>":(Lio/netty/buffer/ByteBuf;)V
+      10: astore_3
+      11: aload_3
+      12: iload_0
+      13: invokevirtual #725                // Method net/minecraft/network/FriendlyByteBuf.m_130130_:(I)Lnet/minecraft/network/FriendlyByteBuf;
+      16: pop
+      17: aload_1
+      18: aload_2
+      19: aload_3
+      20: invokeinterface #729,  3          // InterfaceMethod java/util/function/BiConsumer.accept:(Ljava/lang/Object;Ljava/lang/Object;)V
+      25: aload_3
+      26: invokevirtual #733                // Method net/minecraft/network/FriendlyByteBuf.readableBytes:()I
+      29: newarray       byte
+      31: astore        4
+      33: aload_3
+      34: aload_3
+      35: invokevirtual #736                // Method net/minecraft/network/FriendlyByteBuf.readerIndex:()I
+      38: aload         4
+      40: invokevirtual #740                // Method net/minecraft/network/FriendlyByteBuf.getBytes:(I[B)Lio/netty/buffer/ByteBuf;
+      43: pop
+      44: aload         4
+      46: astore        5
+      48: aload_3
+      49: invokevirtual #744                // Method net/minecraft/network/FriendlyByteBuf.release:()Z
+      52: pop
+      53: aload         5
+      55: areturn
+      56: astore        6
+      58: aload_3
+      59: invokevirtual #744                // Method net/minecraft/network/FriendlyByteBuf.release:()Z
+      62: pop
+      63: aload         6
+      65: athrow
+    Exception table:
+       from    to  target type
+          11    48    56   any
+          56    58    56   any
+
+  private void handleSplitPacket(net.p3pp3rf1y.sophisticatedcore.network.SplitPacket, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+    Code:
+       0: aload_2
+       1: invokeinterface #755,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #20                 // class net/minecraftforge/network/NetworkEvent$Context
+       9: astore_3
+      10: aload_3
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: invokedynamic #764,  0            // InvokeDynamic #60:run:(Lnet/p3pp3rf1y/sophisticatedcore/network/PacketHandler;Lnet/p3pp3rf1y/sophisticatedcore/network/SplitPacket;Ljava/util/function/Supplier;)Ljava/lang/Runnable;
+      19: invokevirtual #768                // Method net/minecraftforge/network/NetworkEvent$Context.enqueueWork:(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+      22: pop
+      23: aload_3
+      24: iconst_1
+      25: invokevirtual #772                // Method net/minecraftforge/network/NetworkEvent$Context.setPacketHandled:(Z)V
+      28: return
+
+  private void lambda$handleSplitPacket$6(net.p3pp3rf1y.sophisticatedcore.network.SplitPacket, java.util.function.Supplier);
+    Code:
+       0: aload_0
+       1: getfield      #69                 // Field splitter:Lnet/p3pp3rf1y/sophisticatedcore/network/PacketSplitter;
+       4: aload_1
+       5: invokevirtual #783                // Method net/p3pp3rf1y/sophisticatedcore/network/SplitPacket.payload:()[B
+       8: invokevirtual #787                // Method net/p3pp3rf1y/sophisticatedcore/network/PacketSplitter.acceptPart:([B)Lnet/minecraft/network/FriendlyByteBuf;
+      11: astore_3
+      12: aload_3
+      13: ifnonnull     17
+      16: return
+      17: aload_3
+      18: invokevirtual #790                // Method net/minecraft/network/FriendlyByteBuf.m_130242_:()I
+      21: istore        4
+      23: aload_0
+      24: getfield      #60                 // Field byId:Ljava/util/Map;
+      27: iload         4
+      29: invokestatic  #509                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      32: invokeinterface #664,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      37: checkcast     #7                  // class net/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType
+      40: astore        5
+      42: aload         5
+      44: ifnonnull     53
+      47: aload_3
+      48: invokevirtual #744                // Method net/minecraft/network/FriendlyByteBuf.release:()Z
+      51: pop
+      52: return
+      53: aload         5
+      55: aload_3
+      56: aload_2
+      57: invokevirtual #794                // Method net/p3pp3rf1y/sophisticatedcore/network/PacketHandler$MessageType.decodeAndHandle:(Lnet/minecraft/network/FriendlyByteBuf;Ljava/util/function/Supplier;)V
+      60: aload_3
+      61: invokevirtual #744                // Method net/minecraft/network/FriendlyByteBuf.release:()Z
+      64: pop
+      65: goto          78
+      68: astore        6
+      70: aload_3
+      71: invokevirtual #744                // Method net/minecraft/network/FriendlyByteBuf.release:()Z
+      74: pop
+      75: aload         6
+      77: athrow
+      78: return
+    Exception table:
+       from    to  target type
+          17    47    68   any
+          53    60    68   any
+          68    70    68   any
+
+  private static net.minecraftforge.network.PacketDistributor$TargetPoint lambda$sendToAllNear$5(net.minecraft.world.phys.Vec3, int, net.minecraft.resources.ResourceKey);
+    Code:
+       0: new           #25                 // class net/minecraftforge/network/PacketDistributor$TargetPoint
+       3: dup
+       4: aload_0
+       5: getfield      #802                // Field net/minecraft/world/phys/Vec3.f_82479_:D
+       8: aload_0
+       9: getfield      #805                // Field net/minecraft/world/phys/Vec3.f_82480_:D
+      12: aload_0
+      13: getfield      #808                // Field net/minecraft/world/phys/Vec3.f_82481_:D
+      16: iload_1
+      17: i2d
+      18: aload_2
+      19: invokespecial #811                // Method net/minecraftforge/network/PacketDistributor$TargetPoint."<init>":(DDDDLnet/minecraft/resources/ResourceKey;)V
+      22: areturn
+
+  private void lambda$sendPossiblySplit$4(net.minecraftforge.network.PacketDistributor$PacketTarget, byte[]);
+    Code:
+       0: aload_0
+       1: getfield      #123                // Field networkWrapper:Lnet/minecraftforge/network/simple/SimpleChannel;
+       4: aload_1
+       5: new           #136                // class net/p3pp3rf1y/sophisticatedcore/network/SplitPacket
+       8: dup
+       9: aload_2
+      10: invokespecial #813                // Method net/p3pp3rf1y/sophisticatedcore/network/SplitPacket."<init>":([B)V
+      13: invokevirtual #608                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      16: return
+
+  private static net.minecraft.world.level.chunk.LevelChunk lambda$sentToAllTrackingChunkOf$3(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #820                // Method net/minecraft/world/level/Level.m_46745_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/chunk/LevelChunk;
+       5: areturn
+
+  private static net.minecraft.world.entity.Entity lambda$sendToAllTracking$2(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: areturn
+
+  private static net.minecraft.server.level.ServerPlayer lambda$sendToClient$1(net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_0
+       1: areturn
+
+  private static java.lang.String lambda$new$0(java.lang.String);
+    Code:
+       0: aload_0
+       1: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class net/p3pp3rf1y/sophisticatedcore/network/PacketHandler
+       3: dup
+       4: ldc_w         #823                // String sophisticatedcore
+       7: invokestatic  #828                // Method net/p3pp3rf1y/sophisticatedcore/SophisticatedCore.getNetworkProtocolVersion:()Ljava/lang/String;
+      10: invokespecial #829                // Method "<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      13: putstatic     #831                // Field INSTANCE:Lnet/p3pp3rf1y/sophisticatedcore/network/PacketHandler;
+      16: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

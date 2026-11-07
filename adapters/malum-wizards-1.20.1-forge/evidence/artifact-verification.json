@@ -1,0 +1,34 @@
+{
+  "result": "passed",
+  "checks": [
+    {
+      "mod": "malum",
+      "artifact": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\malum-wizards-1.20.1-forge\\distribution\\malum\\adapter.jar",
+      "artifact_sha256": "c365bf401338a59a5200eb8fbcc486b2cf571df129f18cd428b2866b17a6ff87",
+      "bytes": 32810,
+      "service_provider": "dev.mcpmcp.malum.MalumProvider",
+      "target_version": "1.20.1-1.6.7",
+      "target_sha256": "ceda6ce4cc19de21ff6c21a732d8f9270ecc83cdae69027b13aaa24b536307f8",
+      "production_classes": 11,
+      "pinned_member_references_verified": 56,
+      "raw_c2s": false,
+      "bundled_target_or_core": false,
+      "live_game_tested": false
+    },
+    {
+      "mod": "wizards_reborn",
+      "artifact": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\malum-wizards-1.20.1-forge\\distribution\\wizards_reborn\\adapter.jar",
+      "artifact_sha256": "488b07f0837881d39698f4a164a05ad46c81ae062c6cba89f00b87a3019e6f1a",
+      "bytes": 34453,
+      "service_provider": "dev.mcpmcp.wizards.WizardsProvider",
+      "target_version": "1.20.1-0.2.9",
+      "target_sha256": "38f040319fe4dc16400b2507e3cb627a321cddba314de0d4acc4f2dcd8ffbfe7",
+      "production_classes": 11,
+      "pinned_member_references_verified": 76,
+      "raw_c2s": false,
+      "bundled_target_or_core": false,
+      "live_game_tested": false
+    }
+  ],
+  "live_game_tested": false
+}

@@ -1,0 +1,81 @@
+Compiled from "SlotIronFurnaceInputGenerator.java"
+public class ironfurnaces.container.slots.SlotIronFurnaceInputGenerator extends net.minecraft.world.inventory.Slot {
+  ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase te;
+
+  public ironfurnaces.container.slots.SlotIronFurnaceInputGenerator(ironfurnaces.tileentity.furnaces.BlockIronFurnaceTileBase, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: invokespecial #12                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+       9: aload_0
+      10: aload_1
+      11: putfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: return
+
+  public boolean m_5857_(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: iconst_3
+       5: invokevirtual #28                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+       8: invokevirtual #34                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      11: ifne          75
+      14: aload_0
+      15: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      18: iconst_3
+      19: invokevirtual #28                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      22: invokevirtual #38                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      25: instanceof    #40                 // class ironfurnaces/items/augments/ItemAugmentBlasting
+      28: ifeq          40
+      31: aload_0
+      32: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      35: aload_1
+      36: invokevirtual #43                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.hasGeneratorBlastingRecipe:(Lnet/minecraft/world/item/ItemStack;)Z
+      39: ireturn
+      40: aload_0
+      41: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      44: iconst_3
+      45: invokevirtual #28                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      48: invokevirtual #38                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      51: instanceof    #45                 // class ironfurnaces/items/augments/ItemAugmentSmoking
+      54: ifeq          75
+      57: aload_0
+      58: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      61: pop
+      62: aload_1
+      63: invokestatic  #49                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getSmokingBurn:(Lnet/minecraft/world/item/ItemStack;)I
+      66: ifle          73
+      69: iconst_1
+      70: goto          74
+      73: iconst_0
+      74: ireturn
+      75: aload_1
+      76: invokevirtual #38                 // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      79: instanceof    #51                 // class ironfurnaces/items/ItemHeater
+      82: ifeq          87
+      85: iconst_0
+      86: ireturn
+      87: aload_1
+      88: getstatic     #57                 // Field net/minecraft/world/item/crafting/RecipeType.f_44108_:Lnet/minecraft/world/item/crafting/RecipeType;
+      91: invokestatic  #61                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isItemFuel:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/crafting/RecipeType;)Z
+      94: ireturn
+
+  public boolean m_6659_();
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+       4: invokevirtual #67                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.isGenerator:()Z
+       7: ifeq          24
+      10: aload_0
+      11: getfield      #14                 // Field te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      14: invokevirtual #71                 // Method ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.getAugmentGUI:()I
+      17: ifne          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

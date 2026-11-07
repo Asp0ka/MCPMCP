@@ -1,0 +1,25 @@
+Compiled from "AlchemistCauldronTile.java"
+public class io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile$AlchemistCauldronFluidHandler implements net.minecraftforge.fluids.capability.IFluidHandler {
+  net.minecraftforge.fluids.IFluidTank[] tanks;
+  final io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile this$0;
+  public io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile$AlchemistCauldronFluidHandler(io.redspace.ironsspellbooks.block.alchemist_cauldron.AlchemistCauldronTile);
+  public int getTanks();
+  public net.minecraftforge.fluids.FluidStack getFluidInTank(int);
+  public int getTankCapacity(int);
+  public int fluidAmount();
+  public boolean canFit(int);
+  public boolean isFluidValid(int, net.minecraftforge.fluids.FluidStack);
+  public boolean isTankCompatible(net.minecraftforge.fluids.IFluidTank, net.minecraftforge.fluids.FluidStack);
+  public void onContentsChanged();
+  public int fill(net.minecraftforge.fluids.FluidStack, net.minecraftforge.fluids.capability.IFluidHandler$FluidAction);
+  public net.minecraftforge.fluids.FluidStack drain(net.minecraftforge.fluids.FluidStack, net.minecraftforge.fluids.capability.IFluidHandler$FluidAction);
+  public net.minecraftforge.fluids.FluidStack drain(int, net.minecraftforge.fluids.capability.IFluidHandler$FluidAction);
+  public boolean contains(net.minecraftforge.fluids.FluidStack, int);
+  public boolean contains(net.minecraft.core.Holder<net.minecraft.world.level.material.Fluid>, int);
+  public boolean contains(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, int);
+  public java.util.List<net.minecraftforge.fluids.FluidStack> fluids();
+  public void clear();
+  public void save(java.lang.String, net.minecraft.nbt.CompoundTag, net.minecraft.core.HolderLookup$Provider);
+  public void load(java.lang.String, net.minecraft.nbt.CompoundTag, net.minecraft.core.HolderLookup$Provider);
+  private static boolean lambda$fluids$0(net.minecraftforge.fluids.FluidStack);
+}

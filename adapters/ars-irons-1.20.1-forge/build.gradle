@@ -1,0 +1,52 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+group = 'dev.mcpmcp.adapters'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+repositories { mavenCentral() }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+def platformRoot = file('../..')
+dependencies {
+ minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+ compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ compileOnly 'com.google.code.gson:gson:2.10'
+ testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ testImplementation 'com.google.code.gson:gson:2.10'
+}
+jar { enabled = false }
+def variants = [ars: ['ars_nouveau', 'ArsProvider'], irons: ['irons_spellbooks', 'IronsProvider'], travel: ['traveloptics', 'TravelProvider']]
+variants.each { shortName, spec ->
+ tasks.register(shortName + 'Jar', Jar) {
+  dependsOn classes
+  archiveFileName = spec[0] + '-adapter.jar'
+  from(sourceSets.main.output) { exclude 'dev/mcpmcp/magic/ArsProvider.class', 'dev/mcpmcp/magic/IronsProvider.class', 'dev/mcpmcp/magic/TravelProvider.class' }
+  from(sourceSets.main.output) { include 'dev/mcpmcp/magic/' + spec[1] + '.class' }
+  from('services/' + spec[0]) { into 'META-INF/services' }
+  manifest { attributes 'Implementation-Title': 'MCPMCP ' + spec[0] + ' adapter', 'Implementation-Version': project.version }
+ }
+}
+reobf { arsJar {}; ironsJar {}; travelJar {} }
+tasks.register('adapterContractTest', JavaExec) {
+ dependsOn testClasses
+ classpath = sourceSets.test.runtimeClasspath
+ mainClass = 'dev.mcpmcp.magic.ContractTest'
+}
+check.dependsOn adapterContractTest
+tasks.register('artifactTest', JavaExec) {
+ dependsOn testClasses, 'reobfArsJar', 'reobfIronsJar', 'reobfTravelJar'
+ // Exclude production classes so ServiceLoader must resolve classes from each actual JAR.
+ classpath = sourceSets.test.output + configurations.testRuntimeClasspath
+ mainClass = 'dev.mcpmcp.magic.ArtifactTest'
+ args variants.collect { shortName, spec -> tasks.named(shortName + 'Jar').get().archiveFile.get().asFile.absolutePath }
+}
+check.dependsOn artifactTest
+tasks.register('distribution') {
+ dependsOn 'check', 'reobfArsJar', 'reobfIronsJar', 'reobfTravelJar'
+ doLast {
+  variants.each { shortName, spec ->
+   def dirs = file('distribution').listFiles().findAll { it.isDirectory() && it.name.startsWith(spec[0] + '-') }
+   if (dirs.size() != 1) throw new GradleException('Expected exactly one pinned distribution for ' + spec[0])
+   copy { from tasks.named(shortName + 'Jar').get().archiveFile; into dirs[0]; rename { 'adapter.jar' } }
+  }
+ }
+}

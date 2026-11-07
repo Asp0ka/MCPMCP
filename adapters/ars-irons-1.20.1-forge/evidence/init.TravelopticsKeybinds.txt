@@ -1,0 +1,94 @@
+Compiled from "TravelopticsKeybinds.java"
+public class com.gametechbc.traveloptics.init.TravelopticsKeybinds {
+  public static final net.minecraft.client.KeyMapping KEY_Z;
+
+  public static final net.minecraft.client.KeyMapping KEY_X;
+
+  public static final net.minecraft.client.KeyMapping KEY_C;
+
+  public static final net.minecraft.client.KeyMapping KEY_B;
+
+  public static final net.minecraft.client.KeyMapping KEY_ARROW_LEFT;
+
+  public static final net.minecraft.client.KeyMapping KEY_ARROW_RIGHT;
+
+  public com.gametechbc.traveloptics.init.TravelopticsKeybinds();
+    Code:
+       0: aload_0
+       1: invokespecial #38                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void registerKeyBindings(net.minecraftforge.client.event.RegisterKeyMappingsEvent);
+    Code:
+       0: aload_0
+       1: getstatic     #45                 // Field KEY_Z:Lnet/minecraft/client/KeyMapping;
+       4: invokevirtual #51                 // Method net/minecraftforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+       7: aload_0
+       8: getstatic     #53                 // Field KEY_X:Lnet/minecraft/client/KeyMapping;
+      11: invokevirtual #51                 // Method net/minecraftforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+      14: aload_0
+      15: getstatic     #55                 // Field KEY_C:Lnet/minecraft/client/KeyMapping;
+      18: invokevirtual #51                 // Method net/minecraftforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+      21: aload_0
+      22: getstatic     #57                 // Field KEY_B:Lnet/minecraft/client/KeyMapping;
+      25: invokevirtual #51                 // Method net/minecraftforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+      28: aload_0
+      29: getstatic     #59                 // Field KEY_ARROW_LEFT:Lnet/minecraft/client/KeyMapping;
+      32: invokevirtual #51                 // Method net/minecraftforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+      35: aload_0
+      36: getstatic     #61                 // Field KEY_ARROW_RIGHT:Lnet/minecraft/client/KeyMapping;
+      39: invokevirtual #51                 // Method net/minecraftforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+      42: return
+
+  static {};
+    Code:
+       0: new           #66                 // class net/minecraft/client/KeyMapping
+       3: dup
+       4: ldc           #68                 // String key.traveloptics.ability1
+       6: getstatic     #72                 // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+       9: bipush        90
+      11: ldc           #74                 // String key.categories.traveloptics
+      13: invokespecial #77                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      16: putstatic     #45                 // Field KEY_Z:Lnet/minecraft/client/KeyMapping;
+      19: new           #66                 // class net/minecraft/client/KeyMapping
+      22: dup
+      23: ldc           #79                 // String key.traveloptics.ability2
+      25: getstatic     #72                 // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+      28: bipush        88
+      30: ldc           #74                 // String key.categories.traveloptics
+      32: invokespecial #77                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      35: putstatic     #53                 // Field KEY_X:Lnet/minecraft/client/KeyMapping;
+      38: new           #66                 // class net/minecraft/client/KeyMapping
+      41: dup
+      42: ldc           #81                 // String key.traveloptics.ability3
+      44: getstatic     #72                 // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+      47: bipush        67
+      49: ldc           #74                 // String key.categories.traveloptics
+      51: invokespecial #77                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      54: putstatic     #55                 // Field KEY_C:Lnet/minecraft/client/KeyMapping;
+      57: new           #66                 // class net/minecraft/client/KeyMapping
+      60: dup
+      61: ldc           #83                 // String key.traveloptics.ability4
+      63: getstatic     #72                 // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+      66: bipush        66
+      68: ldc           #74                 // String key.categories.traveloptics
+      70: invokespecial #77                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      73: putstatic     #57                 // Field KEY_B:Lnet/minecraft/client/KeyMapping;
+      76: new           #66                 // class net/minecraft/client/KeyMapping
+      79: dup
+      80: ldc           #85                 // String key.traveloptics.lore_item_previous
+      82: getstatic     #72                 // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+      85: sipush        263
+      88: ldc           #74                 // String key.categories.traveloptics
+      90: invokespecial #77                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      93: putstatic     #59                 // Field KEY_ARROW_LEFT:Lnet/minecraft/client/KeyMapping;
+      96: new           #66                 // class net/minecraft/client/KeyMapping
+      99: dup
+     100: ldc           #87                 // String key.traveloptics.lore_item_next
+     102: getstatic     #72                 // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+     105: sipush        262
+     108: ldc           #74                 // String key.categories.traveloptics
+     110: invokespecial #77                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+     113: putstatic     #61                 // Field KEY_ARROW_RIGHT:Lnet/minecraft/client/KeyMapping;
+     116: return
+}

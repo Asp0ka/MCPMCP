@@ -1,0 +1,131 @@
+Compiled from "RitualRecipeReloadListener.java"
+public class com.sammy.malum.core.listeners.RitualRecipeReloadListener extends net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener {
+  private static final com.google.gson.Gson GSON;
+
+  public com.sammy.malum.core.listeners.RitualRecipeReloadListener();
+    Code:
+       0: aload_0
+       1: getstatic     #16                 // Field GSON:Lcom/google/gson/Gson;
+       4: ldc           #18                 // String ritual_recipes
+       6: invokespecial #21                 // Method net/minecraft/server/packs/resources/SimpleJsonResourceReloadListener."<init>":(Lcom/google/gson/Gson;Ljava/lang/String;)V
+       9: return
+
+  public static void register(net.minecraftforge.event.AddReloadListenerEvent);
+    Code:
+       0: aload_0
+       1: new           #2                  // class com/sammy/malum/core/listeners/RitualRecipeReloadListener
+       4: dup
+       5: invokespecial #27                 // Method "<init>":()V
+       8: invokevirtual #33                 // Method net/minecraftforge/event/AddReloadListenerEvent.addListener:(Lnet/minecraft/server/packs/resources/PreparableReloadListener;)V
+      11: return
+
+  protected void apply(java.util.Map<net.minecraft.resources.ResourceLocation, com.google.gson.JsonElement>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+    Code:
+       0: iconst_0
+       1: istore        4
+       3: iload         4
+       5: aload_1
+       6: invokeinterface #44,  1           // InterfaceMethod java/util/Map.size:()I
+      11: if_icmpge     223
+      14: aload_1
+      15: invokeinterface #48,  1           // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      20: invokeinterface #54,  1           // InterfaceMethod java/util/Set.toArray:()[Ljava/lang/Object;
+      25: iload         4
+      27: aaload
+      28: checkcast     #56                 // class net/minecraft/resources/ResourceLocation
+      31: astore        5
+      33: aload_1
+      34: aload         5
+      36: invokeinterface #60,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      41: checkcast     #62                 // class com/google/gson/JsonElement
+      44: invokevirtual #66                 // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      47: astore        6
+      49: aload         6
+      51: ldc           #68                 // String ritual_identifier
+      53: invokevirtual #74                 // Method com/google/gson/JsonObject.getAsJsonPrimitive:(Ljava/lang/String;)Lcom/google/gson/JsonPrimitive;
+      56: invokevirtual #80                 // Method com/google/gson/JsonPrimitive.getAsString:()Ljava/lang/String;
+      59: astore        7
+      61: new           #56                 // class net/minecraft/resources/ResourceLocation
+      64: dup
+      65: aload         7
+      67: invokespecial #83                 // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;)V
+      70: astore        8
+      72: aload         8
+      74: invokestatic  #88                 // Method com/sammy/malum/registry/common/RitualRegistry.get:(Lnet/minecraft/resources/ResourceLocation;)Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+      77: astore        9
+      79: aload         9
+      81: ifnonnull     102
+      84: getstatic     #94                 // Field com/sammy/malum/MalumMod.LOGGER:Lorg/apache/logging/log4j/Logger;
+      87: aload         7
+      89: invokedynamic #106,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      94: invokeinterface #111,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+      99: goto          217
+     102: aload         9
+     104: invokevirtual #123                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.getRecipeData:()Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;
+     107: ifnull        125
+     110: getstatic     #94                 // Field com/sammy/malum/MalumMod.LOGGER:Lorg/apache/logging/log4j/Logger;
+     113: aload         7
+     115: invokedynamic #126,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     120: invokeinterface #111,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+     125: aload         6
+     127: ldc           #128                // String input
+     129: invokevirtual #131                // Method com/google/gson/JsonObject.getAsJsonObject:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     132: invokestatic  #137                // Method team/lodestar/lodestone/systems/recipe/IngredientWithCount.deserialize:(Lcom/google/gson/JsonObject;)Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     135: astore        10
+     137: aload         6
+     139: ldc           #139                // String extra_items
+     141: invokevirtual #143                // Method com/google/gson/JsonObject.getAsJsonArray:(Ljava/lang/String;)Lcom/google/gson/JsonArray;
+     144: astore        11
+     146: new           #145                // class java/util/ArrayList
+     149: dup
+     150: invokespecial #146                // Method java/util/ArrayList."<init>":()V
+     153: astore        12
+     155: iconst_0
+     156: istore        13
+     158: iload         13
+     160: aload         11
+     162: invokevirtual #151                // Method com/google/gson/JsonArray.size:()I
+     165: if_icmpge     199
+     168: aload         11
+     170: iload         13
+     172: invokevirtual #154                // Method com/google/gson/JsonArray.get:(I)Lcom/google/gson/JsonElement;
+     175: invokevirtual #66                 // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+     178: astore        14
+     180: aload         12
+     182: aload         14
+     184: invokestatic  #137                // Method team/lodestar/lodestone/systems/recipe/IngredientWithCount.deserialize:(Lcom/google/gson/JsonObject;)Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     187: invokeinterface #158,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     192: pop
+     193: iinc          13, 1
+     196: goto          158
+     199: aload         9
+     201: new           #160                // class com/sammy/malum/core/systems/ritual/MalumRitualRecipeData
+     204: dup
+     205: aload         9
+     207: aload         10
+     209: aload         12
+     211: invokespecial #163                // Method com/sammy/malum/core/systems/ritual/MalumRitualRecipeData."<init>":(Lcom/sammy/malum/core/systems/ritual/MalumRitualType;Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;Ljava/util/List;)V
+     214: invokevirtual #167                // Method com/sammy/malum/core/systems/ritual/MalumRitualType.setRecipeData:(Lcom/sammy/malum/core/systems/ritual/MalumRitualRecipeData;)V
+     217: iinc          4, 1
+     220: goto          3
+     223: return
+
+  protected void m_5787_(java.lang.Object, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #40                 // class java/util/Map
+       5: aload_2
+       6: aload_3
+       7: invokevirtual #197                // Method apply:(Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+      10: return
+
+  static {};
+    Code:
+       0: new           #200                // class com/google/gson/GsonBuilder
+       3: dup
+       4: invokespecial #201                // Method com/google/gson/GsonBuilder."<init>":()V
+       7: invokevirtual #205                // Method com/google/gson/GsonBuilder.create:()Lcom/google/gson/Gson;
+      10: putstatic     #16                 // Field GSON:Lcom/google/gson/Gson;
+      13: return
+}

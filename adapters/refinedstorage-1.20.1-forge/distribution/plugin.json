@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.refinedstorage",
+  "mod_id": "refinedstorage",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "1.12.4",
+  "target_sha256": "d8ae3926c2121336efcd6956c43d91f21ce405b77ac7c7201c559d4c19f380d2",
+  "actions": []
+}

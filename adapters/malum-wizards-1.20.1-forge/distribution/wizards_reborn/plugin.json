@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.wizards_reborn",
+  "mod_id": "wizards_reborn",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "1.20.1-0.2.9",
+  "target_sha256": "38f040319fe4dc16400b2507e3cb627a321cddba314de0d4acc4f2dcd8ffbfe7",
+  "actions": []
+}

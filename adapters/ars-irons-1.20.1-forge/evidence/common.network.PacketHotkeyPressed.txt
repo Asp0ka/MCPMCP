@@ -1,0 +1,10 @@
+Compiled from "PacketHotkeyPressed.java"
+public class com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed {
+  com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed$Key key;
+  public com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed(com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed$Key);
+  public com.hollingsworth.arsnouveau.common.network.PacketHotkeyPressed(net.minecraft.network.FriendlyByteBuf);
+  public void toBytes(net.minecraft.network.FriendlyByteBuf);
+  public void handle(java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+  private void lambda$handle$1(java.util.function.Supplier);
+  private static boolean lambda$handle$0(com.hollingsworth.arsnouveau.api.item.ICasterTool);
+}

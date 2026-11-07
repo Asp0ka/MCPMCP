@@ -1,0 +1,676 @@
+Compiled from "MalumBackend.java"
+final class dev.mcpmcp.malum.MalumBackend extends dev.mcpmcp.magic.NativeMagicBackend {
+  dev.mcpmcp.malum.MalumBackend();
+    Code:
+       0: aload_0
+       1: ldc           #14                 // String malum
+       3: ldc           #16                 // String 1.20.1-1.6.7
+       5: ldc           #18                 // String ceda6ce4cc19de21ff6c21a732d8f9270ecc83cdae69027b13aaa24b536307f8
+       7: ldc           #20                 // String com.sammy.malum.common.recipe.
+       9: invokespecial #23                 // Method dev/mcpmcp/magic/NativeMagicBackend."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+      12: return
+
+  protected java.util.List<java.lang.String> knownRecipeTypes();
+    Code:
+       0: ldc           #30                 // String malum:spirit_infusion
+       2: ldc           #32                 // String malum:spirit_focusing
+       4: ldc           #34                 // String malum:spirit_repair
+       6: ldc           #36                 // String malum:runeworking
+       8: ldc           #38                 // String malum:spirit_transmutation
+      10: ldc           #40                 // String malum:favor_of_the_void
+      12: invokestatic  #46                 // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      15: areturn
+
+  protected java.util.List<java.lang.String> limitations();
+    Code:
+       0: ldc           #49                 // String Recipes come only from the current client RecipeManager, including any synchronized datapack changes.
+       2: ldc           #51                 // String RitualRecipeReloadListener is a separate server reload-listener path; global plinth ritual recipes are unknown here.
+       4: ldc           #53                 // String Altar isCrafting/recipe and crucible recipe are not loaded from the inspected sync tags: reported unknown, not inferred from progress.
+       6: ldc           #55                 // String Weaver workbench items are read from its real open menu only; no block tag inventory sync was found.
+       8: ldc           #57                 // String One normal native right-click only; no automatic rituals, spirit generation, crafting or direct inventory/field mutation.
+      10: invokestatic  #60                 // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+      13: areturn
+
+  private static com.google.gson.JsonObject counted(team.lodestar.lodestone.systems.recipe.IngredientWithCount);
+    Code:
+       0: aload_0
+       1: getfield      #68                 // Field team/lodestar/lodestone/systems/recipe/IngredientWithCount.ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: invokestatic  #71                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+       7: astore_1
+       8: aload_1
+       9: ldc           #73                 // String count
+      11: aload_0
+      12: getfield      #76                 // Field team/lodestar/lodestone/systems/recipe/IngredientWithCount.count:I
+      15: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      18: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+      21: aload_1
+      22: areturn
+
+  private static com.google.gson.JsonArray counted(java.util.List<team.lodestar.lodestone.systems.recipe.IngredientWithCount>);
+    Code:
+       0: new           #96                 // class com/google/gson/JsonArray
+       3: dup
+       4: invokespecial #98                 // Method com/google/gson/JsonArray."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: invokeinterface #102,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      14: astore_2
+      15: aload_2
+      16: invokeinterface #108,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          45
+      24: aload_2
+      25: invokeinterface #112,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      30: checkcast     #64                 // class team/lodestar/lodestone/systems/recipe/IngredientWithCount
+      33: astore_3
+      34: aload_1
+      35: aload_3
+      36: invokestatic  #114                // Method counted:(Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;)Lcom/google/gson/JsonObject;
+      39: invokevirtual #118                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+      42: goto          15
+      45: aload_1
+      46: areturn
+
+  protected com.google.gson.JsonObject specialRecipe(net.minecraft.world.item.crafting.Recipe<?>);
+    Code:
+       0: iconst_2
+       1: anewarray     #128                // class java/lang/Object
+       4: dup
+       5: iconst_0
+       6: ldc           #130                // String complete
+       8: aastore
+       9: dup
+      10: iconst_1
+      11: iconst_1
+      12: invokestatic  #135                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: aastore
+      16: invokestatic  #141                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      19: astore_2
+      20: aload_1
+      21: instanceof    #143                // class com/sammy/malum/common/recipe/AbstractSpiritListMalumRecipe
+      24: ifeq          146
+      27: aload_1
+      28: checkcast     #143                // class com/sammy/malum/common/recipe/AbstractSpiritListMalumRecipe
+      31: astore_3
+      32: new           #96                 // class com/google/gson/JsonArray
+      35: dup
+      36: invokespecial #98                 // Method com/google/gson/JsonArray."<init>":()V
+      39: astore        4
+      41: aload_3
+      42: getfield      #146                // Field com/sammy/malum/common/recipe/AbstractSpiritListMalumRecipe.spirits:Ljava/util/List;
+      45: invokeinterface #102,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      50: astore        5
+      52: aload         5
+      54: invokeinterface #108,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      59: ifeq          138
+      62: aload         5
+      64: invokeinterface #112,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      69: checkcast     #150                // class com/sammy/malum/core/systems/recipe/SpiritWithCount
+      72: astore        6
+      74: aload         4
+      76: bipush        6
+      78: anewarray     #128                // class java/lang/Object
+      81: dup
+      82: iconst_0
+      83: ldc           #152                // String spirit
+      85: aastore
+      86: dup
+      87: iconst_1
+      88: aload         6
+      90: getfield      #156                // Field com/sammy/malum/core/systems/recipe/SpiritWithCount.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+      93: getfield      #162                // Field com/sammy/malum/core/systems/spirit/MalumSpiritType.identifier:Ljava/lang/String;
+      96: aastore
+      97: dup
+      98: iconst_2
+      99: ldc           #73                 // String count
+     101: aastore
+     102: dup
+     103: iconst_3
+     104: aload         6
+     106: getfield      #163                // Field com/sammy/malum/core/systems/recipe/SpiritWithCount.count:I
+     109: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     112: aastore
+     113: dup
+     114: iconst_4
+     115: ldc           #165                // String item
+     117: aastore
+     118: dup
+     119: iconst_5
+     120: aload         6
+     122: invokevirtual #169                // Method com/sammy/malum/core/systems/recipe/SpiritWithCount.getStack:()Lnet/minecraft/world/item/ItemStack;
+     125: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     128: aastore
+     129: invokestatic  #141                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     132: invokevirtual #118                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     135: goto          52
+     138: aload_2
+     139: ldc           #174                // String spirits
+     141: aload         4
+     143: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     146: aload_1
+     147: instanceof    #179                // class com/sammy/malum/common/recipe/SpiritInfusionRecipe
+     150: ifeq          213
+     153: aload_1
+     154: checkcast     #179                // class com/sammy/malum/common/recipe/SpiritInfusionRecipe
+     157: astore_3
+     158: aload_2
+     159: ldc           #181                // String input
+     161: aload_3
+     162: getfield      #183                // Field com/sammy/malum/common/recipe/SpiritInfusionRecipe.input:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     165: invokestatic  #114                // Method counted:(Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;)Lcom/google/gson/JsonObject;
+     168: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     171: aload_2
+     172: ldc           #185                // String extra_items
+     174: aload_3
+     175: getfield      #188                // Field com/sammy/malum/common/recipe/SpiritInfusionRecipe.extraItems:Ljava/util/List;
+     178: invokestatic  #190                // Method counted:(Ljava/util/List;)Lcom/google/gson/JsonArray;
+     181: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     184: aload_2
+     185: ldc           #192                // String output
+     187: aload_3
+     188: getfield      #195                // Field com/sammy/malum/common/recipe/SpiritInfusionRecipe.output:Lnet/minecraft/world/item/ItemStack;
+     191: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     194: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     197: aload_2
+     198: ldc           #197                // String copy_input_nbt
+     200: aload_3
+     201: getfield      #201                // Field com/sammy/malum/common/recipe/SpiritInfusionRecipe.useNbtFromInput:Z
+     204: invokestatic  #135                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     207: invokevirtual #204                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     210: goto          584
+     213: aload_1
+     214: instanceof    #206                // class com/sammy/malum/common/recipe/SpiritFocusingRecipe
+     217: ifeq          285
+     220: aload_1
+     221: checkcast     #206                // class com/sammy/malum/common/recipe/SpiritFocusingRecipe
+     224: astore        4
+     226: aload_2
+     227: ldc           #181                // String input
+     229: aload         4
+     231: getfield      #208                // Field com/sammy/malum/common/recipe/SpiritFocusingRecipe.input:Lnet/minecraft/world/item/crafting/Ingredient;
+     234: invokestatic  #71                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+     237: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     240: aload_2
+     241: ldc           #192                // String output
+     243: aload         4
+     245: getfield      #209                // Field com/sammy/malum/common/recipe/SpiritFocusingRecipe.output:Lnet/minecraft/world/item/ItemStack;
+     248: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     251: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     254: aload_2
+     255: ldc           #211                // String time
+     257: aload         4
+     259: getfield      #213                // Field com/sammy/malum/common/recipe/SpiritFocusingRecipe.time:I
+     262: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     265: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     268: aload_2
+     269: ldc           #215                // String durability_cost
+     271: aload         4
+     273: getfield      #218                // Field com/sammy/malum/common/recipe/SpiritFocusingRecipe.durabilityCost:I
+     276: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     279: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     282: goto          584
+     285: aload_1
+     286: instanceof    #220                // class com/sammy/malum/common/recipe/RunicWorkbenchRecipe
+     289: ifeq          343
+     292: aload_1
+     293: checkcast     #220                // class com/sammy/malum/common/recipe/RunicWorkbenchRecipe
+     296: astore        5
+     298: aload_2
+     299: ldc           #222                // String primary_input
+     301: aload         5
+     303: getfield      #225                // Field com/sammy/malum/common/recipe/RunicWorkbenchRecipe.primaryInput:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     306: invokestatic  #114                // Method counted:(Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;)Lcom/google/gson/JsonObject;
+     309: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     312: aload_2
+     313: ldc           #227                // String secondary_input
+     315: aload         5
+     317: getfield      #230                // Field com/sammy/malum/common/recipe/RunicWorkbenchRecipe.secondaryInput:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     320: invokestatic  #114                // Method counted:(Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;)Lcom/google/gson/JsonObject;
+     323: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     326: aload_2
+     327: ldc           #192                // String output
+     329: aload         5
+     331: getfield      #231                // Field com/sammy/malum/common/recipe/RunicWorkbenchRecipe.output:Lnet/minecraft/world/item/ItemStack;
+     334: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     337: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     340: goto          584
+     343: aload_1
+     344: instanceof    #233                // class com/sammy/malum/common/recipe/SpiritRepairRecipe
+     347: ifeq          464
+     350: aload_1
+     351: checkcast     #233                // class com/sammy/malum/common/recipe/SpiritRepairRecipe
+     354: astore        6
+     356: new           #96                 // class com/google/gson/JsonArray
+     359: dup
+     360: invokespecial #98                 // Method com/google/gson/JsonArray."<init>":()V
+     363: astore        9
+     365: aload         6
+     367: getfield      #236                // Field com/sammy/malum/common/recipe/SpiritRepairRecipe.inputs:Ljava/util/List;
+     370: invokeinterface #102,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     375: astore        10
+     377: aload         10
+     379: invokeinterface #108,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     384: ifeq          419
+     387: aload         10
+     389: invokeinterface #112,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     394: checkcast     #238                // class net/minecraft/world/item/Item
+     397: astore        11
+     399: aload         9
+     401: new           #240                // class net/minecraft/world/item/ItemStack
+     404: dup
+     405: aload         11
+     407: invokespecial #243                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     410: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     413: invokevirtual #118                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     416: goto          377
+     419: aload_2
+     420: ldc           #245                // String repairable_items
+     422: aload         9
+     424: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     427: aload_2
+     428: ldc           #247                // String repair_material
+     430: aload         6
+     432: getfield      #250                // Field com/sammy/malum/common/recipe/SpiritRepairRecipe.repairMaterial:Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;
+     435: invokestatic  #114                // Method counted:(Lteam/lodestar/lodestone/systems/recipe/IngredientWithCount;)Lcom/google/gson/JsonObject;
+     438: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     441: aload_2
+     442: ldc           #252                // String durability_percentage
+     444: aload         6
+     446: getfield      #256                // Field com/sammy/malum/common/recipe/SpiritRepairRecipe.durabilityPercentage:F
+     449: invokestatic  #260                // Method finite:(Lcom/google/gson/JsonObject;Ljava/lang/String;F)V
+     452: aload_2
+     453: ldc           #192                // String output
+     455: ldc_w         #262                // String dynamic_input_repair; unknown_without_actual_input
+     458: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     461: goto          584
+     464: aload_1
+     465: instanceof    #267                // class com/sammy/malum/common/recipe/SpiritTransmutationRecipe
+     468: ifeq          520
+     471: aload_1
+     472: checkcast     #267                // class com/sammy/malum/common/recipe/SpiritTransmutationRecipe
+     475: astore        7
+     477: aload_2
+     478: ldc           #181                // String input
+     480: aload         7
+     482: getfield      #268                // Field com/sammy/malum/common/recipe/SpiritTransmutationRecipe.ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+     485: invokestatic  #71                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+     488: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     491: aload_2
+     492: ldc           #192                // String output
+     494: aload         7
+     496: getfield      #269                // Field com/sammy/malum/common/recipe/SpiritTransmutationRecipe.output:Lnet/minecraft/world/item/ItemStack;
+     499: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     502: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     505: aload_2
+     506: ldc_w         #271                // String group
+     509: aload         7
+     511: getfield      #273                // Field com/sammy/malum/common/recipe/SpiritTransmutationRecipe.group:Ljava/lang/String;
+     514: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     517: goto          584
+     520: aload_1
+     521: instanceof    #275                // class com/sammy/malum/common/recipe/FavorOfTheVoidRecipe
+     524: ifeq          564
+     527: aload_1
+     528: checkcast     #275                // class com/sammy/malum/common/recipe/FavorOfTheVoidRecipe
+     531: astore        8
+     533: aload_2
+     534: ldc           #181                // String input
+     536: aload         8
+     538: getfield      #276                // Field com/sammy/malum/common/recipe/FavorOfTheVoidRecipe.input:Lnet/minecraft/world/item/crafting/Ingredient;
+     541: invokestatic  #71                 // Method ingredient:(Lnet/minecraft/world/item/crafting/Ingredient;)Lcom/google/gson/JsonObject;
+     544: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     547: aload_2
+     548: ldc           #192                // String output
+     550: aload         8
+     552: getfield      #277                // Field com/sammy/malum/common/recipe/FavorOfTheVoidRecipe.output:Lnet/minecraft/world/item/ItemStack;
+     555: invokestatic  #173                // Method stack:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     558: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     561: goto          584
+     564: aload_2
+     565: ldc           #130                // String complete
+     567: iconst_0
+     568: invokestatic  #135                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     571: invokevirtual #204                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     574: aload_2
+     575: ldc_w         #279                // String details
+     578: ldc_w         #281                // String unknown_unmapped_recipe_class
+     581: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     584: aload_2
+     585: areturn
+
+  protected boolean supported(net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: aload_1
+       1: instanceof    #299                // class com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity
+       4: ifne          42
+       7: aload_1
+       8: instanceof    #301                // class com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity
+      11: ifne          42
+      14: aload_1
+      15: instanceof    #303                // class com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity
+      18: ifne          42
+      21: aload_1
+      22: instanceof    #305                // class com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity
+      25: ifne          42
+      28: aload_1
+      29: instanceof    #307                // class com/sammy/malum/common/block/storage/MalumItemHolderBlockEntity
+      32: ifne          42
+      35: aload_1
+      36: instanceof    #309                // class com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity
+      39: ifeq          46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: ireturn
+
+  protected com.google.gson.JsonObject specialBlock(net.minecraft.world.level.block.entity.BlockEntity);
+    Code:
+       0: invokestatic  #317                // Method unknown:()Lcom/google/gson/JsonObject;
+       3: astore_2
+       4: aload_1
+       5: instanceof    #299                // class com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity
+       8: ifeq          140
+      11: aload_1
+      12: checkcast     #299                // class com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity
+      15: astore_3
+      16: aload_2
+      17: ldc_w         #319                // String items
+      20: bipush        6
+      22: anewarray     #128                // class java/lang/Object
+      25: dup
+      26: iconst_0
+      27: ldc           #181                // String input
+      29: aastore
+      30: dup
+      31: iconst_1
+      32: aload_3
+      33: getfield      #323                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      36: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+      39: aastore
+      40: dup
+      41: iconst_2
+      42: ldc_w         #328                // String extras
+      45: aastore
+      46: dup
+      47: iconst_3
+      48: aload_3
+      49: getfield      #331                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      52: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+      55: aastore
+      56: dup
+      57: iconst_4
+      58: ldc           #174                // String spirits
+      60: aastore
+      61: dup
+      62: iconst_5
+      63: aload_3
+      64: getfield      #334                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.spiritInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+      67: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+      70: aastore
+      71: invokestatic  #141                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      74: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+      77: aload_2
+      78: ldc_w         #336                // String progress
+      81: aload_3
+      82: getfield      #338                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.progress:I
+      85: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      88: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+      91: aload_2
+      92: ldc_w         #340                // String idle_progress
+      95: aload_3
+      96: getfield      #343                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.idleProgress:I
+      99: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     102: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     105: aload_2
+     106: ldc_w         #345                // String spirit_amount
+     109: aload_3
+     110: getfield      #348                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.spiritAmount:F
+     113: invokestatic  #260                // Method finite:(Lcom/google/gson/JsonObject;Ljava/lang/String;F)V
+     116: aload_2
+     117: ldc_w         #350                // String speed
+     120: aload_3
+     121: getfield      #352                // Field com/sammy/malum/common/block/curiosities/spirit_altar/SpiritAltarBlockEntity.speed:F
+     124: invokestatic  #260                // Method finite:(Lcom/google/gson/JsonObject;Ljava/lang/String;F)V
+     127: aload_2
+     128: ldc_w         #354                // String is_crafting
+     131: ldc_w         #356                // String unknown_not_sync_loaded
+     134: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     137: goto          615
+     140: aload_1
+     141: instanceof    #301                // class com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity
+     144: ifeq          307
+     147: aload_1
+     148: checkcast     #301                // class com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity
+     151: astore        4
+     153: aload_2
+     154: ldc_w         #319                // String items
+     157: bipush        8
+     159: anewarray     #128                // class java/lang/Object
+     162: dup
+     163: iconst_0
+     164: ldc           #181                // String input
+     166: aastore
+     167: dup
+     168: iconst_1
+     169: aload         4
+     171: getfield      #357                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     174: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     177: aastore
+     178: dup
+     179: iconst_2
+     180: ldc           #174                // String spirits
+     182: aastore
+     183: dup
+     184: iconst_3
+     185: aload         4
+     187: getfield      #358                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.spiritInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     190: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     193: aastore
+     194: dup
+     195: iconst_4
+     196: ldc_w         #360                // String augments
+     199: aastore
+     200: dup
+     201: iconst_5
+     202: aload         4
+     204: getfield      #363                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.augmentInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     207: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     210: aastore
+     211: dup
+     212: bipush        6
+     214: ldc_w         #365                // String core_augments
+     217: aastore
+     218: dup
+     219: bipush        7
+     221: aload         4
+     223: getfield      #368                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.coreAugmentInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     226: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     229: aastore
+     230: invokestatic  #141                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     233: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     236: aload_2
+     237: ldc_w         #336                // String progress
+     240: aload         4
+     242: getfield      #370                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.progress:F
+     245: invokestatic  #260                // Method finite:(Lcom/google/gson/JsonObject;Ljava/lang/String;F)V
+     248: aload_2
+     249: ldc_w         #345                // String spirit_amount
+     252: aload         4
+     254: getfield      #371                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.spiritAmount:F
+     257: invokestatic  #260                // Method finite:(Lcom/google/gson/JsonObject;Ljava/lang/String;F)V
+     260: aload_2
+     261: ldc_w         #373                // String queued_cracks
+     264: aload         4
+     266: getfield      #376                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.queuedCracks:I
+     269: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     272: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     275: aload_2
+     276: ldc_w         #378                // String tuning_type
+     279: aload         4
+     281: getfield      #382                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.tuningType:Lcom/sammy/malum/common/block/curiosities/spirit_crucible/CrucibleTuning$CrucibleAttributeType;
+     284: ifnonnull     293
+     287: ldc_w         #383                // String unknown
+     290: goto          301
+     293: aload         4
+     295: getfield      #382                // Field com/sammy/malum/common/block/curiosities/spirit_crucible/SpiritCrucibleCoreBlockEntity.tuningType:Lcom/sammy/malum/common/block/curiosities/spirit_crucible/CrucibleTuning$CrucibleAttributeType;
+     298: invokevirtual #391                // Method com/sammy/malum/common/block/curiosities/spirit_crucible/CrucibleTuning$CrucibleAttributeType.name:()Ljava/lang/String;
+     301: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     304: goto          615
+     307: aload_1
+     308: instanceof    #303                // class com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity
+     311: ifeq          491
+     314: aload_1
+     315: checkcast     #303                // class com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity
+     318: astore        5
+     320: aload_2
+     321: ldc_w         #319                // String items
+     324: iconst_4
+     325: anewarray     #128                // class java/lang/Object
+     328: dup
+     329: iconst_0
+     330: ldc           #181                // String input
+     332: aastore
+     333: dup
+     334: iconst_1
+     335: aload         5
+     337: getfield      #392                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.inventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     340: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     343: aastore
+     344: dup
+     345: iconst_2
+     346: ldc_w         #328                // String extras
+     349: aastore
+     350: dup
+     351: iconst_3
+     352: aload         5
+     354: getfield      #393                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.extrasInventory:Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     357: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     360: aastore
+     361: invokestatic  #141                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     364: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     367: aload_2
+     368: ldc_w         #336                // String progress
+     371: aload         5
+     373: getfield      #394                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.progress:I
+     376: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     379: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     382: aload_2
+     383: ldc_w         #345                // String spirit_amount
+     386: aload         5
+     388: getfield      #396                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.spiritAmount:I
+     391: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     394: invokevirtual #88                 // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     397: aload_2
+     398: ldc_w         #398                // String setup_complete
+     401: aload         5
+     403: getfield      #401                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.setupComplete:Z
+     406: invokestatic  #135                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     409: invokevirtual #204                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     412: aload_2
+     413: ldc_w         #403                // String active_duration
+     416: aload         5
+     418: getfield      #406                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.activeDuration:F
+     421: invokestatic  #260                // Method finite:(Lcom/google/gson/JsonObject;Ljava/lang/String;F)V
+     424: aload_2
+     425: ldc_w         #408                // String ritual_type
+     428: aload         5
+     430: getfield      #412                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     433: ifnonnull     442
+     436: ldc_w         #383                // String unknown
+     439: goto          453
+     442: aload         5
+     444: getfield      #412                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.ritualType:Lcom/sammy/malum/core/systems/ritual/MalumRitualType;
+     447: getfield      #417                // Field com/sammy/malum/core/systems/ritual/MalumRitualType.identifier:Lnet/minecraft/resources/ResourceLocation;
+     450: invokevirtual #422                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+     453: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     456: aload_2
+     457: ldc_w         #424                // String ritual_tier
+     460: aload         5
+     462: getfield      #428                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     465: ifnonnull     474
+     468: ldc_w         #383                // String unknown
+     471: goto          485
+     474: aload         5
+     476: getfield      #428                // Field com/sammy/malum/common/block/curiosities/ritual_plinth/RitualPlinthBlockEntity.ritualTier:Lcom/sammy/malum/core/systems/ritual/MalumRitualTier;
+     479: getfield      #431                // Field com/sammy/malum/core/systems/ritual/MalumRitualTier.identifier:Lnet/minecraft/resources/ResourceLocation;
+     482: invokevirtual #422                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+     485: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     488: goto          615
+     491: aload_1
+     492: instanceof    #305                // class com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity
+     495: ifeq          567
+     498: aload_1
+     499: checkcast     #305                // class com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity
+     502: astore        6
+     504: aload_2
+     505: ldc_w         #433                // String resources
+     508: iconst_4
+     509: anewarray     #128                // class java/lang/Object
+     512: dup
+     513: iconst_0
+     514: ldc           #152                // String spirit
+     516: aastore
+     517: dup
+     518: iconst_1
+     519: aload         6
+     521: getfield      #434                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     524: ifnonnull     533
+     527: ldc_w         #436                // String unknown_or_empty
+     530: goto          541
+     533: aload         6
+     535: getfield      #434                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.type:Lcom/sammy/malum/core/systems/spirit/MalumSpiritType;
+     538: getfield      #162                // Field com/sammy/malum/core/systems/spirit/MalumSpiritType.identifier:Ljava/lang/String;
+     541: aastore
+     542: dup
+     543: iconst_2
+     544: ldc           #73                 // String count
+     546: aastore
+     547: dup
+     548: iconst_3
+     549: aload         6
+     551: getfield      #439                // Field com/sammy/malum/common/block/storage/jar/SpiritJarBlockEntity.count:I
+     554: invokestatic  #82                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     557: aastore
+     558: invokestatic  #141                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     561: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     564: goto          615
+     567: aload_1
+     568: instanceof    #307                // class com/sammy/malum/common/block/storage/MalumItemHolderBlockEntity
+     571: ifeq          598
+     574: aload_1
+     575: checkcast     #307                // class com/sammy/malum/common/block/storage/MalumItemHolderBlockEntity
+     578: astore        7
+     580: aload_2
+     581: ldc_w         #319                // String items
+     584: aload         7
+     586: invokevirtual #443                // Method com/sammy/malum/common/block/storage/MalumItemHolderBlockEntity.getSuppliedInventory:()Lteam/lodestar/lodestone/systems/blockentity/LodestoneBlockEntityInventory;
+     589: invokestatic  #326                // Method inventory:(Lnet/minecraftforge/items/IItemHandler;)Lcom/google/gson/JsonObject;
+     592: invokevirtual #177                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     595: goto          615
+     598: aload_1
+     599: instanceof    #309                // class com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity
+     602: ifeq          615
+     605: aload_2
+     606: ldc_w         #319                // String items
+     609: ldc_w         #445                // String unknown_until_real_menu_sync
+     612: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     615: aload_2
+     616: ldc_w         #447                // String provenance
+     619: ldc_w         #449                // String Inspected load/save fields and Lodestone update-tag path; current client copy, may be stale or locally animated. No server read.
+     622: invokevirtual #265                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     625: aload_2
+     626: areturn
+
+  protected net.minecraft.world.level.block.entity.BlockEntity menuOwner(net.minecraft.world.inventory.AbstractContainerMenu);
+    Code:
+       0: aload_1
+       1: instanceof    #459                // class com/sammy/malum/common/container/WeaversWorkbenchContainer
+       4: ifeq          19
+       7: aload_1
+       8: checkcast     #459                // class com/sammy/malum/common/container/WeaversWorkbenchContainer
+      11: astore_2
+      12: aload_2
+      13: getfield      #463                // Field com/sammy/malum/common/container/WeaversWorkbenchContainer.blockEntity:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity;
+      16: goto          20
+      19: aconst_null
+      20: areturn
+}

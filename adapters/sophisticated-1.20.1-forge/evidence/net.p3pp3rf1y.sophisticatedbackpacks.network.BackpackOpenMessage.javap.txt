@@ -1,0 +1,317 @@
+Compiled from "BackpackOpenMessage.java"
+public class net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage {
+  private static final int CHEST_SLOT;
+
+  private static final int OFFHAND_SLOT;
+
+  private final int slotIndex;
+
+  private final java.lang.String identifier;
+
+  private final java.lang.String handlerName;
+
+  public net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage();
+    Code:
+       0: aload_0
+       1: iconst_m1
+       2: invokespecial #39                 // Method "<init>":(I)V
+       5: return
+
+  public net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: ldc           #43                 // String
+       4: invokespecial #46                 // Method "<init>":(ILjava/lang/String;)V
+       7: return
+
+  public net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage(int, java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #50                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #52                 // Field slotIndex:I
+       9: aload_0
+      10: aload_2
+      11: putfield      #54                 // Field identifier:Ljava/lang/String;
+      14: aload_0
+      15: aload_3
+      16: putfield      #56                 // Field handlerName:Ljava/lang/String;
+      19: return
+
+  public net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage(int, java.lang.String);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: ldc           #43                 // String
+       5: invokespecial #58                 // Method "<init>":(ILjava/lang/String;Ljava/lang/String;)V
+       8: return
+
+  public static void encode(net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #52                 // Field slotIndex:I
+       5: invokevirtual #66                 // Method net/minecraft/network/FriendlyByteBuf.writeInt:(I)Lio/netty/buffer/ByteBuf;
+       8: pop
+       9: aload_1
+      10: aload_0
+      11: getfield      #54                 // Field identifier:Ljava/lang/String;
+      14: invokevirtual #70                 // Method net/minecraft/network/FriendlyByteBuf.m_130070_:(Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;
+      17: pop
+      18: aload_1
+      19: aload_0
+      20: getfield      #56                 // Field handlerName:Ljava/lang/String;
+      23: invokevirtual #70                 // Method net/minecraft/network/FriendlyByteBuf.m_130070_:(Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;
+      26: pop
+      27: return
+
+  public static net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage decode(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #2                  // class net/p3pp3rf1y/sophisticatedbackpacks/network/BackpackOpenMessage
+       3: dup
+       4: aload_0
+       5: invokevirtual #79                 // Method net/minecraft/network/FriendlyByteBuf.readInt:()I
+       8: aload_0
+       9: invokevirtual #83                 // Method net/minecraft/network/FriendlyByteBuf.m_130277_:()Ljava/lang/String;
+      12: aload_0
+      13: invokevirtual #83                 // Method net/minecraft/network/FriendlyByteBuf.m_130277_:()Ljava/lang/String;
+      16: invokespecial #58                 // Method "<init>":(ILjava/lang/String;Ljava/lang/String;)V
+      19: areturn
+
+  static void onMessage(net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+    Code:
+       0: aload_1
+       1: invokeinterface #92,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: astore_2
+      10: aload_2
+      11: aload_2
+      12: aload_0
+      13: invokedynamic #109,  0            // InvokeDynamic #0:run:(Lnet/minecraftforge/network/NetworkEvent$Context;Lnet/p3pp3rf1y/sophisticatedbackpacks/network/BackpackOpenMessage;)Ljava/lang/Runnable;
+      18: invokevirtual #113                // Method net/minecraftforge/network/NetworkEvent$Context.enqueueWork:(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+      21: pop
+      22: aload_2
+      23: iconst_1
+      24: invokevirtual #117                // Method net/minecraftforge/network/NetworkEvent$Context.setPacketHandled:(Z)V
+      27: return
+
+  private static void handleMessage(net.minecraft.server.level.ServerPlayer, net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage);
+    Code:
+       0: aload_0
+       1: ifnonnull     5
+       4: return
+       5: aload_1
+       6: getfield      #56                 // Field handlerName:Ljava/lang/String;
+       9: invokevirtual #131                // Method java/lang/String.isEmpty:()Z
+      12: ifne          123
+      15: aload_1
+      16: getfield      #52                 // Field slotIndex:I
+      19: istore        4
+      21: aload_1
+      22: getfield      #52                 // Field slotIndex:I
+      25: bipush        38
+      27: if_icmpne     36
+      30: iinc          4, -36
+      33: goto          48
+      36: aload_1
+      37: getfield      #52                 // Field slotIndex:I
+      40: bipush        40
+      42: if_icmpne     48
+      45: iconst_0
+      46: istore        4
+      48: new           #12                 // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext$Item
+      51: dup
+      52: aload_1
+      53: getfield      #56                 // Field handlerName:Ljava/lang/String;
+      56: aload_1
+      57: getfield      #54                 // Field identifier:Ljava/lang/String;
+      60: iload         4
+      62: aload_0
+      63: getfield      #137                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      66: instanceof    #139                // class net/minecraft/world/inventory/InventoryMenu
+      69: ifne          104
+      72: aload_0
+      73: getfield      #137                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      76: astore        7
+      78: aload         7
+      80: instanceof    #141                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer
+      83: ifeq          108
+      86: aload         7
+      88: checkcast     #141                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer
+      91: astore        6
+      93: aload         6
+      95: invokevirtual #145                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer.getBackpackContext:()Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;
+      98: invokevirtual #148                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext.wasOpenFromInventory:()Z
+     101: ifeq          108
+     104: iconst_1
+     105: goto          109
+     108: iconst_0
+     109: invokespecial #151                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext$Item."<init>":(Ljava/lang/String;Ljava/lang/String;IZ)V
+     112: astore        5
+     114: aload_0
+     115: aload         5
+     117: invokestatic  #155                // Method openBackpack:(Lnet/minecraft/server/level/ServerPlayer;Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)V
+     120: goto          282
+     123: aload_0
+     124: getfield      #137                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     127: astore        4
+     129: aload         4
+     131: instanceof    #141                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer
+     134: ifeq          241
+     137: aload         4
+     139: checkcast     #141                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer
+     142: astore_2
+     143: aload_2
+     144: invokevirtual #145                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer.getBackpackContext:()Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;
+     147: astore        4
+     149: aload_1
+     150: getfield      #52                 // Field slotIndex:I
+     153: iconst_m1
+     154: if_icmpne     169
+     157: aload_0
+     158: aload         4
+     160: invokevirtual #158                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext.getParentBackpackContext:()Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;
+     163: invokestatic  #155                // Method openBackpack:(Lnet/minecraft/server/level/ServerPlayer;Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)V
+     166: goto          238
+     169: aload_2
+     170: aload_1
+     171: getfield      #52                 // Field slotIndex:I
+     174: invokevirtual #162                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer.isStorageInventorySlot:(I)Z
+     177: ifeq          238
+     180: aload_0
+     181: aload         4
+     183: aload_1
+     184: getfield      #52                 // Field slotIndex:I
+     187: aload         4
+     189: aload_0
+     190: invokevirtual #166                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext.getBackpackWrapper:(Lnet/minecraft/world/entity/player/Player;)Lnet/p3pp3rf1y/sophisticatedbackpacks/backpack/wrapper/IBackpackWrapper;
+     193: invokeinterface #172,  1          // InterfaceMethod net/p3pp3rf1y/sophisticatedbackpacks/backpack/wrapper/IBackpackWrapper.getInventoryHandler:()Lnet/p3pp3rf1y/sophisticatedcore/inventory/InventoryHandler;
+     198: aload_1
+     199: getfield      #52                 // Field slotIndex:I
+     202: invokevirtual #178                // Method net/p3pp3rf1y/sophisticatedcore/inventory/InventoryHandler.getSlotStack:(I)Lnet/minecraft/world/item/ItemStack;
+     205: getstatic     #184                // Field net/p3pp3rf1y/sophisticatedbackpacks/api/CapabilityBackpackWrapper.BACKPACK_WRAPPER_CAPABILITY:Lnet/minecraftforge/common/capabilities/Capability;
+     208: invokevirtual #190                // Method net/minecraft/world/item/ItemStack.getCapability:(Lnet/minecraftforge/common/capabilities/Capability;)Lnet/minecraftforge/common/util/LazyOptional;
+     211: invokedynamic #202,  0            // InvokeDynamic #1:apply:()Lnet/minecraftforge/common/util/NonNullFunction;
+     216: invokevirtual #208                // Method net/minecraftforge/common/util/LazyOptional.map:(Lnet/minecraftforge/common/util/NonNullFunction;)Ljava/util/Optional;
+     219: iconst_0
+     220: invokestatic  #214                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     223: invokevirtual #219                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     226: checkcast     #210                // class java/lang/Boolean
+     229: invokevirtual #222                // Method java/lang/Boolean.booleanValue:()Z
+     232: invokevirtual #226                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext.getSubBackpackContext:(IZ)Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;
+     235: invokestatic  #155                // Method openBackpack:(Lnet/minecraft/server/level/ServerPlayer;Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)V
+     238: goto          282
+     241: aload_0
+     242: getfield      #137                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     245: astore        4
+     247: aload         4
+     249: instanceof    #228                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/IContextAwareContainer
+     252: ifeq          278
+     255: aload         4
+     257: checkcast     #228                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/IContextAwareContainer
+     260: astore_3
+     261: aload_3
+     262: invokeinterface #229,  1          // InterfaceMethod net/p3pp3rf1y/sophisticatedbackpacks/common/gui/IContextAwareContainer.getBackpackContext:()Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;
+     267: astore        4
+     269: aload_0
+     270: aload         4
+     272: invokestatic  #155                // Method openBackpack:(Lnet/minecraft/server/level/ServerPlayer;Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)V
+     275: goto          282
+     278: aload_0
+     279: invokestatic  #233                // Method findAndOpenFirstBackpack:(Lnet/minecraft/server/level/ServerPlayer;)V
+     282: return
+
+  private static void findAndOpenFirstBackpack(net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: invokestatic  #245                // Method net/p3pp3rf1y/sophisticatedbackpacks/util/PlayerInventoryProvider.get:()Lnet/p3pp3rf1y/sophisticatedbackpacks/util/PlayerInventoryProvider;
+       3: aload_0
+       4: aload_0
+       5: invokedynamic #256,  0            // InvokeDynamic #2:accept:(Lnet/minecraft/server/level/ServerPlayer;)Lnet/p3pp3rf1y/sophisticatedbackpacks/util/PlayerInventoryProvider$BackpackInventorySlotConsumer;
+      10: invokevirtual #260                // Method net/p3pp3rf1y/sophisticatedbackpacks/util/PlayerInventoryProvider.runOnBackpacks:(Lnet/minecraft/world/entity/player/Player;Lnet/p3pp3rf1y/sophisticatedbackpacks/util/PlayerInventoryProvider$BackpackInventorySlotConsumer;)V
+      13: return
+
+  private static void openBackpack(net.minecraft.server.level.ServerPlayer, net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContext);
+    Code:
+       0: aload_0
+       1: new           #262                // class net/minecraft/world/SimpleMenuProvider
+       4: dup
+       5: aload_1
+       6: invokedynamic #273,  0            // InvokeDynamic #3:m_7208_:(Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)Lnet/minecraft/world/inventory/MenuConstructor;
+      11: aload_1
+      12: aload_0
+      13: invokevirtual #277                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext.getDisplayName:(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/network/chat/Component;
+      16: invokespecial #280                // Method net/minecraft/world/SimpleMenuProvider."<init>":(Lnet/minecraft/world/inventory/MenuConstructor;Lnet/minecraft/network/chat/Component;)V
+      19: aload_1
+      20: dup
+      21: invokestatic  #285                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      24: pop
+      25: invokedynamic #296,  0            // InvokeDynamic #4:accept:(Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)Ljava/util/function/Consumer;
+      30: invokestatic  #302                // Method net/minecraftforge/network/NetworkHooks.openScreen:(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/MenuProvider;Ljava/util/function/Consumer;)V
+      33: return
+
+  private static net.minecraft.world.inventory.AbstractContainerMenu lambda$openBackpack$4(net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContext, int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: new           #141                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer
+       3: dup
+       4: iload_1
+       5: aload_3
+       6: aload_0
+       7: invokespecial #305                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer."<init>":(ILnet/minecraft/world/entity/player/Player;Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)V
+      10: areturn
+
+  private static boolean lambda$findAndOpenFirstBackpack$3(net.minecraft.server.level.ServerPlayer, net.minecraft.world.item.ItemStack, java.lang.String, java.lang.String, int);
+    Code:
+       0: new           #12                 // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext$Item
+       3: dup
+       4: aload_2
+       5: aload_3
+       6: iload         4
+       8: invokespecial #313                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext$Item."<init>":(Ljava/lang/String;Ljava/lang/String;I)V
+      11: astore        5
+      13: aload_0
+      14: new           #262                // class net/minecraft/world/SimpleMenuProvider
+      17: dup
+      18: aload         5
+      20: invokedynamic #321,  0            // InvokeDynamic #5:m_7208_:(Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext$Item;)Lnet/minecraft/world/inventory/MenuConstructor;
+      25: aload_1
+      26: invokevirtual #325                // Method net/minecraft/world/item/ItemStack.m_41786_:()Lnet/minecraft/network/chat/Component;
+      29: invokespecial #280                // Method net/minecraft/world/SimpleMenuProvider."<init>":(Lnet/minecraft/world/inventory/MenuConstructor;Lnet/minecraft/network/chat/Component;)V
+      32: aload         5
+      34: dup
+      35: invokestatic  #285                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      38: pop
+      39: invokedynamic #328,  0            // InvokeDynamic #4:accept:(Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext$Item;)Ljava/util/function/Consumer;
+      44: invokestatic  #302                // Method net/minecraftforge/network/NetworkHooks.openScreen:(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/MenuProvider;Ljava/util/function/Consumer;)V
+      47: iconst_1
+      48: ireturn
+
+  private static net.minecraft.world.inventory.AbstractContainerMenu lambda$findAndOpenFirstBackpack$2(net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContext$Item, int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: new           #141                // class net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer
+       3: dup
+       4: iload_1
+       5: aload_3
+       6: aload_0
+       7: invokespecial #305                // Method net/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContainer."<init>":(ILnet/minecraft/world/entity/player/Player;Lnet/p3pp3rf1y/sophisticatedbackpacks/common/gui/BackpackContext;)V
+      10: areturn
+
+  private static java.lang.Boolean lambda$handleMessage$1(net.p3pp3rf1y.sophisticatedbackpacks.backpack.wrapper.IBackpackWrapper);
+    Code:
+       0: aload_0
+       1: invokeinterface #336,  1          // InterfaceMethod net/p3pp3rf1y/sophisticatedbackpacks/backpack/wrapper/IBackpackWrapper.getContentsUuid:()Ljava/util/Optional;
+       6: invokevirtual #337                // Method java/util/Optional.isEmpty:()Z
+       9: invokestatic  #214                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      12: areturn
+
+  private static void lambda$onMessage$0(net.minecraftforge.network.NetworkEvent$Context, net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage);
+    Code:
+       0: aload_0
+       1: invokevirtual #343                // Method net/minecraftforge/network/NetworkEvent$Context.getSender:()Lnet/minecraft/server/level/ServerPlayer;
+       4: aload_1
+       5: invokestatic  #345                // Method handleMessage:(Lnet/minecraft/server/level/ServerPlayer;Lnet/p3pp3rf1y/sophisticatedbackpacks/network/BackpackOpenMessage;)V
+       8: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

@@ -1,0 +1,39 @@
+Compiled from "BlockIronFurnaceContainerBase.java"
+class ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$3 extends net.minecraft.world.inventory.DataSlot {
+  final ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase this$0;
+
+  ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase$3(ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       5: aload_0
+       6: invokespecial #18                 // Method net/minecraft/world/inventory/DataSlot."<init>":()V
+       9: return
+
+  public int m_6501_();
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       4: invokevirtual #26                 // Method ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.getIsGenerator:()Z
+       7: ifeq          14
+      10: iconst_1
+      11: goto          15
+      14: iconst_0
+      15: ireturn
+
+  public void m_6422_(int);
+    Code:
+       0: iload_1
+       1: iconst_1
+       2: if_icmpne     18
+       5: aload_0
+       6: getfield      #16                 // Field this$0:Lironfurnaces/container/furnaces/BlockIronFurnaceContainerBase;
+       9: getfield      #32                 // Field ironfurnaces/container/furnaces/BlockIronFurnaceContainerBase.te:Lironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase;
+      12: getfield      #38                 // Field ironfurnaces/tileentity/furnaces/BlockIronFurnaceTileBase.currentAugment:[I
+      15: iconst_2
+      16: iconst_2
+      17: iastore
+      18: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

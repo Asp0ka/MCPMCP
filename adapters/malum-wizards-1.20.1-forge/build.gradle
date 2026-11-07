@@ -1,0 +1,35 @@
+plugins { id 'net.minecraftforge.gradle' version '6.0.54' apply false }
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'net.minecraftforge.gradle'
+    group = 'dev.mcpmcp.adapters'
+    version = '0.1.0'
+    java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+    tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+    repositories { mavenCentral() }
+    minecraft { mappings channel: 'official', version: '1.20.1' }
+    sourceSets {
+        main.java.srcDir rootProject.file('common/src/main/java')
+        test.java.srcDir rootProject.file('common/src/test/java')
+    }
+    def platformRoot = rootProject.file('../..')
+    def instanceMods = providers.gradleProperty('modsDir').getOrElse('D:/Games/mc/Cheat/versions/神秘启旅/mods')
+    def requiredMods = project.name == 'malum' ? ['*malum-1.20.1-1.6.7.jar', '*lodestone-1.20.1-1.6.4.1.jar'] : ['*wizards_reborn-1.20.1-0.2.9.jar', '*fluffy_fur-1.20.1-0.2.2.jar']
+    def modFiles = files(requiredMods.collect { pattern -> fileTree(instanceMods) { include pattern } })
+    dependencies {
+        minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+        compileOnly modFiles
+        compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+        compileOnly 'com.google.code.gson:gson:2.10'
+        testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+        testImplementation 'com.google.code.gson:gson:2.10'
+    }
+    tasks.named('compileJava') { doFirst {
+        requiredMods.each { pattern -> if (fileTree(instanceMods) { include pattern }.files.size() != 1) throw new GradleException('Need exactly one pinned dependency: ' + pattern) }
+    } }
+    jar { archiveFileName = 'adapter.jar'; manifest { attributes 'Implementation-Title': 'MCPMCP '+project.name+' adapter', 'Implementation-Version': project.version } }
+    jar.finalizedBy('reobfJar')
+    tasks.register('adapterContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.magic.AdapterContractTest'; args project.name }
+    check.dependsOn adapterContractTest
+    tasks.register('stageDistribution', Copy) { dependsOn 'reobfJar'; from tasks.jar; into rootProject.file('distribution/'+project.name) }
+}

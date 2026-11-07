@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.jei",
+  "mod_id": "jei",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "15.74.0.234",
+  "target_sha256": "0bbd27c886b974be6906fe16f5e5e3ace8a87350b32e4361cca0213df1e7e86e",
+  "actions": []
+}

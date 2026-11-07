@@ -1,0 +1,244 @@
+Compiled from "WeaversWorkbenchContainer.java"
+public class com.sammy.malum.common.container.WeaversWorkbenchContainer extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final net.minecraft.network.chat.Component component;
+
+  public final com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchItemHandler itemHandler;
+
+  public final com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity blockEntity;
+
+  public com.sammy.malum.common.container.WeaversWorkbenchContainer(int, net.minecraft.world.entity.player.Inventory, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: aload_2
+       4: aload_3
+       5: invokestatic  #28                 // Method getTileEntity:(Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/FriendlyByteBuf;)Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity;
+       8: invokespecial #31                 // Method "<init>":(ILnet/minecraft/world/entity/player/Inventory;Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity;)V
+      11: return
+
+  public com.sammy.malum.common.container.WeaversWorkbenchContainer(int, net.minecraft.world.entity.player.Inventory, com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity);
+    Code:
+       0: aload_0
+       1: getstatic     #45                 // Field com/sammy/malum/registry/common/ContainerRegistry.WEAVERS_WORKBENCH:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #51                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #53                 // class net/minecraft/world/inventory/MenuType
+      10: iload_1
+      11: invokespecial #56                 // Method net/minecraft/world/inventory/AbstractContainerMenu."<init>":(Lnet/minecraft/world/inventory/MenuType;I)V
+      14: aload_0
+      15: aload_3
+      16: getfield      #60                 // Field com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity.itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      19: putfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      22: aload_0
+      23: aload_3
+      24: putfield      #63                 // Field blockEntity:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity;
+      27: aload_0
+      28: new           #11                 // class com/sammy/malum/common/container/WeaversWorkbenchContainer$1
+      31: dup
+      32: aload_0
+      33: aload_0
+      34: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      37: iconst_0
+      38: bipush        18
+      40: bipush        52
+      42: invokespecial #66                 // Method com/sammy/malum/common/container/WeaversWorkbenchContainer$1."<init>":(Lcom/sammy/malum/common/container/WeaversWorkbenchContainer;Lnet/minecraftforge/items/IItemHandler;III)V
+      45: invokevirtual #70                 // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      48: pop
+      49: aload_0
+      50: new           #9                  // class com/sammy/malum/common/container/WeaversWorkbenchContainer$2
+      53: dup
+      54: aload_0
+      55: aload_0
+      56: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      59: iconst_1
+      60: bipush        54
+      62: bipush        52
+      64: invokespecial #71                 // Method com/sammy/malum/common/container/WeaversWorkbenchContainer$2."<init>":(Lcom/sammy/malum/common/container/WeaversWorkbenchContainer;Lnet/minecraftforge/items/IItemHandler;III)V
+      67: invokevirtual #70                 // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      70: pop
+      71: aload_0
+      72: new           #7                  // class com/sammy/malum/common/container/WeaversWorkbenchContainer$3
+      75: dup
+      76: aload_0
+      77: aload_0
+      78: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      81: iconst_2
+      82: bipush        90
+      84: bipush        52
+      86: aload_3
+      87: invokespecial #74                 // Method com/sammy/malum/common/container/WeaversWorkbenchContainer$3."<init>":(Lcom/sammy/malum/common/container/WeaversWorkbenchContainer;Lnet/minecraftforge/items/IItemHandler;IIILcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity;)V
+      90: invokevirtual #70                 // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+      93: pop
+      94: iconst_0
+      95: istore        4
+      97: iload         4
+      99: iconst_3
+     100: if_icmpge     164
+     103: iconst_0
+     104: istore        5
+     106: iload         5
+     108: bipush        9
+     110: if_icmpge     158
+     113: aload_0
+     114: new           #78                 // class net/minecraft/world/inventory/Slot
+     117: dup
+     118: aload_2
+     119: iload         5
+     121: iload         4
+     123: iconst_1
+     124: iadd
+     125: bipush        9
+     127: imul
+     128: iadd
+     129: bipush        8
+     131: iload         5
+     133: bipush        18
+     135: imul
+     136: iadd
+     137: bipush        84
+     139: iload         4
+     141: bipush        18
+     143: imul
+     144: iadd
+     145: invokespecial #81                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+     148: invokevirtual #70                 // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     151: pop
+     152: iinc          5, 1
+     155: goto          106
+     158: iinc          4, 1
+     161: goto          97
+     164: iconst_0
+     165: istore        4
+     167: iload         4
+     169: bipush        9
+     171: if_icmpge     206
+     174: aload_0
+     175: new           #78                 // class net/minecraft/world/inventory/Slot
+     178: dup
+     179: aload_2
+     180: iload         4
+     182: bipush        8
+     184: iload         4
+     186: bipush        18
+     188: imul
+     189: iadd
+     190: sipush        142
+     193: invokespecial #81                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+     196: invokevirtual #70                 // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     199: pop
+     200: iinc          4, 1
+     203: goto          167
+     206: return
+
+  public net.minecraft.world.item.ItemStack m_7648_(net.minecraft.world.entity.player.Player, int);
+    Code:
+       0: getstatic     #93                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: astore_3
+       4: aload_0
+       5: getfield      #97                 // Field f_38839_:Lnet/minecraft/core/NonNullList;
+       8: iload_2
+       9: invokevirtual #102                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      12: checkcast     #78                 // class net/minecraft/world/inventory/Slot
+      15: astore        4
+      17: aload         4
+      19: invokevirtual #106                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+      22: ifeq          131
+      25: aload         4
+      27: invokevirtual #110                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      30: astore        5
+      32: aload         5
+      34: invokevirtual #113                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      37: astore_3
+      38: iload_2
+      39: aload_0
+      40: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      43: invokevirtual #119                // Method com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler.getSlots:()I
+      46: if_icmpge     77
+      49: aload_0
+      50: aload         5
+      52: aload_0
+      53: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      56: invokevirtual #119                // Method com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler.getSlots:()I
+      59: aload_0
+      60: getfield      #97                 // Field f_38839_:Lnet/minecraft/core/NonNullList;
+      63: invokevirtual #122                // Method net/minecraft/core/NonNullList.size:()I
+      66: iconst_1
+      67: invokevirtual #126                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+      70: ifne          99
+      73: getstatic     #93                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      76: areturn
+      77: aload_0
+      78: aload         5
+      80: iconst_0
+      81: aload_0
+      82: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+      85: invokevirtual #119                // Method com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler.getSlots:()I
+      88: iconst_0
+      89: invokevirtual #126                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+      92: ifne          99
+      95: getstatic     #93                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      98: areturn
+      99: aload         5
+     101: invokevirtual #129                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     104: ifeq          126
+     107: aload         4
+     109: getstatic     #93                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     112: invokevirtual #133                // Method net/minecraft/world/inventory/Slot.m_5852_:(Lnet/minecraft/world/item/ItemStack;)V
+     115: aload         4
+     117: aload_1
+     118: aload         5
+     120: invokevirtual #137                // Method net/minecraft/world/inventory/Slot.m_142406_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+     123: goto          131
+     126: aload         4
+     128: invokevirtual #141                // Method net/minecraft/world/inventory/Slot.m_6654_:()V
+     131: aload_0
+     132: getfield      #61                 // Field itemHandler:Lcom/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler;
+     135: iload_2
+     136: invokevirtual #145                // Method com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchItemHandler.onContentsChanged:(I)V
+     139: aload_3
+     140: areturn
+
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  private static com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlockEntity getTileEntity(net.minecraft.world.entity.player.Inventory, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: ldc           #156                // String playerInventory cannot be null
+       3: invokestatic  #162                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+       6: pop
+       7: aload_1
+       8: ldc           #164                // String data cannot be null
+      10: invokestatic  #162                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      13: pop
+      14: aload_0
+      15: getfield      #167                // Field net/minecraft/world/entity/player/Inventory.f_35978_:Lnet/minecraft/world/entity/player/Player;
+      18: invokevirtual #173                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      21: aload_1
+      22: invokevirtual #179                // Method net/minecraft/network/FriendlyByteBuf.m_130135_:()Lnet/minecraft/core/BlockPos;
+      25: invokevirtual #185                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      28: astore_2
+      29: aload_2
+      30: instanceof    #58                 // class com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity
+      33: ifeq          43
+      36: aload_2
+      37: checkcast     #58                 // class com/sammy/malum/common/block/curiosities/weavers_workbench/WeaversWorkbenchBlockEntity
+      40: astore_3
+      41: aload_3
+      42: areturn
+      43: new           #189                // class java/lang/IllegalStateException
+      46: dup
+      47: aload_2
+      48: invokedynamic #201,  0            // InvokeDynamic #0:makeConcatWithConstants:(Lnet/minecraft/world/level/block/entity/BlockEntity;)Ljava/lang/String;
+      53: invokespecial #204                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      56: athrow
+
+  static {};
+    Code:
+       0: ldc           #211                // String Weaver\'s Workbench
+       2: invokestatic  #217                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       5: putstatic     #219                // Field component:Lnet/minecraft/network/chat/Component;
+       8: return
+}

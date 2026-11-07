@@ -1,0 +1,72 @@
+Compiled from "IngredientWithCount.java"
+public class team.lodestar.lodestone.systems.recipe.IngredientWithCount implements team.lodestar.lodestone.systems.recipe.IRecipeComponent {
+  public final net.minecraft.world.item.crafting.Ingredient ingredient;
+  public final int count;
+  public team.lodestar.lodestone.systems.recipe.IngredientWithCount(net.minecraft.world.item.crafting.Ingredient, int);
+  public net.minecraft.world.item.ItemStack getStack();
+  public java.util.List<net.minecraft.world.item.ItemStack> getStacks();
+  public net.minecraft.world.item.Item getItem();
+  public int getCount();
+  public boolean matches(net.minecraft.world.item.ItemStack);
+  public static team.lodestar.lodestone.systems.recipe.IngredientWithCount read(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public static team.lodestar.lodestone.systems.recipe.IngredientWithCount deserialize(com.google.gson.JsonObject);
+  public com.google.gson.JsonObject serialize();
+}
+Compiled from "LodestoneBlockEntity.java"
+public class team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public boolean needsSync;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void onBreak(net.minecraft.world.entity.player.Player);
+  public void onPlace(net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack);
+  public void onNeighborUpdate(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public net.minecraft.world.item.ItemStack onClone(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.HitResult, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.InteractionResult onUse(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void onEntityInside(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity);
+  public net.minecraft.nbt.CompoundTag m_5995_();
+  public void handleUpdateTag(net.minecraft.nbt.CompoundTag);
+  public void m_142466_(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public void onDataPacket(net.minecraft.network.Connection, net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+  public void tick();
+  public void init();
+  public net.minecraft.network.protocol.Packet m_58483_();
+}
+Compiled from "LodestoneBlockEntityInventory.java"
+public class team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory extends net.minecraftforge.items.ItemStackHandler {
+  public final int slotCount;
+  public final int allowedItemSize;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> inputPredicate;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> outputPredicate;
+  public final net.minecraftforge.common.util.LazyOptional<net.minecraftforge.items.IItemHandler> inventoryOptional;
+  public java.util.ArrayList<net.minecraft.world.item.ItemStack> nonEmptyItemStacks;
+  public int emptyItemAmount;
+  public int nonEmptyItemAmount;
+  public int firstEmptyItemIndex;
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory(int, int, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory(int, int, java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public team.lodestar.lodestone.systems.blockentity.LodestoneBlockEntityInventory(int, int);
+  public void onContentsChanged(int);
+  public int getSlots();
+  public int getSlotLimit(int);
+  public boolean isItemValid(int, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack extractItem(int, int, boolean);
+  public void updateData();
+  public void load(net.minecraft.nbt.CompoundTag);
+  public void load(net.minecraft.nbt.CompoundTag, java.lang.String);
+  public void save(net.minecraft.nbt.CompoundTag);
+  public void save(net.minecraft.nbt.CompoundTag, java.lang.String);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getStacks();
+  public boolean isEmpty();
+  public void clear();
+  public void dumpItems(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public void dumpItems(net.minecraft.world.level.Level, net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.item.ItemStack interact(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public net.minecraft.world.item.ItemStack extractItem(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.player.Player);
+  public void extractItem(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack, int);
+  public net.minecraft.world.item.ItemStack insertItem(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack insertItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack insertItem(net.minecraft.world.item.ItemStack, boolean);
+  private static boolean lambda$updateData$1(net.minecraft.world.item.ItemStack);
+  private net.minecraftforge.items.IItemHandler lambda$new$0();
+}
