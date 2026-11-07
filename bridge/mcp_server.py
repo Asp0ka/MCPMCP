@@ -30,10 +30,10 @@ TOOLS=[
  declaration('execute_action','执行一项明确指定的动作，返回 action_id；必须查询任务并读回验证。',{'action':string(),'arguments':OBJECT,'action_id':dict(string(96),pattern='^[A-Za-z0-9_.-]{1,96}$')},['action'],True),
  declaration('get_job','读取动作进度、已交送或观察成功状态。',{'action_id':string(96)},['action_id']),
  declaration('cancel_job','取消任务并清理自己拥有的输入或容器。',{'action_id':string(96)},['action_id'],True),
- declaration('observe','读取指定能力，缺失客户端信息明确为 unknown。',{'kind':string(),'arguments':OBJECT},['kind']),
+ declaration('observe','优先结构化观测：player/state/inventory/equipment/container/recipes/blocks/entities/screen；blocks支持min/max或radius、block精确ID过滤、detail、include_air、limit、offset，limit是扫描候选预算而非命中条数，空页仍按next_offset续查；entities/screen按next_cursor续查。先局部粗查，再目标细查、分页和错误诊断。截图识图仅作最后手段：结构化路径无法解答具体视觉问题才用screenshot，按需最小区域；不得例行识别地形/HUD/背包或为一次动作失败直接截图。客户端缺失信息保留unknown。',{'kind':string(),'arguments':OBJECT},['kind']),
  declaration('get_player_state','读取生命、经验、饥饿、装备与玩家状态。'),
  declaration('get_inventory','读取背包清单。',{'detail':dict(string(),enum=['coarse','detailed'])}),
- declaration('get_screen','读取当前屏幕、控件、焦点和菜单。'),
+ declaration('get_screen','优先读取当前屏幕控件ID、标签、bounds、焦点和菜单；本工具无cursor参数，返回next_cursor时用observe(kind=screen, arguments={cursor:next_cursor})续查，切屏重新读取。控件路径不能回答的视觉问题才考虑截图。'),
  declaration('get_recipes','通过原生或插件提供者查询配方。',{'query':string(),'limit':{'type':'integer','minimum':1,'maximum':100},'cursor':string(256)}),
  declaration('get_chat_messages','读取本客户端已接收的有界聊天记录。',{'after':{'type':'integer','minimum':0,'maximum':9007199254740991},'limit':{'type':'integer','minimum':1,'maximum':200}}),
  declaration('get_mods','返回加载模组、版本与兼容状态。'),
@@ -94,7 +94,7 @@ class Server:
   if 'id'not in m:return None
   i=m['id'];method=m['method'];p=m.get('params',{})
   if not isinstance(p,dict):return self.error(i,-32602,'params must be object')
-  if method=='initialize':r={'protocolVersion':p.get('protocolVersion')if p.get('protocolVersion')in('2025-11-25','2025-06-18','2025-03-26','2024-11-05')else'2025-03-26','serverInfo':{'name':'mcpmcp','version':'0.1.1'},'capabilities':{'tools':{'listChanged':False}},'instructions':'先读能力与状态。submitted不代表成功。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。'}
+  if method=='initialize':r={'protocolVersion':p.get('protocolVersion')if p.get('protocolVersion')in('2025-11-25','2025-06-18','2025-03-26','2024-11-05')else'2025-03-26','serverInfo':{'name':'mcpmcp','version':'0.1.1'},'capabilities':{'tools':{'listChanged':False}},'instructions':'先读能力与状态，优先结构化观测player/state/inventory/container/blocks/entities/screen；先小范围粗查、再目标细查，按next_offset/next_cursor续查。dig_target_occluded先读玩家与目标邻域、检查距离遮挡并调整安全站位；分页未完、unknown、一次失败均不直接转截图。截图识图仅作最后手段：写明未解视觉问题和已尝试路径，仅最小必要区域识别一次，不做例行截图；用户明确要求检查画面或留证时按需处理。submitted不代表成功，以实时结构化读回验证。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。'}
   elif method=='ping':r={}
   elif method=='tools/list':r={'tools':TOOLS}
   elif method=='tools/call':

@@ -46,6 +46,14 @@ observe(kind,arguments)支持player/inventory/item/equipment/state/container/blo
 
 大查询必须检查complete/truncated/next_*，unknown不能改成false或空集合结论。服务端NBT、未同步结构、模组私有库存不编造。
 
+## 观测优先级与识图兜底
+
+默认顺序：直接结构化读取 → 局部粗查/目标细查/过滤分页 → 任务错误诊断与安全站位/控件刷新 → 最后截图识图。player/state、inventory/container/recipes、blocks/entities和screen分别回答状态、物品、世界及界面问题；不能用图像替代已有精确字段。
+
+blocks的block字段为精确方块ID过滤，支持radius或min/max；limit消耗候选扫描预算，空气与过滤未命中也计入。空页仍按next_offset续读；entities/screen按next_cursor继续；get_screen()不接受cursor，screen续页须调用observe(kind="screen", arguments={"cursor":返回的next_cursor})。dig_target_occluded先检查当前位置、目标及邻接遮挡，基于数据绕行或清障再读回，不因一次拒绝直接截图。客户端unknown和未读完也不触发视觉兜底。
+
+只有相关结构化路径无法解决且问题确实依赖视觉时，说明缺少的信息、已尝试路径、截图对下一步的作用，再截最小区域并识别一次；仍无法判断则报告限制。用户明确要求检查画面或排版可按需使用；单纯留证不额外识图。不每轮截图、不靠截图读HUD/背包或验证动作成功。这是Agent调用指引，保留截图能力，不构成程序硬禁用。已运行会话可能缓存旧skill和MCP描述，须在该会话重读规则；无需重启游戏。
+
 ## 界面、移动与模式
 
 ui.key使用GLFW数字键码、tap/press/release；ui.mouse使用GUI逻辑坐标和有限按键；文本先ui.focus再ui.text。stop/切屏释放自动化持有的输入，保留玩家原先输入。UI不能改变MCP自身授权设置；普通模式通过聊天界面提交slash也被拦截。
