@@ -100,6 +100,15 @@ metadata:
 - 长按使用ticks限定并保留取消路径；stop后等惯性消退，再读坐标确认稳定。
 - 修改调用策略时同步已安装skill、仓库skill与MCP初始化/工具说明，并分别验证；只改源码不能宣称正在运行的任务已采用新规则。长会话可能保留旧上下文，须让该任务重读新规则；仅更新这些指引无需重启游戏。截图能力保留，此优先级是Agent操作规则，不宣称程序已硬性禁止截图。
 
+## 模组适配插件
+
+可选 Java 插件按目标 JAR 的完整 SHA-256 与实际版本绑定，安装于 `MCPMCP-Plugin/<mod-id>-<短hash>/`，需该实例本地开启 `trustJavaPlugins` 并重启。查询根 kind（如 `jei`、`rs`、`botania`）先取合同；JEI 用 `jei.categories`/`jei.recipes`/`jei.recipe`，填料 `jei.transfer` 需已开容器并先 `dry_run`。
+
+- `jei.transfer` 的 `submitted` 只说明交给 JEI 处理器；读 `jei.transfer` 回执和容器槽位才算填料。JEI 15.20 无完成回调，必须读槽位。
+- RS 网格、精妙存储/背包、更多熔炉等菜单型查询要求真实已打开菜单；不在菜单时返回 `available=false`，不要推断服务端库存。
+- 灵灾/术士/新生魔艺/铁咒的配方来自客户端 RecipeManager，可按 `next_cursor` 翻页；Botania/Avaritia 的动态配方走各自 JEI 分类，插件直读可能为空。
+- 插件返回的业务错误现在会原样上报，不再变成 `unknown_observation`；看到 `not_in_world` 先进入世界。
+
 ## 插件
 
 - 目录 `MCPMCP-Plugin/<mod-id>-<目标JAR短SHA256>/`，正式manifest保留完整hash、api、平台和actions。示例与开发方法见工程 `docs/plugins.md`。
