@@ -1,0 +1,35 @@
+Compiled from "CuriosContainerProvider.java"
+public class top.theillusivec4.curios.common.inventory.container.CuriosContainerProvider implements net.minecraft.world.MenuProvider {
+  public top.theillusivec4.curios.common.inventory.container.CuriosContainerProvider();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public net.minecraft.network.chat.Component m_5446_();
+    Code:
+       0: ldc           #28                 // String container.crafting
+       2: invokestatic  #34                 // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       5: areturn
+
+  public net.minecraft.world.inventory.AbstractContainerMenu m_7208_(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+    Code:
+       0: getstatic     #41                 // Field top/theillusivec4/curios/common/CuriosConfig.SERVER:Ltop/theillusivec4/curios/common/CuriosConfig$Server;
+       3: getfield      #45                 // Field top/theillusivec4/curios/common/CuriosConfig$Server.enableLegacyMenu:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+       6: invokevirtual #49                 // Method net/minecraftforge/common/ForgeConfigSpec$BooleanValue.get:()Ljava/lang/Object;
+       9: checkcast     #51                 // class java/lang/Boolean
+      12: invokevirtual #55                 // Method java/lang/Boolean.booleanValue:()Z
+      15: ifeq          28
+      18: new           #57                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainer
+      21: dup
+      22: iload_1
+      23: aload_2
+      24: invokespecial #60                 // Method top/theillusivec4/curios/common/inventory/container/CuriosContainer."<init>":(ILnet/minecraft/world/entity/player/Inventory;)V
+      27: areturn
+      28: new           #62                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      31: dup
+      32: iload_1
+      33: aload_2
+      34: invokespecial #63                 // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2."<init>":(ILnet/minecraft/world/entity/player/Inventory;)V
+      37: areturn
+}

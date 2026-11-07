@@ -1,0 +1,1308 @@
+Compiled from "CuriosScreenV2.java"
+public class top.theillusivec4.curios.client.gui.CuriosScreenV2 extends net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen<top.theillusivec4.curios.common.inventory.container.CuriosContainerV2> implements net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener, top.theillusivec4.curios.api.client.ICuriosScreen {
+  static final net.minecraft.resources.ResourceLocation CURIO_INVENTORY;
+
+  private final net.minecraft.client.gui.screens.recipebook.RecipeBookComponent recipeBookGui;
+
+  public boolean widthTooNarrow;
+
+  private net.minecraft.client.gui.components.ImageButton recipeBookButton;
+
+  private top.theillusivec4.curios.client.gui.CuriosButton buttonCurios;
+
+  private top.theillusivec4.curios.client.gui.CosmeticButton cosmeticButton;
+
+  private top.theillusivec4.curios.client.gui.PageButton nextPage;
+
+  private top.theillusivec4.curios.client.gui.PageButton prevPage;
+
+  private boolean buttonClicked;
+
+  private boolean isRenderButtonHovered;
+
+  public int panelWidth;
+
+  private static int scrollCooldown;
+
+  public top.theillusivec4.curios.client.gui.CuriosScreenV2(top.theillusivec4.curios.common.inventory.container.CuriosContainerV2, net.minecraft.world.entity.player.Inventory, net.minecraft.network.chat.Component);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #79                 // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen."<init>":(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+       7: aload_0
+       8: new           #81                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookComponent
+      11: dup
+      12: invokespecial #84                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent."<init>":()V
+      15: putfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      18: aload_0
+      19: iconst_0
+      20: putfield      #88                 // Field panelWidth:I
+      23: return
+
+  public static net.minecraft.util.Tuple<java.lang.Integer, java.lang.Integer> getButtonOffset(boolean);
+    Code:
+       0: getstatic     #103                // Field top/theillusivec4/curios/client/CuriosClientConfig.CLIENT:Ltop/theillusivec4/curios/client/CuriosClientConfig$Client;
+       3: astore_1
+       4: aload_1
+       5: getfield      #107                // Field top/theillusivec4/curios/client/CuriosClientConfig$Client.buttonCorner:Lnet/minecraftforge/common/ForgeConfigSpec$EnumValue;
+       8: invokevirtual #111                // Method net/minecraftforge/common/ForgeConfigSpec$EnumValue.get:()Ljava/lang/Object;
+      11: checkcast     #22                 // class top/theillusivec4/curios/client/CuriosClientConfig$Client$ButtonCorner
+      14: astore_2
+      15: iconst_0
+      16: istore_3
+      17: iconst_0
+      18: istore        4
+      20: iload_0
+      21: ifeq          71
+      24: iload_3
+      25: aload_2
+      26: invokevirtual #115                // Method top/theillusivec4/curios/client/CuriosClientConfig$Client$ButtonCorner.getCreativeXoffset:()I
+      29: aload_1
+      30: getfield      #119                // Field top/theillusivec4/curios/client/CuriosClientConfig$Client.creativeButtonXOffset:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      33: invokevirtual #120                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      36: checkcast     #122                // class java/lang/Integer
+      39: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+      42: iadd
+      43: iadd
+      44: istore_3
+      45: iload         4
+      47: aload_2
+      48: invokevirtual #128                // Method top/theillusivec4/curios/client/CuriosClientConfig$Client$ButtonCorner.getCreativeYoffset:()I
+      51: aload_1
+      52: getfield      #131                // Field top/theillusivec4/curios/client/CuriosClientConfig$Client.creativeButtonYOffset:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      55: invokevirtual #120                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      58: checkcast     #122                // class java/lang/Integer
+      61: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+      64: iadd
+      65: iadd
+      66: istore        4
+      68: goto          115
+      71: iload_3
+      72: aload_2
+      73: invokevirtual #134                // Method top/theillusivec4/curios/client/CuriosClientConfig$Client$ButtonCorner.getXoffset:()I
+      76: aload_1
+      77: getfield      #137                // Field top/theillusivec4/curios/client/CuriosClientConfig$Client.buttonXOffset:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      80: invokevirtual #120                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      83: checkcast     #122                // class java/lang/Integer
+      86: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+      89: iadd
+      90: iadd
+      91: istore_3
+      92: iload         4
+      94: aload_2
+      95: invokevirtual #140                // Method top/theillusivec4/curios/client/CuriosClientConfig$Client$ButtonCorner.getYoffset:()I
+      98: aload_1
+      99: getfield      #143                // Field top/theillusivec4/curios/client/CuriosClientConfig$Client.buttonYOffset:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+     102: invokevirtual #120                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+     105: checkcast     #122                // class java/lang/Integer
+     108: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+     111: iadd
+     112: iadd
+     113: istore        4
+     115: new           #145                // class net/minecraft/util/Tuple
+     118: dup
+     119: iload_3
+     120: invokestatic  #149                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     123: iload         4
+     125: invokestatic  #149                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     128: invokespecial #152                // Method net/minecraft/util/Tuple."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+     131: areturn
+
+  public void m_7856_();
+    Code:
+       0: aload_0
+       1: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+       4: ifnull        302
+       7: aload_0
+       8: aload_0
+       9: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      12: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      15: getfield      #170                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.panelWidth:I
+      18: putfield      #88                 // Field panelWidth:I
+      21: aload_0
+      22: aload_0
+      23: getfield      #173                // Field f_96543_:I
+      26: aload_0
+      27: getfield      #176                // Field f_97726_:I
+      30: isub
+      31: iconst_2
+      32: idiv
+      33: putfield      #179                // Field f_97735_:I
+      36: aload_0
+      37: aload_0
+      38: getfield      #182                // Field f_96544_:I
+      41: aload_0
+      42: getfield      #185                // Field f_97727_:I
+      45: isub
+      46: iconst_2
+      47: idiv
+      48: putfield      #188                // Field f_97736_:I
+      51: aload_0
+      52: iconst_1
+      53: putfield      #190                // Field widthTooNarrow:Z
+      56: aload_0
+      57: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      60: aload_0
+      61: getfield      #173                // Field f_96543_:I
+      64: aload_0
+      65: getfield      #182                // Field f_96544_:I
+      68: aload_0
+      69: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+      72: iconst_1
+      73: aload_0
+      74: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      77: checkcast     #192                // class net/minecraft/world/inventory/RecipeBookMenu
+      80: invokevirtual #196                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100309_:(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/world/inventory/RecipeBookMenu;)V
+      83: aload_0
+      84: aload_0
+      85: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      88: invokevirtual #200                // Method m_7787_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+      91: pop
+      92: aload_0
+      93: aload_0
+      94: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      97: invokevirtual #204                // Method m_264313_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+     100: aload_0
+     101: invokevirtual #208                // Method getMinecraft:()Lnet/minecraft/client/Minecraft;
+     104: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     107: ifnull        140
+     110: aload_0
+     111: invokevirtual #208                // Method getMinecraft:()Lnet/minecraft/client/Minecraft;
+     114: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     117: invokevirtual #220                // Method net/minecraft/client/player/LocalPlayer.m_7500_:()Z
+     120: ifeq          140
+     123: aload_0
+     124: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+     127: invokevirtual #223                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100385_:()Z
+     130: ifeq          140
+     133: aload_0
+     134: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+     137: invokevirtual #226                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100384_:()V
+     140: iconst_0
+     141: invokestatic  #228                // Method getButtonOffset:(Z)Lnet/minecraft/util/Tuple;
+     144: astore_1
+     145: aload_0
+     146: new           #230                // class top/theillusivec4/curios/client/gui/CuriosButton
+     149: dup
+     150: aload_0
+     151: aload_0
+     152: invokevirtual #233                // Method getGuiLeft:()I
+     155: aload_1
+     156: invokevirtual #236                // Method net/minecraft/util/Tuple.m_14418_:()Ljava/lang/Object;
+     159: checkcast     #122                // class java/lang/Integer
+     162: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+     165: iadd
+     166: aload_0
+     167: getfield      #182                // Field f_96544_:I
+     170: iconst_2
+     171: idiv
+     172: aload_1
+     173: invokevirtual #239                // Method net/minecraft/util/Tuple.m_14419_:()Ljava/lang/Object;
+     176: checkcast     #122                // class java/lang/Integer
+     179: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+     182: iadd
+     183: bipush        14
+     185: bipush        14
+     187: bipush        50
+     189: iconst_0
+     190: bipush        14
+     192: getstatic     #243                // Field top/theillusivec4/curios/client/gui/CuriosScreen.CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     195: invokespecial #246                // Method top/theillusivec4/curios/client/gui/CuriosButton."<init>":(Lnet/minecraft/client/gui/screens/inventory/AbstractContainerScreen;IIIIIIILnet/minecraft/resources/ResourceLocation;)V
+     198: putfield      #248                // Field buttonCurios:Ltop/theillusivec4/curios/client/gui/CuriosButton;
+     201: getstatic     #103                // Field top/theillusivec4/curios/client/CuriosClientConfig.CLIENT:Ltop/theillusivec4/curios/client/CuriosClientConfig$Client;
+     204: getfield      #252                // Field top/theillusivec4/curios/client/CuriosClientConfig$Client.enableButton:Lnet/minecraftforge/common/ForgeConfigSpec$BooleanValue;
+     207: invokevirtual #253                // Method net/minecraftforge/common/ForgeConfigSpec$BooleanValue.get:()Ljava/lang/Object;
+     210: checkcast     #255                // class java/lang/Boolean
+     213: invokevirtual #258                // Method java/lang/Boolean.booleanValue:()Z
+     216: ifeq          228
+     219: aload_0
+     220: aload_0
+     221: getfield      #248                // Field buttonCurios:Ltop/theillusivec4/curios/client/gui/CuriosButton;
+     224: invokevirtual #261                // Method m_142416_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+     227: pop
+     228: aload_0
+     229: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     232: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+     235: getfield      #265                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.player:Lnet/minecraft/world/entity/player/Player;
+     238: invokevirtual #268                // Method net/minecraft/world/entity/player/Player.m_7500_:()Z
+     241: ifne          298
+     244: aload_0
+     245: new           #270                // class net/minecraft/client/gui/components/ImageButton
+     248: dup
+     249: aload_0
+     250: getfield      #179                // Field f_97735_:I
+     253: bipush        104
+     255: iadd
+     256: aload_0
+     257: getfield      #182                // Field f_96544_:I
+     260: iconst_2
+     261: idiv
+     262: bipush        22
+     264: isub
+     265: bipush        20
+     267: bipush        18
+     269: iconst_0
+     270: iconst_0
+     271: bipush        19
+     273: getstatic     #273                // Field top/theillusivec4/curios/client/gui/CuriosScreen.RECIPE_BUTTON_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+     276: aload_0
+     277: aload_1
+     278: invokedynamic #291,  0            // InvokeDynamic #0:m_93750_:(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;Lnet/minecraft/util/Tuple;)Lnet/minecraft/client/gui/components/Button$OnPress;
+     283: invokespecial #294                // Method net/minecraft/client/gui/components/ImageButton."<init>":(IIIIIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+     286: putfield      #296                // Field recipeBookButton:Lnet/minecraft/client/gui/components/ImageButton;
+     289: aload_0
+     290: aload_0
+     291: getfield      #296                // Field recipeBookButton:Lnet/minecraft/client/gui/components/ImageButton;
+     294: invokevirtual #261                // Method m_142416_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+     297: pop
+     298: aload_0
+     299: invokevirtual #299                // Method updateRenderButtons:()V
+     302: return
+
+  public void updateRenderButtons();
+    Code:
+       0: aload_0
+       1: getfield      #306                // Field f_169368_:Ljava/util/List;
+       4: invokedynamic #318,  0            // InvokeDynamic #1:test:()Ljava/util/function/Predicate;
+       9: invokeinterface #324,  2          // InterfaceMethod java/util/List.removeIf:(Ljava/util/function/Predicate;)Z
+      14: pop
+      15: aload_0
+      16: getfield      #327                // Field f_96540_:Ljava/util/List;
+      19: invokedynamic #334,  0            // InvokeDynamic #2:test:()Ljava/util/function/Predicate;
+      24: invokeinterface #324,  2          // InterfaceMethod java/util/List.removeIf:(Ljava/util/function/Predicate;)Z
+      29: pop
+      30: aload_0
+      31: getfield      #337                // Field f_169369_:Ljava/util/List;
+      34: invokedynamic #344,  0            // InvokeDynamic #3:test:()Ljava/util/function/Predicate;
+      39: invokeinterface #324,  2          // InterfaceMethod java/util/List.removeIf:(Ljava/util/function/Predicate;)Z
+      44: pop
+      45: aload_0
+      46: aload_0
+      47: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      50: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      53: getfield      #170                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.panelWidth:I
+      56: putfield      #88                 // Field panelWidth:I
+      59: aload_0
+      60: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      63: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      66: getfield      #347                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.hasCosmetics:Z
+      69: ifeq          111
+      72: aload_0
+      73: new           #349                // class top/theillusivec4/curios/client/gui/CosmeticButton
+      76: dup
+      77: aload_0
+      78: aload_0
+      79: invokevirtual #233                // Method getGuiLeft:()I
+      82: bipush        17
+      84: iadd
+      85: aload_0
+      86: invokevirtual #352                // Method getGuiTop:()I
+      89: bipush        18
+      91: isub
+      92: bipush        20
+      94: bipush        17
+      96: invokespecial #355                // Method top/theillusivec4/curios/client/gui/CosmeticButton."<init>":(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;IIII)V
+      99: putfield      #357                // Field cosmeticButton:Ltop/theillusivec4/curios/client/gui/CosmeticButton;
+     102: aload_0
+     103: aload_0
+     104: getfield      #357                // Field cosmeticButton:Ltop/theillusivec4/curios/client/gui/CosmeticButton;
+     107: invokevirtual #261                // Method m_142416_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+     110: pop
+     111: aload_0
+     112: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     115: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+     118: getfield      #360                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.totalPages:I
+     121: iconst_1
+     122: if_icmple     207
+     125: aload_0
+     126: new           #38                 // class top/theillusivec4/curios/client/gui/PageButton
+     129: dup
+     130: aload_0
+     131: aload_0
+     132: invokevirtual #233                // Method getGuiLeft:()I
+     135: bipush        17
+     137: iadd
+     138: aload_0
+     139: invokevirtual #352                // Method getGuiTop:()I
+     142: iconst_2
+     143: iadd
+     144: bipush        11
+     146: bipush        12
+     148: getstatic     #364                // Field top/theillusivec4/curios/client/gui/PageButton$Type.NEXT:Ltop/theillusivec4/curios/client/gui/PageButton$Type;
+     151: invokespecial #367                // Method top/theillusivec4/curios/client/gui/PageButton."<init>":(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;IIIILtop/theillusivec4/curios/client/gui/PageButton$Type;)V
+     154: putfield      #369                // Field nextPage:Ltop/theillusivec4/curios/client/gui/PageButton;
+     157: aload_0
+     158: aload_0
+     159: getfield      #369                // Field nextPage:Ltop/theillusivec4/curios/client/gui/PageButton;
+     162: invokevirtual #261                // Method m_142416_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+     165: pop
+     166: aload_0
+     167: new           #38                 // class top/theillusivec4/curios/client/gui/PageButton
+     170: dup
+     171: aload_0
+     172: aload_0
+     173: invokevirtual #233                // Method getGuiLeft:()I
+     176: bipush        17
+     178: iadd
+     179: aload_0
+     180: invokevirtual #352                // Method getGuiTop:()I
+     183: iconst_2
+     184: iadd
+     185: bipush        11
+     187: bipush        12
+     189: getstatic     #372                // Field top/theillusivec4/curios/client/gui/PageButton$Type.PREVIOUS:Ltop/theillusivec4/curios/client/gui/PageButton$Type;
+     192: invokespecial #367                // Method top/theillusivec4/curios/client/gui/PageButton."<init>":(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;IIIILtop/theillusivec4/curios/client/gui/PageButton$Type;)V
+     195: putfield      #374                // Field prevPage:Ltop/theillusivec4/curios/client/gui/PageButton;
+     198: aload_0
+     199: aload_0
+     200: getfield      #374                // Field prevPage:Ltop/theillusivec4/curios/client/gui/PageButton;
+     203: invokevirtual #261                // Method m_142416_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+     206: pop
+     207: aload_0
+     208: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     211: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+     214: getfield      #378                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.f_38839_:Lnet/minecraft/core/NonNullList;
+     217: invokevirtual #384                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+     220: astore_1
+     221: aload_1
+     222: invokeinterface #389,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     227: ifeq          324
+     230: aload_1
+     231: invokeinterface #392,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     236: checkcast     #394                // class net/minecraft/world/inventory/Slot
+     239: astore_2
+     240: aload_2
+     241: instanceof    #396                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     244: ifeq          321
+     247: aload_2
+     248: checkcast     #396                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     251: astore_3
+     252: aload_2
+     253: instanceof    #398                // class top/theillusivec4/curios/common/inventory/CosmeticCurioSlot
+     256: ifne          321
+     259: aload_3
+     260: invokevirtual #401                // Method top/theillusivec4/curios/common/inventory/CurioSlot.canToggleRender:()Z
+     263: ifeq          321
+     266: aload_0
+     267: new           #403                // class top/theillusivec4/curios/client/gui/RenderButton
+     270: dup
+     271: aload_3
+     272: aload_0
+     273: getfield      #179                // Field f_97735_:I
+     276: aload_2
+     277: getfield      #406                // Field net/minecraft/world/inventory/Slot.f_40220_:I
+     280: iadd
+     281: bipush        11
+     283: iadd
+     284: aload_0
+     285: getfield      #188                // Field f_97736_:I
+     288: aload_2
+     289: getfield      #409                // Field net/minecraft/world/inventory/Slot.f_40221_:I
+     292: iadd
+     293: iconst_3
+     294: isub
+     295: bipush        8
+     297: bipush        8
+     299: bipush        75
+     301: iconst_0
+     302: bipush        8
+     304: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     307: aload_3
+     308: aload_2
+     309: invokedynamic #418,  0            // InvokeDynamic #4:m_93750_:(Ltop/theillusivec4/curios/common/inventory/CurioSlot;Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/client/gui/components/Button$OnPress;
+     314: invokespecial #421                // Method top/theillusivec4/curios/client/gui/RenderButton."<init>":(Ltop/theillusivec4/curios/common/inventory/CurioSlot;IIIIIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+     317: invokevirtual #261                // Method m_142416_:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+     320: pop
+     321: goto          221
+     324: return
+
+  public void m_181908_();
+    Code:
+       0: aload_0
+       1: invokespecial #428                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_181908_:()V
+       4: aload_0
+       5: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       8: invokevirtual #431                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100386_:()V
+      11: return
+
+  public void m_88315_(net.minecraft.client.gui.GuiGraphics, int, int, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #438                // Method m_280273_:(Lnet/minecraft/client/gui/GuiGraphics;)V
+       5: aload_0
+       6: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       9: invokevirtual #223                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100385_:()Z
+      12: ifeq          46
+      15: aload_0
+      16: getfield      #190                // Field widthTooNarrow:Z
+      19: ifeq          46
+      22: aload_0
+      23: aload_1
+      24: fload         4
+      26: iload_2
+      27: iload_3
+      28: invokevirtual #442                // Method m_7286_:(Lnet/minecraft/client/gui/GuiGraphics;FII)V
+      31: aload_0
+      32: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      35: aload_1
+      36: iload_2
+      37: iload_3
+      38: fload         4
+      40: invokevirtual #444                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_88315_:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      43: goto          254
+      46: aload_0
+      47: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      50: aload_1
+      51: iload_2
+      52: iload_3
+      53: fload         4
+      55: invokevirtual #444                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_88315_:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      58: aload_0
+      59: aload_1
+      60: iload_2
+      61: iload_3
+      62: fload         4
+      64: invokespecial #445                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_88315_:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      67: aload_0
+      68: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      71: aload_1
+      72: aload_0
+      73: getfield      #179                // Field f_97735_:I
+      76: aload_0
+      77: getfield      #188                // Field f_97736_:I
+      80: iconst_1
+      81: fload         4
+      83: invokevirtual #449                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_280128_:(Lnet/minecraft/client/gui/GuiGraphics;IIZF)V
+      86: iconst_0
+      87: istore        5
+      89: aload_0
+      90: getfield      #337                // Field f_169369_:Ljava/util/List;
+      93: invokeinterface #450,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      98: astore        6
+     100: aload         6
+     102: invokeinterface #389,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     107: ifeq          160
+     110: aload         6
+     112: invokeinterface #392,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     117: checkcast     #452                // class net/minecraft/client/gui/components/Renderable
+     120: astore        7
+     122: aload         7
+     124: instanceof    #403                // class top/theillusivec4/curios/client/gui/RenderButton
+     127: ifeq          157
+     130: aload         7
+     132: checkcast     #403                // class top/theillusivec4/curios/client/gui/RenderButton
+     135: aload_1
+     136: iload_2
+     137: iload_3
+     138: fload         4
+     140: invokevirtual #455                // Method top/theillusivec4/curios/client/gui/RenderButton.renderButtonOverlay:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+     143: aload         7
+     145: checkcast     #403                // class top/theillusivec4/curios/client/gui/RenderButton
+     148: invokevirtual #458                // Method top/theillusivec4/curios/client/gui/RenderButton.m_274382_:()Z
+     151: ifeq          157
+     154: iconst_1
+     155: istore        5
+     157: goto          100
+     160: aload_0
+     161: iload         5
+     163: putfield      #460                // Field isRenderButtonHovered:Z
+     166: invokestatic  #463                // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     169: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     172: astore        6
+     174: aload_0
+     175: getfield      #460                // Field isRenderButtonHovered:Z
+     178: ifne          254
+     181: aload         6
+     183: ifnull        254
+     186: aload         6
+     188: getfield      #467                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
+     191: invokevirtual #473                // Method net/minecraft/world/inventory/InventoryMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+     194: invokevirtual #478                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     197: ifeq          254
+     200: aload_0
+     201: invokevirtual #482                // Method getSlotUnderMouse:()Lnet/minecraft/world/inventory/Slot;
+     204: ifnull        254
+     207: aload_0
+     208: invokevirtual #482                // Method getSlotUnderMouse:()Lnet/minecraft/world/inventory/Slot;
+     211: astore        7
+     213: aload         7
+     215: instanceof    #396                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     218: ifeq          254
+     221: aload         7
+     223: checkcast     #396                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     226: astore        8
+     228: aload         7
+     230: invokevirtual #485                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+     233: ifne          254
+     236: aload_1
+     237: aload_0
+     238: getfield      #489                // Field f_96547_:Lnet/minecraft/client/gui/Font;
+     241: aload         8
+     243: invokevirtual #493                // Method top/theillusivec4/curios/common/inventory/CurioSlot.getSlotName:()Ljava/lang/String;
+     246: invokestatic  #499                // InterfaceMethod net/minecraft/network/chat/Component.m_237113_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     249: iload_2
+     250: iload_3
+     251: invokevirtual #505                // Method net/minecraft/client/gui/GuiGraphics.m_280557_:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;II)V
+     254: aload_0
+     255: aload_1
+     256: iload_2
+     257: iload_3
+     258: invokevirtual #509                // Method m_280072_:(Lnet/minecraft/client/gui/GuiGraphics;II)V
+     261: return
+
+  protected void m_280072_(net.minecraft.client.gui.GuiGraphics, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+       4: astore        4
+       6: aload         4
+       8: ifnull        97
+      11: aload         4
+      13: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      16: astore        5
+      18: aload         5
+      20: ifnull        97
+      23: aload         5
+      25: getfield      #467                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
+      28: invokevirtual #473                // Method net/minecraft/world/inventory/InventoryMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+      31: invokevirtual #478                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      34: ifeq          97
+      37: aload_0
+      38: getfield      #460                // Field isRenderButtonHovered:Z
+      41: ifeq          63
+      44: aload_1
+      45: aload_0
+      46: getfield      #489                // Field f_96547_:Lnet/minecraft/client/gui/Font;
+      49: ldc_w         #523                // String gui.curios.toggle
+      52: invokestatic  #526                // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      55: iload_2
+      56: iload_3
+      57: invokevirtual #505                // Method net/minecraft/client/gui/GuiGraphics.m_280557_:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;II)V
+      60: goto          97
+      63: aload_0
+      64: getfield      #529                // Field f_97734_:Lnet/minecraft/world/inventory/Slot;
+      67: ifnull        97
+      70: aload_0
+      71: getfield      #529                // Field f_97734_:Lnet/minecraft/world/inventory/Slot;
+      74: invokevirtual #485                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+      77: ifeq          97
+      80: aload_1
+      81: aload_0
+      82: getfield      #489                // Field f_96547_:Lnet/minecraft/client/gui/Font;
+      85: aload_0
+      86: getfield      #529                // Field f_97734_:Lnet/minecraft/world/inventory/Slot;
+      89: invokevirtual #532                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      92: iload_2
+      93: iload_3
+      94: invokevirtual #536                // Method net/minecraft/client/gui/GuiGraphics.m_280153_:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V
+      97: return
+
+  public boolean m_7933_(int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       4: invokevirtual #223                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100385_:()Z
+       7: ifeq          26
+      10: aload_0
+      11: getfield      #190                // Field widthTooNarrow:Z
+      14: ifeq          26
+      17: aload_0
+      18: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      21: invokevirtual #226                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100384_:()V
+      24: iconst_1
+      25: ireturn
+      26: getstatic     #545                // Field top/theillusivec4/curios/client/KeyRegistry.openCurios:Lnet/minecraft/client/KeyMapping;
+      29: iload_1
+      30: iload_2
+      31: invokestatic  #549                // Method com/mojang/blaze3d/platform/InputConstants.m_84827_:(II)Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      34: invokevirtual #555                // Method net/minecraft/client/KeyMapping.isActiveAndMatches:(Lcom/mojang/blaze3d/platform/InputConstants$Key;)Z
+      37: ifeq          61
+      40: aload_0
+      41: invokevirtual #208                // Method getMinecraft:()Lnet/minecraft/client/Minecraft;
+      44: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      47: astore        4
+      49: aload         4
+      51: ifnull        59
+      54: aload         4
+      56: invokevirtual #558                // Method net/minecraft/client/player/LocalPlayer.m_6915_:()V
+      59: iconst_1
+      60: ireturn
+      61: aload_0
+      62: iload_1
+      63: iload_2
+      64: iload_3
+      65: invokespecial #560                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_7933_:(III)Z
+      68: ireturn
+
+  protected void m_280003_(net.minecraft.client.gui.GuiGraphics, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+       4: ifnull        38
+       7: aload_0
+       8: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+      11: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      14: ifnull        38
+      17: aload_1
+      18: aload_0
+      19: getfield      #489                // Field f_96547_:Lnet/minecraft/client/gui/Font;
+      22: aload_0
+      23: getfield      #568                // Field f_96539_:Lnet/minecraft/network/chat/Component;
+      26: bipush        97
+      28: bipush        6
+      30: ldc_w         #569                // int 4210752
+      33: iconst_0
+      34: invokevirtual #573                // Method net/minecraft/client/gui/GuiGraphics.m_280614_:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)I
+      37: pop
+      38: return
+
+  protected void m_7286_(net.minecraft.client.gui.GuiGraphics, float, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+       4: ifnull        161
+       7: aload_0
+       8: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+      11: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      14: ifnull        161
+      17: getstatic     #575                // Field scrollCooldown:I
+      20: ifle          46
+      23: aload_0
+      24: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+      27: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      30: getfield      #578                // Field net/minecraft/client/player/LocalPlayer.f_19797_:I
+      33: iconst_5
+      34: irem
+      35: ifne          46
+      38: getstatic     #575                // Field scrollCooldown:I
+      41: iconst_1
+      42: isub
+      43: putstatic     #575                // Field scrollCooldown:I
+      46: aload_0
+      47: aload_0
+      48: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      51: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      54: getfield      #170                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.panelWidth:I
+      57: putfield      #88                 // Field panelWidth:I
+      60: aload_0
+      61: getfield      #179                // Field f_97735_:I
+      64: istore        5
+      66: aload_0
+      67: getfield      #188                // Field f_97736_:I
+      70: istore        6
+      72: aload_1
+      73: getstatic     #581                // Field f_97725_:Lnet/minecraft/resources/ResourceLocation;
+      76: iload         5
+      78: iload         6
+      80: iconst_0
+      81: iconst_0
+      82: sipush        176
+      85: aload_0
+      86: getfield      #185                // Field f_97727_:I
+      89: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+      92: aload_1
+      93: iload         5
+      95: bipush        51
+      97: iadd
+      98: iload         6
+     100: bipush        75
+     102: iadd
+     103: bipush        30
+     105: iload         5
+     107: bipush        51
+     109: iadd
+     110: i2f
+     111: iload_3
+     112: i2f
+     113: fsub
+     114: iload         6
+     116: bipush        75
+     118: iadd
+     119: bipush        50
+     121: isub
+     122: i2f
+     123: iload         4
+     125: i2f
+     126: fsub
+     127: aload_0
+     128: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+     131: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     134: invokestatic  #591                // Method net/minecraft/client/gui/screens/inventory/InventoryScreen.m_274545_:(Lnet/minecraft/client/gui/GuiGraphics;IIIFFLnet/minecraft/world/entity/LivingEntity;)V
+     137: aload_0
+     138: getfield      #163                // Field f_96541_:Lnet/minecraft/client/Minecraft;
+     141: getfield      #214                // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     144: invokestatic  #597                // Method top/theillusivec4/curios/api/CuriosApi.getCuriosInventory:(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraftforge/common/util/LazyOptional;
+     147: aload_0
+     148: iload         6
+     150: aload_1
+     151: iload         5
+     153: invokedynamic #610,  0            // InvokeDynamic #5:accept:(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;ILnet/minecraft/client/gui/GuiGraphics;I)Lnet/minecraftforge/common/util/NonNullConsumer;
+     158: invokevirtual #616                // Method net/minecraftforge/common/util/LazyOptional.ifPresent:(Lnet/minecraftforge/common/util/NonNullConsumer;)V
+     161: return
+
+  protected boolean m_6774_(int, int, int, int, double, double);
+    Code:
+       0: aload_0
+       1: getfield      #460                // Field isRenderButtonHovered:Z
+       4: ifeq          9
+       7: iconst_0
+       8: ireturn
+       9: aload_0
+      10: getfield      #190                // Field widthTooNarrow:Z
+      13: ifeq          26
+      16: aload_0
+      17: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      20: invokevirtual #223                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100385_:()Z
+      23: ifne          46
+      26: aload_0
+      27: iload_1
+      28: iload_2
+      29: iload_3
+      30: iload         4
+      32: dload         5
+      34: dload         7
+      36: invokespecial #622                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_6774_:(IIIIDD)Z
+      39: ifeq          46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: ireturn
+
+  public boolean m_6375_(double, double, int);
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       4: dload_1
+       5: dload_3
+       6: iload         5
+       8: invokevirtual #633                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_6375_:(DDI)Z
+      11: ifeq          16
+      14: iconst_1
+      15: ireturn
+      16: aload_0
+      17: getfield      #190                // Field widthTooNarrow:Z
+      20: ifeq          33
+      23: aload_0
+      24: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      27: invokevirtual #223                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100385_:()Z
+      30: ifne          44
+      33: aload_0
+      34: dload_1
+      35: dload_3
+      36: iload         5
+      38: invokespecial #634                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_6375_:(DDI)Z
+      41: ifeq          48
+      44: iconst_1
+      45: goto          49
+      48: iconst_0
+      49: ireturn
+
+  public boolean m_6348_(double, double, int);
+    Code:
+       0: aload_0
+       1: getfield      #638                // Field buttonClicked:Z
+       4: ifeq          14
+       7: aload_0
+       8: iconst_0
+       9: putfield      #638                // Field buttonClicked:Z
+      12: iconst_1
+      13: ireturn
+      14: aload_0
+      15: dload_1
+      16: dload_3
+      17: iload         5
+      19: invokespecial #640                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_6348_:(DDI)Z
+      22: ireturn
+
+  public boolean m_6050_(double, double, double);
+    Code:
+       0: aload_0
+       1: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       4: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+       7: getfield      #360                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.totalPages:I
+      10: iconst_1
+      11: if_icmple     115
+      14: dload_1
+      15: aload_0
+      16: invokevirtual #233                // Method getGuiLeft:()I
+      19: i2d
+      20: dcmpg
+      21: ifge          115
+      24: dload_1
+      25: aload_0
+      26: invokevirtual #233                // Method getGuiLeft:()I
+      29: aload_0
+      30: getfield      #88                 // Field panelWidth:I
+      33: isub
+      34: i2d
+      35: dcmpl
+      36: ifle          115
+      39: dload_3
+      40: aload_0
+      41: invokevirtual #352                // Method getGuiTop:()I
+      44: i2d
+      45: dcmpl
+      46: ifle          115
+      49: dload_3
+      50: aload_0
+      51: invokevirtual #352                // Method getGuiTop:()I
+      54: aload_0
+      55: getfield      #185                // Field f_97727_:I
+      58: iadd
+      59: i2d
+      60: dcmpg
+      61: ifge          115
+      64: getstatic     #575                // Field scrollCooldown:I
+      67: ifgt          115
+      70: getstatic     #651                // Field top/theillusivec4/curios/common/network/NetworkHandler.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+      73: getstatic     #655                // Field net/minecraftforge/network/PacketDistributor.SERVER:Lnet/minecraftforge/network/PacketDistributor;
+      76: invokevirtual #659                // Method net/minecraftforge/network/PacketDistributor.noArg:()Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      79: new           #661                // class top/theillusivec4/curios/common/network/client/CPacketPage
+      82: dup
+      83: aload_0
+      84: invokevirtual #665                // Method m_6262_:()Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      87: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      90: getfield      #668                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.f_38840_:I
+      93: dload         5
+      95: dconst_0
+      96: dcmpg
+      97: ifge          104
+     100: iconst_1
+     101: goto          105
+     104: iconst_0
+     105: invokespecial #673                // Method top/theillusivec4/curios/common/network/client/CPacketPage."<init>":(IZ)V
+     108: invokevirtual #677                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+     111: iconst_2
+     112: putstatic     #575                // Field scrollCooldown:I
+     115: aload_0
+     116: dload_1
+     117: dload_3
+     118: dload         5
+     120: invokespecial #679                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_6050_:(DDD)Z
+     123: ireturn
+
+  protected boolean m_7467_(double, double, int, int, int);
+    Code:
+       0: dload_1
+       1: iload         5
+       3: i2d
+       4: dcmpg
+       5: iflt          42
+       8: dload_3
+       9: iload         6
+      11: i2d
+      12: dcmpg
+      13: iflt          42
+      16: dload_1
+      17: iload         5
+      19: aload_0
+      20: getfield      #176                // Field f_97726_:I
+      23: iadd
+      24: i2d
+      25: dcmpl
+      26: ifge          42
+      29: dload_3
+      30: iload         6
+      32: aload_0
+      33: getfield      #185                // Field f_97727_:I
+      36: iadd
+      37: i2d
+      38: dcmpl
+      39: iflt          46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: istore        8
+      49: aload_0
+      50: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      53: dload_1
+      54: dload_3
+      55: aload_0
+      56: getfield      #179                // Field f_97735_:I
+      59: aload_0
+      60: getfield      #188                // Field f_97736_:I
+      63: aload_0
+      64: getfield      #176                // Field f_97726_:I
+      67: aload_0
+      68: getfield      #185                // Field f_97727_:I
+      71: iload         7
+      73: invokevirtual #688                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100297_:(DDIIIII)Z
+      76: ifeq          88
+      79: iload         8
+      81: ifeq          88
+      84: iconst_1
+      85: goto          89
+      88: iconst_0
+      89: ireturn
+
+  protected void m_6597_(net.minecraft.world.inventory.Slot, int, int, net.minecraft.world.inventory.ClickType);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: aload         4
+       6: invokespecial #695                // Method net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen.m_6597_:(Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V
+       9: aload_0
+      10: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      13: aload_1
+      14: invokevirtual #699                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_6904_:(Lnet/minecraft/world/inventory/Slot;)V
+      17: return
+
+  public void m_6916_();
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       4: invokevirtual #707                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100387_:()V
+       7: return
+
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookComponent m_5564_();
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       4: areturn
+
+  private void lambda$renderBg$5(int, net.minecraft.client.gui.GuiGraphics, int, top.theillusivec4.curios.api.type.capability.ICuriosItemHandler);
+    Code:
+       0: bipush        -33
+       2: istore        5
+       4: iload_1
+       5: istore        6
+       7: aload_0
+       8: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      11: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      14: getfield      #360                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.totalPages:I
+      17: iconst_1
+      18: if_icmple     25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: istore        7
+      28: aload_0
+      29: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      32: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      35: getfield      #347                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.hasCosmetics:Z
+      38: ifeq          66
+      41: aload_2
+      42: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+      45: iload_3
+      46: iload         5
+      48: iadd
+      49: iconst_2
+      50: iadd
+      51: iload         6
+      53: bipush        23
+      55: isub
+      56: bipush        32
+      58: iconst_0
+      59: bipush        28
+      61: bipush        24
+      63: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+      66: aload_0
+      67: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      70: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      73: getfield      #712                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.grid:Ljava/util/List;
+      76: astore        8
+      78: iload         5
+      80: aload         8
+      82: invokeinterface #715,  1          // InterfaceMethod java/util/List.size:()I
+      87: iconst_1
+      88: isub
+      89: bipush        18
+      91: imul
+      92: isub
+      93: istore        5
+      95: iconst_0
+      96: istore        9
+      98: iload         9
+     100: aload         8
+     102: invokeinterface #715,  1          // InterfaceMethod java/util/List.size:()I
+     107: if_icmpge     286
+     110: aload         8
+     112: iconst_0
+     113: invokeinterface #718,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     118: checkcast     #122                // class java/lang/Integer
+     121: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+     124: istore        10
+     126: bipush        7
+     128: iload         10
+     130: bipush        18
+     132: imul
+     133: iadd
+     134: istore        11
+     136: bipush        91
+     138: istore        12
+     140: iload         7
+     142: ifeq          148
+     145: iinc          11, 8
+     148: iload         9
+     150: ifeq          156
+     153: iinc          12, 7
+     156: aload_2
+     157: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     160: iload_3
+     161: iload         5
+     163: iadd
+     164: iload         6
+     166: iload         12
+     168: iconst_0
+     169: bipush        25
+     171: iload         11
+     173: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+     176: aload_2
+     177: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     180: iload_3
+     181: iload         5
+     183: iadd
+     184: iload         6
+     186: iload         11
+     188: iadd
+     189: iload         12
+     191: sipush        159
+     194: bipush        25
+     196: bipush        7
+     198: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+     201: aload         8
+     203: invokeinterface #715,  1          // InterfaceMethod java/util/List.size:()I
+     208: iconst_1
+     209: if_icmpne     266
+     212: iinc          12, 7
+     215: aload_2
+     216: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     219: iload_3
+     220: iload         5
+     222: iadd
+     223: bipush        7
+     225: iadd
+     226: iload         6
+     228: iload         12
+     230: iconst_0
+     231: bipush        25
+     233: iload         11
+     235: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+     238: aload_2
+     239: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     242: iload_3
+     243: iload         5
+     245: iadd
+     246: bipush        7
+     248: iadd
+     249: iload         6
+     251: iload         11
+     253: iadd
+     254: iload         12
+     256: sipush        159
+     259: bipush        25
+     261: bipush        7
+     263: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+     266: iload         9
+     268: ifne          277
+     271: iinc          5, 25
+     274: goto          280
+     277: iinc          5, 18
+     280: iinc          9, 1
+     283: goto          98
+     286: iload         5
+     288: aload         8
+     290: invokeinterface #715,  1          // InterfaceMethod java/util/List.size:()I
+     295: bipush        18
+     297: imul
+     298: isub
+     299: istore        5
+     301: iload         7
+     303: ifeq          309
+     306: iinc          6, 8
+     309: aload         8
+     311: invokeinterface #450,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     316: astore        9
+     318: aload         9
+     320: invokeinterface #389,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     325: ifeq          380
+     328: aload         9
+     330: invokeinterface #392,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     335: checkcast     #122                // class java/lang/Integer
+     338: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+     341: istore        10
+     343: iload         10
+     345: bipush        18
+     347: imul
+     348: istore        11
+     350: aload_2
+     351: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     354: iload_3
+     355: iload         5
+     357: iadd
+     358: iload         6
+     360: bipush        7
+     362: iadd
+     363: bipush        7
+     365: bipush        7
+     367: bipush        18
+     369: iload         11
+     371: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+     374: iinc          5, 18
+     377: goto          318
+     380: invokestatic  #723                // Method com/mojang/blaze3d/systems/RenderSystem.enableBlend:()V
+     383: aload_0
+     384: getfield      #167                // Field f_97732_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     387: checkcast     #169                // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+     390: getfield      #378                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.f_38839_:Lnet/minecraft/core/NonNullList;
+     393: invokevirtual #384                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+     396: astore        9
+     398: aload         9
+     400: invokeinterface #389,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     405: ifeq          485
+     408: aload         9
+     410: invokeinterface #392,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     415: checkcast     #394                // class net/minecraft/world/inventory/Slot
+     418: astore        10
+     420: aload         10
+     422: instanceof    #396                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     425: ifeq          482
+     428: aload         10
+     430: checkcast     #396                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     433: astore        11
+     435: aload         11
+     437: invokevirtual #726                // Method top/theillusivec4/curios/common/inventory/CurioSlot.isCosmetic:()Z
+     440: ifeq          482
+     443: aload_2
+     444: getstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+     447: aload         10
+     449: getfield      #406                // Field net/minecraft/world/inventory/Slot.f_40220_:I
+     452: aload_0
+     453: invokevirtual #233                // Method getGuiLeft:()I
+     456: iadd
+     457: iconst_1
+     458: isub
+     459: aload         10
+     461: getfield      #409                // Field net/minecraft/world/inventory/Slot.f_40221_:I
+     464: aload_0
+     465: invokevirtual #352                // Method getGuiTop:()I
+     468: iadd
+     469: iconst_1
+     470: isub
+     471: bipush        32
+     473: bipush        50
+     475: bipush        18
+     477: bipush        18
+     479: invokevirtual #585                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+     482: goto          398
+     485: invokestatic  #729                // Method com/mojang/blaze3d/systems/RenderSystem.disableBlend:()V
+     488: return
+
+  private static void lambda$updateRenderButtons$4(top.theillusivec4.curios.common.inventory.CurioSlot, net.minecraft.world.inventory.Slot, net.minecraft.client.gui.components.Button);
+    Code:
+       0: getstatic     #651                // Field top/theillusivec4/curios/common/network/NetworkHandler.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+       3: getstatic     #655                // Field net/minecraftforge/network/PacketDistributor.SERVER:Lnet/minecraftforge/network/PacketDistributor;
+       6: invokevirtual #659                // Method net/minecraftforge/network/PacketDistributor.noArg:()Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+       9: new           #741                // class top/theillusivec4/curios/common/network/client/CPacketToggleRender
+      12: dup
+      13: aload_0
+      14: invokevirtual #744                // Method top/theillusivec4/curios/common/inventory/CurioSlot.getIdentifier:()Ljava/lang/String;
+      17: aload_1
+      18: invokevirtual #747                // Method net/minecraft/world/inventory/Slot.getSlotIndex:()I
+      21: invokespecial #750                // Method top/theillusivec4/curios/common/network/client/CPacketToggleRender."<init>":(Ljava/lang/String;I)V
+      24: invokevirtual #677                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      27: return
+
+  private static boolean lambda$updateRenderButtons$3(net.minecraft.client.gui.components.Renderable);
+    Code:
+       0: aload_0
+       1: instanceof    #403                // class top/theillusivec4/curios/client/gui/RenderButton
+       4: ifne          21
+       7: aload_0
+       8: instanceof    #349                // class top/theillusivec4/curios/client/gui/CosmeticButton
+      11: ifne          21
+      14: aload_0
+      15: instanceof    #38                 // class top/theillusivec4/curios/client/gui/PageButton
+      18: ifeq          25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: ireturn
+
+  private static boolean lambda$updateRenderButtons$2(net.minecraft.client.gui.components.events.GuiEventListener);
+    Code:
+       0: aload_0
+       1: instanceof    #403                // class top/theillusivec4/curios/client/gui/RenderButton
+       4: ifne          21
+       7: aload_0
+       8: instanceof    #349                // class top/theillusivec4/curios/client/gui/CosmeticButton
+      11: ifne          21
+      14: aload_0
+      15: instanceof    #38                 // class top/theillusivec4/curios/client/gui/PageButton
+      18: ifeq          25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: ireturn
+
+  private static boolean lambda$updateRenderButtons$1(net.minecraft.client.gui.narration.NarratableEntry);
+    Code:
+       0: aload_0
+       1: instanceof    #403                // class top/theillusivec4/curios/client/gui/RenderButton
+       4: ifne          21
+       7: aload_0
+       8: instanceof    #349                // class top/theillusivec4/curios/client/gui/CosmeticButton
+      11: ifne          21
+      14: aload_0
+      15: instanceof    #38                 // class top/theillusivec4/curios/client/gui/PageButton
+      18: ifeq          25
+      21: iconst_1
+      22: goto          26
+      25: iconst_0
+      26: ireturn
+
+  private void lambda$init$0(net.minecraft.util.Tuple, net.minecraft.client.gui.components.Button);
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field recipeBookGui:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+       4: invokevirtual #226                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.m_100384_:()V
+       7: aload_2
+       8: aload_0
+       9: getfield      #179                // Field f_97735_:I
+      12: bipush        104
+      14: iadd
+      15: aload_0
+      16: getfield      #182                // Field f_96544_:I
+      19: iconst_2
+      20: idiv
+      21: bipush        22
+      23: isub
+      24: invokevirtual #758                // Method net/minecraft/client/gui/components/Button.m_264152_:(II)V
+      27: aload_0
+      28: getfield      #248                // Field buttonCurios:Ltop/theillusivec4/curios/client/gui/CuriosButton;
+      31: aload_0
+      32: getfield      #179                // Field f_97735_:I
+      35: aload_1
+      36: invokevirtual #236                // Method net/minecraft/util/Tuple.m_14418_:()Ljava/lang/Object;
+      39: checkcast     #122                // class java/lang/Integer
+      42: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+      45: iadd
+      46: aload_0
+      47: getfield      #182                // Field f_96544_:I
+      50: iconst_2
+      51: idiv
+      52: aload_1
+      53: invokevirtual #239                // Method net/minecraft/util/Tuple.m_14419_:()Ljava/lang/Object;
+      56: checkcast     #122                // class java/lang/Integer
+      59: invokevirtual #125                // Method java/lang/Integer.intValue:()I
+      62: iadd
+      63: invokevirtual #759                // Method top/theillusivec4/curios/client/gui/CuriosButton.m_264152_:(II)V
+      66: return
+
+  static {};
+    Code:
+       0: new           #762                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc_w         #764                // String curios
+       7: ldc_w         #766                // String textures/gui/inventory_revamp.png
+      10: invokespecial #769                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      13: putstatic     #410                // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+      16: iconst_0
+      17: putstatic     #575                // Field scrollCooldown:I
+      20: return
+}

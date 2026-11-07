@@ -1,0 +1,154 @@
+Compiled from "NativePackets.java"
+final class dev.mcpmcp.curios.NativePackets {
+  static java.lang.Object create(java.lang.String, com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: astore_2
+       2: iconst_m1
+       3: istore_3
+       4: aload_2
+       5: invokevirtual #13                 // Method java/lang/String.hashCode:()I
+       8: lookupswitch  { // 5
+
+           -1834743349: 60
+
+           -1834727920: 74
+
+           -1834617580: 116
+
+            -656889141: 102
+
+            1581683863: 88
+               default: 127
+          }
+      60: aload_2
+      61: ldc           #15                 // String curios.open
+      63: invokevirtual #19                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      66: ifeq          127
+      69: iconst_0
+      70: istore_3
+      71: goto          127
+      74: aload_2
+      75: ldc           #21                 // String curios.page
+      77: invokevirtual #19                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      80: ifeq          127
+      83: iconst_1
+      84: istore_3
+      85: goto          127
+      88: aload_2
+      89: ldc           #23                 // String curios.cosmetics.set
+      91: invokevirtual #19                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      94: ifeq          127
+      97: iconst_2
+      98: istore_3
+      99: goto          127
+     102: aload_2
+     103: ldc           #25                 // String curios.render.set
+     105: invokevirtual #19                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     108: ifeq          127
+     111: iconst_3
+     112: istore_3
+     113: goto          127
+     116: aload_2
+     117: ldc           #27                 // String curios.swap
+     119: invokevirtual #19                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     122: ifeq          127
+     125: iconst_4
+     126: istore_3
+     127: iload_3
+     128: tableswitch   { // 0 to 4
+
+                     0: 164
+
+                     1: 177
+
+                     2: 216
+
+                     3: 233
+
+                     4: 258
+               default: 309
+          }
+     164: new           #29                 // class top/theillusivec4/curios/common/network/client/CPacketOpenCurios
+     167: dup
+     168: getstatic     #35                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     171: invokespecial #39                 // Method top/theillusivec4/curios/common/network/client/CPacketOpenCurios."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+     174: goto          319
+     177: new           #41                 // class top/theillusivec4/curios/common/network/client/CPacketPage
+     180: dup
+     181: aload_1
+     182: ldc           #43                 // String menu_id
+     184: iconst_m1
+     185: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     188: aload_1
+     189: ldc           #51                 // String page
+     191: iconst_m1
+     192: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     195: aload_1
+     196: ldc           #53                 // String expected_page
+     198: iconst_m1
+     199: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     202: if_icmple     209
+     205: iconst_1
+     206: goto          210
+     209: iconst_0
+     210: invokespecial #58                 // Method top/theillusivec4/curios/common/network/client/CPacketPage."<init>":(IZ)V
+     213: goto          319
+     216: new           #60                 // class top/theillusivec4/curios/common/network/client/CPacketToggleCosmetics
+     219: dup
+     220: aload_1
+     221: ldc           #43                 // String menu_id
+     223: iconst_m1
+     224: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     227: invokespecial #63                 // Method top/theillusivec4/curios/common/network/client/CPacketToggleCosmetics."<init>":(I)V
+     230: goto          319
+     233: new           #65                 // class top/theillusivec4/curios/common/network/client/CPacketToggleRender
+     236: dup
+     237: aload_1
+     238: ldc           #67                 // String identifier
+     240: ldc           #69                 // String
+     242: invokestatic  #73                 // Method dev/mcpmcp/curios/CuriosJson.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     245: aload_1
+     246: ldc           #75                 // String index
+     248: iconst_m1
+     249: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     252: invokespecial #78                 // Method top/theillusivec4/curios/common/network/client/CPacketToggleRender."<init>":(Ljava/lang/String;I)V
+     255: goto          319
+     258: new           #80                 // class net/minecraft/network/protocol/game/ServerboundContainerClickPacket
+     261: dup
+     262: aload_1
+     263: ldc           #43                 // String menu_id
+     265: iconst_m1
+     266: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     269: aload_1
+     270: ldc           #82                 // String state_id
+     272: iconst_m1
+     273: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     276: aload_1
+     277: ldc           #84                 // String menu_slot
+     279: iconst_m1
+     280: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     283: aload_1
+     284: ldc           #86                 // String hotbar_slot
+     286: iconst_m1
+     287: invokestatic  #49                 // Method dev/mcpmcp/curios/CuriosJson.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     290: getstatic     #92                 // Field net/minecraft/world/inventory/ClickType.SWAP:Lnet/minecraft/world/inventory/ClickType;
+     293: getstatic     #35                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     296: new           #94                 // class it/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap
+     299: dup
+     300: invokespecial #97                 // Method it/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap."<init>":()V
+     303: invokespecial #100                // Method net/minecraft/network/protocol/game/ServerboundContainerClickPacket."<init>":(IIIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/item/ItemStack;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;)V
+     306: goto          319
+     309: new           #102                // class java/lang/IllegalArgumentException
+     312: dup
+     313: ldc           #104                // String curios_unsupported_packet
+     315: invokespecial #107                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     318: athrow
+     319: areturn
+
+  private dev.mcpmcp.curios.NativePackets();
+    Code:
+       0: aload_0
+       1: invokespecial #112                // Method java/lang/Object."<init>":()V
+       4: return
+}

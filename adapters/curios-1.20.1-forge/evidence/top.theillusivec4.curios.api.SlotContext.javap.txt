@@ -1,0 +1,100 @@
+Compiled from "SlotContext.java"
+public final class top.theillusivec4.curios.api.SlotContext extends java.lang.Record {
+  private final java.lang.String identifier;
+
+  private final net.minecraft.world.entity.LivingEntity entity;
+
+  private final int index;
+
+  private final boolean cosmetic;
+
+  private final boolean visible;
+
+  public top.theillusivec4.curios.api.SlotContext(java.lang.String, net.minecraft.world.entity.LivingEntity, int, boolean, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #29                 // Method java/lang/Record."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #31                 // Field identifier:Ljava/lang/String;
+       9: aload_0
+      10: aload_2
+      11: putfield      #33                 // Field entity:Lnet/minecraft/world/entity/LivingEntity;
+      14: aload_0
+      15: iload_3
+      16: putfield      #35                 // Field index:I
+      19: aload_0
+      20: iload         4
+      22: putfield      #37                 // Field cosmetic:Z
+      25: aload_0
+      26: iload         5
+      28: putfield      #39                 // Field visible:Z
+      31: return
+
+  public java.lang.String getIdentifier();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field identifier:Ljava/lang/String;
+       4: areturn
+
+  public int getIndex();
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field index:I
+       4: ireturn
+
+  public net.minecraft.world.entity.LivingEntity getWearer();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field entity:Lnet/minecraft/world/entity/LivingEntity;
+       4: areturn
+
+  public final java.lang.String toString();
+    Code:
+       0: aload_0
+       1: invokedynamic #71,  0             // InvokeDynamic #0:toString:(Ltop/theillusivec4/curios/api/SlotContext;)Ljava/lang/String;
+       6: areturn
+
+  public final int hashCode();
+    Code:
+       0: aload_0
+       1: invokedynamic #75,  0             // InvokeDynamic #0:hashCode:(Ltop/theillusivec4/curios/api/SlotContext;)I
+       6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #80,  0             // InvokeDynamic #0:equals:(Ltop/theillusivec4/curios/api/SlotContext;Ljava/lang/Object;)Z
+       7: ireturn
+
+  public java.lang.String identifier();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field identifier:Ljava/lang/String;
+       4: areturn
+
+  public net.minecraft.world.entity.LivingEntity entity();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field entity:Lnet/minecraft/world/entity/LivingEntity;
+       4: areturn
+
+  public int index();
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field index:I
+       4: ireturn
+
+  public boolean cosmetic();
+    Code:
+       0: aload_0
+       1: getfield      #37                 // Field cosmetic:Z
+       4: ireturn
+
+  public boolean visible();
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field visible:Z
+       4: ireturn
+}

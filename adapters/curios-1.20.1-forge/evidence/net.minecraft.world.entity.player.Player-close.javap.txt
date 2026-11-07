@@ -1,0 +1,7 @@
+  public void closeContainer();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #311                // Field inventoryMenu:Lnet/minecraft/world/inventory/InventoryMenu;
+       5: putfield      #313                // Field containerMenu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       8: return

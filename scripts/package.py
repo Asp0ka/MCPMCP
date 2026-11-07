@@ -49,7 +49,7 @@ def main():
 2. Start that instance normally with Java 17 and compatible Forge. Baritone is optional for movement; JEI/REI are not required.
 3. Configure an MCP stdio server: python <absolute>/bridge/mcp_server.py --config <instance>/config/mcpmcp.json
 4. Load skills/mcpmcp/SKILL.md; read get_status/list_capabilities/describe_action before actions.
-5. Optional adapters: exit the game first, select exact target versions/full hashes from the included plugin packages. The 12-plugin package targets the tested instance; the JEI-variants package contains two mutually exclusive alternatives, never install both. Read their INSTALL.md and docs/plugin-acceptance-progress.md.
+5. Optional adapters: exit the game first, select exact target versions/full hashes from the included plugin packages. The 13-plugin package targets the tested instance; the JEI-variants package contains two mutually exclusive alternatives, never install both. Read their INSTALL.md and docs/plugin-acceptance-progress.md.
 6. Read docs/acceptance.md for verified scope and limits. Never copy the generated local token into chat or launch arguments.
 
 sources.zip contains the exact committed source snapshot. The full Git repository remains at the development workspace. manifest.json and SHA256SUMS identify artifacts. No game, mod dependency, account credential, client config or save is bundled.

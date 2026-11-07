@@ -1,0 +1,24 @@
+Compiled from "CuriosContainer.java"
+class top.theillusivec4.curios.common.inventory.container.CuriosContainer$2 extends net.minecraft.world.inventory.Slot {
+  final top.theillusivec4.curios.common.inventory.container.CuriosContainer this$0;
+
+  top.theillusivec4.curios.common.inventory.container.CuriosContainer$2(top.theillusivec4.curios.common.inventory.container.CuriosContainer, net.minecraft.world.Container, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #15                 // Field this$0:Ltop/theillusivec4/curios/common/inventory/container/CuriosContainer;
+       5: aload_0
+       6: aload_2
+       7: iload_3
+       8: iload         4
+      10: iload         5
+      12: invokespecial #18                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+      15: return
+
+  public com.mojang.datafixers.util.Pair<net.minecraft.resources.ResourceLocation, net.minecraft.resources.ResourceLocation> m_7543_();
+    Code:
+       0: getstatic     #39                 // Field net/minecraft/world/inventory/InventoryMenu.f_39692_:Lnet/minecraft/resources/ResourceLocation;
+       3: getstatic     #42                 // Field net/minecraft/world/inventory/InventoryMenu.f_39697_:Lnet/minecraft/resources/ResourceLocation;
+       6: invokestatic  #48                 // Method com/mojang/datafixers/util/Pair.of:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/datafixers/util/Pair;
+       9: areturn
+}

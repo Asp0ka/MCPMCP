@@ -1,0 +1,18 @@
+{
+  "batch": "curios-live-febe6df118f6",
+  "verified": true,
+  "checks": 29,
+  "event_rows": 246,
+  "events_sha256": "804a0923d2e5c63e9a825e205963edfbd509df789a2400ca5c91bb15df9d09e0",
+  "target_curios_sha256": "1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f",
+  "installed_adapter_sha256": "b887bd3506eabb2a26f75279a4c2ee19b21c9ac3b05a0329670a1bfebfefe27f",
+  "limitations": [
+    "Only Curios5.14.1+1.20.1 V2 is supported.",
+    "Actual world has one page: adjacent multi-page behavior is offline-tested, not live-tested.",
+    "Generic extension slots/items were tested; arbitrary addon active skills are not implemented.",
+    "Operations explicitly open/swap/close; no synchronous automatic multi-step wrapper, no non-hotbar direct swap.",
+    "Client preflight and native packets cannot remove server/network races.",
+    "Render sync bit verified; no pixel-render visibility claim."
+  ],
+  "baseline": "Existing 12 binaries unchanged; original final-delta proof retained separately."
+}

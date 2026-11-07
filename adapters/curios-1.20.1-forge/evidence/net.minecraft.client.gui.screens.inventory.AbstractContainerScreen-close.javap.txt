@@ -1,0 +1,23 @@
+  public void removed();
+    Code:
+       0: aload_0
+       1: getfield      #408                // Field minecraft:Lnet/minecraft/client/Minecraft;
+       4: getfield      #743                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+       7: ifnull        24
+      10: aload_0
+      11: getfield      #130                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      14: aload_0
+      15: getfield      #408                // Field minecraft:Lnet/minecraft/client/Minecraft;
+      18: getfield      #743                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      21: invokevirtual #832                // Method net/minecraft/world/inventory/AbstractContainerMenu.removed:(Lnet/minecraft/world/entity/player/Player;)V
+      24: return
+
+  public void onClose();
+    Code:
+       0: aload_0
+       1: getfield      #408                // Field minecraft:Lnet/minecraft/client/Minecraft;
+       4: getfield      #743                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+       7: invokevirtual #850                // Method net/minecraft/client/player/LocalPlayer.closeContainer:()V
+      10: aload_0
+      11: invokespecial #861                // Method net/minecraft/client/gui/screens/Screen.onClose:()V
+      14: return

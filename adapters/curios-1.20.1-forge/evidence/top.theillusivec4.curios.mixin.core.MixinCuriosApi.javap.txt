@@ -1,0 +1,186 @@
+Compiled from "MixinCuriosApi.java"
+public class top.theillusivec4.curios.mixin.core.MixinCuriosApi {
+  public top.theillusivec4.curios.mixin.core.MixinCuriosApi();
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private static void curios$registerCurio(net.minecraft.world.item.Item, top.theillusivec4.curios.api.type.capability.ICurioItem, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #36                 // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.registerCurio:(Lnet/minecraft/world/item/Item;Ltop/theillusivec4/curios/api/type/capability/ICurioItem;)V
+       5: aload_2
+       6: invokevirtual #41                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+       9: return
+
+  private static void curios$getSlots(boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType>>);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokestatic  #55                 // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getSlots:(Z)Ljava/util/Map;
+       5: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       8: return
+
+  private static void curios$getEntitySlots(net.minecraft.world.entity.EntityType<?>, boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType>>);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: iload_1
+       3: invokestatic  #74                 // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getEntitySlots:(Lnet/minecraft/world/entity/EntityType;Z)Ljava/util/Map;
+       6: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       9: return
+
+  private static void curios$getItemStackSlots(net.minecraft.world.item.ItemStack, boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType>>);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: iload_1
+       3: invokestatic  #85                 // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getItemStackSlots:(Lnet/minecraft/world/item/ItemStack;Z)Ljava/util/Map;
+       6: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       9: return
+
+  private static void curios$getItemStackSlots(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType>>);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: aload_1
+       3: invokestatic  #93                 // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getItemStackSlots:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
+       6: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       9: return
+
+  private static void curios$getCurio(net.minecraft.world.item.ItemStack, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraftforge.common.util.LazyOptional<top.theillusivec4.curios.api.type.capability.ICurio>>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokestatic  #102                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getCurio:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraftforge/common/util/LazyOptional;
+       5: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       8: return
+
+  private static void curios$createCurio(top.theillusivec4.curios.api.type.capability.ICurio, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraftforge.common.capabilities.ICapabilityProvider>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokestatic  #113                // Method top/theillusivec4/curios/common/capability/CurioItemCapability.createProvider:(Ltop/theillusivec4/curios/api/type/capability/ICurio;)Lnet/minecraftforge/common/capabilities/ICapabilityProvider;
+       5: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       8: return
+
+  private static void curios$getCuriosInventory(net.minecraft.world.entity.LivingEntity, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraftforge.common.util.LazyOptional<top.theillusivec4.curios.api.type.capability.ICuriosItemHandler>>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokestatic  #123                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getCuriosInventory:(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraftforge/common/util/LazyOptional;
+       5: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       8: return
+
+  private static void curios$isStackValid(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.item.ItemStack, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: aload_1
+       3: invokestatic  #131                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.isStackValid:(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/item/ItemStack;)Z
+       6: invokestatic  #137                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       9: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      12: return
+
+  private static void curios$getAttributeModifiers(top.theillusivec4.curios.api.SlotContext, java.util.UUID, net.minecraft.world.item.ItemStack, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier>>);
+    Code:
+       0: aload_3
+       1: aload_0
+       2: aload_1
+       3: aload_2
+       4: invokestatic  #147                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getAttributeModifiers:(Ltop/theillusivec4/curios/api/SlotContext;Ljava/util/UUID;Lnet/minecraft/world/item/ItemStack;)Lcom/google/common/collect/Multimap;
+       7: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      10: return
+
+  private static void curios$addSlotModifier(com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier>, java.lang.String, java.util.UUID, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: dload_3
+       4: aload         5
+       6: invokestatic  #158                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.addSlotModifier:(Lcom/google/common/collect/Multimap;Ljava/lang/String;Ljava/util/UUID;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+       9: aload         6
+      11: invokevirtual #41                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      14: return
+
+  private static void curios$addSlotModifier(net.minecraft.world.item.ItemStack, java.lang.String, java.lang.String, java.util.UUID, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation, java.lang.String, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: dload         4
+       6: aload         6
+       8: aload         7
+      10: invokestatic  #172                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.addSlotModifier:(Lnet/minecraft/world/item/ItemStack;Ljava/lang/String;Ljava/lang/String;Ljava/util/UUID;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;Ljava/lang/String;)V
+      13: aload         8
+      15: invokevirtual #41                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      18: return
+
+  private static void curios$addModifier(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.ai.attributes.Attribute, java.lang.String, java.util.UUID, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation, java.lang.String, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: dload         4
+       6: aload         6
+       8: aload         7
+      10: invokestatic  #180                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.addModifier:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/ai/attributes/Attribute;Ljava/lang/String;Ljava/util/UUID;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;Ljava/lang/String;)V
+      13: aload         8
+      15: invokevirtual #41                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      18: return
+
+  private static void curios$registerCurioPredicate(net.minecraft.resources.ResourceLocation, java.util.function.Predicate<top.theillusivec4.curios.api.SlotResult>, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #189                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.registerCurioPredicate:(Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Predicate;)V
+       5: aload_2
+       6: invokevirtual #41                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+       9: return
+
+  private static void curios$getCurioPredicate(net.minecraft.resources.ResourceLocation, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.Optional<java.util.function.Predicate<top.theillusivec4.curios.api.SlotResult>>>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokestatic  #201                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getCurioPredicate:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+       5: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       8: return
+
+  private static void curios$getCurioPredicates(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.Map<net.minecraft.resources.ResourceLocation, java.util.function.Predicate<top.theillusivec4.curios.api.SlotResult>>>);
+    Code:
+       0: aload_0
+       1: invokestatic  #209                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getCurioPredicates:()Ljava/util/Map;
+       4: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       7: return
+
+  private static void curios$testCurioPredicates(java.util.Set<net.minecraft.resources.ResourceLocation>, top.theillusivec4.curios.api.SlotResult, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: aload_1
+       3: invokestatic  #217                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.testCurioPredicates:(Ljava/util/Set;Ltop/theillusivec4/curios/api/SlotResult;)Z
+       6: invokestatic  #137                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       9: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      12: return
+
+  private static void curios$getSlotUuid(top.theillusivec4.curios.api.SlotContext, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.UUID>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokestatic  #230                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.getUuid:(Ltop/theillusivec4/curios/api/SlotContext;)Ljava/util/UUID;
+       5: invokevirtual #61                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       8: return
+
+  private static void curios$broadcastCurioBreakEvent(top.theillusivec4.curios.api.SlotContext, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokestatic  #237                // Method top/theillusivec4/curios/mixin/CuriosImplMixinHooks.broadcastCurioBreakEvent:(Ltop/theillusivec4/curios/api/SlotContext;)V
+       4: aload_1
+       5: invokevirtual #41                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+       8: return
+}

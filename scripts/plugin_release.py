@@ -12,9 +12,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 PACK = Path('D:/Games/mc/Cheat/versions/神秘启旅')
-EXPECTED = {'mcpmcp.'+x for x in ('ars_nouveau','avaritia','botania','ironfurnaces','irons_spellbooks','jei','malum','refinedstorage','sophisticatedbackpacks','sophisticatedstorage','traveloptics','wizards_reborn')}
+EXPECTED = {'mcpmcp.'+x for x in ('curios','ars_nouveau','avaritia','botania','ironfurnaces','irons_spellbooks','jei','malum','refinedstorage','sophisticatedbackpacks','sophisticatedstorage','traveloptics','wizards_reborn')}
 # Explicit current reobfuscated builds, never a search for any matching old JAR.
 SPECS = [
+ ('curios','curios-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
  ('jei','jei-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
  ('jei','jei-legacy-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
  ('refinedstorage','refinedstorage-1.20.1-forge','distribution/plugin.json','build/libs/adapter.jar'),
@@ -217,12 +218,26 @@ def receipt_matches(rows, root=ROOT):
     return receipt
 
 
-def build_all():
-    """Run every explicit project, then bind exact source/build/distribution bytes."""
+def check_untouched(rows,previous,selected):
+    old={r['canonical']:r for r in previous['artifacts']}
+    for row in rows:
+        if row['project'] in selected:continue
+        prior=old.get(row['canonical'])
+        if prior is None:raise ValueError('No prior build receipt for untouched project: '+row['project'])
+        for key in ('adapter_sha256','source_sha256','manifest_sha256','guide_sha256'):
+            if prior[key]!=row[key]:raise ValueError('Untouched project drift: '+row['id']+' '+key)
+
+
+def build_all(projects=None):
+    """Build all projects, or selected projects with strict unchanged receipts."""
     java=Path(os.environ.get('JAVA_HOME','D:/Games/mc/mc-info-mcp/tooling/jdk17/jdk-17.0.21+9'))
     gradle=Path('D:/Games/mc/mc-info-mcp/tooling/gradle-8.8/bin/gradle.bat')
     env=dict(os.environ,JAVA_HOME=str(java),GRADLE_USER_HOME='D:/Games/mc/mc-info-mcp/.gradle-user-home',JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF-8')
-    logs={};before={p:source_hash(ROOT/'adapters'/p) for p in {s[1] for s in SPECS}}
+    known={s[1] for s in SPECS};selected=set(projects or known)
+    if not selected.issubset(known):raise ValueError('Unknown build project')
+    previous=json.loads((ROOT/'.local/plugin-build-receipt.json').read_bytes()) if projects else None
+    logs=dict(previous.get('build_logs_sha256',{})) if previous else {}
+    before={p:source_hash(ROOT/'adapters'/p) for p in selected}
     for project in sorted(before):
         log=ROOT/'.local'/('release-build-'+project+'.log')
         extra={'ars-irons-1.20.1-forge':['stageDistribution'], 'sophisticated-1.20.1-forge':[], 'botania-avaritia-1.20.1-forge':['packageAdapters'], 'malum-wizards-1.20.1-forge':['stageDistribution']}.get(project,[])
@@ -240,10 +255,17 @@ def build_all():
         logs[project]=digest(log.read_bytes())
         if source_hash(ROOT/'adapters'/project)!=before[project]:raise ValueError('Source changed during build: '+project)
         print('Built '+project,flush=True)
-    rows=catalog();receipt={'source_base_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+    rows=catalog()
+    if previous:check_untouched(rows,previous,selected)
+    receipt={'source_base_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
            'source_identity':'per-project SHA256 of source/build definitions; excludes generated outputs',
-           'build_logs_sha256':logs,'artifacts':[public_row(r) for r in rows]}
+           'build_logs_sha256':logs,'artifacts':[public_row(r) for r in rows],
+           'rebuilt_projects':sorted(selected),'untouched_projects_verified_against_prior_receipt':bool(previous),
+           'prior_receipt_sha256':digest((ROOT/'.local/plugin-build-receipt.json').read_bytes()) if previous else None}
     (ROOT/'.local/plugin-build-receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'built_variants':len(rows),'receipt':'.local/plugin-build-receipt.json'}))
 
-if __name__=='__main__':build_all()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument('--project',action='append');args=parser.parse_args()
+    build_all(args.project)

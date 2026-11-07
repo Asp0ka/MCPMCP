@@ -1,0 +1,62 @@
+Compiled from "ICurioStacksHandler.java"
+public interface top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler {
+  public abstract top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler getStacks();
+
+  public abstract top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler getCosmeticStacks();
+
+  public abstract net.minecraft.core.NonNullList<java.lang.Boolean> getRenders();
+
+  public default boolean canToggleRendering();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default top.theillusivec4.curios.api.type.capability.ICurio$DropRule getDropRule();
+    Code:
+       0: getstatic     #31                 // Field top/theillusivec4/curios/api/type/capability/ICurio$DropRule.DEFAULT:Ltop/theillusivec4/curios/api/type/capability/ICurio$DropRule;
+       3: areturn
+
+  public abstract int getSlots();
+
+  public abstract boolean isVisible();
+
+  public abstract boolean hasCosmetic();
+
+  public abstract net.minecraft.nbt.CompoundTag serializeNBT();
+
+  public abstract void deserializeNBT(net.minecraft.nbt.CompoundTag);
+
+  public abstract java.lang.String getIdentifier();
+
+  public abstract java.util.Map<java.util.UUID, net.minecraft.world.entity.ai.attributes.AttributeModifier> getModifiers();
+
+  public abstract java.util.Set<net.minecraft.world.entity.ai.attributes.AttributeModifier> getPermanentModifiers();
+
+  public abstract java.util.Set<net.minecraft.world.entity.ai.attributes.AttributeModifier> getCachedModifiers();
+
+  public abstract java.util.Collection<net.minecraft.world.entity.ai.attributes.AttributeModifier> getModifiersByOperation(net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation);
+
+  public abstract void addTransientModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+
+  public abstract void addPermanentModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+
+  public abstract void removeModifier(java.util.UUID);
+
+  public abstract void clearModifiers();
+
+  public abstract void clearCachedModifiers();
+
+  public abstract void copyModifiers(top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler);
+
+  public abstract void update();
+
+  public abstract net.minecraft.nbt.CompoundTag getSyncTag();
+
+  public abstract void applySyncTag(net.minecraft.nbt.CompoundTag);
+
+  public abstract int getSizeShift();
+
+  public abstract void grow(int);
+
+  public abstract void shrink(int);
+}

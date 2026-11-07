@@ -1,0 +1,593 @@
+Compiled from "ModList.java"
+public class net.minecraftforge.fml.ModList {
+  private static org.apache.logging.log4j.Logger LOGGER;
+
+  private static net.minecraftforge.fml.ModList INSTANCE;
+
+  private final java.util.List<net.minecraftforge.forgespi.language.IModFileInfo> modFiles;
+
+  private final java.util.List<net.minecraftforge.forgespi.language.IModInfo> sortedList;
+
+  private final java.util.Map<java.lang.String, net.minecraftforge.fml.loading.moddiscovery.ModFileInfo> fileById;
+
+  private java.util.List<net.minecraftforge.fml.ModContainer> mods;
+
+  private java.util.Map<java.lang.String, net.minecraftforge.fml.ModContainer> indexedMods;
+
+  private java.util.List<net.minecraftforge.forgespi.language.ModFileScanData> modFileScanData;
+
+  private java.util.List<net.minecraftforge.fml.ModContainer> sortedContainers;
+
+  private net.minecraftforge.fml.ModList(java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>, java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModInfo>);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      11: invokedynamic #13,  0             // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      16: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      21: ldc           #23                 // class net/minecraftforge/fml/loading/moddiscovery/ModFileInfo
+      23: dup
+      24: invokestatic  #25                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      27: pop
+      28: invokedynamic #31,  0             // InvokeDynamic #1:apply:(Ljava/lang/Class;)Ljava/util/function/Function;
+      33: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      38: invokestatic  #34                 // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      41: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      46: checkcast     #8                  // class java/util/List
+      49: putfield      #44                 // Field modFiles:Ljava/util/List;
+      52: aload_0
+      53: aload_2
+      54: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      59: ldc           #50                 // class net/minecraftforge/fml/loading/moddiscovery/ModInfo
+      61: dup
+      62: invokestatic  #25                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      65: pop
+      66: invokedynamic #52,  0             // InvokeDynamic #2:apply:(Ljava/lang/Class;)Ljava/util/function/Function;
+      71: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      76: invokestatic  #34                 // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      79: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      84: checkcast     #8                  // class java/util/List
+      87: putfield      #53                 // Field sortedList:Ljava/util/List;
+      90: aload_0
+      91: aload_0
+      92: getfield      #44                 // Field modFiles:Ljava/util/List;
+      95: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     100: invokedynamic #56,  0             // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+     105: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     110: invokedynamic #57,  0             // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+     115: invokeinterface #58,  2           // InterfaceMethod java/util/stream/Stream.flatMap:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     120: ldc           #50                 // class net/minecraftforge/fml/loading/moddiscovery/ModInfo
+     122: dup
+     123: invokestatic  #25                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     126: pop
+     127: invokedynamic #61,  0             // InvokeDynamic #5:apply:(Ljava/lang/Class;)Ljava/util/function/Function;
+     132: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     137: invokedynamic #62,  0             // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+     142: invokedynamic #63,  0             // InvokeDynamic #7:apply:()Ljava/util/function/Function;
+     147: invokestatic  #64                 // Method java/util/stream/Collectors.toMap:(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;
+     150: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+     155: checkcast     #68                 // class java/util/Map
+     158: putfield      #70                 // Field fileById:Ljava/util/Map;
+     161: ldc           #74                 // String Mod List
+     163: aload_0
+     164: invokedynamic #76,  0             // InvokeDynamic #8:get:(Lnet/minecraftforge/fml/ModList;)Ljava/util/function/Supplier;
+     169: invokestatic  #80                 // Method net/minecraftforge/fml/CrashReportCallables.registerCrashCallable:(Ljava/lang/String;Ljava/util/function/Supplier;)V
+     172: return
+
+  private java.lang.String getModContainerState(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #86                 // Method getModContainerById:(Ljava/lang/String;)Ljava/util/Optional;
+       5: invokedynamic #90,  0             // InvokeDynamic #9:apply:()Ljava/util/function/Function;
+      10: invokevirtual #91                 // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      13: invokedynamic #96,  0             // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+      18: invokevirtual #91                 // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      21: ldc           #97                 // String NONE
+      23: invokevirtual #99                 // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      26: checkcast     #102                // class java/lang/String
+      29: areturn
+
+  private java.lang.String fileToLine(net.minecraftforge.forgespi.locating.IModFile);
+    Code:
+       0: getstatic     #104                // Field java/util/Locale.ENGLISH:Ljava/util/Locale;
+       3: ldc           #110                // String %-50.50s|%-30.30s|%-30.30s|%-20.20s|%-10.10s|Manifest: %s
+       5: bipush        6
+       7: anewarray     #2                  // class java/lang/Object
+      10: dup
+      11: iconst_0
+      12: aload_1
+      13: invokeinterface #112,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getFileName:()Ljava/lang/String;
+      18: aastore
+      19: dup
+      20: iconst_1
+      21: aload_1
+      22: invokeinterface #118,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getModInfos:()Ljava/util/List;
+      27: iconst_0
+      28: invokeinterface #122,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      33: checkcast     #125                // class net/minecraftforge/forgespi/language/IModInfo
+      36: invokeinterface #127,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getDisplayName:()Ljava/lang/String;
+      41: aastore
+      42: dup
+      43: iconst_2
+      44: aload_1
+      45: invokeinterface #118,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getModInfos:()Ljava/util/List;
+      50: iconst_0
+      51: invokeinterface #122,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      56: checkcast     #125                // class net/minecraftforge/forgespi/language/IModInfo
+      59: invokeinterface #130,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getModId:()Ljava/lang/String;
+      64: aastore
+      65: dup
+      66: iconst_3
+      67: aload_1
+      68: invokeinterface #118,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getModInfos:()Ljava/util/List;
+      73: iconst_0
+      74: invokeinterface #122,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      79: checkcast     #125                // class net/minecraftforge/forgespi/language/IModInfo
+      82: invokeinterface #133,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getVersion:()Lorg/apache/maven/artifact/versioning/ArtifactVersion;
+      87: aastore
+      88: dup
+      89: iconst_4
+      90: aload_0
+      91: aload_1
+      92: invokeinterface #118,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getModInfos:()Ljava/util/List;
+      97: iconst_0
+      98: invokeinterface #122,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     103: checkcast     #125                // class net/minecraftforge/forgespi/language/IModInfo
+     106: invokeinterface #130,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getModId:()Ljava/lang/String;
+     111: invokevirtual #137                // Method getModContainerState:(Ljava/lang/String;)Ljava/lang/String;
+     114: aastore
+     115: dup
+     116: iconst_5
+     117: aload_1
+     118: invokeinterface #141,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getModFileInfo:()Lnet/minecraftforge/forgespi/language/IModFileInfo;
+     123: checkcast     #23                 // class net/minecraftforge/fml/loading/moddiscovery/ModFileInfo
+     126: invokevirtual #145                // Method net/minecraftforge/fml/loading/moddiscovery/ModFileInfo.getCodeSigningFingerprint:()Ljava/util/Optional;
+     129: ldc           #149                // String NOSIGNATURE
+     131: invokevirtual #99                 // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     134: aastore
+     135: invokestatic  #151                // Method java/lang/String.format:(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     138: areturn
+
+  private java.lang.String crashReport();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokedynamic #155,  0            // InvokeDynamic #11:apply:(Lnet/minecraftforge/fml/ModList;)Ljava/util/function/Function;
+       7: invokevirtual #158                // Method applyForEachModFile:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      10: ldc           #161                // String \n\t\t
+      12: ldc           #163                // String \t\t
+      14: ldc           #165                // String
+      16: invokestatic  #167                // Method java/util/stream/Collectors.joining:(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/util/stream/Collector;
+      19: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      24: checkcast     #102                // class java/lang/String
+      27: invokedynamic #171,  0            // InvokeDynamic #12:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      32: areturn
+
+  public static net.minecraftforge.fml.ModList of(java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModFile>, java.util.List<net.minecraftforge.fml.loading.moddiscovery.ModInfo>);
+    Code:
+       0: new           #45                 // class net/minecraftforge/fml/ModList
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: invokespecial #174                // Method "<init>":(Ljava/util/List;Ljava/util/List;)V
+       9: putstatic     #177                // Field INSTANCE:Lnet/minecraftforge/fml/ModList;
+      12: getstatic     #177                // Field INSTANCE:Lnet/minecraftforge/fml/ModList;
+      15: areturn
+
+  public static net.minecraftforge.fml.ModList get();
+    Code:
+       0: getstatic     #177                // Field INSTANCE:Lnet/minecraftforge/fml/ModList;
+       3: areturn
+
+  private static java.util.concurrent.ForkJoinWorkerThread newForkJoinWorkerThread(java.util.concurrent.ForkJoinPool);
+    Code:
+       0: getstatic     #181                // Field java/util/concurrent/ForkJoinPool.defaultForkJoinWorkerThreadFactory:Ljava/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory;
+       3: aload_0
+       4: invokeinterface #187,  2          // InterfaceMethod java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory.newThread:(Ljava/util/concurrent/ForkJoinPool;)Ljava/util/concurrent/ForkJoinWorkerThread;
+       9: astore_1
+      10: aload_1
+      11: aload_1
+      12: invokevirtual #193                // Method java/util/concurrent/ForkJoinWorkerThread.getPoolIndex:()I
+      15: invokedynamic #199,  0            // InvokeDynamic #13:makeConcatWithConstants:(I)Ljava/lang/String;
+      20: invokevirtual #202                // Method java/util/concurrent/ForkJoinWorkerThread.setName:(Ljava/lang/String;)V
+      23: aload_1
+      24: invokestatic  #206                // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+      27: invokevirtual #212                // Method java/lang/Thread.getContextClassLoader:()Ljava/lang/ClassLoader;
+      30: invokevirtual #216                // Method java/util/concurrent/ForkJoinWorkerThread.setContextClassLoader:(Ljava/lang/ClassLoader;)V
+      33: aload_1
+      34: areturn
+
+  public java.util.List<net.minecraftforge.forgespi.language.IModFileInfo> getModFiles();
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field modFiles:Ljava/util/List;
+       4: areturn
+
+  public net.minecraftforge.forgespi.language.IModFileInfo getModFileById(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field fileById:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #220,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #222                // class net/minecraftforge/forgespi/language/IModFileInfo
+      13: areturn
+
+  <T extends net.minecraftforge.eventbus.api.Event & net.minecraftforge.fml.event.IModBusEvent> java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<java.lang.Void>> futureVisitor(net.minecraftforge.fml.IModStateTransition$EventGenerator<T>, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.BiFunction<net.minecraftforge.fml.ModLoadingStage, java.lang.Throwable, net.minecraftforge.fml.ModLoadingStage>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokedynamic #224,  0            // InvokeDynamic #14:apply:(Lnet/minecraftforge/fml/ModList;Lnet/minecraftforge/fml/IModStateTransition$EventGenerator;Lnet/minecraftforge/fml/loading/progress/ProgressMeter;Ljava/util/function/BiFunction;)Ljava/util/function/Function;
+       9: areturn
+
+  static java.util.concurrent.CompletionStage<java.lang.Void> completableFutureFromExceptionList(java.util.List<? extends java.util.Map$Entry<?, java.lang.Throwable>>);
+    Code:
+       0: aload_0
+       1: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       6: invokedynamic #227,  0            // InvokeDynamic #15:test:()Ljava/util/function/Predicate;
+      11: invokeinterface #231,  2          // InterfaceMethod java/util/stream/Stream.noneMatch:(Ljava/util/function/Predicate;)Z
+      16: ifeq          24
+      19: aconst_null
+      20: invokestatic  #235                // Method java/util/concurrent/CompletableFuture.completedFuture:(Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+      23: areturn
+      24: aload_0
+      25: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      30: invokedynamic #241,  0            // InvokeDynamic #16:test:()Ljava/util/function/Predicate;
+      35: invokeinterface #242,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      40: invokedynamic #246,  0            // InvokeDynamic #17:apply:()Ljava/util/function/Function;
+      45: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      50: invokestatic  #34                 // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      53: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      58: checkcast     #8                  // class java/util/List
+      61: astore_1
+      62: new           #236                // class java/util/concurrent/CompletableFuture
+      65: dup
+      66: invokespecial #247                // Method java/util/concurrent/CompletableFuture."<init>":()V
+      69: astore_2
+      70: new           #248                // class java/lang/RuntimeException
+      73: dup
+      74: invokespecial #250                // Method java/lang/RuntimeException."<init>":()V
+      77: astore_3
+      78: aload_2
+      79: aload_3
+      80: invokevirtual #251                // Method java/util/concurrent/CompletableFuture.completeExceptionally:(Ljava/lang/Throwable;)Z
+      83: pop
+      84: aload_1
+      85: aload_3
+      86: invokedynamic #255,  0            // InvokeDynamic #18:accept:(Ljava/lang/RuntimeException;)Ljava/util/function/Consumer;
+      91: invokeinterface #259,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      96: aload_2
+      97: areturn
+
+  static <V> java.util.concurrent.CompletableFuture<java.util.List<java.util.Map$Entry<V, java.lang.Throwable>>> gather(java.util.List<? extends java.util.concurrent.CompletableFuture<? extends V>>);
+    Code:
+       0: new           #263                // class java/util/ArrayList
+       3: dup
+       4: aload_0
+       5: invokeinterface #265,  1          // InterfaceMethod java/util/List.size:()I
+      10: invokespecial #268                // Method java/util/ArrayList."<init>":(I)V
+      13: astore_1
+      14: aload_0
+      15: invokeinterface #265,  1          // InterfaceMethod java/util/List.size:()I
+      20: anewarray     #236                // class java/util/concurrent/CompletableFuture
+      23: astore_2
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: invokedynamic #271,  0            // InvokeDynamic #19:accept:(Ljava/util/List;[Ljava/util/concurrent/CompletableFuture;)Ljava/util/function/Consumer;
+      32: invokeinterface #259,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      37: aload_2
+      38: invokestatic  #274                // Method java/util/concurrent/CompletableFuture.allOf:([Ljava/util/concurrent/CompletableFuture;)Ljava/util/concurrent/CompletableFuture;
+      41: invokedynamic #278,  0            // InvokeDynamic #20:apply:()Ljava/util/function/BiFunction;
+      46: invokevirtual #281                // Method java/util/concurrent/CompletableFuture.handle:(Ljava/util/function/BiFunction;)Ljava/util/concurrent/CompletableFuture;
+      49: aload_1
+      50: invokedynamic #285,  0            // InvokeDynamic #21:apply:(Ljava/util/List;)Ljava/util/function/Function;
+      55: invokevirtual #288                // Method java/util/concurrent/CompletableFuture.thenApply:(Ljava/util/function/Function;)Ljava/util/concurrent/CompletableFuture;
+      58: areturn
+
+  void setLoadedMods(java.util.List<net.minecraftforge.fml.ModContainer>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #292                // Field mods:Ljava/util/List;
+       5: aload_0
+       6: aload_1
+       7: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      12: aload_0
+      13: invokedynamic #295,  0            // InvokeDynamic #22:applyAsInt:(Lnet/minecraftforge/fml/ModList;)Ljava/util/function/ToIntFunction;
+      18: invokestatic  #299                // InterfaceMethod java/util/Comparator.comparingInt:(Ljava/util/function/ToIntFunction;)Ljava/util/Comparator;
+      21: invokeinterface #305,  2          // InterfaceMethod java/util/stream/Stream.sorted:(Ljava/util/Comparator;)Ljava/util/stream/Stream;
+      26: invokeinterface #309,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+      31: putfield      #311                // Field sortedContainers:Ljava/util/List;
+      34: aload_0
+      35: aload_1
+      36: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      41: invokedynamic #314,  0            // InvokeDynamic #23:apply:()Ljava/util/function/Function;
+      46: invokestatic  #315                // InterfaceMethod java/util/function/Function.identity:()Ljava/util/function/Function;
+      49: invokestatic  #64                 // Method java/util/stream/Collectors.toMap:(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/util/stream/Collector;
+      52: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      57: checkcast     #68                 // class java/util/Map
+      60: putfield      #320                // Field indexedMods:Ljava/util/Map;
+      63: return
+
+  public <T> java.util.Optional<T> getModObjectById(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #86                 // Method getModContainerById:(Ljava/lang/String;)Ljava/util/Optional;
+       5: invokedynamic #323,  0            // InvokeDynamic #24:apply:()Ljava/util/function/Function;
+      10: invokevirtual #91                 // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      13: invokedynamic #324,  0            // InvokeDynamic #25:apply:()Ljava/util/function/Function;
+      18: invokevirtual #91                 // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      21: areturn
+
+  public java.util.Optional<? extends net.minecraftforge.fml.ModContainer> getModContainerById(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #320                // Field indexedMods:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #220,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #325                // class net/minecraftforge/fml/ModContainer
+      13: invokestatic  #327                // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+      16: areturn
+
+  public java.util.Optional<? extends net.minecraftforge.fml.ModContainer> getModContainerByObject(java.lang.Object);
+    Code:
+       0: aload_0
+       1: getfield      #292                // Field mods:Ljava/util/List;
+       4: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: aload_1
+      10: invokedynamic #331,  0            // InvokeDynamic #26:test:(Ljava/lang/Object;)Ljava/util/function/Predicate;
+      15: invokeinterface #242,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      20: invokeinterface #334,  1          // InterfaceMethod java/util/stream/Stream.findFirst:()Ljava/util/Optional;
+      25: areturn
+
+  public java.util.List<net.minecraftforge.forgespi.language.IModInfo> getMods();
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field sortedList:Ljava/util/List;
+       4: areturn
+
+  public boolean isLoaded(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #320                // Field indexedMods:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #337,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      10: ireturn
+
+  public int size();
+    Code:
+       0: aload_0
+       1: getfield      #292                // Field mods:Ljava/util/List;
+       4: invokeinterface #265,  1          // InterfaceMethod java/util/List.size:()I
+       9: ireturn
+
+  public java.util.List<net.minecraftforge.forgespi.language.ModFileScanData> getAllScanData();
+    Code:
+       0: aload_0
+       1: getfield      #341                // Field modFileScanData:Ljava/util/List;
+       4: ifnonnull     76
+       7: aload_0
+       8: aload_0
+       9: getfield      #53                 // Field sortedList:Ljava/util/List;
+      12: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      17: invokedynamic #344,  0            // InvokeDynamic #27:apply:()Ljava/util/function/Function;
+      22: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      27: invokedynamic #345,  0            // InvokeDynamic #28:test:()Ljava/util/function/Predicate;
+      32: invokeinterface #242,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      37: invokedynamic #346,  0            // InvokeDynamic #29:apply:()Ljava/util/function/Function;
+      42: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      47: invokeinterface #347,  1          // InterfaceMethod java/util/stream/Stream.distinct:()Ljava/util/stream/Stream;
+      52: invokedynamic #350,  0            // InvokeDynamic #30:apply:()Ljava/util/function/Function;
+      57: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      62: invokestatic  #34                 // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      65: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      70: checkcast     #8                  // class java/util/List
+      73: putfield      #341                // Field modFileScanData:Ljava/util/List;
+      76: aload_0
+      77: getfield      #341                // Field modFileScanData:Ljava/util/List;
+      80: areturn
+
+  public void forEachModFile(java.util.function.Consumer<net.minecraftforge.forgespi.locating.IModFile>);
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field modFiles:Ljava/util/List;
+       4: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: invokedynamic #346,  0            // InvokeDynamic #29:apply:()Ljava/util/function/Function;
+      14: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      19: aload_1
+      20: invokeinterface #351,  2          // InterfaceMethod java/util/stream/Stream.forEach:(Ljava/util/function/Consumer;)V
+      25: return
+
+  public <T> java.util.stream.Stream<T> applyForEachModFile(java.util.function.Function<net.minecraftforge.forgespi.locating.IModFile, T>);
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field modFiles:Ljava/util/List;
+       4: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: invokedynamic #346,  0            // InvokeDynamic #29:apply:()Ljava/util/function/Function;
+      14: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      19: aload_1
+      20: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      25: areturn
+
+  public void forEachModContainer(java.util.function.BiConsumer<java.lang.String, net.minecraftforge.fml.ModContainer>);
+    Code:
+       0: aload_0
+       1: getfield      #320                // Field indexedMods:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #352,  2          // InterfaceMethod java/util/Map.forEach:(Ljava/util/function/BiConsumer;)V
+      10: return
+
+  public void forEachModInOrder(java.util.function.Consumer<net.minecraftforge.fml.ModContainer>);
+    Code:
+       0: aload_0
+       1: getfield      #311                // Field sortedContainers:Ljava/util/List;
+       4: aload_1
+       5: invokeinterface #259,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      10: return
+
+  public <T> java.util.stream.Stream<T> applyForEachModContainer(java.util.function.Function<net.minecraftforge.fml.ModContainer, T>);
+    Code:
+       0: aload_0
+       1: getfield      #320                // Field indexedMods:Ljava/util/Map;
+       4: invokeinterface #355,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+       9: invokeinterface #359,  1          // InterfaceMethod java/util/Collection.stream:()Ljava/util/stream/Stream;
+      14: aload_1
+      15: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      20: areturn
+
+  private static boolean lambda$getModContainerByObject$11(java.lang.Object, net.minecraftforge.fml.ModContainer);
+    Code:
+       0: aload_1
+       1: invokevirtual #362                // Method net/minecraftforge/fml/ModContainer.getMod:()Ljava/lang/Object;
+       4: aload_0
+       5: if_acmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  private static java.lang.Object lambda$getModObjectById$10(java.lang.Object);
+    Code:
+       0: aload_0
+       1: areturn
+
+  private int lambda$setLoadedMods$9(net.minecraftforge.fml.ModContainer);
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field sortedList:Ljava/util/List;
+       4: aload_1
+       5: invokevirtual #366                // Method net/minecraftforge/fml/ModContainer.getModInfo:()Lnet/minecraftforge/forgespi/language/IModInfo;
+       8: invokeinterface #370,  2          // InterfaceMethod java/util/List.indexOf:(Ljava/lang/Object;)I
+      13: ireturn
+
+  private static java.util.List lambda$gather$8(java.util.List, java.lang.Object);
+    Code:
+       0: aload_0
+       1: areturn
+
+  private static java.lang.Object lambda$gather$7(java.lang.Void, java.lang.Throwable);
+    Code:
+       0: aconst_null
+       1: areturn
+
+  private static void lambda$gather$6(java.util.List, java.util.concurrent.CompletableFuture[], java.util.concurrent.CompletableFuture);
+    Code:
+       0: aload_0
+       1: invokeinterface #265,  1          // InterfaceMethod java/util/List.size:()I
+       6: istore_3
+       7: aload_0
+       8: aconst_null
+       9: invokeinterface #374,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      14: pop
+      15: aload_1
+      16: iload_3
+      17: aload_2
+      18: aload_0
+      19: iload_3
+      20: invokedynamic #377,  0            // InvokeDynamic #31:accept:(Ljava/util/List;I)Ljava/util/function/BiConsumer;
+      25: invokevirtual #380                // Method java/util/concurrent/CompletableFuture.whenComplete:(Ljava/util/function/BiConsumer;)Ljava/util/concurrent/CompletableFuture;
+      28: aastore
+      29: return
+
+  private static void lambda$gather$5(java.util.List, int, java.lang.Object, java.lang.Throwable);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: new           #384                // class java/util/AbstractMap$SimpleImmutableEntry
+       5: dup
+       6: aload_2
+       7: aload_3
+       8: invokespecial #386                // Method java/util/AbstractMap$SimpleImmutableEntry."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+      11: invokeinterface #389,  3          // InterfaceMethod java/util/List.set:(ILjava/lang/Object;)Ljava/lang/Object;
+      16: pop
+      17: return
+
+  private static void lambda$completableFutureFromExceptionList$4(java.lang.RuntimeException, java.lang.Throwable);
+    Code:
+       0: aload_1
+       1: instanceof    #393                // class java/util/concurrent/CompletionException
+       4: ifeq          12
+       7: aload_1
+       8: invokevirtual #395                // Method java/lang/Throwable.getCause:()Ljava/lang/Throwable;
+      11: astore_1
+      12: aload_1
+      13: invokevirtual #401                // Method java/lang/Throwable.getSuppressed:()[Ljava/lang/Throwable;
+      16: arraylength
+      17: ifeq          46
+      20: aload_1
+      21: invokevirtual #401                // Method java/lang/Throwable.getSuppressed:()[Ljava/lang/Throwable;
+      24: invokestatic  #405                // Method java/util/Arrays.stream:([Ljava/lang/Object;)Ljava/util/stream/Stream;
+      27: aload_0
+      28: dup
+      29: invokestatic  #25                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      32: pop
+      33: invokedynamic #410,  0            // InvokeDynamic #32:accept:(Ljava/lang/RuntimeException;)Ljava/util/function/Consumer;
+      38: invokeinterface #351,  2          // InterfaceMethod java/util/stream/Stream.forEach:(Ljava/util/function/Consumer;)V
+      43: goto          51
+      46: aload_0
+      47: aload_1
+      48: invokevirtual #411                // Method java/lang/RuntimeException.addSuppressed:(Ljava/lang/Throwable;)V
+      51: return
+
+  private static boolean lambda$completableFutureFromExceptionList$3(java.util.Map$Entry);
+    Code:
+       0: aload_0
+       1: invokeinterface #415,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       6: ifnull        13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: ireturn
+
+  private static boolean lambda$completableFutureFromExceptionList$2(java.util.Map$Entry);
+    Code:
+       0: aload_0
+       1: invokeinterface #415,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       6: ifnull        13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: ireturn
+
+  private java.util.concurrent.CompletableFuture lambda$futureVisitor$1(net.minecraftforge.fml.IModStateTransition$EventGenerator, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.BiFunction, java.util.concurrent.Executor);
+    Code:
+       0: aload_0
+       1: getfield      #292                // Field mods:Ljava/util/List;
+       4: invokeinterface #7,  1            // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       9: aload_1
+      10: aload_2
+      11: aload_3
+      12: aload         4
+      14: invokedynamic #420,  0            // InvokeDynamic #33:apply:(Lnet/minecraftforge/fml/IModStateTransition$EventGenerator;Lnet/minecraftforge/fml/loading/progress/ProgressMeter;Ljava/util/function/BiFunction;Ljava/util/concurrent/Executor;)Ljava/util/function/Function;
+      19: invokeinterface #17,  2           // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      24: invokestatic  #34                 // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      27: invokeinterface #40,  2           // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      32: checkcast     #8                  // class java/util/List
+      35: invokestatic  #423                // Method gather:(Ljava/util/List;)Ljava/util/concurrent/CompletableFuture;
+      38: invokedynamic #427,  0            // InvokeDynamic #34:apply:()Ljava/util/function/Function;
+      43: aload         4
+      45: invokevirtual #428                // Method java/util/concurrent/CompletableFuture.thenComposeAsync:(Ljava/util/function/Function;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+      48: areturn
+
+  private static java.util.concurrent.CompletableFuture lambda$futureVisitor$0(net.minecraftforge.fml.IModStateTransition$EventGenerator, net.minecraftforge.fml.loading.progress.ProgressMeter, java.util.function.BiFunction, java.util.concurrent.Executor, net.minecraftforge.fml.ModContainer);
+    Code:
+       0: aload         4
+       2: aload_0
+       3: aload_1
+       4: aload_2
+       5: aload_3
+       6: invokestatic  #432                // Method net/minecraftforge/fml/ModContainer.buildTransitionHandler:(Lnet/minecraftforge/fml/ModContainer;Lnet/minecraftforge/fml/IModStateTransition$EventGenerator;Lnet/minecraftforge/fml/loading/progress/ProgressMeter;Ljava/util/function/BiFunction;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+       9: areturn
+
+  static {};
+    Code:
+       0: invokestatic  #436                // Method org/apache/logging/log4j/LogManager.getLogger:()Lorg/apache/logging/log4j/Logger;
+       3: putstatic     #442                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       6: return
+}

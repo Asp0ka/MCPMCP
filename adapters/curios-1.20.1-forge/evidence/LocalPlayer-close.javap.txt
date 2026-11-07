@@ -1,0 +1,25 @@
+  public void closeContainer();
+    Code:
+       0: aload_0
+       1: getfield      #161                // Field connection:Lnet/minecraft/client/multiplayer/ClientPacketListener;
+       4: new           #579                // class net/minecraft/network/protocol/game/ServerboundContainerClosePacket
+       7: dup
+       8: aload_0
+       9: getfield      #583                // Field containerMenu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      12: getfield      #588                // Field net/minecraft/world/inventory/AbstractContainerMenu.containerId:I
+      15: invokespecial #591                // Method net/minecraft/network/protocol/game/ServerboundContainerClosePacket."<init>":(I)V
+      18: invokevirtual #300                // Method net/minecraft/client/multiplayer/ClientPacketListener.send:(Lnet/minecraft/network/protocol/Packet;)V
+      21: aload_0
+      22: invokevirtual #594                // Method clientSideCloseContainer:()V
+      25: return
+
+  public void clientSideCloseContainer();
+    Code:
+       0: aload_0
+       1: invokespecial #596                // Method net/minecraft/client/player/AbstractClientPlayer.closeContainer:()V
+       4: aload_0
+       5: getfield      #159                // Field minecraft:Lnet/minecraft/client/Minecraft;
+       8: aconst_null
+       9: checkcast     #598                // class net/minecraft/client/gui/screens/Screen
+      12: invokevirtual #602                // Method net/minecraft/client/Minecraft.setScreen:(Lnet/minecraft/client/gui/screens/Screen;)V
+      15: return

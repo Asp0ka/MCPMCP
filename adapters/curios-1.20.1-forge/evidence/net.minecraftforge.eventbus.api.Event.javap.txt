@@ -1,0 +1,147 @@
+Compiled from "Event.java"
+public class net.minecraftforge.eventbus.api.Event {
+  private boolean isCanceled;
+
+  private net.minecraftforge.eventbus.api.Event$Result result;
+
+  private net.minecraftforge.eventbus.api.EventPriority phase;
+
+  public net.minecraftforge.eventbus.api.Event();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #7                  // Field isCanceled:Z
+       9: aload_0
+      10: getstatic     #13                 // Field net/minecraftforge/eventbus/api/Event$Result.DEFAULT:Lnet/minecraftforge/eventbus/api/Event$Result;
+      13: putfield      #19                 // Field result:Lnet/minecraftforge/eventbus/api/Event$Result;
+      16: aload_0
+      17: aconst_null
+      18: putfield      #22                 // Field phase:Lnet/minecraftforge/eventbus/api/EventPriority;
+      21: return
+
+  public boolean isCancelable();
+    Code:
+       0: aload_0
+       1: invokevirtual #26                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: invokestatic  #30                 // Method net/minecraftforge/eventbus/api/EventListenerHelper.isCancelable:(Ljava/lang/Class;)Z
+       7: ireturn
+
+  public boolean isCanceled();
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field isCanceled:Z
+       4: ireturn
+
+  public void setCanceled(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #36                 // Method isCancelable:()Z
+       4: ifne          27
+       7: new           #39                 // class java/lang/UnsupportedOperationException
+      10: dup
+      11: aload_0
+      12: invokevirtual #26                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      15: invokevirtual #41                 // Method java/lang/Class.getCanonicalName:()Ljava/lang/String;
+      18: invokedynamic #47,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      23: invokespecial #51                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+      26: athrow
+      27: aload_0
+      28: getstatic     #54                 // Field net/minecraftforge/eventbus/api/EventPriority.MONITOR:Lnet/minecraftforge/eventbus/api/EventPriority;
+      31: invokevirtual #59                 // Method seenPhase:(Lnet/minecraftforge/eventbus/api/EventPriority;)Z
+      34: ifeq          47
+      37: new           #63                 // class java/lang/IllegalStateException
+      40: dup
+      41: ldc           #65                 // String Attempted to call Event#setCanceled() after the MONITOR phase
+      43: invokespecial #67                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      46: athrow
+      47: aload_0
+      48: iload_1
+      49: putfield      #7                  // Field isCanceled:Z
+      52: return
+
+  public void cancel();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: invokevirtual #68                 // Method setCanceled:(Z)V
+       5: return
+
+  public boolean hasResult();
+    Code:
+       0: aload_0
+       1: invokevirtual #26                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: invokestatic  #72                 // Method net/minecraftforge/eventbus/api/EventListenerHelper.hasResult:(Ljava/lang/Class;)Z
+       7: ireturn
+
+  public net.minecraftforge.eventbus.api.Event$Result getResult();
+    Code:
+       0: aload_0
+       1: getfield      #19                 // Field result:Lnet/minecraftforge/eventbus/api/Event$Result;
+       4: areturn
+
+  public void setResult(net.minecraftforge.eventbus.api.Event$Result);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #19                 // Field result:Lnet/minecraftforge/eventbus/api/Event$Result;
+       5: return
+
+  public net.minecraftforge.eventbus.ListenerList getListenerList();
+    Code:
+       0: aload_0
+       1: invokevirtual #26                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       4: iconst_1
+       5: invokestatic  #75                 // Method net/minecraftforge/eventbus/api/EventListenerHelper.getListenerListInternal:(Ljava/lang/Class;Z)Lnet/minecraftforge/eventbus/ListenerList;
+       8: areturn
+
+  public net.minecraftforge.eventbus.api.EventPriority getPhase();
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field phase:Lnet/minecraftforge/eventbus/api/EventPriority;
+       4: areturn
+
+  public void setPhase(net.minecraftforge.eventbus.api.EventPriority);
+    Code:
+       0: aload_1
+       1: ldc           #79                 // String setPhase argument must not be null
+       3: invokestatic  #81                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+       6: pop
+       7: aload_0
+       8: aload_1
+       9: invokevirtual #59                 // Method seenPhase:(Lnet/minecraftforge/eventbus/api/EventPriority;)Z
+      12: ifeq          33
+      15: new           #87                 // class java/lang/IllegalArgumentException
+      18: dup
+      19: aload_1
+      20: aload_0
+      21: getfield      #22                 // Field phase:Lnet/minecraftforge/eventbus/api/EventPriority;
+      24: invokedynamic #89,  0             // InvokeDynamic #1:makeConcatWithConstants:(Lnet/minecraftforge/eventbus/api/EventPriority;Lnet/minecraftforge/eventbus/api/EventPriority;)Ljava/lang/String;
+      29: invokespecial #92                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      32: athrow
+      33: aload_0
+      34: aload_1
+      35: putfield      #22                 // Field phase:Lnet/minecraftforge/eventbus/api/EventPriority;
+      38: return
+
+  private boolean seenPhase(net.minecraftforge.eventbus.api.EventPriority);
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field phase:Lnet/minecraftforge/eventbus/api/EventPriority;
+       4: ifnonnull     11
+       7: iconst_m1
+       8: goto          18
+      11: aload_0
+      12: getfield      #22                 // Field phase:Lnet/minecraftforge/eventbus/api/EventPriority;
+      15: invokevirtual #93                 // Method net/minecraftforge/eventbus/api/EventPriority.ordinal:()I
+      18: istore_2
+      19: iload_2
+      20: aload_1
+      21: invokevirtual #93                 // Method net/minecraftforge/eventbus/api/EventPriority.ordinal:()I
+      24: if_icmplt     31
+      27: iconst_1
+      28: goto          32
+      31: iconst_0
+      32: ireturn
+}

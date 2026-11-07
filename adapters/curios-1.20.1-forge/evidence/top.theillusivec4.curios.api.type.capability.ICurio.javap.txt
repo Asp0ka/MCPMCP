@@ -1,0 +1,476 @@
+Compiled from "ICurio.java"
+public interface top.theillusivec4.curios.api.type.capability.ICurio {
+  public abstract net.minecraft.world.item.ItemStack getStack();
+
+  public default void curioTick(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: aload_1
+       6: invokevirtual #30                 // Method top/theillusivec4/curios/api/SlotContext.index:()I
+       9: aload_1
+      10: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      13: invokeinterface #37,  4           // InterfaceMethod curioTick:(Ljava/lang/String;ILnet/minecraft/world/entity/LivingEntity;)V
+      18: return
+
+  public default void onEquip(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: aload_1
+       6: invokevirtual #30                 // Method top/theillusivec4/curios/api/SlotContext.index:()I
+       9: aload_1
+      10: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      13: invokeinterface #45,  4           // InterfaceMethod onEquip:(Ljava/lang/String;ILnet/minecraft/world/entity/LivingEntity;)V
+      18: return
+
+  public default void onUnequip(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: aload_1
+       6: invokevirtual #30                 // Method top/theillusivec4/curios/api/SlotContext.index:()I
+       9: aload_1
+      10: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      13: invokeinterface #50,  4           // InterfaceMethod onUnequip:(Ljava/lang/String;ILnet/minecraft/world/entity/LivingEntity;)V
+      18: return
+
+  public default boolean canEquip(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default boolean canUnequip(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default java.util.List<net.minecraft.network.chat.Component> getSlotsTooltip(java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #60,  2           // InterfaceMethod getTagsTooltip:(Ljava/util/List;)Ljava/util/List;
+       7: areturn
+
+  public default com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getAttributeModifiers(top.theillusivec4.curios.api.SlotContext, java.util.UUID);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: invokeinterface #69,  2           // InterfaceMethod getAttributeModifiers:(Ljava/lang/String;)Lcom/google/common/collect/Multimap;
+      10: areturn
+
+  public default void onEquipFromUse(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+       5: invokeinterface #76,  2           // InterfaceMethod playRightClickEquipSound:(Lnet/minecraft/world/entity/LivingEntity;)V
+      10: return
+
+  public default top.theillusivec4.curios.api.type.capability.ICurio$SoundInfo getEquipSound(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: new           #7                  // class top/theillusivec4/curios/api/type/capability/ICurio$SoundInfo
+       3: dup
+       4: getstatic     #85                 // Field net/minecraft/sounds/SoundEvents.f_11675_:Lnet/minecraft/sounds/SoundEvent;
+       7: fconst_1
+       8: fconst_1
+       9: invokespecial #89                 // Method top/theillusivec4/curios/api/type/capability/ICurio$SoundInfo."<init>":(Lnet/minecraft/sounds/SoundEvent;FF)V
+      12: areturn
+
+  public default boolean canEquipFromUse(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: invokeinterface #94,  1           // InterfaceMethod canRightClickEquip:()Z
+       6: ireturn
+
+  public default void curioBreak(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokeinterface #97,  1           // InterfaceMethod getStack:()Lnet/minecraft/world/item/ItemStack;
+       7: aload_1
+       8: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      11: invokeinterface #100,  3          // InterfaceMethod curioBreak:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)V
+      16: return
+
+  public default boolean canSync(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: aload_1
+       6: invokevirtual #30                 // Method top/theillusivec4/curios/api/SlotContext.index:()I
+       9: aload_1
+      10: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      13: invokeinterface #104,  4          // InterfaceMethod canSync:(Ljava/lang/String;ILnet/minecraft/world/entity/LivingEntity;)Z
+      18: ireturn
+
+  public default net.minecraft.nbt.CompoundTag writeSyncData(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: invokeinterface #110,  1          // InterfaceMethod writeSyncData:()Lnet/minecraft/nbt/CompoundTag;
+       6: areturn
+
+  public default void readSyncData(top.theillusivec4.curios.api.SlotContext, net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: invokeinterface #115,  2          // InterfaceMethod readSyncData:(Lnet/minecraft/nbt/CompoundTag;)V
+       7: return
+
+  public default top.theillusivec4.curios.api.type.capability.ICurio$DropRule getDropRule(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.damagesource.DamageSource, int, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+       5: invokeinterface #122,  2          // InterfaceMethod getDropRule:(Lnet/minecraft/world/entity/LivingEntity;)Ltop/theillusivec4/curios/api/type/capability/ICurio$DropRule;
+      10: areturn
+
+  public default java.util.List<net.minecraft.network.chat.Component> getAttributesTooltip(java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: aload_0
+       1: ldc           #131                // String
+       3: invokeinterface #135,  2          // InterfaceMethod showAttributesTooltip:(Ljava/lang/String;)Z
+       8: ifeq          15
+      11: aload_1
+      12: goto          22
+      15: new           #137                // class java/util/ArrayList
+      18: dup
+      19: invokespecial #140                // Method java/util/ArrayList."<init>":()V
+      22: areturn
+
+  public default int getFortuneLevel(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.level.storage.loot.LootContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: aload_1
+       6: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+       9: aload_0
+      10: invokeinterface #97,  1           // InterfaceMethod getStack:()Lnet/minecraft/world/item/ItemStack;
+      15: aload_1
+      16: invokevirtual #30                 // Method top/theillusivec4/curios/api/SlotContext.index:()I
+      19: invokeinterface #148,  5          // InterfaceMethod getFortuneBonus:(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)I
+      24: ireturn
+
+  public default int getLootingLevel(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.damagesource.DamageSource, net.minecraft.world.entity.LivingEntity, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #26                 // Method top/theillusivec4/curios/api/SlotContext.identifier:()Ljava/lang/String;
+       5: aload_1
+       6: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+       9: aload_0
+      10: invokeinterface #97,  1           // InterfaceMethod getStack:()Lnet/minecraft/world/item/ItemStack;
+      15: aload_1
+      16: invokevirtual #30                 // Method top/theillusivec4/curios/api/SlotContext.index:()I
+      19: invokeinterface #155,  5          // InterfaceMethod getLootingBonus:(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)I
+      24: ireturn
+
+  public default boolean makesPiglinsNeutral(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: invokeinterface #97,  1           // InterfaceMethod getStack:()Lnet/minecraft/world/item/ItemStack;
+       6: aload_1
+       7: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      10: invokevirtual #164                // Method net/minecraft/world/item/ItemStack.makesPiglinsNeutral:(Lnet/minecraft/world/entity/LivingEntity;)Z
+      13: ireturn
+
+  public default boolean canWalkOnPowderedSnow(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: invokeinterface #97,  1           // InterfaceMethod getStack:()Lnet/minecraft/world/item/ItemStack;
+       6: aload_1
+       7: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+      10: invokevirtual #167                // Method net/minecraft/world/item/ItemStack.canWalkOnPowderedSnow:(Lnet/minecraft/world/entity/LivingEntity;)Z
+      13: ireturn
+
+  public default boolean isEnderMask(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.entity.monster.EnderMan);
+    Code:
+       0: aload_1
+       1: invokevirtual #34                 // Method top/theillusivec4/curios/api/SlotContext.entity:()Lnet/minecraft/world/entity/LivingEntity;
+       4: astore        4
+       6: aload         4
+       8: instanceof    #171                // class net/minecraft/world/entity/player/Player
+      11: ifeq          32
+      14: aload         4
+      16: checkcast     #171                // class net/minecraft/world/entity/player/Player
+      19: astore_3
+      20: aload_0
+      21: invokeinterface #97,  1           // InterfaceMethod getStack:()Lnet/minecraft/world/item/ItemStack;
+      26: aload_3
+      27: aload_2
+      28: invokevirtual #174                // Method net/minecraft/world/item/ItemStack.isEnderMask:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/monster/EnderMan;)Z
+      31: ireturn
+      32: iconst_0
+      33: ireturn
+
+  public static void playBreakAnimation(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_0
+       1: invokevirtual #182                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       4: ifne          295
+       7: aload_1
+       8: invokevirtual #187                // Method net/minecraft/world/entity/LivingEntity.m_20067_:()Z
+      11: ifne          61
+      14: aload_1
+      15: invokevirtual #191                // Method net/minecraft/world/entity/LivingEntity.m_9236_:()Lnet/minecraft/world/level/Level;
+      18: aload_1
+      19: invokevirtual #195                // Method net/minecraft/world/entity/LivingEntity.m_20185_:()D
+      22: aload_1
+      23: invokevirtual #198                // Method net/minecraft/world/entity/LivingEntity.m_20186_:()D
+      26: aload_1
+      27: invokevirtual #201                // Method net/minecraft/world/entity/LivingEntity.m_20189_:()D
+      30: getstatic     #204                // Field net/minecraft/sounds/SoundEvents.f_12018_:Lnet/minecraft/sounds/SoundEvent;
+      33: aload_1
+      34: invokevirtual #208                // Method net/minecraft/world/entity/LivingEntity.m_5720_:()Lnet/minecraft/sounds/SoundSource;
+      37: ldc           #209                // float 0.8f
+      39: ldc           #209                // float 0.8f
+      41: aload_1
+      42: invokevirtual #191                // Method net/minecraft/world/entity/LivingEntity.m_9236_:()Lnet/minecraft/world/level/Level;
+      45: getfield      #215                // Field net/minecraft/world/level/Level.f_46441_:Lnet/minecraft/util/RandomSource;
+      48: invokeinterface #221,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      53: ldc           #222                // float 0.4f
+      55: fmul
+      56: fadd
+      57: iconst_0
+      58: invokevirtual #226                // Method net/minecraft/world/level/Level.m_7785_:(DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FFZ)V
+      61: iconst_0
+      62: istore_2
+      63: iload_2
+      64: iconst_5
+      65: if_icmpge     295
+      68: new           #228                // class net/minecraft/world/phys/Vec3
+      71: dup
+      72: aload_1
+      73: invokevirtual #232                // Method net/minecraft/world/entity/LivingEntity.m_217043_:()Lnet/minecraft/util/RandomSource;
+      76: invokeinterface #221,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      81: f2d
+      82: ldc2_w        #233                // double 0.5d
+      85: dsub
+      86: ldc2_w        #235                // double 0.1d
+      89: dmul
+      90: invokestatic  #241                // Method java/lang/Math.random:()D
+      93: ldc2_w        #235                // double 0.1d
+      96: dmul
+      97: ldc2_w        #235                // double 0.1d
+     100: dadd
+     101: dconst_0
+     102: invokespecial #244                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+     105: astore_3
+     106: aload_3
+     107: aload_1
+     108: invokevirtual #247                // Method net/minecraft/world/entity/LivingEntity.m_146909_:()F
+     111: fneg
+     112: ldc           #248                // float 0.017453292f
+     114: fmul
+     115: invokevirtual #252                // Method net/minecraft/world/phys/Vec3.m_82496_:(F)Lnet/minecraft/world/phys/Vec3;
+     118: astore_3
+     119: aload_3
+     120: aload_1
+     121: invokevirtual #255                // Method net/minecraft/world/entity/LivingEntity.m_146908_:()F
+     124: fneg
+     125: ldc           #248                // float 0.017453292f
+     127: fmul
+     128: invokevirtual #258                // Method net/minecraft/world/phys/Vec3.m_82524_:(F)Lnet/minecraft/world/phys/Vec3;
+     131: astore_3
+     132: aload_1
+     133: invokevirtual #232                // Method net/minecraft/world/entity/LivingEntity.m_217043_:()Lnet/minecraft/util/RandomSource;
+     136: invokeinterface #221,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     141: fneg
+     142: f2d
+     143: ldc2_w        #259                // double 0.6d
+     146: dmul
+     147: ldc2_w        #261                // double 0.3d
+     150: dsub
+     151: dstore        4
+     153: new           #228                // class net/minecraft/world/phys/Vec3
+     156: dup
+     157: aload_1
+     158: invokevirtual #232                // Method net/minecraft/world/entity/LivingEntity.m_217043_:()Lnet/minecraft/util/RandomSource;
+     161: invokeinterface #221,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+     166: f2d
+     167: ldc2_w        #233                // double 0.5d
+     170: dsub
+     171: ldc2_w        #261                // double 0.3d
+     174: dmul
+     175: dload         4
+     177: ldc2_w        #259                // double 0.6d
+     180: invokespecial #244                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+     183: astore        6
+     185: aload         6
+     187: aload_1
+     188: invokevirtual #247                // Method net/minecraft/world/entity/LivingEntity.m_146909_:()F
+     191: fneg
+     192: ldc           #248                // float 0.017453292f
+     194: fmul
+     195: invokevirtual #252                // Method net/minecraft/world/phys/Vec3.m_82496_:(F)Lnet/minecraft/world/phys/Vec3;
+     198: astore        6
+     200: aload         6
+     202: aload_1
+     203: invokevirtual #255                // Method net/minecraft/world/entity/LivingEntity.m_146908_:()F
+     206: fneg
+     207: ldc           #248                // float 0.017453292f
+     209: fmul
+     210: invokevirtual #258                // Method net/minecraft/world/phys/Vec3.m_82524_:(F)Lnet/minecraft/world/phys/Vec3;
+     213: astore        6
+     215: aload         6
+     217: aload_1
+     218: invokevirtual #195                // Method net/minecraft/world/entity/LivingEntity.m_20185_:()D
+     221: aload_1
+     222: invokevirtual #198                // Method net/minecraft/world/entity/LivingEntity.m_20186_:()D
+     225: aload_1
+     226: invokevirtual #265                // Method net/minecraft/world/entity/LivingEntity.m_20192_:()F
+     229: f2d
+     230: dadd
+     231: aload_1
+     232: invokevirtual #201                // Method net/minecraft/world/entity/LivingEntity.m_20189_:()D
+     235: invokevirtual #269                // Method net/minecraft/world/phys/Vec3.m_82520_:(DDD)Lnet/minecraft/world/phys/Vec3;
+     238: astore        6
+     240: aload_1
+     241: invokevirtual #191                // Method net/minecraft/world/entity/LivingEntity.m_9236_:()Lnet/minecraft/world/level/Level;
+     244: new           #271                // class net/minecraft/core/particles/ItemParticleOption
+     247: dup
+     248: getstatic     #277                // Field net/minecraft/core/particles/ParticleTypes.f_123752_:Lnet/minecraft/core/particles/ParticleType;
+     251: aload_0
+     252: invokespecial #280                // Method net/minecraft/core/particles/ItemParticleOption."<init>":(Lnet/minecraft/core/particles/ParticleType;Lnet/minecraft/world/item/ItemStack;)V
+     255: aload         6
+     257: getfield      #284                // Field net/minecraft/world/phys/Vec3.f_82479_:D
+     260: aload         6
+     262: getfield      #287                // Field net/minecraft/world/phys/Vec3.f_82480_:D
+     265: aload         6
+     267: getfield      #290                // Field net/minecraft/world/phys/Vec3.f_82481_:D
+     270: aload_3
+     271: getfield      #284                // Field net/minecraft/world/phys/Vec3.f_82479_:D
+     274: aload_3
+     275: getfield      #287                // Field net/minecraft/world/phys/Vec3.f_82480_:D
+     278: ldc2_w        #291                // double 0.05d
+     281: dadd
+     282: aload_3
+     283: getfield      #290                // Field net/minecraft/world/phys/Vec3.f_82481_:D
+     286: invokevirtual #296                // Method net/minecraft/world/level/Level.m_7106_:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+     289: iinc          2, 1
+     292: goto          63
+     295: return
+
+  public default void curioTick(java.lang.String, int, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: return
+
+  public default void curioAnimate(java.lang.String, int, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: return
+
+  public default void curioBreak(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_1
+       1: aload_2
+       2: invokestatic  #313                // InterfaceMethod playBreakAnimation:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)V
+       5: return
+
+  public default void onEquip(java.lang.String, int, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: return
+
+  public default void onUnequip(java.lang.String, int, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: return
+
+  public default boolean canEquip(java.lang.String, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default boolean canUnequip(java.lang.String, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default java.util.List<net.minecraft.network.chat.Component> getTagsTooltip(java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: aload_1
+       1: areturn
+
+  public default int getFortuneBonus(java.lang.String, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack, int);
+    Code:
+       0: getstatic     #321                // Field net/minecraft/world/item/enchantment/Enchantments.f_44987_:Lnet/minecraft/world/item/enchantment/Enchantment;
+       3: aload_3
+       4: invokestatic  #327                // Method net/minecraft/world/item/enchantment/EnchantmentHelper.m_44843_:(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I
+       7: ireturn
+
+  public default int getLootingBonus(java.lang.String, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack, int);
+    Code:
+       0: getstatic     #331                // Field net/minecraft/world/item/enchantment/Enchantments.f_44982_:Lnet/minecraft/world/item/enchantment/Enchantment;
+       3: aload_3
+       4: invokestatic  #327                // Method net/minecraft/world/item/enchantment/EnchantmentHelper.m_44843_:(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I
+       7: ireturn
+
+  public default boolean showAttributesTooltip(java.lang.String);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public default top.theillusivec4.curios.api.type.capability.ICurio$DropRule getDropRule(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: getstatic     #335                // Field top/theillusivec4/curios/api/type/capability/ICurio$DropRule.DEFAULT:Ltop/theillusivec4/curios/api/type/capability/ICurio$DropRule;
+       3: areturn
+
+  public default boolean canSync(java.lang.String, int, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public default net.minecraft.nbt.CompoundTag writeSyncData();
+    Code:
+       0: new           #337                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #338                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: areturn
+
+  public default void readSyncData(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: return
+
+  public default boolean canRightClickEquip();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public default void playRightClickEquipSound(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_0
+       1: new           #22                 // class top/theillusivec4/curios/api/SlotContext
+       4: dup
+       5: ldc           #131                // String
+       7: aload_1
+       8: iconst_0
+       9: iconst_0
+      10: iconst_1
+      11: invokespecial #341                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+      14: invokeinterface #343,  2          // InterfaceMethod getEquipSound:(Ltop/theillusivec4/curios/api/SlotContext;)Ltop/theillusivec4/curios/api/type/capability/ICurio$SoundInfo;
+      19: astore_2
+      20: aload_1
+      21: invokevirtual #191                // Method net/minecraft/world/entity/LivingEntity.m_9236_:()Lnet/minecraft/world/level/Level;
+      24: aconst_null
+      25: aload_1
+      26: invokevirtual #347                // Method net/minecraft/world/entity/LivingEntity.m_20183_:()Lnet/minecraft/core/BlockPos;
+      29: aload_2
+      30: invokevirtual #351                // Method top/theillusivec4/curios/api/type/capability/ICurio$SoundInfo.getSoundEvent:()Lnet/minecraft/sounds/SoundEvent;
+      33: aload_1
+      34: invokevirtual #208                // Method net/minecraft/world/entity/LivingEntity.m_5720_:()Lnet/minecraft/sounds/SoundSource;
+      37: aload_2
+      38: invokevirtual #354                // Method top/theillusivec4/curios/api/type/capability/ICurio$SoundInfo.getVolume:()F
+      41: aload_2
+      42: invokevirtual #357                // Method top/theillusivec4/curios/api/type/capability/ICurio$SoundInfo.getPitch:()F
+      45: invokevirtual #361                // Method net/minecraft/world/level/Level.m_5594_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+      48: return
+
+  public default com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getAttributeModifiers(java.lang.String);
+    Code:
+       0: invokestatic  #370                // Method com/google/common/collect/HashMultimap.create:()Lcom/google/common/collect/HashMultimap;
+       3: areturn
+}

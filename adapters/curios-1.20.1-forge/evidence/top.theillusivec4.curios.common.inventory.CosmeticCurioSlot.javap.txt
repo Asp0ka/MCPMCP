@@ -1,0 +1,41 @@
+Compiled from "CosmeticCurioSlot.java"
+public class top.theillusivec4.curios.common.inventory.CosmeticCurioSlot extends top.theillusivec4.curios.common.inventory.CurioSlot {
+  public top.theillusivec4.curios.common.inventory.CosmeticCurioSlot(net.minecraft.world.entity.player.Player, top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler, int, java.lang.String, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iload_3
+       4: aload         4
+       6: iload         5
+       8: iload         6
+      10: invokestatic  #18                 // Method net/minecraft/core/NonNullList.m_122779_:()Lnet/minecraft/core/NonNullList;
+      13: iconst_1
+      14: invokespecial #21                 // Method top/theillusivec4/curios/common/inventory/CurioSlot."<init>":(Lnet/minecraft/world/entity/player/Player;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;ILjava/lang/String;IILnet/minecraft/core/NonNullList;Z)V
+      17: aload_0
+      18: getstatic     #27                 // Field net/minecraft/world/inventory/InventoryMenu.f_39692_:Lnet/minecraft/resources/ResourceLocation;
+      21: new           #29                 // class net/minecraft/resources/ResourceLocation
+      24: dup
+      25: ldc           #31                 // String curios
+      27: ldc           #33                 // String slot/empty_cosmetic_slot
+      29: invokespecial #36                 // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      32: invokevirtual #40                 // Method setBackground:(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/inventory/Slot;
+      35: pop
+      36: return
+
+  public boolean getRenderStatus();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public java.lang.String getSlotName();
+    Code:
+       0: ldc           #62                 // String curios.cosmetic
+       2: iconst_0
+       3: anewarray     #64                 // class java/lang/Object
+       6: invokestatic  #70                 // Method net/minecraft/client/resources/language/I18n.m_118938_:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       9: aload_0
+      10: invokespecial #72                 // Method top/theillusivec4/curios/common/inventory/CurioSlot.getSlotName:()Ljava/lang/String;
+      13: invokedynamic #84,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      18: areturn
+}

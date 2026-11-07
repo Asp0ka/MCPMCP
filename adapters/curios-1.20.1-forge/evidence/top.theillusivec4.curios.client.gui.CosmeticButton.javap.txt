@@ -1,0 +1,108 @@
+Compiled from "CosmeticButton.java"
+public class top.theillusivec4.curios.client.gui.CosmeticButton extends net.minecraft.client.gui.components.ImageButton {
+  private static final net.minecraft.resources.ResourceLocation CURIO_INVENTORY;
+
+  private final top.theillusivec4.curios.client.gui.CuriosScreenV2 parentGui;
+
+  top.theillusivec4.curios.client.gui.CosmeticButton(top.theillusivec4.curios.client.gui.CuriosScreenV2, int, int, int, int);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: iload_3
+       3: iload         4
+       5: iload         5
+       7: iconst_0
+       8: iconst_0
+       9: getstatic     #28                 // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+      12: aload_1
+      13: invokedynamic #46,  0             // InvokeDynamic #0:m_93750_:(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;)Lnet/minecraft/client/gui/components/Button$OnPress;
+      18: invokespecial #49                 // Method net/minecraft/client/gui/components/ImageButton."<init>":(IIIIIILnet/minecraft/resources/ResourceLocation;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+      21: aload_0
+      22: aload_1
+      23: putfield      #51                 // Field parentGui:Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;
+      26: aload_0
+      27: ldc           #53                 // String gui.curios.toggle.cosmetics
+      29: invokestatic  #59                 // InterfaceMethod net/minecraft/network/chat/Component.m_237115_:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      32: invokestatic  #65                 // Method net/minecraft/client/gui/components/Tooltip.m_257550_:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/Tooltip;
+      35: invokevirtual #69                 // Method m_257544_:(Lnet/minecraft/client/gui/components/Tooltip;)V
+      38: return
+
+  public void m_87963_(net.minecraft.client.gui.GuiGraphics, int, int, float);
+    Code:
+       0: iconst_0
+       1: istore        6
+       3: aload_0
+       4: getfield      #51                 // Field parentGui:Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;
+       7: invokevirtual #85                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.m_6262_:()Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      10: checkcast     #87                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      13: getfield      #91                 // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.isViewingCosmetics:Z
+      16: ifeq          27
+      19: sipush        143
+      22: istore        5
+      24: goto          31
+      27: bipush        123
+      29: istore        5
+      31: aload_0
+      32: invokevirtual #97                 // Method m_198029_:()Z
+      35: ifeq          42
+      38: bipush        17
+      40: istore        6
+      42: aload_0
+      43: aload_0
+      44: getfield      #51                 // Field parentGui:Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;
+      47: invokevirtual #101                // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.getGuiLeft:()I
+      50: bipush        27
+      52: isub
+      53: invokevirtual #105                // Method m_252865_:(I)V
+      56: aload_0
+      57: aload_0
+      58: getfield      #51                 // Field parentGui:Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;
+      61: invokevirtual #108                // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.getGuiTop:()I
+      64: bipush        18
+      66: isub
+      67: invokevirtual #111                // Method m_253211_:(I)V
+      70: aload_1
+      71: aload_0
+      72: getfield      #114                // Field f_94223_:Lnet/minecraft/resources/ResourceLocation;
+      75: aload_0
+      76: invokevirtual #117                // Method m_252754_:()I
+      79: aload_0
+      80: invokevirtual #120                // Method m_252907_:()I
+      83: iload         5
+      85: iload         6
+      87: aload_0
+      88: getfield      #123                // Field f_93618_:I
+      91: aload_0
+      92: getfield      #126                // Field f_93619_:I
+      95: invokevirtual #130                // Method net/minecraft/client/gui/GuiGraphics.m_280218_:(Lnet/minecraft/resources/ResourceLocation;IIIIII)V
+      98: return
+
+  private static void lambda$new$0(top.theillusivec4.curios.client.gui.CuriosScreenV2, net.minecraft.client.gui.components.Button);
+    Code:
+       0: aload_0
+       1: invokevirtual #85                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.m_6262_:()Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       4: checkcast     #87                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+       7: invokevirtual #142                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.toggleCosmetics:()V
+      10: getstatic     #148                // Field top/theillusivec4/curios/common/network/NetworkHandler.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+      13: getstatic     #152                // Field net/minecraftforge/network/PacketDistributor.SERVER:Lnet/minecraftforge/network/PacketDistributor;
+      16: invokevirtual #156                // Method net/minecraftforge/network/PacketDistributor.noArg:()Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      19: new           #158                // class top/theillusivec4/curios/common/network/client/CPacketToggleCosmetics
+      22: dup
+      23: aload_0
+      24: invokevirtual #85                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.m_6262_:()Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      27: checkcast     #87                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      30: getfield      #161                // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.f_38840_:I
+      33: invokespecial #163                // Method top/theillusivec4/curios/common/network/client/CPacketToggleCosmetics."<init>":(I)V
+      36: invokevirtual #169                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      39: return
+
+  static {};
+    Code:
+       0: new           #174                // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc           #176                // String curios
+       6: ldc           #178                // String textures/gui/inventory_revamp.png
+       8: invokespecial #181                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      11: putstatic     #28                 // Field CURIO_INVENTORY:Lnet/minecraft/resources/ResourceLocation;
+      14: return
+}

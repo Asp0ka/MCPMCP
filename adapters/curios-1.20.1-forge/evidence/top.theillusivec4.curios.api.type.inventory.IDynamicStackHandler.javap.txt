@@ -1,0 +1,20 @@
+Compiled from "IDynamicStackHandler.java"
+public interface top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler extends net.minecraftforge.items.IItemHandlerModifiable {
+  public abstract void setStackInSlot(int, net.minecraft.world.item.ItemStack);
+
+  public abstract net.minecraft.world.item.ItemStack getStackInSlot(int);
+
+  public abstract void setPreviousStackInSlot(int, net.minecraft.world.item.ItemStack);
+
+  public abstract net.minecraft.world.item.ItemStack getPreviousStackInSlot(int);
+
+  public abstract int getSlots();
+
+  public abstract void grow(int);
+
+  public abstract void shrink(int);
+
+  public abstract net.minecraft.nbt.CompoundTag serializeNBT();
+
+  public abstract void deserializeNBT(net.minecraft.nbt.CompoundTag);
+}

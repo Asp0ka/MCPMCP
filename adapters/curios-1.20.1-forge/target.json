@@ -1,0 +1,14 @@
+{
+  "mod_id": "curios",
+  "version": "5.14.1+1.20.1",
+  "sha256": "1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f",
+  "jar_path": "D:/Games/mc/Cheat/versions/神秘启旅/mods/[前置][饰品]curios-forge-5.14.1+1.20.1.jar",
+  "minecraft": "1.20.1",
+  "runtime_forge": "47.4.21",
+  "compile_forge": "47.4.28",
+  "java": "17",
+  "provider": "dev.mcpmcp.curios.CuriosProvider",
+  "plugin_id": "mcpmcp.curios",
+  "runtime_acceptance": "not_run_by_this_subagent",
+  "api_audit": "evidence/*.javap.txt"
+}

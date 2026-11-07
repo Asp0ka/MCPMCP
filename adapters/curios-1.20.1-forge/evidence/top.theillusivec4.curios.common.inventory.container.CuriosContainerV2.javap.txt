@@ -1,0 +1,1280 @@
+Compiled from "CuriosContainerV2.java"
+public class top.theillusivec4.curios.common.inventory.container.CuriosContainerV2 extends top.theillusivec4.curios.common.inventory.container.CuriosContainer {
+  private static final net.minecraft.resources.ResourceLocation[] ARMOR_SLOT_TEXTURES;
+
+  private static final net.minecraft.world.entity.EquipmentSlot[] VALID_EQUIPMENT_SLOTS;
+
+  public final top.theillusivec4.curios.api.type.capability.ICuriosItemHandler curiosHandler;
+
+  public final net.minecraft.world.entity.player.Player player;
+
+  private final boolean isLocalWorld;
+
+  private final net.minecraft.world.inventory.CraftingContainer craftMatrix;
+
+  private final net.minecraft.world.inventory.ResultContainer craftResult;
+
+  public int currentPage;
+
+  public int totalPages;
+
+  public java.util.List<java.lang.Integer> grid;
+
+  private final java.util.List<top.theillusivec4.curios.common.inventory.container.CuriosContainerV2$ProxySlot> proxySlots;
+
+  private int moveToPage;
+
+  private int moveFromIndex;
+
+  public boolean hasCosmetics;
+
+  public boolean isViewingCosmetics;
+
+  public int panelWidth;
+
+  public top.theillusivec4.curios.common.inventory.container.CuriosContainerV2(int, net.minecraft.world.entity.player.Inventory, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: invokespecial #69                 // Method "<init>":(ILnet/minecraft/world/entity/player/Inventory;)V
+       6: return
+
+  public top.theillusivec4.curios.common.inventory.container.CuriosContainerV2(int, net.minecraft.world.entity.player.Inventory);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: invokespecial #77                 // Method top/theillusivec4/curios/common/inventory/container/CuriosContainer."<init>":(ILnet/minecraft/world/entity/player/Inventory;)V
+       6: aload_0
+       7: new           #79                 // class net/minecraft/world/inventory/TransientCraftingContainer
+      10: dup
+      11: aload_0
+      12: iconst_2
+      13: iconst_2
+      14: invokespecial #82                 // Method net/minecraft/world/inventory/TransientCraftingContainer."<init>":(Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+      17: putfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+      20: aload_0
+      21: new           #86                 // class net/minecraft/world/inventory/ResultContainer
+      24: dup
+      25: invokespecial #89                 // Method net/minecraft/world/inventory/ResultContainer."<init>":()V
+      28: putfield      #91                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+      31: aload_0
+      32: new           #93                 // class java/util/ArrayList
+      35: dup
+      36: invokespecial #94                 // Method java/util/ArrayList."<init>":()V
+      39: putfield      #96                 // Field grid:Ljava/util/List;
+      42: aload_0
+      43: new           #93                 // class java/util/ArrayList
+      46: dup
+      47: invokespecial #94                 // Method java/util/ArrayList."<init>":()V
+      50: putfield      #98                 // Field proxySlots:Ljava/util/List;
+      53: aload_0
+      54: iconst_m1
+      55: putfield      #100                // Field moveToPage:I
+      58: aload_0
+      59: iconst_m1
+      60: putfield      #102                // Field moveFromIndex:I
+      63: aload_0
+      64: getstatic     #108                // Field top/theillusivec4/curios/common/CuriosRegistry.CURIO_MENU_NEW:Ljava/util/function/Supplier;
+      67: invokeinterface #114,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      72: checkcast     #116                // class net/minecraft/world/inventory/MenuType
+      75: putfield      #120                // Field f_38843_:Lnet/minecraft/world/inventory/MenuType;
+      78: aload_0
+      79: aload_2
+      80: getfield      #125                // Field net/minecraft/world/entity/player/Inventory.f_35978_:Lnet/minecraft/world/entity/player/Player;
+      83: putfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      86: aload_0
+      87: aload_0
+      88: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      91: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      94: getfield      #138                // Field net/minecraft/world/level/Level.f_46443_:Z
+      97: putfield      #140                // Field isLocalWorld:Z
+     100: aload_0
+     101: aload_0
+     102: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     105: invokestatic  #146                // Method top/theillusivec4/curios/api/CuriosApi.getCuriosInventory:(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraftforge/common/util/LazyOptional;
+     108: aconst_null
+     109: invokevirtual #152                // Method net/minecraftforge/common/util/LazyOptional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     112: checkcast     #154                // class top/theillusivec4/curios/api/type/capability/ICuriosItemHandler
+     115: putfield      #156                // Field curiosHandler:Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;
+     118: aload_0
+     119: invokevirtual #159                // Method resetSlots:()V
+     122: return
+
+  public void setPage(int);
+    Code:
+       0: aload_0
+       1: getfield      #165                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+       4: invokevirtual #170                // Method net/minecraft/core/NonNullList.clear:()V
+       7: aload_0
+       8: getfield      #173                // Field f_38841_:Lnet/minecraft/core/NonNullList;
+      11: invokevirtual #170                // Method net/minecraft/core/NonNullList.clear:()V
+      14: aload_0
+      15: getfield      #176                // Field f_150394_:Lnet/minecraft/core/NonNullList;
+      18: invokevirtual #170                // Method net/minecraft/core/NonNullList.clear:()V
+      21: aload_0
+      22: iconst_0
+      23: putfield      #178                // Field panelWidth:I
+      26: iconst_0
+      27: istore_2
+      28: getstatic     #182                // Field top/theillusivec4/curios/common/CuriosConfig.SERVER:Ltop/theillusivec4/curios/common/CuriosConfig$Server;
+      31: getfield      #186                // Field top/theillusivec4/curios/common/CuriosConfig$Server.maxSlotsPerPage:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      34: invokevirtual #187                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      37: checkcast     #189                // class java/lang/Integer
+      40: invokevirtual #193                // Method java/lang/Integer.intValue:()I
+      43: istore_3
+      44: iload_1
+      45: iload_3
+      46: imul
+      47: istore        4
+      49: iconst_0
+      50: istore        5
+      52: aload_0
+      53: getfield      #156                // Field curiosHandler:Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;
+      56: ifnull        137
+      59: aload_0
+      60: getfield      #156                // Field curiosHandler:Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;
+      63: invokeinterface #196,  1          // InterfaceMethod top/theillusivec4/curios/api/type/capability/ICuriosItemHandler.getVisibleSlots:()I
+      68: istore_2
+      69: iload_3
+      70: iload_2
+      71: iload         4
+      73: isub
+      74: invokestatic  #202                // Method java/lang/Math.min:(II)I
+      77: istore        6
+      79: iload         6
+      81: i2d
+      82: ldc2_w        #203                // double 8.0d
+      85: ddiv
+      86: invokestatic  #208                // Method java/lang/Math.ceil:(D)D
+      89: d2i
+      90: istore        7
+      92: iload         6
+      94: getstatic     #182                // Field top/theillusivec4/curios/common/CuriosConfig.SERVER:Ltop/theillusivec4/curios/common/CuriosConfig$Server;
+      97: getfield      #211                // Field top/theillusivec4/curios/common/CuriosConfig$Server.minimumColumns:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+     100: invokevirtual #187                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+     103: checkcast     #189                // class java/lang/Integer
+     106: invokevirtual #193                // Method java/lang/Integer.intValue:()I
+     109: invokestatic  #202                // Method java/lang/Math.min:(II)I
+     112: istore        8
+     114: iload         7
+     116: iload         8
+     118: bipush        8
+     120: invokestatic  #217                // Method net/minecraft/util/Mth.m_14045_:(III)I
+     123: istore        5
+     125: aload_0
+     126: bipush        14
+     128: bipush        18
+     130: iload         5
+     132: imul
+     133: iadd
+     134: putfield      #178                // Field panelWidth:I
+     137: aload_0
+     138: new           #219                // class net/minecraft/world/inventory/ResultSlot
+     141: dup
+     142: aload_0
+     143: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     146: aload_0
+     147: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+     150: aload_0
+     151: getfield      #91                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+     154: iconst_0
+     155: sipush        154
+     158: bipush        28
+     160: invokespecial #222                // Method net/minecraft/world/inventory/ResultSlot."<init>":(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/inventory/CraftingContainer;Lnet/minecraft/world/Container;III)V
+     163: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     166: pop
+     167: iconst_0
+     168: istore        6
+     170: iload         6
+     172: iconst_2
+     173: if_icmpge     236
+     176: iconst_0
+     177: istore        7
+     179: iload         7
+     181: iconst_2
+     182: if_icmpge     230
+     185: aload_0
+     186: new           #228                // class net/minecraft/world/inventory/Slot
+     189: dup
+     190: aload_0
+     191: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+     194: iload         7
+     196: iload         6
+     198: iconst_2
+     199: imul
+     200: iadd
+     201: bipush        98
+     203: iload         7
+     205: bipush        18
+     207: imul
+     208: iadd
+     209: bipush        18
+     211: iload         6
+     213: bipush        18
+     215: imul
+     216: iadd
+     217: invokespecial #231                // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+     220: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     223: pop
+     224: iinc          7, 1
+     227: goto          179
+     230: iinc          6, 1
+     233: goto          170
+     236: iconst_0
+     237: istore        6
+     239: iload         6
+     241: iconst_4
+     242: if_icmpge     298
+     245: getstatic     #233                // Field VALID_EQUIPMENT_SLOTS:[Lnet/minecraft/world/entity/EquipmentSlot;
+     248: iload         6
+     250: aaload
+     251: astore        7
+     253: aload_0
+     254: new           #11                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$1
+     257: dup
+     258: aload_0
+     259: aload_0
+     260: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     263: invokevirtual #237                // Method net/minecraft/world/entity/player/Player.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     266: bipush        36
+     268: iconst_3
+     269: iload         6
+     271: isub
+     272: iadd
+     273: bipush        8
+     275: bipush        8
+     277: iload         6
+     279: bipush        18
+     281: imul
+     282: iadd
+     283: aload         7
+     285: invokespecial #240                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$1."<init>":(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2;Lnet/minecraft/world/Container;IIILnet/minecraft/world/entity/EquipmentSlot;)V
+     288: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     291: pop
+     292: iinc          6, 1
+     295: goto          239
+     298: iconst_0
+     299: istore        6
+     301: iload         6
+     303: iconst_3
+     304: if_icmpge     374
+     307: iconst_0
+     308: istore        7
+     310: iload         7
+     312: bipush        9
+     314: if_icmpge     368
+     317: aload_0
+     318: new           #228                // class net/minecraft/world/inventory/Slot
+     321: dup
+     322: aload_0
+     323: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     326: invokevirtual #237                // Method net/minecraft/world/entity/player/Player.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     329: iload         7
+     331: iload         6
+     333: iconst_1
+     334: iadd
+     335: bipush        9
+     337: imul
+     338: iadd
+     339: bipush        8
+     341: iload         7
+     343: bipush        18
+     345: imul
+     346: iadd
+     347: bipush        84
+     349: iload         6
+     351: bipush        18
+     353: imul
+     354: iadd
+     355: invokespecial #231                // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+     358: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     361: pop
+     362: iinc          7, 1
+     365: goto          310
+     368: iinc          6, 1
+     371: goto          301
+     374: iconst_0
+     375: istore        6
+     377: iload         6
+     379: bipush        9
+     381: if_icmpge     422
+     384: aload_0
+     385: new           #228                // class net/minecraft/world/inventory/Slot
+     388: dup
+     389: aload_0
+     390: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     393: invokevirtual #237                // Method net/minecraft/world/entity/player/Player.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     396: iload         6
+     398: bipush        8
+     400: iload         6
+     402: bipush        18
+     404: imul
+     405: iadd
+     406: sipush        142
+     409: invokespecial #231                // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+     412: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     415: pop
+     416: iinc          6, 1
+     419: goto          377
+     422: aload_0
+     423: new           #9                  // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$2
+     426: dup
+     427: aload_0
+     428: aload_0
+     429: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     432: invokevirtual #237                // Method net/minecraft/world/entity/player/Player.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     435: bipush        40
+     437: bipush        77
+     439: bipush        62
+     441: invokespecial #243                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$2."<init>":(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2;Lnet/minecraft/world/Container;III)V
+     444: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     447: pop
+     448: aload_0
+     449: getfield      #156                // Field curiosHandler:Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;
+     452: ifnull        1119
+     455: aload_0
+     456: getfield      #156                // Field curiosHandler:Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;
+     459: invokeinterface #247,  1          // InterfaceMethod top/theillusivec4/curios/api/type/capability/ICuriosItemHandler.getCurios:()Ljava/util/Map;
+     464: astore        6
+     466: aload_0
+     467: iload_2
+     468: i2d
+     469: iload_3
+     470: i2d
+     471: ddiv
+     472: invokestatic  #208                // Method java/lang/Math.ceil:(D)D
+     475: d2i
+     476: putfield      #249                // Field totalPages:I
+     479: iconst_0
+     480: istore        7
+     482: bipush        8
+     484: istore        8
+     486: aload_0
+     487: getfield      #249                // Field totalPages:I
+     490: iconst_1
+     491: if_icmple     497
+     494: iinc          8, 8
+     497: iconst_1
+     498: istore        9
+     500: iconst_1
+     501: istore        10
+     503: iconst_0
+     504: istore        11
+     506: aload_0
+     507: getfield      #96                 // Field grid:Ljava/util/List;
+     510: invokeinterface #254,  1          // InterfaceMethod java/util/List.clear:()V
+     515: aload_0
+     516: getfield      #98                 // Field proxySlots:Ljava/util/List;
+     519: invokeinterface #254,  1          // InterfaceMethod java/util/List.clear:()V
+     524: iconst_0
+     525: istore        12
+     527: iload         4
+     529: iload_3
+     530: iadd
+     531: istore        13
+     533: aload         6
+     535: invokeinterface #258,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+     540: invokeinterface #264,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     545: astore        14
+     547: aload         14
+     549: invokeinterface #270,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     554: ifeq          1082
+     557: aload         14
+     559: invokeinterface #273,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     564: checkcast     #275                // class java/lang/String
+     567: astore        15
+     569: aload         6
+     571: aload         15
+     573: invokeinterface #277,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     578: checkcast     #279                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+     581: astore        16
+     583: iconst_0
+     584: istore        17
+     586: aload         16
+     588: invokeinterface #283,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     593: astore        18
+     595: aload         16
+     597: invokeinterface #286,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.hasCosmetic:()Z
+     602: ifeq          629
+     605: aload_0
+     606: iconst_1
+     607: putfield      #288                // Field hasCosmetics:Z
+     610: aload_0
+     611: getfield      #290                // Field isViewingCosmetics:Z
+     614: ifeq          629
+     617: iconst_1
+     618: istore        17
+     620: aload         16
+     622: invokeinterface #293,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     627: astore        18
+     629: aload         16
+     631: invokeinterface #298,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.isVisible:()Z
+     636: ifeq          1079
+     639: iconst_0
+     640: istore        19
+     642: iload         19
+     644: aload         18
+     646: invokeinterface #301,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+     651: if_icmpge     1079
+     654: iload         7
+     656: iload         4
+     658: if_icmplt     893
+     661: iload         7
+     663: iload         13
+     665: if_icmpge     893
+     668: iload         17
+     670: ifeq          739
+     673: aload_0
+     674: new           #303                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     677: dup
+     678: aload_0
+     679: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     682: aload         18
+     684: iload         19
+     686: aload         15
+     688: iload         9
+     690: iconst_1
+     691: isub
+     692: bipush        18
+     694: imul
+     695: bipush        7
+     697: iadd
+     698: aload_0
+     699: getfield      #178                // Field panelWidth:I
+     702: isub
+     703: iload         8
+     705: iload         10
+     707: iconst_1
+     708: isub
+     709: bipush        18
+     711: imul
+     712: iadd
+     713: aload         16
+     715: invokeinterface #307,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     720: aload         16
+     722: invokeinterface #310,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.canToggleRendering:()Z
+     727: iconst_1
+     728: iconst_1
+     729: invokespecial #313                // Method top/theillusivec4/curios/common/inventory/CurioSlot."<init>":(Lnet/minecraft/world/entity/player/Player;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;ILjava/lang/String;IILnet/minecraft/core/NonNullList;ZZZ)V
+     732: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     735: pop
+     736: goto          802
+     739: aload_0
+     740: new           #303                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     743: dup
+     744: aload_0
+     745: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     748: aload         18
+     750: iload         19
+     752: aload         15
+     754: iload         9
+     756: iconst_1
+     757: isub
+     758: bipush        18
+     760: imul
+     761: bipush        7
+     763: iadd
+     764: aload_0
+     765: getfield      #178                // Field panelWidth:I
+     768: isub
+     769: iload         8
+     771: iload         10
+     773: iconst_1
+     774: isub
+     775: bipush        18
+     777: imul
+     778: iadd
+     779: aload         16
+     781: invokeinterface #307,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     786: aload         16
+     788: invokeinterface #310,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.canToggleRendering:()Z
+     793: iconst_0
+     794: iconst_0
+     795: invokespecial #313                // Method top/theillusivec4/curios/common/inventory/CurioSlot."<init>":(Lnet/minecraft/world/entity/player/Player;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;ILjava/lang/String;IILnet/minecraft/core/NonNullList;ZZZ)V
+     798: invokevirtual #226                // Method m_38897_:(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;
+     801: pop
+     802: aload_0
+     803: getfield      #96                 // Field grid:Ljava/util/List;
+     806: invokeinterface #316,  1          // InterfaceMethod java/util/List.size:()I
+     811: iload         9
+     813: if_icmpge     833
+     816: aload_0
+     817: getfield      #96                 // Field grid:Ljava/util/List;
+     820: iconst_1
+     821: invokestatic  #320                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     824: invokeinterface #324,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     829: pop
+     830: goto          871
+     833: aload_0
+     834: getfield      #96                 // Field grid:Ljava/util/List;
+     837: iload         9
+     839: iconst_1
+     840: isub
+     841: aload_0
+     842: getfield      #96                 // Field grid:Ljava/util/List;
+     845: iload         9
+     847: iconst_1
+     848: isub
+     849: invokeinterface #327,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     854: checkcast     #189                // class java/lang/Integer
+     857: invokevirtual #193                // Method java/lang/Integer.intValue:()I
+     860: iconst_1
+     861: iadd
+     862: invokestatic  #320                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     865: invokeinterface #331,  3          // InterfaceMethod java/util/List.set:(ILjava/lang/Object;)Ljava/lang/Object;
+     870: pop
+     871: iload         9
+     873: iload         5
+     875: if_icmpne     887
+     878: iconst_1
+     879: istore        9
+     881: iinc          10, 1
+     884: goto          1055
+     887: iinc          9, 1
+     890: goto          1055
+     893: iload         17
+     895: ifeq          978
+     898: aload_0
+     899: getfield      #98                 // Field proxySlots:Ljava/util/List;
+     902: new           #7                  // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot
+     905: dup
+     906: iload         12
+     908: new           #303                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     911: dup
+     912: aload_0
+     913: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     916: aload         18
+     918: iload         19
+     920: aload         15
+     922: iload         9
+     924: iconst_1
+     925: isub
+     926: bipush        18
+     928: imul
+     929: bipush        7
+     931: iadd
+     932: aload_0
+     933: getfield      #178                // Field panelWidth:I
+     936: isub
+     937: iload         8
+     939: iload         10
+     941: iconst_1
+     942: isub
+     943: bipush        18
+     945: imul
+     946: iadd
+     947: aload         16
+     949: invokeinterface #307,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     954: aload         16
+     956: invokeinterface #310,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.canToggleRendering:()Z
+     961: iconst_1
+     962: iconst_1
+     963: invokespecial #313                // Method top/theillusivec4/curios/common/inventory/CurioSlot."<init>":(Lnet/minecraft/world/entity/player/Player;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;ILjava/lang/String;IILnet/minecraft/core/NonNullList;ZZZ)V
+     966: invokespecial #334                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot."<init>":(ILnet/minecraft/world/inventory/Slot;)V
+     969: invokeinterface #324,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     974: pop
+     975: goto          1055
+     978: aload_0
+     979: getfield      #98                 // Field proxySlots:Ljava/util/List;
+     982: new           #7                  // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot
+     985: dup
+     986: iload         12
+     988: new           #303                // class top/theillusivec4/curios/common/inventory/CurioSlot
+     991: dup
+     992: aload_0
+     993: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     996: aload         18
+     998: iload         19
+    1000: aload         15
+    1002: iload         9
+    1004: iconst_1
+    1005: isub
+    1006: bipush        18
+    1008: imul
+    1009: bipush        7
+    1011: iadd
+    1012: aload_0
+    1013: getfield      #178                // Field panelWidth:I
+    1016: isub
+    1017: iload         8
+    1019: iload         10
+    1021: iconst_1
+    1022: isub
+    1023: bipush        18
+    1025: imul
+    1026: iadd
+    1027: aload         16
+    1029: invokeinterface #307,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+    1034: aload         16
+    1036: invokeinterface #310,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.canToggleRendering:()Z
+    1041: iconst_0
+    1042: iconst_0
+    1043: invokespecial #313                // Method top/theillusivec4/curios/common/inventory/CurioSlot."<init>":(Lnet/minecraft/world/entity/player/Player;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;ILjava/lang/String;IILnet/minecraft/core/NonNullList;ZZZ)V
+    1046: invokespecial #334                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot."<init>":(ILnet/minecraft/world/inventory/Slot;)V
+    1049: invokeinterface #324,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1054: pop
+    1055: iinc          11, 1
+    1058: iload         11
+    1060: iload_3
+    1061: if_icmplt     1070
+    1064: iconst_0
+    1065: istore        11
+    1067: iinc          12, 1
+    1070: iinc          7, 1
+    1073: iinc          19, 1
+    1076: goto          642
+    1079: goto          547
+    1082: aload_0
+    1083: getfield      #140                // Field isLocalWorld:Z
+    1086: ifne          1119
+    1089: getstatic     #340                // Field top/theillusivec4/curios/common/network/NetworkHandler.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+    1092: getstatic     #344                // Field net/minecraftforge/network/PacketDistributor.PLAYER:Lnet/minecraftforge/network/PacketDistributor;
+    1095: aload_0
+    1096: invokedynamic #361,  0            // InvokeDynamic #0:get:(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2;)Ljava/util/function/Supplier;
+    1101: invokevirtual #365                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+    1104: new           #367                // class top/theillusivec4/curios/common/network/server/SPacketPage
+    1107: dup
+    1108: aload_0
+    1109: getfield      #370                // Field f_38840_:I
+    1112: iload_1
+    1113: invokespecial #373                // Method top/theillusivec4/curios/common/network/server/SPacketPage."<init>":(II)V
+    1116: invokevirtual #379                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+    1119: aload_0
+    1120: iload_1
+    1121: putfield      #381                // Field currentPage:I
+    1124: return
+
+  public void resetSlots();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #381                // Field currentPage:I
+       5: invokevirtual #413                // Method setPage:(I)V
+       8: return
+
+  public void toggleCosmetics();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #290                // Field isViewingCosmetics:Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putfield      #290                // Field isViewingCosmetics:Z
+      16: aload_0
+      17: invokevirtual #159                // Method resetSlots:()V
+      20: return
+
+  public void m_6199_(net.minecraft.world.Container);
+    Code:
+       0: aload_0
+       1: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+       4: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+       7: getfield      #138                // Field net/minecraft/world/level/Level.f_46443_:Z
+      10: ifne          166
+      13: aload_0
+      14: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      17: checkcast     #419                // class net/minecraft/server/level/ServerPlayer
+      20: astore_2
+      21: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      24: astore_3
+      25: aload_0
+      26: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      29: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      32: invokevirtual #429                // Method net/minecraft/world/level/Level.m_7654_:()Lnet/minecraft/server/MinecraftServer;
+      35: astore        4
+      37: aload         4
+      39: ifnonnull     43
+      42: return
+      43: aload         4
+      45: invokevirtual #435                // Method net/minecraft/server/MinecraftServer.m_129894_:()Lnet/minecraft/world/item/crafting/RecipeManager;
+      48: getstatic     #441                // Field net/minecraft/world/item/crafting/RecipeType.f_44107_:Lnet/minecraft/world/item/crafting/RecipeType;
+      51: aload_0
+      52: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+      55: aload_0
+      56: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      59: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      62: invokevirtual #447                // Method net/minecraft/world/item/crafting/RecipeManager.m_44015_:(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Ljava/util/Optional;
+      65: astore        5
+      67: aload         5
+      69: invokevirtual #452                // Method java/util/Optional.isPresent:()Z
+      72: ifeq          127
+      75: aload         5
+      77: invokevirtual #453                // Method java/util/Optional.get:()Ljava/lang/Object;
+      80: checkcast     #455                // class net/minecraft/world/item/crafting/CraftingRecipe
+      83: astore        6
+      85: aload_0
+      86: getfield      #91                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+      89: aload_0
+      90: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      93: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      96: aload_2
+      97: aload         6
+      99: invokevirtual #459                // Method net/minecraft/world/inventory/ResultContainer.m_40135_:(Lnet/minecraft/world/level/Level;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/crafting/Recipe;)Z
+     102: ifeq          127
+     105: aload         6
+     107: aload_0
+     108: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+     111: aload_0
+     112: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+     115: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+     118: invokevirtual #463                // Method net/minecraft/world/level/Level.m_9598_:()Lnet/minecraft/core/RegistryAccess;
+     121: invokeinterface #467,  3          // InterfaceMethod net/minecraft/world/item/crafting/CraftingRecipe.m_5874_:(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;
+     126: astore_3
+     127: aload_0
+     128: getfield      #91                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+     131: iconst_0
+     132: aload_3
+     133: invokevirtual #471                // Method net/minecraft/world/inventory/ResultContainer.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     136: aload_0
+     137: iconst_0
+     138: aload_3
+     139: invokevirtual #474                // Method m_150404_:(ILnet/minecraft/world/item/ItemStack;)V
+     142: aload_2
+     143: getfield      #478                // Field net/minecraft/server/level/ServerPlayer.f_8906_:Lnet/minecraft/server/network/ServerGamePacketListenerImpl;
+     146: new           #480                // class net/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket
+     149: dup
+     150: aload_0
+     151: getfield      #370                // Field f_38840_:I
+     154: aload_0
+     155: invokevirtual #483                // Method m_182425_:()I
+     158: iconst_0
+     159: aload_3
+     160: invokespecial #486                // Method net/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket."<init>":(IIILnet/minecraft/world/item/ItemStack;)V
+     163: invokevirtual #492                // Method net/minecraft/server/network/ServerGamePacketListenerImpl.m_9829_:(Lnet/minecraft/network/protocol/Packet;)V
+     166: return
+
+  public void m_6877_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #510                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainer.m_6877_:(Lnet/minecraft/world/entity/player/Player;)V
+       5: aload_0
+       6: getfield      #91                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+       9: invokevirtual #513                // Method net/minecraft/world/inventory/ResultContainer.m_6211_:()V
+      12: aload_1
+      13: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      16: getfield      #138                // Field net/minecraft/world/level/Level.f_46443_:Z
+      19: ifne          31
+      22: aload_0
+      23: aload_1
+      24: aload_0
+      25: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+      28: invokevirtual #517                // Method m_150411_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/Container;)V
+      31: return
+
+  public void m_182406_(int, int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #165                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+       4: invokevirtual #521                // Method net/minecraft/core/NonNullList.size:()I
+       7: iload_1
+       8: if_icmple     18
+      11: aload_0
+      12: iload_1
+      13: iload_2
+      14: aload_3
+      15: invokespecial #523                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainer.m_182406_:(IILnet/minecraft/world/item/ItemStack;)V
+      18: return
+
+  public boolean m_6875_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public net.minecraft.world.item.ItemStack m_7648_(net.minecraft.world.entity.player.Player, int);
+    Code:
+       0: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       3: astore_3
+       4: aload_0
+       5: getfield      #165                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+       8: iload_2
+       9: invokevirtual #531                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      12: checkcast     #228                // class net/minecraft/world/inventory/Slot
+      15: astore        4
+      17: aload         4
+      19: invokevirtual #534                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+      22: ifeq          438
+      25: aload         4
+      27: invokevirtual #538                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      30: astore        5
+      32: aload         5
+      34: invokevirtual #541                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      37: astore_3
+      38: aload_3
+      39: invokestatic  #547                // Method net/minecraft/world/entity/Mob.m_147233_:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;
+      42: astore        6
+      44: iload_2
+      45: ifne          77
+      48: aload_0
+      49: aload         5
+      51: bipush        9
+      53: bipush        45
+      55: iconst_1
+      56: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+      59: ifne          66
+      62: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      65: areturn
+      66: aload         4
+      68: aload         5
+      70: aload_3
+      71: invokevirtual #555                // Method net/minecraft/world/inventory/Slot.m_40234_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+      74: goto          378
+      77: iload_2
+      78: iconst_5
+      79: if_icmpge     100
+      82: aload_0
+      83: aload         5
+      85: bipush        9
+      87: bipush        45
+      89: iconst_0
+      90: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+      93: ifne          378
+      96: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      99: areturn
+     100: iload_2
+     101: bipush        9
+     103: if_icmpge     124
+     106: aload_0
+     107: aload         5
+     109: bipush        9
+     111: bipush        45
+     113: iconst_0
+     114: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     117: ifne          378
+     120: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     123: areturn
+     124: aload         6
+     126: invokevirtual #559                // Method net/minecraft/world/entity/EquipmentSlot.m_20743_:()Lnet/minecraft/world/entity/EquipmentSlot$Type;
+     129: getstatic     #563                // Field net/minecraft/world/entity/EquipmentSlot$Type.ARMOR:Lnet/minecraft/world/entity/EquipmentSlot$Type;
+     132: if_acmpne     192
+     135: aload_0
+     136: getfield      #165                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+     139: bipush        8
+     141: aload         6
+     143: invokevirtual #566                // Method net/minecraft/world/entity/EquipmentSlot.m_20749_:()I
+     146: isub
+     147: invokevirtual #531                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     150: checkcast     #228                // class net/minecraft/world/inventory/Slot
+     153: invokevirtual #534                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+     156: ifne          192
+     159: bipush        8
+     161: aload         6
+     163: invokevirtual #566                // Method net/minecraft/world/entity/EquipmentSlot.m_20749_:()I
+     166: isub
+     167: istore        7
+     169: aload_0
+     170: aload         5
+     172: iload         7
+     174: iload         7
+     176: iconst_1
+     177: iadd
+     178: iconst_0
+     179: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     182: ifne          189
+     185: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     188: areturn
+     189: goto          378
+     192: iload_2
+     193: bipush        46
+     195: if_icmpge     268
+     198: aload_3
+     199: aload_1
+     200: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+     203: invokestatic  #570                // Method top/theillusivec4/curios/api/CuriosApi.getItemStackSlots:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;)Ljava/util/Map;
+     206: invokeinterface #573,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+     211: ifne          268
+     214: aload_0
+     215: aload         5
+     217: bipush        46
+     219: aload_0
+     220: getfield      #165                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+     223: invokevirtual #521                // Method net/minecraft/core/NonNullList.size:()I
+     226: iconst_0
+     227: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     230: ifne          378
+     233: aload_0
+     234: aload         5
+     236: invokevirtual #577                // Method findAvailableSlot:(Lnet/minecraft/world/item/ItemStack;)I
+     239: istore        7
+     241: iload         7
+     243: iconst_m1
+     244: if_icmpeq     261
+     247: aload_0
+     248: iload         7
+     250: putfield      #100                // Field moveToPage:I
+     253: aload_0
+     254: iload_2
+     255: putfield      #102                // Field moveFromIndex:I
+     258: goto          265
+     261: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     264: areturn
+     265: goto          378
+     268: aload         6
+     270: getstatic     #580                // Field net/minecraft/world/entity/EquipmentSlot.OFFHAND:Lnet/minecraft/world/entity/EquipmentSlot;
+     273: if_acmpne     312
+     276: aload_0
+     277: getfield      #165                // Field f_38839_:Lnet/minecraft/core/NonNullList;
+     280: bipush        45
+     282: invokevirtual #531                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     285: checkcast     #228                // class net/minecraft/world/inventory/Slot
+     288: invokevirtual #534                // Method net/minecraft/world/inventory/Slot.m_6657_:()Z
+     291: ifne          312
+     294: aload_0
+     295: aload         5
+     297: bipush        45
+     299: bipush        46
+     301: iconst_0
+     302: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     305: ifne          378
+     308: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     311: areturn
+     312: iload_2
+     313: bipush        36
+     315: if_icmpge     336
+     318: aload_0
+     319: aload         5
+     321: bipush        36
+     323: bipush        45
+     325: iconst_0
+     326: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     329: ifne          378
+     332: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     335: areturn
+     336: iload_2
+     337: bipush        45
+     339: if_icmpge     360
+     342: aload_0
+     343: aload         5
+     345: bipush        9
+     347: bipush        36
+     349: iconst_0
+     350: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     353: ifne          378
+     356: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     359: areturn
+     360: aload_0
+     361: aload         5
+     363: bipush        9
+     365: bipush        45
+     367: iconst_0
+     368: invokevirtual #551                // Method m_38903_:(Lnet/minecraft/world/item/ItemStack;IIZ)Z
+     371: ifne          378
+     374: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     377: areturn
+     378: aload         5
+     380: invokevirtual #583                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     383: ifeq          397
+     386: aload         4
+     388: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     391: invokevirtual #587                // Method net/minecraft/world/inventory/Slot.m_5852_:(Lnet/minecraft/world/item/ItemStack;)V
+     394: goto          402
+     397: aload         4
+     399: invokevirtual #590                // Method net/minecraft/world/inventory/Slot.m_6654_:()V
+     402: aload         5
+     404: invokevirtual #593                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     407: aload_3
+     408: invokevirtual #593                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     411: if_icmpne     418
+     414: getstatic     #425                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     417: areturn
+     418: aload         4
+     420: aload_1
+     421: aload         5
+     423: invokevirtual #597                // Method net/minecraft/world/inventory/Slot.m_142406_:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+     426: iload_2
+     427: ifne          438
+     430: aload_1
+     431: aload         5
+     433: iconst_0
+     434: invokevirtual #601                // Method net/minecraft/world/entity/player/Player.m_36176_:(Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/entity/item/ItemEntity;
+     437: pop
+     438: aload_3
+     439: areturn
+
+  protected int findAvailableSlot(net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_m1
+       1: istore_2
+       2: aload_1
+       3: invokevirtual #609                // Method net/minecraft/world/item/ItemStack.m_41753_:()Z
+       6: ifeq          125
+       9: aload_0
+      10: getfield      #98                 // Field proxySlots:Ljava/util/List;
+      13: invokeinterface #610,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      18: astore_3
+      19: aload_3
+      20: invokeinterface #270,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      25: ifeq          125
+      28: aload_3
+      29: invokeinterface #273,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #7                  // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot
+      37: astore        4
+      39: aload         4
+      41: invokevirtual #613                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot.slot:()Lnet/minecraft/world/inventory/Slot;
+      44: astore        5
+      46: aload         5
+      48: invokevirtual #538                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+      51: astore        6
+      53: aload         6
+      55: invokevirtual #583                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      58: ifne          122
+      61: aload_1
+      62: aload         6
+      64: invokestatic  #617                // Method net/minecraft/world/item/ItemStack.m_150942_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+      67: ifeq          122
+      70: aload         6
+      72: invokevirtual #593                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      75: aload_1
+      76: invokevirtual #593                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      79: iadd
+      80: istore        7
+      82: aload         5
+      84: invokevirtual #620                // Method net/minecraft/world/inventory/Slot.m_6641_:()I
+      87: aload_1
+      88: invokevirtual #623                // Method net/minecraft/world/item/ItemStack.m_41741_:()I
+      91: invokestatic  #202                // Method java/lang/Math.min:(II)I
+      94: istore        8
+      96: iload         7
+      98: iload         8
+     100: if_icmple     113
+     103: aload         6
+     105: invokevirtual #593                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     108: iload         8
+     110: if_icmpge     122
+     113: aload         4
+     115: invokevirtual #625                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot.page:()I
+     118: istore_2
+     119: goto          125
+     122: goto          19
+     125: aload_1
+     126: invokevirtual #583                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     129: ifne          210
+     132: iload_2
+     133: iconst_m1
+     134: if_icmpne     210
+     137: aload_0
+     138: getfield      #98                 // Field proxySlots:Ljava/util/List;
+     141: invokeinterface #610,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     146: astore_3
+     147: aload_3
+     148: invokeinterface #270,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     153: ifeq          210
+     156: aload_3
+     157: invokeinterface #273,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     162: checkcast     #7                  // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot
+     165: astore        4
+     167: aload         4
+     169: invokevirtual #613                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot.slot:()Lnet/minecraft/world/inventory/Slot;
+     172: astore        5
+     174: aload         5
+     176: invokevirtual #538                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+     179: astore        6
+     181: aload         6
+     183: invokevirtual #583                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     186: ifeq          207
+     189: aload         5
+     191: aload_1
+     192: invokevirtual #629                // Method net/minecraft/world/inventory/Slot.m_5857_:(Lnet/minecraft/world/item/ItemStack;)Z
+     195: ifeq          207
+     198: aload         4
+     200: invokevirtual #625                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot.page:()I
+     203: istore_2
+     204: goto          210
+     207: goto          147
+     210: iload_2
+     211: ireturn
+
+  public net.minecraft.world.inventory.RecipeBookType m_5867_();
+    Code:
+       0: getstatic     #642                // Field net/minecraft/world/inventory/RecipeBookType.CRAFTING:Lnet/minecraft/world/inventory/RecipeBookType;
+       3: areturn
+
+  public boolean m_142157_(int);
+    Code:
+       0: iload_1
+       1: aload_0
+       2: invokevirtual #647                // Method m_6636_:()I
+       5: if_icmpeq     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  public void m_5816_(net.minecraft.world.entity.player.StackedContents);
+    Code:
+       0: aload_0
+       1: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+       4: aload_1
+       5: invokeinterface #654,  2          // InterfaceMethod net/minecraft/world/inventory/CraftingContainer.m_5809_:(Lnet/minecraft/world/entity/player/StackedContents;)V
+      10: return
+
+  public void m_6650_();
+    Code:
+       0: aload_0
+       1: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+       4: invokeinterface #658,  1          // InterfaceMethod net/minecraft/world/inventory/CraftingContainer.m_6211_:()V
+       9: aload_0
+      10: getfield      #91                 // Field craftResult:Lnet/minecraft/world/inventory/ResultContainer;
+      13: invokevirtual #513                // Method net/minecraft/world/inventory/ResultContainer.m_6211_:()V
+      16: return
+
+  public boolean m_6032_(net.minecraft.world.item.crafting.Recipe<? super net.minecraft.world.inventory.CraftingContainer>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+       5: aload_0
+       6: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+       9: invokevirtual #133                // Method net/minecraft/world/entity/player/Player.m_9236_:()Lnet/minecraft/world/level/Level;
+      12: invokeinterface #667,  3          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.m_5818_:(Lnet/minecraft/world/Container;Lnet/minecraft/world/level/Level;)Z
+      17: ireturn
+
+  public int m_6636_();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public int m_6635_();
+    Code:
+       0: aload_0
+       1: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+       4: invokeinterface #674,  1          // InterfaceMethod net/minecraft/world/inventory/CraftingContainer.m_39347_:()I
+       9: ireturn
+
+  public int m_6656_();
+    Code:
+       0: aload_0
+       1: getfield      #84                 // Field craftMatrix:Lnet/minecraft/world/inventory/CraftingContainer;
+       4: invokeinterface #678,  1          // InterfaceMethod net/minecraft/world/inventory/CraftingContainer.m_39346_:()I
+       9: ireturn
+
+  public int m_6653_();
+    Code:
+       0: iconst_5
+       1: ireturn
+
+  public void nextPage();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #381                // Field currentPage:I
+       5: iconst_1
+       6: iadd
+       7: aload_0
+       8: getfield      #249                // Field totalPages:I
+      11: iconst_1
+      12: isub
+      13: invokestatic  #202                // Method java/lang/Math.min:(II)I
+      16: invokevirtual #413                // Method setPage:(I)V
+      19: return
+
+  public void prevPage();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #381                // Field currentPage:I
+       5: iconst_1
+       6: isub
+       7: iconst_0
+       8: invokestatic  #684                // Method java/lang/Math.max:(II)I
+      11: invokevirtual #413                // Method setPage:(I)V
+      14: return
+
+  public void checkQuickMove();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field moveToPage:I
+       4: iconst_m1
+       5: if_icmpeq     74
+       8: aload_0
+       9: aload_0
+      10: getfield      #100                // Field moveToPage:I
+      13: invokevirtual #413                // Method setPage:(I)V
+      16: aload_0
+      17: aload_0
+      18: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+      21: aload_0
+      22: getfield      #102                // Field moveFromIndex:I
+      25: invokevirtual #687                // Method m_7648_:(Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+      28: pop
+      29: aload_0
+      30: iconst_m1
+      31: putfield      #100                // Field moveToPage:I
+      34: aload_0
+      35: getfield      #140                // Field isLocalWorld:Z
+      38: ifne          74
+      41: getstatic     #340                // Field top/theillusivec4/curios/common/network/NetworkHandler.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+      44: getstatic     #344                // Field net/minecraftforge/network/PacketDistributor.PLAYER:Lnet/minecraftforge/network/PacketDistributor;
+      47: aload_0
+      48: invokedynamic #692,  0            // InvokeDynamic #1:get:(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2;)Ljava/util/function/Supplier;
+      53: invokevirtual #365                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      56: new           #694                // class top/theillusivec4/curios/common/network/server/SPacketQuickMove
+      59: dup
+      60: aload_0
+      61: getfield      #370                // Field f_38840_:I
+      64: aload_0
+      65: getfield      #102                // Field moveFromIndex:I
+      68: invokespecial #695                // Method top/theillusivec4/curios/common/network/server/SPacketQuickMove."<init>":(II)V
+      71: invokevirtual #379                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+      74: return
+
+  private net.minecraft.server.level.ServerPlayer lambda$checkQuickMove$1();
+    Code:
+       0: aload_0
+       1: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+       4: checkcast     #419                // class net/minecraft/server/level/ServerPlayer
+       7: areturn
+
+  private net.minecraft.server.level.ServerPlayer lambda$setPage$0();
+    Code:
+       0: aload_0
+       1: getfield      #127                // Field player:Lnet/minecraft/world/entity/player/Player;
+       4: checkcast     #419                // class net/minecraft/server/level/ServerPlayer
+       7: areturn
+
+  static {};
+    Code:
+       0: iconst_4
+       1: anewarray     #698                // class net/minecraft/resources/ResourceLocation
+       4: dup
+       5: iconst_0
+       6: getstatic     #704                // Field net/minecraft/world/inventory/InventoryMenu.f_39696_:Lnet/minecraft/resources/ResourceLocation;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #707                // Field net/minecraft/world/inventory/InventoryMenu.f_39695_:Lnet/minecraft/resources/ResourceLocation;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #710                // Field net/minecraft/world/inventory/InventoryMenu.f_39694_:Lnet/minecraft/resources/ResourceLocation;
+      21: aastore
+      22: dup
+      23: iconst_3
+      24: getstatic     #713                // Field net/minecraft/world/inventory/InventoryMenu.f_39693_:Lnet/minecraft/resources/ResourceLocation;
+      27: aastore
+      28: putstatic     #715                // Field ARMOR_SLOT_TEXTURES:[Lnet/minecraft/resources/ResourceLocation;
+      31: iconst_4
+      32: anewarray     #31                 // class net/minecraft/world/entity/EquipmentSlot
+      35: dup
+      36: iconst_0
+      37: getstatic     #718                // Field net/minecraft/world/entity/EquipmentSlot.HEAD:Lnet/minecraft/world/entity/EquipmentSlot;
+      40: aastore
+      41: dup
+      42: iconst_1
+      43: getstatic     #721                // Field net/minecraft/world/entity/EquipmentSlot.CHEST:Lnet/minecraft/world/entity/EquipmentSlot;
+      46: aastore
+      47: dup
+      48: iconst_2
+      49: getstatic     #724                // Field net/minecraft/world/entity/EquipmentSlot.LEGS:Lnet/minecraft/world/entity/EquipmentSlot;
+      52: aastore
+      53: dup
+      54: iconst_3
+      55: getstatic     #727                // Field net/minecraft/world/entity/EquipmentSlot.FEET:Lnet/minecraft/world/entity/EquipmentSlot;
+      58: aastore
+      59: putstatic     #233                // Field VALID_EQUIPMENT_SLOTS:[Lnet/minecraft/world/entity/EquipmentSlot;
+      62: return
+}

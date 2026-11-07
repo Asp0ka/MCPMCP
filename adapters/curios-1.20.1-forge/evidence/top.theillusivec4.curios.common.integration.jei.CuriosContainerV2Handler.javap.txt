@@ -1,0 +1,93 @@
+Compiled from "CuriosContainerV2Handler.java"
+public class top.theillusivec4.curios.common.integration.jei.CuriosContainerV2Handler implements mezz.jei.api.gui.handlers.IGuiContainerHandler<top.theillusivec4.curios.client.gui.CuriosScreenV2> {
+  public top.theillusivec4.curios.common.integration.jei.CuriosContainerV2Handler();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public java.util.List<net.minecraft.client.renderer.Rect2i> getGuiExtraAreas(top.theillusivec4.curios.client.gui.CuriosScreenV2);
+    Code:
+       0: aload_1
+       1: invokevirtual #24                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.getMinecraft:()Lnet/minecraft/client/Minecraft;
+       4: getfield      #30                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       7: astore_2
+       8: aload_2
+       9: ifnull        153
+      12: new           #32                 // class java/util/ArrayList
+      15: dup
+      16: invokespecial #33                 // Method java/util/ArrayList."<init>":()V
+      19: astore_3
+      20: aload_1
+      21: invokevirtual #37                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.getGuiLeft:()I
+      24: aload_1
+      25: getfield      #41                 // Field top/theillusivec4/curios/client/gui/CuriosScreenV2.panelWidth:I
+      28: isub
+      29: istore        4
+      31: aload_1
+      32: invokevirtual #44                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.getGuiTop:()I
+      35: istore        5
+      37: aload_1
+      38: invokevirtual #48                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.m_6262_:()Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      41: checkcast     #50                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      44: getfield      #54                 // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.grid:Ljava/util/List;
+      47: astore        6
+      49: iconst_0
+      50: istore        7
+      52: aload         6
+      54: invokeinterface #60,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      59: ifne          127
+      62: aload         6
+      64: iconst_0
+      65: invokeinterface #64,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      70: checkcast     #66                 // class java/lang/Integer
+      73: invokevirtual #69                 // Method java/lang/Integer.intValue:()I
+      76: bipush        18
+      78: imul
+      79: bipush        14
+      81: iadd
+      82: istore        7
+      84: aload_1
+      85: invokevirtual #48                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.m_6262_:()Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      88: checkcast     #50                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainerV2
+      91: getfield      #73                 // Field top/theillusivec4/curios/common/inventory/container/CuriosContainerV2.hasCosmetics:Z
+      94: ifeq          127
+      97: aload_3
+      98: new           #75                 // class net/minecraft/client/renderer/Rect2i
+     101: dup
+     102: aload_1
+     103: invokevirtual #37                 // Method top/theillusivec4/curios/client/gui/CuriosScreenV2.getGuiLeft:()I
+     106: bipush        30
+     108: isub
+     109: iload         5
+     111: bipush        34
+     113: isub
+     114: bipush        28
+     116: bipush        34
+     118: invokespecial #78                 // Method net/minecraft/client/renderer/Rect2i."<init>":(IIII)V
+     121: invokeinterface #82,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     126: pop
+     127: aload_3
+     128: new           #75                 // class net/minecraft/client/renderer/Rect2i
+     131: dup
+     132: iload         4
+     134: iload         5
+     136: aload_1
+     137: getfield      #41                 // Field top/theillusivec4/curios/client/gui/CuriosScreenV2.panelWidth:I
+     140: iload         7
+     142: invokespecial #78                 // Method net/minecraft/client/renderer/Rect2i."<init>":(IIII)V
+     145: invokeinterface #82,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     150: pop
+     151: aload_3
+     152: areturn
+     153: invokestatic  #90                 // Method java/util/Collections.emptyList:()Ljava/util/List;
+     156: areturn
+
+  public java.util.List getGuiExtraAreas(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #20                 // class top/theillusivec4/curios/client/gui/CuriosScreenV2
+       5: invokevirtual #103                // Method getGuiExtraAreas:(Ltop/theillusivec4/curios/client/gui/CuriosScreenV2;)Ljava/util/List;
+       8: areturn
+}

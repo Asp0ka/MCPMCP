@@ -1,0 +1,100 @@
+Compiled from "CPacketOpenVanilla.java"
+public class top.theillusivec4.curios.common.network.client.CPacketOpenVanilla {
+  private final net.minecraft.world.item.ItemStack carried;
+
+  public top.theillusivec4.curios.common.network.client.CPacketOpenVanilla(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokespecial #27                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #29                 // Field carried:Lnet/minecraft/world/item/ItemStack;
+       9: return
+
+  public static void encode(top.theillusivec4.curios.common.network.client.CPacketOpenVanilla, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #29                 // Field carried:Lnet/minecraft/world/item/ItemStack;
+       5: invokevirtual #40                 // Method net/minecraft/network/FriendlyByteBuf.m_130055_:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/FriendlyByteBuf;
+       8: pop
+       9: return
+
+  public static top.theillusivec4.curios.common.network.client.CPacketOpenVanilla decode(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #2                  // class top/theillusivec4/curios/common/network/client/CPacketOpenVanilla
+       3: dup
+       4: aload_0
+       5: invokevirtual #49                 // Method net/minecraft/network/FriendlyByteBuf.m_130267_:()Lnet/minecraft/world/item/ItemStack;
+       8: invokespecial #51                 // Method "<init>":(Lnet/minecraft/world/item/ItemStack;)V
+      11: areturn
+
+  public static void handle(top.theillusivec4.curios.common.network.client.CPacketOpenVanilla, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+    Code:
+       0: aload_1
+       1: invokeinterface #60,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: aload_1
+      10: aload_0
+      11: invokedynamic #77,  0             // InvokeDynamic #0:run:(Ljava/util/function/Supplier;Ltop/theillusivec4/curios/common/network/client/CPacketOpenVanilla;)Ljava/lang/Runnable;
+      16: invokevirtual #81                 // Method net/minecraftforge/network/NetworkEvent$Context.enqueueWork:(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+      19: pop
+      20: aload_1
+      21: invokeinterface #60,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      26: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+      29: iconst_1
+      30: invokevirtual #85                 // Method net/minecraftforge/network/NetworkEvent$Context.setPacketHandled:(Z)V
+      33: return
+
+  private static void lambda$handle$1(java.util.function.Supplier, top.theillusivec4.curios.common.network.client.CPacketOpenVanilla);
+    Code:
+       0: aload_0
+       1: invokeinterface #60,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: invokevirtual #92                 // Method net/minecraftforge/network/NetworkEvent$Context.getSender:()Lnet/minecraft/server/level/ServerPlayer;
+      12: astore_2
+      13: aload_2
+      14: ifnull        101
+      17: aload_2
+      18: invokevirtual #98                 // Method net/minecraft/server/level/ServerPlayer.m_7500_:()Z
+      21: ifeq          31
+      24: aload_1
+      25: getfield      #29                 // Field carried:Lnet/minecraft/world/item/ItemStack;
+      28: goto          38
+      31: aload_2
+      32: getfield      #102                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      35: invokevirtual #107                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+      38: astore_3
+      39: aload_2
+      40: getfield      #102                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      43: getstatic     #112                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      46: invokevirtual #115                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142503_:(Lnet/minecraft/world/item/ItemStack;)V
+      49: aload_2
+      50: invokevirtual #118                // Method net/minecraft/server/level/ServerPlayer.m_9230_:()V
+      53: aload_3
+      54: invokevirtual #121                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      57: ifne          101
+      60: aload_2
+      61: invokevirtual #98                 // Method net/minecraft/server/level/ServerPlayer.m_7500_:()Z
+      64: ifne          75
+      67: aload_2
+      68: getfield      #102                // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      71: aload_3
+      72: invokevirtual #115                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142503_:(Lnet/minecraft/world/item/ItemStack;)V
+      75: getstatic     #127                // Field top/theillusivec4/curios/common/network/NetworkHandler.INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+      78: getstatic     #131                // Field net/minecraftforge/network/PacketDistributor.PLAYER:Lnet/minecraftforge/network/PacketDistributor;
+      81: aload_2
+      82: invokedynamic #141,  0            // InvokeDynamic #1:get:(Lnet/minecraft/server/level/ServerPlayer;)Ljava/util/function/Supplier;
+      87: invokevirtual #145                // Method net/minecraftforge/network/PacketDistributor.with:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/PacketDistributor$PacketTarget;
+      90: new           #147                // class top/theillusivec4/curios/common/network/server/SPacketGrabbedItem
+      93: dup
+      94: aload_3
+      95: invokespecial #148                // Method top/theillusivec4/curios/common/network/server/SPacketGrabbedItem."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+      98: invokevirtual #154                // Method net/minecraftforge/network/simple/SimpleChannel.send:(Lnet/minecraftforge/network/PacketDistributor$PacketTarget;Ljava/lang/Object;)V
+     101: return
+
+  private static net.minecraft.server.level.ServerPlayer lambda$handle$0(net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_0
+       1: areturn
+}

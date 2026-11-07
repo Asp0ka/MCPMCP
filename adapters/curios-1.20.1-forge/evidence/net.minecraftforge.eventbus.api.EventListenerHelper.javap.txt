@@ -1,0 +1,196 @@
+Compiled from "EventListenerHelper.java"
+public class net.minecraftforge.eventbus.api.EventListenerHelper {
+  private static final net.minecraftforge.eventbus.internal.Cache<java.lang.Class<?>, net.minecraftforge.eventbus.ListenerList> listeners;
+
+  private static final net.minecraftforge.eventbus.ListenerList EVENTS_LIST;
+
+  private static final net.minecraftforge.eventbus.internal.Cache<java.lang.Class<?>, java.lang.Boolean> cancelable;
+
+  private static final net.minecraftforge.eventbus.internal.Cache<java.lang.Class<?>, java.lang.Boolean> hasResult;
+
+  public net.minecraftforge.eventbus.api.EventListenerHelper();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static net.minecraftforge.eventbus.ListenerList getListenerList(java.lang.Class<?>);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: invokestatic  #7                  // Method getListenerListInternal:(Ljava/lang/Class;Z)Lnet/minecraftforge/eventbus/ListenerList;
+       5: areturn
+
+  static net.minecraftforge.eventbus.ListenerList getListenerListInternal(java.lang.Class<?>, boolean);
+    Code:
+       0: aload_0
+       1: ldc           #13                 // class net/minecraftforge/eventbus/api/Event
+       3: if_acmpne     10
+       6: getstatic     #15                 // Field EVENTS_LIST:Lnet/minecraftforge/eventbus/ListenerList;
+       9: areturn
+      10: getstatic     #19                 // Field listeners:Lnet/minecraftforge/eventbus/internal/Cache;
+      13: aload_0
+      14: invokeinterface #23,  2           // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      19: checkcast     #29                 // class net/minecraftforge/eventbus/ListenerList
+      22: astore_2
+      23: aload_2
+      24: ifnull        29
+      27: aload_2
+      28: areturn
+      29: getstatic     #19                 // Field listeners:Lnet/minecraftforge/eventbus/internal/Cache;
+      32: aload_0
+      33: iload_1
+      34: invokedynamic #31,  0             // InvokeDynamic #0:apply:(Z)Ljava/util/function/Function;
+      39: invokeinterface #35,  3           // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+      44: checkcast     #29                 // class net/minecraftforge/eventbus/ListenerList
+      47: areturn
+
+  private static net.minecraftforge.eventbus.ListenerList computeListenerList(java.lang.Class<?>, boolean);
+    Code:
+       0: aload_0
+       1: ldc           #13                 // class net/minecraftforge/eventbus/api/Event
+       3: if_acmpne     10
+       6: getstatic     #15                 // Field EVENTS_LIST:Lnet/minecraftforge/eventbus/ListenerList;
+       9: areturn
+      10: iload_1
+      11: ifne          24
+      14: aload_0
+      15: invokevirtual #39                 // Method java/lang/Class.getModifiers:()I
+      18: invokestatic  #45                 // Method java/lang/reflect/Modifier.isAbstract:(I)Z
+      21: ifeq          43
+      24: aload_0
+      25: invokevirtual #51                 // Method java/lang/Class.getSuperclass:()Ljava/lang/Class;
+      28: astore_2
+      29: aload_2
+      30: invokestatic  #55                 // Method getListenerList:(Ljava/lang/Class;)Lnet/minecraftforge/eventbus/ListenerList;
+      33: astore_3
+      34: new           #29                 // class net/minecraftforge/eventbus/ListenerList
+      37: dup
+      38: aload_3
+      39: invokespecial #59                 // Method net/minecraftforge/eventbus/ListenerList."<init>":(Lnet/minecraftforge/eventbus/ListenerList;)V
+      42: areturn
+      43: aload_0
+      44: iconst_0
+      45: anewarray     #40                 // class java/lang/Class
+      48: invokevirtual #62                 // Method java/lang/Class.getConstructor:([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+      51: astore_2
+      52: aload_2
+      53: iconst_1
+      54: invokevirtual #66                 // Method java/lang/reflect/Constructor.setAccessible:(Z)V
+      57: aload_2
+      58: iconst_0
+      59: anewarray     #2                  // class java/lang/Object
+      62: invokevirtual #72                 // Method java/lang/reflect/Constructor.newInstance:([Ljava/lang/Object;)Ljava/lang/Object;
+      65: checkcast     #13                 // class net/minecraftforge/eventbus/api/Event
+      68: astore_3
+      69: aload_3
+      70: invokevirtual #76                 // Method net/minecraftforge/eventbus/api/Event.getListenerList:()Lnet/minecraftforge/eventbus/ListenerList;
+      73: areturn
+      74: astore_2
+      75: new           #87                 // class java/lang/RuntimeException
+      78: dup
+      79: aload_0
+      80: invokevirtual #89                 // Method java/lang/Class.getName:()Ljava/lang/String;
+      83: invokedynamic #93,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      88: aload_2
+      89: invokespecial #97                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      92: athrow
+    Exception table:
+       from    to  target type
+          43    73    74   Class java/lang/NoSuchMethodException
+          43    73    74   Class java/lang/InstantiationException
+          43    73    74   Class java/lang/IllegalAccessException
+          43    73    74   Class java/lang/reflect/InvocationTargetException
+
+  public static boolean isCancelable(java.lang.Class<?>);
+    Code:
+       0: aload_0
+       1: ldc           #100                // class net/minecraftforge/eventbus/api/Cancelable
+       3: getstatic     #102                // Field cancelable:Lnet/minecraftforge/eventbus/internal/Cache;
+       6: invokestatic  #105                // Method hasAnnotation:(Ljava/lang/Class;Ljava/lang/Class;Lnet/minecraftforge/eventbus/internal/Cache;)Z
+       9: ireturn
+
+  static boolean hasResult(java.lang.Class<?>);
+    Code:
+       0: aload_0
+       1: ldc           #109                // class net/minecraftforge/eventbus/api/Event$HasResult
+       3: getstatic     #111                // Field hasResult:Lnet/minecraftforge/eventbus/internal/Cache;
+       6: invokestatic  #105                // Method hasAnnotation:(Ljava/lang/Class;Ljava/lang/Class;Lnet/minecraftforge/eventbus/internal/Cache;)Z
+       9: ireturn
+
+  private static boolean hasAnnotation(java.lang.Class<?>, java.lang.Class<? extends java.lang.annotation.Annotation>, net.minecraftforge.eventbus.internal.Cache<java.lang.Class<?>, java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: ldc           #13                 // class net/minecraftforge/eventbus/api/Event
+       3: if_acmpeq     12
+       6: aload_0
+       7: ldc           #2                  // class java/lang/Object
+       9: if_acmpne     14
+      12: iconst_0
+      13: ireturn
+      14: aload_2
+      15: aload_0
+      16: invokeinterface #23,  2           // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      21: checkcast     #114                // class java/lang/Boolean
+      24: astore_3
+      25: aload_3
+      26: ifnull        34
+      29: aload_3
+      30: invokevirtual #116                // Method java/lang/Boolean.booleanValue:()Z
+      33: ireturn
+      34: aload_2
+      35: aload_0
+      36: aload_1
+      37: aload_2
+      38: invokedynamic #120,  0            // InvokeDynamic #2:apply:(Ljava/lang/Class;Lnet/minecraftforge/eventbus/internal/Cache;)Ljava/util/function/Function;
+      43: invokeinterface #35,  3           // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+      48: checkcast     #114                // class java/lang/Boolean
+      51: invokevirtual #116                // Method java/lang/Boolean.booleanValue:()Z
+      54: ireturn
+
+  private static java.lang.Boolean lambda$hasAnnotation$1(java.lang.Class, net.minecraftforge.eventbus.internal.Cache, java.lang.Class);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: invokevirtual #123                // Method java/lang/Class.isAnnotationPresent:(Ljava/lang/Class;)Z
+       5: ifeq          13
+       8: iconst_1
+       9: invokestatic  #127                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      12: areturn
+      13: aload_2
+      14: invokevirtual #51                 // Method java/lang/Class.getSuperclass:()Ljava/lang/Class;
+      17: astore_3
+      18: aload_3
+      19: ifnull        35
+      22: aload_3
+      23: aload_0
+      24: aload_1
+      25: invokestatic  #105                // Method hasAnnotation:(Ljava/lang/Class;Ljava/lang/Class;Lnet/minecraftforge/eventbus/internal/Cache;)Z
+      28: ifeq          35
+      31: iconst_1
+      32: goto          36
+      35: iconst_0
+      36: invokestatic  #127                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      39: areturn
+
+  private static net.minecraftforge.eventbus.ListenerList lambda$getListenerListInternal$0(boolean, java.lang.Class);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokestatic  #131                // Method computeListenerList:(Ljava/lang/Class;Z)Lnet/minecraftforge/eventbus/ListenerList;
+       5: areturn
+
+  static {};
+    Code:
+       0: invokestatic  #134                // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.create:()Lnet/minecraftforge/eventbus/internal/Cache;
+       3: putstatic     #19                 // Field listeners:Lnet/minecraftforge/eventbus/internal/Cache;
+       6: new           #29                 // class net/minecraftforge/eventbus/ListenerList
+       9: dup
+      10: invokespecial #138                // Method net/minecraftforge/eventbus/ListenerList."<init>":()V
+      13: putstatic     #15                 // Field EVENTS_LIST:Lnet/minecraftforge/eventbus/ListenerList;
+      16: invokestatic  #134                // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.create:()Lnet/minecraftforge/eventbus/internal/Cache;
+      19: putstatic     #102                // Field cancelable:Lnet/minecraftforge/eventbus/internal/Cache;
+      22: invokestatic  #134                // InterfaceMethod net/minecraftforge/eventbus/internal/Cache.create:()Lnet/minecraftforge/eventbus/internal/Cache;
+      25: putstatic     #111                // Field hasResult:Lnet/minecraftforge/eventbus/internal/Cache;
+      28: return
+}

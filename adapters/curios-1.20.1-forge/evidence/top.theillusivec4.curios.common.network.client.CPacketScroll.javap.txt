@@ -1,0 +1,87 @@
+Compiled from "CPacketScroll.java"
+public class top.theillusivec4.curios.common.network.client.CPacketScroll {
+  private int windowId;
+
+  private int index;
+
+  public top.theillusivec4.curios.common.network.client.CPacketScroll(int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #23                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #25                 // Field windowId:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #27                 // Field index:I
+      14: return
+
+  public static void encode(top.theillusivec4.curios.common.network.client.CPacketScroll, net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: getfield      #25                 // Field windowId:I
+       5: invokevirtual #37                 // Method net/minecraft/network/FriendlyByteBuf.writeInt:(I)Lio/netty/buffer/ByteBuf;
+       8: pop
+       9: aload_1
+      10: aload_0
+      11: getfield      #27                 // Field index:I
+      14: invokevirtual #37                 // Method net/minecraft/network/FriendlyByteBuf.writeInt:(I)Lio/netty/buffer/ByteBuf;
+      17: pop
+      18: return
+
+  public static top.theillusivec4.curios.common.network.client.CPacketScroll decode(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: new           #2                  // class top/theillusivec4/curios/common/network/client/CPacketScroll
+       3: dup
+       4: aload_0
+       5: invokevirtual #46                 // Method net/minecraft/network/FriendlyByteBuf.readInt:()I
+       8: aload_0
+       9: invokevirtual #46                 // Method net/minecraft/network/FriendlyByteBuf.readInt:()I
+      12: invokespecial #48                 // Method "<init>":(II)V
+      15: areturn
+
+  public static void handle(top.theillusivec4.curios.common.network.client.CPacketScroll, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+    Code:
+       0: aload_1
+       1: invokeinterface #57,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: aload_1
+      10: aload_0
+      11: invokedynamic #74,  0             // InvokeDynamic #0:run:(Ljava/util/function/Supplier;Ltop/theillusivec4/curios/common/network/client/CPacketScroll;)Ljava/lang/Runnable;
+      16: invokevirtual #78                 // Method net/minecraftforge/network/NetworkEvent$Context.enqueueWork:(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+      19: pop
+      20: aload_1
+      21: invokeinterface #57,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      26: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+      29: iconst_1
+      30: invokevirtual #82                 // Method net/minecraftforge/network/NetworkEvent$Context.setPacketHandled:(Z)V
+      33: return
+
+  private static void lambda$handle$0(java.util.function.Supplier, top.theillusivec4.curios.common.network.client.CPacketScroll);
+    Code:
+       0: aload_0
+       1: invokeinterface #57,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #7                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: invokevirtual #89                 // Method net/minecraftforge/network/NetworkEvent$Context.getSender:()Lnet/minecraft/server/level/ServerPlayer;
+      12: astore_2
+      13: aload_2
+      14: ifnull        51
+      17: aload_2
+      18: getfield      #95                 // Field net/minecraft/server/level/ServerPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      21: astore_3
+      22: aload_3
+      23: instanceof    #97                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainer
+      26: ifeq          51
+      29: aload_3
+      30: getfield      #102                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
+      33: aload_1
+      34: getfield      #25                 // Field windowId:I
+      37: if_icmpne     51
+      40: aload_3
+      41: checkcast     #97                 // class top/theillusivec4/curios/common/inventory/container/CuriosContainer
+      44: aload_1
+      45: getfield      #27                 // Field index:I
+      48: invokevirtual #106                // Method top/theillusivec4/curios/common/inventory/container/CuriosContainer.scrollToIndex:(I)V
+      51: return
+}

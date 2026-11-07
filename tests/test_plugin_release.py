@@ -10,6 +10,31 @@ import plugin_release as r
 
 
 class ReleaseTest(unittest.TestCase):
+    def test_curios_is_a_required_exact_target(self):
+        self.assertIn('mcpmcp.curios', r.EXPECTED)
+        specs=[x for x in r.SPECS if x[0]=='curios']
+        self.assertEqual(len(specs),1)
+        self.assertEqual(specs[0][1],'curios-1.20.1-forge')
+
+    def test_incremental_receipt_rejects_stale_untouched_build(self):
+        current=[{'canonical':'old','id':'mcpmcp.fixture','project':'existing','adapter_sha256':'a','source_sha256':'b','manifest_sha256':'c','guide_sha256':'d'},
+                 {'canonical':'new','id':'mcpmcp.curios','project':'curios-1.20.1-forge','adapter_sha256':'n','source_sha256':'n','manifest_sha256':'n','guide_sha256':'n'}]
+        previous={'artifacts':[current[0]]}
+        r.check_untouched(current,previous,{'curios-1.20.1-forge'})
+        for key in ('adapter_sha256','source_sha256','manifest_sha256','guide_sha256'):
+            with self.assertRaises(ValueError):r.check_untouched([current[0]|{key:'changed'},current[1]],previous,{'curios-1.20.1-forge'})
+        with self.assertRaises(ValueError):r.check_untouched(current,{'artifacts':[]},{'curios-1.20.1-forge'})
+
+    def test_curios_release_requires_its_own_final_binary_proof(self):
+        from package_plugins import combine_acceptance
+        baseline={'batch':'baseline','verified':True,'checks':{'all_plugins_loaded':True,'policy_restored':True,'empty_cursor_before_leave':True,'no_recovery':True,'iron_effect':True,'travel_effect':True,'furnace_transfer':True,'storage_roundtrip':True,'backpack_contract':True,'nbt_stale_native_rejected':True,'nbt_stale_packet_rejected':True,'jei_focus_preserved':True},'installed_hashes':{'mcpmcp.jei':'old'}}
+        rows=[{'id':'mcpmcp.jei','adapter_sha256':'old'},{'id':'mcpmcp.curios','adapter_sha256':'new'}]
+        curios={'batch':'curios','verified':True,'checks':{k:True for k in ['all_plugins_loaded','read_slots','equip','unequip','swap','cosmetic','render','stale_identity_rejected','invalid_slot_rejected','cursor_rejected','menu_preserved','closed_state_restored','policy_restored','empty_cursor','no_recovery']},'installed_hashes':{'mcpmcp.jei':'old','mcpmcp.curios':'new'}}
+        self.assertTrue(combine_acceptance(rows,baseline,curios)['verified'])
+        for bad in [curios|{'verified':False},curios|{'checks':{}},curios|{'installed_hashes':{'mcpmcp.curios':'different'}}]:
+            with self.assertRaises(ValueError):combine_acceptance(rows,baseline,bad)
+        with self.assertRaises(ValueError):combine_acceptance([rows[0]|{'adapter_sha256':'changed'},rows[1]],baseline,curios)
+
     def test_exact_ids_required(self):
         with self.assertRaises(ValueError):
             r.require_ids([], {'mcpmcp.jei'})

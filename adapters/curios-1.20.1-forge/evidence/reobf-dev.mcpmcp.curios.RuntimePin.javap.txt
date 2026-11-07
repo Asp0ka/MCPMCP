@@ -1,0 +1,211 @@
+Compiled from "RuntimePin.java"
+final class dev.mcpmcp.curios.RuntimePin {
+  private java.lang.Object file;
+
+  private java.nio.file.Path path;
+
+  private long size;
+
+  private long modified;
+
+  dev.mcpmcp.curios.RuntimePin();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  void verify();
+    Code:
+       0: invokestatic  #32                 // Method net/minecraftforge/fml/ModList.get:()Lnet/minecraftforge/fml/ModList;
+       3: astore_1
+       4: aload_1
+       5: ifnonnull     18
+       8: new           #34                 // class java/lang/IllegalStateException
+      11: dup
+      12: ldc           #36                 // String curios_modlist_unavailable
+      14: invokespecial #39                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      17: athrow
+      18: aload_1
+      19: ldc           #41                 // String curios
+      21: invokevirtual #45                 // Method net/minecraftforge/fml/ModList.getModContainerById:(Ljava/lang/String;)Ljava/util/Optional;
+      24: invokedynamic #63,  0             // InvokeDynamic #0:get:()Ljava/util/function/Supplier;
+      29: invokevirtual #69                 // Method java/util/Optional.orElseThrow:(Ljava/util/function/Supplier;)Ljava/lang/Object;
+      32: checkcast     #71                 // class net/minecraftforge/fml/ModContainer
+      35: invokevirtual #75                 // Method net/minecraftforge/fml/ModContainer.getModInfo:()Lnet/minecraftforge/forgespi/language/IModInfo;
+      38: astore_2
+      39: ldc           #77                 // String 5.14.1+1.20.1
+      41: aload_2
+      42: invokeinterface #83,  1           // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getVersion:()Lorg/apache/maven/artifact/versioning/ArtifactVersion;
+      47: invokevirtual #87                 // Method java/lang/Object.toString:()Ljava/lang/String;
+      50: invokevirtual #93                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      53: ifne          66
+      56: new           #34                 // class java/lang/IllegalStateException
+      59: dup
+      60: ldc           #95                 // String curios_runtime_version_mismatch
+      62: invokespecial #39                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      65: athrow
+      66: aload_2
+      67: invokeinterface #99,  1           // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getOwningFile:()Lnet/minecraftforge/forgespi/language/IModFileInfo;
+      72: invokeinterface #105,  1          // InterfaceMethod net/minecraftforge/forgespi/language/IModFileInfo.getFile:()Lnet/minecraftforge/forgespi/locating/IModFile;
+      77: astore_3
+      78: aload_3
+      79: invokeinterface #111,  1          // InterfaceMethod net/minecraftforge/forgespi/locating/IModFile.getFilePath:()Ljava/nio/file/Path;
+      84: astore        4
+      86: aload         4
+      88: iconst_0
+      89: anewarray     #113                // class java/nio/file/LinkOption
+      92: invokestatic  #119                // Method java/nio/file/Files.isRegularFile:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+      95: ifne          108
+      98: new           #34                 // class java/lang/IllegalStateException
+     101: dup
+     102: ldc           #121                // String curios_runtime_jar_required
+     104: invokespecial #39                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     107: athrow
+     108: aload         4
+     110: invokestatic  #126                // Method java/nio/file/Files.size:(Ljava/nio/file/Path;)J
+     113: lstore        5
+     115: aload         4
+     117: iconst_0
+     118: anewarray     #113                // class java/nio/file/LinkOption
+     121: invokestatic  #130                // Method java/nio/file/Files.getLastModifiedTime:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Ljava/nio/file/attribute/FileTime;
+     124: invokevirtual #136                // Method java/nio/file/attribute/FileTime.toMillis:()J
+     127: lstore        7
+     129: aload_0
+     130: getfield      #138                // Field file:Ljava/lang/Object;
+     133: aload_3
+     134: if_acmpne     172
+     137: aload         4
+     139: aload_0
+     140: getfield      #140                // Field path:Ljava/nio/file/Path;
+     143: invokeinterface #141,  2          // InterfaceMethod java/nio/file/Path.equals:(Ljava/lang/Object;)Z
+     148: ifeq          172
+     151: lload         5
+     153: aload_0
+     154: getfield      #143                // Field size:J
+     157: lcmp
+     158: ifne          172
+     161: lload         7
+     163: aload_0
+     164: getfield      #145                // Field modified:J
+     167: lcmp
+     168: ifne          172
+     171: return
+     172: aload         4
+     174: aload_2
+     175: invokeinterface #83,  1           // InterfaceMethod net/minecraftforge/forgespi/language/IModInfo.getVersion:()Lorg/apache/maven/artifact/versioning/ArtifactVersion;
+     180: invokevirtual #87                 // Method java/lang/Object.toString:()Ljava/lang/String;
+     183: invokestatic  #149                // Method verifyFile:(Ljava/nio/file/Path;Ljava/lang/String;)V
+     186: aload_0
+     187: aload_3
+     188: putfield      #138                // Field file:Ljava/lang/Object;
+     191: aload_0
+     192: aload         4
+     194: putfield      #140                // Field path:Ljava/nio/file/Path;
+     197: aload_0
+     198: lload         5
+     200: putfield      #143                // Field size:J
+     203: aload_0
+     204: lload         7
+     206: putfield      #145                // Field modified:J
+     209: goto          226
+     212: astore        5
+     214: new           #34                 // class java/lang/IllegalStateException
+     217: dup
+     218: ldc           #151                // String curios_runtime_hash_unavailable
+     220: aload         5
+     222: invokespecial #154                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+     225: athrow
+     226: return
+    Exception table:
+       from    to  target type
+          86   171   212   Class java/io/IOException
+         172   209   212   Class java/io/IOException
+
+  static void verifyFile(java.nio.file.Path, java.lang.String);
+    Code:
+       0: ldc           #77                 // String 5.14.1+1.20.1
+       2: aload_1
+       3: invokevirtual #93                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       6: ifne          19
+       9: new           #34                 // class java/lang/IllegalStateException
+      12: dup
+      13: ldc           #95                 // String curios_runtime_version_mismatch
+      15: invokespecial #39                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      18: athrow
+      19: ldc           #171                // String SHA-256
+      21: invokestatic  #177                // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+      24: astore_2
+      25: aload_0
+      26: iconst_0
+      27: anewarray     #179                // class java/nio/file/OpenOption
+      30: invokestatic  #183                // Method java/nio/file/Files.newInputStream:(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/InputStream;
+      33: astore_3
+      34: ldc           #184                // int 65536
+      36: newarray       byte
+      38: astore        4
+      40: aload_3
+      41: aload         4
+      43: invokevirtual #192                // Method java/io/InputStream.read:([B)I
+      46: dup
+      47: istore        5
+      49: iconst_m1
+      50: if_icmpeq     65
+      53: aload_2
+      54: aload         4
+      56: iconst_0
+      57: iload         5
+      59: invokevirtual #196                // Method java/security/MessageDigest.update:([BII)V
+      62: goto          40
+      65: aload_3
+      66: ifnull        101
+      69: aload_3
+      70: invokevirtual #199                // Method java/io/InputStream.close:()V
+      73: goto          101
+      76: astore        4
+      78: aload_3
+      79: ifnull        98
+      82: aload_3
+      83: invokevirtual #199                // Method java/io/InputStream.close:()V
+      86: goto          98
+      89: astore        5
+      91: aload         4
+      93: aload         5
+      95: invokevirtual #203                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+      98: aload         4
+     100: athrow
+     101: ldc           #205                // String 1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f
+     103: invokestatic  #211                // Method java/util/HexFormat.of:()Ljava/util/HexFormat;
+     106: aload_2
+     107: invokevirtual #215                // Method java/security/MessageDigest.digest:()[B
+     110: invokevirtual #219                // Method java/util/HexFormat.formatHex:([B)Ljava/lang/String;
+     113: invokevirtual #93                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     116: ifne          129
+     119: new           #34                 // class java/lang/IllegalStateException
+     122: dup
+     123: ldc           #221                // String curios_runtime_hash_mismatch
+     125: invokespecial #39                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     128: athrow
+     129: goto          144
+     132: astore_2
+     133: new           #34                 // class java/lang/IllegalStateException
+     136: dup
+     137: ldc           #151                // String curios_runtime_hash_unavailable
+     139: aload_2
+     140: invokespecial #154                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+     143: athrow
+     144: return
+    Exception table:
+       from    to  target type
+          34    65    76   Class java/lang/Throwable
+          82    86    89   Class java/lang/Throwable
+          19   129   132   Class java/io/IOException
+          19   129   132   Class java/security/NoSuchAlgorithmException
+
+  private static java.lang.IllegalStateException lambda$verify$0();
+    Code:
+       0: new           #34                 // class java/lang/IllegalStateException
+       3: dup
+       4: ldc           #233                // String curios_mod_missing
+       6: invokespecial #39                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+       9: areturn
+}

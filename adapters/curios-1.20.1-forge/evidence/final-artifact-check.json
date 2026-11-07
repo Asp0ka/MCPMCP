@@ -1,0 +1,36 @@
+{
+  "target": {
+    "mod_id": "curios",
+    "version": "5.14.1+1.20.1",
+    "sha256": "1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f",
+    "jar_path": "D:/Games/mc/Cheat/versions/神秘启旅/mods/[前置][饰品]curios-forge-5.14.1+1.20.1.jar",
+    "minecraft": "1.20.1",
+    "runtime_forge": "47.4.21",
+    "compile_forge": "47.4.28",
+    "java": "17",
+    "provider": "dev.mcpmcp.curios.CuriosProvider",
+    "plugin_id": "mcpmcp.curios",
+    "runtime_acceptance": "not_run_by_this_subagent",
+    "api_audit": "evidence/*.javap.txt"
+  },
+  "adapter_sha256": "b887bd3506eabb2a26f75279a4c2ee19b21c9ac3b05a0329670a1bfebfefe27f",
+  "adapter_bytes": 40136,
+  "build_distribution_identical": true,
+  "distribution_files": [
+    "GUIDE.md",
+    "adapter.jar",
+    "plugin.json"
+  ],
+  "provider": "dev.mcpmcp.curios.CuriosProvider",
+  "class_count": 13,
+  "foreign_or_test_classes": [],
+  "guide_identical": true,
+  "manifest_identical": true,
+  "reobf_minecraft_getter": true,
+  "reobf_native_may_place": true,
+  "reobf_native_may_pickup": true,
+  "does_not_call_mutating_capacity_overload": true,
+  "offline_checks": 152,
+  "game_runtime_tests": "not_run",
+  "installed": false
+}

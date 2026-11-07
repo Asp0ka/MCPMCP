@@ -1,0 +1,2043 @@
+Compiled from "CurioInventoryCapability.java"
+public class top.theillusivec4.curios.common.capability.CurioInventoryCapability$CurioInventoryWrapper implements top.theillusivec4.curios.api.type.capability.ICuriosItemHandler {
+  java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler> curios;
+
+  net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> invalidStacks;
+
+  net.minecraft.world.entity.LivingEntity wearer;
+
+  java.util.Set<top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler> updates;
+
+  public top.theillusivec4.curios.common.capability.CurioInventoryCapability$CurioInventoryWrapper(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_0
+       1: invokespecial #46                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #48                 // class java/util/LinkedHashMap
+       8: dup
+       9: invokespecial #49                 // Method java/util/LinkedHashMap."<init>":()V
+      12: putfield      #51                 // Field curios:Ljava/util/Map;
+      15: aload_0
+      16: invokestatic  #57                 // Method net/minecraft/core/NonNullList.m_122779_:()Lnet/minecraft/core/NonNullList;
+      19: putfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+      22: aload_0
+      23: new           #61                 // class java/util/HashSet
+      26: dup
+      27: invokespecial #62                 // Method java/util/HashSet."<init>":()V
+      30: putfield      #64                 // Field updates:Ljava/util/Set;
+      33: aload_0
+      34: aload_1
+      35: putfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      38: aload_0
+      39: invokevirtual #69                 // Method reset:()V
+      42: return
+
+  public void reset();
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+       4: ifnull        132
+       7: aload_0
+       8: getfield      #51                 // Field curios:Ljava/util/Map;
+      11: invokeinterface #75,  1           // InterfaceMethod java/util/Map.clear:()V
+      16: aload_0
+      17: getfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+      20: invokevirtual #76                 // Method net/minecraft/core/NonNullList.clear:()V
+      23: new           #78                 // class java/util/TreeSet
+      26: dup
+      27: aload_0
+      28: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      31: invokestatic  #84                 // Method top/theillusivec4/curios/api/CuriosApi.getEntitySlots:(Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
+      34: invokeinterface #88,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      39: invokespecial #91                 // Method java/util/TreeSet."<init>":(Ljava/util/Collection;)V
+      42: astore_1
+      43: aload_1
+      44: invokeinterface #97,  1           // InterfaceMethod java/util/SortedSet.iterator:()Ljava/util/Iterator;
+      49: astore_2
+      50: aload_2
+      51: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      56: ifeq          132
+      59: aload_2
+      60: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      65: checkcast     #109                // class top/theillusivec4/curios/api/type/ISlotType
+      68: astore_3
+      69: aload_0
+      70: getfield      #51                 // Field curios:Ljava/util/Map;
+      73: aload_3
+      74: invokeinterface #113,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getIdentifier:()Ljava/lang/String;
+      79: new           #115                // class top/theillusivec4/curios/common/inventory/CurioStacksHandler
+      82: dup
+      83: aload_0
+      84: aload_3
+      85: invokeinterface #113,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getIdentifier:()Ljava/lang/String;
+      90: aload_3
+      91: invokeinterface #119,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getSize:()I
+      96: aload_3
+      97: invokeinterface #122,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.useNativeGui:()Z
+     102: aload_3
+     103: invokeinterface #125,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.hasCosmetic:()Z
+     108: aload_3
+     109: invokeinterface #128,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.canToggleRendering:()Z
+     114: aload_3
+     115: invokeinterface #132,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getDropRule:()Ltop/theillusivec4/curios/api/type/capability/ICurio$DropRule;
+     120: invokespecial #135                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler."<init>":(Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;Ljava/lang/String;IZZZLtop/theillusivec4/curios/api/type/capability/ICurio$DropRule;)V
+     123: invokeinterface #139,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     128: pop
+     129: goto          50
+     132: return
+
+  public int getSlots();
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: aload_0
+       3: getfield      #51                 // Field curios:Ljava/util/Map;
+       6: invokeinterface #88,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      11: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      16: astore_2
+      17: aload_2
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          48
+      26: aload_2
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      35: astore_3
+      36: iload_1
+      37: aload_3
+      38: invokeinterface #152,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getSlots:()I
+      43: iadd
+      44: istore_1
+      45: goto          17
+      48: iload_1
+      49: ireturn
+
+  public int getVisibleSlots();
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: aload_0
+       3: getfield      #51                 // Field curios:Ljava/util/Map;
+       6: invokeinterface #88,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      11: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      16: astore_2
+      17: aload_2
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          57
+      26: aload_2
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      35: astore_3
+      36: aload_3
+      37: invokeinterface #160,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.isVisible:()Z
+      42: ifeq          54
+      45: iload_1
+      46: aload_3
+      47: invokeinterface #152,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getSlots:()I
+      52: iadd
+      53: istore_1
+      54: goto          17
+      57: iload_1
+      58: ireturn
+
+  public java.util.Optional<top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler> getStacksHandler(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field curios:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      13: invokestatic  #173                // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+      16: areturn
+
+  public net.minecraftforge.items.IItemHandlerModifiable getEquippedCurios();
+    Code:
+       0: aload_0
+       1: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+       4: astore_1
+       5: aload_1
+       6: invokeinterface #184,  1          // InterfaceMethod java/util/Map.size:()I
+      11: anewarray     #186                // class net/minecraftforge/items/IItemHandlerModifiable
+      14: astore_2
+      15: iconst_0
+      16: istore_3
+      17: aload_1
+      18: invokeinterface #88,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      23: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      28: astore        4
+      30: aload         4
+      32: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      37: ifeq          74
+      40: aload         4
+      42: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      47: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      50: astore        5
+      52: iload_3
+      53: aload_2
+      54: arraylength
+      55: if_icmpge     71
+      58: aload_2
+      59: iload_3
+      60: aload         5
+      62: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      67: aastore
+      68: iinc          3, 1
+      71: goto          30
+      74: new           #194                // class net/minecraftforge/items/wrapper/CombinedInvWrapper
+      77: dup
+      78: aload_2
+      79: invokespecial #197                // Method net/minecraftforge/items/wrapper/CombinedInvWrapper."<init>":([Lnet/minecraftforge/items/IItemHandlerModifiable;)V
+      82: areturn
+
+  public void setEquippedCurio(java.lang.String, int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+       4: astore        4
+       6: aload         4
+       8: aload_1
+       9: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      14: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      17: astore        5
+      19: aload         5
+      21: ifnull        53
+      24: aload         5
+      26: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      31: astore        6
+      33: iload_2
+      34: aload         6
+      36: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      41: if_icmpge     53
+      44: aload         6
+      46: iload_2
+      47: aload_3
+      48: invokeinterface #209,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+      53: return
+
+  public java.util.Optional<top.theillusivec4.curios.api.SlotResult> findFirstCurio(net.minecraft.world.item.Item);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #236,  0            // InvokeDynamic #0:test:(Lnet/minecraft/world/item/Item;)Ljava/util/function/Predicate;
+       7: invokevirtual #239                // Method findFirstCurio:(Ljava/util/function/Predicate;)Ljava/util/Optional;
+      10: areturn
+
+  public java.util.Optional<top.theillusivec4.curios.api.SlotResult> findFirstCurio(java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+    Code:
+       0: aload_0
+       1: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+       4: astore_2
+       5: aload_2
+       6: invokeinterface #246,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      11: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      16: astore_3
+      17: aload_3
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          182
+      26: aload_3
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #251                // class java/lang/String
+      35: astore        4
+      37: aload_2
+      38: aload         4
+      40: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      45: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      48: astore        5
+      50: aload         5
+      52: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      57: astore        6
+      59: iconst_0
+      60: istore        7
+      62: iload         7
+      64: aload         6
+      66: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      71: if_icmpge     179
+      74: aload         6
+      76: iload         7
+      78: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      83: astore        8
+      85: aload         8
+      87: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      90: ifne          173
+      93: aload_1
+      94: aload         8
+      96: invokeinterface #264,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+     101: ifeq          173
+     104: aload         5
+     106: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     111: astore        9
+     113: new           #269                // class top/theillusivec4/curios/api/SlotResult
+     116: dup
+     117: new           #271                // class top/theillusivec4/curios/api/SlotContext
+     120: dup
+     121: aload         4
+     123: aload_0
+     124: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+     127: iload         7
+     129: iconst_0
+     130: aload         9
+     132: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+     135: iload         7
+     137: if_icmple     160
+     140: aload         9
+     142: iload         7
+     144: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     147: checkcast     #277                // class java/lang/Boolean
+     150: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+     153: ifeq          160
+     156: iconst_1
+     157: goto          161
+     160: iconst_0
+     161: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+     164: aload         8
+     166: invokespecial #288                // Method top/theillusivec4/curios/api/SlotResult."<init>":(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/item/ItemStack;)V
+     169: invokestatic  #291                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+     172: areturn
+     173: iinc          7, 1
+     176: goto          62
+     179: goto          17
+     182: invokestatic  #295                // Method java/util/Optional.empty:()Ljava/util/Optional;
+     185: areturn
+
+  public java.util.List<top.theillusivec4.curios.api.SlotResult> findCurios(net.minecraft.world.item.Item);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #310,  0            // InvokeDynamic #1:test:(Lnet/minecraft/world/item/Item;)Ljava/util/function/Predicate;
+       7: invokevirtual #313                // Method findCurios:(Ljava/util/function/Predicate;)Ljava/util/List;
+      10: areturn
+
+  public java.util.List<top.theillusivec4.curios.api.SlotResult> findCurios(java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+    Code:
+       0: new           #316                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #317                // Method java/util/ArrayList."<init>":()V
+       7: astore_2
+       8: aload_0
+       9: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+      12: astore_3
+      13: aload_3
+      14: invokeinterface #246,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      19: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      24: astore        4
+      26: aload         4
+      28: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      33: ifeq          196
+      36: aload         4
+      38: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      43: checkcast     #251                // class java/lang/String
+      46: astore        5
+      48: aload_3
+      49: aload         5
+      51: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      56: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      59: astore        6
+      61: aload         6
+      63: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      68: astore        7
+      70: iconst_0
+      71: istore        8
+      73: iload         8
+      75: aload         7
+      77: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      82: if_icmpge     193
+      85: aload         7
+      87: iload         8
+      89: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      94: astore        9
+      96: aload         9
+      98: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     101: ifne          187
+     104: aload_1
+     105: aload         9
+     107: invokeinterface #264,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+     112: ifeq          187
+     115: aload         6
+     117: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     122: astore        10
+     124: aload_2
+     125: new           #269                // class top/theillusivec4/curios/api/SlotResult
+     128: dup
+     129: new           #271                // class top/theillusivec4/curios/api/SlotContext
+     132: dup
+     133: aload         5
+     135: aload_0
+     136: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+     139: iload         8
+     141: iconst_0
+     142: aload         10
+     144: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+     147: iload         8
+     149: if_icmple     172
+     152: aload         10
+     154: iload         8
+     156: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     159: checkcast     #277                // class java/lang/Boolean
+     162: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+     165: ifeq          172
+     168: iconst_1
+     169: goto          173
+     172: iconst_0
+     173: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+     176: aload         9
+     178: invokespecial #288                // Method top/theillusivec4/curios/api/SlotResult."<init>":(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/item/ItemStack;)V
+     181: invokeinterface #322,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     186: pop
+     187: iinc          8, 1
+     190: goto          73
+     193: goto          26
+     196: aload_2
+     197: areturn
+
+  public java.util.List<top.theillusivec4.curios.api.SlotResult> findCurios(java.lang.String...);
+    Code:
+       0: new           #316                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #317                // Method java/util/ArrayList."<init>":()V
+       7: astore_2
+       8: new           #61                 // class java/util/HashSet
+      11: dup
+      12: aload_1
+      13: invokestatic  #330                // InterfaceMethod java/util/List.of:([Ljava/lang/Object;)Ljava/util/List;
+      16: invokespecial #331                // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+      19: astore_3
+      20: aload_0
+      21: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+      24: astore        4
+      26: aload         4
+      28: invokeinterface #246,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      33: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      38: astore        5
+      40: aload         5
+      42: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      47: ifeq          211
+      50: aload         5
+      52: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      57: checkcast     #251                // class java/lang/String
+      60: astore        6
+      62: aload_3
+      63: aload         6
+      65: invokeinterface #336,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      70: ifeq          208
+      73: aload         4
+      75: aload         6
+      77: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      82: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      85: astore        7
+      87: aload         7
+      89: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      94: astore        8
+      96: iconst_0
+      97: istore        9
+      99: iload         9
+     101: aload         8
+     103: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+     108: if_icmpge     208
+     111: aload         8
+     113: iload         9
+     115: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     120: astore        10
+     122: aload         10
+     124: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     127: ifne          202
+     130: aload         7
+     132: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     137: astore        11
+     139: aload_2
+     140: new           #269                // class top/theillusivec4/curios/api/SlotResult
+     143: dup
+     144: new           #271                // class top/theillusivec4/curios/api/SlotContext
+     147: dup
+     148: aload         6
+     150: aload_0
+     151: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+     154: iload         9
+     156: iconst_0
+     157: aload         11
+     159: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+     162: iload         9
+     164: if_icmple     187
+     167: aload         11
+     169: iload         9
+     171: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     174: checkcast     #277                // class java/lang/Boolean
+     177: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+     180: ifeq          187
+     183: iconst_1
+     184: goto          188
+     187: iconst_0
+     188: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+     191: aload         10
+     193: invokespecial #288                // Method top/theillusivec4/curios/api/SlotResult."<init>":(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/item/ItemStack;)V
+     196: invokeinterface #322,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     201: pop
+     202: iinc          9, 1
+     205: goto          99
+     208: goto          40
+     211: aload_2
+     212: areturn
+
+  public java.util.Optional<top.theillusivec4.curios.api.SlotResult> findCurio(java.lang.String, int);
+    Code:
+       0: aload_0
+       1: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+       4: astore_3
+       5: aload_3
+       6: aload_1
+       7: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      12: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      15: astore        4
+      17: aload         4
+      19: ifnull        125
+      22: aload         4
+      24: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      29: astore        5
+      31: iload_2
+      32: aload         5
+      34: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      39: if_icmpge     125
+      42: aload         5
+      44: iload_2
+      45: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      50: astore        6
+      52: aload         6
+      54: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      57: ifne          125
+      60: aload         4
+      62: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+      67: astore        7
+      69: new           #269                // class top/theillusivec4/curios/api/SlotResult
+      72: dup
+      73: new           #271                // class top/theillusivec4/curios/api/SlotContext
+      76: dup
+      77: aload_1
+      78: aload_0
+      79: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      82: iload_2
+      83: iconst_0
+      84: aload         7
+      86: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+      89: iload_2
+      90: if_icmple     112
+      93: aload         7
+      95: iload_2
+      96: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      99: checkcast     #277                // class java/lang/Boolean
+     102: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+     105: ifeq          112
+     108: iconst_1
+     109: goto          113
+     112: iconst_0
+     113: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+     116: aload         6
+     118: invokespecial #288                // Method top/theillusivec4/curios/api/SlotResult."<init>":(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/item/ItemStack;)V
+     121: invokestatic  #291                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+     124: areturn
+     125: invokestatic  #295                // Method java/util/Optional.empty:()Ljava/util/Optional;
+     128: areturn
+
+  public java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler> getCurios();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field curios:Ljava/util/Map;
+       4: invokestatic  #349                // Method java/util/Collections.unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+       7: areturn
+
+  public void setCurios(java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #51                 // Field curios:Ljava/util/Map;
+       5: return
+
+  public void growSlotType(java.lang.String, int);
+    Code:
+       0: iload_2
+       1: ifle          18
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #356                // Method getStacksHandler:(Ljava/lang/String;)Ljava/util/Optional;
+       9: iload_2
+      10: invokedynamic #369,  0            // InvokeDynamic #2:accept:(I)Ljava/util/function/Consumer;
+      15: invokevirtual #373                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      18: return
+
+  public void shrinkSlotType(java.lang.String, int);
+    Code:
+       0: iload_2
+       1: ifle          18
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #356                // Method getStacksHandler:(Ljava/lang/String;)Ljava/util/Optional;
+       9: iload_2
+      10: invokedynamic #380,  0            // InvokeDynamic #3:accept:(I)Ljava/util/function/Consumer;
+      15: invokevirtual #373                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      18: return
+
+  public net.minecraft.world.entity.LivingEntity getWearer();
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+       4: areturn
+
+  public void loseInvalidStack(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+       4: aload_1
+       5: invokevirtual #386                // Method net/minecraft/core/NonNullList.add:(Ljava/lang/Object;)Z
+       8: pop
+       9: return
+
+  public void handleInvalidStacks();
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+       4: ifnull        70
+       7: aload_0
+       8: getfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+      11: invokevirtual #390                // Method net/minecraft/core/NonNullList.isEmpty:()Z
+      14: ifne          70
+      17: aload_0
+      18: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      21: astore_2
+      22: aload_2
+      23: instanceof    #392                // class net/minecraft/world/entity/player/Player
+      26: ifeq          50
+      29: aload_2
+      30: checkcast     #392                // class net/minecraft/world/entity/player/Player
+      33: astore_1
+      34: aload_0
+      35: getfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+      38: aload_1
+      39: invokedynamic #401,  0            // InvokeDynamic #4:accept:(Lnet/minecraft/world/entity/player/Player;)Ljava/util/function/Consumer;
+      44: invokevirtual #404                // Method net/minecraft/core/NonNullList.forEach:(Ljava/util/function/Consumer;)V
+      47: goto          63
+      50: aload_0
+      51: getfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+      54: aload_0
+      55: invokedynamic #411,  0            // InvokeDynamic #5:accept:(Ltop/theillusivec4/curios/common/capability/CurioInventoryCapability$CurioInventoryWrapper;)Ljava/util/function/Consumer;
+      60: invokevirtual #404                // Method net/minecraft/core/NonNullList.forEach:(Ljava/util/function/Consumer;)V
+      63: aload_0
+      64: invokestatic  #57                 // Method net/minecraft/core/NonNullList.m_122779_:()Lnet/minecraft/core/NonNullList;
+      67: putfield      #59                 // Field invalidStacks:Lnet/minecraft/core/NonNullList;
+      70: return
+
+  public int getFortuneLevel(net.minecraft.world.level.storage.loot.LootContext);
+    Code:
+       0: iconst_0
+       1: istore_2
+       2: aload_0
+       3: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+       6: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      11: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      16: astore_3
+      17: aload_3
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          124
+      26: aload_3
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #17                 // class java/util/Map$Entry
+      35: astore        4
+      37: aload         4
+      39: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      44: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      47: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      52: astore        5
+      54: iconst_0
+      55: istore        6
+      57: iload         6
+      59: aload         5
+      61: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      66: if_icmpge     121
+      69: iload         6
+      71: istore        7
+      73: iload_2
+      74: aload         5
+      76: iload         6
+      78: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      83: invokestatic  #425                // Method top/theillusivec4/curios/api/CuriosApi.getCurio:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraftforge/common/util/LazyOptional;
+      86: aload_0
+      87: aload         4
+      89: iload         7
+      91: aload_1
+      92: invokedynamic #437,  0            // InvokeDynamic #6:apply:(Ltop/theillusivec4/curios/common/capability/CurioInventoryCapability$CurioInventoryWrapper;Ljava/util/Map$Entry;ILnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraftforge/common/util/NonNullFunction;
+      97: invokevirtual #443                // Method net/minecraftforge/common/util/LazyOptional.map:(Lnet/minecraftforge/common/util/NonNullFunction;)Ljava/util/Optional;
+     100: iconst_0
+     101: invokestatic  #449                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     104: invokevirtual #452                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     107: checkcast     #445                // class java/lang/Integer
+     110: invokevirtual #455                // Method java/lang/Integer.intValue:()I
+     113: iadd
+     114: istore_2
+     115: iinc          6, 1
+     118: goto          57
+     121: goto          17
+     124: iload_2
+     125: ireturn
+
+  public int getLootingLevel(net.minecraft.world.damagesource.DamageSource, net.minecraft.world.entity.LivingEntity, int);
+    Code:
+       0: iconst_0
+       1: istore        4
+       3: aload_0
+       4: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+       7: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      12: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      17: astore        5
+      19: aload         5
+      21: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      26: ifeq          132
+      29: aload         5
+      31: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      36: checkcast     #17                 // class java/util/Map$Entry
+      39: astore        6
+      41: aload         6
+      43: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      48: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      51: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      56: astore        7
+      58: iconst_0
+      59: istore        8
+      61: iload         8
+      63: aload         7
+      65: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      70: if_icmpge     129
+      73: iload         8
+      75: istore        9
+      77: iload         4
+      79: aload         7
+      81: iload         8
+      83: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      88: invokestatic  #425                // Method top/theillusivec4/curios/api/CuriosApi.getCurio:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraftforge/common/util/LazyOptional;
+      91: aload_0
+      92: aload         6
+      94: iload         9
+      96: aload_1
+      97: aload_2
+      98: iload_3
+      99: invokedynamic #471,  0            // InvokeDynamic #7:apply:(Ltop/theillusivec4/curios/common/capability/CurioInventoryCapability$CurioInventoryWrapper;Ljava/util/Map$Entry;ILnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/LivingEntity;I)Lnet/minecraftforge/common/util/NonNullFunction;
+     104: invokevirtual #443                // Method net/minecraftforge/common/util/LazyOptional.map:(Lnet/minecraftforge/common/util/NonNullFunction;)Ljava/util/Optional;
+     107: iconst_0
+     108: invokestatic  #449                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     111: invokevirtual #452                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+     114: checkcast     #445                // class java/lang/Integer
+     117: invokevirtual #455                // Method java/lang/Integer.intValue:()I
+     120: iadd
+     121: istore        4
+     123: iinc          8, 1
+     126: goto          61
+     129: goto          19
+     132: iload         4
+     134: ireturn
+
+  public net.minecraft.nbt.ListTag saveInventory(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokedynamic #485,  0            // InvokeDynamic #8:test:()Ljava/util/function/Predicate;
+       7: invokevirtual #488                // Method saveInventory:(ZLjava/util/function/Predicate;)Lnet/minecraft/nbt/ListTag;
+      10: areturn
+
+  public net.minecraft.nbt.ListTag saveInventory(boolean, java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: invokedynamic #502,  0            // InvokeDynamic #9:test:(Ljava/util/function/Predicate;)Ljava/util/function/BiPredicate;
+       8: invokevirtual #505                // Method saveInventory:(ZLjava/util/function/BiPredicate;)Lnet/minecraft/nbt/ListTag;
+      11: areturn
+
+  public net.minecraft.nbt.ListTag saveInventory(boolean, java.util.function.BiPredicate<net.minecraft.world.item.ItemStack, top.theillusivec4.curios.api.SlotContext>);
+    Code:
+       0: new           #508                // class net/minecraft/nbt/ListTag
+       3: dup
+       4: invokespecial #509                // Method net/minecraft/nbt/ListTag."<init>":()V
+       7: astore_3
+       8: aload_0
+       9: getfield      #51                 // Field curios:Ljava/util/Map;
+      12: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      17: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      22: astore        4
+      24: aload         4
+      26: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      31: ifeq          233
+      34: aload         4
+      36: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      41: checkcast     #17                 // class java/util/Map$Entry
+      44: astore        5
+      46: new           #511                // class net/minecraft/nbt/CompoundTag
+      49: dup
+      50: invokespecial #512                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      53: astore        6
+      55: aload         5
+      57: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      62: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      65: astore        7
+      67: aload         7
+      69: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      74: astore        8
+      76: aload         7
+      78: invokeinterface #515,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      83: astore        9
+      85: aload         5
+      87: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      92: checkcast     #251                // class java/lang/String
+      95: astore        10
+      97: aload         7
+      99: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     104: astore        11
+     106: aload         6
+     108: ldc_w         #520                // String Stacks
+     111: aload_0
+     112: aload         10
+     114: iconst_0
+     115: aload         11
+     117: aload         8
+     119: aload_2
+     120: iload_1
+     121: invokevirtual #524                // Method getFilteredStacksTag:(Ljava/lang/String;ZLnet/minecraft/core/NonNullList;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;Ljava/util/function/BiPredicate;Z)Lnet/minecraft/nbt/CompoundTag;
+     124: invokevirtual #528                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     127: pop
+     128: aload         6
+     130: ldc_w         #530                // String Cosmetics
+     133: aload_0
+     134: aload         10
+     136: iconst_1
+     137: aload         11
+     139: aload         9
+     141: aload_2
+     142: iload_1
+     143: invokevirtual #524                // Method getFilteredStacksTag:(Ljava/lang/String;ZLnet/minecraft/core/NonNullList;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;Ljava/util/function/BiPredicate;Z)Lnet/minecraft/nbt/CompoundTag;
+     146: invokevirtual #528                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     149: pop
+     150: aload         6
+     152: ldc_w         #532                // String Identifier
+     155: aload         5
+     157: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     162: checkcast     #251                // class java/lang/String
+     165: invokevirtual #536                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+     168: aload         7
+     170: invokeinterface #539,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getModifiers:()Ljava/util/Map;
+     175: astore        12
+     177: aload         12
+     179: invokeinterface #540,  1          // InterfaceMethod java/util/Map.isEmpty:()Z
+     184: ifne          223
+     187: new           #508                // class net/minecraft/nbt/ListTag
+     190: dup
+     191: invokespecial #509                // Method net/minecraft/nbt/ListTag."<init>":()V
+     194: astore        13
+     196: aload         12
+     198: aload         7
+     200: aload         13
+     202: invokedynamic #552,  0            // InvokeDynamic #10:accept:(Ltop/theillusivec4/curios/api/type/inventory/ICurioStacksHandler;Lnet/minecraft/nbt/ListTag;)Ljava/util/function/BiConsumer;
+     207: invokeinterface #555,  2          // InterfaceMethod java/util/Map.forEach:(Ljava/util/function/BiConsumer;)V
+     212: aload         6
+     214: ldc_w         #557                // String Modifiers
+     217: aload         13
+     219: invokevirtual #528                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     222: pop
+     223: aload_3
+     224: aload         6
+     226: invokevirtual #560                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+     229: pop
+     230: goto          24
+     233: aload_3
+     234: areturn
+
+  protected net.minecraft.nbt.CompoundTag getFilteredStacksTag(java.lang.String, boolean, net.minecraft.core.NonNullList<java.lang.Boolean>, top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler, java.util.function.BiPredicate<net.minecraft.world.item.ItemStack, top.theillusivec4.curios.api.SlotContext>, boolean);
+    Code:
+       0: new           #508                // class net/minecraft/nbt/ListTag
+       3: dup
+       4: invokespecial #509                // Method net/minecraft/nbt/ListTag."<init>":()V
+       7: astore        7
+       9: iconst_0
+      10: istore        8
+      12: iload         8
+      14: aload         4
+      16: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+      21: if_icmpge     161
+      24: aload         4
+      26: iload         8
+      28: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      33: astore        9
+      35: new           #271                // class top/theillusivec4/curios/api/SlotContext
+      38: dup
+      39: aload_1
+      40: aload_0
+      41: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      44: iload         8
+      46: iload_2
+      47: aload_3
+      48: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+      51: iload         8
+      53: if_icmpge     75
+      56: aload_3
+      57: iload         8
+      59: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      62: checkcast     #277                // class java/lang/Boolean
+      65: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+      68: ifeq          75
+      71: iconst_1
+      72: goto          76
+      75: iconst_0
+      76: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+      79: astore        10
+      81: aload         9
+      83: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      86: ifne          155
+      89: aload         5
+      91: aload         9
+      93: aload         10
+      95: invokeinterface #574,  3          // InterfaceMethod java/util/function/BiPredicate.test:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     100: ifeq          155
+     103: new           #511                // class net/minecraft/nbt/CompoundTag
+     106: dup
+     107: invokespecial #512                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+     110: astore        11
+     112: aload         11
+     114: ldc_w         #576                // String Slot
+     117: iload         8
+     119: invokevirtual #579                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     122: aload         9
+     124: aload         11
+     126: invokevirtual #583                // Method net/minecraft/world/item/ItemStack.m_41739_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+     129: pop
+     130: aload         7
+     132: aload         11
+     134: invokevirtual #560                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+     137: pop
+     138: iload         6
+     140: ifeq          155
+     143: aload         4
+     145: iload         8
+     147: getstatic     #586                // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     150: invokeinterface #209,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+     155: iinc          8, 1
+     158: goto          12
+     161: new           #511                // class net/minecraft/nbt/CompoundTag
+     164: dup
+     165: invokespecial #512                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+     168: astore        8
+     170: aload         8
+     172: ldc_w         #588                // String Items
+     175: aload         7
+     177: invokevirtual #528                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+     180: pop
+     181: aload         8
+     183: ldc_w         #590                // String Size
+     186: aload         4
+     188: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+     193: invokevirtual #579                // Method net/minecraft/nbt/CompoundTag.m_128405_:(Ljava/lang/String;I)V
+     196: aload         8
+     198: areturn
+
+  public void loadInventory(net.minecraft.nbt.ListTag);
+    Code:
+       0: aload_1
+       1: ifnull        310
+       4: iconst_0
+       5: istore_2
+       6: iload_2
+       7: aload_1
+       8: invokevirtual #599                // Method net/minecraft/nbt/ListTag.size:()I
+      11: if_icmpge     310
+      14: aload_1
+      15: iload_2
+      16: invokevirtual #603                // Method net/minecraft/nbt/ListTag.m_128728_:(I)Lnet/minecraft/nbt/CompoundTag;
+      19: astore_3
+      20: aload_3
+      21: ldc_w         #532                // String Identifier
+      24: invokevirtual #607                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+      27: astore        4
+      29: aload_0
+      30: getfield      #51                 // Field curios:Ljava/util/Map;
+      33: aload         4
+      35: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      40: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      43: astore        5
+      45: new           #609                // class net/minecraftforge/items/ItemStackHandler
+      48: dup
+      49: invokespecial #610                // Method net/minecraftforge/items/ItemStackHandler."<init>":()V
+      52: astore        6
+      54: aload         5
+      56: ifnull        142
+      59: aload_3
+      60: ldc_w         #557                // String Modifiers
+      63: bipush        9
+      65: invokevirtual #614                // Method net/minecraft/nbt/CompoundTag.m_128425_:(Ljava/lang/String;I)Z
+      68: ifeq          142
+      71: aload_3
+      72: ldc_w         #557                // String Modifiers
+      75: bipush        10
+      77: invokevirtual #618                // Method net/minecraft/nbt/CompoundTag.m_128437_:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      80: astore        7
+      82: iconst_0
+      83: istore        8
+      85: iload         8
+      87: aload         7
+      89: invokevirtual #599                // Method net/minecraft/nbt/ListTag.size:()I
+      92: if_icmpge     142
+      95: aload         7
+      97: iload         8
+      99: invokevirtual #603                // Method net/minecraft/nbt/ListTag.m_128728_:(I)Lnet/minecraft/nbt/CompoundTag;
+     102: invokestatic  #622                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.m_22212_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+     105: astore        9
+     107: aload         9
+     109: ifnull        136
+     112: aload         5
+     114: invokeinterface #625,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getCachedModifiers:()Ljava/util/Set;
+     119: aload         9
+     121: invokeinterface #626,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     126: pop
+     127: aload         5
+     129: aload         9
+     131: invokeinterface #630,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.addTransientModifier:(Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+     136: iinc          8, 1
+     139: goto          85
+     142: aload_3
+     143: ldc_w         #520                // String Stacks
+     146: invokevirtual #634                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     149: astore        7
+     151: aload         7
+     153: invokevirtual #637                // Method net/minecraft/nbt/CompoundTag.m_128456_:()Z
+     156: ifne          223
+     159: aload         6
+     161: aload         7
+     163: invokevirtual #641                // Method net/minecraftforge/items/ItemStackHandler.deserializeNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+     166: aload         5
+     168: ifnull        193
+     171: aload         5
+     173: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     178: astore        8
+     180: aload_0
+     181: aload         5
+     183: aload         6
+     185: aload         8
+     187: invokevirtual #645                // Method loadStacks:(Ltop/theillusivec4/curios/api/type/inventory/ICurioStacksHandler;Lnet/minecraftforge/items/ItemStackHandler;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;)V
+     190: goto          223
+     193: iconst_0
+     194: istore        8
+     196: iload         8
+     198: aload         6
+     200: invokevirtual #646                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+     203: if_icmpge     223
+     206: aload_0
+     207: aload         6
+     209: iload         8
+     211: invokevirtual #647                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     214: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     217: iinc          8, 1
+     220: goto          196
+     223: aload_3
+     224: ldc_w         #530                // String Cosmetics
+     227: invokevirtual #634                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     230: astore        7
+     232: aload         7
+     234: invokevirtual #637                // Method net/minecraft/nbt/CompoundTag.m_128456_:()Z
+     237: ifne          304
+     240: aload         6
+     242: aload         7
+     244: invokevirtual #641                // Method net/minecraftforge/items/ItemStackHandler.deserializeNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+     247: aload         5
+     249: ifnull        274
+     252: aload         5
+     254: invokeinterface #515,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     259: astore        8
+     261: aload_0
+     262: aload         5
+     264: aload         6
+     266: aload         8
+     268: invokevirtual #645                // Method loadStacks:(Ltop/theillusivec4/curios/api/type/inventory/ICurioStacksHandler;Lnet/minecraftforge/items/ItemStackHandler;Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;)V
+     271: goto          304
+     274: iconst_0
+     275: istore        8
+     277: iload         8
+     279: aload         6
+     281: invokevirtual #646                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+     284: if_icmpge     304
+     287: aload_0
+     288: aload         6
+     290: iload         8
+     292: invokevirtual #647                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     295: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     298: iinc          8, 1
+     301: goto          277
+     304: iinc          2, 1
+     307: goto          6
+     310: return
+
+  public java.util.Set<top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler> getUpdatingInventories();
+    Code:
+       0: aload_0
+       1: getfield      #64                 // Field updates:Ljava/util/Set;
+       4: areturn
+
+  public void addTransientSlotModifiers(com.google.common.collect.Multimap<java.lang.String, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+    Code:
+       0: aload_1
+       1: invokeinterface #667,  1          // InterfaceMethod com/google/common/collect/Multimap.asMap:()Ljava/util/Map;
+       6: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      11: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      16: astore_2
+      17: aload_2
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          121
+      26: aload_2
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #17                 // class java/util/Map$Entry
+      35: astore_3
+      36: aload_3
+      37: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      42: checkcast     #251                // class java/lang/String
+      45: astore        4
+      47: aload_3
+      48: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      53: checkcast     #147                // class java/util/Collection
+      56: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      61: astore        5
+      63: aload         5
+      65: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      70: ifeq          118
+      73: aload         5
+      75: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      80: checkcast     #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+      83: astore        6
+      85: aload_0
+      86: getfield      #51                 // Field curios:Ljava/util/Map;
+      89: aload         4
+      91: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      96: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      99: astore        7
+     101: aload         7
+     103: ifnull        115
+     106: aload         7
+     108: aload         6
+     110: invokeinterface #630,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.addTransientModifier:(Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+     115: goto          63
+     118: goto          17
+     121: return
+
+  public void addPermanentSlotModifiers(com.google.common.collect.Multimap<java.lang.String, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+    Code:
+       0: aload_1
+       1: invokeinterface #667,  1          // InterfaceMethod com/google/common/collect/Multimap.asMap:()Ljava/util/Map;
+       6: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      11: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      16: astore_2
+      17: aload_2
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          121
+      26: aload_2
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #17                 // class java/util/Map$Entry
+      35: astore_3
+      36: aload_3
+      37: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      42: checkcast     #251                // class java/lang/String
+      45: astore        4
+      47: aload_3
+      48: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      53: checkcast     #147                // class java/util/Collection
+      56: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      61: astore        5
+      63: aload         5
+      65: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      70: ifeq          118
+      73: aload         5
+      75: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      80: checkcast     #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+      83: astore        6
+      85: aload_0
+      86: getfield      #51                 // Field curios:Ljava/util/Map;
+      89: aload         4
+      91: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      96: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      99: astore        7
+     101: aload         7
+     103: ifnull        115
+     106: aload         7
+     108: aload         6
+     110: invokeinterface #674,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.addPermanentModifier:(Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+     115: goto          63
+     118: goto          17
+     121: return
+
+  public void removeSlotModifiers(com.google.common.collect.Multimap<java.lang.String, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+    Code:
+       0: aload_1
+       1: invokeinterface #667,  1          // InterfaceMethod com/google/common/collect/Multimap.asMap:()Ljava/util/Map;
+       6: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      11: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      16: astore_2
+      17: aload_2
+      18: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          124
+      26: aload_2
+      27: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #17                 // class java/util/Map$Entry
+      35: astore_3
+      36: aload_3
+      37: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      42: checkcast     #251                // class java/lang/String
+      45: astore        4
+      47: aload_3
+      48: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      53: checkcast     #147                // class java/util/Collection
+      56: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      61: astore        5
+      63: aload         5
+      65: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      70: ifeq          121
+      73: aload         5
+      75: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      80: checkcast     #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+      83: astore        6
+      85: aload_0
+      86: getfield      #51                 // Field curios:Ljava/util/Map;
+      89: aload         4
+      91: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      96: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      99: astore        7
+     101: aload         7
+     103: ifnull        118
+     106: aload         7
+     108: aload         6
+     110: invokevirtual #679                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.m_22209_:()Ljava/util/UUID;
+     113: invokeinterface #683,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.removeModifier:(Ljava/util/UUID;)V
+     118: goto          63
+     121: goto          17
+     124: return
+
+  public void addTransientSlotModifier(java.lang.String, java.util.UUID, java.lang.String, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation);
+    Code:
+       0: invokestatic  #691                // Method com/google/common/collect/LinkedHashMultimap.create:()Lcom/google/common/collect/LinkedHashMultimap;
+       3: astore        7
+       5: aload         7
+       7: aload_1
+       8: new           #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+      11: dup
+      12: aload_2
+      13: aload_3
+      14: dload         4
+      16: aload         6
+      18: invokespecial #694                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier."<init>":(Ljava/util/UUID;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+      21: invokeinterface #696,  3          // InterfaceMethod com/google/common/collect/Multimap.put:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      26: pop
+      27: aload_0
+      28: aload         7
+      30: invokevirtual #698                // Method addTransientSlotModifiers:(Lcom/google/common/collect/Multimap;)V
+      33: return
+
+  public void addPermanentSlotModifier(java.lang.String, java.util.UUID, java.lang.String, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation);
+    Code:
+       0: invokestatic  #691                // Method com/google/common/collect/LinkedHashMultimap.create:()Lcom/google/common/collect/LinkedHashMultimap;
+       3: astore        7
+       5: aload         7
+       7: aload_1
+       8: new           #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+      11: dup
+      12: aload_2
+      13: aload_3
+      14: dload         4
+      16: aload         6
+      18: invokespecial #694                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier."<init>":(Ljava/util/UUID;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+      21: invokeinterface #696,  3          // InterfaceMethod com/google/common/collect/Multimap.put:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      26: pop
+      27: aload_0
+      28: aload         7
+      30: invokevirtual #708                // Method addPermanentSlotModifiers:(Lcom/google/common/collect/Multimap;)V
+      33: return
+
+  public void removeSlotModifier(java.lang.String, java.util.UUID);
+    Code:
+       0: invokestatic  #691                // Method com/google/common/collect/LinkedHashMultimap.create:()Lcom/google/common/collect/LinkedHashMultimap;
+       3: astore_3
+       4: aload_3
+       5: aload_1
+       6: new           #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+       9: dup
+      10: aload_2
+      11: ldc_w         #712                // String
+      14: dconst_0
+      15: getstatic     #715                // Field net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.ADDITION:Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+      18: invokespecial #694                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier."<init>":(Ljava/util/UUID;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+      21: invokeinterface #696,  3          // InterfaceMethod com/google/common/collect/Multimap.put:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      26: pop
+      27: aload_0
+      28: aload_3
+      29: invokevirtual #717                // Method removeSlotModifiers:(Lcom/google/common/collect/Multimap;)V
+      32: return
+
+  public void clearSlotModifiers();
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field curios:Ljava/util/Map;
+       4: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+       9: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      14: astore_1
+      15: aload_1
+      16: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          51
+      24: aload_1
+      25: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      30: checkcast     #17                 // class java/util/Map$Entry
+      33: astore_2
+      34: aload_2
+      35: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      40: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      43: invokeinterface #721,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.clearModifiers:()V
+      48: goto          15
+      51: return
+
+  public void clearCachedSlotModifiers();
+    Code:
+       0: invokestatic  #727                // Method com/google/common/collect/HashMultimap.create:()Lcom/google/common/collect/HashMultimap;
+       3: astore_1
+       4: aload_0
+       5: getfield      #51                 // Field curios:Ljava/util/Map;
+       8: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      13: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      18: astore_2
+      19: aload_2
+      20: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      25: ifeq          282
+      28: aload_2
+      29: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #17                 // class java/util/Map$Entry
+      37: astore_3
+      38: aload_3
+      39: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      44: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      47: astore        4
+      49: aload         4
+      51: invokeinterface #625,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getCachedModifiers:()Ljava/util/Set;
+      56: astore        5
+      58: aload         5
+      60: invokeinterface #728,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+      65: ifne          279
+      68: aload         4
+      70: invokeinterface #192,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      75: astore        6
+      77: aload         4
+      79: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+      84: astore        7
+      86: aload_3
+      87: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      92: checkcast     #251                // class java/lang/String
+      95: astore        8
+      97: iconst_0
+      98: istore        9
+     100: iload         9
+     102: aload         6
+     104: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+     109: if_icmpge     279
+     112: aload         6
+     114: iload         9
+     116: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     121: astore        10
+     123: aload         10
+     125: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     128: ifne          273
+     131: new           #271                // class top/theillusivec4/curios/api/SlotContext
+     134: dup
+     135: aload         8
+     137: aload_0
+     138: invokevirtual #730                // Method getWearer:()Lnet/minecraft/world/entity/LivingEntity;
+     141: iload         9
+     143: iconst_0
+     144: aload         7
+     146: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+     149: iload         9
+     151: if_icmple     174
+     154: aload         7
+     156: iload         9
+     158: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     161: checkcast     #277                // class java/lang/Boolean
+     164: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+     167: ifeq          174
+     170: iconst_1
+     171: goto          175
+     174: iconst_0
+     175: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+     178: astore        11
+     180: aload         11
+     182: invokestatic  #734                // Method top/theillusivec4/curios/api/CuriosApi.getSlotUuid:(Ltop/theillusivec4/curios/api/SlotContext;)Ljava/util/UUID;
+     185: astore        12
+     187: aload         11
+     189: aload         12
+     191: aload         10
+     193: invokestatic  #738                // Method top/theillusivec4/curios/api/CuriosApi.getAttributeModifiers:(Ltop/theillusivec4/curios/api/SlotContext;Ljava/util/UUID;Lnet/minecraft/world/item/ItemStack;)Lcom/google/common/collect/Multimap;
+     196: astore        13
+     198: aload         13
+     200: invokeinterface #739,  1          // InterfaceMethod com/google/common/collect/Multimap.keySet:()Ljava/util/Set;
+     205: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     210: astore        14
+     212: aload         14
+     214: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     219: ifeq          273
+     222: aload         14
+     224: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     229: checkcast     #743                // class net/minecraft/world/entity/ai/attributes/Attribute
+     232: astore        15
+     234: aload         15
+     236: instanceof    #745                // class top/theillusivec4/curios/api/SlotAttribute
+     239: ifeq          270
+     242: aload         15
+     244: checkcast     #745                // class top/theillusivec4/curios/api/SlotAttribute
+     247: astore        16
+     249: aload_1
+     250: aload         16
+     252: invokevirtual #746                // Method top/theillusivec4/curios/api/SlotAttribute.getIdentifier:()Ljava/lang/String;
+     255: aload         13
+     257: aload         15
+     259: invokeinterface #749,  2          // InterfaceMethod com/google/common/collect/Multimap.get:(Ljava/lang/Object;)Ljava/util/Collection;
+     264: invokeinterface #753,  3          // InterfaceMethod com/google/common/collect/Multimap.putAll:(Ljava/lang/Object;Ljava/lang/Iterable;)Z
+     269: pop
+     270: goto          212
+     273: iinc          9, 1
+     276: goto          100
+     279: goto          19
+     282: aload_1
+     283: invokeinterface #667,  1          // InterfaceMethod com/google/common/collect/Multimap.asMap:()Ljava/util/Map;
+     288: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+     293: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     298: astore_2
+     299: aload_2
+     300: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     305: ifeq          416
+     308: aload_2
+     309: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     314: checkcast     #17                 // class java/util/Map$Entry
+     317: astore_3
+     318: aload_3
+     319: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     324: checkcast     #251                // class java/lang/String
+     327: astore        4
+     329: aload_0
+     330: getfield      #51                 // Field curios:Ljava/util/Map;
+     333: aload         4
+     335: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     340: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+     343: astore        5
+     345: aload         5
+     347: ifnull        413
+     350: aload_3
+     351: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     356: checkcast     #147                // class java/util/Collection
+     359: invokeinterface #148,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     364: astore        6
+     366: aload         6
+     368: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     373: ifeq          406
+     376: aload         6
+     378: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     383: checkcast     #24                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+     386: astore        7
+     388: aload         5
+     390: invokeinterface #625,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getCachedModifiers:()Ljava/util/Set;
+     395: aload         7
+     397: invokeinterface #756,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+     402: pop
+     403: goto          366
+     406: aload         5
+     408: invokeinterface #759,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.clearCachedModifiers:()V
+     413: goto          299
+     416: return
+
+  public com.google.common.collect.Multimap<java.lang.String, net.minecraft.world.entity.ai.attributes.AttributeModifier> getModifiers();
+    Code:
+       0: invokestatic  #727                // Method com/google/common/collect/HashMultimap.create:()Lcom/google/common/collect/HashMultimap;
+       3: astore_1
+       4: aload_0
+       5: getfield      #51                 // Field curios:Ljava/util/Map;
+       8: invokeinterface #418,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      13: invokeinterface #249,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      18: astore_2
+      19: aload_2
+      20: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      25: ifeq          76
+      28: aload_2
+      29: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      34: checkcast     #17                 // class java/util/Map$Entry
+      37: astore_3
+      38: aload_1
+      39: aload_3
+      40: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      45: checkcast     #251                // class java/lang/String
+      48: aload_3
+      49: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      54: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+      57: invokeinterface #539,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getModifiers:()Ljava/util/Map;
+      62: invokeinterface #88,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      67: invokeinterface #753,  3          // InterfaceMethod com/google/common/collect/Multimap.putAll:(Ljava/lang/Object;Ljava/lang/Iterable;)Z
+      72: pop
+      73: goto          19
+      76: aload_1
+      77: areturn
+
+  private void loadStacks(top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler, net.minecraftforge.items.ItemStackHandler, top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler);
+    Code:
+       0: iconst_0
+       1: istore        4
+       3: iload         4
+       5: aload_1
+       6: invokeinterface #152,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getSlots:()I
+      11: if_icmpge     74
+      14: iload         4
+      16: aload_2
+      17: invokevirtual #646                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+      20: if_icmpge     74
+      23: aload_3
+      24: iload         4
+      26: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      31: astore        5
+      33: aload_2
+      34: iload         4
+      36: invokevirtual #647                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      39: astore        6
+      41: aload         5
+      43: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      46: ifeq          62
+      49: aload_3
+      50: iload         4
+      52: aload         6
+      54: invokeinterface #209,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+      59: goto          68
+      62: aload_0
+      63: aload         6
+      65: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+      68: iinc          4, 1
+      71: goto          3
+      74: iload         4
+      76: aload_2
+      77: invokevirtual #646                // Method net/minecraftforge/items/ItemStackHandler.getSlots:()I
+      80: if_icmpge     99
+      83: aload_0
+      84: aload_2
+      85: iload         4
+      87: invokevirtual #647                // Method net/minecraftforge/items/ItemStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      90: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+      93: iinc          4, 1
+      96: goto          74
+      99: return
+
+  public net.minecraft.nbt.Tag writeTag();
+    Code:
+       0: new           #511                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #512                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: astore_1
+       8: new           #508                // class net/minecraft/nbt/ListTag
+      11: dup
+      12: invokespecial #509                // Method net/minecraft/nbt/ListTag."<init>":()V
+      15: astore_2
+      16: aload_0
+      17: invokevirtual #181                // Method getCurios:()Ljava/util/Map;
+      20: aload_2
+      21: invokedynamic #781,  0            // InvokeDynamic #11:accept:(Lnet/minecraft/nbt/ListTag;)Ljava/util/function/BiConsumer;
+      26: invokeinterface #555,  2          // InterfaceMethod java/util/Map.forEach:(Ljava/util/function/BiConsumer;)V
+      31: aload_1
+      32: ldc_w         #783                // String Curios
+      35: aload_2
+      36: invokevirtual #528                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      39: pop
+      40: aload_1
+      41: areturn
+
+  public void readTag(net.minecraft.nbt.Tag);
+    Code:
+       0: aload_1
+       1: checkcast     #511                // class net/minecraft/nbt/CompoundTag
+       4: ldc_w         #783                // String Curios
+       7: bipush        10
+       9: invokevirtual #618                // Method net/minecraft/nbt/CompoundTag.m_128437_:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      12: astore_2
+      13: aload_0
+      14: invokevirtual #730                // Method getWearer:()Lnet/minecraft/world/entity/LivingEntity;
+      17: astore_3
+      18: aload_2
+      19: invokevirtual #787                // Method net/minecraft/nbt/ListTag.isEmpty:()Z
+      22: ifne          369
+      25: new           #48                 // class java/util/LinkedHashMap
+      28: dup
+      29: invokespecial #49                 // Method java/util/LinkedHashMap."<init>":()V
+      32: astore        4
+      34: new           #789                // class java/util/TreeMap
+      37: dup
+      38: invokespecial #790                // Method java/util/TreeMap."<init>":()V
+      41: astore        5
+      43: new           #78                 // class java/util/TreeSet
+      46: dup
+      47: aload_0
+      48: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      51: invokestatic  #84                 // Method top/theillusivec4/curios/api/CuriosApi.getEntitySlots:(Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
+      54: invokeinterface #88,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      59: invokespecial #91                 // Method java/util/TreeSet."<init>":(Ljava/util/Collection;)V
+      62: astore        6
+      64: aload         6
+      66: invokeinterface #97,  1           // InterfaceMethod java/util/SortedSet.iterator:()Ljava/util/Iterator;
+      71: astore        7
+      73: aload         7
+      75: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      80: ifeq          158
+      83: aload         7
+      85: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      90: checkcast     #109                // class top/theillusivec4/curios/api/type/ISlotType
+      93: astore        8
+      95: aload         5
+      97: aload         8
+      99: new           #115                // class top/theillusivec4/curios/common/inventory/CurioStacksHandler
+     102: dup
+     103: aload_0
+     104: aload         8
+     106: invokeinterface #113,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getIdentifier:()Ljava/lang/String;
+     111: aload         8
+     113: invokeinterface #119,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getSize:()I
+     118: aload         8
+     120: invokeinterface #122,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.useNativeGui:()Z
+     125: aload         8
+     127: invokeinterface #125,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.hasCosmetic:()Z
+     132: aload         8
+     134: invokeinterface #128,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.canToggleRendering:()Z
+     139: aload         8
+     141: invokeinterface #132,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getDropRule:()Ltop/theillusivec4/curios/api/type/capability/ICurio$DropRule;
+     146: invokespecial #135                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler."<init>":(Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;Ljava/lang/String;IZZZLtop/theillusivec4/curios/api/type/capability/ICurio$DropRule;)V
+     149: invokeinterface #795,  3          // InterfaceMethod java/util/SortedMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     154: pop
+     155: goto          73
+     158: iconst_0
+     159: istore        7
+     161: iload         7
+     163: aload_2
+     164: invokevirtual #599                // Method net/minecraft/nbt/ListTag.size:()I
+     167: if_icmpge     349
+     170: aload_2
+     171: iload         7
+     173: invokevirtual #603                // Method net/minecraft/nbt/ListTag.m_128728_:(I)Lnet/minecraft/nbt/CompoundTag;
+     176: astore        8
+     178: aload         8
+     180: ldc_w         #532                // String Identifier
+     183: invokevirtual #607                // Method net/minecraft/nbt/CompoundTag.m_128461_:(Ljava/lang/String;)Ljava/lang/String;
+     186: astore        9
+     188: new           #115                // class top/theillusivec4/curios/common/inventory/CurioStacksHandler
+     191: dup
+     192: aload_0
+     193: aload         9
+     195: invokespecial #798                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler."<init>":(Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;Ljava/lang/String;)V
+     198: astore        10
+     200: aload         10
+     202: aload         8
+     204: ldc_w         #800                // String StacksHandler
+     207: invokevirtual #634                // Method net/minecraft/nbt/CompoundTag.m_128469_:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     210: invokevirtual #801                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.deserializeNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+     213: aload_0
+     214: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+     217: invokestatic  #84                 // Method top/theillusivec4/curios/api/CuriosApi.getEntitySlots:(Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
+     220: aload         9
+     222: invokeinterface #167,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     227: checkcast     #109                // class top/theillusivec4/curios/api/type/ISlotType
+     230: invokestatic  #173                // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+     233: astore        11
+     235: aload         11
+     237: aload_0
+     238: aload         10
+     240: aload         5
+     242: invokedynamic #811,  0            // InvokeDynamic #12:accept:(Ltop/theillusivec4/curios/common/capability/CurioInventoryCapability$CurioInventoryWrapper;Ltop/theillusivec4/curios/common/inventory/CurioStacksHandler;Ljava/util/SortedMap;)Ljava/util/function/Consumer;
+     247: invokevirtual #373                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+     250: aload         11
+     252: invokevirtual #812                // Method java/util/Optional.isEmpty:()Z
+     255: ifeq          343
+     258: aload         10
+     260: invokevirtual #813                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     263: astore        12
+     265: aload         10
+     267: invokevirtual #814                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     270: astore        13
+     272: iconst_0
+     273: istore        14
+     275: iload         14
+     277: aload         12
+     279: invokeinterface #205,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getSlots:()I
+     284: if_icmpge     343
+     287: aload         12
+     289: iload         14
+     291: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     296: astore        15
+     298: aload         15
+     300: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     303: ifne          312
+     306: aload_0
+     307: aload         15
+     309: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     312: aload         13
+     314: iload         14
+     316: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     321: astore        16
+     323: aload         16
+     325: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     328: ifne          337
+     331: aload_0
+     332: aload         16
+     334: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     337: iinc          14, 1
+     340: goto          275
+     343: iinc          7, 1
+     346: goto          161
+     349: aload         5
+     351: aload         4
+     353: invokedynamic #824,  0            // InvokeDynamic #13:accept:(Ljava/util/Map;)Ljava/util/function/BiConsumer;
+     358: invokeinterface #825,  2          // InterfaceMethod java/util/SortedMap.forEach:(Ljava/util/function/BiConsumer;)V
+     363: aload_0
+     364: aload         4
+     366: invokevirtual #827                // Method setCurios:(Ljava/util/Map;)V
+     369: return
+
+  private static void lambda$readTag$13(java.util.Map, top.theillusivec4.curios.api.type.ISlotType, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #113,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getIdentifier:()Ljava/lang/String;
+       7: aload_2
+       8: invokeinterface #139,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      13: pop
+      14: return
+
+  private void lambda$readTag$12(top.theillusivec4.curios.common.inventory.CurioStacksHandler, java.util.SortedMap, top.theillusivec4.curios.api.type.ISlotType);
+    Code:
+       0: new           #115                // class top/theillusivec4/curios/common/inventory/CurioStacksHandler
+       3: dup
+       4: aload_0
+       5: aload_3
+       6: invokeinterface #113,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getIdentifier:()Ljava/lang/String;
+      11: aload_3
+      12: invokeinterface #119,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getSize:()I
+      17: aload_3
+      18: invokeinterface #122,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.useNativeGui:()Z
+      23: aload_3
+      24: invokeinterface #125,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.hasCosmetic:()Z
+      29: aload_3
+      30: invokeinterface #128,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.canToggleRendering:()Z
+      35: aload_3
+      36: invokeinterface #132,  1          // InterfaceMethod top/theillusivec4/curios/api/type/ISlotType.getDropRule:()Ltop/theillusivec4/curios/api/type/capability/ICurio$DropRule;
+      41: invokespecial #135                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler."<init>":(Ltop/theillusivec4/curios/api/type/capability/ICuriosItemHandler;Ljava/lang/String;IZZZLtop/theillusivec4/curios/api/type/capability/ICurio$DropRule;)V
+      44: astore        4
+      46: aload         4
+      48: aload_1
+      49: invokevirtual #842                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.copyModifiers:(Ltop/theillusivec4/curios/api/type/inventory/ICurioStacksHandler;)V
+      52: iconst_0
+      53: istore        5
+      55: iload         5
+      57: aload         4
+      59: invokevirtual #843                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getSlots:()I
+      62: if_icmpge     211
+      65: iload         5
+      67: aload_1
+      68: invokevirtual #843                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getSlots:()I
+      71: if_icmpge     211
+      74: aload_1
+      75: invokevirtual #813                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+      78: iload         5
+      80: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+      85: astore        6
+      87: aload         6
+      89: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      92: ifne          135
+      95: aload         4
+      97: invokevirtual #813                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     100: iload         5
+     102: aload         6
+     104: invokeinterface #847,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.isItemValid:(ILnet/minecraft/world/item/ItemStack;)Z
+     109: ifeq          129
+     112: aload         4
+     114: invokevirtual #813                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     117: iload         5
+     119: aload         6
+     121: invokeinterface #209,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+     126: goto          135
+     129: aload_0
+     130: aload         6
+     132: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     135: aload_1
+     136: invokevirtual #814                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     139: iload         5
+     141: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     146: astore        7
+     148: aload         7
+     150: invokevirtual #262                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     153: ifne          205
+     156: aload         4
+     158: invokevirtual #813                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     161: iload         5
+     163: aload         7
+     165: invokeinterface #847,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.isItemValid:(ILnet/minecraft/world/item/ItemStack;)Z
+     170: ifeq          199
+     173: aload         4
+     175: invokevirtual #814                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     178: iload         5
+     180: aload_1
+     181: invokevirtual #814                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     184: iload         5
+     186: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     191: invokeinterface #209,  3          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.setStackInSlot:(ILnet/minecraft/world/item/ItemStack;)V
+     196: goto          205
+     199: aload_0
+     200: aload         7
+     202: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     205: iinc          5, 1
+     208: goto          55
+     211: iload         5
+     213: aload_1
+     214: invokevirtual #843                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getSlots:()I
+     217: if_icmpge     256
+     220: aload_0
+     221: aload_1
+     222: invokevirtual #813                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     225: iload         5
+     227: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     232: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     235: aload_0
+     236: aload_1
+     237: invokevirtual #814                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getCosmeticStacks:()Ltop/theillusivec4/curios/api/type/inventory/IDynamicStackHandler;
+     240: iload         5
+     242: invokeinterface #257,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/IDynamicStackHandler.getStackInSlot:(I)Lnet/minecraft/world/item/ItemStack;
+     247: invokevirtual #649                // Method loseInvalidStack:(Lnet/minecraft/world/item/ItemStack;)V
+     250: iinc          5, 1
+     253: goto          211
+     256: aload_2
+     257: aload_3
+     258: aload         4
+     260: invokeinterface #795,  3          // InterfaceMethod java/util/SortedMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     265: pop
+     266: iconst_0
+     267: istore        6
+     269: iload         6
+     271: aload         4
+     273: invokevirtual #848                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     276: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+     279: if_icmpge     323
+     282: iload         6
+     284: aload_1
+     285: invokevirtual #848                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     288: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+     291: if_icmpge     323
+     294: aload         4
+     296: invokevirtual #848                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     299: iload         6
+     301: aload_1
+     302: invokevirtual #848                // Method top/theillusivec4/curios/common/inventory/CurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+     305: iload         6
+     307: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+     310: checkcast     #277                // class java/lang/Boolean
+     313: invokevirtual #852                // Method net/minecraft/core/NonNullList.set:(ILjava/lang/Object;)Ljava/lang/Object;
+     316: pop
+     317: iinc          6, 1
+     320: goto          269
+     323: return
+
+  private static void lambda$writeTag$11(net.minecraft.nbt.ListTag, java.lang.String, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler);
+    Code:
+       0: new           #511                // class net/minecraft/nbt/CompoundTag
+       3: dup
+       4: invokespecial #512                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+       7: astore_3
+       8: aload_3
+       9: ldc_w         #800                // String StacksHandler
+      12: aload_2
+      13: invokeinterface #860,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.serializeNBT:()Lnet/minecraft/nbt/CompoundTag;
+      18: invokevirtual #528                // Method net/minecraft/nbt/CompoundTag.m_128365_:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      21: pop
+      22: aload_3
+      23: ldc_w         #532                // String Identifier
+      26: aload_1
+      27: invokevirtual #536                // Method net/minecraft/nbt/CompoundTag.m_128359_:(Ljava/lang/String;Ljava/lang/String;)V
+      30: aload_0
+      31: aload_3
+      32: invokevirtual #560                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+      35: pop
+      36: return
+
+  private static void lambda$saveInventory$10(top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler, net.minecraft.nbt.ListTag, java.util.UUID, net.minecraft.world.entity.ai.attributes.AttributeModifier);
+    Code:
+       0: aload_0
+       1: invokeinterface #864,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getPermanentModifiers:()Ljava/util/Set;
+       6: aload_3
+       7: invokeinterface #336,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      12: ifne          24
+      15: aload_1
+      16: aload_3
+      17: invokevirtual #867                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.m_22219_:()Lnet/minecraft/nbt/CompoundTag;
+      20: invokevirtual #560                // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+      23: pop
+      24: return
+
+  private static boolean lambda$saveInventory$9(java.util.function.Predicate, net.minecraft.world.item.ItemStack, top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #264,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+       7: ireturn
+
+  private static boolean lambda$saveInventory$8(net.minecraft.world.item.ItemStack);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  private java.lang.Integer lambda$getLootingLevel$7(java.util.Map$Entry, int, net.minecraft.world.damagesource.DamageSource, net.minecraft.world.entity.LivingEntity, int, top.theillusivec4.curios.api.type.capability.ICurio);
+    Code:
+       0: aload_1
+       1: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       6: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+       9: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+      14: astore        7
+      16: aload         6
+      18: new           #271                // class top/theillusivec4/curios/api/SlotContext
+      21: dup
+      22: aload_1
+      23: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      28: checkcast     #251                // class java/lang/String
+      31: aload_0
+      32: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      35: iload_2
+      36: iconst_0
+      37: aload         7
+      39: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+      42: iload_2
+      43: if_icmple     65
+      46: aload         7
+      48: iload_2
+      49: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      52: checkcast     #277                // class java/lang/Boolean
+      55: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+      58: ifeq          65
+      61: iconst_1
+      62: goto          66
+      65: iconst_0
+      66: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+      69: aload_3
+      70: aload         4
+      72: iload         5
+      74: invokeinterface #873,  5          // InterfaceMethod top/theillusivec4/curios/api/type/capability/ICurio.getLootingLevel:(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/damagesource/DamageSource;Lnet/minecraft/world/entity/LivingEntity;I)I
+      79: invokestatic  #449                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      82: areturn
+
+  private java.lang.Integer lambda$getFortuneLevel$6(java.util.Map$Entry, int, net.minecraft.world.level.storage.loot.LootContext, top.theillusivec4.curios.api.type.capability.ICurio);
+    Code:
+       0: aload_1
+       1: invokeinterface #421,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       6: checkcast     #150                // class top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler
+       9: invokeinterface #267,  1          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.getRenders:()Lnet/minecraft/core/NonNullList;
+      14: astore        5
+      16: aload         4
+      18: new           #271                // class top/theillusivec4/curios/api/SlotContext
+      21: dup
+      22: aload_1
+      23: invokeinterface #518,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      28: checkcast     #251                // class java/lang/String
+      31: aload_0
+      32: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      35: iload_2
+      36: iconst_0
+      37: aload         5
+      39: invokevirtual #272                // Method net/minecraft/core/NonNullList.size:()I
+      42: iload_2
+      43: if_icmple     65
+      46: aload         5
+      48: iload_2
+      49: invokevirtual #275                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      52: checkcast     #277                // class java/lang/Boolean
+      55: invokevirtual #280                // Method java/lang/Boolean.booleanValue:()Z
+      58: ifeq          65
+      61: iconst_1
+      62: goto          66
+      65: iconst_0
+      66: invokespecial #285                // Method top/theillusivec4/curios/api/SlotContext."<init>":(Ljava/lang/String;Lnet/minecraft/world/entity/LivingEntity;IZZ)V
+      69: aload_3
+      70: invokeinterface #880,  3          // InterfaceMethod top/theillusivec4/curios/api/type/capability/ICurio.getFortuneLevel:(Ltop/theillusivec4/curios/api/SlotContext;Lnet/minecraft/world/level/storage/loot/LootContext;)I
+      75: invokestatic  #449                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      78: areturn
+
+  private void lambda$handleInvalidStacks$5(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+       4: aload_1
+       5: fconst_1
+       6: invokevirtual #884                // Method net/minecraft/world/entity/LivingEntity.m_5552_:(Lnet/minecraft/world/item/ItemStack;F)Lnet/minecraft/world/entity/item/ItemEntity;
+       9: astore_2
+      10: aload_0
+      11: getfield      #66                 // Field wearer:Lnet/minecraft/world/entity/LivingEntity;
+      14: invokevirtual #888                // Method net/minecraft/world/entity/LivingEntity.m_217043_:()Lnet/minecraft/util/RandomSource;
+      17: astore_3
+      18: aload_2
+      19: ifnull        80
+      22: aload_2
+      23: aload_2
+      24: invokevirtual #894                // Method net/minecraft/world/entity/item/ItemEntity.m_20184_:()Lnet/minecraft/world/phys/Vec3;
+      27: aload_3
+      28: invokeinterface #900,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      33: aload_3
+      34: invokeinterface #900,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      39: fsub
+      40: ldc_w         #901                // float 0.1f
+      43: fmul
+      44: f2d
+      45: aload_3
+      46: invokeinterface #900,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      51: ldc_w         #902                // float 0.05f
+      54: fmul
+      55: f2d
+      56: aload_3
+      57: invokeinterface #900,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      62: aload_3
+      63: invokeinterface #900,  1          // InterfaceMethod net/minecraft/util/RandomSource.m_188501_:()F
+      68: fsub
+      69: ldc_w         #901                // float 0.1f
+      72: fmul
+      73: f2d
+      74: invokevirtual #908                // Method net/minecraft/world/phys/Vec3.m_82520_:(DDD)Lnet/minecraft/world/phys/Vec3;
+      77: invokevirtual #912                // Method net/minecraft/world/entity/item/ItemEntity.m_20256_:(Lnet/minecraft/world/phys/Vec3;)V
+      80: return
+
+  private static void lambda$handleInvalidStacks$4(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #922                // Method net/minecraftforge/items/ItemHandlerHelper.giveItemToPlayer:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+       5: return
+
+  private static void lambda$shrinkSlotType$3(int, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokeinterface #926,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.shrink:(I)V
+       7: return
+
+  private static void lambda$growSlotType$2(int, top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokeinterface #929,  2          // InterfaceMethod top/theillusivec4/curios/api/type/inventory/ICurioStacksHandler.grow:(I)V
+       7: return
+
+  private static boolean lambda$findCurios$1(net.minecraft.world.item.Item, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokevirtual #933                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: if_acmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  private static boolean lambda$findFirstCurio$0(net.minecraft.world.item.Item, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokevirtual #933                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: if_acmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+}

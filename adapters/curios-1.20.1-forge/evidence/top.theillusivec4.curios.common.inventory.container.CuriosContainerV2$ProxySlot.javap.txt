@@ -1,0 +1,49 @@
+Compiled from "CuriosContainerV2.java"
+final class top.theillusivec4.curios.common.inventory.container.CuriosContainerV2$ProxySlot extends java.lang.Record {
+  private final int page;
+
+  private final net.minecraft.world.inventory.Slot slot;
+
+  private top.theillusivec4.curios.common.inventory.container.CuriosContainerV2$ProxySlot(int, net.minecraft.world.inventory.Slot);
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method java/lang/Record."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #24                 // Field page:I
+       9: aload_0
+      10: aload_2
+      11: putfield      #26                 // Field slot:Lnet/minecraft/world/inventory/Slot;
+      14: return
+
+  public final java.lang.String toString();
+    Code:
+       0: aload_0
+       1: invokedynamic #44,  0             // InvokeDynamic #0:toString:(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot;)Ljava/lang/String;
+       6: areturn
+
+  public final int hashCode();
+    Code:
+       0: aload_0
+       1: invokedynamic #49,  0             // InvokeDynamic #0:hashCode:(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot;)I
+       6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #54,  0             // InvokeDynamic #0:equals:(Ltop/theillusivec4/curios/common/inventory/container/CuriosContainerV2$ProxySlot;Ljava/lang/Object;)Z
+       7: ireturn
+
+  public int page();
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field page:I
+       4: ireturn
+
+  public net.minecraft.world.inventory.Slot slot();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field slot:Lnet/minecraft/world/inventory/Slot;
+       4: areturn
+}

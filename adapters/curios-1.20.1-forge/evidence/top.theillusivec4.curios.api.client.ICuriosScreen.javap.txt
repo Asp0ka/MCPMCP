@@ -1,0 +1,3 @@
+Compiled from "ICuriosScreen.java"
+public interface top.theillusivec4.curios.api.client.ICuriosScreen {
+}

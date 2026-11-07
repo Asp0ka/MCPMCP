@@ -1,0 +1,305 @@
+Compiled from "CuriosApi.java"
+public final class top.theillusivec4.curios.api.CuriosApi {
+  private static final org.slf4j.Logger LOGGER;
+
+  public static final java.lang.String MODID;
+
+  private static top.theillusivec4.curios.api.type.util.IIconHelper iconHelper;
+
+  private static top.theillusivec4.curios.api.type.util.ICuriosHelper curiosHelper;
+
+  private static top.theillusivec4.curios.api.type.util.ISlotHelper slotHelper;
+
+  public top.theillusivec4.curios.api.CuriosApi();
+    Code:
+       0: aload_0
+       1: invokespecial #36                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void registerCurio(net.minecraft.world.item.Item, top.theillusivec4.curios.api.type.capability.ICurioItem);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: return
+
+  public static java.util.Optional<top.theillusivec4.curios.api.type.ISlotType> getSlot(java.lang.String, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #56                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       5: invokestatic  #59                 // Method getSlot:(Ljava/lang/String;Z)Ljava/util/Optional;
+       8: areturn
+
+  public static java.util.Optional<top.theillusivec4.curios.api.type.ISlotType> getSlot(java.lang.String, boolean);
+    Code:
+       0: iload_1
+       1: invokestatic  #67                 // Method getSlots:(Z)Ljava/util/Map;
+       4: aload_0
+       5: invokeinterface #73,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #75                 // class top/theillusivec4/curios/api/type/ISlotType
+      13: invokestatic  #81                 // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+      16: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getSlots(net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: invokevirtual #56                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       4: invokestatic  #67                 // Method getSlots:(Z)Ljava/util/Map;
+       7: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getSlots(boolean);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #90                 // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+       6: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getPlayerSlots(net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: invokevirtual #56                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       4: invokestatic  #93                 // Method getPlayerSlots:(Z)Ljava/util/Map;
+       7: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getPlayerSlots(boolean);
+    Code:
+       0: getstatic     #99                 // Field net/minecraft/world/entity/EntityType.f_20532_:Lnet/minecraft/world/entity/EntityType;
+       3: iload_0
+       4: invokestatic  #103                // Method getEntitySlots:(Lnet/minecraft/world/entity/EntityType;Z)Ljava/util/Map;
+       7: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getPlayerSlots(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: invokestatic  #108                // Method getEntitySlots:(Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/Map;
+       4: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getEntitySlots(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_0
+       1: ifnull        18
+       4: aload_0
+       5: invokevirtual #117                // Method net/minecraft/world/entity/LivingEntity.m_6095_:()Lnet/minecraft/world/entity/EntityType;
+       8: aload_0
+       9: invokevirtual #121                // Method net/minecraft/world/entity/LivingEntity.m_9236_:()Lnet/minecraft/world/level/Level;
+      12: invokestatic  #124                // Method getEntitySlots:(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)Ljava/util/Map;
+      15: goto          21
+      18: invokestatic  #90                 // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+      21: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getEntitySlots(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #56                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       5: invokestatic  #103                // Method getEntitySlots:(Lnet/minecraft/world/entity/EntityType;Z)Ljava/util/Map;
+       8: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getEntitySlots(net.minecraft.world.entity.EntityType<?>, boolean);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #90                 // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+       6: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getItemStackSlots(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #56                 // Method net/minecraft/world/level/Level.m_5776_:()Z
+       5: invokestatic  #136                // Method getItemStackSlots:(Lnet/minecraft/world/item/ItemStack;Z)Ljava/util/Map;
+       8: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getItemStackSlots(net.minecraft.world.item.ItemStack, boolean);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #90                 // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+       6: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getItemStackSlots(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #90                 // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+       6: areturn
+
+  public static net.minecraftforge.common.util.LazyOptional<top.theillusivec4.curios.api.type.capability.ICurio> getCurio(net.minecraft.world.item.ItemStack);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #150                // Method net/minecraftforge/common/util/LazyOptional.empty:()Lnet/minecraftforge/common/util/LazyOptional;
+       6: areturn
+
+  public static net.minecraftforge.common.capabilities.ICapabilityProvider createCurioProvider(top.theillusivec4.curios.api.type.capability.ICurio);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: getstatic     #158                // Field net/minecraft/world/item/Items.f_41852_:Lnet/minecraft/world/item/Item;
+       6: invokevirtual #164                // Method net/minecraft/world/item/Item.m_7968_:()Lnet/minecraft/world/item/ItemStack;
+       9: areturn
+
+  public static net.minecraftforge.common.util.LazyOptional<top.theillusivec4.curios.api.type.capability.ICuriosItemHandler> getCuriosInventory(net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #150                // Method net/minecraftforge/common/util/LazyOptional.empty:()Lnet/minecraftforge/common/util/LazyOptional;
+       6: areturn
+
+  public static boolean isStackValid(top.theillusivec4.curios.api.SlotContext, net.minecraft.world.item.ItemStack);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: iconst_0
+       4: ireturn
+
+  public static com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getAttributeModifiers(top.theillusivec4.curios.api.SlotContext, java.util.UUID, net.minecraft.world.item.ItemStack);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #181                // Method com/google/common/collect/HashMultimap.create:()Lcom/google/common/collect/HashMultimap;
+       6: areturn
+
+  public static void addSlotModifier(com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier>, java.lang.String, java.util.UUID, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: return
+
+  public static void addSlotModifier(net.minecraft.world.item.ItemStack, java.lang.String, java.lang.String, java.util.UUID, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation, java.lang.String);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: return
+
+  public static void addModifier(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.ai.attributes.Attribute, java.lang.String, java.util.UUID, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation, java.lang.String);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: return
+
+  public static void registerCurioPredicate(net.minecraft.resources.ResourceLocation, java.util.function.Predicate<top.theillusivec4.curios.api.SlotResult>);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: return
+
+  public static java.util.Optional<java.util.function.Predicate<top.theillusivec4.curios.api.SlotResult>> getCurioPredicate(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #215                // Method java/util/Optional.empty:()Ljava/util/Optional;
+       6: areturn
+
+  public static java.util.Map<net.minecraft.resources.ResourceLocation, java.util.function.Predicate<top.theillusivec4.curios.api.SlotResult>> getCurioPredicates();
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #90                 // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+       6: areturn
+
+  public static boolean testCurioPredicates(java.util.Set<net.minecraft.resources.ResourceLocation>, top.theillusivec4.curios.api.SlotResult);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: iconst_1
+       4: ireturn
+
+  public static java.util.UUID getSlotUuid(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: invokestatic  #233                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
+       6: areturn
+
+  public static void broadcastCurioBreakEvent(top.theillusivec4.curios.api.SlotContext);
+    Code:
+       0: invokestatic  #43                 // Method apiError:()V
+       3: return
+
+  static void apiError();
+    Code:
+       0: getstatic     #237                // Field LOGGER:Lorg/slf4j/Logger;
+       3: ldc           #239                // String Missing Curios API implementation!
+       5: invokeinterface #245,  2          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;)V
+      10: return
+
+  public static java.util.Optional<top.theillusivec4.curios.api.type.ISlotType> getSlot(java.lang.String);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: invokestatic  #59                 // Method getSlot:(Ljava/lang/String;Z)Ljava/util/Optional;
+       5: areturn
+
+  public static net.minecraft.resources.ResourceLocation getSlotIcon(java.lang.String);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: invokestatic  #59                 // Method getSlot:(Ljava/lang/String;Z)Ljava/util/Optional;
+       5: invokedynamic #274,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      10: invokevirtual #277                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      13: new           #279                // class net/minecraft/resources/ResourceLocation
+      16: dup
+      17: ldc           #26                 // String curios
+      19: ldc_w         #281                // String slot/empty_curio_slot
+      22: invokespecial #284                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      25: invokevirtual #287                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      28: checkcast     #279                // class net/minecraft/resources/ResourceLocation
+      31: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getSlots();
+    Code:
+       0: iconst_0
+       1: invokestatic  #67                 // Method getSlots:(Z)Ljava/util/Map;
+       4: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getEntitySlots(net.minecraft.world.entity.EntityType<?>);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: invokestatic  #103                // Method getEntitySlots:(Lnet/minecraft/world/entity/EntityType;Z)Ljava/util/Map;
+       5: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getPlayerSlots();
+    Code:
+       0: iconst_0
+       1: invokestatic  #93                 // Method getPlayerSlots:(Z)Ljava/util/Map;
+       4: areturn
+
+  public static java.util.Map<java.lang.String, top.theillusivec4.curios.api.type.ISlotType> getItemStackSlots(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #298                // Method net/minecraftforge/fml/loading/FMLLoader.getDist:()Lnet/minecraftforge/api/distmarker/Dist;
+       4: getstatic     #304                // Field net/minecraftforge/api/distmarker/Dist.CLIENT:Lnet/minecraftforge/api/distmarker/Dist;
+       7: if_acmpne     14
+      10: iconst_1
+      11: goto          15
+      14: iconst_0
+      15: invokestatic  #136                // Method getItemStackSlots:(Lnet/minecraft/world/item/ItemStack;Z)Ljava/util/Map;
+      18: areturn
+
+  public static void setIconHelper(top.theillusivec4.curios.api.type.util.IIconHelper);
+    Code:
+       0: getstatic     #310                // Field iconHelper:Ltop/theillusivec4/curios/api/type/util/IIconHelper;
+       3: ifnonnull     10
+       6: aload_0
+       7: putstatic     #310                // Field iconHelper:Ltop/theillusivec4/curios/api/type/util/IIconHelper;
+      10: return
+
+  public static top.theillusivec4.curios.api.type.util.IIconHelper getIconHelper();
+    Code:
+       0: getstatic     #310                // Field iconHelper:Ltop/theillusivec4/curios/api/type/util/IIconHelper;
+       3: areturn
+
+  public static void setCuriosHelper(top.theillusivec4.curios.api.type.util.ICuriosHelper);
+    Code:
+       0: getstatic     #317                // Field curiosHelper:Ltop/theillusivec4/curios/api/type/util/ICuriosHelper;
+       3: ifnonnull     10
+       6: aload_0
+       7: putstatic     #317                // Field curiosHelper:Ltop/theillusivec4/curios/api/type/util/ICuriosHelper;
+      10: return
+
+  public static top.theillusivec4.curios.api.type.util.ICuriosHelper getCuriosHelper();
+    Code:
+       0: getstatic     #317                // Field curiosHelper:Ltop/theillusivec4/curios/api/type/util/ICuriosHelper;
+       3: areturn
+
+  public static top.theillusivec4.curios.api.type.util.ISlotHelper getSlotHelper();
+    Code:
+       0: getstatic     #325                // Field slotHelper:Ltop/theillusivec4/curios/api/type/util/ISlotHelper;
+       3: areturn
+
+  public static void setSlotHelper(top.theillusivec4.curios.api.type.util.ISlotHelper);
+    Code:
+       0: aload_0
+       1: putstatic     #325                // Field slotHelper:Ltop/theillusivec4/curios/api/type/util/ISlotHelper;
+       4: return
+
+  static {};
+    Code:
+       0: invokestatic  #334                // Method com/mojang/logging/LogUtils.getLogger:()Lorg/slf4j/Logger;
+       3: putstatic     #237                // Field LOGGER:Lorg/slf4j/Logger;
+       6: return
+}

@@ -1,0 +1,151 @@
+Compiled from "NetworkHandler.java"
+public class top.theillusivec4.curios.common.network.NetworkHandler {
+  private static final java.lang.String PTC_VERSION;
+
+  public static net.minecraftforge.network.simple.SimpleChannel INSTANCE;
+
+  private static int id;
+
+  public top.theillusivec4.curios.common.network.NetworkHandler();
+    Code:
+       0: aload_0
+       1: invokespecial #37                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void register();
+    Code:
+       0: new           #42                 // class net/minecraft/resources/ResourceLocation
+       3: dup
+       4: ldc           #44                 // String curios
+       6: ldc           #46                 // String main
+       8: invokespecial #49                 // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+      11: invokestatic  #53                 // Method net/minecraftforge/network/NetworkRegistry$ChannelBuilder.named:(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraftforge/network/NetworkRegistry$ChannelBuilder;
+      14: invokedynamic #72,  0             // InvokeDynamic #0:get:()Ljava/util/function/Supplier;
+      19: invokevirtual #76                 // Method net/minecraftforge/network/NetworkRegistry$ChannelBuilder.networkProtocolVersion:(Ljava/util/function/Supplier;)Lnet/minecraftforge/network/NetworkRegistry$ChannelBuilder;
+      22: ldc           #29                 // String 1
+      24: invokedynamic #90,  0             // InvokeDynamic #1:test:(Ljava/lang/String;)Ljava/util/function/Predicate;
+      29: invokevirtual #94                 // Method net/minecraftforge/network/NetworkRegistry$ChannelBuilder.clientAcceptedVersions:(Ljava/util/function/Predicate;)Lnet/minecraftforge/network/NetworkRegistry$ChannelBuilder;
+      32: ldc           #29                 // String 1
+      34: invokedynamic #90,  0             // InvokeDynamic #1:test:(Ljava/lang/String;)Ljava/util/function/Predicate;
+      39: invokevirtual #97                 // Method net/minecraftforge/network/NetworkRegistry$ChannelBuilder.serverAcceptedVersions:(Ljava/util/function/Predicate;)Lnet/minecraftforge/network/NetworkRegistry$ChannelBuilder;
+      42: invokevirtual #101                // Method net/minecraftforge/network/NetworkRegistry$ChannelBuilder.simpleChannel:()Lnet/minecraftforge/network/simple/SimpleChannel;
+      45: putstatic     #103                // Field INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+      48: ldc           #105                // class top/theillusivec4/curios/common/network/client/CPacketOpenCurios
+      50: invokedynamic #117,  0            // InvokeDynamic #2:accept:()Ljava/util/function/BiConsumer;
+      55: invokedynamic #129,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+      60: invokedynamic #136,  0            // InvokeDynamic #4:accept:()Ljava/util/function/BiConsumer;
+      65: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      68: ldc           #141                // class top/theillusivec4/curios/common/network/client/CPacketOpenVanilla
+      70: invokedynamic #147,  0            // InvokeDynamic #5:accept:()Ljava/util/function/BiConsumer;
+      75: invokedynamic #153,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+      80: invokedynamic #159,  0            // InvokeDynamic #7:accept:()Ljava/util/function/BiConsumer;
+      85: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+      88: ldc           #161                // class top/theillusivec4/curios/common/network/client/CPacketScroll
+      90: invokedynamic #167,  0            // InvokeDynamic #8:accept:()Ljava/util/function/BiConsumer;
+      95: invokedynamic #173,  0            // InvokeDynamic #9:apply:()Ljava/util/function/Function;
+     100: invokedynamic #179,  0            // InvokeDynamic #10:accept:()Ljava/util/function/BiConsumer;
+     105: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     108: ldc           #181                // class top/theillusivec4/curios/common/network/client/CPacketDestroy
+     110: invokedynamic #187,  0            // InvokeDynamic #11:accept:()Ljava/util/function/BiConsumer;
+     115: invokedynamic #193,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+     120: invokedynamic #199,  0            // InvokeDynamic #13:accept:()Ljava/util/function/BiConsumer;
+     125: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     128: ldc           #201                // class top/theillusivec4/curios/common/network/client/CPacketToggleRender
+     130: invokedynamic #207,  0            // InvokeDynamic #14:accept:()Ljava/util/function/BiConsumer;
+     135: invokedynamic #213,  0            // InvokeDynamic #15:apply:()Ljava/util/function/Function;
+     140: invokedynamic #219,  0            // InvokeDynamic #16:accept:()Ljava/util/function/BiConsumer;
+     145: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     148: ldc           #221                // class top/theillusivec4/curios/common/network/client/CPacketPage
+     150: invokedynamic #227,  0            // InvokeDynamic #17:accept:()Ljava/util/function/BiConsumer;
+     155: invokedynamic #233,  0            // InvokeDynamic #18:apply:()Ljava/util/function/Function;
+     160: invokedynamic #239,  0            // InvokeDynamic #19:accept:()Ljava/util/function/BiConsumer;
+     165: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     168: ldc           #241                // class top/theillusivec4/curios/common/network/client/CPacketToggleCosmetics
+     170: invokedynamic #247,  0            // InvokeDynamic #20:accept:()Ljava/util/function/BiConsumer;
+     175: invokedynamic #253,  0            // InvokeDynamic #21:apply:()Ljava/util/function/Function;
+     180: invokedynamic #259,  0            // InvokeDynamic #22:accept:()Ljava/util/function/BiConsumer;
+     185: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     188: ldc_w         #261                // class top/theillusivec4/curios/common/network/server/sync/SPacketSyncStack
+     191: invokedynamic #267,  0            // InvokeDynamic #23:accept:()Ljava/util/function/BiConsumer;
+     196: invokedynamic #273,  0            // InvokeDynamic #24:apply:()Ljava/util/function/Function;
+     201: invokedynamic #279,  0            // InvokeDynamic #25:accept:()Ljava/util/function/BiConsumer;
+     206: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     209: ldc_w         #281                // class top/theillusivec4/curios/common/network/server/SPacketScroll
+     212: invokedynamic #287,  0            // InvokeDynamic #26:accept:()Ljava/util/function/BiConsumer;
+     217: invokedynamic #293,  0            // InvokeDynamic #27:apply:()Ljava/util/function/Function;
+     222: invokedynamic #299,  0            // InvokeDynamic #28:accept:()Ljava/util/function/BiConsumer;
+     227: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     230: ldc_w         #301                // class top/theillusivec4/curios/common/network/server/sync/SPacketSyncCurios
+     233: invokedynamic #307,  0            // InvokeDynamic #29:accept:()Ljava/util/function/BiConsumer;
+     238: invokedynamic #313,  0            // InvokeDynamic #30:apply:()Ljava/util/function/Function;
+     243: invokedynamic #319,  0            // InvokeDynamic #31:accept:()Ljava/util/function/BiConsumer;
+     248: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     251: ldc_w         #321                // class top/theillusivec4/curios/common/network/server/SPacketBreak
+     254: invokedynamic #327,  0            // InvokeDynamic #32:accept:()Ljava/util/function/BiConsumer;
+     259: invokedynamic #333,  0            // InvokeDynamic #33:apply:()Ljava/util/function/Function;
+     264: invokedynamic #339,  0            // InvokeDynamic #34:accept:()Ljava/util/function/BiConsumer;
+     269: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     272: ldc_w         #341                // class top/theillusivec4/curios/common/network/server/SPacketGrabbedItem
+     275: invokedynamic #347,  0            // InvokeDynamic #35:accept:()Ljava/util/function/BiConsumer;
+     280: invokedynamic #353,  0            // InvokeDynamic #36:apply:()Ljava/util/function/Function;
+     285: invokedynamic #359,  0            // InvokeDynamic #37:accept:()Ljava/util/function/BiConsumer;
+     290: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     293: ldc_w         #361                // class top/theillusivec4/curios/common/network/server/SPacketSetIcons
+     296: invokedynamic #367,  0            // InvokeDynamic #38:accept:()Ljava/util/function/BiConsumer;
+     301: invokedynamic #373,  0            // InvokeDynamic #39:apply:()Ljava/util/function/Function;
+     306: invokedynamic #379,  0            // InvokeDynamic #40:accept:()Ljava/util/function/BiConsumer;
+     311: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     314: ldc_w         #381                // class top/theillusivec4/curios/common/network/server/sync/SPacketSyncRender
+     317: invokedynamic #387,  0            // InvokeDynamic #41:accept:()Ljava/util/function/BiConsumer;
+     322: invokedynamic #393,  0            // InvokeDynamic #42:apply:()Ljava/util/function/Function;
+     327: invokedynamic #399,  0            // InvokeDynamic #43:accept:()Ljava/util/function/BiConsumer;
+     332: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     335: ldc_w         #401                // class top/theillusivec4/curios/common/network/server/sync/SPacketSyncModifiers
+     338: invokedynamic #407,  0            // InvokeDynamic #44:accept:()Ljava/util/function/BiConsumer;
+     343: invokedynamic #413,  0            // InvokeDynamic #45:apply:()Ljava/util/function/Function;
+     348: invokedynamic #419,  0            // InvokeDynamic #46:accept:()Ljava/util/function/BiConsumer;
+     353: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     356: ldc_w         #421                // class top/theillusivec4/curios/common/network/server/sync/SPacketSyncData
+     359: invokedynamic #427,  0            // InvokeDynamic #47:accept:()Ljava/util/function/BiConsumer;
+     364: invokedynamic #433,  0            // InvokeDynamic #48:apply:()Ljava/util/function/Function;
+     369: invokedynamic #439,  0            // InvokeDynamic #49:accept:()Ljava/util/function/BiConsumer;
+     374: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     377: ldc_w         #441                // class top/theillusivec4/curios/common/network/server/SPacketPage
+     380: invokedynamic #447,  0            // InvokeDynamic #50:accept:()Ljava/util/function/BiConsumer;
+     385: invokedynamic #453,  0            // InvokeDynamic #51:apply:()Ljava/util/function/Function;
+     390: invokedynamic #459,  0            // InvokeDynamic #52:accept:()Ljava/util/function/BiConsumer;
+     395: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     398: ldc_w         #461                // class top/theillusivec4/curios/common/network/server/SPacketQuickMove
+     401: invokedynamic #467,  0            // InvokeDynamic #53:accept:()Ljava/util/function/BiConsumer;
+     406: invokedynamic #473,  0            // InvokeDynamic #54:apply:()Ljava/util/function/Function;
+     411: invokedynamic #479,  0            // InvokeDynamic #55:accept:()Ljava/util/function/BiConsumer;
+     416: invokestatic  #139                // Method register:(Ljava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)V
+     419: return
+
+  private static <M> void register(java.lang.Class<M>, java.util.function.BiConsumer<M, net.minecraft.network.FriendlyByteBuf>, java.util.function.Function<net.minecraft.network.FriendlyByteBuf, M>, java.util.function.BiConsumer<M, java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>>);
+    Code:
+       0: getstatic     #103                // Field INSTANCE:Lnet/minecraftforge/network/simple/SimpleChannel;
+       3: getstatic     #482                // Field id:I
+       6: dup
+       7: iconst_1
+       8: iadd
+       9: putstatic     #482                // Field id:I
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: aload_3
+      16: invokevirtual #488                // Method net/minecraftforge/network/simple/SimpleChannel.registerMessage:(ILjava/lang/Class;Ljava/util/function/BiConsumer;Ljava/util/function/Function;Ljava/util/function/BiConsumer;)Lnet/minecraftforge/network/simple/IndexedMessageCodec$MessageHandler;
+      19: pop
+      20: return
+
+  private static java.lang.String lambda$register$0();
+    Code:
+       0: ldc           #29                 // String 1
+       2: areturn
+
+  static {};
+    Code:
+       0: iconst_0
+       1: putstatic     #482                // Field id:I
+       4: return
+}

@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.curios",
+  "mod_id": "curios",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "5.14.1+1.20.1",
+  "target_sha256": "1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f",
+  "actions": []
+}

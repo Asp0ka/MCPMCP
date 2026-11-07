@@ -106,12 +106,17 @@ metadata:
 
 可选 Java 插件按目标 JAR 的完整 SHA-256 与实际版本绑定，安装于 `MCPMCP-Plugin/<mod-id>-<短hash>/`，需该实例本地开启 `trustJavaPlugins` 并重启。查询根 kind（如 `jei`、`rs`、`botania`）先取合同；JEI 用 `jei.categories`/`jei.recipes`/`jei.recipe`，填料 `jei.transfer` 需已开容器并先 `dry_run`。
 
+回答“是否适配”或扩展实现范围时，先核对当前源码注册、发布清单和实际验收记录，分别说明独立适配、间接读取与未实现能力；字段如 `includes_curios` 只证明上游法术管理器包含饰品来源，不证明通用饰品槽读取、穿戴或拓展技能已实现。通用 API 接入、拓展新增数据和拓展专属主动技能分别列范围，避免把已交付插件数量写成整个模组生态的覆盖承诺。
+
 - `jei.transfer` 的 `submitted` 只说明交给 JEI 处理器；读 `jei.transfer` 回执和容器槽位才算填料。JEI 15.20 无完成回调，必须读槽位。
 - RS 网格、精妙存储/背包、更多熔炉等菜单型查询要求真实已打开菜单；不在菜单时返回 `available=false`，不要推断服务端库存。
 - 精妙/熔炉 quick_move 合同v2要求 `expected_stack_hash`，从同次observer的 `data.slots[].item.stack_hash` 获取，并一起绑定menu_id/menu_token/state_id、item_id/count；包含普通NBT、ForgeCaps和完整count。旧指纹拒绝后重新观察，不用同ID/count猜身份。背包开启合成升级时，quick_move遵循该模组的升级优先路由，不承诺固定目的槽；读回实际role，定向放置用container.move。
 - 灵灾/术士/新生魔艺/铁咒/植物魔法/无尽贪婪的配方可读客户端 RecipeManager；空页 complete=false 必须按 next_cursor 续查，不能断言为空。查看器额外动态配方也可查各自 JEI 分类。整合包可能改写配方，验收以实时配方为准，不能照搬 JAR 默认 JSON。
 - 泛型配方（如Quark的`slab_to_block`）`outputs`是全部候选变体，当前变体看`displayed_outputs`/`slots[].displayed`；配方句柄必须沿用原查询焦点，查过别的物品也不能改变旧句柄。
 - 模组键位冲突不得靠改用户键位解决；插件用该模组自身的客户端输入入口发单次脉冲，再按效果、冷却、法力读回判定。Traveloptics调用Iron原生入口时也必须先精确核验Iron依赖版本/full hash，不能只绑定附属自身JAR。submitted但法力不足不算施法失败重发理由；先确认资源与冷却，满足正常条件后再独立提交。
+- Curios独立插件 `mcpmcp.curios` 已支持5.14.1+1.20.1 V2；先 `observe curios` 读闭合合同，`curios.slots` 无GUI读取动态普通/外观槽及拓展identifier，`curios.menu`取session/menu/state与真实当前页槽，`curios.candidates`只查指定背包物品的客户端原生谓词。不要硬编码ring数量或用46+index猜槽号，页外ProxySlot不能点击，外观页也可能混入无外观支持的功能槽。
+- Curios写动作为normal/packet，dry_run默认true。`curios.swap`只做hotbar0..8与当前页真实CurioSlot单次SWAP，intent为equip/unequip/exchange，两侧ID/count/完整stack_hash连同identifier/index/cosmetic必填，空栈也要精确hash。非hotbar先core container.move定向暂存再刷新。保留原生标签、重复限制、绑定诅咒和事件；未知包装器只读，不直接写capability或增减槽位。
+- Curios开关显式组织：原已开目标菜单保持；原关闭先curios.open→读回→操作/读回→curios.close→读回，其他界面冲突停止。page仅相邻，切页/切外观后重读session；render.set与cosmetics.set用expected_boolean+value防盲切，pending时先观察，交送不确定勿换UUID重发。Curios泛用饰品支持不等于附属主动技能覆盖；显示标志false也不等于非空外观饰品消失或功能停用。
 - 插件返回的业务错误现在会原样上报，不再变成 `unknown_observation`；看到 `not_in_world` 先进入世界。
 
 ## 插件

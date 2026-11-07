@@ -1,0 +1,75 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+group = 'dev.mcpmcp.adapters'
+version = '0.1.0'
+java { toolchain.languageVersion = JavaLanguageVersion.of(17) }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 17 }
+repositories { mavenCentral() }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+def platformRoot = file('../..')
+def targetJar = providers.gradleProperty('curiosJar').map { file(it) }.getOrElse(file('D:/Games/mc/Cheat/versions/神秘启旅/mods/[前置][饰品]curios-forge-5.14.1+1.20.1.jar'))
+def expectedHash = '1e817919a35b37cf30524aaec73f0ca5130452f23f168f844854df282eb8e51f'
+if (!targetJar.isFile()) throw new GradleException('Provide -PcuriosJar=<exact Curios 5.14.1+1.20.1 JAR>')
+if (java.security.MessageDigest.getInstance('SHA-256').digest(targetJar.bytes).encodeHex().toString() != expectedHash) throw new GradleException('Curios target SHA-256 mismatch')
+// Use a local alias because the deployed filename has a translated prefix.
+def localRepo = layout.projectDirectory.dir('.gradle/target-dependency').asFile
+localRepo.mkdirs()
+def alias = new File(localRepo, 'curios-5.14.1+1.20.1.jar')
+if (!alias.isFile() || !java.util.Arrays.equals(alias.bytes, targetJar.bytes)) alias.bytes = targetJar.bytes
+repositories { flatDir { dirs localRepo } }
+def mappedCurios = fg.deobf('local.mcpmcp.' + expectedHash + ':curios:5.14.1+1.20.1')
+dependencies {
+ minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+ compileOnly mappedCurios
+ testImplementation mappedCurios
+ compileOnly files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
+ compileOnly 'com.google.code.gson:gson:2.10'
+ testImplementation 'com.google.code.gson:gson:2.10'
+}
+jar {
+ archiveFileName = 'adapter.jar'
+ manifest { attributes 'Implementation-Title':'MCPMCP Curios adapter', 'Implementation-Version':project.version }
+ preserveFileTimestamps = false
+ reproducibleFileOrder = true
+}
+jar.finalizedBy 'reobfJar'
+tasks.register('adapterContractTest', JavaExec) {
+ dependsOn testClasses
+ classpath = sourceSets.test.runtimeClasspath
+ mainClass = 'dev.mcpmcp.curios.AdapterTest'
+ workingDir = layout.buildDirectory.dir('contract-test-run').get().asFile
+ systemProperty 'adapter.projectDir', projectDir.absolutePath
+ systemProperty 'adapter.targetJar', targetJar.absolutePath
+ systemProperty 'file.encoding', 'UTF-8'
+ doFirst { workingDir.mkdirs() }
+}
+check.dependsOn adapterContractTest
+tasks.register('stageDistribution', Copy) {
+ dependsOn 'reobfJar', 'check'
+ from(tasks.named('jar').flatMap { it.archiveFile })
+ from('plugin.json', 'GUIDE.md')
+ into layout.projectDirectory.dir('distribution')
+}
+tasks.register('verifyDistribution') {
+ dependsOn 'stageDistribution'
+ doLast {
+  def built = tasks.named('jar').get().archiveFile.get().asFile
+  def staged = file('distribution/adapter.jar')
+  if (!java.util.Arrays.equals(built.bytes, staged.bytes)) throw new GradleException('Distribution JAR differs from reobf output')
+  ['plugin.json', 'GUIDE.md'].each { name ->
+   if (!java.util.Arrays.equals(file(name).bytes, file('distribution/'+name).bytes)) throw new GradleException('Staged document differs: '+name)
+  }
+  if (new java.util.HashSet(java.util.Arrays.asList(file('distribution').list())) != ['adapter.jar','plugin.json','GUIDE.md'].toSet()) throw new GradleException('Unexpected distribution files')
+  def zip = new java.util.zip.ZipFile(staged)
+  try {
+   def service = zip.getEntry('META-INF/services/dev.mcpmcp.api.McpmcpPlugin')
+   if (service == null || zip.getInputStream(service).getText('UTF-8').trim() != 'dev.mcpmcp.curios.CuriosProvider') throw new GradleException('Incorrect provider service')
+   zip.entries().each { entry ->
+    if (entry.name.endsWith('.class') && (!entry.name.startsWith('dev/mcpmcp/curios/') || entry.name.contains('Test') || entry.name.contains('Host'))) throw new GradleException('Foreign dependency or test class in adapter: '+entry.name)
+   }
+  } finally { zip.close() }
+  def sha = java.security.MessageDigest.getInstance('SHA-256').digest(staged.bytes).encodeHex().toString()
+  logger.lifecycle('Verified reobf distribution SHA-256: '+sha)
+ }
+}
+tasks.named('build') { dependsOn 'verifyDistribution' }
