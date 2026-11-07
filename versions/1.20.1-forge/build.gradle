@@ -1,0 +1,6 @@
+plugins { id 'net.minecraftforge.gradle' }
+base { archivesName = 'mcpmcp-1.20.1-forge' }
+minecraft { mappings channel: 'official', version: '1.20.1' }
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'; implementation project(':core'); implementation project(':plugin-api') }
+jar { from(project(':core').sourceSets.main.output); from(project(':plugin-api').sourceSets.main.output); manifest { attributes 'Specification-Title':'MCP Minecraft Plus', 'Implementation-Version':project.version } }
+jar.finalizedBy('reobfJar')

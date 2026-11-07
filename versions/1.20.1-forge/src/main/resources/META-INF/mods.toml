@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+[[mods]]
+modId="mcpmcp"
+version="0.1.0"
+displayName="MCP Minecraft Plus"
+displayTest="IGNORE_ALL_VERSION"
+description="Client automation and extensible MCP operations, without a recipe-viewer dependency."
+[[dependencies.mcpmcp]]
+modId="forge"
+mandatory=true
+versionRange="[47.4.28,48)"
+ordering="NONE"
+side="CLIENT"
+[[dependencies.mcpmcp]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="CLIENT"
