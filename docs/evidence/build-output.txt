@@ -1,0 +1,128 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :assemble UP-TO-DATE
+> Task :check UP-TO-DATE
+> Task :build UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :core:assemble UP-TO-DATE
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+
+> Task :core:contractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+CoreTest: 56 checks passed
+
+> Task :core:pluginStepTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+PluginStepTest passed
+
+> Task :core:pluginValidationTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+PluginValidationTest passed 14
+
+> Task :core:test UP-TO-DATE
+> Task :core:check
+> Task :core:build
+> Task :plugin-api:compileJava UP-TO-DATE
+> Task :plugin-api:processResources NO-SOURCE
+> Task :plugin-api:classes UP-TO-DATE
+> Task :plugin-api:jar UP-TO-DATE
+> Task :plugin-api:assemble UP-TO-DATE
+> Task :plugin-api:compileTestJava NO-SOURCE
+> Task :plugin-api:processTestResources NO-SOURCE
+> Task :plugin-api:testClasses UP-TO-DATE
+> Task :plugin-api:test NO-SOURCE
+> Task :plugin-api:check UP-TO-DATE
+> Task :plugin-api:build UP-TO-DATE
+> Task :versions:compileJava NO-SOURCE
+> Task :versions:processResources NO-SOURCE
+> Task :versions:classes UP-TO-DATE
+> Task :versions:jar UP-TO-DATE
+> Task :versions:assemble UP-TO-DATE
+> Task :versions:compileTestJava NO-SOURCE
+> Task :versions:processTestResources NO-SOURCE
+> Task :versions:testClasses UP-TO-DATE
+> Task :versions:test NO-SOURCE
+> Task :versions:check UP-TO-DATE
+> Task :versions:build UP-TO-DATE
+> Task :versions:1.20.1-forge:compileJava UP-TO-DATE
+> Task :versions:1.20.1-forge:processResources UP-TO-DATE
+> Task :versions:1.20.1-forge:classes UP-TO-DATE
+> Task :versions:1.20.1-forge:jar
+> Task :versions:1.20.1-forge:downloadMcpConfig
+> Task :versions:1.20.1-forge:extractSrg UP-TO-DATE
+> Task :versions:1.20.1-forge:createMcpToSrg UP-TO-DATE
+
+> Task :versions:1.20.1-forge:reobfJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :versions:1.20.1-forge:jarJar SKIPPED
+> Task :versions:1.20.1-forge:reobfJarJar SKIPPED
+> Task :versions:1.20.1-forge:assemble
+> Task :versions:1.20.1-forge:compileTestJava UP-TO-DATE
+> Task :versions:1.20.1-forge:processTestResources NO-SOURCE
+> Task :versions:1.20.1-forge:testClasses UP-TO-DATE
+
+> Task :versions:1.20.1-forge:httpContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+LocalServerTest: auth + JSON roundtrip + origin rejection passed
+
+> Task :versions:1.20.1-forge:observContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+ObservContractTest: 44 checks passed (all)
+
+> Task :versions:1.20.1-forge:observPagesTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+ObservPagesTest: 4 checks passed
+
+> Task :versions:1.20.1-forge:pluginStandaloneTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+PluginValidationTest passed 14
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+PluginStepTest passed
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+PluginReloadTest passed
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+symlink fixture unavailable: java.nio.file.FileSystemException: D:\Users\xujiy\AppData\Local\hermes\cache\scratch\plugin-tests-5z3j4kno\plugins-12144575890268248965\test\plugin.json: 用戶端沒有這項特殊權限。
+PluginManagerTest passed 12
+Standalone plugin contracts: PASS (temporary stubs only)
+
+> Task :versions:1.20.1-forge:test UP-TO-DATE
+
+> Task :versions:1.20.1-forge:uiSafetyTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+UiSafetyTest: 31 checks passed
+
+> Task :versions:1.20.1-forge:uiSettingsTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+UiSettingsTest: current instance mutated and saved; old instance untouched
+
+> Task :versions:1.20.1-forge:check
+> Task :versions:1.20.1-forge:build
+
+BUILD SUCCESSFUL in 11s
+25 actionable tasks: 12 executed, 13 up-to-date
+test_action_id_preserved (test_mcp.ProtocolTest.test_action_id_preserved) ... ok
+test_init (test_mcp.ProtocolTest.test_init) ... ok
+test_invalid_detail_enum (test_mcp.ProtocolTest.test_invalid_detail_enum) ... ok
+test_invalid_nested (test_mcp.ProtocolTest.test_invalid_nested) ... ok
+test_inventory_detail_contract (test_mcp.ProtocolTest.test_inventory_detail_contract) ... ok
+test_no_external_file_tool (test_mcp.ProtocolTest.test_no_external_file_tool) ... ok
+test_notification (test_mcp.ProtocolTest.test_notification) ... ok
+test_observe (test_mcp.ProtocolTest.test_observe) ... ok
+test_recipe_cursor_forwarding (test_mcp.ProtocolTest.test_recipe_cursor_forwarding) ... ok
+test_recipe_offset_rejected (test_mcp.ProtocolTest.test_recipe_offset_rejected) ... ok
+test_stdio (test_mcp.ProtocolTest.test_stdio) ... ok
+test_tools_closed_schema (test_mcp.ProtocolTest.test_tools_closed_schema) ... ok
+test_unknown_rejected (test_mcp.ProtocolTest.test_unknown_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.219s
+
+OK

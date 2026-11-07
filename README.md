@@ -73,6 +73,10 @@ python scripts/live_acceptance.py --scenario all_regressions
 
 实测脚本只允许专用测试实例，要求已进入验收世界并允许测试指令；会修改测试场地与物品，不用于日常存档。原始证据见 `docs/evidence`。`scripts/launch_test.py` 是专用离线单人验收启动器，使用既有库，不下载，不含正版账户凭据；日常与多人使用正常启动器。
 
+## 打包
+
+构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.0-1.20.1-forge.zip`，包含JAR、stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
+
 ## 开发
 
 - [版本实现与迁移](docs/architecture.md)
