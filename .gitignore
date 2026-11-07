@@ -1,0 +1,8 @@
+.gradle/
+**/build/
+dist/
+__pycache__/
+*.pyc
+.superpowers/
+.local/
+*.log
