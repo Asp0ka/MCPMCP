@@ -9,8 +9,8 @@ public final class ContainerSessions implements Jobs.Step,Jobs.Cleanup {
  public ContainerSessions(String name,JsonObject a,boolean packet){action=name;args=a.deepCopy();this.packet=packet;}
  public JsonObject tick()throws Exception {Minecraft mc=Minecraft.getInstance();if(mc.player==null||mc.level==null)return Jsons.error("not_in_world");AbstractContainerMenu menu=mc.player.containerMenu;
   if(!started){started=true;originalLevel=mc.level;originalId=menu.containerId;if(!menu.getCarried().isEmpty()&&(!action.equals("container.click")||args.has("target")))return Jsons.error("cursor_not_empty");
-   JsonObject target=Jsons.object(args,"target");if(menu!=mc.player.inventoryMenu){if(!target.isEmpty()){BlockPos pos=position(target);if(!menu.stillValid(mc.player)||!matchesTarget(menu,pos))return Jsons.error("another_container_is_open_close_or_explicitly_reuse");}ownedId=menu.containerId;}
-   else if(!target.isEmpty()){Actions.interactBlock(target,packet);opened=true;return pending("opening");}else ownedId=0;
+   JsonObject target=Jsons.object(args,"target");if(menu!=mc.player.inventoryMenu){if(target.size()!=0){BlockPos pos=position(target);if(!menu.stillValid(mc.player)||!matchesTarget(menu,pos))return Jsons.error("another_container_is_open_close_or_explicitly_reuse");}ownedId=menu.containerId;}
+   else if(target.size()!=0){Actions.interactBlock(target,packet);opened=true;return pending("opening");}else ownedId=0;
   }
   if(mc.level!=originalLevel)return Jsons.error("world_changed");
   if(ownedId<0){if(menu==mc.player.inventoryMenu){if(++delay>100)return Jsons.error("container_open_timeout");return pending("opening");}ownedId=menu.containerId;}
