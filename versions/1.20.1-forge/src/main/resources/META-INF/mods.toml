@@ -3,7 +3,7 @@ loaderVersion="[47,)"
 license="MIT"
 [[mods]]
 modId="mcpmcp"
-version="0.1.0"
+version="0.1.1"
 displayName="MCP Minecraft Plus"
 displayTest="IGNORE_ALL_VERSION"
 description="Client automation and extensible MCP operations, without a recipe-viewer dependency."

@@ -1,0 +1,204 @@
+{
+  "status": {
+    "name": "MCP Minecraft Plus",
+    "version": "0.1.1",
+    "minecraft": "1.20.1",
+    "loader": "forge",
+    "lifecycle": "main_menu",
+    "connected": false,
+    "world_epoch": 0,
+    "configuration": {
+      "mode": "NORMAL",
+      "transport": "MIXED",
+      "debug": false,
+      "trust_java_plugins": false,
+      "port": 5007,
+      "scan_budget": 4096
+    },
+    "client_thread": "Render thread",
+    "queue_size": 0,
+    "recovery_active": false,
+    "jei_required": false,
+    "baritone_present": true,
+    "plugin_status": {
+      "plugins": [
+        {
+          "id": "example.vanilla",
+          "folder": "minecraft-example",
+          "mod_id": "minecraft",
+          "status": "active",
+          "mod_installed": true,
+          "expected_version": "",
+          "actual_version": "1.20.1",
+          "version_declared": false,
+          "version_match": false,
+          "expected_sha256": "",
+          "hash_match": true,
+          "can_force": false,
+          "forced": false,
+          "override_binding": "8d29a007d292cb60b790ae90ce9839bb1f99f12bfba2302aaf3a0c9307afa82c",
+          "target_sha256": "",
+          "declarations_hot_reload": true,
+          "java_present": false,
+          "java_reload": "restart_required",
+          "java_loaded": false,
+          "java_restart_required": false
+        }
+      ],
+      "revision": "efb9853dfe96bf9a51588e8882dea59ba4792196f35495080bfb6d73ebd1e29b",
+      "java_loaded": 0,
+      "java_trusted": false,
+      "file_policy": "plugin_text_only; no external client file mutation"
+    }
+  },
+  "screen": {
+    "open": true,
+    "screen": "net.minecraft.client.gui.screens.TitleScreen",
+    "title": "标题屏幕",
+    "screen_revision": 21,
+    "width": 480,
+    "height": 321,
+    "coordinate_space": "gui_scaled_pixels",
+    "controls": [
+      {
+        "id": "21:0",
+        "type": "net.minecraft.client.gui.components.Button",
+        "focused": false,
+        "bounds": {
+          "x": 140,
+          "y": 128,
+          "width": 200,
+          "height": 20
+        },
+        "label": "单人游戏",
+        "active": true,
+        "visible": true,
+        "translation_key": "menu.singleplayer"
+      },
+      {
+        "id": "21:1",
+        "type": "net.minecraft.client.gui.components.Button",
+        "focused": false,
+        "bounds": {
+          "x": 140,
+          "y": 152,
+          "width": 200,
+          "height": 20
+        },
+        "label": "多人游戏",
+        "active": true,
+        "visible": true,
+        "translation_key": "menu.multiplayer"
+      },
+      {
+        "id": "21:2",
+        "type": "net.minecraft.client.gui.components.Button",
+        "focused": false,
+        "bounds": {
+          "x": 242,
+          "y": 176,
+          "width": 98,
+          "height": 20
+        },
+        "label": "Minecraft Realms",
+        "active": true,
+        "visible": true,
+        "translation_key": "menu.online"
+      },
+      {
+        "id": "21:3",
+        "type": "net.minecraft.client.gui.components.Button",
+        "focused": false,
+        "bounds": {
+          "x": 140,
+          "y": 176,
+          "width": 98,
+          "height": 20
+        },
+        "label": "Mod",
+        "active": true,
+        "visible": true,
+        "translation_key": "fml.menu.mods"
+      },
+      {
+        "id": "21:4",
+        "type": "net.minecraft.client.gui.components.ImageButton",
+        "focused": false,
+        "bounds": {
+          "x": 116,
+          "y": 212,
+          "width": 20,
+          "height": 20
+        },
+        "label": "语言",
+        "active": true,
+        "visible": true,
+        "translation_key": "narrator.button.language"
+      },
+      {
+        "id": "21:5",
+        "type": "net.minecraft.client.gui.components.Button",
+        "focused": false,
+        "bounds": {
+          "x": 140,
+          "y": 212,
+          "width": 98,
+          "height": 20
+        },
+        "label": "选项…",
+        "active": true,
+        "visible": true,
+        "translation_key": "menu.options"
+      },
+      {
+        "id": "21:6",
+        "type": "net.minecraft.client.gui.components.Button",
+        "focused": false,
+        "bounds": {
+          "x": 242,
+          "y": 212,
+          "width": 98,
+          "height": 20
+        },
+        "label": "退出游戏",
+        "active": true,
+        "visible": true,
+        "translation_key": "menu.quit"
+      },
+      {
+        "id": "21:7",
+        "type": "net.minecraft.client.gui.components.ImageButton",
+        "focused": false,
+        "bounds": {
+          "x": 344,
+          "y": 212,
+          "width": 20,
+          "height": 20
+        },
+        "label": "辅助功能",
+        "active": true,
+        "visible": true,
+        "translation_key": "narrator.button.accessibility"
+      },
+      {
+        "id": "21:8",
+        "type": "net.minecraft.client.gui.components.PlainTextButton",
+        "focused": false,
+        "bounds": {
+          "x": 282,
+          "y": 311,
+          "width": 196,
+          "height": 10
+        },
+        "label": "Copyright Mojang AB. Do not distribute!",
+        "active": true,
+        "visible": true
+      }
+    ],
+    "examined_total": 9,
+    "control_scope": "public_event_children_depth_16; custom_render_only_elements_may_need_screenshot",
+    "text_values": "not_exposed"
+  },
+  "jar_sha256": "6b1165b36f3f331f8369ca1c1ab31de7be7661663262f2e72a8ac1e5606e2040",
+  "override_ids": []
+}

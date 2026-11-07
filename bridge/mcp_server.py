@@ -94,7 +94,7 @@ class Server:
   if 'id'not in m:return None
   i=m['id'];method=m['method'];p=m.get('params',{})
   if not isinstance(p,dict):return self.error(i,-32602,'params must be object')
-  if method=='initialize':r={'protocolVersion':p.get('protocolVersion')if p.get('protocolVersion')in('2025-11-25','2025-06-18','2025-03-26','2024-11-05')else'2025-03-26','serverInfo':{'name':'mcpmcp','version':'0.1.0'},'capabilities':{'tools':{'listChanged':False}},'instructions':'先读能力与状态。submitted不代表成功。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。'}
+  if method=='initialize':r={'protocolVersion':p.get('protocolVersion')if p.get('protocolVersion')in('2025-11-25','2025-06-18','2025-03-26','2024-11-05')else'2025-03-26','serverInfo':{'name':'mcpmcp','version':'0.1.1'},'capabilities':{'tools':{'listChanged':False}},'instructions':'先读能力与状态。submitted不代表成功。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。'}
   elif method=='ping':r={}
   elif method=='tools/list':r={'tools':TOOLS}
   elif method=='tools/call':

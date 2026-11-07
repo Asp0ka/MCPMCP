@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / 'dist'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 JAR = ROOT / f'versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-{VERSION}.jar'
 
 
@@ -29,9 +29,9 @@ def main():
                 'forge': '47.4.28', 'git_commit': commit, 'jar_sha256': digest(jar),
                 'sources_sha256': digest(source), 'requires': ['Java 17', 'Forge 47.4.28', 'Python 3.10+ for MCP'],
                 'optional': ['compatible Baritone for movement'], 'jei_required': False}
-    install = '''# MCPMCP 0.1.0 / Minecraft 1.20.1 Forge
+    install = '''# MCPMCP 0.1.1 / Minecraft 1.20.1 Forge
 
-1. Copy mods/mcpmcp-1.20.1-forge-0.1.0.jar into the intended instance mods folder.
+1. Copy mods/mcpmcp-1.20.1-forge-0.1.1.jar into the intended instance mods folder.
 2. Start that instance normally with Java 17 and compatible Forge. Baritone is optional for movement; JEI/REI are not required.
 3. Configure an MCP stdio server: python <absolute>/bridge/mcp_server.py --config <instance>/config/mcpmcp.json
 4. Load skills/mcpmcp/SKILL.md; read get_status/list_capabilities/describe_action before actions.
@@ -51,7 +51,7 @@ sources.zip contains the exact committed source snapshot. The full Git repositor
             for name in tracked.namelist():
                 if not name.endswith('/') and name.startswith(('bridge/', 'docs/', 'skills/', 'examples/')):
                     bundle.writestr(name, tracked.read(name))
-        build_log = ROOT / 'docs/evidence/build.log'
+        build_log = ROOT / 'docs/evidence/plugin-settings-0.1.1/build-output.txt'
         if build_log.is_file():
             bundle.write(build_log, 'docs/evidence/build.log')
     with zipfile.ZipFile(out) as bundle:

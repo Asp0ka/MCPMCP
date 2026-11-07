@@ -19,6 +19,7 @@ public final class PluginValidationTest {
  b=a.deepCopy();b.getAsJsonObject("packet").getAsJsonArray("values").set(0,new JsonPrimitive("not an integer"));bad(b);
  b=a.deepCopy();b.getAsJsonObject("input_schema").add("properties",parse("{'slot':{'type':'string'}}"));b.getAsJsonObject("packet").getAsJsonArray("values").set(0,parse("{'param':'slot'}"));bad(b);
  b=a.deepCopy();b.getAsJsonObject("input_schema").addProperty("minLength",5);b.getAsJsonObject("input_schema").addProperty("maxLength",2);bad(b);
+ JsonObject manifest=parse("{'api':1,'id':'example','mod_id':'minecraft','target_version':'1.20.1'}");PluginValidation.manifest(manifest);checks++;manifest.remove("target_version");PluginValidation.manifest(manifest);checks++;
  System.out.println("PluginValidationTest passed "+checks);
  }
 }

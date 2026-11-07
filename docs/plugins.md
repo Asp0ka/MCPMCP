@@ -11,6 +11,7 @@
   "mod_id": "minecraft",
   "minecraft": "1.20.1",
   "loader": "forge",
+  "target_version": "1.20.1",
   "actions": [{
     "name": "example.select_hotbar",
     "description": "演示快捷栏选择封包，需独立读回",
@@ -23,6 +24,14 @@
 ```
 
 原版minecraft目标可省hash。模组目标增加target_sha256。actions可另存actions.json（数组）；GUIDE.md说明前提、调用、槽位来源、验证和恢复。示例见examples/MCPMCP-Plugin。
+
+## 版本与本地强制加载
+
+manifest可选 `target_version`（目标模组的精确版本字符串，不是Minecraft版本范围），运行时与目标模组的已装版本比较。Minecraft自身目标使用1.20.1，Forge/Baritone等读取实际mod metadata。未声明时版本状态为未指定，hash检查保持原规则。
+
+插件列表显示 `mod_installed`、`expected_version`、`actual_version`、`version_declared/version_match`、`expected_sha256/target_sha256/hash_match`、`status`、`forced`、Java冷加载状态。用户本地可确认强制加载已安装但版本/hash不一致的插件；保存到mcpmcp.json的pluginOverrides。授权绑定插件id/目录、manifest+actions及目标版本/hash，不写入可由远程编辑的插件声明。
+
+更新插件声明或目标文件后需重新确认；撤销立即拒绝旧强制动作，即使另一插件损坏使快照重载失败，后台也会重试发布。已加载Java只能重启卸载，界面保留重启提示。缺少目标模组、平台/API不符、schema/封包校验失败不能强制；强制兼容不会授权更高模式或自动信任Java。MCP不提供修改本地授权的API，插件设置和确认页拒绝MCP UI自动化。
 
 ## 绑定与权限
 

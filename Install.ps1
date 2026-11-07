@@ -1,6 +1,6 @@
 param([string]$Instance='D:/Games/mc/Cheat/versions/1.20.1-Forge_47.4.28-test')
 $ErrorActionPreference='Stop'
-$source=Join-Path $PSScriptRoot 'versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.0.jar'
+$source=Join-Path $PSScriptRoot 'versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.1.jar'
 if(!(Test-Path -LiteralPath $source)){throw 'Build the artifact first.'}
 $resolved=[IO.Path]::GetFullPath($Instance)
 if([IO.Path]::GetFileName($resolved)-ne '1.20.1-Forge_47.4.28-test'){throw 'This installer is limited to the authorized test instance.'}

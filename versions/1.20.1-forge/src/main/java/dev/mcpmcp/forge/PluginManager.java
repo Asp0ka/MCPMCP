@@ -21,7 +21,10 @@ private final Map<String,BinaryAction> binaryActions=new LinkedHashMap<>();
 private final Map<String,List<Observer>> observers=new LinkedHashMap<>();
 private final List<URLClassLoader> loaders=new ArrayList<>();
 private String error;
+private final Map<String,String> loadedJava=new LinkedHashMap<>();
 private boolean javaAttempted;
+private java.util.function.Supplier<Map<String,String>> overrideSource=Map::of;
+public void overrides(java.util.function.Supplier<Map<String,String>> source){overrideSource=source;}
 private record BinaryAction(JsonObject schema,String transport,String permission,PluginContext.Handler handler){
 }
 private record Observer(int priority,PluginContext.Handler handler){
@@ -64,7 +67,7 @@ String mod=Jsons.str(m,"mod_id","");
 boolean installed=mod.equals("minecraft")||ModList.get().isLoaded(mod);
 String status=installed?"active":"target_mod_missing";
 String expected=Jsons.str(m,"target_sha256","");
-String actual="";
+String actual="";String expectedVersion=Jsons.str(m,"target_version","");String actualVersion=installed?(mod.equals("minecraft")?"1.20.1":ModList.get().getModContainerById(mod).map(c->c.getModInfo().getVersion().toString()).orElse("")):"";
 if(installed&&!mod.equals("minecraft")){
 var info=ModList.get().getModFileById(mod);
 Path jar=info.getFile().getFilePath();
@@ -85,23 +88,29 @@ digest.update(ab);
 actions=JsonParser.parseString(new String(ab,java.nio.charset.StandardCharsets.UTF_8)).getAsJsonArray();
 }
 PluginValidation.actions(actions);
+String declarationDigest=HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest((m.toString()+"\n"+actions.toString()).getBytes(java.nio.charset.StandardCharsets.UTF_8)));
+String binding=PluginCompatibility.binding(id,folder,declarationDigest,actualVersion,actual);
+boolean jarAvailable=!status.equals("target_jar_unavailable");boolean platform=!status.equals("platform_mismatch");
+PluginCompatibility.Result compatibility=PluginCompatibility.evaluate(installed,expectedVersion,actualVersion,!mod.equals("minecraft")&&expected.isEmpty()?"undeclared":expected,actual,platform,binding.equals(overrideSource.get().get(id)),jarAvailable);
+status=compatibility.reason();boolean enabled=compatibility.active();
+digest.update(binding.getBytes(java.nio.charset.StandardCharsets.UTF_8));digest.update((byte)(compatibility.forced()?1:0));
 Set<String> localNames=new HashSet<>();
 for(JsonElement e:actions){
 JsonObject a=e.getAsJsonObject();
 String n=Jsons.str(a,"name","");
 if(!localNames.add(n)||Runtime.isBuiltin(n)||binaryActions.containsKey(n))throw new IllegalArgumentException("plugin_action_name_conflict");
-if(status.equals("active"))preflightPacket(a.getAsJsonObject("packet"));
+if(enabled)preflightPacket(a.getAsJsonObject("packet"));
 }
-if(status.equals("active"))for(JsonElement a:actions){
+if(enabled)for(JsonElement a:actions){
 JsonObject action=a.getAsJsonObject().deepCopy();
 String name=Jsons.str(action,"name","");
 if(!name.matches("[a-z0-9_.-]{1,128}")||next.containsKey(name)||Runtime.isBuiltin(name))throw new IllegalArgumentException("plugin_action_name_conflict");
 if(!Set.of("normal","hack","cheat").contains(Jsons.str(action,"permission","normal")))throw new IllegalArgumentException("invalid_plugin_permission");
 if(!Jsons.str(action,"transport","packet").equals("packet"))throw new IllegalArgumentException("declarative_actions_require_packet_transport");
-action.addProperty("plugin_id",id);
+action.addProperty("plugin_id",id);if(compatibility.forced())action.addProperty("compatibility_grant",binding);
 next.put(name,action);
 }
-summaries.add(Jsons.obj("id",id,"folder",dir.getFileName().toString(),"mod_id",mod,"status",status,"target_sha256",actual,"declarations_hot_reload",true,"java_present",Files.exists(files.resolve(folder+"/adapter.jar")),"java_reload","restart_required"));
+summaries.add(Jsons.obj("id",id,"folder",dir.getFileName().toString(),"mod_id",mod,"status",status,"mod_installed",installed,"expected_version",expectedVersion,"actual_version",actualVersion,"version_declared",compatibility.versionDeclared(),"version_match",compatibility.versionMatch(),"expected_sha256",expected,"hash_match",compatibility.hashMatch(),"can_force",compatibility.canForce(),"forced",compatibility.forced(),"override_binding",binding,"target_sha256",actual,"declarations_hot_reload",true,"java_present",Files.exists(files.resolve(folder+"/adapter.jar")),"java_reload","restart_required"));
 }
 revision=HexFormat.of().formatHex(digest.digest());
 declarations=Map.copyOf(next);
@@ -120,7 +129,7 @@ javaAttempted=true;
 if(!Runtime.config().trustJavaPlugins||context==null)return;
 for(JsonElement e:plugins){
 JsonObject p=e.getAsJsonObject();
-if(!Jsons.str(p,"status","").equals("active"))continue;
+if(!Set.of("active","forced").contains(Jsons.str(p,"status","")))continue;
 try{
 Path jar=files.resolve(Jsons.str(p,"folder","")+"/adapter.jar");
 if(!Files.isRegularFile(jar,LinkOption.NOFOLLOW_LINKS))continue;
@@ -142,9 +151,9 @@ javaError(p,ex);
 continue;
 }
 try{
-RestrictedContext staged=new RestrictedContext(plugin.id());
+RestrictedContext staged=new RestrictedContext(plugin.id(),Jsons.str(p,"id",""),Jsons.bool(p,"forced",false)?Jsons.str(p,"override_binding",""):"");
 plugin.register(staged);
-staged.commit();
+staged.commit();loadedJava.put(Jsons.str(p,"folder",""),Jsons.str(p,"override_binding",""));
 }
 catch(Exception|ServiceConfigurationError|LinkageError ex){
 javaError(p,ex);
@@ -161,13 +170,13 @@ String prior=Jsons.str(p,"java_error","");
 p.addProperty("java_error",(prior+"; "+ex).substring(0,Math.min(4096,(prior+"; "+ex).length())));
 }
 private final class RestrictedContext implements PluginContext {
-final String owner;
+final String owner,compatibilityOwner,requiredBinding;
 final Map<String,BinaryAction> stagedActions=new LinkedHashMap<>();
 final Map<String,List<Observer>> stagedObservers=new LinkedHashMap<>();
 boolean closed;
-RestrictedContext(String owner){
+RestrictedContext(String owner,String compatibilityOwner,String requiredBinding){
 if(owner==null||!owner.matches("[a-z0-9_.-]{1,96}"))throw new IllegalArgumentException("invalid_plugin_id");
-this.owner=owner;
+this.owner=owner;this.compatibilityOwner=compatibilityOwner;this.requiredBinding=requiredBinding;
 }
 private void open(){
 if(closed)throw new IllegalStateException("registration_closed");
@@ -177,12 +186,12 @@ open();
 if(n==null||!n.matches("[a-z0-9_.-]{1,128}")||Runtime.isBuiltin(n)||declarations.containsKey(n)||binaryActions.containsKey(n)||stagedActions.containsKey(n))throw new IllegalArgumentException("action_conflict");
 if(!Set.of("normal","hack","cheat").contains(p)||!Set.of("packet","client","input","baritone").contains(t)||h==null)throw new IllegalArgumentException("invalid_action_policy");
 PluginValidation.schema(s);
-stagedActions.put(n,new BinaryAction(s.deepCopy(),t,p,h));
+stagedActions.put(n,new BinaryAction(s.deepCopy(),t,p,a->requiredBinding.isEmpty()||requiredBinding.equals(overrideSource.get().get(compatibilityOwner))?h.call(a):Jsons.error("plugin_override_revoked")));
 }
 public void observer(String k,int priority,Handler h){
 open();
 if(k==null||!k.matches("[a-z0-9_.-]{1,128}")||h==null)throw new IllegalArgumentException("invalid_observer");
-stagedObservers.computeIfAbsent(k,x->new ArrayList<>()).add(new Observer(priority,h));
+stagedObservers.computeIfAbsent(k,x->new ArrayList<>()).add(new Observer(priority,a->requiredBinding.isEmpty()||requiredBinding.equals(overrideSource.get().get(compatibilityOwner))?h.call(a):Jsons.error("plugin_override_revoked")));
 }
 void commit(){
 open();
@@ -202,7 +211,8 @@ return context.observe(k,a);
 }
 }
 public synchronized JsonObject status(){
-return Jsons.obj("plugins",plugins,"revision",revision,"error",error,"java_loaded",loaders.size(),"java_trusted",Runtime.config().trustJavaPlugins,"file_policy","plugin_text_only; no external client file mutation");
+JsonArray view=plugins.deepCopy();for(JsonElement e:view){JsonObject p=e.getAsJsonObject();String folder=Jsons.str(p,"folder","");boolean loaded=loadedJava.containsKey(folder);p.addProperty("java_loaded",loaded);p.addProperty("java_restart_required",loaded&&(!Jsons.bool(p,"java_present",false)||!loadedJava.get(folder).equals(Jsons.str(p,"override_binding",""))||!Set.of("active","forced").contains(Jsons.str(p,"status","")))||!loaded&&javaAttempted&&Jsons.bool(p,"java_present",false));}
+return Jsons.obj("plugins",view,"revision",revision,"error",error,"java_loaded",loaders.size(),"java_trusted",Runtime.config().trustJavaPlugins,"file_policy","plugin_text_only; no external client file mutation");
 }
 public synchronized boolean hasAction(String n){
 return declarations.containsKey(n)||binaryActions.containsKey(n);
@@ -233,7 +243,7 @@ final BinaryAction binary=binaryActions.get(n);
 final JsonArray verify=new JsonArray();
 final boolean wantsVerify=declaration.has("verify");
 return new PluginStep(()->{
-if(declaration.has("error"))return declaration;
+if(declaration.has("error"))return declaration;if(declaration.has("compatibility_grant")&&!Jsons.str(declaration,"compatibility_grant","").equals(overrideSource.get().get(Jsons.str(declaration,"plugin_id",""))))return Jsons.error("plugin_override_revoked");
 if(!pinned.equals(revision)||(args.has("plugin_revision")&&!Jsons.str(args,"plugin_revision","").equals(pinned)))return Jsons.error("plugin_revision_changed");
 String transport=Jsons.str(declaration,"transport","packet"),permission=Jsons.str(declaration,"permission","normal");
 if(!Policy.allowed(Runtime.config().mode,Runtime.config().transport,transport,permission))return Jsons.error("plugin_policy_denied");
@@ -252,7 +262,7 @@ verify.add(bound);
 return PacketService.send(bind(declaration.get("packet"),parameters).getAsJsonObject());
 }
 ,wantsVerify?()->{
-if(!pinned.equals(revision))throw new IllegalStateException("plugin_revision_changed");
+if(declaration.has("compatibility_grant")&&!Jsons.str(declaration,"compatibility_grant","").equals(overrideSource.get().get(Jsons.str(declaration,"plugin_id",""))))throw new IllegalStateException("plugin_override_revoked");if(!pinned.equals(revision))throw new IllegalStateException("plugin_revision_changed");
 for(JsonElement c:verify)if(!Actions.condition(c.getAsJsonObject()))return false;
 return true;
 }

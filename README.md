@@ -1,12 +1,12 @@
 # MCP Minecraft Plus（MCPMCP）
 
-Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.28 / Java 17**，版本 `0.1.0`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
+Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.28 / Java 17**，版本 `0.1.1`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
 
 这是独立重写工程。协议、权限与任务位于 `core`，插件API位于 `plugin-api`，Minecraft类型与Forge实现位于 `versions/1.20.1-forge`，Python桥接位于 `bridge`。后续版本/加载器仍需实现各自适配层，当前JAR不能直接跨版本或直接用于Fabric/NeoForge。
 
 ## 使用
 
-1. 向对应实例 `mods` 安装 `versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.0.jar`。按该游戏版本安装Forge；需要寻路时安装相容Baritone。无需JEI/REI。
+1. 向对应实例 `mods` 安装 `versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.1.jar`。按该游戏版本安装Forge；需要寻路时安装相容Baritone。无需JEI/REI。
 2. 正常启动游戏。主菜单即启动本地MCPMCP服务；首次生成 `config/mcpmcp.json`，默认 `NORMAL + MIXED`、DEBUG关闭、Java插件不信任。
 3. 用Python 3.10+运行：
 
@@ -30,6 +30,14 @@ Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.
 - 已知PLAY封包目录/描述、现有连接上的有界元信息捕获，以及受权限约束的构造器/已核对wire发送。
 
 完整可调用参数以运行中的 `describe_action` 为准。`submitted` 不代表服务器接受；容器步骤等待同步、任务状态与独立读回共同构成验收。实测范围与限制见 [docs/acceptance.md](docs/acceptance.md)。
+
+## 插件设置与语言
+
+Forge模组列表 → MCP Minecraft Plus → 配置 → 插件列表，可滚动查看插件对应模组是否安装、目标/已装版本、版本与JAR指纹是否一致、加载状态。插件manifest可选 `target_version`；旧插件未声明版本时显示“未指定”，仍沿用hash兼容规则。
+
+对已安装但版本/指纹不符的插件可点“强制加载”并确认，也可“取消强制”。选择保存到本模组配置，绑定当前声明与目标模组文件，更新后失效。缺少模组、平台/API不符、无效声明不会因此启用；权限与Java信任仍生效，Java适配器变更需重启。
+
+设置、插件列表与确认框支持English (US)和简体中文，跟随Minecraft语言选项，无独立语言开关；其它语言回退英文。验收与截图见 [0.1.1 更新记录](docs/plugin-settings-0.1.1.md)。
 
 ## 模式和配置
 
@@ -75,7 +83,7 @@ python scripts/live_acceptance.py --scenario all_regressions
 
 ## 打包
 
-构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.0-1.20.1-forge.zip`，包含JAR、stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
+构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.1-1.20.1-forge.zip`，包含JAR、stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
 
 ## 开发
 

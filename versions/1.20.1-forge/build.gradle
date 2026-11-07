@@ -6,7 +6,7 @@ jar { from(project(':core').sourceSets.main.output); from(project(':plugin-api')
 jar.finalizedBy('reobfJar')
 tasks.register('httpContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.forge.LocalServerTest' }
 check.dependsOn httpContractTest
-['observContractTest':'ObservContractTest','observPagesTest':'ObservPagesTest','uiSafetyTest':'UiSafetyTest','uiSettingsTest':'UiSettingsTest'].each {taskName, className ->
+['observContractTest':'ObservContractTest','observPagesTest':'ObservPagesTest','uiSafetyTest':'UiSafetyTest','uiSettingsTest':'UiSettingsTest','pluginConfigTest':'PluginConfigTest'].each {taskName, className ->
  tasks.register(taskName, JavaExec) { dependsOn testClasses; classpath=sourceSets.test.runtimeClasspath; mainClass="dev.mcpmcp.forge.${className}" }
  check.dependsOn taskName
 }

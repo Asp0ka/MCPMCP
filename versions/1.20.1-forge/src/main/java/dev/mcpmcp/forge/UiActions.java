@@ -77,7 +77,7 @@ public final class UiActions {
     public static JsonObject execute(String action,JsonObject args) {
         Minecraft mc=Minecraft.getInstance();refresh(mc.screen);
         try {
-            if(action.startsWith("ui."))UiSafety.authorize(Runtime.config().mode,mc.screen instanceof SettingsScreen,false,false);
+            if(action.startsWith("ui."))UiSafety.authorize(Runtime.config().mode,mc.screen instanceof McpmcpSettingsScreen,false,false);
             JsonObject result=switch(action) {
                 case "screenshot"->screenshot(mc,args);
                 case "world.create"->create(mc,args);
@@ -119,7 +119,7 @@ public final class UiActions {
         cheats|=screen instanceof ShareToLanScreen;
         if(screen instanceof CreateWorldScreen&&control instanceof AbstractWidget w)
             cheats|=containsTranslation(w.getMessage(),"selectWorld.allowCommands")||containsTranslation(w.getMessage(),"selectWorld.gameMode");
-        UiSafety.authorize(Runtime.config().mode,screen instanceof SettingsScreen,false,cheats);
+        UiSafety.authorize(Runtime.config().mode,screen instanceof McpmcpSettingsScreen,false,cheats);
     }
     private static boolean containsTranslation(Component c,String key){
         if(c.getContents() instanceof TranslatableContents t){
