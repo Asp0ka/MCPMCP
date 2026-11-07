@@ -35,6 +35,6 @@ Quark详情outputs按JEI API返回全部可选变体，不能要求每项均为�
 
 背包选中合成升级时，原生quick_move会优先送入升级合成格，不能承诺固定送往玩家或存储；按observer角色读回后再计划，定向恢复用container.move。星界感知首次法力78不足未生效，等待法力100后独立施法才计通过；失败/前提记录没有删除。
 
-客户端已回主菜单，恢复NORMAL/MIXED，空游标且无恢复任务。仍待提交和最终包完整性核验；没有将其他等级、全部升级、全部法术、自动仪式或多人服推为已通过。
+客户端已回主菜单，恢复NORMAL/MIXED，空游标且无恢复任务。实现、构建凭据、安装副本及验收证据已提交到 feature/1.20.1-forge，发布脚本已实际生成并验证主包、12插件包和JEI二选一包；包内manifest记录其精确提交与文件hash。未合并或推送远端。没有将其他等级、全部升级、全部法术、自动仪式或多人服推为已通过。
 
 场景汇总为29项、28项通过；唯一失败项是修复前的 `jei_quark_focus_retention` 诊断记录（当时断言要求泛型配方的每个候选产物都等于焦点，与JEI API语义不符），已标记 `category=diagnostic_reporting_defect`、`resolved_by=jei_displayed_focus_and_transfer_fixed`，不计为当前缺陷。

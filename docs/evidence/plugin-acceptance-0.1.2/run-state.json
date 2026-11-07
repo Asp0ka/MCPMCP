@@ -38,14 +38,13 @@
     "irons_native_oakskin_conflicting_key",
     "traveloptics_native_astral_sense_conflicting_key"
   ],
-  "pending": [
-    "commit_and_archive_integrity"
-  ],
+  "pending": [],
   "rs_autocrafting": "passed",
   "lifecycle": "main_menu",
   "policy_restored": true,
   "failed_scenarios": [
     "jei_quark_focus_retention"
   ],
-  "final_delta_batch": "plugin-final-delta-c1512c987781"
+  "final_delta_batch": "plugin-final-delta-c1512c987781",
+  "delivery": "source committed; package.py exercised; inspect final package manifest for exact release commit"
 }
