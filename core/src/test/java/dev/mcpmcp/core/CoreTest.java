@@ -38,6 +38,18 @@ public final class CoreTest {
   Cleaning cleanup=new Cleaning();jobs.submit("cleanup","x",new JsonObject(),cleanup,1,1000);jobs.pump(1);jobs.cancel("cleanup");ok(cleanup.clean==1);
   Cleaning timeout=new Cleaning();jobs.submit("timeout","x",new JsonObject(),timeout,1,1);Thread.sleep(5);jobs.pump(1);ok(jobs.result("timeout").get("status").getAsString().equals("failed"));ok(timeout.clean==1);
   Jobs reentrant=new Jobs();int[] calls={0};reentrant.submit("nested","ui",new JsonObject(),()->{calls[0]++;if(calls[0]<2)reentrant.pump(0);return Jsons.obj("observed_success",true);},0,1000);reentrant.pump(0);ok(calls[0]==1);
+  ok(PacketPolicy.permission("net.minecraft.network.protocol.game.ServerboundSetCarriedItemPacket").equals("normal"));
+  ok(PacketPolicy.permission("net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket").equals("cheat"));
+  ok(PacketPolicy.permission("net.minecraft.network.protocol.game.ServerboundSetCommandBlockPacket").equals("denied"));
+  ok(PacketPolicy.permission("example.mod.PullPacket").equals("hack"));
+  ok(PacketPolicy.permission("net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$Pos").equals("hack"));
+  ok(PacketPolicy.permission("net.minecraft.network.protocol.game.ServerboundChatCommandPacket").equals("cheat"));
+  Jobs selfCancel=new Jobs();selfCancel.submit("self","x",new JsonObject(),()->{selfCancel.cancel("self");return Jsons.obj("observed_success",true);},0,1000);selfCancel.pump(0);ok(selfCancel.result("self").get("status").getAsString().equals("cancelled"));
+  Jobs cleanupCancel=new Jobs();class ReentrantCleanup implements Jobs.Step,Jobs.Cleanup {int cleaned;public JsonObject tick(){return Jsons.obj("observed_success",true);}public void cleanup(){if(++cleaned<3)cleanupCancel.cancel("cleanup-self");}}
+  ReentrantCleanup rc=new ReentrantCleanup();cleanupCancel.submit("cleanup-self","x",new JsonObject(),rc,0,1000);cleanupCancel.pump(0);ok(rc.cleaned==1);
+  fails(()->ContainerContract.count(Jsons.obj("count",0)));fails(()->ContainerContract.count(Jsons.obj("count",-2)));ok(ContainerContract.count(new JsonObject())==-1);ok(ContainerContract.count(Jsons.obj("count",2))==2);
+  fails(()->ContainerContract.steps(JsonParser.parseString("[{\"slot\":0},{\"op\":\"unknown\"}]").getAsJsonArray()));
+  ok(WithinChunkPage.next(0,0,3,1,5).equals(new WithinChunkPage.Next(0,1)));ok(WithinChunkPage.next(2,4,5,1,5).equals(new WithinChunkPage.Next(3,0)));
   System.out.println("CoreTest: "+count+" checks passed");
  }
 }

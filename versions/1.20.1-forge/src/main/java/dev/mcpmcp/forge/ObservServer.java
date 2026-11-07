@@ -32,20 +32,20 @@ final class ObservServer {
         IntegratedServer server=mc.getSingleplayerServer();
         if(server==null)return ObservJson.envelope(obj("status","unknown","reason","Remote server metadata is not available locally"),"client","server_metadata",false,false);
         int[] b=Observations.chunkBounds(args,mc.player.blockPosition());int limit=Observations.limit(args,128);
-        long offset=Observations.offset(args,"offset",0);long total=((long)b[2]-b[0]+1)*((long)b[3]-b[1]+1);
+        int startsOffset=integer(args,"starts_offset",0);if(startsOffset<0||startsOffset>100000)throw new IllegalArgumentException("invalid_starts_offset");long offset=Observations.offset(args,"offset",0);long total=((long)b[2]-b[0]+1)*((long)b[3]-b[1]+1);
         if(offset>total)throw new IllegalArgumentException("invalid_offset");
         ResourceKey<Level> dimension=mc.level.dimension();
         if(PENDING.size()>=8)return obj("error","server_observation_busy","reason","At most eight pending server reads; poll existing tickets");
-        CompletableFuture<JsonObject> future=server.submit(()->scan(server,dimension,kind,b,offset,limit));
+        CompletableFuture<JsonObject> future=server.submit(()->scan(server,dimension,kind,b,offset,limit,startsOffset));
         ticket=UUID.randomUUID().toString();PENDING.put(ticket,new Pending(mc.level,kind,future,now));return pending(ticket);
     }
     private static JsonObject pending(String ticket) {
         return ObservJson.envelope(obj("status","pending","ticket",ticket,"poll","Repeat the same observation kind with ticket; expires after 60 seconds"),"integrated_server_thread","requested_loaded_chunks",false,false);
     }
-    private static JsonObject scan(IntegratedServer server,ResourceKey<Level> dimension,String kind,int[] b,long offset,int budget) {
+    private static JsonObject scan(IntegratedServer server,ResourceKey<Level> dimension,String kind,int[] b,long offset,int budget,int startsOffset) {
         ServerLevel level=server.getLevel(dimension);
         if(level==null)return obj("error","dimension_unavailable","reason","Integrated-server dimension is no longer loaded");
-        long width=(long)b[2]-b[0]+1,total=width*((long)b[3]-b[1]+1),i=offset;int examined=0,unloaded=0;boolean clipped=false;JsonArray entries=new JsonArray();
+        long width=(long)b[2]-b[0]+1,total=width*((long)b[3]-b[1]+1),i=offset;int examined=0,unloaded=0;boolean clipped=false;int nextStarts=0;JsonArray entries=new JsonArray();
         for(;i<total&&examined<budget;i++) {
             examined++;int x=(int)(b[0]+i%width),z=(int)(b[1]+i/width);
             LevelChunk chunk=level.getChunkSource().getChunkNow(x,z);
@@ -56,22 +56,22 @@ final class ObservServer {
                 c.addProperty("slime_scope","vanilla_seed_formula_mods_may_override_spawning");
                 c.addProperty("inhabited_time",chunk.getInhabitedTime());c.addProperty("structure_start_count",chunk.getAllStarts().size());
             } else {
-                JsonArray starts=new JsonArray();int count=0;
+                JsonArray starts=new JsonArray();int count=0,skip=i==offset?startsOffset:0,index=0;
                 for(var e:chunk.getAllStarts().entrySet()) {
-                    if(examined>=budget||count>=64){clipped=true;break;}examined++;count++;
+                    if(index++<skip)continue;if(count>=Math.max(1,budget-examined)||count>=64){clipped=true;break;}count++;
                     var start=e.getValue();if(!start.isValid())continue;var bb=start.getBoundingBox();
                     var id=level.registryAccess().registryOrThrow(Registries.STRUCTURE).getKey(e.getKey());
                     starts.add(obj("id",id==null?"unknown":id.toString(),"start_chunk",new int[]{start.getChunkPos().x,start.getChunkPos().z},
                         "bounds",obj("min",new int[]{bb.minX(),bb.minY(),bb.minZ()},"max",new int[]{bb.maxX(),bb.maxY(),bb.maxZ()}),"references",start.getReferences()));
                 }
-                c.add("starts",starts);c.addProperty("starts_examined",count);c.addProperty("starts_total",chunk.getAllStarts().size());
-                c.addProperty("starts_truncated",count<chunk.getAllStarts().size());
+                examined+=count;c.add("starts",starts);c.addProperty("starts_examined",count);c.addProperty("starts_total",chunk.getAllStarts().size());
+                c.addProperty("starts_offset",skip);c.addProperty("starts_truncated",skip+count<chunk.getAllStarts().size());if(skip>chunk.getAllStarts().size())throw new IllegalArgumentException("stale_starts_offset");if(skip+count<chunk.getAllStarts().size()){clipped=true;nextStarts=dev.mcpmcp.core.WithinChunkPage.next(i,skip,chunk.getAllStarts().size(),count,(int)Math.min(Integer.MAX_VALUE,total)).inner();}
                 c.addProperty("scope","starts_in_loaded_chunk_not_all_structures_intersecting_region");
             }
-            entries.add(c);
+            entries.add(c);if(nextStarts>0)break;
         }
         boolean more=i<total;
-        return ObservJson.envelope(obj(kind,entries,"offset",offset,"next_offset",more?i:null,"candidate_total",total,"work_units",examined,"unloaded",unloaded,
+        return ObservJson.envelope(obj(kind,entries,"offset",offset,"next_offset",more?i:null,"next_starts_offset",more?nextStarts:null,"candidate_total",total,"work_units",examined,"unloaded",unloaded,
             "generation",false,"dimension",dimension.location().toString(),"per_chunk_start_limit",64,"within_chunk_truncated",clipped),
             "integrated_server_thread","loaded_server_chunk_rectangle",!more&&unloaded==0&&!clipped,more||clipped);
     }

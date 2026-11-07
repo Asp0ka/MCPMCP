@@ -1,0 +1,8 @@
+{
+  "api": 1,
+  "id": "example.provider",
+  "mod_id": "minecraft",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "actions": []
+}

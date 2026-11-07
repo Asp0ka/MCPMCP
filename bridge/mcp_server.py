@@ -34,7 +34,7 @@ TOOLS=[
  declaration('get_player_state','读取生命、经验、饥饿、装备与玩家状态。'),
  declaration('get_inventory','读取背包清单。',{'detail':dict(string(),enum=['coarse','detailed'])}),
  declaration('get_screen','读取当前屏幕、控件、焦点和菜单。'),
- declaration('get_recipes','通过原生或插件提供者查询配方。',{'query':string(),'limit':{'type':'integer','minimum':1,'maximum':100},'offset':{'type':'integer','minimum':0,'maximum':1000000}}),
+ declaration('get_recipes','通过原生或插件提供者查询配方。',{'query':string(),'limit':{'type':'integer','minimum':1,'maximum':100},'cursor':string(256)}),
  declaration('get_chat_messages','读取本客户端已接收的有界聊天记录。',{'after':{'type':'integer','minimum':0,'maximum':9007199254740991},'limit':{'type':'integer','minimum':1,'maximum':200}}),
  declaration('get_mods','返回加载模组、版本与兼容状态。'),
  declaration('get_paths','返回当前实例目录；远程存档目录不会猜测。'),

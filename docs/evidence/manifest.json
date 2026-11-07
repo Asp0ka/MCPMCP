@@ -1,0 +1,184 @@
+{
+  "minecraft": "1.20.1",
+  "forge": "47.4.28",
+  "mod": "0.1.0",
+  "dedicated_instance": "D:\\Games\\mc\\Cheat\\versions\\1.20.1-Forge_47.4.28-test",
+  "checks": [
+    {
+      "id": "main_menu",
+      "result": "passed",
+      "evidence": "Native MCP get_status/get_screen/read image while no world"
+    },
+    {
+      "id": "world_create_join_leave",
+      "result": "passed",
+      "evidence": "Created MCPMCP Verified, saved, rejoined and left using MCP"
+    },
+    {
+      "id": "pause_and_ui_text",
+      "result": "passed",
+      "evidence": "Pause still processes MCP; creative search focus and text_length=3 read back"
+    },
+    {
+      "id": "lan",
+      "result": "passed",
+      "evidence": "published=true port25575; no outside player joined"
+    },
+    {
+      "id": "player_world_observations",
+      "result": "passed",
+      "evidence": "Player/inventory/equipment/environment/blocks/entities/mods/paths read"
+    },
+    {
+      "id": "recipes_and_pages",
+      "result": "passed",
+      "evidence": "Vanilla recipes and bounded cursor contracts; convenience cursor forwarding test"
+    },
+    {
+      "id": "integrated_server_observation",
+      "result": "passed",
+      "evidence": "Chunks/slime formula and structure tickets read on server thread"
+    },
+    {
+      "id": "movement",
+      "result": "passed",
+      "evidence": "Baritone arrived; final move_cancel regression stops owned path"
+    },
+    {
+      "id": "look_sneak",
+      "result": "passed",
+      "evidence": "Yaw/pitch read; retained sneak/released across ticks regression"
+    },
+    {
+      "id": "dig_place",
+      "result": "passed",
+      "evidence": "Dirt became air then oak_planks at2,101,-2"
+    },
+    {
+      "id": "hold_consume",
+      "result": "passed",
+      "evidence": "Golden apples2->1, actual effects; no simulated use key in PACKET path"
+    },
+    {
+      "id": "ride",
+      "result": "passed",
+      "evidence": "Tame saddled horse mounted, z0.5->10.4402 then dismounted; before final review fixes"
+    },
+    {
+      "id": "craft_2x2_3x3",
+      "result": "passed",
+      "evidence": "Vanilla recipe book packets, materials/outputs read; no JEI"
+    },
+    {
+      "id": "chest_restore",
+      "result": "passed",
+      "evidence": "Closed operations close owned menu; explicit opened menu target reused and kept"
+    },
+    {
+      "id": "furnace",
+      "result": "passed",
+      "evidence": "Final jar iron_ore->iron_ingot, menu restored"
+    },
+    {
+      "id": "brewing",
+      "result": "passed",
+      "evidence": "Final jar water->awkward Potion NBT, menu restored"
+    },
+    {
+      "id": "anvil_grindstone",
+      "result": "passed",
+      "evidence": "Final jar rename and enchantment removal NBT read"
+    },
+    {
+      "id": "cartography_stonecutter",
+      "result": "passed",
+      "evidence": "Final jar actual map scaled and stone recipe output"
+    },
+    {
+      "id": "loom_smithing_enchanting",
+      "result": "passed",
+      "evidence": "Final jar banner pattern, netherite_sword, knockback enchantment read"
+    },
+    {
+      "id": "equipment_bundle",
+      "result": "passed",
+      "evidence": "Helmet equip/unequip, shield swap, bundle insert/extract NBT"
+    },
+    {
+      "id": "chat_debug_screenshot",
+      "result": "passed",
+      "evidence": "Received chat text; local-only debug visible; full/crop PNG read visually"
+    },
+    {
+      "id": "mode_matrix",
+      "result": "passed",
+      "evidence": "PACKET rejects UI/Baritone; NORMAL rejects command/plugin creative packet; SIMULATE rejects raw API"
+    },
+    {
+      "id": "packet_catalog_capture_send",
+      "result": "passed",
+      "evidence": "Catalog+constructors; C2S metadata; constructor/wire submitted; S2C/arbitrary rejected"
+    },
+    {
+      "id": "plugin_hot",
+      "result": "passed",
+      "evidence": "Invalid syntax/structure retain revision; valid+stale revision; conditions verified"
+    },
+    {
+      "id": "plugin_hash",
+      "result": "passed",
+      "evidence": "Actual baritoe hash mismatch disabled"
+    },
+    {
+      "id": "plugin_cold",
+      "result": "passed",
+      "evidence": "Native MCP main-menu cold Provider registered and action observed; fixtures removed after"
+    },
+    {
+      "id": "cancel_recovery",
+      "result": "passed",
+      "evidence": "Final8 regressions; queued cancel additionally emits no release for running hold"
+    },
+    {
+      "id": "dedup",
+      "result": "passed",
+      "evidence": "Complete A, restore B, retry A unchanged timestamp and restored selected0 remains"
+    },
+    {
+      "id": "fletching",
+      "result": "not_applicable",
+      "evidence": "Vanilla1.20.1 has no menu; explicit reason returned for targeted operation"
+    },
+    {
+      "id": "other_mods_and_versions",
+      "result": "not_tested",
+      "evidence": "No claim every mod/hash or Fabric/NeoForge supported"
+    },
+    {
+      "id": "external_server_end_to_end",
+      "result": "not_tested",
+      "evidence": "Offline dedicated local test; no external account/server join"
+    },
+    {
+      "id": "full_survival_completion",
+      "result": "not_tested",
+      "evidence": "Platform exercised; no from-scratch Ender Dragon playthrough"
+    },
+    {
+      "id": "all_windows_reparse_variants",
+      "result": "not_tested",
+      "evidence": "Symlink fixture skipped OS privilege; traversal/binary protections passed"
+    }
+  ],
+  "counts": {
+    "not_applicable": 1,
+    "not_tested": 4,
+    "passed": 28
+  },
+  "artifact_sha256": "5c0348b0b491e4faba18197254a52b6de3ef858044c466ba7ee7f3952079fe3f",
+  "raw_evidence": [
+    "acceptance-events.jsonl",
+    "regression-events.jsonl"
+  ],
+  "raw_log_semantics": "Includes development failures and intentional rejection paths, not a list of all passing tests."
+}

@@ -15,6 +15,21 @@ class ProtocolTest(unittest.TestCase):
   tools=self.call('tools/list')['result']['tools'];self.assertGreaterEqual(len(tools),12);self.assertTrue(all(t['inputSchema'].get('additionalProperties') is False for t in tools))
  def test_observe(self):
   r=self.call('tools/call',{'name':'get_player_state','arguments':{}});self.assertFalse(r['result']['isError']);self.assertEqual(self.calls[0],('observe',{'kind':'player','arguments':{}}))
+ def test_recipe_cursor_forwarding(self):
+  pages=iter([{'data':{'recipes':[{'id':'first'}],'next_cursor':'recipes:opaque-2'}},{'data':{'recipes':[{'id':'second'}],'next_cursor':None}}])
+  def provider(method,args):self.calls.append((method,args));return next(pages)
+  self.server.invoke=provider
+  first=self.call('tools/call',{'name':'get_recipes','arguments':{'query':'stone','limit':1}})
+  cursor=json.loads(first['result']['content'][0]['text'])['data']['next_cursor']
+  second=self.call('tools/call',{'name':'get_recipes','arguments':{'query':'stone','limit':1,'cursor':cursor}})
+  self.assertNotIn('error',second)
+  self.assertEqual(json.loads(second['result']['content'][0]['text'])['data']['recipes'][0]['id'],'second')
+  self.assertEqual(self.calls[-1],('observe',{'kind':'recipes','arguments':{'query':'stone','limit':1,'cursor':'recipes:opaque-2'}}))
+ def test_recipe_offset_rejected(self):
+  response=self.call('tools/call',{'name':'get_recipes','arguments':{'offset':1}})
+  self.assertIn('error',response)
+  self.assertEqual(response['error']['code'],-32602)
+  self.assertEqual(self.calls,[])
  def test_action_id_preserved(self):
   def fail(*x):raise self.module.BridgeError('offline')
   self.server.invoke=fail;r=self.call('tools/call',{'name':'execute_action','arguments':{'action':'player.look','arguments':{'yaw':1}}})['result'];self.assertTrue(r['isError']);d=json.loads(r['content'][0]['text']);self.assertTrue(d['action_id']);self.assertTrue(d['delivery_unknown'])

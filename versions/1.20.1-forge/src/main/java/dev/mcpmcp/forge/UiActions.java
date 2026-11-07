@@ -20,14 +20,22 @@ import net.minecraft.world.level.GameType;
 import static dev.mcpmcp.core.Jsons.*;
 
 /** Screen-native input works on the title screen and paused worlds; no private screen methods are invoked. */
+@net.minecraftforge.fml.common.Mod.EventBusSubscriber(modid="mcpmcp",value=net.minecraftforge.api.distmarker.Dist.CLIENT)
 public final class UiActions {
+    private static final UiInputs INPUTS=new UiInputs();
+    /** Client-thread only. Releases only inputs acquired by UI automation. */
+    public static void releaseInputs(){INPUTS.releaseAll();}
+    @net.minecraftforge.eventbus.api.SubscribeEvent
+    public static void screenOpening(net.minecraftforge.client.event.ScreenEvent.Opening event){
+        if(event.getCurrentScreen()!=event.getNewScreen())releaseInputs();
+    }
     private record Node(GuiEventListener listener,List<ContainerEventHandler> parents,String path) {}
     private record Handle(Screen screen,Node node,long readAt) {}
     private static final LinkedHashMap<String,Handle> HANDLES=new LinkedHashMap<>();
     private static Screen lastScreen;
     private static long revision;
     private static void refresh(Screen screen) {
-        if(lastScreen!=screen){lastScreen=screen;revision++;HANDLES.clear();}
+        if(lastScreen!=screen){releaseInputs();lastScreen=screen;revision++;HANDLES.clear();}
         long now=System.currentTimeMillis();HANDLES.entrySet().removeIf(e->now-e.getValue().readAt>30000);
     }
     /** Lazy bounded depth-first traversal: never recursively copies a screen's full control tree. */
@@ -69,6 +77,7 @@ public final class UiActions {
     public static JsonObject execute(String action,JsonObject args) {
         Minecraft mc=Minecraft.getInstance();refresh(mc.screen);
         try {
+            if(action.startsWith("ui."))UiSafety.authorize(Runtime.config().mode,mc.screen instanceof SettingsScreen,false,false);
             JsonObject result=switch(action) {
                 case "screenshot"->screenshot(mc,args);
                 case "world.create"->create(mc,args);
@@ -84,8 +93,10 @@ public final class UiActions {
             };
             if("observed_success".equals(str(result,"status","")))result.addProperty("observed_success",true);
             return result;
-        }catch(IllegalArgumentException e){return obj("error","invalid_arguments","reason",e.getMessage());}
-        catch(IOException e){return obj("error","image_encoding_failed","reason",e.getClass().getSimpleName());}
+        }catch(IllegalArgumentException e){releaseInputs();return obj("error","invalid_arguments","reason",e.getMessage());}
+        catch(IOException e){releaseInputs();return obj("error","image_encoding_failed","reason",e.getClass().getSimpleName());}
+        catch(RuntimeException e){releaseInputs();throw e;}
+        finally{refresh(mc.screen);}
     }
     private static Screen screen(Minecraft mc){if(mc.screen==null)throw new IllegalArgumentException("no_screen_open");return mc.screen;}
     private static Node target(Screen screen,String id) {
@@ -101,17 +112,49 @@ public final class UiActions {
     private static void active(Node n) {
         if(n.listener instanceof AbstractWidget w&&(!w.active||!w.visible))throw new IllegalArgumentException("control_inactive_or_hidden");
     }
+    private static void authorizeActivation(Screen screen,GuiEventListener control){
+        boolean cheats=screen instanceof CreateWorldScreen c&&c.getUiState().isAllowCheats();
+        // LAN's commands flag has no public getter; publishing via this screen is conservatively privileged.
+        // world.open_lan {cheats:false} remains available in NORMAL/HACK.
+        cheats|=screen instanceof ShareToLanScreen;
+        if(screen instanceof CreateWorldScreen&&control instanceof AbstractWidget w)
+            cheats|=containsTranslation(w.getMessage(),"selectWorld.allowCommands")||containsTranslation(w.getMessage(),"selectWorld.gameMode");
+        UiSafety.authorize(Runtime.config().mode,screen instanceof SettingsScreen,false,cheats);
+    }
+    private static boolean containsTranslation(Component c,String key){
+        if(c.getContents() instanceof TranslatableContents t){
+            if(t.getKey().equals(key))return true;
+            for(Object arg:t.getArgs())if(arg instanceof Component child&&containsTranslation(child,key))return true;
+        }
+        for(Component sibling:c.getSiblings())if(containsTranslation(sibling,key))return true;
+        return false;
+    }
+    private static boolean keyDown(Minecraft mc,int code){
+        if(com.mojang.blaze3d.platform.InputConstants.isKeyDown(mc.getWindow().getWindow(),code))return true;
+        for(var mapping:mc.options.keyMappings)if(mapping.matches(code,0)&&mapping.isDown())return true;
+        return false;
+    }
     private static JsonObject mouse(Minecraft mc,JsonObject args,boolean click) {
         Screen s=screen(mc);String id=str(args,"id","");double x,y;
         if(!id.isEmpty()) {Node n=target(s,id);active(n);var r=n.listener.getRectangle();x=r.left()+r.width()/2d;y=r.top()+r.height()/2d;}
         else {x=number(args,"x",-1);y=number(args,"y",-1);}
         x=UiArguments.coordinate(x,s.width);y=UiArguments.coordinate(y,s.height);int button=integer(args,"button",0);if(button<0||button>7)throw new IllegalArgumentException("invalid_mouse_button");
         String mode=click?"click":str(args,"action","click");boolean handled;
+        if(!mode.equals("move")&&!mode.equals("release")){
+            GuiEventListener control=null;for(var child:s.children())if(child.isMouseOver(x,y)){control=child;break;}
+            authorizeActivation(s,control);
+            if(s instanceof ChatScreen&&mc.gui!=null){
+                var style=mc.gui.getChat().getClickedComponentStyleAt(x,y);
+                UiSafety.authorize(Runtime.config().mode,false,style!=null&&style.getClickEvent()!=null&&style.getClickEvent().getAction()==net.minecraft.network.chat.ClickEvent.Action.RUN_COMMAND,false);
+            }
+        }
+        final double px=x,py=y;String input="mouse:"+button;
+        boolean playerDown=org.lwjgl.glfw.GLFW.glfwGetMouseButton(mc.getWindow().getWindow(),button)==1;
         switch(mode) {
             case "move"->{s.mouseMoved(x,y);handled=true;}
-            case "press"->handled=s.mouseClicked(x,y,button);
-            case "release"->handled=s.mouseReleased(x,y,button);
-            case "click","tap"->{handled=s.mouseClicked(x,y,button);if(mc.screen==s)s.mouseReleased(x,y,button);}
+            case "press"->{handled=INPUTS.acquire(input,playerDown,()->{if(org.lwjgl.glfw.GLFW.glfwGetMouseButton(mc.getWindow().getWindow(),button)!=1)s.mouseReleased(px,py,button);});if(handled)handled=s.mouseClicked(x,y,button);}
+            case "release"->{INPUTS.release(input);handled=true;}
+            case "click","tap"->{handled=INPUTS.acquire(input,playerDown,()->{if(org.lwjgl.glfw.GLFW.glfwGetMouseButton(mc.getWindow().getWindow(),button)!=1)s.mouseReleased(px,py,button);});if(handled)try{handled=s.mouseClicked(x,y,button);}finally{INPUTS.release(input);}}
             default->throw new IllegalArgumentException("mouse_action_must_be_click_move_press_release");
         }
         s.afterMouseAction();return obj("status","submitted","handled",handled,"x",x,"y",y,"button",button,"screen_changed",mc.screen!=s,"verify","observe screen or resulting world state");
@@ -123,8 +166,19 @@ public final class UiActions {
         if(code<32||code>348)throw new IllegalArgumentException("invalid_glfw_key");
         int modifiers=integer(args,"modifiers",0);if(modifiers<0||modifiers>63)throw new IllegalArgumentException("invalid_modifiers");
         String action=str(args,"action","tap");long window=mc.getWindow().getWindow();
-        switch(action){case "press"->mc.keyboardHandler.keyPress(window,code,0,1,modifiers);case "release"->mc.keyboardHandler.keyPress(window,code,0,0,modifiers);
-            case "tap","click"->{mc.keyboardHandler.keyPress(window,code,0,1,modifiers);mc.keyboardHandler.keyPress(window,code,0,0,modifiers);}
+        if(!action.equals("release")&&mc.screen!=null){
+            authorizeActivation(mc.screen,focused(mc.screen));
+            if(mc.screen instanceof ChatScreen chat&&(code==257||code==335)){
+                String value="";for(var child:chat.children())if(child instanceof EditBox box){value=chat.normalizeChatMessage(box.getValue());break;}
+                UiSafety.authorizeKey(Runtime.config().mode,true,code,false,value);
+            }
+        }
+        String input="key:"+code;
+        final int key=code;
+        Runnable release=()->{if(!com.mojang.blaze3d.platform.InputConstants.isKeyDown(window,key))mc.keyboardHandler.keyPress(window,key,0,0,modifiers);};
+        switch(action){case "press"->{if(INPUTS.acquire(input,keyDown(mc,key),release))mc.keyboardHandler.keyPress(window,key,0,1,modifiers);}
+            case "release"->INPUTS.release(input);
+            case "tap","click"->{if(INPUTS.acquire(input,keyDown(mc,key),release))try{mc.keyboardHandler.keyPress(window,key,0,1,modifiers);}finally{INPUTS.release(input);}}
             default->throw new IllegalArgumentException("key_action_must_be_tap_press_release");}
         return obj("status","submitted","key",code,"action",action,"verify","observe screen or resulting state");
     }
@@ -166,9 +220,11 @@ public final class UiActions {
         if(mode==WorldCreationUiState.SelectedGameMode.DEBUG)throw new IllegalArgumentException("debug_world_not_supported_by_create");
         Difficulty difficulty;try{difficulty=Difficulty.valueOf(str(args,"difficulty","NORMAL").toUpperCase(Locale.ROOT));}catch(RuntimeException e){throw new IllegalArgumentException("invalid_difficulty");}
         boolean structures=bool(args,"generate_structures",true),cheats=bool(args,"cheats",false);
+        UiSafety.authorize(Runtime.config().mode,false,false,cheats);
         if(!(mc.screen instanceof CreateWorldScreen))CreateWorldScreen.openFresh(mc,mc.screen==null?new TitleScreen():mc.screen);
         if(!(mc.screen instanceof CreateWorldScreen screen))return obj("status","submitted","phase","opening_create_world_screen","next","Repeat world.create with the same arguments once screen is CreateWorldScreen");
         var ui=screen.getUiState();ui.setName(name);ui.setSeed(seed);ui.setGameMode(mode);ui.setDifficulty(difficulty);ui.setGenerateStructures(structures);ui.setAllowCheats(cheats);
+        UiSafety.authorize(Runtime.config().mode,false,false,ui.isAllowCheats());
         Iterator<Node> nodes=nodes(screen);int count=0;
         while(nodes.hasNext()&&count++<4096) {
             GuiEventListener listener=nodes.next().listener;
@@ -200,6 +256,7 @@ public final class UiActions {
         int port=integer(args,"port",25565);if(port<1024||port>65535)throw new IllegalArgumentException("lan_port_out_of_range_1024_65535");
         GameType mode=GameType.byName(str(args,"gamemode",mc.gameMode==null?"survival":mc.gameMode.getPlayerMode().getName()),null);if(mode==null)throw new IllegalArgumentException("invalid_gamemode");
         boolean cheats=bool(args,"cheats",false);
+        UiSafety.authorize(Runtime.config().mode,false,false,cheats);
         if(server.isPublished())return obj("status","observed_success","already_published",true,"port",server.getPort());
         boolean ok=server.publishServer(mode,cheats,port);return ok?obj("status","observed_success","published",server.isPublished(),"port",server.getPort()):obj("error","lan_publish_failed","reason","Vanilla server could not bind or publish the requested port");
     }
