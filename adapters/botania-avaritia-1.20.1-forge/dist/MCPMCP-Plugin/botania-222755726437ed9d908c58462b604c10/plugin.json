@@ -1,0 +1,10 @@
+{
+  "api": 1,
+  "id": "mcpmcp.botania",
+  "mod_id": "botania",
+  "minecraft": "1.20.1",
+  "loader": "forge",
+  "target_version": "1.20.1-453-FORGE",
+  "target_sha256": "222755726437ed9d908c58462b604c10d137c3756a4a228ab459dbbaf8bd4c19",
+  "actions": []
+}

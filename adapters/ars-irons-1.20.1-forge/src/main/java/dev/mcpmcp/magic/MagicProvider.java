@@ -62,7 +62,7 @@ public class MagicProvider implements McpmcpPlugin {
             }
             default -> throw new IllegalArgumentException("unsupported_action");
         }
-        return object(p,req,"One normal client input submission, input-capable transport required. Re-read observer and child core job; submission is not spell/craft success.");
+        return object(p,req,action.equals("cast")||action.equals("quick_cast")?"One mod-local client input pulse and ClientInputEvents.onClientTick call; no global key event. Requires normal/input policy. Submitted is not server acceptance; read effects, mana, casting and cooldowns. No dry_run parameter.":"One normal client input submission, input-capable transport required. Re-read observer and child core job; submission is not spell/craft success.");
     }
     public static JsonObject describe(String mod) {
         JsonObject schemas=obj("observer",observerSchema());JsonArray actionSpecs=new JsonArray();
@@ -75,7 +75,8 @@ public class MagicProvider implements McpmcpPlugin {
             "unknown",List.of("server_only_resources","unloaded_chunks","server_acceptance_without_readback","recipe_rules_not_represented_in_client_RecipeManager"),
             "unsupported",List.of("arbitrary_capability_mutation","automatic_magic_workstation_crafting","generic_recipe_execution","arbitrary_spellbook_editing","Traveloptics_special_armor_weapon_abilities"),
             "machine_workflow","Observe local machine, inventory and actual menu. interact submits one core block.interact only; use core menu operations only after reading matching menu and slots.",
-            "selection",mod.equals("ars_nouveau")?"next_spell/previous_spell via current bound native keys; observe book selection after sync":"quick_cast uses an actual configured quick-cast key: it casts, not selection-only. Selection-only is unsupported; use current native wheel/UI then read player selection.",
+            "selection",mod.equals("ars_nouveau")?"next_spell/previous_spell via current bound native keys; observe book selection after sync":"cast checks the current selection; quick_cast checks getSpellSlot(index), with index limited to the target mod's actual quick-cast mappings. Both invoke the same native mod input handler, independent of binding conflicts/unbound keys. Selection-only is unsupported.",
+            "cast_submission",mod.equals("ars_nouveau")?obj("entrypoint","player.use"):obj("entrypoint","ClientInputEvents.onClientTick","scope","irons_spellbooks_only","global_key_event",false,"single_submission",true,"server_path","CastPacket/QuickCastPacket -> normal server-side initiation","verification_required",true,"dry_run_supported",false),
             "execution_tested_in_game",false);
     }
 }

@@ -27,6 +27,7 @@ public final class ContractTest {
             check(p.id().equals("mcpmcp."+mod),"id");
             JsonObject discovery=f.observers.get(mod).call(obj());
             check(discovery.has("schema")&&discovery.has("examples")&&discovery.has("unsupported"),"discoverable contract");check(reads[0]==0,"describe no client access");
+            if(!mod.equals("ars_nouveau"))check(discovery.has("cast_submission")&&discovery.getAsJsonObject("cast_submission").get("entrypoint").getAsString().equals("ClientInputEvents.onClientTick"),"cast must use one native mod handler, independent of global key conflicts");
             for(JsonElement ex:discovery.getAsJsonArray("examples"))Schema.validate(ex.getAsJsonObject().get("arguments"),MagicProvider.observerSchema());
             f.observers.get(mod).call(obj("view","player"));check(reads[0]==1,"player delegated");
             rejects(()->Schema.validate(obj("view","invented"),MagicProvider.observerSchema()),"unknown view");
@@ -35,6 +36,13 @@ public final class ContractTest {
             String action=mod.equals("ars_nouveau")?"next_spell":"cast";
             JsonObject valid=mod.equals("ars_nouveau")?obj("expected_item","ars_nouveau:novice_spell_book"):obj("expected_spell",mod+":spell","expected_source","mainhand","expected_source_index",0);
             valid.addProperty("plugin_revision","test");f.actions.get(mod+"."+action).call(valid);check(acts[0]==1,"handler invoked once");
+            if(!mod.equals("ars_nouveau")){
+                for(boolean dryRun:List.of(false,true)){
+                    JsonObject invalid=valid.deepCopy();invalid.addProperty("dry_run",dryRun);
+                    try{f.actions.get(mod+"."+action).call(invalid);throw new AssertionError("dry_run must not silently cast");}catch(IllegalArgumentException expected){check(acts[0]==1,"unsupported dry_run rejected before backend execution");}
+                }
+                check(Policy.allowed("NORMAL","SIMULATE","input","normal")&&Policy.allowed("NORMAL","MIXED","input","normal"),"native cast retains normal input transports");
+            }
             rejects(()->Schema.validate(obj(),f.schemas.get(mod+"."+action)),"identity guards required");
             check(!f.actions.containsKey(mod+".craft"),"no fake machine crafting");
             for(String name:f.actions.keySet())check(!Policy.allowed("NORMAL","PACKET","input","normal"),"packet transport cannot run input action");

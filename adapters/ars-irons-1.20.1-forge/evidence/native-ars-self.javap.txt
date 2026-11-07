@@ -1,0 +1,160 @@
+Compiled from "MethodSelf.java"
+public class com.hollingsworth.arsnouveau.common.spell.method.MethodSelf extends com.hollingsworth.arsnouveau.api.spell.AbstractCastMethod {
+  public static com.hollingsworth.arsnouveau.common.spell.method.MethodSelf INSTANCE;
+
+  private com.hollingsworth.arsnouveau.common.spell.method.MethodSelf();
+    Code:
+       0: aload_0
+       1: getstatic     #20                 // Field com/hollingsworth/arsnouveau/common/lib/GlyphLib.MethodSelfID:Ljava/lang/String;
+       4: ldc           #22                 // String Self
+       6: invokespecial #25                 // Method com/hollingsworth/arsnouveau/api/spell/AbstractCastMethod."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+       9: return
+
+  public com.hollingsworth.arsnouveau.api.spell.CastResolveType onCast(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, net.minecraft.world.level.Level, com.hollingsworth.arsnouveau.api.spell.SpellStats, com.hollingsworth.arsnouveau.api.spell.SpellContext, com.hollingsworth.arsnouveau.api.spell.SpellResolver);
+    Code:
+       0: aload         6
+       2: aload_2
+       3: invokevirtual #34                 // Method net/minecraft/world/entity/LivingEntity.m_20193_:()Lnet/minecraft/world/level/Level;
+       6: new           #36                 // class net/minecraft/world/phys/EntityHitResult
+       9: dup
+      10: aload_2
+      11: invokespecial #39                 // Method net/minecraft/world/phys/EntityHitResult."<init>":(Lnet/minecraft/world/entity/Entity;)V
+      14: invokevirtual #45                 // Method com/hollingsworth/arsnouveau/api/spell/SpellResolver.onResolveEffect:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/HitResult;)V
+      17: aload_2
+      18: getfield      #49                 // Field net/minecraft/world/entity/LivingEntity.f_19853_:Lnet/minecraft/world/level/Level;
+      21: aload_2
+      22: new           #9                  // class com/hollingsworth/arsnouveau/common/network/PacketANEffect
+      25: dup
+      26: getstatic     #53                 // Field com/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType.TIMED_HELIX:Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;
+      29: aload_2
+      30: invokevirtual #57                 // Method net/minecraft/world/entity/LivingEntity.m_20183_:()Lnet/minecraft/core/BlockPos;
+      33: aload         5
+      35: invokevirtual #63                 // Method com/hollingsworth/arsnouveau/api/spell/SpellContext.getColors:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+      38: iconst_0
+      39: newarray       int
+      41: invokespecial #66                 // Method com/hollingsworth/arsnouveau/common/network/PacketANEffect."<init>":(Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;Lnet/minecraft/core/BlockPos;Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;[I)V
+      44: invokestatic  #72                 // Method com/hollingsworth/arsnouveau/common/network/Networking.sendToNearby:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Ljava/lang/Object;)V
+      47: getstatic     #78                 // Field com/hollingsworth/arsnouveau/api/spell/CastResolveType.SUCCESS:Lcom/hollingsworth/arsnouveau/api/spell/CastResolveType;
+      50: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.CastResolveType onCastOnBlock(net.minecraft.world.item.context.UseOnContext, com.hollingsworth.arsnouveau.api.spell.SpellStats, com.hollingsworth.arsnouveau.api.spell.SpellContext, com.hollingsworth.arsnouveau.api.spell.SpellResolver);
+    Code:
+       0: aload_1
+       1: invokevirtual #96                 // Method net/minecraft/world/item/context/UseOnContext.m_43725_:()Lnet/minecraft/world/level/Level;
+       4: astore        5
+       6: aload         4
+       8: aload         5
+      10: new           #36                 // class net/minecraft/world/phys/EntityHitResult
+      13: dup
+      14: aload_1
+      15: invokevirtual #100                // Method net/minecraft/world/item/context/UseOnContext.m_43723_:()Lnet/minecraft/world/entity/player/Player;
+      18: invokespecial #39                 // Method net/minecraft/world/phys/EntityHitResult."<init>":(Lnet/minecraft/world/entity/Entity;)V
+      21: invokevirtual #45                 // Method com/hollingsworth/arsnouveau/api/spell/SpellResolver.onResolveEffect:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/HitResult;)V
+      24: aload_1
+      25: invokevirtual #96                 // Method net/minecraft/world/item/context/UseOnContext.m_43725_:()Lnet/minecraft/world/level/Level;
+      28: aload_1
+      29: invokevirtual #100                // Method net/minecraft/world/item/context/UseOnContext.m_43723_:()Lnet/minecraft/world/entity/player/Player;
+      32: new           #9                  // class com/hollingsworth/arsnouveau/common/network/PacketANEffect
+      35: dup
+      36: getstatic     #53                 // Field com/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType.TIMED_HELIX:Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;
+      39: aload_1
+      40: invokevirtual #100                // Method net/minecraft/world/item/context/UseOnContext.m_43723_:()Lnet/minecraft/world/entity/player/Player;
+      43: invokevirtual #103                // Method net/minecraft/world/entity/player/Player.m_20183_:()Lnet/minecraft/core/BlockPos;
+      46: aload_3
+      47: invokevirtual #63                 // Method com/hollingsworth/arsnouveau/api/spell/SpellContext.getColors:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+      50: iconst_0
+      51: newarray       int
+      53: invokespecial #66                 // Method com/hollingsworth/arsnouveau/common/network/PacketANEffect."<init>":(Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;Lnet/minecraft/core/BlockPos;Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;[I)V
+      56: invokestatic  #72                 // Method com/hollingsworth/arsnouveau/common/network/Networking.sendToNearby:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Ljava/lang/Object;)V
+      59: getstatic     #78                 // Field com/hollingsworth/arsnouveau/api/spell/CastResolveType.SUCCESS:Lcom/hollingsworth/arsnouveau/api/spell/CastResolveType;
+      62: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.CastResolveType onCastOnBlock(net.minecraft.world.phys.BlockHitResult, net.minecraft.world.entity.LivingEntity, com.hollingsworth.arsnouveau.api.spell.SpellStats, com.hollingsworth.arsnouveau.api.spell.SpellContext, com.hollingsworth.arsnouveau.api.spell.SpellResolver);
+    Code:
+       0: aload_2
+       1: getfield      #49                 // Field net/minecraft/world/entity/LivingEntity.f_19853_:Lnet/minecraft/world/level/Level;
+       4: astore        6
+       6: aload         5
+       8: aload         6
+      10: new           #36                 // class net/minecraft/world/phys/EntityHitResult
+      13: dup
+      14: aload_2
+      15: invokespecial #39                 // Method net/minecraft/world/phys/EntityHitResult."<init>":(Lnet/minecraft/world/entity/Entity;)V
+      18: invokevirtual #45                 // Method com/hollingsworth/arsnouveau/api/spell/SpellResolver.onResolveEffect:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/HitResult;)V
+      21: aload_2
+      22: getfield      #49                 // Field net/minecraft/world/entity/LivingEntity.f_19853_:Lnet/minecraft/world/level/Level;
+      25: aload_2
+      26: new           #9                  // class com/hollingsworth/arsnouveau/common/network/PacketANEffect
+      29: dup
+      30: getstatic     #53                 // Field com/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType.TIMED_HELIX:Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;
+      33: aload_2
+      34: invokevirtual #57                 // Method net/minecraft/world/entity/LivingEntity.m_20183_:()Lnet/minecraft/core/BlockPos;
+      37: aload         4
+      39: invokevirtual #63                 // Method com/hollingsworth/arsnouveau/api/spell/SpellContext.getColors:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+      42: iconst_0
+      43: newarray       int
+      45: invokespecial #66                 // Method com/hollingsworth/arsnouveau/common/network/PacketANEffect."<init>":(Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;Lnet/minecraft/core/BlockPos;Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;[I)V
+      48: invokestatic  #72                 // Method com/hollingsworth/arsnouveau/common/network/Networking.sendToNearby:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Ljava/lang/Object;)V
+      51: getstatic     #78                 // Field com/hollingsworth/arsnouveau/api/spell/CastResolveType.SUCCESS:Lcom/hollingsworth/arsnouveau/api/spell/CastResolveType;
+      54: areturn
+
+  public com.hollingsworth.arsnouveau.api.spell.CastResolveType onCastOnEntity(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.Entity, net.minecraft.world.InteractionHand, com.hollingsworth.arsnouveau.api.spell.SpellStats, com.hollingsworth.arsnouveau.api.spell.SpellContext, com.hollingsworth.arsnouveau.api.spell.SpellResolver);
+    Code:
+       0: aload_2
+       1: getfield      #49                 // Field net/minecraft/world/entity/LivingEntity.f_19853_:Lnet/minecraft/world/level/Level;
+       4: astore        8
+       6: aload         7
+       8: aload         8
+      10: new           #36                 // class net/minecraft/world/phys/EntityHitResult
+      13: dup
+      14: aload_2
+      15: invokespecial #39                 // Method net/minecraft/world/phys/EntityHitResult."<init>":(Lnet/minecraft/world/entity/Entity;)V
+      18: invokevirtual #45                 // Method com/hollingsworth/arsnouveau/api/spell/SpellResolver.onResolveEffect:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/HitResult;)V
+      21: aload_2
+      22: getfield      #49                 // Field net/minecraft/world/entity/LivingEntity.f_19853_:Lnet/minecraft/world/level/Level;
+      25: aload_2
+      26: new           #9                  // class com/hollingsworth/arsnouveau/common/network/PacketANEffect
+      29: dup
+      30: getstatic     #53                 // Field com/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType.TIMED_HELIX:Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;
+      33: aload_2
+      34: invokevirtual #57                 // Method net/minecraft/world/entity/LivingEntity.m_20183_:()Lnet/minecraft/core/BlockPos;
+      37: aload         6
+      39: invokevirtual #63                 // Method com/hollingsworth/arsnouveau/api/spell/SpellContext.getColors:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+      42: iconst_0
+      43: newarray       int
+      45: invokespecial #66                 // Method com/hollingsworth/arsnouveau/common/network/PacketANEffect."<init>":(Lcom/hollingsworth/arsnouveau/common/network/PacketANEffect$EffectType;Lnet/minecraft/core/BlockPos;Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;[I)V
+      48: invokestatic  #72                 // Method com/hollingsworth/arsnouveau/common/network/Networking.sendToNearby:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;Ljava/lang/Object;)V
+      51: getstatic     #78                 // Field com/hollingsworth/arsnouveau/api/spell/CastResolveType.SUCCESS:Lcom/hollingsworth/arsnouveau/api/spell/CastResolveType;
+      54: areturn
+
+  public int getDefaultManaCost();
+    Code:
+       0: bipush        10
+       2: ireturn
+
+  public java.util.Set<com.hollingsworth.arsnouveau.api.spell.AbstractAugment> getCompatibleAugments();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: anewarray     #123                // class com/hollingsworth/arsnouveau/api/spell/AbstractAugment
+       5: invokevirtual #127                // Method augmentSetOf:([Lcom/hollingsworth/arsnouveau/api/spell/AbstractAugment;)Ljava/util/Set;
+       8: areturn
+
+  public java.lang.String getBookDescription();
+    Code:
+       0: ldc           #131                // String A spell you start with. Applies spells on the caster.
+       2: areturn
+
+  public boolean defaultedStarterGlyph();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/hollingsworth/arsnouveau/common/spell/method/MethodSelf
+       3: dup
+       4: invokespecial #136                // Method "<init>":()V
+       7: putstatic     #138                // Field INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/method/MethodSelf;
+      10: return
+}

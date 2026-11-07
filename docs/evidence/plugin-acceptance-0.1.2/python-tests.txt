@@ -1,0 +1,37 @@
+test_locales_cover_ui (test_localization.LocalizationTest.test_locales_cover_ui) ... ok
+test_settings_protection (test_localization.LocalizationTest.test_settings_protection) ... ok
+test_action_id_preserved (test_mcp.ProtocolTest.test_action_id_preserved) ... ok
+test_init (test_mcp.ProtocolTest.test_init) ... ok
+test_invalid_detail_enum (test_mcp.ProtocolTest.test_invalid_detail_enum) ... ok
+test_invalid_nested (test_mcp.ProtocolTest.test_invalid_nested) ... ok
+test_inventory_detail_contract (test_mcp.ProtocolTest.test_inventory_detail_contract) ... ok
+test_no_external_file_tool (test_mcp.ProtocolTest.test_no_external_file_tool) ... ok
+test_notification (test_mcp.ProtocolTest.test_notification) ... ok
+test_observe (test_mcp.ProtocolTest.test_observe) ... ok
+test_recipe_cursor_forwarding (test_mcp.ProtocolTest.test_recipe_cursor_forwarding) ... ok
+test_recipe_offset_rejected (test_mcp.ProtocolTest.test_recipe_offset_rejected) ... ok
+test_stdio (test_mcp.ProtocolTest.test_stdio) ... ok
+test_tools_closed_schema (test_mcp.ProtocolTest.test_tools_closed_schema) ... ok
+test_unknown_rejected (test_mcp.ProtocolTest.test_unknown_rejected) ... ok
+test_context_is_a_discoverable_read_only_tool (test_native_chat.NativeChatProtocolTest.test_context_is_a_discoverable_read_only_tool) ... ok
+test_initialize_discovers_native_chat_without_prefix_rewriting (test_native_chat.NativeChatProtocolTest.test_initialize_discovers_native_chat_without_prefix_rewriting) ... ok
+test_raw_text_and_action_id_are_preserved (test_native_chat.NativeChatProtocolTest.test_raw_text_and_action_id_are_preserved) ... ok
+test_empty_filtered_page_is_preserved_for_continuation (test_observation_policy.ObservationPolicyTest.test_empty_filtered_page_is_preserved_for_continuation) ... ok
+test_explicit_visual_fallback_still_returns_an_image (test_observation_policy.ObservationPolicyTest.test_explicit_visual_fallback_still_returns_an_image) ... ok
+test_initialize_teaches_structured_first_and_visual_last (test_observation_policy.ObservationPolicyTest.test_initialize_teaches_structured_first_and_visual_last) ... ok
+test_tool_discovery_explains_query_and_visual_fallback (test_observation_policy.ObservationPolicyTest.test_tool_discovery_explains_query_and_visual_fallback) ... ok
+test_archive_preflight_and_verified_replace (test_plugin_release.ReleaseTest.test_archive_preflight_and_verified_replace) ... ok
+test_build_receipt_rejects_any_source_or_jar_drift (test_plugin_release.ReleaseTest.test_build_receipt_rejects_any_source_or_jar_drift) ... ok
+test_exact_ids_required (test_plugin_release.ReleaseTest.test_exact_ids_required) ... ok
+test_install_rollback_and_preserve_support_files (test_plugin_release.ReleaseTest.test_install_rollback_and_preserve_support_files) ... ok
+test_jar_provider_and_namespace (test_plugin_release.ReleaseTest.test_jar_provider_and_namespace) ... ok
+test_missing_manifest_and_current_build_are_errors (test_plugin_release.ReleaseTest.test_missing_manifest_and_current_build_are_errors) ... ok
+test_no_path_escape_or_link (test_plugin_release.ReleaseTest.test_no_path_escape_or_link) ... ok
+test_selector_rejects_missing_wrong_and_ambiguous_targets (test_plugin_release.ReleaseTest.test_selector_rejects_missing_wrong_and_ambiguous_targets) ... ok
+test_source_identity_tracks_uncommitted_code (test_plugin_release.ReleaseTest.test_source_identity_tracks_uncommitted_code) ... ok
+test_supported_process_forms (test_plugin_release.ReleaseTest.test_supported_process_forms) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.312s
+
+OK

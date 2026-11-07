@@ -7,3 +7,7 @@ __pycache__/
 .superpowers/
 .local/
 *.log
+adapters/ars-irons-1.20.1-forge/stage/
+# Generated runtime logs and extracted third-party source are not deliverables.
+**/logs/
+adapters/sophisticated-1.20.1-forge/evidence/forge-player-inventory-source/

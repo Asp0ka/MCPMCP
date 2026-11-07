@@ -1,105 +1,94 @@
-"""Validate and stage Java plugins into the authorized 神秘启旅 instance.
-
-Each candidate directory must contain plugin.json + adapter.jar. The declared
-target hash and version are checked against the real mod JAR before copying.
+"""Fixed-instance exact-set installer; --apply needs a fresh build receipt.
+Freeze/stage all inputs, recheck before replacing known files, retain backups
+and restore changed files on exceptions. User support files are retained.
 """
 from pathlib import Path
-import hashlib
-import json
-import re
-import shutil
-import sys
-import zipfile
-
-ROOT = Path(__file__).resolve().parents[1]
-PACK = Path('D:/Games/mc/Cheat/versions/神秘启旅')
-ADAPTERS = ROOT / 'adapters'
-INSTALLED = PACK / 'MCPMCP-Plugin'
-
-
-def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
+import datetime,json,re,sys,tempfile,zipfile
+from plugin_release import (ROOT,PACK,EXPECTED,catalog,select,mod_inventory,
+    public_row,receipt_matches,contained,ensure_stopped,digest,require_ids)
 
 def mod_meta(jar):
     import tomllib
     with zipfile.ZipFile(jar) as z:
-        data = tomllib.loads(z.read('META-INF/mods.toml').decode('utf-8'))
-        manifest = z.read('META-INF/MANIFEST.MF').decode('utf-8', 'replace')
-    blocks = data.get('mods', [])
-    ids = [b.get('modId', '') for b in blocks if b.get('modId')]
-    version = blocks[0].get('version', '') if blocks else ''
-    if '${file.jarVersion}' in version:
-        m = re.search(r'Implementation-Version:\s*(\S+)', manifest)
-        version = m.group(1) if m else ''
-    return ids, version
+        data=tomllib.loads(z.read('META-INF/mods.toml').decode('utf-8'))
+        mf=z.read('META-INF/MANIFEST.MF').decode('utf-8','replace') if 'META-INF/MANIFEST.MF' in z.namelist() else ''
+    impl=re.search(r'^Implementation-Version:\s*(\S+)',mf,re.M)
+    return [(b['modId'],impl.group(1) if b.get('version')=='${file.jarVersion}' and impl else str(b.get('version','')))
+            for b in data.get('mods',[]) if b.get('modId')]
 
+def plan_install(root=ROOT,pack=PACK):
+    contained(pack,pack/'mods');contained(pack,pack/'MCPMCP-Plugin')
+    rows=select(catalog(root),mod_inventory(pack));require_ids(rows)
+    folders={r['canonical'] for r in rows};installed=pack/'MCPMCP-Plugin'
+    if installed.exists():
+        for d in installed.iterdir():
+            contained(pack,d);mf=d/'plugin.json'
+            if mf.is_file() and json.loads(mf.read_bytes()).get('id') in EXPECTED and d.name not in folders:
+                raise ValueError('Plugin ID in noncanonical folder: '+str(d))
+    for row in rows:
+        for name in ('adapter.jar','plugin.json','GUIDE.md'):contained(pack,installed/row['canonical']/name)
+    return rows
 
-def candidates():
-    for adapter in ADAPTERS.iterdir():
-        if not adapter.is_dir():
-            continue
-        for manifest in list(adapter.rglob('plugin.json')) + list(adapter.rglob('manifest.json')):
-            folder = manifest.parent
-            if (folder / 'adapter.jar').is_file():
-                yield adapter, folder, manifest
+def files_for(row):
+    return {n:row[k].read_bytes() for n,k in [('plugin.json','manifest_path'),('adapter.jar','jar_path'),('GUIDE.md','guide_path')]}
 
+def verify_frozen(rows,frozen,pack):
+    fresh=plan_install(pack=pack)
+    if [r['canonical'] for r in fresh]!=[r['canonical'] for r in rows]:raise ValueError('Target changed during staging')
+    for row in fresh:
+        if files_for(row)!=frozen[row['canonical']]:raise ValueError('Source changed during staging')
+    receipt_matches(catalog())
+
+def apply_install(rows,pack=PACK):
+    ensure_stopped(pack);receipt_matches(catalog())
+    frozen={r['canonical']:files_for(r) for r in rows}
+    local=ROOT/'.local';local.mkdir(exist_ok=True)
+    backup=local/'plugin-backups'/datetime.datetime.now().strftime('%Y%m%d-%H%M%S-%f')
+    changed=[];previous={}
+    with tempfile.TemporaryDirectory(prefix='plugin-stage-',dir=local) as tmp:
+        stage=Path(tmp)
+        for folder,files in frozen.items():
+            for name,data in files.items():
+                p=stage/folder/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+                if p.read_bytes()!=data:raise ValueError('Staging mismatch')
+        verify_frozen(rows,frozen,pack);ensure_stopped(pack)
+        for folder,files in frozen.items():
+            for name in files:
+                target=contained(pack,pack/'MCPMCP-Plugin'/folder/name)
+                staged_target=contained(pack,target.with_name(name+'.new'))
+                if staged_target.exists():raise ValueError('Stale staging file must be recovered first: '+str(staged_target))
+                previous[target]=target.read_bytes() if target.exists() else None
+                if previous[target] is not None:
+                    saved=backup/folder/name;saved.parent.mkdir(parents=True,exist_ok=True);saved.write_bytes(previous[target])
+        try:
+            for folder,files in frozen.items():
+                for name,data in files.items():
+                    target=contained(pack,pack/'MCPMCP-Plugin'/folder/name);target.parent.mkdir(parents=True,exist_ok=True)
+                    temp=contained(pack,target.with_name(name+'.new'))
+                    temp.write_bytes((stage/folder/name).read_bytes());temp.replace(target);changed.append(target)
+                    if target.read_bytes()!=data:raise ValueError('Installed mismatch')
+        except BaseException:
+            for target in reversed(changed):
+                contained(pack,target)
+                if previous[target] is None:target.unlink(missing_ok=True)
+                else:target.write_bytes(previous[target])
+            raise
+        finally:
+            for folder,files in frozen.items():
+                for name in files:
+                    temp=contained(pack,pack/'MCPMCP-Plugin'/folder/(name+'.new'))
+                    temp.unlink(missing_ok=True)
+    out={'instance':str(pack),'build_receipt_sha256':digest((ROOT/'.local/plugin-build-receipt.json').read_bytes()),'backup':str(backup),
+         'recovery':'Close game, restore backed-up known files into matching folders. Replacement exceptions automatically restore changed files.',
+         'artifacts':[dict(public_row(r),installed_adapter_sha256=digest((pack/'MCPMCP-Plugin'/r['canonical']/'adapter.jar').read_bytes())) for r in rows]}
+    (local/'plugin-install-receipt.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
+    return out
 
 def main():
-    apply = '--apply' in sys.argv
-    mods = {}
-    for jar in (PACK / 'mods').glob('*.jar'):
-        try:
-            ids, version = mod_meta(jar)
-        except (KeyError, zipfile.BadZipFile, UnicodeDecodeError):
-            continue
-        for mod_id in ids:
-            mods.setdefault(mod_id, []).append((jar, version))
-    plan = []
-    for adapter, folder, manifest_path in sorted(candidates()):
-        manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-        problems = []
-        if manifest.get('api') != 1:
-            problems.append('api')
-        mod_id = manifest.get('mod_id', '')
-        target = manifest.get('target_sha256', '')
-        expected = manifest.get('target_version', '')
-        found = mods.get(mod_id, [])
-        if len(found) != 1:
-            problems.append(f'mod_candidates={len(found)}')
-            actual_hash = actual_version = None
-        else:
-            jar, actual_version = found[0]
-            actual_hash = sha(jar)
-            if actual_hash != target:
-                problems.append('hash_mismatch')
-            if expected != actual_version:
-                problems.append(f'version_mismatch:{expected}!={actual_version}')
-        row = {'id': manifest.get('id'), 'mod_id': mod_id, 'from': str(folder),
-               'target_version': expected, 'actual_version': actual_version if len(found) == 1 else None,
-               'target_sha256': target, 'actual_sha256': actual_hash if len(found) == 1 else None,
-               'problems': problems, 'adapter_sha256': sha(folder / 'adapter.jar')}
-        plan.append(row)
-        if problems:
-            continue
-        dest = INSTALLED / folder.name
-        row['to'] = str(dest)
-        if apply:
-            if dest.exists():
-                shutil.rmtree(dest)
-            dest.mkdir(parents=True)
-            shutil.copy2(manifest_path, dest / 'plugin.json')
-            shutil.copy2(folder / 'adapter.jar', dest / 'adapter.jar')
-            guide = folder / 'GUIDE.md'
-            if guide.is_file():
-                shutil.copy2(guide, dest / 'GUIDE.md')
-            row['installed_adapter_sha256'] = sha(dest / 'adapter.jar')
-    (ROOT / '.local/plugin-install-plan.json').write_text(
-        json.dumps(plan, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(json.dumps(plan, ensure_ascii=False, indent=2))
-    if any(r['problems'] for r in plan):
-        raise SystemExit(1)
+    rows=plan_install();result={'instance':str(PACK),'count':len(rows),'artifacts':[public_row(r) for r in rows]}
+    if '--apply' in sys.argv:result=apply_install(rows)
+    (ROOT/'.local').mkdir(exist_ok=True)
+    (ROOT/'.local/plugin-install-plan.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
+    print(json.dumps({'count':len(rows),'apply':'--apply' in sys.argv,'verified':True}))
 
-
-if __name__ == '__main__':
-    main()
+if __name__=='__main__':main()

@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "checks": 34,
+  "test_checks": {
+    "AdapterContractTest": 131,
+    "PlayerInventorySlotTest": 347,
+    "StackIdentityTest": 554
+  },
+  "contract_version": 2,
+  "required_parameter": "expected_stack_hash",
+  "observer_field": "data.slots[].item.stack_hash",
+  "identity": "SHA-256(type-preserving canonical ItemStack.save including ForgeCaps plus full int count)",
+  "client_started": false,
+  "network_used": false,
+  "mapped_forge_sha256": "c5c9833f11f32d1a119a67bafb49ffebaf1da194e9f5a8ad1185a1e2fe66f53e",
+  "artifacts": [
+    {
+      "mod_id": "sophisticatedstorage",
+      "path": "distribution\\sophisticatedstorage-4d555d1754fbd8cfe3cf0f00adc65c9d",
+      "adapter_sha256": "04f994140656561fd05b2a438ed666ffffcf9bb248e0f80461347588d874377b",
+      "size": 26943,
+      "provider": "dev.mcpmcp.sophisticated.StoragePlugin",
+      "target_sha256": "4d555d1754fbd8cfe3cf0f00adc65c9d13189dd12e7f9a7b9ad3a355b1210e74",
+      "target_version": "1.4.79.2069"
+    },
+    {
+      "mod_id": "sophisticatedbackpacks",
+      "path": "distribution\\sophisticatedbackpacks-4d4be2e6a9988ff08260de621c26d0b4",
+      "adapter_sha256": "3f5fbd14dbc4bbc33b1542295b1e706f7f2fd57553db5d443bdd0c98bb91e041",
+      "size": 26948,
+      "provider": "dev.mcpmcp.sophisticated.BackpackPlugin",
+      "target_sha256": "4d4be2e6a9988ff08260de621c26d0b43f2e03e3aede00842c66dc136a5303bf",
+      "target_version": "3.24.63.2057"
+    },
+    {
+      "mod_id": "ironfurnaces",
+      "path": "distribution\\ironfurnaces-e457052522cef1f8644b6929a64eab96",
+      "adapter_sha256": "8b4253c34a7a089eca16fb01fa123945258aa73fdace837cc1506ea236387c09",
+      "size": 26944,
+      "provider": "dev.mcpmcp.sophisticated.FurnacePlugin",
+      "target_sha256": "e457052522cef1f8644b6929a64eab96de04ce9e6e32a715f1d68d79da26d66b",
+      "target_version": "4.1.8"
+    }
+  ],
+  "evidence": [
+    "build.log",
+    "build-final.log",
+    "distribution-test.log",
+    "nbt-red.log",
+    "nbt-contract-red.log",
+    "adapter-live.javap.txt",
+    "adapter-stack-identity.javap.txt",
+    "mapped-ItemStack.javap.txt"
+  ]
+}

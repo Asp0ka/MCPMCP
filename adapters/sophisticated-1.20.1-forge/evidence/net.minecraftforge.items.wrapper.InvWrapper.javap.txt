@@ -1,0 +1,298 @@
+Compiled from "InvWrapper.java"
+public class net.minecraftforge.items.wrapper.InvWrapper implements net.minecraftforge.items.IItemHandlerModifiable {
+  private final net.minecraft.world.Container inv;
+
+  public net.minecraftforge.items.wrapper.InvWrapper(net.minecraft.world.Container);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #16                 // Field inv:Lnet/minecraft/world/Container;
+       9: return
+
+  public boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: if_acmpne     7
+       5: iconst_1
+       6: ireturn
+       7: aload_1
+       8: ifnull        22
+      11: aload_0
+      12: invokevirtual #24                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      15: aload_1
+      16: invokevirtual #24                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      19: if_acmpeq     24
+      22: iconst_0
+      23: ireturn
+      24: aload_1
+      25: checkcast     #2                  // class net/minecraftforge/items/wrapper/InvWrapper
+      28: astore_2
+      29: aload_0
+      30: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      33: aload_2
+      34: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      37: invokevirtual #30                 // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+      40: ireturn
+
+  public int hashCode();
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+       4: invokevirtual #37                 // Method java/lang/Object.hashCode:()I
+       7: ireturn
+
+  public int getSlots();
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+       4: invokeinterface #43,  1           // InterfaceMethod net/minecraft/world/Container.m_6643_:()I
+       9: ireturn
+
+  public net.minecraft.world.item.ItemStack getStackInSlot(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+       4: iload_1
+       5: invokeinterface #49,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+
+  public net.minecraft.world.item.ItemStack insertItem(int, net.minecraft.world.item.ItemStack, boolean);
+    Code:
+       0: aload_2
+       1: invokevirtual #59                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       4: ifeq          11
+       7: getstatic     #63                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: aload_0
+      12: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      15: iload_1
+      16: invokeinterface #49,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      21: astore        4
+      23: aload         4
+      25: invokevirtual #59                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      28: ifne          213
+      31: aload         4
+      33: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      36: aload         4
+      38: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.m_41741_:()I
+      41: aload_0
+      42: iload_1
+      43: invokevirtual #73                 // Method getSlotLimit:(I)I
+      46: invokestatic  #79                 // Method java/lang/Math.min:(II)I
+      49: if_icmplt     54
+      52: aload_2
+      53: areturn
+      54: aload_2
+      55: aload         4
+      57: invokestatic  #85                 // Method net/minecraftforge/items/ItemHandlerHelper.canItemStacksStack:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+      60: ifne          65
+      63: aload_2
+      64: areturn
+      65: aload_0
+      66: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      69: iload_1
+      70: aload_2
+      71: invokeinterface #89,  3           // InterfaceMethod net/minecraft/world/Container.m_7013_:(ILnet/minecraft/world/item/ItemStack;)Z
+      76: ifne          81
+      79: aload_2
+      80: areturn
+      81: aload_2
+      82: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.m_41741_:()I
+      85: aload_0
+      86: iload_1
+      87: invokevirtual #73                 // Method getSlotLimit:(I)I
+      90: invokestatic  #79                 // Method java/lang/Math.min:(II)I
+      93: aload         4
+      95: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      98: isub
+      99: istore        5
+     101: aload_2
+     102: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     105: iload         5
+     107: if_icmpgt     155
+     110: iload_3
+     111: ifne          151
+     114: aload_2
+     115: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     118: astore        6
+     120: aload         6
+     122: aload         4
+     124: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     127: invokevirtual #97                 // Method net/minecraft/world/item/ItemStack.m_41769_:(I)V
+     130: aload_0
+     131: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     134: iload_1
+     135: aload         6
+     137: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     142: aload_0
+     143: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     146: invokeinterface #104,  1          // InterfaceMethod net/minecraft/world/Container.m_6596_:()V
+     151: getstatic     #63                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     154: areturn
+     155: aload_2
+     156: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     159: astore_2
+     160: iload_3
+     161: ifne          205
+     164: aload_2
+     165: iload         5
+     167: invokevirtual #107                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     170: astore        6
+     172: aload         6
+     174: aload         4
+     176: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     179: invokevirtual #97                 // Method net/minecraft/world/item/ItemStack.m_41769_:(I)V
+     182: aload_0
+     183: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     186: iload_1
+     187: aload         6
+     189: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     194: aload_0
+     195: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     198: invokeinterface #104,  1          // InterfaceMethod net/minecraft/world/Container.m_6596_:()V
+     203: aload_2
+     204: areturn
+     205: aload_2
+     206: iload         5
+     208: invokevirtual #110                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+     211: aload_2
+     212: areturn
+     213: aload_0
+     214: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     217: iload_1
+     218: aload_2
+     219: invokeinterface #89,  3           // InterfaceMethod net/minecraft/world/Container.m_7013_:(ILnet/minecraft/world/item/ItemStack;)Z
+     224: ifne          229
+     227: aload_2
+     228: areturn
+     229: aload_2
+     230: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.m_41741_:()I
+     233: aload_0
+     234: iload_1
+     235: invokevirtual #73                 // Method getSlotLimit:(I)I
+     238: invokestatic  #79                 // Method java/lang/Math.min:(II)I
+     241: istore        5
+     243: iload         5
+     245: aload_2
+     246: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+     249: if_icmpge     296
+     252: aload_2
+     253: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+     256: astore_2
+     257: iload_3
+     258: ifne          288
+     261: aload_0
+     262: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     265: iload_1
+     266: aload_2
+     267: iload         5
+     269: invokevirtual #107                // Method net/minecraft/world/item/ItemStack.m_41620_:(I)Lnet/minecraft/world/item/ItemStack;
+     272: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     277: aload_0
+     278: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     281: invokeinterface #104,  1          // InterfaceMethod net/minecraft/world/Container.m_6596_:()V
+     286: aload_2
+     287: areturn
+     288: aload_2
+     289: iload         5
+     291: invokevirtual #110                // Method net/minecraft/world/item/ItemStack.m_41774_:(I)V
+     294: aload_2
+     295: areturn
+     296: iload_3
+     297: ifne          320
+     300: aload_0
+     301: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     304: iload_1
+     305: aload_2
+     306: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+     311: aload_0
+     312: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+     315: invokeinterface #104,  1          // InterfaceMethod net/minecraft/world/Container.m_6596_:()V
+     320: getstatic     #63                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+     323: areturn
+
+  public net.minecraft.world.item.ItemStack extractItem(int, int, boolean);
+    Code:
+       0: iload_2
+       1: ifne          8
+       4: getstatic     #63                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+       7: areturn
+       8: aload_0
+       9: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      12: iload_1
+      13: invokeinterface #49,  2           // InterfaceMethod net/minecraft/world/Container.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      18: astore        4
+      20: aload         4
+      22: invokevirtual #59                 // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      25: ifeq          32
+      28: getstatic     #63                 // Field net/minecraft/world/item/ItemStack.f_41583_:Lnet/minecraft/world/item/ItemStack;
+      31: areturn
+      32: iload_3
+      33: ifeq          67
+      36: aload         4
+      38: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      41: iload_2
+      42: if_icmpge     51
+      45: aload         4
+      47: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      50: areturn
+      51: aload         4
+      53: invokevirtual #93                 // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      56: astore        5
+      58: aload         5
+      60: iload_2
+      61: invokevirtual #121                // Method net/minecraft/world/item/ItemStack.m_41764_:(I)V
+      64: aload         5
+      66: areturn
+      67: aload         4
+      69: invokevirtual #66                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      72: iload_2
+      73: invokestatic  #79                 // Method java/lang/Math.min:(II)I
+      76: istore        5
+      78: aload_0
+      79: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      82: iload_1
+      83: iload         5
+      85: invokeinterface #125,  3          // InterfaceMethod net/minecraft/world/Container.m_7407_:(II)Lnet/minecraft/world/item/ItemStack;
+      90: astore        6
+      92: aload_0
+      93: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+      96: invokeinterface #104,  1          // InterfaceMethod net/minecraft/world/Container.m_6596_:()V
+     101: aload         6
+     103: areturn
+
+  public void setStackInSlot(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+       4: iload_1
+       5: aload_2
+       6: invokeinterface #101,  3          // InterfaceMethod net/minecraft/world/Container.m_6836_:(ILnet/minecraft/world/item/ItemStack;)V
+      11: return
+
+  public int getSlotLimit(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+       4: invokeinterface #131,  1          // InterfaceMethod net/minecraft/world/Container.m_6893_:()I
+       9: ireturn
+
+  public boolean isItemValid(int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokevirtual #28                 // Method getInv:()Lnet/minecraft/world/Container;
+       4: iload_1
+       5: aload_2
+       6: invokeinterface #89,  3           // InterfaceMethod net/minecraft/world/Container.m_7013_:(ILnet/minecraft/world/item/ItemStack;)Z
+      11: ireturn
+
+  public net.minecraft.world.Container getInv();
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field inv:Lnet/minecraft/world/Container;
+       4: areturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

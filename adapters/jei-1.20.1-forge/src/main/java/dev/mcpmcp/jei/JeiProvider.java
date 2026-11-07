@@ -14,7 +14,7 @@ public final class JeiProvider implements McpmcpPlugin {
     public String id() { return "mcpmcp.jei"; }
     public void register(PluginContext ctx) {
         for (String k : List.of("jei", "jei.categories", "jei.ingredients", "jei.recipes", "jei.recipe", "jei.transfer"))
-            ctx.observer(k,100,args -> { Schema.validate(args,schema(k)); return backend.read(k,args); });
+            ctx.observer(k,100,args -> { Schema.validate(args,schema(k)); if(k.equals("jei.recipes"))validateFocus(args); return backend.read(k,args); });
         for (String k : List.of("jei.transfer", "jei.show"))
             ctx.action(k,schema(k+".action"),"input","normal",args -> { Schema.validate(args,schema(k+".action")); return backend.act(k,args); });
     }
@@ -32,19 +32,28 @@ public final class JeiProvider implements McpmcpPlugin {
                 if(kind.equals("jei.ingredients")) field(p,"ingredient_type","string","Optional registered JEI ingredient type UID; supports fluids and custom types.");
                 if(kind.equals("jei.recipes")) {
                     required.add("category"); field(p,"category","string","Exact category ID returned by jei.categories.");
-                    field(p,"item_id","string","Optional exact item registry ID focus, e.g. minecraft:oak_planks.");
+                    field(p,"item_id","string","Optional nonempty exact item registry ID focus, e.g. minecraft:oak_planks. Omit to query without an item focus; handles preserve focus and role.").addProperty("pattern","[a-z0-9_.-]+:[a-z0-9/._-]+");
                     field(p,"ingredient_type","string","Use with ingredient_uid to focus a specific JEI subtype, fluid or custom ingredient.");
                     field(p,"ingredient_uid","string","Exact UID from jei.ingredients, use with ingredient_type; mutually exclusive with item_id.");
                     JsonObject role=field(p,"role","string","Focus role, default output; input looks up usages.");role.add("enum",JsonParser.parseString("[\"input\",\"output\",\"catalyst\"]"));
                 }
             }
-            case "jei.recipe" -> { required.add("handle");field(p,"handle","string","Opaque recipe handle from jei.recipes; expires after two minutes or a runtime/world change."); }
+            case "jei.recipe" -> { required.add("handle");field(p,"handle","string","Opaque recipe handle from jei.recipes, preserving its original ingredient focus and role; expires after two minutes or a runtime/world change. Use query to choose the intended recipe before taking its handle."); }
             case "jei.transfer" -> { required.add("transfer_token"); field(p,"transfer_token","string","Token from jei.transfer action. Reports callback and menu-item changes; does not claim crafted output."); }
             case "jei.transfer.action" -> { required.add("handle");field(p,"handle","string","Use a fresh handle from jei.recipes. Requires an already-open compatible container, empty cursor, NORMAL and input-capable transport.");field(p,"max_transfer","boolean","Default false: one recipe set; true requests JEI maximum. This is filling, not automatic crafting.");field(p,"dry_run","boolean","Default true. false explicitly submits once after the same preflight."); }
             case "jei.show.action" -> { required.add("handle");field(p,"handle","string","Explicitly open this recipe in JEI. Refuses unrelated open screens, including local permission settings."); }
             default -> throw new IllegalArgumentException("unknown_jei_contract");
         }
         return s;
+    }
+    static void validateFocus(JsonObject args) {
+        for(String key:List.of("item_id","ingredient_type","ingredient_uid"))if(args.has(key)) {
+            JsonElement value=args.get(key);
+            if(!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isString()||value.getAsString().isBlank())throw new IllegalArgumentException("empty_or_invalid_jei_"+key);
+        }
+        if(args.has("item_id")&&(args.has("ingredient_type")||args.has("ingredient_uid")))throw new IllegalArgumentException("jei_focus_mutually_exclusive");
+        if(args.has("ingredient_type")!=args.has("ingredient_uid"))throw new IllegalArgumentException("jei_focus_requires_type_and_uid");
+        if(args.has("item_id")&&!args.get("item_id").getAsString().matches("[a-z0-9_.-]+:[a-z0-9/._-]+"))throw new IllegalArgumentException("invalid_item_id");
     }
     private static JsonObject field(JsonObject p,String k,String type,String d) { JsonObject f=new JsonObject();f.addProperty("type",type);f.addProperty("description",d);if(type.equals("string"))f.addProperty("maxLength",8192);p.add(k,f);return f; }
     private static void bounds(JsonObject f,int min,int max) { if(f.get("type").getAsString().equals("string")){f.addProperty("minLength",min);f.addProperty("maxLength",max);}else{f.addProperty("minimum",min);f.addProperty("maximum",max);} }

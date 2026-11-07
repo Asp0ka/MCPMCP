@@ -174,14 +174,12 @@ final class ClientBackend implements MagicProvider.Backend {
             String key=switch(action){case "next_spell"->"NEXT_SLOT";case "previous_spell"->"PREVIOUS_SLOT";case "open_book"->"OPEN_BOOK";default->throw new IllegalArgumentException("unsupported");};
             return key(context,(KeyMapping)Reflect.field(Reflect.type(ARS+"client.registry.ModKeyBindings"),key));
         }
+        if(!mc.isSameThread())return error("client_thread_required");
+        if(!action.equals("cast")&&!action.equals("quick_cast"))return error("unsupported");
+        JsonObject dependency=IronsRuntimeDependency.check();if(dependency!=null)return dependency;
         Object manager=stat(IRON+"player.ClientMagicData","getSpellSelectionManager");if(manager==null)return error("no_selection_manager");
         Object option=action.equals("quick_cast")?Reflect.call(manager,"getSpellSlot",integer(a,"index",0)):Reflect.call(manager,"getSelection");if(option==null)return error("no_selected_spell");
-        JsonObject selected=selection(option);if(!selected.getAsJsonObject("spell").has("spell_id"))return error("empty_selected_spell");String spell=selected.getAsJsonObject("spell").get("spell_id").getAsString();
-        if(!spell.startsWith(mod+":")||!spell.equals(str(a,"expected_spell",""))||!selected.get("source").getAsString().equals(str(a,"expected_source",""))||selected.get("source_index").getAsInt()!=integer(a,"expected_source_index",-1))return error("selected_spell_or_source_changed");
-        Object mapping;
-        if(action.equals("quick_cast")) {List<?> keys=Reflect.list(Reflect.field(Reflect.type(IRON+"player.KeyMappings"),"QUICK_CAST_MAPPINGS"));int index=integer(a,"index",0);if(index>=keys.size())return error("quick_cast_key_not_available");mapping=keys.get(index);}
-        else if(action.equals("cast"))mapping=Reflect.field(Reflect.type(IRON+"player.KeyMappings"),"SPELLBOOK_CAST_ACTIVE_KEYMAP");else return error("unsupported");
-        return key(context,(KeyMapping)mapping);
+        return IronsNativeInput.submit(mod,action,a,selection(option));
     }
     private JsonObject key(PluginContext ctx,KeyMapping mapping) {
         Minecraft mc=Minecraft.getInstance();InputConstants.Key key=mapping.getKey();int code=key.getValue();

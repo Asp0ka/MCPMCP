@@ -1,0 +1,142 @@
+Compiled from "StackIdentity.java"
+final class dev.mcpmcp.sophisticated.StackIdentity {
+  static java.lang.String hash(net.minecraft.world.item.ItemStack);
+    Code:
+       0: ldc           #15                 // String SHA-256
+       2: invokestatic  #21                 // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+       5: astore_1
+       6: new           #23                 // class java/io/DataOutputStream
+       9: dup
+      10: new           #25                 // class java/security/DigestOutputStream
+      13: dup
+      14: invokestatic  #31                 // Method java/io/OutputStream.nullOutputStream:()Ljava/io/OutputStream;
+      17: aload_1
+      18: invokespecial #35                 // Method java/security/DigestOutputStream."<init>":(Ljava/io/OutputStream;Ljava/security/MessageDigest;)V
+      21: invokespecial #38                 // Method java/io/DataOutputStream."<init>":(Ljava/io/OutputStream;)V
+      24: astore_2
+      25: aload_2
+      26: aload_0
+      27: invokevirtual #44                 // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      30: invokevirtual #48                 // Method java/io/DataOutputStream.writeInt:(I)V
+      33: aload_0
+      34: new           #50                 // class net/minecraft/nbt/CompoundTag
+      37: dup
+      38: invokespecial #53                 // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      41: invokevirtual #57                 // Method net/minecraft/world/item/ItemStack.m_41739_:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+      44: aload_2
+      45: invokestatic  #61                 // Method write:(Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
+      48: aload_2
+      49: invokevirtual #64                 // Method java/io/DataOutputStream.close:()V
+      52: goto          73
+      55: astore_3
+      56: aload_2
+      57: invokevirtual #64                 // Method java/io/DataOutputStream.close:()V
+      60: goto          71
+      63: astore        4
+      65: aload_3
+      66: aload         4
+      68: invokevirtual #68                 // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+      71: aload_3
+      72: athrow
+      73: invokestatic  #74                 // Method java/util/HexFormat.of:()Ljava/util/HexFormat;
+      76: aload_1
+      77: invokevirtual #78                 // Method java/security/MessageDigest.digest:()[B
+      80: invokevirtual #82                 // Method java/util/HexFormat.formatHex:([B)Ljava/lang/String;
+      83: areturn
+      84: astore_1
+      85: new           #86                 // class java/lang/IllegalStateException
+      88: dup
+      89: ldc           #88                 // String stack_identity_unavailable
+      91: aload_1
+      92: invokespecial #91                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      95: athrow
+    Exception table:
+       from    to  target type
+          25    48    55   Class java/lang/Throwable
+          56    60    63   Class java/lang/Throwable
+           0    83    84   Class java/io/IOException
+           0    83    84   Class java/security/NoSuchAlgorithmException
+
+  private static void write(net.minecraft.nbt.Tag, java.io.DataOutput) throws java.io.IOException;
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokeinterface #104,  1          // InterfaceMethod net/minecraft/nbt/Tag.m_7060_:()B
+       7: invokeinterface #109,  2          // InterfaceMethod java/io/DataOutput.writeByte:(I)V
+      12: aload_0
+      13: instanceof    #50                 // class net/minecraft/nbt/CompoundTag
+      16: ifeq          101
+      19: aload_0
+      20: checkcast     #50                 // class net/minecraft/nbt/CompoundTag
+      23: astore_2
+      24: new           #111                // class java/util/TreeSet
+      27: dup
+      28: aload_2
+      29: invokevirtual #115                // Method net/minecraft/nbt/CompoundTag.m_128431_:()Ljava/util/Set;
+      32: invokespecial #118                // Method java/util/TreeSet."<init>":(Ljava/util/Collection;)V
+      35: astore        4
+      37: aload_1
+      38: aload         4
+      40: invokevirtual #121                // Method java/util/TreeSet.size:()I
+      43: invokeinterface #122,  2          // InterfaceMethod java/io/DataOutput.writeInt:(I)V
+      48: aload         4
+      50: invokevirtual #126                // Method java/util/TreeSet.iterator:()Ljava/util/Iterator;
+      53: astore        5
+      55: aload         5
+      57: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      62: ifeq          98
+      65: aload         5
+      67: invokeinterface #136,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      72: checkcast     #138                // class java/lang/String
+      75: astore        6
+      77: aload_1
+      78: aload         6
+      80: invokeinterface #142,  2          // InterfaceMethod java/io/DataOutput.writeUTF:(Ljava/lang/String;)V
+      85: aload_2
+      86: aload         6
+      88: invokevirtual #146                // Method net/minecraft/nbt/CompoundTag.m_128423_:(Ljava/lang/String;)Lnet/minecraft/nbt/Tag;
+      91: aload_1
+      92: invokestatic  #61                 // Method write:(Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
+      95: goto          55
+      98: goto          180
+     101: aload_0
+     102: instanceof    #148                // class net/minecraft/nbt/ListTag
+     105: ifeq          173
+     108: aload_0
+     109: checkcast     #148                // class net/minecraft/nbt/ListTag
+     112: astore_3
+     113: aload_1
+     114: aload_3
+     115: invokevirtual #151                // Method net/minecraft/nbt/ListTag.m_7264_:()B
+     118: invokeinterface #109,  2          // InterfaceMethod java/io/DataOutput.writeByte:(I)V
+     123: aload_1
+     124: aload_3
+     125: invokevirtual #152                // Method net/minecraft/nbt/ListTag.size:()I
+     128: invokeinterface #122,  2          // InterfaceMethod java/io/DataOutput.writeInt:(I)V
+     133: aload_3
+     134: invokevirtual #153                // Method net/minecraft/nbt/ListTag.iterator:()Ljava/util/Iterator;
+     137: astore        4
+     139: aload         4
+     141: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     146: ifeq          170
+     149: aload         4
+     151: invokeinterface #136,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     156: checkcast     #100                // class net/minecraft/nbt/Tag
+     159: astore        5
+     161: aload         5
+     163: aload_1
+     164: invokestatic  #61                 // Method write:(Lnet/minecraft/nbt/Tag;Ljava/io/DataOutput;)V
+     167: goto          139
+     170: goto          180
+     173: aload_0
+     174: aload_1
+     175: invokeinterface #157,  2          // InterfaceMethod net/minecraft/nbt/Tag.m_6434_:(Ljava/io/DataOutput;)V
+     180: return
+
+  private dev.mcpmcp.sophisticated.StackIdentity();
+    Code:
+       0: aload_0
+       1: invokespecial #171                // Method java/lang/Object."<init>":()V
+       4: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

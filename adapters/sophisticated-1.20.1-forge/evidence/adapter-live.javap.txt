@@ -17,158 +17,158 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
   dev.mcpmcp.sophisticated.LiveAccess(java.lang.String);
     Code:
        0: aload_0
-       1: invokespecial #46                 // Method java/lang/Object."<init>":()V
+       1: invokespecial #49                 // Method java/lang/Object."<init>":()V
        4: aload_0
-       5: new           #48                 // class java/util/WeakHashMap
+       5: new           #51                 // class java/util/WeakHashMap
        8: dup
-       9: invokespecial #49                 // Method java/util/WeakHashMap."<init>":()V
-      12: putfield      #51                 // Field identities:Ljava/util/Map;
+       9: invokespecial #52                 // Method java/util/WeakHashMap."<init>":()V
+      12: putfield      #54                 // Field identities:Ljava/util/Map;
       15: aload_0
-      16: new           #53                 // class java/util/HashMap
+      16: new           #56                 // class java/util/HashMap
       19: dup
-      20: invokespecial #54                 // Method java/util/HashMap."<init>":()V
-      23: putfield      #56                 // Field backpackSnapshots:Ljava/util/Map;
+      20: invokespecial #57                 // Method java/util/HashMap."<init>":()V
+      23: putfield      #59                 // Field backpackSnapshots:Ljava/util/Map;
       26: aload_0
       27: aload_1
-      28: putfield      #58                 // Field type:Ljava/lang/String;
+      28: putfield      #61                 // Field type:Ljava/lang/String;
       31: return
 
   private net.minecraft.client.Minecraft world() throws java.lang.Exception;
     Code:
        0: aload_0
-       1: getfield      #58                 // Field type:Ljava/lang/String;
-       4: invokestatic  #69                 // Method dev/mcpmcp/sophisticated/Binding.check:(Ljava/lang/String;)V
-       7: invokestatic  #74                 // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+       1: getfield      #61                 // Field type:Ljava/lang/String;
+       4: invokestatic  #72                 // Method dev/mcpmcp/sophisticated/Binding.check:(Ljava/lang/String;)V
+       7: invokestatic  #77                 // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
       10: astore_1
       11: aload_1
-      12: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      12: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
       15: ifnull        32
       18: aload_1
-      19: getfield      #82                 // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
+      19: getfield      #85                 // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
       22: ifnull        32
       25: aload_1
-      26: invokevirtual #86                 // Method net/minecraft/client/Minecraft.m_91403_:()Lnet/minecraft/client/multiplayer/ClientPacketListener;
+      26: invokevirtual #89                 // Method net/minecraft/client/Minecraft.m_91403_:()Lnet/minecraft/client/multiplayer/ClientPacketListener;
       29: ifnonnull     42
-      32: new           #88                 // class java/lang/IllegalStateException
+      32: new           #91                 // class java/lang/IllegalStateException
       35: dup
-      36: ldc           #90                 // String not_in_world
-      38: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      36: ldc           #93                 // String not_in_world
+      38: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
       41: athrow
       42: aload_1
-      43: invokevirtual #96                 // Method net/minecraft/client/Minecraft.m_18695_:()Z
+      43: invokevirtual #99                 // Method net/minecraft/client/Minecraft.m_18695_:()Z
       46: ifne          59
-      49: new           #88                 // class java/lang/IllegalStateException
+      49: new           #91                 // class java/lang/IllegalStateException
       52: dup
-      53: ldc           #98                 // String client_thread_required
-      55: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      53: ldc           #101                // String client_thread_required
+      55: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
       58: athrow
       59: aload_0
-      60: getfield      #100                // Field level:Ljava/lang/Object;
+      60: getfield      #103                // Field level:Ljava/lang/Object;
       63: aload_1
-      64: getfield      #82                 // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
+      64: getfield      #85                 // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
       67: if_acmpeq     96
       70: aload_0
       71: aload_1
-      72: getfield      #82                 // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
-      75: putfield      #100                // Field level:Ljava/lang/Object;
+      72: getfield      #85                 // Field net/minecraft/client/Minecraft.f_91073_:Lnet/minecraft/client/multiplayer/ClientLevel;
+      75: putfield      #103                // Field level:Ljava/lang/Object;
       78: aload_0
-      79: getfield      #51                 // Field identities:Ljava/util/Map;
-      82: invokeinterface #103,  1          // InterfaceMethod java/util/Map.clear:()V
+      79: getfield      #54                 // Field identities:Ljava/util/Map;
+      82: invokeinterface #106,  1          // InterfaceMethod java/util/Map.clear:()V
       87: aload_0
-      88: getfield      #56                 // Field backpackSnapshots:Ljava/util/Map;
-      91: invokeinterface #103,  1          // InterfaceMethod java/util/Map.clear:()V
+      88: getfield      #59                 // Field backpackSnapshots:Ljava/util/Map;
+      91: invokeinterface #106,  1          // InterfaceMethod java/util/Map.clear:()V
       96: aload_1
       97: areturn
 
   private boolean supported(net.minecraft.world.inventory.AbstractContainerMenu) throws java.lang.Exception;
     Code:
        0: aload_0
-       1: getfield      #58                 // Field type:Ljava/lang/String;
-       4: ldc           #109                // String storage
-       6: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       1: getfield      #61                 // Field type:Ljava/lang/String;
+       4: ldc           #112                // String storage
+       6: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
        9: ifeq          17
-      12: ldc           #27                 // String net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu
+      12: ldc           #30                 // String net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu
       14: goto          36
       17: aload_0
-      18: getfield      #58                 // Field type:Ljava/lang/String;
-      21: ldc           #117                // String backpack
-      23: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      18: getfield      #61                 // Field type:Ljava/lang/String;
+      21: ldc           #120                // String backpack
+      23: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
       26: ifeq          34
-      29: ldc           #30                 // String net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContainer
+      29: ldc           #33                 // String net.p3pp3rf1y.sophisticatedbackpacks.common.gui.BackpackContainer
       31: goto          36
-      34: ldc           #33                 // String ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase
-      36: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      34: ldc           #36                 // String ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase
+      36: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
       39: aload_1
-      40: invokevirtual #126                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+      40: invokevirtual #129                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
       43: ireturn
 
   private java.lang.String token(net.minecraft.world.inventory.AbstractContainerMenu);
     Code:
        0: aload_0
-       1: getfield      #51                 // Field identities:Ljava/util/Map;
+       1: getfield      #54                 // Field identities:Ljava/util/Map;
        4: aload_1
-       5: invokedynamic #148,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
-      10: invokeinterface #152,  3          // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
-      15: checkcast     #111                // class java/lang/String
+       5: invokedynamic #151,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      10: invokeinterface #155,  3          // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+      15: checkcast     #114                // class java/lang/String
       18: areturn
 
   private net.minecraft.world.inventory.AbstractContainerMenu guarded(net.minecraft.client.Minecraft, com.google.gson.JsonObject, boolean) throws java.lang.Exception;
     Code:
        0: aload_1
-       1: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-       4: getfield      #159                // Field net/minecraft/client/player/LocalPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       1: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       4: getfield      #162                // Field net/minecraft/client/player/LocalPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
        7: astore        4
        9: aload_2
-      10: ldc           #161                // String menu_id
+      10: ldc           #164                // String menu_id
       12: iconst_m1
-      13: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      13: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
       16: aload_2
-      17: ldc           #169                // String menu_token
-      19: ldc           #171                // String
-      21: invokestatic  #175                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      17: ldc           #172                // String menu_token
+      19: ldc           #174                // String
+      21: invokestatic  #178                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
       24: aload         4
-      26: getfield      #181                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
+      26: getfield      #184                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
       29: aload_0
-      30: getfield      #51                 // Field identities:Ljava/util/Map;
+      30: getfield      #54                 // Field identities:Ljava/util/Map;
       33: aload         4
-      35: invokeinterface #184,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
-      40: checkcast     #111                // class java/lang/String
+      35: invokeinterface #187,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      40: checkcast     #114                // class java/lang/String
       43: aload         4
-      45: invokevirtual #188                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
-      48: invokevirtual #193                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
-      51: invokestatic  #198                // Method dev/mcpmcp/sophisticated/MenuGuard.check:(ILjava/lang/String;ILjava/lang/String;Z)V
+      45: invokevirtual #191                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+      48: invokevirtual #196                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      51: invokestatic  #201                // Method dev/mcpmcp/sophisticated/MenuGuard.check:(ILjava/lang/String;ILjava/lang/String;Z)V
       54: iload_3
       55: ifeq          73
       58: aload         4
       60: aload_1
-      61: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-      64: getfield      #202                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
+      61: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      64: getfield      #205                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
       67: if_acmpeq     101
       70: goto          82
       73: aload_0
       74: aload         4
-      76: invokevirtual #204                // Method supported:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Z
+      76: invokevirtual #207                // Method supported:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Z
       79: ifne          101
-      82: new           #88                 // class java/lang/IllegalStateException
+      82: new           #91                 // class java/lang/IllegalStateException
       85: dup
       86: iload_3
       87: ifeq          95
-      90: ldc           #206                // String player_inventory_menu_required
+      90: ldc           #209                // String player_inventory_menu_required
       92: goto          97
-      95: ldc           #210                // String target_mod_menu_required
-      97: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      95: ldc           #213                // String target_mod_menu_required
+      97: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
      100: athrow
      101: iload_3
      102: ifne          127
      105: aload         4
      107: aload_1
-     108: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     111: invokevirtual #214                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_6875_:(Lnet/minecraft/world/entity/player/Player;)Z
+     108: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     111: invokevirtual #217                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_6875_:(Lnet/minecraft/world/entity/player/Player;)Z
      114: ifne          127
-     117: new           #88                 // class java/lang/IllegalStateException
+     117: new           #91                 // class java/lang/IllegalStateException
      120: dup
-     121: ldc           #216                // String menu_no_longer_valid
-     123: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     121: ldc           #219                // String menu_no_longer_valid
+     123: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
      126: athrow
      127: aload         4
      129: areturn
@@ -176,335 +176,335 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
   public com.google.gson.JsonObject observe(com.google.gson.JsonObject) throws java.lang.Exception;
     Code:
        0: aload_0
-       1: invokevirtual #224                // Method world:()Lnet/minecraft/client/Minecraft;
+       1: invokevirtual #227                // Method world:()Lnet/minecraft/client/Minecraft;
        4: astore_2
        5: aload_2
-       6: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-       9: getfield      #159                // Field net/minecraft/client/player/LocalPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       6: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+       9: getfield      #162                // Field net/minecraft/client/player/LocalPlayer.f_36096_:Lnet/minecraft/world/inventory/AbstractContainerMenu;
       12: astore_3
       13: aload_0
       14: aload_3
-      15: invokevirtual #204                // Method supported:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Z
+      15: invokevirtual #207                // Method supported:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Z
       18: istore        4
       20: bipush        18
       22: anewarray     #4                  // class java/lang/Object
       25: dup
       26: iconst_0
-      27: ldc           #226                // String source
+      27: ldc           #229                // String source
       29: aastore
       30: dup
       31: iconst_1
-      32: ldc           #228                // String live_client_menu_server_acceptance_not_confirmed
+      32: ldc           #231                // String live_client_menu_server_acceptance_not_confirmed
       34: aastore
       35: dup
       36: iconst_2
-      37: ldc           #161                // String menu_id
+      37: ldc           #164                // String menu_id
       39: aastore
       40: dup
       41: iconst_3
       42: aload_3
-      43: getfield      #181                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
-      46: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      43: getfield      #184                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
+      46: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
       49: aastore
       50: dup
       51: iconst_4
-      52: ldc           #169                // String menu_token
+      52: ldc           #172                // String menu_token
       54: aastore
       55: dup
       56: iconst_5
       57: aload_0
       58: aload_3
-      59: invokevirtual #236                // Method token:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/lang/String;
+      59: invokevirtual #239                // Method token:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/lang/String;
       62: aastore
       63: dup
       64: bipush        6
-      66: ldc           #238                // String menu_class
+      66: ldc           #241                // String menu_class
       68: aastore
       69: dup
       70: bipush        7
       72: aload_3
-      73: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
-      76: invokevirtual #246                // Method java/lang/Class.getName:()Ljava/lang/String;
+      73: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      76: invokevirtual #249                // Method java/lang/Class.getName:()Ljava/lang/String;
       79: aastore
       80: dup
       81: bipush        8
-      83: ldc           #248                // String state_id
+      83: ldc           #251                // String state_id
       85: aastore
       86: dup
       87: bipush        9
       89: aload_3
-      90: invokevirtual #252                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_182424_:()I
-      93: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      90: invokevirtual #255                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_182424_:()I
+      93: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
       96: aastore
       97: dup
       98: bipush        10
-     100: ldc           #254                // String target_menu
-     102: aastore
-     103: dup
-     104: bipush        11
-     106: iload         4
-     108: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     111: aastore
-     112: dup
-     113: bipush        12
-     115: ldc_w         #261                // String player_inventory_menu
-     118: aastore
-     119: dup
-     120: bipush        13
-     122: aload_3
-     123: aload_2
-     124: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     127: getfield      #202                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
-     130: if_acmpne     137
-     133: iconst_1
-     134: goto          138
-     137: iconst_0
-     138: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     141: aastore
-     142: dup
-     143: bipush        14
-     145: ldc_w         #265                // String carried
-     148: aastore
-     149: dup
-     150: bipush        15
-     152: aload_3
-     153: invokevirtual #188                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
-     156: invokestatic  #269                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
-     159: aastore
-     160: dup
-     161: bipush        16
-     163: ldc_w         #271                // String server_confirmation
-     166: aastore
-     167: dup
-     168: bipush        17
-     170: iconst_0
-     171: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     174: aastore
-     175: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
-     178: astore        5
-     180: aload_0
-     181: getfield      #58                 // Field type:Ljava/lang/String;
-     184: ldc           #117                // String backpack
-     186: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
-     189: ifeq          206
-     192: aload         5
-     194: ldc_w         #277                // String inventory_backpacks
-     197: aload_0
-     198: aload_2
-     199: aload_3
-     200: invokevirtual #281                // Method backpacks:(Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonArray;
-     203: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
-     206: iload         4
-     208: ifne          226
-     211: aload         5
-     213: ldc_w         #287                // String available
-     216: iconst_0
-     217: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     220: invokevirtual #291                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
-     223: aload         5
-     225: areturn
-     226: aload_0
-     227: aload_3
-     228: invokevirtual #295                // Method slotCount:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)I
-     231: istore        6
-     233: aload_1
-     234: ldc_w         #297                // String offset
-     237: iconst_0
-     238: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
-     241: istore        7
-     243: aload_1
-     244: ldc_w         #299                // String limit
-     247: bipush        64
-     249: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
-     252: istore        8
-     254: iload         6
-     256: sipush        16384
-     259: if_icmple     273
-     262: new           #88                 // class java/lang/IllegalStateException
-     265: dup
-     266: ldc_w         #301                // String menu_slot_budget_exceeded
-     269: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
-     272: athrow
-     273: new           #303                // class com/google/gson/JsonArray
-     276: dup
-     277: invokespecial #304                // Method com/google/gson/JsonArray."<init>":()V
-     280: astore        9
-     282: aload_1
-     283: ldc_w         #306                // String inventory_slot
-     286: invokevirtual #310                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
-     289: ifeq          313
-     292: aload_2
-     293: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     296: invokevirtual #314                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
-     299: aload_1
-     300: ldc_w         #306                // String inventory_slot
-     303: iconst_m1
-     304: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
-     307: invokevirtual #320                // Method net/minecraft/world/entity/player/Inventory.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
-     310: goto          314
-     313: aconst_null
-     314: astore        10
-     316: iload         7
-     318: istore        11
-     320: iload         11
-     322: iload         6
-     324: iload         7
-     326: iload         8
-     328: iadd
-     329: invokestatic  #326                // Method java/lang/Math.min:(II)I
-     332: if_icmpge     414
-     335: aload_3
-     336: iload         11
-     338: invokevirtual #330                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
-     341: astore        12
-     343: aload_0
-     344: aload_3
-     345: aload         12
-     347: iload         11
-     349: invokevirtual #334                // Method slot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Lcom/google/gson/JsonObject;
-     352: astore        13
-     354: aload         10
-     356: ifnull        401
-     359: aload         13
-     361: ldc_w         #336                // String accepts_candidate
-     364: aload         10
-     366: invokevirtual #193                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
-     369: ifne          394
-     372: aload         12
-     374: invokevirtual #341                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
-     377: ifeq          394
-     380: aload         12
-     382: aload         10
-     384: invokevirtual #345                // Method net/minecraft/world/inventory/Slot.m_5857_:(Lnet/minecraft/world/item/ItemStack;)Z
-     387: ifeq          394
-     390: iconst_1
-     391: goto          395
-     394: iconst_0
-     395: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     398: invokevirtual #291                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
-     401: aload         9
-     403: aload         13
-     405: invokevirtual #348                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
-     408: iinc          11, 1
-     411: goto          320
-     414: aload         5
-     416: ldc_w         #350                // String slots
-     419: aload         9
-     421: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
-     424: aload         5
-     426: ldc_w         #352                // String slot_total
-     429: iload         6
-     431: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     434: invokevirtual #355                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
-     437: aload         5
-     439: ldc_w         #357                // String slot_offset
-     442: iload         7
-     444: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     447: invokevirtual #355                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
-     450: aload         5
-     452: ldc_w         #359                // String slots_has_more
-     455: iload         7
-     457: aload         9
-     459: invokevirtual #362                // Method com/google/gson/JsonArray.size:()I
-     462: iadd
-     463: iload         6
-     465: if_icmpge     472
-     468: iconst_1
-     469: goto          473
-     472: iconst_0
-     473: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     476: invokevirtual #291                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
-     479: aload         5
-     481: ldc_w         #287                // String available
-     484: iconst_1
-     485: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     488: invokevirtual #291                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
-     491: aload         10
-     493: ifnull        545
-     496: aload         5
-     498: ldc_w         #364                // String candidate
-     501: iconst_4
-     502: anewarray     #4                  // class java/lang/Object
-     505: dup
-     506: iconst_0
-     507: ldc_w         #306                // String inventory_slot
-     510: aastore
-     511: dup
-     512: iconst_1
-     513: aload_1
-     514: ldc_w         #306                // String inventory_slot
-     517: iconst_m1
-     518: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
-     521: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     524: aastore
-     525: dup
-     526: iconst_2
-     527: ldc_w         #365                // String item
-     530: aastore
-     531: dup
-     532: iconst_3
-     533: aload         10
-     535: invokestatic  #269                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
-     538: aastore
-     539: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
-     542: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
-     545: aload_0
-     546: getfield      #58                 // Field type:Ljava/lang/String;
-     549: ldc_w         #367                // String furnace
-     552: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
-     555: ifeq          574
-     558: aload         5
-     560: ldc_w         #367                // String furnace
-     563: aload_0
-     564: aload_3
-     565: invokevirtual #370                // Method furnace:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
-     568: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
-     571: goto          651
-     574: aload         5
-     576: ldc_w         #372                // String storage_inventory_slots
-     579: aload_3
-     580: ldc_w         #374                // String getNumberOfStorageInventorySlots
-     583: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     586: checkcast     #230                // class java/lang/Integer
-     589: invokevirtual #381                // Method java/lang/Integer.intValue:()I
-     592: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     595: invokevirtual #355                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
-     598: aload         5
-     600: ldc_w         #383                // String installed_upgrade_slots
-     603: aload_3
-     604: ldc_w         #385                // String getNumberOfUpgradeSlots
-     607: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     610: checkcast     #230                // class java/lang/Integer
-     613: invokevirtual #381                // Method java/lang/Integer.intValue:()I
-     616: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     619: invokevirtual #355                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
-     622: aload         5
-     624: ldc_w         #387                // String sort_by
-     627: aload_3
-     628: ldc_w         #389                // String getSortBy
-     631: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     634: invokevirtual #392                // Method java/lang/Object.toString:()Ljava/lang/String;
-     637: invokevirtual #395                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
-     640: aload_0
-     641: aload         5
-     643: aload_3
-     644: iload         7
-     646: iload         8
-     648: invokevirtual #399                // Method upgrades:(Lcom/google/gson/JsonObject;Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
-     651: aload         5
-     653: areturn
+     100: ldc_w         #257                // String target_menu
+     103: aastore
+     104: dup
+     105: bipush        11
+     107: iload         4
+     109: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     112: aastore
+     113: dup
+     114: bipush        12
+     116: ldc_w         #264                // String player_inventory_menu
+     119: aastore
+     120: dup
+     121: bipush        13
+     123: aload_3
+     124: aload_2
+     125: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     128: getfield      #205                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
+     131: if_acmpne     138
+     134: iconst_1
+     135: goto          139
+     138: iconst_0
+     139: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     142: aastore
+     143: dup
+     144: bipush        14
+     146: ldc_w         #268                // String carried
+     149: aastore
+     150: dup
+     151: bipush        15
+     153: aload_3
+     154: invokevirtual #191                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+     157: invokestatic  #272                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     160: aastore
+     161: dup
+     162: bipush        16
+     164: ldc_w         #274                // String server_confirmation
+     167: aastore
+     168: dup
+     169: bipush        17
+     171: iconst_0
+     172: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     175: aastore
+     176: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     179: astore        5
+     181: aload_0
+     182: getfield      #61                 // Field type:Ljava/lang/String;
+     185: ldc           #120                // String backpack
+     187: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     190: ifeq          207
+     193: aload         5
+     195: ldc_w         #280                // String inventory_backpacks
+     198: aload_0
+     199: aload_2
+     200: aload_3
+     201: invokevirtual #284                // Method backpacks:(Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonArray;
+     204: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     207: iload         4
+     209: ifne          227
+     212: aload         5
+     214: ldc_w         #290                // String available
+     217: iconst_0
+     218: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     221: invokevirtual #294                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     224: aload         5
+     226: areturn
+     227: aload_0
+     228: aload_3
+     229: invokevirtual #298                // Method slotCount:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)I
+     232: istore        6
+     234: aload_1
+     235: ldc_w         #300                // String offset
+     238: iconst_0
+     239: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     242: istore        7
+     244: aload_1
+     245: ldc_w         #302                // String limit
+     248: bipush        64
+     250: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     253: istore        8
+     255: iload         6
+     257: sipush        16384
+     260: if_icmple     274
+     263: new           #91                 // class java/lang/IllegalStateException
+     266: dup
+     267: ldc_w         #304                // String menu_slot_budget_exceeded
+     270: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     273: athrow
+     274: new           #306                // class com/google/gson/JsonArray
+     277: dup
+     278: invokespecial #307                // Method com/google/gson/JsonArray."<init>":()V
+     281: astore        9
+     283: aload_1
+     284: ldc_w         #309                // String inventory_slot
+     287: invokevirtual #313                // Method com/google/gson/JsonObject.has:(Ljava/lang/String;)Z
+     290: ifeq          314
+     293: aload_2
+     294: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     297: invokevirtual #317                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     300: aload_1
+     301: ldc_w         #309                // String inventory_slot
+     304: iconst_m1
+     305: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     308: invokevirtual #323                // Method net/minecraft/world/entity/player/Inventory.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+     311: goto          315
+     314: aconst_null
+     315: astore        10
+     317: iload         7
+     319: istore        11
+     321: iload         11
+     323: iload         6
+     325: iload         7
+     327: iload         8
+     329: iadd
+     330: invokestatic  #329                // Method java/lang/Math.min:(II)I
+     333: if_icmpge     415
+     336: aload_3
+     337: iload         11
+     339: invokevirtual #333                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
+     342: astore        12
+     344: aload_0
+     345: aload_3
+     346: aload         12
+     348: iload         11
+     350: invokevirtual #337                // Method slot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Lcom/google/gson/JsonObject;
+     353: astore        13
+     355: aload         10
+     357: ifnull        402
+     360: aload         13
+     362: ldc_w         #339                // String accepts_candidate
+     365: aload         10
+     367: invokevirtual #196                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     370: ifne          395
+     373: aload         12
+     375: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
+     378: ifeq          395
+     381: aload         12
+     383: aload         10
+     385: invokevirtual #348                // Method net/minecraft/world/inventory/Slot.m_5857_:(Lnet/minecraft/world/item/ItemStack;)Z
+     388: ifeq          395
+     391: iconst_1
+     392: goto          396
+     395: iconst_0
+     396: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     399: invokevirtual #294                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     402: aload         9
+     404: aload         13
+     406: invokevirtual #351                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     409: iinc          11, 1
+     412: goto          321
+     415: aload         5
+     417: ldc_w         #353                // String slots
+     420: aload         9
+     422: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     425: aload         5
+     427: ldc_w         #355                // String slot_total
+     430: iload         6
+     432: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     435: invokevirtual #358                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     438: aload         5
+     440: ldc_w         #360                // String slot_offset
+     443: iload         7
+     445: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     448: invokevirtual #358                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     451: aload         5
+     453: ldc_w         #362                // String slots_has_more
+     456: iload         7
+     458: aload         9
+     460: invokevirtual #365                // Method com/google/gson/JsonArray.size:()I
+     463: iadd
+     464: iload         6
+     466: if_icmpge     473
+     469: iconst_1
+     470: goto          474
+     473: iconst_0
+     474: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     477: invokevirtual #294                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     480: aload         5
+     482: ldc_w         #290                // String available
+     485: iconst_1
+     486: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     489: invokevirtual #294                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     492: aload         10
+     494: ifnull        546
+     497: aload         5
+     499: ldc_w         #367                // String candidate
+     502: iconst_4
+     503: anewarray     #4                  // class java/lang/Object
+     506: dup
+     507: iconst_0
+     508: ldc_w         #309                // String inventory_slot
+     511: aastore
+     512: dup
+     513: iconst_1
+     514: aload_1
+     515: ldc_w         #309                // String inventory_slot
+     518: iconst_m1
+     519: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     522: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     525: aastore
+     526: dup
+     527: iconst_2
+     528: ldc_w         #368                // String item
+     531: aastore
+     532: dup
+     533: iconst_3
+     534: aload         10
+     536: invokestatic  #272                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     539: aastore
+     540: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     543: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     546: aload_0
+     547: getfield      #61                 // Field type:Ljava/lang/String;
+     550: ldc_w         #370                // String furnace
+     553: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     556: ifeq          575
+     559: aload         5
+     561: ldc_w         #370                // String furnace
+     564: aload_0
+     565: aload_3
+     566: invokevirtual #373                // Method furnace:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
+     569: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     572: goto          652
+     575: aload         5
+     577: ldc_w         #375                // String storage_inventory_slots
+     580: aload_3
+     581: ldc_w         #377                // String getNumberOfStorageInventorySlots
+     584: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     587: checkcast     #233                // class java/lang/Integer
+     590: invokevirtual #384                // Method java/lang/Integer.intValue:()I
+     593: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     596: invokevirtual #358                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     599: aload         5
+     601: ldc_w         #386                // String installed_upgrade_slots
+     604: aload_3
+     605: ldc_w         #388                // String getNumberOfUpgradeSlots
+     608: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     611: checkcast     #233                // class java/lang/Integer
+     614: invokevirtual #384                // Method java/lang/Integer.intValue:()I
+     617: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     620: invokevirtual #358                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     623: aload         5
+     625: ldc_w         #390                // String sort_by
+     628: aload_3
+     629: ldc_w         #392                // String getSortBy
+     632: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     635: invokevirtual #395                // Method java/lang/Object.toString:()Ljava/lang/String;
+     638: invokevirtual #398                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     641: aload_0
+     642: aload         5
+     644: aload_3
+     645: iload         7
+     647: iload         8
+     649: invokevirtual #402                // Method upgrades:(Lcom/google/gson/JsonObject;Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+     652: aload         5
+     654: areturn
 
   private com.google.gson.JsonArray backpacks(net.minecraft.client.Minecraft, net.minecraft.world.inventory.AbstractContainerMenu) throws java.lang.Exception;
     Code:
-       0: new           #303                // class com/google/gson/JsonArray
+       0: new           #306                // class com/google/gson/JsonArray
        3: dup
-       4: invokespecial #304                // Method com/google/gson/JsonArray."<init>":()V
+       4: invokespecial #307                // Method com/google/gson/JsonArray."<init>":()V
        7: astore_3
        8: aload_0
-       9: getfield      #56                 // Field backpackSnapshots:Ljava/util/Map;
-      12: invokeinterface #103,  1          // InterfaceMethod java/util/Map.clear:()V
-      17: ldc_w         #409                // String net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem
-      20: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       9: getfield      #59                 // Field backpackSnapshots:Ljava/util/Map;
+      12: invokeinterface #106,  1          // InterfaceMethod java/util/Map.clear:()V
+      17: ldc_w         #412                // String net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem
+      20: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
       23: astore        4
       25: iconst_0
       26: istore        5
@@ -512,57 +512,57 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
       30: bipush        36
       32: if_icmpge     201
       35: aload_1
-      36: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-      39: invokevirtual #314                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+      36: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      39: invokevirtual #317                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
       42: iload         5
-      44: invokevirtual #320                // Method net/minecraft/world/entity/player/Inventory.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      44: invokevirtual #323                // Method net/minecraft/world/entity/player/Inventory.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
       47: astore        6
       49: aload         6
-      51: invokevirtual #193                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+      51: invokevirtual #196                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
       54: ifne          195
       57: aload         4
       59: aload         6
-      61: invokevirtual #413                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
-      64: invokevirtual #126                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+      61: invokevirtual #416                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      64: invokevirtual #129                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
       67: ifeq          195
-      70: invokestatic  #419                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
-      73: invokevirtual #420                // Method java/util/UUID.toString:()Ljava/lang/String;
+      70: invokestatic  #422                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
+      73: invokevirtual #423                // Method java/util/UUID.toString:()Ljava/lang/String;
       76: astore        7
       78: aload_0
-      79: getfield      #56                 // Field backpackSnapshots:Ljava/util/Map;
+      79: getfield      #59                 // Field backpackSnapshots:Ljava/util/Map;
       82: aload         7
-      84: new           #9                  // class dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot
+      84: new           #11                 // class dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot
       87: dup
       88: iload         5
       90: aload         6
-      92: invokevirtual #423                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
-      95: invokespecial #426                // Method dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot."<init>":(ILnet/minecraft/world/item/ItemStack;)V
-      98: invokeinterface #430,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      92: invokevirtual #426                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      95: invokespecial #429                // Method dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot."<init>":(ILnet/minecraft/world/item/ItemStack;)V
+      98: invokeinterface #433,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
      103: pop
      104: aload_3
      105: bipush        8
      107: anewarray     #4                  // class java/lang/Object
      110: dup
      111: iconst_0
-     112: ldc_w         #306                // String inventory_slot
+     112: ldc_w         #309                // String inventory_slot
      115: aastore
      116: dup
      117: iconst_1
      118: iload         5
-     120: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     120: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      123: aastore
      124: dup
      125: iconst_2
-     126: ldc_w         #365                // String item
+     126: ldc_w         #368                // String item
      129: aastore
      130: dup
      131: iconst_3
      132: aload         6
-     134: invokestatic  #269                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     134: invokestatic  #272                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
      137: aastore
      138: dup
      139: iconst_4
-     140: ldc_w         #432                // String stack_token
+     140: ldc_w         #435                // String stack_token
      143: aastore
      144: dup
      145: iconst_5
@@ -570,26 +570,26 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
      148: aastore
      149: dup
      150: bipush        6
-     152: ldc_w         #434                // String open_allowed
+     152: ldc_w         #437                // String open_allowed
      155: aastore
      156: dup
      157: bipush        7
      159: aload_2
      160: aload_1
-     161: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     164: getfield      #202                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
+     161: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     164: getfield      #205                // Field net/minecraft/client/player/LocalPlayer.f_36095_:Lnet/minecraft/world/inventory/InventoryMenu;
      167: if_acmpne     184
      170: aload_2
-     171: invokevirtual #188                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
-     174: invokevirtual #193                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+     171: invokevirtual #191                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+     174: invokevirtual #196                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
      177: ifeq          184
      180: iconst_1
      181: goto          185
      184: iconst_0
-     185: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     185: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
      188: aastore
-     189: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
-     192: invokevirtual #348                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     189: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     192: invokevirtual #351                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
      195: iinc          5, 1
      198: goto          28
      201: aload_3
@@ -598,19 +598,19 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
   private int slotCount(net.minecraft.world.inventory.AbstractContainerMenu) throws java.lang.Exception;
     Code:
        0: aload_0
-       1: getfield      #58                 // Field type:Ljava/lang/String;
-       4: ldc_w         #367                // String furnace
-       7: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       1: getfield      #61                 // Field type:Ljava/lang/String;
+       4: ldc_w         #370                // String furnace
+       7: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
       10: ifeq          23
       13: aload_1
-      14: getfield      #443                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38839_:Lnet/minecraft/core/NonNullList;
-      17: invokevirtual #446                // Method net/minecraft/core/NonNullList.size:()I
+      14: getfield      #446                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38839_:Lnet/minecraft/core/NonNullList;
+      17: invokevirtual #449                // Method net/minecraft/core/NonNullList.size:()I
       20: goto          36
       23: aload_1
-      24: ldc_w         #448                // String getTotalSlotsNumber
-      27: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-      30: checkcast     #230                // class java/lang/Integer
-      33: invokevirtual #381                // Method java/lang/Integer.intValue:()I
+      24: ldc_w         #451                // String getTotalSlotsNumber
+      27: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      30: checkcast     #233                // class java/lang/Integer
+      33: invokevirtual #384                // Method java/lang/Integer.intValue:()I
       36: ireturn
 
   private com.google.gson.JsonObject slot(net.minecraft.world.inventory.AbstractContainerMenu, net.minecraft.world.inventory.Slot, int) throws java.lang.Exception;
@@ -619,36 +619,36 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
        2: anewarray     #4                  // class java/lang/Object
        5: dup
        6: iconst_0
-       7: ldc_w         #450                // String menu_slot
+       7: ldc_w         #453                // String menu_slot
       10: aastore
       11: dup
       12: iconst_1
       13: iload_3
-      14: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      14: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
       17: aastore
       18: dup
       19: iconst_2
-      20: ldc_w         #452                // String container_slot
+      20: ldc_w         #455                // String container_slot
       23: aastore
       24: dup
       25: iconst_3
       26: aload_2
-      27: invokevirtual #455                // Method net/minecraft/world/inventory/Slot.m_150661_:()I
-      30: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      27: invokevirtual #458                // Method net/minecraft/world/inventory/Slot.m_150661_:()I
+      30: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
       33: aastore
       34: dup
       35: iconst_4
-      36: ldc_w         #457                // String slot_class
+      36: ldc_w         #460                // String slot_class
       39: aastore
       40: dup
       41: iconst_5
       42: aload_2
-      43: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
-      46: invokevirtual #246                // Method java/lang/Class.getName:()Ljava/lang/String;
+      43: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      46: invokevirtual #249                // Method java/lang/Class.getName:()Ljava/lang/String;
       49: aastore
       50: dup
       51: bipush        6
-      53: ldc_w         #459                // String role
+      53: ldc_w         #462                // String role
       56: aastore
       57: dup
       58: bipush        7
@@ -656,217 +656,233 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
       61: aload_1
       62: aload_2
       63: iload_3
-      64: invokevirtual #462                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Ljava/lang/String;
+      64: invokevirtual #465                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Ljava/lang/String;
       67: aastore
       68: dup
       69: bipush        8
-      71: ldc_w         #464                // String active
+      71: ldc_w         #467                // String active
       74: aastore
       75: dup
       76: bipush        9
       78: aload_2
-      79: invokevirtual #341                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
-      82: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      79: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
+      82: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
       85: aastore
       86: dup
       87: bipush        10
-      89: ldc_w         #466                // String may_pickup
+      89: ldc_w         #469                // String may_pickup
       92: aastore
       93: dup
       94: bipush        11
       96: aload_2
-      97: invokestatic  #74                 // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
-     100: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     103: invokevirtual #469                // Method net/minecraft/world/inventory/Slot.m_8010_:(Lnet/minecraft/world/entity/player/Player;)Z
-     106: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      97: invokestatic  #77                 // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+     100: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     103: invokevirtual #472                // Method net/minecraft/world/inventory/Slot.m_8010_:(Lnet/minecraft/world/entity/player/Player;)Z
+     106: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
      109: aastore
      110: dup
      111: bipush        12
-     113: ldc_w         #471                // String max_stack
+     113: ldc_w         #474                // String max_stack
      116: aastore
      117: dup
      118: bipush        13
      120: aload_2
-     121: invokevirtual #474                // Method net/minecraft/world/inventory/Slot.m_6641_:()I
-     124: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     121: invokevirtual #477                // Method net/minecraft/world/inventory/Slot.m_6641_:()I
+     124: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      127: aastore
      128: dup
      129: bipush        14
-     131: ldc_w         #365                // String item
+     131: ldc_w         #368                // String item
      134: aastore
      135: dup
      136: bipush        15
      138: aload_2
-     139: invokevirtual #477                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
-     142: invokestatic  #269                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     139: invokevirtual #480                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+     142: invokestatic  #272                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
      145: aastore
-     146: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     146: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
      149: areturn
 
   private java.lang.String role(net.minecraft.world.inventory.AbstractContainerMenu, net.minecraft.world.inventory.Slot, int) throws java.lang.Exception;
     Code:
-       0: aload_2
-       1: getfield      #482                // Field net/minecraft/world/inventory/Slot.f_40218_:Lnet/minecraft/world/Container;
-       4: invokestatic  #74                 // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
-       7: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-      10: invokevirtual #314                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
-      13: if_acmpne     20
-      16: ldc_w         #484                // String player_inventory
-      19: areturn
-      20: aload_0
-      21: getfield      #58                 // Field type:Ljava/lang/String;
-      24: ldc_w         #367                // String furnace
-      27: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
-      30: ifeq          44
-      33: aload_2
-      34: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
-      37: invokevirtual #246                // Method java/lang/Class.getName:()Ljava/lang/String;
-      40: invokestatic  #488                // Method dev/mcpmcp/sophisticated/MenuGuard.furnaceRole:(Ljava/lang/String;)Ljava/lang/String;
-      43: areturn
-      44: aload_0
-      45: aload_1
-      46: invokevirtual #492                // Method upgradeMap:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/Map;
-      49: invokeinterface #496,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
-      54: invokeinterface #502,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
-      59: astore        4
-      61: aload         4
-      63: invokeinterface #507,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
-      68: ifeq          168
-      71: aload         4
-      73: invokeinterface #511,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
-      78: checkcast     #12                 // class java/util/Map$Entry
-      81: astore        5
-      83: aload         5
-      85: invokeinterface #514,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
-      90: astore        6
-      92: aload         6
-      94: ldc_w         #516                // String getSlots
-      97: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     100: checkcast     #518                // class java/util/List
-     103: aload_2
-     104: invokeinterface #521,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
-     109: ifeq          165
-     112: ldc_w         #523                // String net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer
-     115: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
-     118: aload         6
-     120: invokevirtual #126                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
-     123: ifeq          161
-     126: aload         6
-     128: ldc_w         #525                // String getRecipeSlots
-     131: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     134: checkcast     #518                // class java/util/List
-     137: aload_2
-     138: invokeinterface #521,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
-     143: ifeq          150
-     146: ldc_w         #527                // String crafting_input
-     149: areturn
-     150: aload_2
-     151: instanceof    #529                // class net/minecraft/world/inventory/ResultSlot
-     154: ifeq          161
-     157: ldc_w         #531                // String crafting_result
-     160: areturn
-     161: ldc_w         #533                // String upgrade_settings_read_only
-     164: areturn
-     165: goto          61
-     168: aload_1
-     169: ldc_w         #535                // String isStorageInventorySlot
-     172: iconst_1
-     173: anewarray     #119                // class java/lang/Class
-     176: dup
-     177: iconst_0
-     178: getstatic     #538                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
-     181: aastore
-     182: iconst_1
-     183: anewarray     #4                  // class java/lang/Object
-     186: dup
-     187: iconst_0
-     188: iload_3
-     189: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     192: aastore
-     193: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
-     196: checkcast     #256                // class java/lang/Boolean
-     199: invokevirtual #544                // Method java/lang/Boolean.booleanValue:()Z
-     202: ifeq          208
-     205: ldc           #109                // String storage
-     207: areturn
-     208: ldc_w         #546                // String upgrade_install_or_extra_read_only
-     211: areturn
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: iload_3
+       4: invokestatic  #77                 // Method net/minecraft/client/Minecraft.m_91087_:()Lnet/minecraft/client/Minecraft;
+       7: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      10: invokevirtual #317                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+      13: invokevirtual #484                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;ILnet/minecraft/world/Container;)Ljava/lang/String;
+      16: areturn
+
+  java.lang.String role(net.minecraft.world.inventory.AbstractContainerMenu, net.minecraft.world.inventory.Slot, int, net.minecraft.world.Container) throws java.lang.Exception;
+    Code:
+       0: aload_0
+       1: getfield      #61                 // Field type:Ljava/lang/String;
+       4: ldc_w         #370                // String furnace
+       7: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      10: ifeq          39
+      13: aload_2
+      14: aload         4
+      16: invokestatic  #490                // Method dev/mcpmcp/sophisticated/PlayerInventorySlots.owns:(Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/Container;)Z
+      19: ifeq          28
+      22: ldc_w         #492                // String player_inventory
+      25: goto          38
+      28: aload_2
+      29: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      32: invokevirtual #249                // Method java/lang/Class.getName:()Ljava/lang/String;
+      35: invokestatic  #496                // Method dev/mcpmcp/sophisticated/MenuGuard.furnaceRole:(Ljava/lang/String;)Ljava/lang/String;
+      38: areturn
+      39: aload_0
+      40: aload_1
+      41: invokevirtual #500                // Method upgradeMap:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/Map;
+      44: invokeinterface #504,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      49: invokeinterface #510,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      54: astore        5
+      56: aload         5
+      58: invokeinterface #515,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      63: ifeq          163
+      66: aload         5
+      68: invokeinterface #519,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      73: checkcast     #14                 // class java/util/Map$Entry
+      76: astore        6
+      78: aload         6
+      80: invokeinterface #522,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      85: astore        7
+      87: aload         7
+      89: ldc_w         #524                // String getSlots
+      92: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      95: checkcast     #526                // class java/util/List
+      98: aload_2
+      99: invokeinterface #529,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+     104: ifeq          160
+     107: ldc_w         #531                // String net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer
+     110: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+     113: aload         7
+     115: invokevirtual #129                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+     118: ifeq          156
+     121: aload         7
+     123: ldc_w         #533                // String getRecipeSlots
+     126: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     129: checkcast     #526                // class java/util/List
+     132: aload_2
+     133: invokeinterface #529,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+     138: ifeq          145
+     141: ldc_w         #535                // String crafting_input
+     144: areturn
+     145: aload_2
+     146: instanceof    #537                // class net/minecraft/world/inventory/ResultSlot
+     149: ifeq          156
+     152: ldc_w         #539                // String crafting_result
+     155: areturn
+     156: ldc_w         #541                // String upgrade_settings_read_only
+     159: areturn
+     160: goto          56
+     163: aload_2
+     164: aload         4
+     166: invokestatic  #490                // Method dev/mcpmcp/sophisticated/PlayerInventorySlots.owns:(Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/Container;)Z
+     169: ifeq          176
+     172: ldc_w         #492                // String player_inventory
+     175: areturn
+     176: aload_1
+     177: ldc_w         #543                // String isStorageInventorySlot
+     180: iconst_1
+     181: anewarray     #122                // class java/lang/Class
+     184: dup
+     185: iconst_0
+     186: getstatic     #546                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+     189: aastore
+     190: iconst_1
+     191: anewarray     #4                  // class java/lang/Object
+     194: dup
+     195: iconst_0
+     196: iload_3
+     197: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     200: aastore
+     201: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+     204: checkcast     #259                // class java/lang/Boolean
+     207: invokevirtual #552                // Method java/lang/Boolean.booleanValue:()Z
+     210: ifeq          216
+     213: ldc           #112                // String storage
+     215: areturn
+     216: ldc_w         #554                // String upgrade_install_or_extra_read_only
+     219: areturn
 
   private java.util.Map<java.lang.Integer, java.lang.Object> upgradeMap(net.minecraft.world.inventory.AbstractContainerMenu) throws java.lang.Exception;
     Code:
        0: aload_1
-       1: ldc_w         #553                // String getUpgradeContainers
-       4: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-       7: checkcast     #14                 // class java/util/Map
+       1: ldc_w         #563                // String getUpgradeContainers
+       4: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+       7: checkcast     #16                 // class java/util/Map
       10: areturn
 
   private void upgrades(com.google.gson.JsonObject, net.minecraft.world.inventory.AbstractContainerMenu, int, int) throws java.lang.Exception;
     Code:
        0: aload_0
        1: aload_2
-       2: invokevirtual #492                // Method upgradeMap:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/Map;
+       2: invokevirtual #500                // Method upgradeMap:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/Map;
        5: astore        5
-       7: new           #555                // class java/util/ArrayList
+       7: new           #565                // class java/util/ArrayList
       10: dup
       11: aload         5
-      13: invokeinterface #496,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
-      18: invokespecial #558                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+      13: invokeinterface #504,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      18: invokespecial #568                // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
       21: astore        6
       23: aload         6
-      25: invokestatic  #562                // InterfaceMethod java/util/Map$Entry.comparingByKey:()Ljava/util/Comparator;
-      28: invokevirtual #566                // Method java/util/ArrayList.sort:(Ljava/util/Comparator;)V
-      31: new           #303                // class com/google/gson/JsonArray
+      25: invokestatic  #572                // InterfaceMethod java/util/Map$Entry.comparingByKey:()Ljava/util/Comparator;
+      28: invokevirtual #576                // Method java/util/ArrayList.sort:(Ljava/util/Comparator;)V
+      31: new           #306                // class com/google/gson/JsonArray
       34: dup
-      35: invokespecial #304                // Method com/google/gson/JsonArray."<init>":()V
+      35: invokespecial #307                // Method com/google/gson/JsonArray."<init>":()V
       38: astore        7
       40: aload_2
-      41: ldc_w         #568                // String getOpenContainer
-      44: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-      47: checkcast     #570                // class java/util/Optional
+      41: ldc_w         #578                // String getOpenContainer
+      44: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      47: checkcast     #580                // class java/util/Optional
       50: astore        8
       52: iload_3
       53: istore        9
       55: iload         9
       57: aload         6
-      59: invokevirtual #571                // Method java/util/ArrayList.size:()I
+      59: invokevirtual #581                // Method java/util/ArrayList.size:()I
       62: iload_3
       63: iload         4
       65: iadd
-      66: invokestatic  #326                // Method java/lang/Math.min:(II)I
+      66: invokestatic  #329                // Method java/lang/Math.min:(II)I
       69: if_icmpge     654
       72: aload         6
       74: iload         9
-      76: invokevirtual #574                // Method java/util/ArrayList.get:(I)Ljava/lang/Object;
-      79: checkcast     #12                 // class java/util/Map$Entry
+      76: invokevirtual #584                // Method java/util/ArrayList.get:(I)Ljava/lang/Object;
+      79: checkcast     #14                 // class java/util/Map$Entry
       82: astore        10
       84: aload         10
-      86: invokeinterface #514,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      86: invokeinterface #522,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
       91: astore        11
-      93: ldc_w         #523                // String net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer
-      96: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      93: ldc_w         #531                // String net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer
+      96: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
       99: aload         11
-     101: invokevirtual #126                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+     101: invokevirtual #129                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
      104: istore        12
-     106: new           #303                // class com/google/gson/JsonArray
+     106: new           #306                // class com/google/gson/JsonArray
      109: dup
-     110: invokespecial #304                // Method com/google/gson/JsonArray."<init>":()V
+     110: invokespecial #307                // Method com/google/gson/JsonArray."<init>":()V
      113: astore        13
      115: iconst_0
      116: istore        14
      118: aload         11
-     120: ldc_w         #516                // String getSlots
-     123: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     126: checkcast     #518                // class java/util/List
-     129: invokeinterface #575,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     120: ldc_w         #524                // String getSlots
+     123: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     126: checkcast     #526                // class java/util/List
+     129: invokeinterface #585,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
      134: astore        15
      136: aload         15
-     138: invokeinterface #507,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     138: invokeinterface #515,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
      143: ifeq          353
      146: aload         15
-     148: invokeinterface #511,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     148: invokeinterface #519,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
      153: astore        16
      155: aload         16
-     157: checkcast     #338                // class net/minecraft/world/inventory/Slot
+     157: checkcast     #341                // class net/minecraft/world/inventory/Slot
      160: astore        17
      162: iload         14
      164: iinc          14, 1
@@ -874,18 +890,18 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
      170: if_icmplt     176
      173: goto          353
      176: aload         17
-     178: getfield      #578                // Field net/minecraft/world/inventory/Slot.f_40219_:I
+     178: getfield      #588                // Field net/minecraft/world/inventory/Slot.f_40219_:I
      181: istore        18
      183: iload         18
      185: iflt          213
      188: iload         18
      190: aload_0
      191: aload_2
-     192: invokevirtual #295                // Method slotCount:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)I
+     192: invokevirtual #298                // Method slotCount:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)I
      195: if_icmpge     213
      198: aload_2
      199: iload         18
-     201: invokevirtual #330                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
+     201: invokevirtual #333                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
      204: aload         17
      206: if_acmpne     213
      209: iconst_1
@@ -896,193 +912,193 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
      218: anewarray     #4                  // class java/lang/Object
      221: dup
      222: iconst_0
-     223: ldc_w         #450                // String menu_slot
+     223: ldc_w         #453                // String menu_slot
      226: aastore
      227: dup
      228: iconst_1
      229: iload         19
      231: ifeq          242
      234: iload         18
-     236: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     236: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      239: goto          243
      242: aconst_null
      243: aastore
      244: dup
      245: iconst_2
-     246: ldc_w         #452                // String container_slot
+     246: ldc_w         #455                // String container_slot
      249: aastore
      250: dup
      251: iconst_3
      252: aload         17
-     254: invokevirtual #455                // Method net/minecraft/world/inventory/Slot.m_150661_:()I
-     257: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     254: invokevirtual #458                // Method net/minecraft/world/inventory/Slot.m_150661_:()I
+     257: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      260: aastore
      261: dup
      262: iconst_4
-     263: ldc_w         #457                // String slot_class
+     263: ldc_w         #460                // String slot_class
      266: aastore
      267: dup
      268: iconst_5
      269: aload         17
-     271: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
-     274: invokevirtual #246                // Method java/lang/Class.getName:()Ljava/lang/String;
+     271: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     274: invokevirtual #249                // Method java/lang/Class.getName:()Ljava/lang/String;
      277: aastore
      278: dup
      279: bipush        6
-     281: ldc_w         #365                // String item
+     281: ldc_w         #368                // String item
      284: aastore
      285: dup
      286: bipush        7
      288: aload         17
-     290: invokevirtual #477                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
-     293: invokestatic  #269                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     290: invokevirtual #480                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+     293: invokestatic  #272                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
      296: aastore
      297: dup
      298: bipush        8
-     300: ldc_w         #464                // String active
+     300: ldc_w         #467                // String active
      303: aastore
      304: dup
      305: bipush        9
      307: aload         17
-     309: invokevirtual #341                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
-     312: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     309: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
+     312: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
      315: aastore
-     316: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     316: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
      319: astore        20
      321: iload         19
      323: ifeq          343
      326: aload         20
-     328: ldc_w         #459                // String role
+     328: ldc_w         #462                // String role
      331: aload_0
      332: aload_2
      333: aload         17
      335: iload         18
-     337: invokevirtual #462                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Ljava/lang/String;
-     340: invokevirtual #395                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     337: invokevirtual #465                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Ljava/lang/String;
+     340: invokevirtual #398                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
      343: aload         13
      345: aload         20
-     347: invokevirtual #348                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     347: invokevirtual #351                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
      350: goto          136
      353: aload         7
      355: bipush        22
      357: anewarray     #4                  // class java/lang/Object
      360: dup
      361: iconst_0
-     362: ldc_w         #580                // String upgrade_slot
+     362: ldc_w         #590                // String upgrade_slot
      365: aastore
      366: dup
      367: iconst_1
      368: aload         10
-     370: invokeinterface #583,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     370: invokeinterface #593,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
      375: aastore
      376: dup
      377: iconst_2
-     378: ldc_w         #585                // String class
+     378: ldc_w         #595                // String class
      381: aastore
      382: dup
      383: iconst_3
      384: aload         11
-     386: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
-     389: invokevirtual #246                // Method java/lang/Class.getName:()Ljava/lang/String;
+     386: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     389: invokevirtual #249                // Method java/lang/Class.getName:()Ljava/lang/String;
      392: aastore
      393: dup
      394: iconst_4
-     395: ldc_w         #365                // String item
+     395: ldc_w         #368                // String item
      398: aastore
      399: dup
      400: iconst_5
      401: aload         11
-     403: ldc_w         #587                // String getUpgradeStack
-     406: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     409: checkcast     #190                // class net/minecraft/world/item/ItemStack
-     412: invokestatic  #269                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
+     403: ldc_w         #597                // String getUpgradeStack
+     406: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     409: checkcast     #193                // class net/minecraft/world/item/ItemStack
+     412: invokestatic  #272                // Method item:(Lnet/minecraft/world/item/ItemStack;)Lcom/google/gson/JsonObject;
      415: aastore
      416: dup
      417: bipush        6
-     419: ldc_w         #589                // String enabled
+     419: ldc_w         #599                // String enabled
      422: aastore
      423: dup
      424: bipush        7
      426: aload_2
-     427: ldc_w         #591                // String getUpgradeEnabled
+     427: ldc_w         #601                // String getUpgradeEnabled
      430: iconst_1
-     431: anewarray     #119                // class java/lang/Class
+     431: anewarray     #122                // class java/lang/Class
      434: dup
      435: iconst_0
-     436: getstatic     #538                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+     436: getstatic     #546                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
      439: aastore
      440: iconst_1
      441: anewarray     #4                  // class java/lang/Object
      444: dup
      445: iconst_0
      446: aload         10
-     448: invokeinterface #583,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     448: invokeinterface #593,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
      453: aastore
-     454: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+     454: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
      457: aastore
      458: dup
      459: bipush        8
-     461: ldc_w         #593                // String runnable
+     461: ldc_w         #603                // String runnable
      464: aastore
      465: dup
      466: bipush        9
      468: aload_2
-     469: ldc_w         #595                // String isUpgradeRunnable
+     469: ldc_w         #605                // String isUpgradeRunnable
      472: iconst_1
-     473: anewarray     #119                // class java/lang/Class
+     473: anewarray     #122                // class java/lang/Class
      476: dup
      477: iconst_0
-     478: getstatic     #538                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+     478: getstatic     #546                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
      481: aastore
      482: iconst_1
      483: anewarray     #4                  // class java/lang/Object
      486: dup
      487: iconst_0
      488: aload         10
-     490: invokeinterface #583,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     490: invokeinterface #593,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
      495: aastore
-     496: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+     496: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
      499: aastore
      500: dup
      501: bipush        10
-     503: ldc_w         #597                // String selected
+     503: ldc_w         #607                // String selected
      506: aastore
      507: dup
      508: bipush        11
      510: aload         8
-     512: invokevirtual #600                // Method java/util/Optional.isPresent:()Z
+     512: invokevirtual #610                // Method java/util/Optional.isPresent:()Z
      515: ifeq          532
      518: aload         8
-     520: invokevirtual #602                // Method java/util/Optional.get:()Ljava/lang/Object;
+     520: invokevirtual #612                // Method java/util/Optional.get:()Ljava/lang/Object;
      523: aload         11
      525: if_acmpne     532
      528: iconst_1
      529: goto          533
      532: iconst_0
-     533: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     533: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
      536: aastore
      537: dup
      538: bipush        12
-     540: ldc_w         #604                // String client_tab_open
+     540: ldc_w         #614                // String client_tab_open
      543: aastore
      544: dup
      545: bipush        13
      547: aload         11
-     549: ldc_w         #606                // String isOpen
-     552: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     549: ldc_w         #616                // String isOpen
+     552: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
      555: aastore
      556: dup
      557: bipush        14
-     559: ldc_w         #608                // String crafting_supported
+     559: ldc_w         #618                // String crafting_supported
      562: aastore
      563: dup
      564: bipush        15
      566: iload         12
-     568: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     568: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
      571: aastore
      572: dup
      573: bipush        16
-     575: ldc_w         #350                // String slots
+     575: ldc_w         #353                // String slots
      578: aastore
      579: dup
      580: bipush        17
@@ -1090,20 +1106,20 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
      584: aastore
      585: dup
      586: bipush        18
-     588: ldc_w         #352                // String slot_total
+     588: ldc_w         #355                // String slot_total
      591: aastore
      592: dup
      593: bipush        19
      595: aload         11
-     597: ldc_w         #516                // String getSlots
-     600: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     603: checkcast     #518                // class java/util/List
-     606: invokeinterface #609,  1          // InterfaceMethod java/util/List.size:()I
-     611: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     597: ldc_w         #524                // String getSlots
+     600: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     603: checkcast     #526                // class java/util/List
+     606: invokeinterface #619,  1          // InterfaceMethod java/util/List.size:()I
+     611: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      614: aastore
      615: dup
      616: bipush        20
-     618: ldc_w         #611                // String slots_truncated
+     618: ldc_w         #621                // String slots_truncated
      621: aastore
      622: dup
      623: bipush        21
@@ -1113,344 +1129,344 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
      633: iconst_1
      634: goto          638
      637: iconst_0
-     638: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     638: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
      641: aastore
-     642: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
-     645: invokevirtual #348                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
+     642: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     645: invokevirtual #351                // Method com/google/gson/JsonArray.add:(Lcom/google/gson/JsonElement;)V
      648: iinc          9, 1
      651: goto          55
      654: aload_1
-     655: ldc_w         #612                // String upgrades
+     655: ldc_w         #622                // String upgrades
      658: aload         7
-     660: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     660: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
      663: aload_1
-     664: ldc_w         #614                // String upgrade_container_total
+     664: ldc_w         #624                // String upgrade_container_total
      667: aload         6
-     669: invokevirtual #571                // Method java/util/ArrayList.size:()I
-     672: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     675: invokevirtual #355                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
+     669: invokevirtual #581                // Method java/util/ArrayList.size:()I
+     672: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     675: invokevirtual #358                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Number;)V
      678: aload_1
-     679: ldc_w         #616                // String upgrades_has_more
+     679: ldc_w         #626                // String upgrades_has_more
      682: iload_3
      683: aload         7
-     685: invokevirtual #362                // Method com/google/gson/JsonArray.size:()I
+     685: invokevirtual #365                // Method com/google/gson/JsonArray.size:()I
      688: iadd
      689: aload         6
-     691: invokevirtual #571                // Method java/util/ArrayList.size:()I
+     691: invokevirtual #581                // Method java/util/ArrayList.size:()I
      694: if_icmpge     701
      697: iconst_1
      698: goto          702
      701: iconst_0
-     702: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
-     705: invokevirtual #291                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
+     702: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     705: invokevirtual #294                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/Boolean;)V
      708: return
 
   private com.google.gson.JsonObject furnace(net.minecraft.world.inventory.AbstractContainerMenu) throws java.lang.Exception;
     Code:
-       0: new           #208                // class com/google/gson/JsonObject
+       0: new           #211                // class com/google/gson/JsonObject
        3: dup
-       4: invokespecial #632                // Method com/google/gson/JsonObject."<init>":()V
+       4: invokespecial #642                // Method com/google/gson/JsonObject."<init>":()V
        7: astore_2
        8: bipush        20
-      10: anewarray     #111                // class java/lang/String
+      10: anewarray     #114                // class java/lang/String
       13: dup
       14: iconst_0
-      15: ldc_w         #634                // String getTier
+      15: ldc_w         #644                // String getTier
       18: aastore
       19: dup
       20: iconst_1
-      21: ldc_w         #636                // String getEnergy
+      21: ldc_w         #646                // String getEnergy
       24: aastore
       25: dup
       26: iconst_2
-      27: ldc_w         #638                // String getMaxEnergy
+      27: ldc_w         #648                // String getMaxEnergy
       30: aastore
       31: dup
       32: iconst_3
-      33: ldc_w         #640                // String isBurning
+      33: ldc_w         #650                // String isBurning
       36: aastore
       37: dup
       38: iconst_4
-      39: ldc_w         #642                // String isGeneratorBurning
+      39: ldc_w         #652                // String isGeneratorBurning
       42: aastore
       43: dup
       44: iconst_5
-      45: ldc_w         #644                // String getIsFactory
+      45: ldc_w         #654                // String getIsFactory
       48: aastore
       49: dup
       50: bipush        6
-      52: ldc_w         #646                // String getIsFurnace
+      52: ldc_w         #656                // String getIsFurnace
       55: aastore
       56: dup
       57: bipush        7
-      59: ldc_w         #648                // String getIsGenerator
+      59: ldc_w         #658                // String getIsGenerator
       62: aastore
       63: dup
       64: bipush        8
-      66: ldc_w         #650                // String getAutoInput
+      66: ldc_w         #660                // String getAutoInput
       69: aastore
       70: dup
       71: bipush        9
-      73: ldc_w         #652                // String getAutoOutput
+      73: ldc_w         #662                // String getAutoOutput
       76: aastore
       77: dup
       78: bipush        10
-      80: ldc_w         #654                // String getAugmentGUI
+      80: ldc_w         #664                // String getAugmentGUI
       83: aastore
       84: dup
       85: bipush        11
-      87: ldc_w         #656                // String isAutoSplit
+      87: ldc_w         #666                // String isAutoSplit
       90: aastore
       91: dup
       92: bipush        12
-      94: ldc_w         #658                // String getRedstoneMode
+      94: ldc_w         #668                // String getRedstoneMode
       97: aastore
       98: dup
       99: bipush        13
-     101: ldc_w         #660                // String getComSub
+     101: ldc_w         #670                // String getComSub
      104: aastore
      105: dup
      106: bipush        14
-     108: ldc_w         #662                // String getSettingTop
+     108: ldc_w         #672                // String getSettingTop
      111: aastore
      112: dup
      113: bipush        15
-     115: ldc_w         #664                // String getSettingBottom
+     115: ldc_w         #674                // String getSettingBottom
      118: aastore
      119: dup
      120: bipush        16
-     122: ldc_w         #666                // String getSettingFront
+     122: ldc_w         #676                // String getSettingFront
      125: aastore
      126: dup
      127: bipush        17
-     129: ldc_w         #668                // String getSettingBack
+     129: ldc_w         #678                // String getSettingBack
      132: aastore
      133: dup
      134: bipush        18
-     136: ldc_w         #670                // String getSettingLeft
+     136: ldc_w         #680                // String getSettingLeft
      139: aastore
      140: dup
      141: bipush        19
-     143: ldc_w         #672                // String getSettingRight
+     143: ldc_w         #682                // String getSettingRight
      146: aastore
-     147: invokestatic  #676                // InterfaceMethod java/util/List.of:([Ljava/lang/Object;)Ljava/util/List;
-     150: invokeinterface #575,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     147: invokestatic  #686                // InterfaceMethod java/util/List.of:([Ljava/lang/Object;)Ljava/util/List;
+     150: invokeinterface #585,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
      155: astore_3
      156: aload_3
-     157: invokeinterface #507,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     157: invokeinterface #515,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
      162: ifeq          197
      165: aload_3
-     166: invokeinterface #511,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
-     171: checkcast     #111                // class java/lang/String
+     166: invokeinterface #519,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     171: checkcast     #114                // class java/lang/String
      174: astore        4
      176: aload_2
      177: aload         4
-     179: getstatic     #680                // Field dev/mcpmcp/core/Jsons.GSON:Lcom/google/gson/Gson;
+     179: getstatic     #690                // Field dev/mcpmcp/core/Jsons.GSON:Lcom/google/gson/Gson;
      182: aload_1
      183: aload         4
-     185: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     188: invokevirtual #686                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
-     191: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     185: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     188: invokevirtual #696                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
+     191: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
      194: goto          156
      197: aload_1
-     198: ldc_w         #688                // String getPos
-     201: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
-     204: checkcast     #690                // class net/minecraft/core/BlockPos
+     198: ldc_w         #698                // String getPos
+     201: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     204: checkcast     #700                // class net/minecraft/core/BlockPos
      207: astore_3
      208: aload_2
-     209: ldc_w         #692                // String block_position
+     209: ldc_w         #702                // String block_position
      212: bipush        6
      214: anewarray     #4                  // class java/lang/Object
      217: dup
      218: iconst_0
-     219: ldc_w         #694                // String x
+     219: ldc_w         #704                // String x
      222: aastore
      223: dup
      224: iconst_1
      225: aload_3
-     226: invokevirtual #697                // Method net/minecraft/core/BlockPos.m_123341_:()I
-     229: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     226: invokevirtual #707                // Method net/minecraft/core/BlockPos.m_123341_:()I
+     229: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      232: aastore
      233: dup
      234: iconst_2
-     235: ldc_w         #699                // String y
+     235: ldc_w         #709                // String y
      238: aastore
      239: dup
      240: iconst_3
      241: aload_3
-     242: invokevirtual #702                // Method net/minecraft/core/BlockPos.m_123342_:()I
-     245: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     242: invokevirtual #712                // Method net/minecraft/core/BlockPos.m_123342_:()I
+     245: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      248: aastore
      249: dup
      250: iconst_4
-     251: ldc_w         #704                // String z
+     251: ldc_w         #714                // String z
      254: aastore
      255: dup
      256: iconst_5
      257: aload_3
-     258: invokevirtual #707                // Method net/minecraft/core/BlockPos.m_123343_:()I
-     261: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     258: invokevirtual #717                // Method net/minecraft/core/BlockPos.m_123343_:()I
+     261: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      264: aastore
-     265: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
-     268: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
-     271: ldc           #33                 // String ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase
-     273: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
-     276: ldc_w         #709                // String te
-     279: invokevirtual #713                // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+     265: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+     268: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     271: ldc           #36                 // String ironfurnaces.container.furnaces.BlockIronFurnaceContainerBase
+     273: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+     276: ldc_w         #719                // String te
+     279: invokevirtual #723                // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
      282: astore        4
      284: aload         4
      286: iconst_1
-     287: invokevirtual #719                // Method java/lang/reflect/Field.setAccessible:(Z)V
+     287: invokevirtual #729                // Method java/lang/reflect/Field.setAccessible:(Z)V
      290: aload         4
      292: aload_1
-     293: invokevirtual #720                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     293: invokevirtual #730                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
      296: astore        5
-     298: new           #208                // class com/google/gson/JsonObject
+     298: new           #211                // class com/google/gson/JsonObject
      301: dup
-     302: invokespecial #632                // Method com/google/gson/JsonObject."<init>":()V
+     302: invokespecial #642                // Method com/google/gson/JsonObject."<init>":()V
      305: astore        6
-     307: ldc_w         #722                // String currentAugment
-     310: ldc_w         #724                // String factoryCookTime
-     313: ldc_w         #726                // String factoryTotalCookTime
-     316: ldc_w         #728                // String generatorBurn
-     319: ldc_w         #730                // String generatorRecentRecipeRF
-     322: ldc_w         #732                // String furnaceBurnTime
-     325: ldc_w         #734                // String cookTime
-     328: ldc_w         #736                // String totalCookTime
-     331: ldc_w         #738                // String recipesUsed
-     334: invokestatic  #741                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
-     337: invokeinterface #575,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     307: ldc_w         #732                // String currentAugment
+     310: ldc_w         #734                // String factoryCookTime
+     313: ldc_w         #736                // String factoryTotalCookTime
+     316: ldc_w         #738                // String generatorBurn
+     319: ldc_w         #740                // String generatorRecentRecipeRF
+     322: ldc_w         #742                // String furnaceBurnTime
+     325: ldc_w         #744                // String cookTime
+     328: ldc_w         #746                // String totalCookTime
+     331: ldc_w         #748                // String recipesUsed
+     334: invokestatic  #751                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+     337: invokeinterface #585,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
      342: astore        7
      344: aload         7
-     346: invokeinterface #507,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     346: invokeinterface #515,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
      351: ifeq          397
      354: aload         7
-     356: invokeinterface #511,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
-     361: checkcast     #111                // class java/lang/String
+     356: invokeinterface #519,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     361: checkcast     #114                // class java/lang/String
      364: astore        8
      366: aload         6
      368: aload         8
-     370: getstatic     #680                // Field dev/mcpmcp/core/Jsons.GSON:Lcom/google/gson/Gson;
+     370: getstatic     #690                // Field dev/mcpmcp/core/Jsons.GSON:Lcom/google/gson/Gson;
      373: aload         5
-     375: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     375: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
      378: aload         8
-     380: invokevirtual #744                // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+     380: invokevirtual #754                // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
      383: aload         5
-     385: invokevirtual #720                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
-     388: invokevirtual #686                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
-     391: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     385: invokevirtual #730                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     388: invokevirtual #696                // Method com/google/gson/Gson.toJsonTree:(Ljava/lang/Object;)Lcom/google/gson/JsonElement;
+     391: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
      394: goto          344
      397: aload_2
-     398: ldc_w         #746                // String client_tile_menu_data
+     398: ldc_w         #756                // String client_tile_menu_data
      401: aload         6
-     403: invokevirtual #285                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
+     403: invokevirtual #288                // Method com/google/gson/JsonObject.add:(Ljava/lang/String;Lcom/google/gson/JsonElement;)V
      406: aload_2
-     407: ldc_w         #748                // String data_scope
-     410: ldc_w         #750                // String client tile fields used by native menu and synchronized data slots; not an authoritative server snapshot
-     413: invokevirtual #395                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     407: ldc_w         #758                // String data_scope
+     410: ldc_w         #760                // String client tile fields used by native menu and synchronized data slots; not an authoritative server snapshot
+     413: invokevirtual #398                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
      416: aload_2
-     417: ldc_w         #752                // String fuel_semantics
-     420: ldc_w         #754                // String fuel and generator_fuel slots use distinct native mayPlace rules; factories use energy; inactive slots are reported but actions reject them
-     423: invokevirtual #395                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
+     417: ldc_w         #762                // String fuel_semantics
+     420: ldc_w         #764                // String fuel and generator_fuel slots use distinct native mayPlace rules; factories use energy; inactive slots are reported but actions reject them
+     423: invokevirtual #398                // Method com/google/gson/JsonObject.addProperty:(Ljava/lang/String;Ljava/lang/String;)V
      426: aload_2
      427: areturn
 
   public com.google.gson.JsonObject execute(java.lang.String, com.google.gson.JsonObject) throws java.lang.Exception;
     Code:
        0: aload_0
-       1: invokevirtual #224                // Method world:()Lnet/minecraft/client/Minecraft;
+       1: invokevirtual #227                // Method world:()Lnet/minecraft/client/Minecraft;
        4: astore_3
        5: aload_0
        6: aload_3
        7: aload_2
        8: aload_1
-       9: ldc_w         #766                // String open
-      12: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
-      15: invokevirtual #768                // Method guarded:(Lnet/minecraft/client/Minecraft;Lcom/google/gson/JsonObject;Z)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       9: ldc_w         #776                // String open
+      12: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      15: invokevirtual #778                // Method guarded:(Lnet/minecraft/client/Minecraft;Lcom/google/gson/JsonObject;Z)Lnet/minecraft/world/inventory/AbstractContainerMenu;
       18: astore        4
       20: aload_1
-      21: ldc_w         #766                // String open
-      24: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      21: ldc_w         #776                // String open
+      24: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
       27: ifeq          257
       30: aload_2
-      31: ldc_w         #306                // String inventory_slot
+      31: ldc_w         #309                // String inventory_slot
       34: iconst_m1
-      35: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      35: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
       38: istore        5
       40: aload_3
-      41: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-      44: invokevirtual #314                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+      41: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      44: invokevirtual #317                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
       47: iload         5
-      49: invokevirtual #320                // Method net/minecraft/world/entity/player/Inventory.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
+      49: invokevirtual #323                // Method net/minecraft/world/entity/player/Inventory.m_8020_:(I)Lnet/minecraft/world/item/ItemStack;
       52: astore        6
       54: aload         6
       56: aload_2
-      57: invokestatic  #772                // Method checkItem:(Lnet/minecraft/world/item/ItemStack;Lcom/google/gson/JsonObject;)V
-      60: ldc_w         #409                // String net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem
-      63: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      57: invokestatic  #782                // Method checkItemIdCount:(Lnet/minecraft/world/item/ItemStack;Lcom/google/gson/JsonObject;)V
+      60: ldc_w         #412                // String net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem
+      63: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
       66: aload         6
-      68: invokevirtual #413                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
-      71: invokevirtual #126                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+      68: invokevirtual #416                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      71: invokevirtual #129                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
       74: ifne          88
-      77: new           #88                 // class java/lang/IllegalStateException
+      77: new           #91                 // class java/lang/IllegalStateException
       80: dup
-      81: ldc_w         #774                // String backpack_item_required
-      84: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      81: ldc_w         #784                // String backpack_item_required
+      84: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
       87: athrow
       88: aload_0
-      89: getfield      #56                 // Field backpackSnapshots:Ljava/util/Map;
+      89: getfield      #59                 // Field backpackSnapshots:Ljava/util/Map;
       92: aload_2
-      93: ldc_w         #432                // String stack_token
-      96: ldc           #171                // String
-      98: invokestatic  #175                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-     101: invokeinterface #184,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
-     106: checkcast     #9                  // class dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot
+      93: ldc_w         #435                // String stack_token
+      96: ldc           #174                // String
+      98: invokestatic  #178                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     101: invokeinterface #187,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     106: checkcast     #11                 // class dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot
      109: astore        7
      111: aload         7
      113: ifnull        139
      116: aload         7
-     118: invokevirtual #776                // Method dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot.slot:()I
+     118: invokevirtual #786                // Method dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot.slot:()I
      121: iload         5
      123: if_icmpne     139
      126: aload         6
      128: aload         7
-     130: invokevirtual #779                // Method dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot.stack:()Lnet/minecraft/world/item/ItemStack;
-     133: invokestatic  #783                // Method net/minecraft/world/item/ItemStack.m_41728_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+     130: invokevirtual #789                // Method dev/mcpmcp/sophisticated/LiveAccess$BackpackSnapshot.stack:()Lnet/minecraft/world/item/ItemStack;
+     133: invokestatic  #793                // Method net/minecraft/world/item/ItemStack.m_41728_:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
      136: ifne          150
-     139: new           #88                 // class java/lang/IllegalStateException
+     139: new           #91                 // class java/lang/IllegalStateException
      142: dup
-     143: ldc_w         #785                // String backpack_stack_changed_refresh_observation
-     146: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     143: ldc_w         #795                // String backpack_stack_changed_refresh_observation
+     146: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
      149: athrow
-     150: ldc_w         #787                // String net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage
-     153: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+     150: ldc_w         #797                // String net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage
+     153: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
      156: iconst_1
-     157: anewarray     #119                // class java/lang/Class
+     157: anewarray     #122                // class java/lang/Class
      160: dup
      161: iconst_0
-     162: getstatic     #538                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+     162: getstatic     #546                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
      165: aastore
-     166: invokevirtual #791                // Method java/lang/Class.getConstructor:([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+     166: invokevirtual #801                // Method java/lang/Class.getConstructor:([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
      169: iconst_1
      170: anewarray     #4                  // class java/lang/Object
      173: dup
      174: iconst_0
      175: iload         5
-     177: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     177: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      180: aastore
-     181: invokevirtual #797                // Method java/lang/reflect/Constructor.newInstance:([Ljava/lang/Object;)Ljava/lang/Object;
+     181: invokevirtual #807                // Method java/lang/reflect/Constructor.newInstance:([Ljava/lang/Object;)Ljava/lang/Object;
      184: astore        8
-     186: ldc_w         #799                // String net.p3pp3rf1y.sophisticatedbackpacks.network.SBPPacketHandler
-     189: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
-     192: ldc_w         #801                // String INSTANCE
-     195: invokevirtual #744                // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+     186: ldc_w         #809                // String net.p3pp3rf1y.sophisticatedbackpacks.network.SBPPacketHandler
+     189: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+     192: ldc_w         #811                // String INSTANCE
+     195: invokevirtual #754                // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
      198: aconst_null
-     199: invokevirtual #720                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     199: invokevirtual #730                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
      202: astore        9
      204: aload         9
-     206: ldc_w         #803                // String sendToServer
+     206: ldc_w         #813                // String sendToServer
      209: iconst_1
-     210: anewarray     #119                // class java/lang/Class
+     210: anewarray     #122                // class java/lang/Class
      213: dup
      214: iconst_0
      215: ldc           #4                  // class java/lang/Object
@@ -1461,242 +1477,256 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
      223: iconst_0
      224: aload         8
      226: aastore
-     227: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+     227: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
      230: pop
      231: aload_0
-     232: getfield      #56                 // Field backpackSnapshots:Ljava/util/Map;
+     232: getfield      #59                 // Field backpackSnapshots:Ljava/util/Map;
      235: aload_2
-     236: ldc_w         #432                // String stack_token
-     239: ldc           #171                // String
-     241: invokestatic  #175                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-     244: invokeinterface #806,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     236: ldc_w         #435                // String stack_token
+     239: ldc           #174                // String
+     241: invokestatic  #178                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     244: invokeinterface #816,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
      249: pop
      250: aload_1
      251: aload         4
-     253: invokestatic  #810                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
+     253: invokestatic  #820                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
      256: areturn
      257: aload_1
-     258: ldc_w         #811                // String sort
-     261: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     258: ldc_w         #821                // String sort
+     261: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
      264: ifeq          283
      267: aload         4
-     269: ldc_w         #811                // String sort
-     272: invokestatic  #378                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     269: ldc_w         #821                // String sort
+     272: invokestatic  #381                // Method call:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
      275: pop
      276: aload_1
      277: aload         4
-     279: invokestatic  #810                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
+     279: invokestatic  #820                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
      282: areturn
      283: aload_1
-     284: ldc_w         #813                // String select_crafting
-     287: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     284: ldc_w         #823                // String select_crafting
+     287: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
      290: ifeq          384
      293: aload_2
-     294: ldc_w         #580                // String upgrade_slot
+     294: ldc_w         #590                // String upgrade_slot
      297: iconst_m1
-     298: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+     298: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
      301: istore        5
      303: aload_0
      304: aload         4
-     306: invokevirtual #492                // Method upgradeMap:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/Map;
+     306: invokevirtual #500                // Method upgradeMap:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/Map;
      309: iload         5
-     311: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     314: invokeinterface #184,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     311: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     314: invokeinterface #187,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
      319: astore        6
-     321: ldc_w         #523                // String net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer
-     324: invokestatic  #123                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+     321: ldc_w         #531                // String net.p3pp3rf1y.sophisticatedcore.upgrades.crafting.CraftingUpgradeContainer
+     324: invokestatic  #126                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
      327: aload         6
-     329: invokevirtual #126                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+     329: invokevirtual #129                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
      332: ifne          346
-     335: new           #88                 // class java/lang/IllegalStateException
+     335: new           #91                 // class java/lang/IllegalStateException
      338: dup
-     339: ldc_w         #815                // String crafting_upgrade_not_present
-     342: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     339: ldc_w         #825                // String crafting_upgrade_not_present
+     342: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
      345: athrow
      346: aload         4
-     348: ldc_w         #817                // String setOpenTabId
+     348: ldc_w         #827                // String setOpenTabId
      351: iconst_1
-     352: anewarray     #119                // class java/lang/Class
+     352: anewarray     #122                // class java/lang/Class
      355: dup
      356: iconst_0
-     357: getstatic     #538                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+     357: getstatic     #546                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
      360: aastore
      361: iconst_1
      362: anewarray     #4                  // class java/lang/Object
      365: dup
      366: iconst_0
      367: iload         5
-     369: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     369: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
      372: aastore
-     373: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+     373: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
      376: pop
      377: aload_1
      378: aload         4
-     380: invokestatic  #810                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
+     380: invokestatic  #820                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
      383: areturn
      384: aload_1
-     385: ldc_w         #819                // String quick_move
-     388: invokevirtual #822                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
-     391: ifeq          674
-     394: aload_2
-     395: ldc           #248                // String state_id
-     397: iconst_m1
-     398: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
-     401: aload         4
-     403: invokevirtual #252                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_182424_:()I
-     406: if_icmpeq     420
-     409: new           #88                 // class java/lang/IllegalStateException
-     412: dup
-     413: ldc_w         #824                // String menu_state_changed
-     416: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
-     419: athrow
-     420: aload_2
-     421: ldc_w         #825                // String slot
-     424: iconst_m1
-     425: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
-     428: istore        5
-     430: iload         5
-     432: iflt          446
-     435: iload         5
-     437: aload_0
-     438: aload         4
-     440: invokevirtual #295                // Method slotCount:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)I
-     443: if_icmplt     457
-     446: new           #827                // class java/lang/IllegalArgumentException
-     449: dup
-     450: ldc_w         #829                // String slot_out_of_range
-     453: invokespecial #830                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
-     456: athrow
-     457: aload         4
-     459: iload         5
-     461: invokevirtual #330                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
-     464: astore        6
-     466: aload         6
-     468: invokevirtual #477                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
-     471: aload_2
-     472: invokestatic  #772                // Method checkItem:(Lnet/minecraft/world/item/ItemStack;Lcom/google/gson/JsonObject;)V
-     475: aload_0
-     476: aload         4
-     478: aload         6
-     480: iload         5
-     482: invokevirtual #462                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;I)Ljava/lang/String;
-     485: astore        7
-     487: aload         7
-     489: aload         6
-     491: invokevirtual #341                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
-     494: aload         6
-     496: aload_3
-     497: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     500: invokevirtual #469                // Method net/minecraft/world/inventory/Slot.m_8010_:(Lnet/minecraft/world/entity/player/Player;)Z
-     503: invokestatic  #834                // Method dev/mcpmcp/sophisticated/MenuGuard.quickMove:(Ljava/lang/String;ZZ)V
-     506: aload_0
-     507: getfield      #58                 // Field type:Ljava/lang/String;
-     510: ldc_w         #367                // String furnace
-     513: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
-     516: ifne          569
-     519: aload         4
-     521: ldc_w         #836                // String isInaccessibleSlot
-     524: iconst_1
-     525: anewarray     #119                // class java/lang/Class
-     528: dup
-     529: iconst_0
-     530: getstatic     #538                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
-     533: aastore
-     534: iconst_1
-     535: anewarray     #4                  // class java/lang/Object
-     538: dup
-     539: iconst_0
-     540: iload         5
-     542: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
-     545: aastore
-     546: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
-     549: checkcast     #256                // class java/lang/Boolean
-     552: invokevirtual #544                // Method java/lang/Boolean.booleanValue:()Z
-     555: ifeq          569
-     558: new           #88                 // class java/lang/IllegalStateException
-     561: dup
-     562: ldc_w         #838                // String slot_inaccessible
-     565: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
-     568: athrow
-     569: aload_1
-     570: ldc_w         #840                // String quick_move_packet
-     573: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
-     576: ifeq          627
-     579: aload_3
-     580: invokevirtual #86                 // Method net/minecraft/client/Minecraft.m_91403_:()Lnet/minecraft/client/multiplayer/ClientPacketListener;
-     583: new           #842                // class net/minecraft/network/protocol/game/ServerboundContainerClickPacket
-     586: dup
-     587: aload         4
-     589: getfield      #181                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
-     592: aload         4
-     594: invokevirtual #252                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_182424_:()I
-     597: iload         5
-     599: iconst_0
-     600: getstatic     #848                // Field net/minecraft/world/inventory/ClickType.QUICK_MOVE:Lnet/minecraft/world/inventory/ClickType;
-     603: aload         4
-     605: invokevirtual #188                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
-     608: invokevirtual #423                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
-     611: new           #850                // class it/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap
-     614: dup
-     615: invokespecial #851                // Method it/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap."<init>":()V
-     618: invokespecial #854                // Method net/minecraft/network/protocol/game/ServerboundContainerClickPacket."<init>":(IIIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/item/ItemStack;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;)V
-     621: invokevirtual #860                // Method net/minecraft/client/multiplayer/ClientPacketListener.m_104955_:(Lnet/minecraft/network/protocol/Packet;)V
-     624: goto          667
-     627: aload_3
-     628: getfield      #864                // Field net/minecraft/client/Minecraft.f_91072_:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
-     631: ifnonnull     645
-     634: new           #88                 // class java/lang/IllegalStateException
-     637: dup
-     638: ldc_w         #866                // String game_mode_unavailable
-     641: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
-     644: athrow
-     645: aload_3
-     646: getfield      #864                // Field net/minecraft/client/Minecraft.f_91072_:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
-     649: aload         4
-     651: getfield      #181                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
-     654: iload         5
-     656: iconst_0
-     657: getstatic     #848                // Field net/minecraft/world/inventory/ClickType.QUICK_MOVE:Lnet/minecraft/world/inventory/ClickType;
-     660: aload_3
-     661: getfield      #78                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
-     664: invokevirtual #872                // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.m_171799_:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
-     667: aload_1
-     668: aload         4
-     670: invokestatic  #810                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
-     673: areturn
-     674: new           #827                // class java/lang/IllegalArgumentException
-     677: dup
-     678: ldc_w         #874                // String unsupported_operation
-     681: invokespecial #830                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
-     684: athrow
+     385: ldc_w         #829                // String quick_move
+     388: invokevirtual #832                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+     391: ifeq          422
+     394: aload_0
+     395: aload_1
+     396: aload         4
+     398: aload_2
+     399: aload_3
+     400: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     403: aload_3
+     404: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+     407: invokevirtual #317                // Method net/minecraft/client/player/LocalPlayer.m_150109_:()Lnet/minecraft/world/entity/player/Inventory;
+     410: aload_3
+     411: aload         4
+     413: invokedynamic #843,  0            // InvokeDynamic #1:submit:(Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ldev/mcpmcp/sophisticated/LiveAccess$QuickMoveSender;
+     418: invokevirtual #847                // Method quickMove:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;Lcom/google/gson/JsonObject;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/Container;Ldev/mcpmcp/sophisticated/LiveAccess$QuickMoveSender;)Lcom/google/gson/JsonObject;
+     421: areturn
+     422: new           #849                // class java/lang/IllegalArgumentException
+     425: dup
+     426: ldc_w         #851                // String unsupported_operation
+     429: invokespecial #852                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     432: athrow
 
-  private static void checkItem(net.minecraft.world.item.ItemStack, com.google.gson.JsonObject);
+  com.google.gson.JsonObject quickMove(java.lang.String, net.minecraft.world.inventory.AbstractContainerMenu, com.google.gson.JsonObject, net.minecraft.world.entity.player.Player, net.minecraft.world.Container, dev.mcpmcp.sophisticated.LiveAccess$QuickMoveSender) throws java.lang.Exception;
+    Code:
+       0: aload_1
+       1: ldc_w         #829                // String quick_move
+       4: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       7: ifne          31
+      10: aload_1
+      11: ldc_w         #859                // String quick_move_packet
+      14: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      17: ifne          31
+      20: new           #849                // class java/lang/IllegalArgumentException
+      23: dup
+      24: ldc_w         #851                // String unsupported_operation
+      27: invokespecial #852                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      30: athrow
+      31: aload_3
+      32: ldc           #251                // String state_id
+      34: iconst_m1
+      35: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      38: aload_2
+      39: invokevirtual #255                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_182424_:()I
+      42: if_icmpeq     56
+      45: new           #91                 // class java/lang/IllegalStateException
+      48: dup
+      49: ldc_w         #861                // String menu_state_changed
+      52: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      55: athrow
+      56: aload_3
+      57: ldc_w         #862                // String slot
+      60: iconst_m1
+      61: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      64: istore        7
+      66: iload         7
+      68: iflt          81
+      71: iload         7
+      73: aload_0
+      74: aload_2
+      75: invokevirtual #298                // Method slotCount:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)I
+      78: if_icmplt     92
+      81: new           #849                // class java/lang/IllegalArgumentException
+      84: dup
+      85: ldc_w         #864                // String slot_out_of_range
+      88: invokespecial #852                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      91: athrow
+      92: aload_2
+      93: iload         7
+      95: invokevirtual #333                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_38853_:(I)Lnet/minecraft/world/inventory/Slot;
+      98: astore        8
+     100: aload         8
+     102: invokevirtual #480                // Method net/minecraft/world/inventory/Slot.m_7993_:()Lnet/minecraft/world/item/ItemStack;
+     105: aload_3
+     106: invokestatic  #867                // Method checkItem:(Lnet/minecraft/world/item/ItemStack;Lcom/google/gson/JsonObject;)V
+     109: aload_0
+     110: aload_2
+     111: aload         8
+     113: iload         7
+     115: aload         5
+     117: invokevirtual #484                // Method role:(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/inventory/Slot;ILnet/minecraft/world/Container;)Ljava/lang/String;
+     120: astore        9
+     122: aload         9
+     124: aload         8
+     126: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.m_6659_:()Z
+     129: aload         8
+     131: aload         4
+     133: invokevirtual #472                // Method net/minecraft/world/inventory/Slot.m_8010_:(Lnet/minecraft/world/entity/player/Player;)Z
+     136: invokestatic  #870                // Method dev/mcpmcp/sophisticated/MenuGuard.quickMove:(Ljava/lang/String;ZZ)V
+     139: aload_0
+     140: getfield      #61                 // Field type:Ljava/lang/String;
+     143: ldc_w         #370                // String furnace
+     146: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     149: ifne          201
+     152: aload_2
+     153: ldc_w         #872                // String isInaccessibleSlot
+     156: iconst_1
+     157: anewarray     #122                // class java/lang/Class
+     160: dup
+     161: iconst_0
+     162: getstatic     #546                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+     165: aastore
+     166: iconst_1
+     167: anewarray     #4                  // class java/lang/Object
+     170: dup
+     171: iconst_0
+     172: iload         7
+     174: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     177: aastore
+     178: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+     181: checkcast     #259                // class java/lang/Boolean
+     184: invokevirtual #552                // Method java/lang/Boolean.booleanValue:()Z
+     187: ifeq          201
+     190: new           #91                 // class java/lang/IllegalStateException
+     193: dup
+     194: ldc_w         #874                // String slot_inaccessible
+     197: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+     200: athrow
+     201: aload         6
+     203: aload_1
+     204: ldc_w         #859                // String quick_move_packet
+     207: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     210: iload         7
+     212: invokeinterface #876,  3          // InterfaceMethod dev/mcpmcp/sophisticated/LiveAccess$QuickMoveSender.submit:(ZI)V
+     217: aload_1
+     218: aload_2
+     219: invokestatic  #820                // Method submitted:(Ljava/lang/String;Lnet/minecraft/world/inventory/AbstractContainerMenu;)Lcom/google/gson/JsonObject;
+     222: areturn
+
+  static void checkItem(net.minecraft.world.item.ItemStack, com.google.gson.JsonObject);
     Code:
        0: aload_0
-       1: invokevirtual #193                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
+       1: aload_1
+       2: invokestatic  #782                // Method checkItemIdCount:(Lnet/minecraft/world/item/ItemStack;Lcom/google/gson/JsonObject;)V
+       5: aload_0
+       6: invokestatic  #886                // Method dev/mcpmcp/sophisticated/StackIdentity.hash:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+       9: aload_1
+      10: ldc_w         #888                // String expected_stack_hash
+      13: ldc           #174                // String
+      15: invokestatic  #178                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      18: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      21: ifne          35
+      24: new           #91                 // class java/lang/IllegalStateException
+      27: dup
+      28: ldc_w         #890                // String slot_stack_changed_refresh_observation
+      31: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      34: athrow
+      35: return
+
+  private static void checkItemIdCount(net.minecraft.world.item.ItemStack, com.google.gson.JsonObject);
+    Code:
+       0: aload_0
+       1: invokevirtual #196                // Method net/minecraft/world/item/ItemStack.m_41619_:()Z
        4: ifne          52
-       7: getstatic     #885                // Field net/minecraft/core/registries/BuiltInRegistries.f_257033_:Lnet/minecraft/core/DefaultedRegistry;
+       7: getstatic     #897                // Field net/minecraft/core/registries/BuiltInRegistries.f_257033_:Lnet/minecraft/core/DefaultedRegistry;
       10: aload_0
-      11: invokevirtual #413                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
-      14: invokeinterface #891,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.m_7981_:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
-      19: invokevirtual #894                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      11: invokevirtual #416                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      14: invokeinterface #903,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.m_7981_:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      19: invokevirtual #906                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
       22: aload_1
-      23: ldc_w         #896                // String expected_item
-      26: ldc           #171                // String
-      28: invokestatic  #175                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-      31: invokevirtual #115                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      23: ldc_w         #908                // String expected_item
+      26: ldc           #174                // String
+      28: invokestatic  #178                // Method dev/mcpmcp/core/Jsons.str:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      31: invokevirtual #118                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
       34: ifeq          52
       37: aload_0
-      38: invokevirtual #899                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      38: invokevirtual #911                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
       41: aload_1
-      42: ldc_w         #901                // String expected_count
+      42: ldc_w         #913                // String expected_count
       45: iconst_m1
-      46: invokestatic  #167                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      46: invokestatic  #170                // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
       49: if_icmpeq     63
-      52: new           #88                 // class java/lang/IllegalStateException
+      52: new           #91                 // class java/lang/IllegalStateException
       55: dup
-      56: ldc_w         #903                // String slot_item_or_count_changed
-      59: invokespecial #92                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      56: ldc_w         #915                // String slot_item_or_count_changed
+      59: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
       62: athrow
       63: return
 
@@ -1706,15 +1736,15 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
        2: anewarray     #4                  // class java/lang/Object
        5: dup
        6: iconst_0
-       7: ldc_w         #906                // String delivery
+       7: ldc_w         #917                // String delivery
       10: aastore
       11: dup
       12: iconst_1
-      13: ldc_w         #907                // String submitted
+      13: ldc_w         #918                // String submitted
       16: aastore
       17: dup
       18: iconst_2
-      19: ldc_w         #909                // String operation
+      19: ldc_w         #920                // String operation
       22: aastore
       23: dup
       24: iconst_3
@@ -1722,100 +1752,153 @@ final class dev.mcpmcp.sophisticated.LiveAccess implements dev.mcpmcp.sophistica
       26: aastore
       27: dup
       28: iconst_4
-      29: ldc           #161                // String menu_id
+      29: ldc           #164                // String menu_id
       31: aastore
       32: dup
       33: iconst_5
       34: aload_1
-      35: getfield      #181                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
-      38: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      35: getfield      #184                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
+      38: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
       41: aastore
       42: dup
       43: bipush        6
-      45: ldc_w         #911                // String server_confirmed
+      45: ldc_w         #922                // String server_confirmed
       48: aastore
       49: dup
       50: bipush        7
       52: iconst_0
-      53: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      53: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
       56: aastore
       57: dup
       58: bipush        8
-      60: ldc_w         #913                // String verification
+      60: ldc_w         #924                // String verification
       63: aastore
       64: dup
       65: bipush        9
-      67: ldc_w         #915                // String read_mod_observer_after_server_synchronization
+      67: ldc_w         #926                // String read_mod_observer_after_server_synchronization
       70: aastore
-      71: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      71: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
       74: areturn
 
   private static com.google.gson.JsonObject item(net.minecraft.world.item.ItemStack);
     Code:
-       0: bipush        6
+       0: bipush        8
        2: anewarray     #4                  // class java/lang/Object
        5: dup
        6: iconst_0
-       7: ldc_w         #918                // String item_id
+       7: ldc_w         #929                // String item_id
       10: aastore
       11: dup
       12: iconst_1
-      13: getstatic     #885                // Field net/minecraft/core/registries/BuiltInRegistries.f_257033_:Lnet/minecraft/core/DefaultedRegistry;
+      13: getstatic     #897                // Field net/minecraft/core/registries/BuiltInRegistries.f_257033_:Lnet/minecraft/core/DefaultedRegistry;
       16: aload_0
-      17: invokevirtual #413                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
-      20: invokeinterface #891,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.m_7981_:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
-      25: invokevirtual #894                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      17: invokevirtual #416                // Method net/minecraft/world/item/ItemStack.m_41720_:()Lnet/minecraft/world/item/Item;
+      20: invokeinterface #903,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.m_7981_:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      25: invokevirtual #906                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
       28: aastore
       29: dup
       30: iconst_2
-      31: ldc_w         #920                // String count
+      31: ldc_w         #931                // String count
       34: aastore
       35: dup
       36: iconst_3
       37: aload_0
-      38: invokevirtual #899                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
-      41: invokestatic  #234                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      38: invokevirtual #911                // Method net/minecraft/world/item/ItemStack.m_41613_:()I
+      41: invokestatic  #237                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
       44: aastore
       45: dup
       46: iconst_4
-      47: ldc_w         #922                // String has_nbt
+      47: ldc_w         #933                // String has_nbt
       50: aastore
       51: dup
       52: iconst_5
       53: aload_0
-      54: invokevirtual #925                // Method net/minecraft/world/item/ItemStack.m_41782_:()Z
-      57: invokestatic  #259                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      54: invokevirtual #936                // Method net/minecraft/world/item/ItemStack.m_41782_:()Z
+      57: invokestatic  #262                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
       60: aastore
-      61: invokestatic  #275                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
-      64: areturn
+      61: dup
+      62: bipush        6
+      64: ldc_w         #938                // String stack_hash
+      67: aastore
+      68: dup
+      69: bipush        7
+      71: aload_0
+      72: invokestatic  #886                // Method dev/mcpmcp/sophisticated/StackIdentity.hash:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+      75: aastore
+      76: invokestatic  #278                // Method dev/mcpmcp/core/Jsons.obj:([Ljava/lang/Object;)Lcom/google/gson/JsonObject;
+      79: areturn
 
   private static java.lang.Object call(java.lang.Object, java.lang.String) throws java.lang.Exception;
     Code:
        0: aload_0
        1: aload_1
        2: iconst_0
-       3: anewarray     #119                // class java/lang/Class
+       3: anewarray     #122                // class java/lang/Class
        6: iconst_0
        7: anewarray     #4                  // class java/lang/Object
-      10: invokestatic  #541                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+      10: invokestatic  #549                // Method call:(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
       13: areturn
 
   private static java.lang.Object call(java.lang.Object, java.lang.String, java.lang.Class<?>[], java.lang.Object...) throws java.lang.Exception;
     Code:
        0: aload_0
-       1: invokevirtual #242                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+       1: invokevirtual #245                // Method java/lang/Object.getClass:()Ljava/lang/Class;
        4: aload_1
        5: aload_2
-       6: invokevirtual #930                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+       6: invokevirtual #943                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
        9: aload_0
       10: aload_3
-      11: invokevirtual #936                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      11: invokevirtual #949                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
       14: areturn
+
+  private static void lambda$execute$1(net.minecraft.client.Minecraft, net.minecraft.world.inventory.AbstractContainerMenu, boolean, int) throws java.lang.Exception;
+    Code:
+       0: iload_2
+       1: ifeq          48
+       4: aload_0
+       5: invokevirtual #89                 // Method net/minecraft/client/Minecraft.m_91403_:()Lnet/minecraft/client/multiplayer/ClientPacketListener;
+       8: new           #954                // class net/minecraft/network/protocol/game/ServerboundContainerClickPacket
+      11: dup
+      12: aload_1
+      13: getfield      #184                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
+      16: aload_1
+      17: invokevirtual #255                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_182424_:()I
+      20: iload_3
+      21: iconst_0
+      22: getstatic     #960                // Field net/minecraft/world/inventory/ClickType.QUICK_MOVE:Lnet/minecraft/world/inventory/ClickType;
+      25: aload_1
+      26: invokevirtual #191                // Method net/minecraft/world/inventory/AbstractContainerMenu.m_142621_:()Lnet/minecraft/world/item/ItemStack;
+      29: invokevirtual #426                // Method net/minecraft/world/item/ItemStack.m_41777_:()Lnet/minecraft/world/item/ItemStack;
+      32: new           #962                // class it/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap
+      35: dup
+      36: invokespecial #963                // Method it/unimi/dsi/fastutil/ints/Int2ObjectOpenHashMap."<init>":()V
+      39: invokespecial #966                // Method net/minecraft/network/protocol/game/ServerboundContainerClickPacket."<init>":(IIIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/item/ItemStack;Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;)V
+      42: invokevirtual #972                // Method net/minecraft/client/multiplayer/ClientPacketListener.m_104955_:(Lnet/minecraft/network/protocol/Packet;)V
+      45: goto          86
+      48: aload_0
+      49: getfield      #976                // Field net/minecraft/client/Minecraft.f_91072_:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+      52: ifnonnull     66
+      55: new           #91                 // class java/lang/IllegalStateException
+      58: dup
+      59: ldc_w         #978                // String game_mode_unavailable
+      62: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      65: athrow
+      66: aload_0
+      67: getfield      #976                // Field net/minecraft/client/Minecraft.f_91072_:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+      70: aload_1
+      71: getfield      #184                // Field net/minecraft/world/inventory/AbstractContainerMenu.f_38840_:I
+      74: iload_3
+      75: iconst_0
+      76: getstatic     #960                // Field net/minecraft/world/inventory/ClickType.QUICK_MOVE:Lnet/minecraft/world/inventory/ClickType;
+      79: aload_0
+      80: getfield      #81                 // Field net/minecraft/client/Minecraft.f_91074_:Lnet/minecraft/client/player/LocalPlayer;
+      83: invokevirtual #984                // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.m_171799_:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+      86: return
 
   private static java.lang.String lambda$token$0(net.minecraft.world.inventory.AbstractContainerMenu);
     Code:
-       0: invokestatic  #419                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
-       3: invokevirtual #420                // Method java/util/UUID.toString:()Ljava/lang/String;
+       0: invokestatic  #422                // Method java/util/UUID.randomUUID:()Ljava/util/UUID;
+       3: invokevirtual #423                // Method java/util/UUID.toString:()Ljava/lang/String;
        6: areturn
 }
 Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

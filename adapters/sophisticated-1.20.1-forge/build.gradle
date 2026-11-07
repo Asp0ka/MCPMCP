@@ -12,6 +12,8 @@ dependencies {
  compileOnly 'com.google.code.gson:gson:2.10'
  testImplementation files(new File(platformRoot, 'plugin-api/build/libs/plugin-api-0.1.2.jar'), new File(platformRoot, 'core/build/libs/core-0.1.2.jar'))
  testImplementation 'com.google.code.gson:gson:2.10'
+ // Exact local mod JAR supplies reviewed upgrade types for offline role tests.
+ testRuntimeOnly files(new groovy.json.JsonSlurper().parse(file('evidence/targets.json')).sophisticatedcore.path)
 }
 jar { enabled = false }
 tasks.configureEach { if (name == 'reobfJar') enabled = false }
@@ -28,5 +30,21 @@ reobf { storageJar {}; backpackJar {}; furnaceJar {} }
 ['storage','backpack','furnace'].each { key -> tasks.named(key+'Jar') { finalizedBy('reobf'+key.capitalize()+'Jar') } }
 tasks.register('adapterContractTest', JavaExec) { dependsOn testClasses; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.sophisticated.AdapterContractTest' }
 check.dependsOn adapterContractTest
+tasks.register('playerInventorySlotTest', JavaExec) {
+ dependsOn testClasses
+ classpath = sourceSets.test.runtimeClasspath
+ mainClass = 'dev.mcpmcp.sophisticated.PlayerInventorySlotTest'
+ workingDir = layout.buildDirectory.dir('player-slot-test-run').get().asFile
+ doFirst { workingDir.mkdirs() }
+}
+check.dependsOn playerInventorySlotTest
+tasks.register('stackIdentityTest', JavaExec) {
+ dependsOn testClasses
+ classpath = sourceSets.test.runtimeClasspath
+ mainClass = 'dev.mcpmcp.sophisticated.StackIdentityTest'
+ workingDir = layout.buildDirectory.dir('stack-identity-test-run').get().asFile
+ doFirst { workingDir.mkdirs() }
+}
+check.dependsOn stackIdentityTest
 assemble.dependsOn storageJar, backpackJar, furnaceJar
 tasks.register('distributionTest', JavaExec) { dependsOn testClasses, 'reobfStorageJar', 'reobfBackpackJar', 'reobfFurnaceJar'; classpath = sourceSets.test.runtimeClasspath; mainClass = 'dev.mcpmcp.sophisticated.DistributionTest' }

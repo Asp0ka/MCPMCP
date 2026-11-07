@@ -1,0 +1,227 @@
+Compiled from "IronsNativeInput.java"
+final class dev.mcpmcp.magic.IronsNativeInput {
+  private static final java.lang.String BASE;
+
+  static com.google.gson.JsonObject submit(java.lang.String, java.lang.String, com.google.gson.JsonObject, com.google.gson.JsonObject) throws java.lang.Exception;
+    Code:
+       0: invokestatic  #42                 // Method dev/mcpmcp/magic/IronsRuntimeDependency.check:()Lcom/google/gson/JsonObject;
+       3: astore        4
+       5: aload         4
+       7: ifnull        13
+      10: aload         4
+      12: areturn
+      13: ldc           #46                 // String io.redspace.ironsspellbooks.player.KeyMappings
+      15: invokestatic  #52                 // Method dev/mcpmcp/magic/Reflect.type:(Ljava/lang/String;)Ljava/lang/Class;
+      18: astore        5
+      20: ldc           #54                 // String io.redspace.ironsspellbooks.player.ExtendedKeyMapping
+      22: invokestatic  #52                 // Method dev/mcpmcp/magic/Reflect.type:(Ljava/lang/String;)Ljava/lang/Class;
+      25: astore        6
+      27: aload         5
+      29: ldc           #56                 // String QUICK_CAST_MAPPINGS
+      31: invokestatic  #60                 // Method dev/mcpmcp/magic/Reflect.field:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      34: invokestatic  #64                 // Method dev/mcpmcp/magic/Reflect.list:(Ljava/lang/Object;)Ljava/util/List;
+      37: astore        7
+      39: aload_2
+      40: ldc           #66                 // String index
+      42: iconst_m1
+      43: invokestatic  #72                 // Method dev/mcpmcp/core/Jsons.integer:(Lcom/google/gson/JsonObject;Ljava/lang/String;I)I
+      46: istore        8
+      48: aload_1
+      49: ldc           #74                 // String quick_cast
+      51: invokevirtual #80                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      54: ifeq          80
+      57: iload         8
+      59: iflt          74
+      62: iload         8
+      64: aload         7
+      66: invokeinterface #86,  1           // InterfaceMethod java/util/List.size:()I
+      71: if_icmplt     80
+      74: ldc           #90                 // String quick_cast_key_not_available
+      76: invokestatic  #94                 // Method dev/mcpmcp/core/Jsons.error:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+      79: areturn
+      80: aload_1
+      81: ldc           #74                 // String quick_cast
+      83: invokevirtual #80                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      86: ifeq          101
+      89: aload         7
+      91: iload         8
+      93: invokeinterface #98,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      98: goto          108
+     101: aload         5
+     103: ldc           #100                // String SPELLBOOK_CAST_ACTIVE_KEYMAP
+     105: invokestatic  #60                 // Method dev/mcpmcp/magic/Reflect.field:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     108: checkcast     #102                // class net/minecraft/client/KeyMapping
+     111: astore        9
+     113: new           #104                // class java/util/ArrayList
+     116: dup
+     117: invokespecial #108                // Method java/util/ArrayList."<init>":()V
+     120: astore        10
+     122: ldc           #100                // String SPELLBOOK_CAST_ACTIVE_KEYMAP
+     124: ldc           #110                // String SPELL_WHEEL_KEYMAP
+     126: ldc           #112                // String SPELL_WHEEL_TOGGLE_KEYMAP
+     128: ldc           #114                // String SPELLBAR_SCROLL_MODIFIER_KEYMAP
+     130: invokestatic  #118                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/List;
+     133: invokeinterface #122,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     138: astore        11
+     140: aload         11
+     142: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     147: ifeq          183
+     150: aload         11
+     152: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     157: checkcast     #76                 // class java/lang/String
+     160: astore        12
+     162: aload         10
+     164: aload         5
+     166: aload         12
+     168: invokestatic  #60                 // Method dev/mcpmcp/magic/Reflect.field:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     171: checkcast     #102                // class net/minecraft/client/KeyMapping
+     174: invokeinterface #135,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     179: pop
+     180: goto          140
+     183: aload         7
+     185: invokeinterface #122,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     190: astore        11
+     192: aload         11
+     194: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     199: ifeq          227
+     202: aload         11
+     204: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     209: astore        12
+     211: aload         10
+     213: aload         12
+     215: checkcast     #102                // class net/minecraft/client/KeyMapping
+     218: invokeinterface #135,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     223: pop
+     224: goto          192
+     227: ldc           #137                // String io.redspace.ironsspellbooks.gui.overlays.SpellWheelOverlay
+     229: invokestatic  #52                 // Method dev/mcpmcp/magic/Reflect.type:(Ljava/lang/String;)Ljava/lang/Class;
+     232: ldc           #139                // String instance
+     234: invokestatic  #60                 // Method dev/mcpmcp/magic/Reflect.field:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     237: ldc           #141                // String active
+     239: invokestatic  #60                 // Method dev/mcpmcp/magic/Reflect.field:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+     242: checkcast     #143                // class java/lang/Boolean
+     245: invokevirtual #146                // Method java/lang/Boolean.booleanValue:()Z
+     248: ifeq          257
+     251: ldc           #148                // String close_spell_wheel_first
+     253: invokestatic  #94                 // Method dev/mcpmcp/core/Jsons.error:(Ljava/lang/String;)Lcom/google/gson/JsonObject;
+     256: areturn
+     257: ldc           #102                // class net/minecraft/client/KeyMapping
+     259: ldc           #150                // String f_90817_
+     261: invokestatic  #156                // Method net/minecraftforge/fml/util/ObfuscationReflectionHelper.findField:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
+     264: astore        11
+     266: ldc           #102                // class net/minecraft/client/KeyMapping
+     268: ldc           #158                // String f_90818_
+     270: invokestatic  #156                // Method net/minecraftforge/fml/util/ObfuscationReflectionHelper.findField:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
+     273: astore        12
+     275: aload         6
+     277: ldc           #160                // String wasDown
+     279: invokestatic  #163                // Method inputFlag:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
+     282: astore        13
+     284: aload         6
+     286: ldc           #165                // String canBeConsumed
+     288: invokestatic  #163                // Method inputFlag:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
+     291: astore        14
+     293: aload         6
+     295: ldc           #167                // String consume
+     297: iconst_0
+     298: anewarray     #88                 // class java/lang/Class
+     301: invokevirtual #171                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     304: astore        15
+     306: ldc           #173                // String io.redspace.ironsspellbooks.player.ClientInputEvents
+     308: invokestatic  #52                 // Method dev/mcpmcp/magic/Reflect.type:(Ljava/lang/String;)Ljava/lang/Class;
+     311: ldc           #175                // String onClientTick
+     313: iconst_1
+     314: anewarray     #88                 // class java/lang/Class
+     317: dup
+     318: iconst_0
+     319: ldc           #9                  // class net/minecraftforge/event/TickEvent$ClientTickEvent
+     321: aastore
+     322: invokevirtual #171                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     325: astore        16
+     327: new           #104                // class java/util/ArrayList
+     330: dup
+     331: invokespecial #108                // Method java/util/ArrayList."<init>":()V
+     334: astore        17
+     336: aconst_null
+     337: astore        18
+     339: aload         10
+     341: invokeinterface #122,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     346: astore        19
+     348: aload         19
+     350: invokeinterface #128,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     355: ifeq          415
+     358: aload         19
+     360: invokeinterface #132,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     365: checkcast     #102                // class net/minecraft/client/KeyMapping
+     368: astore        20
+     370: new           #7                  // class dev/mcpmcp/magic/IronsNativeInput$1
+     373: dup
+     374: aload         11
+     376: aload         20
+     378: aload         13
+     380: aload         12
+     382: aload         14
+     384: aload         15
+     386: invokespecial #182                // Method dev/mcpmcp/magic/IronsNativeInput$1."<init>":(Ljava/lang/reflect/Field;Lnet/minecraft/client/KeyMapping;Ljava/lang/reflect/Field;Ljava/lang/reflect/Field;Ljava/lang/reflect/Field;Ljava/lang/reflect/Method;)V
+     389: astore        21
+     391: aload         17
+     393: aload         21
+     395: invokeinterface #135,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     400: pop
+     401: aload         20
+     403: aload         9
+     405: if_acmpne     412
+     408: aload         21
+     410: astore        18
+     412: goto          348
+     415: aload_0
+     416: aload_3
+     417: aload_2
+     418: aload         17
+     420: aload         18
+     422: aload         16
+     424: invokedynamic #199,  0            // InvokeDynamic #0:run:(Ljava/lang/reflect/Method;)Ldev/mcpmcp/magic/NativeCast$Handler;
+     429: invokestatic  #202                // Method dev/mcpmcp/magic/NativeCast.submit:(Ljava/lang/String;Lcom/google/gson/JsonObject;Lcom/google/gson/JsonObject;Ljava/util/List;Ldev/mcpmcp/magic/NativeCast$Signal;Ldev/mcpmcp/magic/NativeCast$Handler;)Lcom/google/gson/JsonObject;
+     432: areturn
+
+  private static java.lang.reflect.Field inputFlag(java.lang.Class<?>, java.lang.String) throws java.lang.ReflectiveOperationException;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #241                // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+       5: astore_2
+       6: aload_2
+       7: invokevirtual #244                // Method java/lang/reflect/Field.trySetAccessible:()Z
+      10: ifne          27
+      13: new           #246                // class java/lang/IllegalAccessException
+      16: dup
+      17: aload_1
+      18: invokedynamic #258,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      23: invokespecial #261                // Method java/lang/IllegalAccessException."<init>":(Ljava/lang/String;)V
+      26: athrow
+      27: aload_2
+      28: areturn
+
+  private dev.mcpmcp.magic.IronsNativeInput();
+    Code:
+       0: aload_0
+       1: invokespecial #262                // Method java/lang/Object."<init>":()V
+       4: return
+
+  private static void lambda$submit$0(java.lang.reflect.Method) throws java.lang.Exception;
+    Code:
+       0: aload_0
+       1: aconst_null
+       2: iconst_1
+       3: anewarray     #4                  // class java/lang/Object
+       6: dup
+       7: iconst_0
+       8: new           #9                  // class net/minecraftforge/event/TickEvent$ClientTickEvent
+      11: dup
+      12: getstatic     #268                // Field net/minecraftforge/event/TickEvent$Phase.END:Lnet/minecraftforge/event/TickEvent$Phase;
+      15: invokespecial #271                // Method net/minecraftforge/event/TickEvent$ClientTickEvent."<init>":(Lnet/minecraftforge/event/TickEvent$Phase;)V
+      18: aastore
+      19: invokevirtual #275                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      22: pop
+      23: return
+}

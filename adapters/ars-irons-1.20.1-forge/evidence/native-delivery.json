@@ -1,0 +1,142 @@
+{
+  "targets": [
+    {
+      "mod_id": "ars_nouveau",
+      "version": "4.12.7",
+      "sha256": "1f1debc282a0c379c1141f2840ea294eede6f6b544c589663f40bbe17b59a1af"
+    },
+    {
+      "mod_id": "irons_spellbooks",
+      "version": "1.20.1-3.16.3",
+      "sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb"
+    },
+    {
+      "mod_id": "traveloptics",
+      "version": "6.3.0-1.20.1",
+      "sha256": "878a0fb5a2057de530698fd63091b9fa1c23af0139054af108e9d566840a0fa9"
+    }
+  ],
+  "artifacts": [
+    {
+      "mod_id": "ars_nouveau",
+      "bytes": 43234,
+      "sha256": "7f85eb0b4318a5b6ed56170feaa9b423be9254dea594ae04bbb18608c07736b3",
+      "paths": {
+        "build": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\build\\libs\\ars_nouveau-adapter.jar",
+        "distribution": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\ars_nouveau-1f1debc282a0c379c1141f2840ea294e\\adapter.jar",
+        "stage": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\stage\\MCPMCP-Plugin\\ars_nouveau-1f1debc282a0c379c1141f2840ea294e\\adapter.jar"
+      },
+      "build_distribution_stage_identical": true
+    },
+    {
+      "mod_id": "irons_spellbooks",
+      "bytes": 43247,
+      "sha256": "579614d5015c8f84506c1c3fc5cdb59415bd53aa317a0bb332bbbab8ca8def74",
+      "paths": {
+        "build": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\build\\libs\\irons_spellbooks-adapter.jar",
+        "distribution": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\irons_spellbooks-54b5aaa52887c38f570fbd8202881712\\adapter.jar",
+        "stage": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\stage\\MCPMCP-Plugin\\irons_spellbooks-54b5aaa52887c38f570fbd8202881712\\adapter.jar"
+      },
+      "build_distribution_stage_identical": true
+    },
+    {
+      "mod_id": "traveloptics",
+      "bytes": 43244,
+      "sha256": "c3928014120447e46e9a2b72c7b580cfd1586ed727e83fa5406014cd62767c69",
+      "paths": {
+        "build": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\build\\libs\\traveloptics-adapter.jar",
+        "distribution": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\traveloptics-878a0fb5a2057de530698fd63091b9fa\\adapter.jar",
+        "stage": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\stage\\MCPMCP-Plugin\\traveloptics-878a0fb5a2057de530698fd63091b9fa\\adapter.jar"
+      },
+      "build_distribution_stage_identical": true
+    }
+  ],
+  "native_runtime_dependency": {
+    "dependency": {
+      "mod_id": "irons_spellbooks",
+      "version": "1.20.1-3.16.3",
+      "sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb"
+    },
+    "artifacts": [
+      {
+        "mod_id": "irons_spellbooks",
+        "sha256": "579614d5015c8f84506c1c3fc5cdb59415bd53aa317a0bb332bbbab8ca8def74",
+        "cases": [
+          {
+            "scenario": "version",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "hash",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "missing",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "unreadable",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "directory",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "metadata",
+            "assertions": 15,
+            "passed": true
+          }
+        ],
+        "native_bytecode_assertions": 30
+      },
+      {
+        "mod_id": "traveloptics",
+        "sha256": "c3928014120447e46e9a2b72c7b580cfd1586ed727e83fa5406014cd62767c69",
+        "cases": [
+          {
+            "scenario": "version",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "hash",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "missing",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "unreadable",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "directory",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "metadata",
+            "assertions": 15,
+            "passed": true
+          }
+        ],
+        "native_bytecode_assertions": 30
+      }
+    ],
+    "game_started": false
+  },
+  "api_symbols": 88,
+  "game_operations_performed": false,
+  "installed_in_game": false,
+  "committed": false
+}

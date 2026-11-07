@@ -2,8 +2,8 @@
   {
     "mod_id": "sophisticatedstorage",
     "path": "distribution\\sophisticatedstorage-4d555d1754fbd8cfe3cf0f00adc65c9d",
-    "adapter_sha256": "2a65b0c6d723efca8277cb4a1f919e5ab20ddacb93bb9d89365021c1b14fe4f6",
-    "size": 23079,
+    "adapter_sha256": "60e155b7816fd36eaa9904144fe10a4ab98a7205836d835e2e240622a9fdca38",
+    "size": 26943,
     "provider": "dev.mcpmcp.sophisticated.StoragePlugin",
     "target_sha256": "4d555d1754fbd8cfe3cf0f00adc65c9d13189dd12e7f9a7b9ad3a355b1210e74",
     "target_version": "1.4.79.2069"
@@ -11,8 +11,8 @@
   {
     "mod_id": "sophisticatedbackpacks",
     "path": "distribution\\sophisticatedbackpacks-4d4be2e6a9988ff08260de621c26d0b4",
-    "adapter_sha256": "73f992933f36ad278d341bb37468b84c5f4667ffbe0124a095654757f5eff503",
-    "size": 23084,
+    "adapter_sha256": "c5bee1e44f339e0f931d1d819f02755ff34d31e4f306e1f79d8f93696f01a632",
+    "size": 26948,
     "provider": "dev.mcpmcp.sophisticated.BackpackPlugin",
     "target_sha256": "4d4be2e6a9988ff08260de621c26d0b43f2e03e3aede00842c66dc136a5303bf",
     "target_version": "3.24.63.2057"
@@ -20,8 +20,8 @@
   {
     "mod_id": "ironfurnaces",
     "path": "distribution\\ironfurnaces-e457052522cef1f8644b6929a64eab96",
-    "adapter_sha256": "b58a91763b4754b7bdd68adefcde0ecdcf6ee260abb815de86f97c5a7b28ce69",
-    "size": 23080,
+    "adapter_sha256": "0b7b89eb5589d3502401c2df9996e139218c894e43d6298a6b9cd89c7f1c4403",
+    "size": 26944,
     "provider": "dev.mcpmcp.sophisticated.FurnacePlugin",
     "target_sha256": "e457052522cef1f8644b6929a64eab96de04ce9e6e32a715f1d68d79da26d66b",
     "target_version": "4.1.8"

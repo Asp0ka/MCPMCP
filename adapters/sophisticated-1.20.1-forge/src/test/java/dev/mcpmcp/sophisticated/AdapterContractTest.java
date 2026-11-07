@@ -17,8 +17,12 @@ public final class AdapterContractTest {
   public JsonObject execute(String n,JsonObject a){throw new AssertionError("provider must not recursively execute");}
   public JsonObject observe(String k,JsonObject a){throw new AssertionError("provider must not recursively observe");}
  }
- private static JsonObject valid(String op) {JsonObject a=Jsons.obj("menu_id",1,"menu_token","identity");if(op.equals("open")){a.addProperty("inventory_slot",0);a.addProperty("expected_item","sophisticatedbackpacks:backpack");a.addProperty("expected_count",1);a.addProperty("stack_token","snapshot");}if(op.startsWith("quick_move")){a.addProperty("slot",0);a.addProperty("expected_item","minecraft:stone");a.addProperty("expected_count",2);a.addProperty("state_id",4);}if(op.equals("select_crafting"))a.addProperty("upgrade_slot",0);return a;}
+ private static JsonObject valid(String op) {JsonObject a=Jsons.obj("menu_id",1,"menu_token","identity");if(op.equals("open")){a.addProperty("inventory_slot",0);a.addProperty("expected_item","sophisticatedbackpacks:backpack");a.addProperty("expected_count",1);a.addProperty("stack_token","snapshot");}if(op.startsWith("quick_move")){a.addProperty("slot",0);a.addProperty("expected_item","minecraft:stone");a.addProperty("expected_count",2);a.addProperty("state_id",4);a.addProperty("expected_stack_hash","a".repeat(64));}if(op.equals("select_crafting"))a.addProperty("upgrade_slot",0);return a;}
  public static void main(String[] argv) throws Exception {
+  for(String op:List.of("quick_move","quick_move_packet")){
+   JsonObject missing=valid(op);missing.remove("expected_stack_hash");
+   rejects(()->Contract.validate(missing,op),"full saved stack fingerprint required for "+op);
+  }
   Context context=new Context();
   AdapterBase.Access fake=new AdapterBase.Access(){public JsonObject observe(JsonObject a){return Jsons.obj("target_menu",false);}public JsonObject execute(String op,JsonObject a){return Jsons.obj("delivery","submitted","server_confirmed",false);}};
   new StoragePlugin(fake).register(context);new BackpackPlugin(fake).register(context);new FurnacePlugin(fake).register(context);
@@ -35,6 +39,8 @@ public final class AdapterContractTest {
    }
   }
   for(String op:List.of("quick_move","quick_move_packet")){
+   for(String hash:List.of("","has_nbt","A".repeat(64),"0".repeat(63),"g".repeat(64),"0".repeat(65))){JsonObject bad=valid(op);bad.addProperty("expected_stack_hash",hash);rejects(()->Contract.validate(bad,op),"invalid fingerprint format");}
+   JsonObject nullHash=valid(op);nullHash.add("expected_stack_hash",JsonNull.INSTANCE);rejects(()->Contract.validate(nullHash,op),"null fingerprint");
    JsonObject a=valid(op);a.addProperty("slot",-1);rejects(()->Contract.validate(a,op),"no outside dropping slot");
    a.addProperty("slot",0);a.addProperty("click","throw");rejects(()->Contract.validate(a,op),"no arbitrary click");
   }

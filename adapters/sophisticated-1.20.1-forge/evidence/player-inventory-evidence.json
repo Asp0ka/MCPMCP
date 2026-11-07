@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checks": 15,
+  "installed_forge": "D:\\Games\\mc\\Cheat\\libraries\\net\\minecraftforge\\forge\\1.20.1-47.4.28\\forge-1.20.1-47.4.28-universal.jar",
+  "forge_sha256": "9a6e4341cb5fc92ac6efdea4a9bc7e83cdec75c0f996f9af376c58af7ea7bf97",
+  "cached_forge_sha256": "9a6e4341cb5fc92ac6efdea4a9bc7e83cdec75c0f996f9af376c58af7ea7bf97",
+  "sources": "D:\\Games\\mc\\mc-info-mcp\\.gradle-user-home\\caches\\forge_gradle\\maven_downloader\\net\\minecraftforge\\forge\\1.20.1-47.4.28\\forge-1.20.1-47.4.28-sources.jar",
+  "sources_sha256": "3e5df39a45547ee01a8fa3dcc6c5fbd53ada696cd10a29e822cf15aa496d1ab5",
+  "classes": [
+    {
+      "class": "net.minecraftforge.items.SlotItemHandler",
+      "class_sha256": "f3dcd06f7723155061ec4c4d573888a0f4a90d23369c65ec2b055345625298d8",
+      "source": "evidence\\forge-player-inventory-source\\net\\minecraftforge\\items\\SlotItemHandler.java"
+    },
+    {
+      "class": "net.minecraftforge.items.wrapper.InvWrapper",
+      "class_sha256": "d00ddbdcf628f2c4d13f9f109e87a5b9805d26dfec6be669603e6af9a421cf25",
+      "source": "evidence\\forge-player-inventory-source\\net\\minecraftforge\\items\\wrapper\\InvWrapper.java"
+    }
+  ],
+  "mod_sha256": {
+    "sophisticatedcore": "f32519f8605509e20e5ee9569b4b35cc30e17b85cb6f81f4111350dbc427db75",
+    "sophisticatedstorage": "4d555d1754fbd8cfe3cf0f00adc65c9d13189dd12e7f9a7b9ad3a355b1210e74",
+    "sophisticatedbackpacks": "4d4be2e6a9988ff08260de621c26d0b43f2e03e3aede00842c66dc136a5303bf",
+    "ironfurnaces": "e457052522cef1f8644b6929a64eab96de04ce9e6e32a715f1d68d79da26d66b"
+  },
+  "game_started": false
+}

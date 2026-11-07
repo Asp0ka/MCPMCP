@@ -1,0 +1,42 @@
+Compiled from "CastPacket.java"
+public class io.redspace.ironsspellbooks.network.casting.CastPacket implements io.redspace.ironsspellbooks.api.backwards_compat.CustomPacketPayload {
+  public io.redspace.ironsspellbooks.network.casting.CastPacket();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public io.redspace.ironsspellbooks.network.casting.CastPacket(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void toBytes(net.minecraft.network.FriendlyByteBuf);
+    Code:
+       0: return
+
+  public boolean handle(java.util.function.Supplier<net.minecraftforge.network.NetworkEvent$Context>);
+    Code:
+       0: aload_1
+       1: invokeinterface #36,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       6: checkcast     #9                  // class net/minecraftforge/network/NetworkEvent$Context
+       9: astore_2
+      10: aload_2
+      11: aload_2
+      12: invokedynamic #53,  0             // InvokeDynamic #0:run:(Lnet/minecraftforge/network/NetworkEvent$Context;)Ljava/lang/Runnable;
+      17: invokevirtual #57                 // Method net/minecraftforge/network/NetworkEvent$Context.enqueueWork:(Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+      20: pop
+      21: iconst_1
+      22: ireturn
+
+  private static void lambda$handle$0(net.minecraftforge.network.NetworkEvent$Context);
+    Code:
+       0: aload_0
+       1: invokevirtual #66                 // Method net/minecraftforge/network/NetworkEvent$Context.getSender:()Lnet/minecraft/server/level/ServerPlayer;
+       4: astore_1
+       5: aload_1
+       6: invokestatic  #72                 // Method io/redspace/ironsspellbooks/api/util/Utils.serverSideInitiateCast:(Lnet/minecraft/server/level/ServerPlayer;)Z
+       9: pop
+      10: return
+}

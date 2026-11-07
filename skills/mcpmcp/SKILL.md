@@ -1,6 +1,6 @@
 ---
 name: mcpmcp
-description: Use when operating Minecraft through MCPMCP.
+description: Use when operating or extending Minecraft MCP automation.
 version: 0.1.2
 author: MCPMCP contributors
 license: MIT
@@ -17,22 +17,24 @@ metadata:
 ## When to Use
 
 - 新建/加入世界、操作界面、观察世界、背包与原生配方。
-- 玩家移动、交互、合成、容器与工作方块、聊天、插件适配。
-- 不用于直接编辑整合包、配方脚本或其他模组文件。
+- 玩家移动、交互、合成、容器与工作方块、聊天、插件适配与版本移植。
+- 开发或调试客户端适配时读 [客户端适配流程](references/client-adapters.md)；组织游戏验收时读 [验收与交付](references/acceptance.md)。
+- 不用于未经授权编辑整合包、配方脚本或其他模组文件。
 
 ## 前提
 
 - 游戏已安装对应版本 MCPMCP JAR；配置路径指向当前实例 `config/mcpmcp.json`。
 - 已连接 `mcpmcp` MCP 服务。通过 `tool_search` 查工具，使用返回的精确名称；不要调用旧 `minecraft_info` 来操作另一个实例。
 - 凭据留在配置中，不复制 token 到聊天、日志、命令行或插件文档。
-- 远程工具只允许修改 `MCPMCP-Plugin` 内声明/文本文档。修改其他客户端文件需要用户明确授权；不要用通关、合成或“兼容模组”推定获得修改配方、配置或存档文件的授权。
+- 远程工具只允许修改 `MCPMCP-Plugin` 内声明/文本文档。修改其他客户端文件需要用户明确授权；不要用通关、合成或“兼容模组”推定获得修改配方、配置或存档文件的授权。这个限制属于本MCP的能力边界，不能声称它限制了另有权限的终端/文件工具或同JVM的可信Java代码。
+- 用户已明确授权专用客户端自主开发和验收时，在该实例内持续完成必要操作，不重复索要同一授权。启动/停止前核对实例真实路径和进程参数；保留其他客户端、账号和存档，测试授权不外溢到它们。
 
 ## 操作顺序
 
 1. 调用 `get_status`、`list_capabilities`，确认实例、world_epoch、连接、模式、执行方式、插件状态与恢复状态。主菜单时仍可使用 screen、screenshot 和 world/UI 动作。
 2. 对每项动作读 `describe_action`。动作参数是版本合同；不能照抄别的版本或旧工程的槽号。
-3. 按下方观测优先级先读相关玩家/背包/装备/局部区域/当前菜单；截图识图仅作最后手段。每次打开、关闭或切换界面后重新读取。核对菜单 class、menu_id、槽位物品、count、NBT 和空游标。`container_slot` 是来源容器索引；执行 `slot` 必须使用返回的菜单槽号，两者不能混用。
-4. 使用唯一 `action_id` 调用 `execute_action`，保留该 ID。`queued`/`running` 继续查 `get_job`；`submitted` 只证明已交送。读取实际产物、数量、坐标或界面，才能确认业务成功。
+3. 按下方“观测与输入”规则，先读结构化玩家状态，再读与目标有关的背包/装备/局部方块/实体/当前菜单，确定目标坐标与可操作前提；不要每轮先截图。每次打开、关闭或切换界面后重新读取，断言预期菜单类型、身份和同步就绪，再执行后续步骤；打开失败后仍可能读到玩家菜单的同号槽位。`container_slot` 是来源容器索引；执行 `slot` 必须使用当前菜单返回的槽号。核对物品ID、count、NBT、目标容量和空游标，不混用背包与菜单索引。
+4. 使用唯一 `action_id` 调用 `execute_action`，保留该 ID。`queued`/`running` 继续查 `get_job`；`submitted` 只证明已交送。按动作核对材料与产物总量、目标坐标、装备槽或NBT，不以任意状态变化代替目标效果；客户端槽位预测、state_id增加或炉火进度变化均不能证明服务端接受。需要持久性时关闭重开同一容器复查。
 5. 网络超时返回 `delivery_unknown` 时，先查同一 ID 和实时状态，不换新 ID重复非幂等动作。ID结果已过期且无法确认效果时停止重试，报告不确定结果。
 6. 取消用 `cancel_job`；紧急停止用 `execute_action(action="stop")`。之后核对移动、按键、游标、菜单和 `recovery_active/recovery_error`。恢复未完成时先解决，不启动下一批库存操作。
 
@@ -106,7 +108,10 @@ metadata:
 
 - `jei.transfer` 的 `submitted` 只说明交给 JEI 处理器；读 `jei.transfer` 回执和容器槽位才算填料。JEI 15.20 无完成回调，必须读槽位。
 - RS 网格、精妙存储/背包、更多熔炉等菜单型查询要求真实已打开菜单；不在菜单时返回 `available=false`，不要推断服务端库存。
-- 灵灾/术士/新生魔艺/铁咒的配方来自客户端 RecipeManager，可按 `next_cursor` 翻页；Botania/Avaritia 的动态配方走各自 JEI 分类，插件直读可能为空。
+- 精妙/熔炉 quick_move 合同v2要求 `expected_stack_hash`，从同次observer的 `data.slots[].item.stack_hash` 获取，并一起绑定menu_id/menu_token/state_id、item_id/count；包含普通NBT、ForgeCaps和完整count。旧指纹拒绝后重新观察，不用同ID/count猜身份。背包开启合成升级时，quick_move遵循该模组的升级优先路由，不承诺固定目的槽；读回实际role，定向放置用container.move。
+- 灵灾/术士/新生魔艺/铁咒/植物魔法/无尽贪婪的配方可读客户端 RecipeManager；空页 complete=false 必须按 next_cursor 续查，不能断言为空。查看器额外动态配方也可查各自 JEI 分类。整合包可能改写配方，验收以实时配方为准，不能照搬 JAR 默认 JSON。
+- 泛型配方（如Quark的`slab_to_block`）`outputs`是全部候选变体，当前变体看`displayed_outputs`/`slots[].displayed`；配方句柄必须沿用原查询焦点，查过别的物品也不能改变旧句柄。
+- 模组键位冲突不得靠改用户键位解决；插件用该模组自身的客户端输入入口发单次脉冲，再按效果、冷却、法力读回判定。Traveloptics调用Iron原生入口时也必须先精确核验Iron依赖版本/full hash，不能只绑定附属自身JAR。submitted但法力不足不算施法失败重发理由；先确认资源与冷却，满足正常条件后再独立提交。
 - 插件返回的业务错误现在会原样上报，不再变成 `unknown_observation`；看到 `not_in_world` 先进入世界。
 
 ## 插件
@@ -118,4 +123,6 @@ metadata:
 
 ## 验证
 
-保存操作前后实时状态、任务ID、终态、恢复结果与缺失前提。容器持久性可关闭重开复查；装备看equipment、合成看材料和产物、移动看坐标、聊天看接收记录。只有已跑场景写“通过”；未测多人服、其他加载器或模组版本保持未验证。
+保存操作前后实时状态、任务ID、终态、恢复结果与缺失前提；每项请求/完整响应执行时追加JSONL，汇总从记录计算。装备看equipment、合成看材料和产物、移动看坐标、聊天看接收记录。保留通过、预期拒绝、不适用、前提缺失和未测的区别，旧工程测试不证明重写平台通过。
+
+交付前逐条核对用户要求，完成已授权且有条件验证的部分；仍缺实现或验证的要求继续列为未完成，不用“首版”或一组场景通过替代完整范围。最终答复用简短中文说明产物、实际验证、保留状态和未完成边界，详细证据放项目文档。

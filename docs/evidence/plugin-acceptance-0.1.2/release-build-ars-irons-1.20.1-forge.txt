@@ -1,0 +1,255 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+> Task :clean
+
+> Task :compileJava
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :processResources NO-SOURCE
+> Task :classes
+> Task :jar SKIPPED
+> Task :arsJar
+> Task :downloadMcpConfig
+> Task :extractSrg
+> Task :createMcpToSrg
+
+> Task :reobfArsJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :ironsJar
+
+> Task :reobfIronsJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :reobfJar SKIPPED
+> Task :jarJar SKIPPED
+> Task :reobfJarJar SKIPPED
+> Task :travelJar
+
+> Task :reobfTravelJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :assemble
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :adapterContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+ContractTest PASS assertions=102; fixtures only; no game execution
+
+> Task :artifactTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+ServiceLoader PASS ars_nouveau dev.mcpmcp.magic.ArsProvider
+ServiceLoader PASS irons_spellbooks dev.mcpmcp.magic.IronsProvider
+ServiceLoader PASS traveloptics dev.mcpmcp.magic.TravelProvider
+ArtifactTest PASS jars=3; no game execution
+
+> Task :nativeBytecodeTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+NativeDependencyTest PASS scenario=version assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=hash assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=missing assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=unreadable assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=directory assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=metadata assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeBytecodeTest PASS assertions=30; actual target ClientInputEvents/ExtendedKeyMapping/CastPacket/QuickCastPacket; host seams only; no game/server execution
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Native runtime dependency verification PASS artifact=irons_spellbooks-adapter.jar sha256=579614d5015c8f84506c1c3fc5cdb59415bd53aa317a0bb332bbbab8ca8def74
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+NativeDependencyTest PASS scenario=version assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=hash assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=missing assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=unreadable assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=directory assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeDependencyTest PASS scenario=metadata assertions=15; no native side effects on rejection
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeBytecodeTest PASS assertions=30; actual target ClientInputEvents/ExtendedKeyMapping/CastPacket/QuickCastPacket; host seams only; no game/server execution
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Native runtime dependency verification PASS artifact=traveloptics-adapter.jar sha256=c3928014120447e46e9a2b72c7b580cfd1586ed727e83fa5406014cd62767c69
+
+> Task :nativeCastTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+NativeCastTest PASS assertions=28; input fixtures only; no game execution
+
+> Task :test
+> Task :check
+> Task :build
+> Task :distribution
+> Task :stageDistribution
+
+> Task :verifyDistribution
+{
+  "targets": [
+    {
+      "mod_id": "ars_nouveau",
+      "version": "4.12.7",
+      "sha256": "1f1debc282a0c379c1141f2840ea294eede6f6b544c589663f40bbe17b59a1af",
+      "path": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅\\mods\\[魔法][新生魔艺]ars_nouveau-1.20.1-4.12.7-all.jar"
+    },
+    {
+      "mod_id": "irons_spellbooks",
+      "version": "1.20.1-3.16.3",
+      "sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb",
+      "path": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅\\mods\\irons_spellbooks-1.20.1-3.16.3.jar"
+    },
+    {
+      "mod_id": "traveloptics",
+      "version": "6.3.0-1.20.1",
+      "sha256": "878a0fb5a2057de530698fd63091b9fa1c23af0139054af108e9d566840a0fa9",
+      "path": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅\\mods\\[魔法][铁咒附属]traveloptics-6.3.0-1.20.1.jar"
+    }
+  ],
+  "api_symbols_checked": 88,
+  "artifacts": [
+    {
+      "mod_id": "ars_nouveau",
+      "path": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\ars_nouveau-1f1debc282a0c379c1141f2840ea294e\\adapter.jar",
+      "sha256": "7f85eb0b4318a5b6ed56170feaa9b423be9254dea594ae04bbb18608c07736b3",
+      "bytes": 43234,
+      "provider": "dev.mcpmcp.magic.ArsProvider",
+      "paths": {
+        "build": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\build\\libs\\ars_nouveau-adapter.jar",
+        "distribution": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\ars_nouveau-1f1debc282a0c379c1141f2840ea294e\\adapter.jar",
+        "stage": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\stage\\MCPMCP-Plugin\\ars_nouveau-1f1debc282a0c379c1141f2840ea294e\\adapter.jar"
+      },
+      "build_distribution_stage_identical": true
+    },
+    {
+      "mod_id": "irons_spellbooks",
+      "path": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\irons_spellbooks-54b5aaa52887c38f570fbd8202881712\\adapter.jar",
+      "sha256": "579614d5015c8f84506c1c3fc5cdb59415bd53aa317a0bb332bbbab8ca8def74",
+      "bytes": 43247,
+      "provider": "dev.mcpmcp.magic.IronsProvider",
+      "paths": {
+        "build": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\build\\libs\\irons_spellbooks-adapter.jar",
+        "distribution": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\irons_spellbooks-54b5aaa52887c38f570fbd8202881712\\adapter.jar",
+        "stage": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\stage\\MCPMCP-Plugin\\irons_spellbooks-54b5aaa52887c38f570fbd8202881712\\adapter.jar"
+      },
+      "build_distribution_stage_identical": true
+    },
+    {
+      "mod_id": "traveloptics",
+      "path": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\traveloptics-878a0fb5a2057de530698fd63091b9fa\\adapter.jar",
+      "sha256": "c3928014120447e46e9a2b72c7b580cfd1586ed727e83fa5406014cd62767c69",
+      "bytes": 43244,
+      "provider": "dev.mcpmcp.magic.TravelProvider",
+      "paths": {
+        "build": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\build\\libs\\traveloptics-adapter.jar",
+        "distribution": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\distribution\\traveloptics-878a0fb5a2057de530698fd63091b9fa\\adapter.jar",
+        "stage": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\ars-irons-1.20.1-forge\\stage\\MCPMCP-Plugin\\traveloptics-878a0fb5a2057de530698fd63091b9fa\\adapter.jar"
+      },
+      "build_distribution_stage_identical": true
+    }
+  ],
+  "game_started": false,
+  "native_runtime_dependency": {
+    "dependency": {
+      "mod_id": "irons_spellbooks",
+      "version": "1.20.1-3.16.3",
+      "sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb"
+    },
+    "artifacts": [
+      {
+        "mod_id": "irons_spellbooks",
+        "sha256": "579614d5015c8f84506c1c3fc5cdb59415bd53aa317a0bb332bbbab8ca8def74",
+        "cases": [
+          {
+            "scenario": "version",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "hash",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "missing",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "unreadable",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "directory",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "metadata",
+            "assertions": 15,
+            "passed": true
+          }
+        ],
+        "native_bytecode_assertions": 30
+      },
+      {
+        "mod_id": "traveloptics",
+        "sha256": "c3928014120447e46e9a2b72c7b580cfd1586ed727e83fa5406014cd62767c69",
+        "cases": [
+          {
+            "scenario": "version",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "hash",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "missing",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "unreadable",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "directory",
+            "assertions": 15,
+            "passed": true
+          },
+          {
+            "scenario": "metadata",
+            "assertions": 15,
+            "passed": true
+          }
+        ],
+        "native_bytecode_assertions": 30
+      }
+    ],
+    "game_started": false
+  }
+}
+Target/API/artifact verification PASS
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 20s
+20 actionable tasks: 20 executed

@@ -1,0 +1,23 @@
+Compiled from "StorageContainerMenuBase.java"
+class net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase$2 extends net.minecraft.world.inventory.Slot {
+  final net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase this$0;
+
+  net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase$2(net.p3pp3rf1y.sophisticatedcore.common.gui.StorageContainerMenuBase, net.minecraft.world.Container, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #16                 // Field this$0:Lnet/p3pp3rf1y/sophisticatedcore/common/gui/StorageContainerMenuBase;
+       5: aload_0
+       6: aload_2
+       7: iload_3
+       8: iload         4
+      10: iload         5
+      12: invokespecial #19                 // Method net/minecraft/world/inventory/Slot."<init>":(Lnet/minecraft/world/Container;III)V
+      15: return
+
+  public boolean m_8010_(net.minecraft.world.entity.player.Player);
+    Code:
+       0: iconst_0
+       1: ireturn
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

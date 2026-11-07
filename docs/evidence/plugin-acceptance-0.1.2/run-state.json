@@ -1,0 +1,51 @@
+{
+  "world": "MCPMCP Plugin Acceptance",
+  "original_policy": {
+    "mode": "NORMAL",
+    "transport": "MIXED",
+    "debug": false,
+    "trustJavaPlugins": true
+  },
+  "acceptance_dir": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\.local\\plugin-acceptance-20261107-151018",
+  "event_file": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\.local\\plugin-acceptance-20261107-151018\\events.jsonl",
+  "passed_scenarios": [
+    "ironfurnaces_native_processing_via_core_fill",
+    "backpack_open",
+    "backpack_upgrade_select",
+    "sophisticatedstorage_deposit",
+    "sophisticatedstorage_sort_persist",
+    "sophisticatedstorage_withdraw",
+    "backpack_crafting_result_take",
+    "malum_altar_insert_remove",
+    "avaritia_extreme_pack_recipe_crafting",
+    "botania_mana_pool_infusion",
+    "wizards_wissen_generation",
+    "rs_insert_extract_all_modes",
+    "ars_imbuement_machine",
+    "rs_real_autocrafting",
+    "rs_wrong_item_rejected",
+    "rs_stale_session_rejected",
+    "ars_self_light_cast",
+    "malum_dimension_rejection",
+    "wizards_reborn_dimension_rejection",
+    "spell_packet_transport_refusal",
+    "rs_clear_crafting_matrix",
+    "jei_quark_focused_transfer",
+    "ironfurnaces_wrapped_slot_fix_live",
+    "jei_displayed_focus_and_transfer_fixed",
+    "storage_ownership_fix_regression",
+    "backpack_ownership_fix_regression",
+    "irons_native_oakskin_conflicting_key",
+    "traveloptics_native_astral_sense_conflicting_key"
+  ],
+  "pending": [
+    "commit_and_archive_integrity"
+  ],
+  "rs_autocrafting": "passed",
+  "lifecycle": "main_menu",
+  "policy_restored": true,
+  "failed_scenarios": [
+    "jei_quark_focus_retention"
+  ],
+  "final_delta_batch": "plugin-final-delta-c1512c987781"
+}

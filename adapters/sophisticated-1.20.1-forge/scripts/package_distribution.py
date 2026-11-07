@@ -13,14 +13,22 @@ for key, (mod, provider) in providers.items():
         assert service == ['dev.mcpmcp.sophisticated.'+provider], (jar, service)
         classes = [n for n in archive.namelist() if n.startswith('dev/mcpmcp/sophisticated/') and n.endswith('Plugin.class')]
         assert classes == ['dev/mcpmcp/sophisticated/'+provider+'.class'], classes
-        assert not any(n.startswith(('net/minecraft/', 'net/p3pp3rf1y/', 'ironfurnaces/', 'dev/mcpmcp/api/', 'dev/mcpmcp/core/')) for n in archive.namelist()), 'bundled host/target classes'
+        assert not any(n.startswith(('net/minecraft/', 'net/minecraftforge/', 'net/p3pp3rf1y/', 'ironfurnaces/', 'dev/mcpmcp/api/', 'dev/mcpmcp/core/')) for n in archive.namelist()), 'bundled host/target classes'
+        ownership = archive.read('dev/mcpmcp/sophisticated/PlayerInventorySlots.class')
+        assert b'getItemHandler' in ownership and b'getInv' in ownership, 'ownership helper uses reviewed Forge accessors'
+        assert b'm_150661_' in ownership and b'getContainerSlot' not in ownership, 'ownership helper Minecraft slot accessor must be SRG-reobfuscated'
+        identity = archive.read('dev/mcpmcp/sophisticated/StackIdentity.class')
+        assert b'm_41739_' in identity and b'SHA-256' in identity, 'full ItemStack.save identity must be SRG-reobfuscated'
+        assert b'expected_stack_hash' in archive.read('dev/mcpmcp/sophisticated/Contract.class'), 'both quick-move contracts require full identity'
         live = archive.read('dev/mcpmcp/sophisticated/LiveAccess.class')
+        assert b'slot_stack_changed_refresh_observation' in live and b'stack_hash' in live, 'observer and execution retain identity guard'
         assert b'm_91087_' in live and b'm_150399_' not in live, 'Minecraft getInstance must be SRG-reobfuscated'
     folder = ROOT/'distribution'/(mod+'-'+target['sha256'][:32])
     folder.mkdir(parents=True, exist_ok=True)
     manifest = {'api':1, 'id':'mcpmcp.'+mod, 'mod_id':mod, 'minecraft':'1.20.1', 'loader':'forge', 'target_version':target['version'], 'target_sha256':target['sha256']}
     (folder/'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2)+chr(10), encoding='utf-8')
     shutil.copy2(jar, folder/'adapter.jar')
+    assert hashlib.sha256(jar.read_bytes()).digest() == hashlib.sha256((folder/'adapter.jar').read_bytes()).digest(), 'build/libs and distribution hash mismatch'
     shutil.copy2(ROOT/'GUIDE.md', folder/'GUIDE.md')
     summary.append({'mod_id':mod, 'path':str(folder.relative_to(ROOT)), 'adapter_sha256':hashlib.sha256(jar.read_bytes()).hexdigest(), 'size':jar.stat().st_size, 'provider':service[0], 'target_sha256':target['sha256'], 'target_version':target['version']})
 (ROOT/'evidence/distribution.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')

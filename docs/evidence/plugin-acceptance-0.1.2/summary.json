@@ -1,0 +1,115 @@
+{
+  "scenarios_total": 29,
+  "passed": 28,
+  "failed": [
+    "jei_quark_focus_retention"
+  ],
+  "events_rows": 999,
+  "events_bytes": 7574168,
+  "installed_plugins": {
+    "ars_nouveau-1f1debc282a0c379c1141f2840ea294e": {
+      "id": "mcpmcp.ars_nouveau",
+      "mod_id": "ars_nouveau",
+      "target_version": "4.12.7",
+      "target_sha256": "1f1debc282a0c379c1141f2840ea294eede6f6b544c589663f40bbe17b59a1af",
+      "adapter_sha256": "e3cfb46b2db57a99169386943e5401057d21a7e881ffd73abfdba9a4af37772d"
+    },
+    "avaritia-a2f823fb0f226bfb25d10534a8801504": {
+      "id": "mcpmcp.avaritia",
+      "mod_id": "avaritia",
+      "target_version": "1.3.9.0",
+      "target_sha256": "a2f823fb0f226bfb25d10534a880150403aca5ce6b593f93a5e8ee6a7fb47d51",
+      "adapter_sha256": "0a82e7b48c190992446dec0df779d7030e792f3a7243dfb768f4109bf5d66a54"
+    },
+    "botania-222755726437ed9d908c58462b604c10": {
+      "id": "mcpmcp.botania",
+      "mod_id": "botania",
+      "target_version": "1.20.1-453-FORGE",
+      "target_sha256": "222755726437ed9d908c58462b604c10d137c3756a4a228ab459dbbaf8bd4c19",
+      "adapter_sha256": "65d6486eac7f8c5a64e8026c96e08c8bd4abd882f3de57ea0bdf14f5d79d5fa0"
+    },
+    "ironfurnaces-e457052522cef1f8644b6929a64eab96": {
+      "id": "mcpmcp.ironfurnaces",
+      "mod_id": "ironfurnaces",
+      "target_version": "4.1.8",
+      "target_sha256": "e457052522cef1f8644b6929a64eab96de04ce9e6e32a715f1d68d79da26d66b",
+      "adapter_sha256": "e9fecaf5d43c002e10003815c791cd557d1c05e419e9ef10dc0dd7fd16401f76"
+    },
+    "irons_spellbooks-54b5aaa52887c38f570fbd8202881712": {
+      "id": "mcpmcp.irons_spellbooks",
+      "mod_id": "irons_spellbooks",
+      "target_version": "1.20.1-3.16.3",
+      "target_sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb",
+      "adapter_sha256": "0760e74e78654eba0fcf74df09381c6103319842d69185cfa9b177be0e252f7e"
+    },
+    "jei-36d3dfb2214b9dca38c447fd971dd2ded": {
+      "id": "mcpmcp.jei",
+      "mod_id": "jei",
+      "target_version": "15.20.0.130",
+      "target_sha256": "36d3dfb2214b9dca38c447fd971dd2dedc5f69719a5aca6ffcef69b2840ece0a",
+      "adapter_sha256": "aa1996960655b5182068b1ba8b262102ae8a0d2784d75506896c16cd6f3308d1"
+    },
+    "malum-ceda6ce4cc19de21ff6c21a732d8f927": {
+      "id": "mcpmcp.malum",
+      "mod_id": "malum",
+      "target_version": "1.20.1-1.6.7",
+      "target_sha256": "ceda6ce4cc19de21ff6c21a732d8f9270ecc83cdae69027b13aaa24b536307f8",
+      "adapter_sha256": "497c926f2bb9ee8ab61edf84e06301f539d1af0bad50c9bf9df38a6818663c3f"
+    },
+    "refinedstorage-d8ae3926c2121336efcd6956c43d91f": {
+      "id": "mcpmcp.refinedstorage",
+      "mod_id": "refinedstorage",
+      "target_version": "1.12.4",
+      "target_sha256": "d8ae3926c2121336efcd6956c43d91f21ce405b77ac7c7201c559d4c19f380d2",
+      "adapter_sha256": "69bea201737d6e112f56b9cd8c35c5d313cfa9a810742926378962e6c11291f2"
+    },
+    "sophisticatedbackpacks-4d4be2e6a9988ff08260de621c26d0b4": {
+      "id": "mcpmcp.sophisticatedbackpacks",
+      "mod_id": "sophisticatedbackpacks",
+      "target_version": "3.24.63.2057",
+      "target_sha256": "4d4be2e6a9988ff08260de621c26d0b43f2e03e3aede00842c66dc136a5303bf",
+      "adapter_sha256": "4b8fc2668dcc18fc58156be8519bb452cea7c4fbd69f2911d297a124c8b329f2"
+    },
+    "sophisticatedstorage-4d555d1754fbd8cfe3cf0f00adc65c9d": {
+      "id": "mcpmcp.sophisticatedstorage",
+      "mod_id": "sophisticatedstorage",
+      "target_version": "1.4.79.2069",
+      "target_sha256": "4d555d1754fbd8cfe3cf0f00adc65c9d13189dd12e7f9a7b9ad3a355b1210e74",
+      "adapter_sha256": "1016db0728e113608a2ed9ebd08bf0ed80120fb1ed12f0754d56bcc18efddcb5"
+    },
+    "traveloptics-878a0fb5a2057de530698fd63091b9fa": {
+      "id": "mcpmcp.traveloptics",
+      "mod_id": "traveloptics",
+      "target_version": "6.3.0-1.20.1",
+      "target_sha256": "878a0fb5a2057de530698fd63091b9fa1c23af0139054af108e9d566840a0fa9",
+      "adapter_sha256": "2d46ef7c54792721cd30a1b176bfcc52019ac5eea910af207b7c9badeac6ea51"
+    },
+    "wizards_reborn-38f040319fe4dc16400b2507e3cb627": {
+      "id": "mcpmcp.wizards_reborn",
+      "mod_id": "wizards_reborn",
+      "target_version": "1.20.1-0.2.9",
+      "target_sha256": "38f040319fe4dc16400b2507e3cb627a321cddba314de0d4acc4f2dcd8ffbfe7",
+      "adapter_sha256": "7d7f775620905f2267058da5f11a2f0ad818314c22247ba7a3673aa7cc1559aa"
+    }
+  },
+  "runtime_jar": {
+    "name": "mcpmcp-1.20.1-forge-0.1.2.jar",
+    "sha256": "0a5c917ac29dba0cfaf18e373ce22be5251991ae3e750bf0b3f1ec800553c1c8"
+  },
+  "events_log": {
+    "path_local_only": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\.local\\plugin-acceptance-20261107-151018\\events.jsonl",
+    "rows": 999,
+    "bytes": 7574168,
+    "sha256": "2b9471ccd387ec246edfd01006f22a6efbe8968471d4e809420c2168e933affc",
+    "note": "not committed: 7.5MB raw request/response log; scenarios.json holds per-scenario before/after"
+  },
+  "scope": "baseline representative scenarios against historical installed hashes; final-delta.json binds the later final builds",
+  "final_delta": {
+    "batch": "plugin-final-delta-c1512c987781",
+    "checks": 16,
+    "verified": true,
+    "sha256": "cd63bd0b60d46567911809e696b61cb169af5580dbeb0a6d8aba6d25b6cb7e1c",
+    "raw_events_sha256": "1a0516e6a25bca6acd50d126a4b5343939f3fda208ad74176e59afd359fee747",
+    "raw_events_rows": 202
+  }
+}

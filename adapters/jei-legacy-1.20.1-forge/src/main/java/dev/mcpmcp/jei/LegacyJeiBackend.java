@@ -62,7 +62,7 @@ final class LegacyJeiBackend implements JeiProvider.Backend {
             Minecraft mc=Minecraft.getInstance();if(mc.player==null||mc.level==null)return error("not_in_world");
             if(kind.equals("jei.show")){
                 if(mc.screen!=null&&!(mc.screen instanceof AbstractContainerScreen))return error("close_existing_screen_first");
-                r.getRecipesGui().showRecipes((IRecipeCategory)ref.category(),List.of(ref.recipe()),List.of());
+                show(r,ref);
                 return obj("delivery","submitted","source","jei","effect","recipe_gui_requested");
             }
             return transfer(r,ref,args);
@@ -91,6 +91,7 @@ final class LegacyJeiBackend implements JeiProvider.Backend {
     }
     private record Typed(IIngredientType type,Object value){}
     private List<IFocus<?>> focus(IJeiRuntime r,JsonObject a){
+        JeiProvider.validateFocus(a);
         String item=str(a,"item_id",""),type=str(a,"ingredient_type",""),uid=str(a,"ingredient_uid","");
         if(!item.isEmpty()&&(!type.isEmpty()||!uid.isEmpty()))throw new IllegalArgumentException("jei_focus_mutually_exclusive");
         if(type.isEmpty()!=uid.isEmpty())throw new IllegalArgumentException("jei_focus_requires_type_and_uid");
@@ -110,27 +111,29 @@ final class LegacyJeiBackend implements JeiProvider.Backend {
     }
     private JsonObject recipes(IJeiRuntime r,JsonObject a){
         RecipeType<?> type=r.getRecipeManager().getRecipeType(new ResourceLocation(str(a,"category",""))).orElseThrow(()->new IllegalArgumentException("unknown_jei_category"));
-        IRecipeCategory category=r.getRecipeManager().getRecipeCategory(type);List<IFocus<?>> focus=focus(r,a);
+        IRecipeCategory category=r.getRecipeManager().getRecipeCategory(type);
+        IFocusGroup focus=r.getJeiHelpers().getFocusFactory().createFocusGroup(focus(r,a));
         return page(r,"jei.recipes",a,()->{
-            IRecipeLookup lookup=r.getRecipeManager().createRecipeLookup(type);if(bool(a,"include_hidden",false))lookup.includeHidden();if(!focus.isEmpty())lookup.limitFocus(focus);return lookup.get();
-        },recipe->{JsonObject row=summary(r,category,recipe);if(!matches(a,row))return null;row.addProperty("handle",queries.remember(r,epoch,category,recipe));return row;});
+            IRecipeLookup lookup=r.getRecipeManager().createRecipeLookup(type);if(bool(a,"include_hidden",false))lookup.includeHidden();if(!focus.isEmpty())lookup.limitFocus(focus.getAllFocuses());return lookup.get();
+        },recipe->{JsonObject row=summary(r,category,recipe,focus);if(!matches(a,row))return null;row.addProperty("handle",queries.remember(r,epoch,category,recipe,focus));return row;});
     }
-    private JsonObject summary(IJeiRuntime r,IRecipeCategory c,Object recipe){
+    private JsonObject summary(IJeiRuntime r,IRecipeCategory c,Object recipe,IFocusGroup focus){
         JsonObject out=obj("category",c.getRecipeType().getUid().toString(),"recipe_class",recipe.getClass().getName());
         ResourceLocation id=c.getRegistryName(recipe);if(id==null&&recipe instanceof Recipe<?> vanilla)id=vanilla.getId();out.add("recipe_id",id==null?JsonNull.INSTANCE:new JsonPrimitive(id.toString()));
         List<ResourceLocation> source=id==null?List.of():List.of(id);out.add("source_recipe_ids",toJson(source.stream().limit(64).map(Object::toString).toList()));out.addProperty("source_ids_truncated",source.size()>64);
-        Optional<?> drawable=r.getRecipeManager().createRecipeLayoutDrawable(c,recipe,r.getJeiHelpers().getFocusFactory().getEmptyFocusGroup());
+        Optional<?> drawable=r.getRecipeManager().createRecipeLayoutDrawable(c,recipe,focus);
         List<ITypedIngredient<?>> outputs=new ArrayList<>();if(drawable.isPresent())for(IRecipeSlotView slot:((IRecipeLayoutDrawable)drawable.get()).getRecipeSlotsView().getSlotViews())if(slot.getRole()==RecipeIngredientRole.OUTPUT)try(Stream<ITypedIngredient<?>> values=slot.getAllIngredients()){values.limit(17).forEach(outputs::add);}
-        JsonArray list=new JsonArray();for(ITypedIngredient<?> t:outputs.stream().limit(16).toList())list.add(ingredient(r,t.getType(),t.getIngredient()));out.add("outputs",list);out.addProperty("outputs_truncated",outputs.size()>16);return out;
+        JsonArray list=new JsonArray();for(ITypedIngredient<?> t:outputs.stream().limit(16).toList())list.add(ingredient(r,t.getType(),t.getIngredient()));out.add("outputs",list);out.addProperty("outputs_truncated",outputs.size()>16);out.addProperty("outputs_semantics","all_recipe_alternatives; not only the current focused variant");JsonArray displayed=new JsonArray();if(drawable.isPresent())for(IRecipeSlotView slot:((IRecipeLayoutDrawable)drawable.get()).getRecipeSlotsView().getSlotViews())if(slot.getRole()==RecipeIngredientRole.OUTPUT&&displayed.size()<16)slot.getDisplayedIngredient().ifPresent(t->displayed.add(ingredient(r,t.getType(),t.getIngredient())));out.add("displayed_outputs",displayed);return out;
     }
-    private IRecipeLayoutDrawable layout(IJeiRuntime r,QueryStore.RecipeRef ref){Optional<?> found=r.getRecipeManager().createRecipeLayoutDrawable((IRecipeCategory)ref.category(),ref.recipe(),r.getJeiHelpers().getFocusFactory().getEmptyFocusGroup());if(found.isEmpty())throw new IllegalArgumentException("jei_layout_unavailable");return (IRecipeLayoutDrawable)found.get();}
+    private void show(IJeiRuntime r,QueryStore.RecipeRef ref){r.getRecipesGui().showRecipes((IRecipeCategory)ref.category(),List.of(ref.recipe()),((IFocusGroup)ref.focus()).getAllFocuses());}
+    private IRecipeLayoutDrawable layout(IJeiRuntime r,QueryStore.RecipeRef ref){Optional<?> found=r.getRecipeManager().createRecipeLayoutDrawable((IRecipeCategory)ref.category(),ref.recipe(),(IFocusGroup)ref.focus());if(found.isEmpty())throw new IllegalArgumentException("jei_layout_unavailable");return (IRecipeLayoutDrawable)found.get();}
     private JsonObject detail(IJeiRuntime r,QueryStore.RecipeRef ref){
-        IRecipeCategory c=(IRecipeCategory)ref.category();JsonObject out=summary(r,c,ref.recipe());JsonArray slots=new JsonArray();
+        IRecipeCategory c=(IRecipeCategory)ref.category();JsonObject out=summary(r,c,ref.recipe(),(IFocusGroup)ref.focus());JsonArray slots=new JsonArray();
         List<IRecipeSlotView> views=layout(r,ref).getRecipeSlotsView().getSlotViews();
         for(IRecipeSlotView slot:views.stream().limit(128).toList()){
             JsonArray values=new JsonArray();List<ITypedIngredient<?>> all=slot.getAllIngredients().limit(33).toList();
             for(ITypedIngredient<?> t:all.stream().limit(32).toList())values.add(ingredient(r,t.getType(),t.getIngredient()));
-            slots.add(obj("role",slot.getRole().name().toLowerCase(Locale.ROOT),"name",slot.getSlotName().orElse(null),"alternatives",values,"alternatives_truncated",all.size()>32));
+            JsonObject row=obj("role",slot.getRole().name().toLowerCase(Locale.ROOT),"name",slot.getSlotName().orElse(null),"alternatives",values,"alternatives_truncated",all.size()>32);slot.getDisplayedIngredient().ifPresent(t->row.add("displayed",ingredient(r,t.getType(),t.getIngredient())));slots.add(row);
         }
         JsonArray catalysts=new JsonArray();try(Stream<ITypedIngredient<?>> stream=r.getRecipeManager().createRecipeCatalystLookup(c.getRecipeType()).get()){stream.limit(33).forEach(v->catalysts.add(ingredient(r,v.getType(),v.getIngredient())));}
         boolean ct=catalysts.size()>32;if(ct)catalysts.remove(32);out.add("catalysts",catalysts);out.addProperty("catalysts_truncated",ct);out.add("slots",slots);out.addProperty("slots_truncated",views.size()>128);

@@ -1,0 +1,74 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :malum:clean
+> Task :wizards_reborn:clean
+
+> Task :malum:compileJava
+注: D:\AI\Hermes\workspace\MCP Minecraft Plus\adapters\malum-wizards-1.20.1-forge\common\src\main\java\dev\mcpmcp\magic\NativeMagicBackend.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :malum:processResources
+> Task :malum:classes
+> Task :malum:jar
+> Task :malum:downloadMcpConfig
+> Task :malum:extractSrg
+> Task :malum:createMcpToSrg
+
+> Task :malum:reobfJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :malum:jarJar SKIPPED
+> Task :malum:reobfJarJar SKIPPED
+> Task :malum:assemble
+> Task :malum:compileTestJava
+> Task :malum:processTestResources NO-SOURCE
+> Task :malum:testClasses
+
+> Task :malum:adapterContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+malum: 55 checks passed (no Minecraft launched; live effects untested)
+
+> Task :malum:test
+> Task :malum:check
+> Task :malum:build
+
+> Task :wizards_reborn:compileJava
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :wizards_reborn:processResources
+> Task :wizards_reborn:classes
+> Task :wizards_reborn:jar
+> Task :wizards_reborn:downloadMcpConfig
+> Task :wizards_reborn:extractSrg
+> Task :wizards_reborn:createMcpToSrg
+
+> Task :wizards_reborn:reobfJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :wizards_reborn:jarJar SKIPPED
+> Task :wizards_reborn:reobfJarJar SKIPPED
+> Task :wizards_reborn:assemble
+> Task :wizards_reborn:compileTestJava
+> Task :wizards_reborn:processTestResources NO-SOURCE
+> Task :wizards_reborn:testClasses
+
+> Task :wizards_reborn:adapterContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+wizards_reborn: 55 checks passed (no Minecraft launched; live effects untested)
+
+> Task :wizards_reborn:test
+> Task :wizards_reborn:check
+> Task :wizards_reborn:build
+> Task :malum:stageDistribution
+> Task :wizards_reborn:stageDistribution
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 16s
+24 actionable tasks: 24 executed

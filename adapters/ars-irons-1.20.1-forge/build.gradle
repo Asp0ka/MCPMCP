@@ -14,6 +14,8 @@ dependencies {
  testImplementation 'com.google.code.gson:gson:2.10'
 }
 jar { enabled = false }
+// This project publishes only the three provider-specific JAR tasks below.
+tasks.configureEach { if (name == 'reobfJar') enabled = false }
 def variants = [ars: ['ars_nouveau', 'ArsProvider'], irons: ['irons_spellbooks', 'IronsProvider'], travel: ['traveloptics', 'TravelProvider']]
 variants.each { shortName, spec ->
  tasks.register(shortName + 'Jar', Jar) {
@@ -32,6 +34,17 @@ tasks.register('adapterContractTest', JavaExec) {
  mainClass = 'dev.mcpmcp.magic.ContractTest'
 }
 check.dependsOn adapterContractTest
+tasks.register('nativeCastTest', JavaExec) {
+ dependsOn testClasses
+ classpath = sourceSets.test.runtimeClasspath
+ mainClass = 'dev.mcpmcp.magic.NativeCastTest'
+}
+check.dependsOn nativeCastTest
+tasks.register('nativeBytecodeTest', Exec) {
+ dependsOn 'reobfIronsJar', 'reobfTravelJar'
+ commandLine 'python', 'verify_native_input.py'
+}
+check.dependsOn nativeBytecodeTest
 tasks.register('artifactTest', JavaExec) {
  dependsOn testClasses, 'reobfArsJar', 'reobfIronsJar', 'reobfTravelJar'
  // Exclude production classes so ServiceLoader must resolve classes from each actual JAR.
@@ -50,3 +63,13 @@ tasks.register('distribution') {
   }
  }
 }
+tasks.register('stageDistribution', Sync) {
+ dependsOn 'distribution'
+ from('distribution')
+ into('stage/MCPMCP-Plugin')
+}
+tasks.register('verifyDistribution', Exec) {
+ dependsOn 'stageDistribution'
+ commandLine 'python', 'verify_targets.py'
+}
+tasks.named('stageDistribution') { finalizedBy 'verifyDistribution' }

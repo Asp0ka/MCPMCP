@@ -1,0 +1,363 @@
+Compiled from "EffectLight.java"
+public class com.hollingsworth.arsnouveau.common.spell.effect.EffectLight extends com.hollingsworth.arsnouveau.api.spell.AbstractEffect implements com.hollingsworth.arsnouveau.api.spell.IPotionEffect {
+  public static com.hollingsworth.arsnouveau.common.spell.effect.EffectLight INSTANCE;
+
+  private com.hollingsworth.arsnouveau.common.spell.effect.EffectLight();
+    Code:
+       0: aload_0
+       1: getstatic     #35                 // Field com/hollingsworth/arsnouveau/common/lib/GlyphLib.EffectLightID:Ljava/lang/String;
+       4: ldc           #37                 // String Conjure Magelight
+       6: invokespecial #40                 // Method com/hollingsworth/arsnouveau/api/spell/AbstractEffect."<init>":(Ljava/lang/String;Ljava/lang/String;)V
+       9: return
+
+  public void onResolveEntity(net.minecraft.world.phys.EntityHitResult, net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, com.hollingsworth.arsnouveau.api.spell.SpellStats, com.hollingsworth.arsnouveau.api.spell.SpellContext, com.hollingsworth.arsnouveau.api.spell.SpellResolver);
+    Code:
+       0: aload_1
+       1: invokevirtual #50                 // Method net/minecraft/world/phys/EntityHitResult.m_82443_:()Lnet/minecraft/world/entity/Entity;
+       4: astore        8
+       6: aload         8
+       8: instanceof    #52                 // class com/hollingsworth/arsnouveau/api/spell/ILightable
+      11: ifeq          35
+      14: aload         8
+      16: checkcast     #52                 // class com/hollingsworth/arsnouveau/api/spell/ILightable
+      19: astore        7
+      21: aload         7
+      23: aload_1
+      24: aload_2
+      25: aload_3
+      26: aload         4
+      28: aload         5
+      30: invokeinterface #56,  6           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ILightable.onLight:(Lnet/minecraft/world/phys/HitResult;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lcom/hollingsworth/arsnouveau/api/spell/SpellStats;Lcom/hollingsworth/arsnouveau/api/spell/SpellContext;)V
+      35: aload_1
+      36: invokevirtual #50                 // Method net/minecraft/world/phys/EntityHitResult.m_82443_:()Lnet/minecraft/world/entity/Entity;
+      39: astore        8
+      41: aload         8
+      43: instanceof    #58                 // class net/minecraft/world/entity/LivingEntity
+      46: ifeq          59
+      49: aload         8
+      51: checkcast     #58                 // class net/minecraft/world/entity/LivingEntity
+      54: astore        7
+      56: goto          60
+      59: return
+      60: aload_3
+      61: aload         7
+      63: invokevirtual #62                 // Method net/minecraft/world/entity/LivingEntity.equals:(Ljava/lang/Object;)Z
+      66: ifne          80
+      69: aload_0
+      70: aload         7
+      72: getstatic     #68                 // Field net/minecraft/world/effect/MobEffects.f_19619_:Lnet/minecraft/world/effect/MobEffect;
+      75: aload         4
+      77: invokevirtual #72                 // Method applyConfigPotion:(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/effect/MobEffect;Lcom/hollingsworth/arsnouveau/api/spell/SpellStats;)V
+      80: aload_0
+      81: aload         7
+      83: getstatic     #75                 // Field net/minecraft/world/effect/MobEffects.f_19611_:Lnet/minecraft/world/effect/MobEffect;
+      86: aload         4
+      88: invokevirtual #72                 // Method applyConfigPotion:(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/effect/MobEffect;Lcom/hollingsworth/arsnouveau/api/spell/SpellStats;)V
+      91: return
+
+  public void onResolveBlock(net.minecraft.world.phys.BlockHitResult, net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, com.hollingsworth.arsnouveau.api.spell.SpellStats, com.hollingsworth.arsnouveau.api.spell.SpellContext, com.hollingsworth.arsnouveau.api.spell.SpellResolver);
+    Code:
+       0: aload_1
+       1: invokevirtual #98                 // Method net/minecraft/world/phys/BlockHitResult.m_82425_:()Lnet/minecraft/core/BlockPos;
+       4: aload_1
+       5: invokevirtual #102                // Method net/minecraft/world/phys/BlockHitResult.m_82434_:()Lnet/minecraft/core/Direction;
+       8: invokevirtual #108                // Method net/minecraft/core/BlockPos.m_121945_:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+      11: astore        7
+      13: aload_0
+      14: aload_3
+      15: aload_2
+      16: checkcast     #110                // class net/minecraft/server/level/ServerLevel
+      19: invokevirtual #114                // Method getPlayer:(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/player/Player;
+      22: astore        8
+      24: aload         8
+      26: aload_2
+      27: aload         7
+      29: invokestatic  #120                // Method com/hollingsworth/arsnouveau/api/util/BlockUtil.destroyRespectsClaim:(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
+      32: ifne          36
+      35: return
+      36: aload_2
+      37: aload_1
+      38: invokevirtual #98                 // Method net/minecraft/world/phys/BlockHitResult.m_82425_:()Lnet/minecraft/core/BlockPos;
+      41: invokevirtual #128                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      44: astore        12
+      46: aload         12
+      48: instanceof    #52                 // class com/hollingsworth/arsnouveau/api/spell/ILightable
+      51: ifeq          76
+      54: aload         12
+      56: checkcast     #52                 // class com/hollingsworth/arsnouveau/api/spell/ILightable
+      59: astore        9
+      61: aload         9
+      63: aload_1
+      64: aload_2
+      65: aload_3
+      66: aload         4
+      68: aload         5
+      70: invokeinterface #56,  6           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ILightable.onLight:(Lnet/minecraft/world/phys/HitResult;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lcom/hollingsworth/arsnouveau/api/spell/SpellStats;Lcom/hollingsworth/arsnouveau/api/spell/SpellContext;)V
+      75: return
+      76: aload_2
+      77: aload_1
+      78: invokevirtual #98                 // Method net/minecraft/world/phys/BlockHitResult.m_82425_:()Lnet/minecraft/core/BlockPos;
+      81: invokevirtual #132                // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+      84: invokevirtual #138                // Method net/minecraft/world/level/block/state/BlockState.m_60734_:()Lnet/minecraft/world/level/block/Block;
+      87: astore        12
+      89: aload         12
+      91: instanceof    #52                 // class com/hollingsworth/arsnouveau/api/spell/ILightable
+      94: ifeq          119
+      97: aload         12
+      99: checkcast     #52                 // class com/hollingsworth/arsnouveau/api/spell/ILightable
+     102: astore        10
+     104: aload         10
+     106: aload_1
+     107: aload_2
+     108: aload_3
+     109: aload         4
+     111: aload         5
+     113: invokeinterface #56,  6           // InterfaceMethod com/hollingsworth/arsnouveau/api/spell/ILightable.onLight:(Lnet/minecraft/world/phys/HitResult;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lcom/hollingsworth/arsnouveau/api/spell/SpellStats;Lcom/hollingsworth/arsnouveau/api/spell/SpellContext;)V
+     118: return
+     119: aload_2
+     120: aload         7
+     122: invokevirtual #128                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+     125: astore        12
+     127: aload         12
+     129: instanceof    #140                // class net/minecraft/world/level/block/entity/SignBlockEntity
+     132: ifeq          186
+     135: aload         12
+     137: checkcast     #140                // class net/minecraft/world/level/block/entity/SignBlockEntity
+     140: astore        11
+     142: aload         11
+     144: aload         11
+     146: aload         8
+     148: invokedynamic #160,  0            // InvokeDynamic #0:apply:(Lnet/minecraft/world/level/block/entity/SignBlockEntity;Lnet/minecraft/world/entity/player/Player;)Ljava/util/function/UnaryOperator;
+     153: aload         11
+     155: aload         8
+     157: invokevirtual #164                // Method net/minecraft/world/level/block/entity/SignBlockEntity.m_277202_:(Lnet/minecraft/world/entity/player/Player;)Z
+     160: invokevirtual #168                // Method net/minecraft/world/level/block/entity/SignBlockEntity.m_277073_:(Ljava/util/function/UnaryOperator;Z)Z
+     163: pop
+     164: aload_2
+     165: getstatic     #172                // Field net/minecraft/world/level/gameevent/GameEvent.f_157792_:Lnet/minecraft/world/level/gameevent/GameEvent;
+     168: aload         11
+     170: invokevirtual #175                // Method net/minecraft/world/level/block/entity/SignBlockEntity.m_58899_:()Lnet/minecraft/core/BlockPos;
+     173: aload         8
+     175: aload         11
+     177: invokevirtual #179                // Method net/minecraft/world/level/block/entity/SignBlockEntity.m_58900_:()Lnet/minecraft/world/level/block/state/BlockState;
+     180: invokestatic  #183                // Method net/minecraft/world/level/gameevent/GameEvent$Context.m_223719_:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/gameevent/GameEvent$Context;
+     183: invokevirtual #187                // Method net/minecraft/world/level/Level.m_220407_:(Lnet/minecraft/world/level/gameevent/GameEvent;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/gameevent/GameEvent$Context;)V
+     186: aload_2
+     187: aload         7
+     189: invokevirtual #132                // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+     192: invokevirtual #191                // Method net/minecraft/world/level/block/state/BlockState.m_247087_:()Z
+     195: ifeq          422
+     198: aload_2
+     199: getstatic     #197                // Field com/hollingsworth/arsnouveau/setup/registry/BlockRegistry.LIGHT_BLOCK:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+     202: invokevirtual #203                // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.get:()Ljava/lang/Object;
+     205: checkcast     #205                // class com/hollingsworth/arsnouveau/common/block/LightBlock
+     208: invokevirtual #208                // Method com/hollingsworth/arsnouveau/common/block/LightBlock.m_49966_:()Lnet/minecraft/world/level/block/state/BlockState;
+     211: aload         7
+     213: aload_2
+     214: checkcast     #110                // class net/minecraft/server/level/ServerLevel
+     217: invokestatic  #213                // Method com/hollingsworth/arsnouveau/api/ANFakePlayer.getPlayer:(Lnet/minecraft/server/level/ServerLevel;)Lcom/hollingsworth/arsnouveau/api/ANFakePlayer;
+     220: invokestatic  #219                // InterfaceMethod net/minecraft/world/phys/shapes/CollisionContext.m_82750_:(Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/shapes/CollisionContext;
+     223: invokevirtual #223                // Method net/minecraft/world/level/Level.m_45752_:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Z
+     226: ifeq          422
+     229: aload_2
+     230: aload         7
+     232: invokevirtual #227                // Method net/minecraft/world/level/Level.m_46739_:(Lnet/minecraft/core/BlockPos;)Z
+     235: ifeq          422
+     238: aload         4
+     240: invokevirtual #233                // Method com/hollingsworth/arsnouveau/api/spell/SpellStats.getDurationMultiplier:()D
+     243: dconst_0
+     244: dcmpl
+     245: ifeq          260
+     248: getstatic     #236                // Field com/hollingsworth/arsnouveau/setup/registry/BlockRegistry.T_LIGHT_BLOCK:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+     251: invokevirtual #203                // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.get:()Ljava/lang/Object;
+     254: checkcast     #205                // class com/hollingsworth/arsnouveau/common/block/LightBlock
+     257: goto          269
+     260: getstatic     #197                // Field com/hollingsworth/arsnouveau/setup/registry/BlockRegistry.LIGHT_BLOCK:Lcom/hollingsworth/arsnouveau/common/util/RegistryWrapper;
+     263: invokevirtual #203                // Method com/hollingsworth/arsnouveau/common/util/RegistryWrapper.get:()Ljava/lang/Object;
+     266: checkcast     #205                // class com/hollingsworth/arsnouveau/common/block/LightBlock
+     269: invokevirtual #208                // Method com/hollingsworth/arsnouveau/common/block/LightBlock.m_49966_:()Lnet/minecraft/world/level/block/state/BlockState;
+     272: getstatic     #242                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.f_61362_:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+     275: aload_2
+     276: aload         7
+     278: invokevirtual #246                // Method net/minecraft/world/level/Level.m_6425_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
+     281: invokevirtual #252                // Method net/minecraft/world/level/material/FluidState.m_76152_:()Lnet/minecraft/world/level/material/Fluid;
+     284: getstatic     #258                // Field net/minecraft/world/level/material/Fluids.f_76193_:Lnet/minecraft/world/level/material/FlowingFluid;
+     287: if_acmpne     294
+     290: iconst_1
+     291: goto          295
+     294: iconst_0
+     295: invokestatic  #270                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     298: invokevirtual #274                // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+     301: checkcast     #134                // class net/minecraft/world/level/block/state/BlockState
+     304: astore        9
+     306: aload_2
+     307: aload         7
+     309: aload         9
+     311: getstatic     #280                // Field com/hollingsworth/arsnouveau/common/block/SconceBlock.LIGHT_LEVEL:Lnet/minecraft/world/level/block/state/properties/Property;
+     314: iconst_0
+     315: bipush        15
+     317: bipush        14
+     319: aload         4
+     321: invokevirtual #283                // Method com/hollingsworth/arsnouveau/api/spell/SpellStats.getAmpMultiplier:()D
+     324: d2i
+     325: iadd
+     326: invokestatic  #289                // Method java/lang/Math.min:(II)I
+     329: invokestatic  #292                // Method java/lang/Math.max:(II)I
+     332: invokestatic  #297                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     335: invokevirtual #274                // Method net/minecraft/world/level/block/state/BlockState.m_61124_:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+     338: checkcast     #134                // class net/minecraft/world/level/block/state/BlockState
+     341: invokevirtual #301                // Method net/minecraft/world/level/Level.m_46597_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+     344: pop
+     345: aload_2
+     346: aload         7
+     348: invokevirtual #128                // Method net/minecraft/world/level/Level.m_7702_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+     351: astore        11
+     353: aload         11
+     355: instanceof    #303                // class com/hollingsworth/arsnouveau/common/block/tile/LightTile
+     358: ifeq          403
+     361: aload         11
+     363: checkcast     #303                // class com/hollingsworth/arsnouveau/common/block/tile/LightTile
+     366: astore        10
+     368: aload         10
+     370: aload         5
+     372: invokevirtual #307                // Method com/hollingsworth/arsnouveau/api/spell/SpellContext.getColors:()Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+     375: putfield      #311                // Field com/hollingsworth/arsnouveau/common/block/tile/LightTile.color:Lcom/hollingsworth/arsnouveau/client/particle/ParticleColor;
+     378: aload         10
+     380: instanceof    #313                // class com/hollingsworth/arsnouveau/common/block/tile/TempLightTile
+     383: ifeq          403
+     386: aload         10
+     388: checkcast     #313                // class com/hollingsworth/arsnouveau/common/block/tile/TempLightTile
+     391: astore        11
+     393: aload         11
+     395: aload         4
+     397: invokevirtual #233                // Method com/hollingsworth/arsnouveau/api/spell/SpellStats.getDurationMultiplier:()D
+     400: putfield      #317                // Field com/hollingsworth/arsnouveau/common/block/tile/TempLightTile.lengthModifier:D
+     403: aload_2
+     404: aload         7
+     406: aload_2
+     407: aload         7
+     409: invokevirtual #132                // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+     412: aload_2
+     413: aload         7
+     415: invokevirtual #132                // Method net/minecraft/world/level/Level.m_8055_:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+     418: iconst_2
+     419: invokevirtual #321                // Method net/minecraft/world/level/Level.m_7260_:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;I)V
+     422: return
+
+  public void buildConfig(net.minecraftforge.common.ForgeConfigSpec$Builder);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #339                // Method com/hollingsworth/arsnouveau/api/spell/AbstractEffect.buildConfig:(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;)V
+       5: aload_0
+       6: aload_1
+       7: bipush        30
+       9: invokevirtual #343                // Method addPotionConfig:(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;I)V
+      12: aload_0
+      13: aload_1
+      14: bipush        8
+      16: invokevirtual #346                // Method addExtendTimeConfig:(Lnet/minecraftforge/common/ForgeConfigSpec$Builder;I)V
+      19: return
+
+  protected void addDefaultAugmentLimits(java.util.Map<net.minecraft.resources.ResourceLocation, java.lang.Integer>);
+    Code:
+       0: aload_1
+       1: getstatic     #356                // Field com/hollingsworth/arsnouveau/common/spell/augment/AugmentAmplify.INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/augment/AugmentAmplify;
+       4: invokevirtual #360                // Method com/hollingsworth/arsnouveau/common/spell/augment/AugmentAmplify.getRegistryName:()Lnet/minecraft/resources/ResourceLocation;
+       7: iconst_1
+       8: invokestatic  #297                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      11: invokeinterface #366,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      16: pop
+      17: return
+
+  public int getDefaultManaCost();
+    Code:
+       0: bipush        25
+       2: ireturn
+
+  public java.util.Set<com.hollingsworth.arsnouveau.api.spell.AbstractAugment> getCompatibleAugments();
+    Code:
+       0: aload_0
+       1: iconst_4
+       2: anewarray     #376                // class com/hollingsworth/arsnouveau/api/spell/AbstractAugment
+       5: dup
+       6: iconst_0
+       7: getstatic     #356                // Field com/hollingsworth/arsnouveau/common/spell/augment/AugmentAmplify.INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/augment/AugmentAmplify;
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: getstatic     #381                // Field com/hollingsworth/arsnouveau/common/spell/augment/AugmentDurationDown.INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/augment/AugmentDurationDown;
+      16: aastore
+      17: dup
+      18: iconst_2
+      19: getstatic     #386                // Field com/hollingsworth/arsnouveau/common/spell/augment/AugmentDampen.INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/augment/AugmentDampen;
+      22: aastore
+      23: dup
+      24: iconst_3
+      25: getstatic     #391                // Field com/hollingsworth/arsnouveau/common/spell/augment/AugmentExtendTime.INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/augment/AugmentExtendTime;
+      28: aastore
+      29: invokevirtual #395                // Method augmentSetOf:([Lcom/hollingsworth/arsnouveau/api/spell/AbstractAugment;)Ljava/util/Set;
+      32: areturn
+
+  public java.lang.String getBookDescription();
+    Code:
+       0: ldc_w         #399                // String If cast on a block, a permanent light source is created. May be amplified up to Glowstone brightness, or Dampened for a lower light level. When cast on yourself, you will receive night vision. When cast on other entities, they will receive Night Vision and Glowing.
+       3: areturn
+
+  public java.util.Set<com.hollingsworth.arsnouveau.api.spell.SpellSchool> getSchools();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: anewarray     #403                // class com/hollingsworth/arsnouveau/api/spell/SpellSchool
+       5: dup
+       6: iconst_0
+       7: getstatic     #409                // Field com/hollingsworth/arsnouveau/api/spell/SpellSchools.CONJURATION:Lcom/hollingsworth/arsnouveau/api/spell/SpellSchool;
+      10: aastore
+      11: invokevirtual #413                // Method setOf:([Ljava/lang/Object;)Ljava/util/Set;
+      14: areturn
+
+  public int getBaseDuration();
+    Code:
+       0: aload_0
+       1: getfield      #418                // Field POTION_TIME:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+       4: ifnonnull     12
+       7: bipush        30
+       9: goto          25
+      12: aload_0
+      13: getfield      #418                // Field POTION_TIME:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      16: invokevirtual #419                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      19: checkcast     #294                // class java/lang/Integer
+      22: invokevirtual #422                // Method java/lang/Integer.intValue:()I
+      25: ireturn
+
+  public int getExtendTimeDuration();
+    Code:
+       0: aload_0
+       1: getfield      #426                // Field EXTEND_TIME:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+       4: ifnonnull     12
+       7: bipush        8
+       9: goto          25
+      12: aload_0
+      13: getfield      #426                // Field EXTEND_TIME:Lnet/minecraftforge/common/ForgeConfigSpec$IntValue;
+      16: invokevirtual #419                // Method net/minecraftforge/common/ForgeConfigSpec$IntValue.get:()Ljava/lang/Object;
+      19: checkcast     #294                // class java/lang/Integer
+      22: invokevirtual #422                // Method java/lang/Integer.intValue:()I
+      25: ireturn
+
+  private static net.minecraft.world.level.block.entity.SignText lambda$onResolveBlock$0(net.minecraft.world.level.block.entity.SignBlockEntity, net.minecraft.world.entity.player.Player, net.minecraft.world.level.block.entity.SignText);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #430                // Method net/minecraft/world/level/block/entity/SignBlockEntity.m_277176_:(Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/world/level/block/entity/SignText;
+       5: iconst_1
+       6: invokevirtual #436                // Method net/minecraft/world/level/block/entity/SignText.m_277132_:(Z)Lnet/minecraft/world/level/block/entity/SignText;
+       9: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/hollingsworth/arsnouveau/common/spell/effect/EffectLight
+       3: dup
+       4: invokespecial #441                // Method "<init>":()V
+       7: putstatic     #443                // Field INSTANCE:Lcom/hollingsworth/arsnouveau/common/spell/effect/EffectLight;
+      10: return
+}

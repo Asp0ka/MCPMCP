@@ -1,0 +1,84 @@
+{
+  "dependency": {
+    "mod_id": "irons_spellbooks",
+    "version": "1.20.1-3.16.3",
+    "sha256": "54b5aaa52887c38f570fbd820288171234d8541c17a5e953f9271189fdd480fb"
+  },
+  "artifacts": [
+    {
+      "mod_id": "irons_spellbooks",
+      "sha256": "579614d5015c8f84506c1c3fc5cdb59415bd53aa317a0bb332bbbab8ca8def74",
+      "cases": [
+        {
+          "scenario": "version",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "hash",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "missing",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "unreadable",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "directory",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "metadata",
+          "assertions": 15,
+          "passed": true
+        }
+      ],
+      "native_bytecode_assertions": 30
+    },
+    {
+      "mod_id": "traveloptics",
+      "sha256": "c3928014120447e46e9a2b72c7b580cfd1586ed727e83fa5406014cd62767c69",
+      "cases": [
+        {
+          "scenario": "version",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "hash",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "missing",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "unreadable",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "directory",
+          "assertions": 15,
+          "passed": true
+        },
+        {
+          "scenario": "metadata",
+          "assertions": 15,
+          "passed": true
+        }
+      ],
+      "native_bytecode_assertions": 30
+    }
+  ],
+  "game_started": false
+}

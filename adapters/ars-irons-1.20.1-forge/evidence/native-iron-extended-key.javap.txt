@@ -1,0 +1,59 @@
+Compiled from "ExtendedKeyMapping.java"
+public class io.redspace.ironsspellbooks.player.ExtendedKeyMapping extends net.minecraft.client.KeyMapping {
+  private boolean canBeConsumed;
+
+  private boolean wasDown;
+
+  public io.redspace.ironsspellbooks.player.ExtendedKeyMapping(java.lang.String, net.minecraftforge.client.settings.IKeyConflictContext, com.mojang.blaze3d.platform.InputConstants$Type, int, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: iload         4
+       6: invokevirtual #22                 // Method com/mojang/blaze3d/platform/InputConstants$Type.m_84895_:(I)Lcom/mojang/blaze3d/platform/InputConstants$Key;
+       9: aload         5
+      11: invokespecial #25                 // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lnet/minecraftforge/client/settings/IKeyConflictContext;Lcom/mojang/blaze3d/platform/InputConstants$Key;Ljava/lang/String;)V
+      14: return
+
+  public void m_7249_(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokespecial #40                 // Method net/minecraft/client/KeyMapping.m_7249_:(Z)V
+       5: iload_1
+       6: ifeq          21
+       9: aload_0
+      10: getfield      #42                 // Field wasDown:Z
+      13: ifne          21
+      16: aload_0
+      17: iconst_1
+      18: putfield      #44                 // Field canBeConsumed:Z
+      21: aload_0
+      22: iload_1
+      23: putfield      #42                 // Field wasDown:Z
+      26: return
+
+  public boolean consume();
+    Code:
+       0: aload_0
+       1: invokevirtual #50                 // Method m_90859_:()Z
+       4: ifeq          10
+       7: goto          0
+      10: aload_0
+      11: getfield      #44                 // Field canBeConsumed:Z
+      14: ifeq          24
+      17: aload_0
+      18: iconst_0
+      19: putfield      #44                 // Field canBeConsumed:Z
+      22: iconst_1
+      23: ireturn
+      24: iconst_0
+      25: ireturn
+
+  public boolean m_90859_();
+    Code:
+       0: aload_0
+       1: invokespecial #52                 // Method net/minecraft/client/KeyMapping.m_90859_:()Z
+       4: ireturn
+}

@@ -1,0 +1,96 @@
+Compiled from "IronsNativeInput.java"
+class dev.mcpmcp.magic.IronsNativeInput$1 implements dev.mcpmcp.magic.NativeCast$Signal {
+  final java.lang.reflect.Field val$down;
+
+  final net.minecraft.client.KeyMapping val$mapping;
+
+  final java.lang.reflect.Field val$wasDown;
+
+  final java.lang.reflect.Field val$clicks;
+
+  final java.lang.reflect.Field val$pending;
+
+  final java.lang.reflect.Method val$consume;
+
+  dev.mcpmcp.magic.IronsNativeInput$1();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #29                 // Field val$down:Ljava/lang/reflect/Field;
+       5: aload_0
+       6: aload_2
+       7: putfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+      10: aload_0
+      11: aload_3
+      12: putfield      #33                 // Field val$wasDown:Ljava/lang/reflect/Field;
+      15: aload_0
+      16: aload         4
+      18: putfield      #35                 // Field val$clicks:Ljava/lang/reflect/Field;
+      21: aload_0
+      22: aload         5
+      24: putfield      #37                 // Field val$pending:Ljava/lang/reflect/Field;
+      27: aload_0
+      28: aload         6
+      30: putfield      #39                 // Field val$consume:Ljava/lang/reflect/Method;
+      33: aload_0
+      34: invokespecial #41                 // Method java/lang/Object."<init>":()V
+      37: return
+
+  public boolean down() throws java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field val$down:Ljava/lang/reflect/Field;
+       4: aload_0
+       5: getfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+       8: invokevirtual #53                 // Method java/lang/reflect/Field.getBoolean:(Ljava/lang/Object;)Z
+      11: ifne          28
+      14: aload_0
+      15: getfield      #33                 // Field val$wasDown:Ljava/lang/reflect/Field;
+      18: aload_0
+      19: getfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+      22: invokevirtual #53                 // Method java/lang/reflect/Field.getBoolean:(Ljava/lang/Object;)Z
+      25: ifeq          32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public boolean pending() throws java.lang.IllegalAccessException;
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field val$clicks:Ljava/lang/reflect/Field;
+       4: aload_0
+       5: getfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+       8: invokevirtual #58                 // Method java/lang/reflect/Field.getInt:(Ljava/lang/Object;)I
+      11: ifgt          28
+      14: aload_0
+      15: getfield      #37                 // Field val$pending:Ljava/lang/reflect/Field;
+      18: aload_0
+      19: getfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+      22: invokevirtual #53                 // Method java/lang/reflect/Field.getBoolean:(Ljava/lang/Object;)Z
+      25: ifeq          32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public void setDown(boolean);
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+       4: iload_1
+       5: invokevirtual #65                 // Method net/minecraft/client/KeyMapping.m_7249_:(Z)V
+       8: return
+
+  public void clearOwnedPulse() throws java.lang.ReflectiveOperationException;
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field val$consume:Ljava/lang/reflect/Method;
+       4: aload_0
+       5: getfield      #31                 // Field val$mapping:Lnet/minecraft/client/KeyMapping;
+       8: iconst_0
+       9: anewarray     #4                  // class java/lang/Object
+      12: invokevirtual #76                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      15: pop
+      16: return
+}

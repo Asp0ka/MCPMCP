@@ -1,0 +1,2701 @@
+Compiled from "ItemStack.java"
+public final class net.minecraft.world.item.ItemStack extends net.minecraftforge.common.capabilities.CapabilityProvider<net.minecraft.world.item.ItemStack> implements net.minecraftforge.common.extensions.IForgeItemStack {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.ItemStack> CODEC;
+
+  private final net.minecraft.core.Holder$Reference<net.minecraft.world.item.Item> delegate;
+
+  private net.minecraft.nbt.CompoundTag capNBT;
+
+  private static final org.slf4j.Logger LOGGER;
+
+  public static final net.minecraft.world.item.ItemStack EMPTY;
+
+  public static final java.text.DecimalFormat ATTRIBUTE_MODIFIER_FORMAT;
+
+  public static final java.lang.String TAG_ENCH;
+
+  public static final java.lang.String TAG_DISPLAY;
+
+  public static final java.lang.String TAG_DISPLAY_NAME;
+
+  public static final java.lang.String TAG_LORE;
+
+  public static final java.lang.String TAG_DAMAGE;
+
+  public static final java.lang.String TAG_COLOR;
+
+  private static final java.lang.String TAG_UNBREAKABLE;
+
+  private static final java.lang.String TAG_REPAIR_COST;
+
+  private static final java.lang.String TAG_CAN_DESTROY_BLOCK_LIST;
+
+  private static final java.lang.String TAG_CAN_PLACE_ON_BLOCK_LIST;
+
+  private static final java.lang.String TAG_HIDE_FLAGS;
+
+  private static final net.minecraft.network.chat.Component DISABLED_ITEM_TOOLTIP;
+
+  private static final int DONT_HIDE_TOOLTIP;
+
+  private static final net.minecraft.network.chat.Style LORE_STYLE;
+
+  private int count;
+
+  private int popTime;
+
+  private final net.minecraft.world.item.Item item;
+
+  private net.minecraft.nbt.CompoundTag tag;
+
+  private net.minecraft.world.entity.Entity entityRepresentation;
+
+  private net.minecraft.world.item.AdventureModeCheck adventureBreakCheck;
+
+  private net.minecraft.world.item.AdventureModeCheck adventurePlaceCheck;
+
+  public java.util.Optional<net.minecraft.world.inventory.tooltip.TooltipComponent> getTooltipImage();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #147                // Method net/minecraft/world/item/Item.getTooltipImage:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+       8: areturn
+
+  public net.minecraft.world.item.ItemStack(net.minecraft.world.level.ItemLike);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iconst_1
+       3: invokespecial #153                // Method "<init>":(Lnet/minecraft/world/level/ItemLike;I)V
+       6: return
+
+  public net.minecraft.world.item.ItemStack(net.minecraft.core.Holder<net.minecraft.world.item.Item>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #161,  1          // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       7: checkcast     #163                // class net/minecraft/world/level/ItemLike
+      10: iconst_1
+      11: invokespecial #153                // Method "<init>":(Lnet/minecraft/world/level/ItemLike;I)V
+      14: return
+
+  private net.minecraft.world.item.ItemStack(net.minecraft.world.level.ItemLike, int, java.util.Optional<net.minecraft.nbt.CompoundTag>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #153                // Method "<init>":(Lnet/minecraft/world/level/ItemLike;I)V
+       6: aload_3
+       7: aload_0
+       8: invokedynamic #187,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/function/Consumer;
+      13: invokevirtual #193                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      16: return
+
+  public net.minecraft.world.item.ItemStack(net.minecraft.core.Holder<net.minecraft.world.item.Item>, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #161,  1          // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       7: checkcast     #163                // class net/minecraft/world/level/ItemLike
+      10: iload_2
+      11: invokespecial #153                // Method "<init>":(Lnet/minecraft/world/level/ItemLike;I)V
+      14: return
+
+  public net.minecraft.world.item.ItemStack(net.minecraft.world.level.ItemLike, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: aconst_null
+       4: checkcast     #204                // class net/minecraft/nbt/CompoundTag
+       7: invokespecial #207                // Method "<init>":(Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/nbt/CompoundTag;)V
+      10: return
+
+  public net.minecraft.world.item.ItemStack(net.minecraft.world.level.ItemLike, int, net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: ldc           #2                  // class net/minecraft/world/item/ItemStack
+       3: iconst_1
+       4: invokespecial #212                // Method net/minecraftforge/common/capabilities/CapabilityProvider."<init>":(Ljava/lang/Class;Z)V
+       7: aload_0
+       8: aload_3
+       9: putfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+      12: aload_0
+      13: aload_1
+      14: invokeinterface #217,  1          // InterfaceMethod net/minecraft/world/level/ItemLike.asItem:()Lnet/minecraft/world/item/Item;
+      19: putfield      #219                // Field item:Lnet/minecraft/world/item/Item;
+      22: aload_0
+      23: getstatic     #225                // Field net/minecraftforge/registries/ForgeRegistries.ITEMS:Lnet/minecraftforge/registries/IForgeRegistry;
+      26: aload_1
+      27: invokeinterface #217,  1          // InterfaceMethod net/minecraft/world/level/ItemLike.asItem:()Lnet/minecraft/world/item/Item;
+      32: invokeinterface #231,  2          // InterfaceMethod net/minecraftforge/registries/IForgeRegistry.getDelegateOrThrow:(Ljava/lang/Object;)Lnet/minecraft/core/Holder$Reference;
+      37: putfield      #233                // Field delegate:Lnet/minecraft/core/Holder$Reference;
+      40: aload_0
+      41: iload_2
+      42: putfield      #235                // Field count:I
+      45: aload_0
+      46: invokevirtual #239                // Method forgeInit:()V
+      49: aload_0
+      50: getfield      #219                // Field item:Lnet/minecraft/world/item/Item;
+      53: aload_0
+      54: invokevirtual #243                // Method net/minecraft/world/item/Item.isDamageable:(Lnet/minecraft/world/item/ItemStack;)Z
+      57: ifeq          68
+      60: aload_0
+      61: aload_0
+      62: invokevirtual #247                // Method getDamageValue:()I
+      65: invokevirtual #251                // Method setDamageValue:(I)V
+      68: return
+
+  private net.minecraft.world.item.ItemStack(java.lang.Void);
+    Code:
+       0: aload_0
+       1: ldc           #2                  // class net/minecraft/world/item/ItemStack
+       3: iconst_1
+       4: invokespecial #212                // Method net/minecraftforge/common/capabilities/CapabilityProvider."<init>":(Ljava/lang/Class;Z)V
+       7: aload_0
+       8: aconst_null
+       9: putfield      #219                // Field item:Lnet/minecraft/world/item/Item;
+      12: aload_0
+      13: aconst_null
+      14: putfield      #233                // Field delegate:Lnet/minecraft/core/Holder$Reference;
+      17: return
+
+  private net.minecraft.world.item.ItemStack(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: ldc           #2                  // class net/minecraft/world/item/ItemStack
+       3: iconst_1
+       4: invokespecial #212                // Method net/minecraftforge/common/capabilities/CapabilityProvider."<init>":(Ljava/lang/Class;Z)V
+       7: aload_0
+       8: aload_1
+       9: ldc_w         #256                // String ForgeCaps
+      12: invokevirtual #260                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;)Z
+      15: ifeq          28
+      18: aload_1
+      19: ldc_w         #256                // String ForgeCaps
+      22: invokevirtual #264                // Method net/minecraft/nbt/CompoundTag.getCompound:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      25: goto          29
+      28: aconst_null
+      29: putfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+      32: aload_0
+      33: getstatic     #270                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+      36: new           #272                // class net/minecraft/resources/ResourceLocation
+      39: dup
+      40: aload_1
+      41: ldc_w         #274                // String id
+      44: invokevirtual #278                // Method net/minecraft/nbt/CompoundTag.getString:(Ljava/lang/String;)Ljava/lang/String;
+      47: invokespecial #281                // Method net/minecraft/resources/ResourceLocation."<init>":(Ljava/lang/String;)V
+      50: invokeinterface #287,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.get:(Lnet/minecraft/resources/ResourceLocation;)Ljava/lang/Object;
+      55: checkcast     #144                // class net/minecraft/world/item/Item
+      58: dup_x1
+      59: putfield      #219                // Field item:Lnet/minecraft/world/item/Item;
+      62: astore_2
+      63: aload_0
+      64: getstatic     #225                // Field net/minecraftforge/registries/ForgeRegistries.ITEMS:Lnet/minecraftforge/registries/IForgeRegistry;
+      67: aload_2
+      68: invokeinterface #231,  2          // InterfaceMethod net/minecraftforge/registries/IForgeRegistry.getDelegateOrThrow:(Ljava/lang/Object;)Lnet/minecraft/core/Holder$Reference;
+      73: putfield      #233                // Field delegate:Lnet/minecraft/core/Holder$Reference;
+      76: aload_0
+      77: aload_1
+      78: ldc_w         #289                // String Count
+      81: invokevirtual #293                // Method net/minecraft/nbt/CompoundTag.getByte:(Ljava/lang/String;)B
+      84: putfield      #235                // Field count:I
+      87: aload_1
+      88: ldc_w         #294                // String tag
+      91: bipush        10
+      93: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      96: ifeq          121
+      99: aload_0
+     100: aload_1
+     101: ldc_w         #294                // String tag
+     104: invokevirtual #264                // Method net/minecraft/nbt/CompoundTag.getCompound:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     107: putfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+     110: aload_0
+     111: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+     114: aload_0
+     115: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+     118: invokevirtual #302                // Method net/minecraft/world/item/Item.verifyTagAfterLoad:(Lnet/minecraft/nbt/CompoundTag;)V
+     121: aload_0
+     122: invokevirtual #239                // Method forgeInit:()V
+     125: aload_0
+     126: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+     129: aload_0
+     130: invokevirtual #243                // Method net/minecraft/world/item/Item.isDamageable:(Lnet/minecraft/world/item/ItemStack;)Z
+     133: ifeq          144
+     136: aload_0
+     137: aload_0
+     138: invokevirtual #247                // Method getDamageValue:()I
+     141: invokevirtual #251                // Method setDamageValue:(I)V
+     144: return
+
+  public static net.minecraft.world.item.ItemStack of(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: new           #2                  // class net/minecraft/world/item/ItemStack
+       3: dup
+       4: aload_0
+       5: invokespecial #310                // Method "<init>":(Lnet/minecraft/nbt/CompoundTag;)V
+       8: areturn
+       9: astore_1
+      10: getstatic     #312                // Field LOGGER:Lorg/slf4j/Logger;
+      13: ldc_w         #314                // String Tried to load invalid item: {}
+      16: aload_0
+      17: aload_1
+      18: invokeinterface #320,  4          // InterfaceMethod org/slf4j/Logger.debug:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+      23: getstatic     #322                // Field EMPTY:Lnet/minecraft/world/item/ItemStack;
+      26: areturn
+    Exception table:
+       from    to  target type
+           0     8     9   Class java/lang/RuntimeException
+
+  public boolean isEmpty();
+    Code:
+       0: aload_0
+       1: getstatic     #322                // Field EMPTY:Lnet/minecraft/world/item/ItemStack;
+       4: if_acmpeq     27
+       7: aload_0
+       8: getfield      #235                // Field count:I
+      11: ifle          27
+      14: aload_0
+      15: getfield      #233                // Field delegate:Lnet/minecraft/core/Holder$Reference;
+      18: invokevirtual #329                // Method net/minecraft/core/Holder$Reference.get:()Ljava/lang/Object;
+      21: getstatic     #334                // Field net/minecraft/world/item/Items.AIR:Lnet/minecraft/world/item/Item;
+      24: if_acmpne     31
+      27: iconst_1
+      28: goto          32
+      31: iconst_0
+      32: ireturn
+
+  public boolean isItemEnabled(net.minecraft.world.flag.FeatureFlagSet);
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifne          18
+       7: aload_0
+       8: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      11: aload_1
+      12: invokevirtual #341                // Method net/minecraft/world/item/Item.isEnabled:(Lnet/minecraft/world/flag/FeatureFlagSet;)Z
+      15: ifeq          22
+      18: iconst_1
+      19: goto          23
+      22: iconst_0
+      23: ireturn
+
+  public net.minecraft.world.item.ItemStack split(int);
+    Code:
+       0: iload_1
+       1: aload_0
+       2: invokevirtual #348                // Method getCount:()I
+       5: invokestatic  #354                // Method java/lang/Math.min:(II)I
+       8: istore_2
+       9: aload_0
+      10: iload_2
+      11: invokevirtual #357                // Method copyWithCount:(I)Lnet/minecraft/world/item/ItemStack;
+      14: astore_3
+      15: aload_0
+      16: iload_2
+      17: invokevirtual #360                // Method shrink:(I)V
+      20: aload_3
+      21: areturn
+
+  public net.minecraft.world.item.ItemStack copyAndClear();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifeq          11
+       7: getstatic     #322                // Field EMPTY:Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: aload_0
+      12: invokevirtual #368                // Method copy:()Lnet/minecraft/world/item/ItemStack;
+      15: astore_1
+      16: aload_0
+      17: iconst_0
+      18: invokevirtual #371                // Method setCount:(I)V
+      21: aload_1
+      22: areturn
+
+  public net.minecraft.world.item.Item getItem();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifeq          13
+       7: getstatic     #334                // Field net/minecraft/world/item/Items.AIR:Lnet/minecraft/world/item/Item;
+      10: goto          23
+      13: aload_0
+      14: getfield      #233                // Field delegate:Lnet/minecraft/core/Holder$Reference;
+      17: invokevirtual #329                // Method net/minecraft/core/Holder$Reference.get:()Ljava/lang/Object;
+      20: checkcast     #144                // class net/minecraft/world/item/Item
+      23: areturn
+
+  public net.minecraft.core.Holder<net.minecraft.world.item.Item> getItemHolder();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #378                // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+       7: areturn
+
+  public boolean is(net.minecraft.tags.TagKey<net.minecraft.world.item.Item>);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #378                // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+       7: aload_1
+       8: invokevirtual #383                // Method net/minecraft/core/Holder$Reference.is:(Lnet/minecraft/tags/TagKey;)Z
+      11: ireturn
+
+  public boolean is(net.minecraft.world.item.Item);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_1
+       5: if_acmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  public boolean is(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.item.Item>>);
+    Code:
+       0: aload_1
+       1: aload_0
+       2: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       5: invokevirtual #378                // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+       8: invokeinterface #396,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+      13: ireturn
+
+  public boolean is(net.minecraft.core.Holder<net.minecraft.world.item.Item>);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #378                // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+       7: aload_1
+       8: if_acmpne     15
+      11: iconst_1
+      12: goto          16
+      15: iconst_0
+      16: ireturn
+
+  public java.util.stream.Stream<net.minecraft.tags.TagKey<net.minecraft.world.item.Item>> getTags();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #378                // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+       7: invokevirtual #408                // Method net/minecraft/core/Holder$Reference.tags:()Ljava/util/stream/Stream;
+      10: areturn
+
+  public net.minecraft.world.InteractionResult useOn(net.minecraft.world.item.context.UseOnContext);
+    Code:
+       0: aload_1
+       1: invokevirtual #416                // Method net/minecraft/world/item/context/UseOnContext.getLevel:()Lnet/minecraft/world/level/Level;
+       4: getfield      #422                // Field net/minecraft/world/level/Level.isClientSide:Z
+       7: ifne          15
+      10: aload_1
+      11: invokestatic  #427                // Method net/minecraftforge/common/ForgeHooks.onPlaceItemIntoWorld:(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+      14: areturn
+      15: aload_0
+      16: aload_1
+      17: aload_0
+      18: aload_1
+      19: invokedynamic #439,  0            // InvokeDynamic #1:apply:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/context/UseOnContext;)Ljava/util/function/Function;
+      24: invokevirtual #443                // Method onItemUse:(Lnet/minecraft/world/item/context/UseOnContext;Ljava/util/function/Function;)Lnet/minecraft/world/InteractionResult;
+      27: areturn
+
+  public net.minecraft.world.InteractionResult onItemUseFirst(net.minecraft.world.item.context.UseOnContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_0
+       3: aload_1
+       4: invokedynamic #451,  0            // InvokeDynamic #2:apply:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/context/UseOnContext;)Ljava/util/function/Function;
+       9: invokevirtual #443                // Method onItemUse:(Lnet/minecraft/world/item/context/UseOnContext;Ljava/util/function/Function;)Lnet/minecraft/world/InteractionResult;
+      12: areturn
+
+  private net.minecraft.world.InteractionResult onItemUse(net.minecraft.world.item.context.UseOnContext, java.util.function.Function<net.minecraft.world.item.context.UseOnContext, net.minecraft.world.InteractionResult>);
+    Code:
+       0: aload_1
+       1: invokevirtual #456                // Method net/minecraft/world/item/context/UseOnContext.getPlayer:()Lnet/minecraft/world/entity/player/Player;
+       4: astore_3
+       5: aload_1
+       6: invokevirtual #460                // Method net/minecraft/world/item/context/UseOnContext.getClickedPos:()Lnet/minecraft/core/BlockPos;
+       9: astore        4
+      11: new           #462                // class net/minecraft/world/level/block/state/pattern/BlockInWorld
+      14: dup
+      15: aload_1
+      16: invokevirtual #416                // Method net/minecraft/world/item/context/UseOnContext.getLevel:()Lnet/minecraft/world/level/Level;
+      19: aload         4
+      21: iconst_0
+      22: invokespecial #465                // Method net/minecraft/world/level/block/state/pattern/BlockInWorld."<init>":(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Z)V
+      25: astore        5
+      27: aload_3
+      28: ifnull        69
+      31: aload_3
+      32: invokevirtual #471                // Method net/minecraft/world/entity/player/Player.getAbilities:()Lnet/minecraft/world/entity/player/Abilities;
+      35: getfield      #476                // Field net/minecraft/world/entity/player/Abilities.mayBuild:Z
+      38: ifne          69
+      41: aload_0
+      42: aload_1
+      43: invokevirtual #416                // Method net/minecraft/world/item/context/UseOnContext.getLevel:()Lnet/minecraft/world/level/Level;
+      46: invokevirtual #480                // Method net/minecraft/world/level/Level.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      49: getstatic     #486                // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+      52: invokeinterface #492,  2          // InterfaceMethod net/minecraft/core/RegistryAccess.registryOrThrow:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
+      57: aload         5
+      59: invokevirtual #496                // Method hasAdventureModePlaceTagForBlock:(Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+      62: ifne          69
+      65: getstatic     #502                // Field net/minecraft/world/InteractionResult.PASS:Lnet/minecraft/world/InteractionResult;
+      68: areturn
+      69: aload_0
+      70: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      73: astore        6
+      75: aload_2
+      76: aload_1
+      77: invokeinterface #508,  2          // InterfaceMethod java/util/function/Function.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+      82: checkcast     #498                // class net/minecraft/world/InteractionResult
+      85: astore        7
+      87: aload_3
+      88: ifnull        111
+      91: aload         7
+      93: invokevirtual #511                // Method net/minecraft/world/InteractionResult.shouldAwardStats:()Z
+      96: ifeq          111
+      99: aload_3
+     100: getstatic     #517                // Field net/minecraft/stats/Stats.ITEM_USED:Lnet/minecraft/stats/StatType;
+     103: aload         6
+     105: invokevirtual #522                // Method net/minecraft/stats/StatType.get:(Ljava/lang/Object;)Lnet/minecraft/stats/Stat;
+     108: invokevirtual #526                // Method net/minecraft/world/entity/player/Player.awardStat:(Lnet/minecraft/stats/Stat;)V
+     111: aload         7
+     113: areturn
+
+  public float getDestroySpeed(net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #541                // Method net/minecraft/world/item/Item.getDestroySpeed:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)F
+       9: freturn
+
+  public net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> use(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_1
+       5: aload_2
+       6: aload_3
+       7: invokevirtual #548                // Method net/minecraft/world/item/Item.use:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResultHolder;
+      10: areturn
+
+  public net.minecraft.world.item.ItemStack finishUsingItem(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: invokevirtual #558                // Method net/minecraft/world/item/Item.finishUsingItem:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+
+  public net.minecraft.nbt.CompoundTag save(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: getstatic     #270                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+       3: aload_0
+       4: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       7: invokeinterface #567,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      12: astore_2
+      13: aload_1
+      14: ldc_w         #274                // String id
+      17: aload_2
+      18: ifnonnull     27
+      21: ldc_w         #569                // String minecraft:air
+      24: goto          31
+      27: aload_2
+      28: invokevirtual #575                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      31: invokevirtual #579                // Method net/minecraft/nbt/CompoundTag.putString:(Ljava/lang/String;Ljava/lang/String;)V
+      34: aload_1
+      35: ldc_w         #289                // String Count
+      38: aload_0
+      39: getfield      #235                // Field count:I
+      42: i2b
+      43: invokevirtual #583                // Method net/minecraft/nbt/CompoundTag.putByte:(Ljava/lang/String;B)V
+      46: aload_0
+      47: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      50: ifnull        68
+      53: aload_1
+      54: ldc_w         #294                // String tag
+      57: aload_0
+      58: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      61: invokevirtual #586                // Method net/minecraft/nbt/CompoundTag.copy:()Lnet/minecraft/nbt/CompoundTag;
+      64: invokevirtual #590                // Method net/minecraft/nbt/CompoundTag.put:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      67: pop
+      68: aload_0
+      69: invokevirtual #593                // Method serializeCaps:()Lnet/minecraft/nbt/CompoundTag;
+      72: astore_3
+      73: aload_3
+      74: ifnull        93
+      77: aload_3
+      78: invokevirtual #594                // Method net/minecraft/nbt/CompoundTag.isEmpty:()Z
+      81: ifne          93
+      84: aload_1
+      85: ldc_w         #256                // String ForgeCaps
+      88: aload_3
+      89: invokevirtual #590                // Method net/minecraft/nbt/CompoundTag.put:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      92: pop
+      93: aload_1
+      94: areturn
+
+  public int getMaxStackSize();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #602                // Method net/minecraft/world/item/Item.getMaxStackSize:(Lnet/minecraft/world/item/ItemStack;)I
+       8: ireturn
+
+  public boolean isStackable();
+    Code:
+       0: aload_0
+       1: invokevirtual #605                // Method getMaxStackSize:()I
+       4: iconst_1
+       5: if_icmple     26
+       8: aload_0
+       9: invokevirtual #608                // Method isDamageableItem:()Z
+      12: ifeq          22
+      15: aload_0
+      16: invokevirtual #611                // Method isDamaged:()Z
+      19: ifne          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: ireturn
+
+  public boolean isDamageableItem();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifne          42
+       7: aload_0
+       8: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      11: aload_0
+      12: invokevirtual #243                // Method net/minecraft/world/item/Item.isDamageable:(Lnet/minecraft/world/item/ItemStack;)Z
+      15: ifeq          42
+      18: aload_0
+      19: invokevirtual #614                // Method getTag:()Lnet/minecraft/nbt/CompoundTag;
+      22: astore_1
+      23: aload_1
+      24: ifnull        36
+      27: aload_1
+      28: ldc           #104                // String Unbreakable
+      30: invokevirtual #617                // Method net/minecraft/nbt/CompoundTag.getBoolean:(Ljava/lang/String;)Z
+      33: ifne          40
+      36: iconst_1
+      37: goto          41
+      40: iconst_0
+      41: ireturn
+      42: iconst_0
+      43: ireturn
+
+  public boolean isDamaged();
+    Code:
+       0: aload_0
+       1: invokevirtual #608                // Method isDamageableItem:()Z
+       4: ifeq          22
+       7: aload_0
+       8: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      11: aload_0
+      12: invokevirtual #620                // Method net/minecraft/world/item/Item.isDamaged:(Lnet/minecraft/world/item/ItemStack;)Z
+      15: ifeq          22
+      18: iconst_1
+      19: goto          23
+      22: iconst_0
+      23: ireturn
+
+  public int getDamageValue();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #623                // Method net/minecraft/world/item/Item.getDamage:(Lnet/minecraft/world/item/ItemStack;)I
+       8: ireturn
+
+  public void setDamageValue(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: iload_1
+       6: invokevirtual #627                // Method net/minecraft/world/item/Item.setDamage:(Lnet/minecraft/world/item/ItemStack;I)V
+       9: return
+
+  public int getMaxDamage();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #631                // Method net/minecraft/world/item/Item.getMaxDamage:(Lnet/minecraft/world/item/ItemStack;)I
+       8: ireturn
+
+  public boolean hurt(int, net.minecraft.util.RandomSource, net.minecraft.server.level.ServerPlayer);
+    Code:
+       0: aload_0
+       1: invokevirtual #608                // Method isDamageableItem:()Z
+       4: ifne          9
+       7: iconst_0
+       8: ireturn
+       9: iload_1
+      10: ifle          69
+      13: getstatic     #639                // Field net/minecraft/world/item/enchantment/Enchantments.UNBREAKING:Lnet/minecraft/world/item/enchantment/Enchantment;
+      16: aload_0
+      17: invokestatic  #645                // Method net/minecraft/world/item/enchantment/EnchantmentHelper.getItemEnchantmentLevel:(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I
+      20: istore        4
+      22: iconst_0
+      23: istore        5
+      25: iconst_0
+      26: istore        6
+      28: iload         4
+      30: ifle          58
+      33: iload         6
+      35: iload_1
+      36: if_icmpge     58
+      39: aload_0
+      40: iload         4
+      42: aload_2
+      43: invokestatic  #651                // Method net/minecraft/world/item/enchantment/DigDurabilityEnchantment.shouldIgnoreDurabilityDrop:(Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/util/RandomSource;)Z
+      46: ifeq          52
+      49: iinc          5, 1
+      52: iinc          6, 1
+      55: goto          28
+      58: iload_1
+      59: iload         5
+      61: isub
+      62: istore_1
+      63: iload_1
+      64: ifgt          69
+      67: iconst_0
+      68: ireturn
+      69: aload_3
+      70: ifnull        91
+      73: iload_1
+      74: ifeq          91
+      77: getstatic     #657                // Field net/minecraft/advancements/CriteriaTriggers.ITEM_DURABILITY_CHANGED:Lnet/minecraft/advancements/critereon/ItemDurabilityTrigger;
+      80: aload_3
+      81: aload_0
+      82: aload_0
+      83: invokevirtual #247                // Method getDamageValue:()I
+      86: iload_1
+      87: iadd
+      88: invokevirtual #663                // Method net/minecraft/advancements/critereon/ItemDurabilityTrigger.trigger:(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/item/ItemStack;I)V
+      91: aload_0
+      92: invokevirtual #247                // Method getDamageValue:()I
+      95: iload_1
+      96: iadd
+      97: istore        4
+      99: aload_0
+     100: iload         4
+     102: invokevirtual #251                // Method setDamageValue:(I)V
+     105: iload         4
+     107: aload_0
+     108: invokevirtual #665                // Method getMaxDamage:()I
+     111: if_icmplt     118
+     114: iconst_1
+     115: goto          119
+     118: iconst_0
+     119: ireturn
+
+  public <T extends net.minecraft.world.entity.LivingEntity> void hurtAndBreak(int, T, java.util.function.Consumer<T>);
+    Code:
+       0: aload_2
+       1: invokevirtual #681                // Method net/minecraft/world/entity/LivingEntity.level:()Lnet/minecraft/world/level/Level;
+       4: getfield      #422                // Field net/minecraft/world/level/Level.isClientSide:Z
+       7: ifne          121
+      10: aload_2
+      11: instanceof    #467                // class net/minecraft/world/entity/player/Player
+      14: ifeq          30
+      17: aload_2
+      18: checkcast     #467                // class net/minecraft/world/entity/player/Player
+      21: invokevirtual #471                // Method net/minecraft/world/entity/player/Player.getAbilities:()Lnet/minecraft/world/entity/player/Abilities;
+      24: getfield      #684                // Field net/minecraft/world/entity/player/Abilities.instabuild:Z
+      27: ifne          121
+      30: aload_0
+      31: invokevirtual #608                // Method isDamageableItem:()Z
+      34: ifeq          121
+      37: aload_0
+      38: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      41: aload_0
+      42: iload_1
+      43: aload_2
+      44: aload_3
+      45: invokevirtual #688                // Method net/minecraft/world/item/Item.damageItem:(Lnet/minecraft/world/item/ItemStack;ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)I
+      48: istore_1
+      49: aload_0
+      50: iload_1
+      51: aload_2
+      52: invokevirtual #692                // Method net/minecraft/world/entity/LivingEntity.getRandom:()Lnet/minecraft/util/RandomSource;
+      55: aload_2
+      56: instanceof    #694                // class net/minecraft/server/level/ServerPlayer
+      59: ifeq          69
+      62: aload_2
+      63: checkcast     #694                // class net/minecraft/server/level/ServerPlayer
+      66: goto          70
+      69: aconst_null
+      70: invokevirtual #700                // Method hurt:(ILnet/minecraft/util/RandomSource;Lnet/minecraft/server/level/ServerPlayer;)Z
+      73: ifeq          121
+      76: aload_3
+      77: aload_2
+      78: invokeinterface #702,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+      83: aload_0
+      84: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      87: astore        4
+      89: aload_0
+      90: iconst_1
+      91: invokevirtual #360                // Method shrink:(I)V
+      94: aload_2
+      95: instanceof    #467                // class net/minecraft/world/entity/player/Player
+      98: ifeq          116
+     101: aload_2
+     102: checkcast     #467                // class net/minecraft/world/entity/player/Player
+     105: getstatic     #705                // Field net/minecraft/stats/Stats.ITEM_BROKEN:Lnet/minecraft/stats/StatType;
+     108: aload         4
+     110: invokevirtual #522                // Method net/minecraft/stats/StatType.get:(Ljava/lang/Object;)Lnet/minecraft/stats/Stat;
+     113: invokevirtual #526                // Method net/minecraft/world/entity/player/Player.awardStat:(Lnet/minecraft/stats/Stat;)V
+     116: aload_0
+     117: iconst_0
+     118: invokevirtual #251                // Method setDamageValue:(I)V
+     121: return
+
+  public boolean isBarVisible();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #714                // Method net/minecraft/world/item/Item.isBarVisible:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ireturn
+
+  public int getBarWidth();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #717                // Method net/minecraft/world/item/Item.getBarWidth:(Lnet/minecraft/world/item/ItemStack;)I
+       8: ireturn
+
+  public int getBarColor();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #720                // Method net/minecraft/world/item/Item.getBarColor:(Lnet/minecraft/world/item/ItemStack;)I
+       8: ireturn
+
+  public boolean overrideStackedOnOther(net.minecraft.world.inventory.Slot, net.minecraft.world.inventory.ClickAction, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: aload_3
+       8: invokevirtual #725                // Method net/minecraft/world/item/Item.overrideStackedOnOther:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;)Z
+      11: ireturn
+
+  public boolean overrideOtherStackedOnMe(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot, net.minecraft.world.inventory.ClickAction, net.minecraft.world.entity.player.Player, net.minecraft.world.entity.SlotAccess);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: aload_3
+       8: aload         4
+      10: aload         5
+      12: invokevirtual #735                // Method net/minecraft/world/item/Item.overrideOtherStackedOnMe:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickAction;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/SlotAccess;)Z
+      15: ireturn
+
+  public void hurtEnemy(net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: astore_3
+       5: aload_3
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #746                // Method net/minecraft/world/item/Item.hurtEnemy:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/LivingEntity;)Z
+      12: ifeq          26
+      15: aload_2
+      16: getstatic     #517                // Field net/minecraft/stats/Stats.ITEM_USED:Lnet/minecraft/stats/StatType;
+      19: aload_3
+      20: invokevirtual #522                // Method net/minecraft/stats/StatType.get:(Ljava/lang/Object;)Lnet/minecraft/stats/Stat;
+      23: invokevirtual #526                // Method net/minecraft/world/entity/player/Player.awardStat:(Lnet/minecraft/stats/Stat;)V
+      26: return
+
+  public void mineBlock(net.minecraft.world.level.Level, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: astore        5
+       6: aload         5
+       8: aload_0
+       9: aload_1
+      10: aload_2
+      11: aload_3
+      12: aload         4
+      14: invokevirtual #753                // Method net/minecraft/world/item/Item.mineBlock:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/LivingEntity;)Z
+      17: ifeq          33
+      20: aload         4
+      22: getstatic     #517                // Field net/minecraft/stats/Stats.ITEM_USED:Lnet/minecraft/stats/StatType;
+      25: aload         5
+      27: invokevirtual #522                // Method net/minecraft/stats/StatType.get:(Ljava/lang/Object;)Lnet/minecraft/stats/Stat;
+      30: invokevirtual #526                // Method net/minecraft/world/entity/player/Player.awardStat:(Lnet/minecraft/stats/Stat;)V
+      33: return
+
+  public boolean isCorrectToolForDrops(net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #762                // Method net/minecraft/world/item/Item.isCorrectToolForDrops:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/block/state/BlockState;)Z
+       9: ireturn
+
+  public net.minecraft.world.InteractionResult interactLivingEntity(net.minecraft.world.entity.player.Player, net.minecraft.world.entity.LivingEntity, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: aload_3
+       8: invokevirtual #768                // Method net/minecraft/world/item/Item.interactLivingEntity:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+      11: areturn
+
+  public net.minecraft.world.item.ItemStack copy();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifeq          11
+       7: getstatic     #322                // Field EMPTY:Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: new           #2                  // class net/minecraft/world/item/ItemStack
+      14: dup
+      15: aload_0
+      16: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      19: aload_0
+      20: getfield      #235                // Field count:I
+      23: aload_0
+      24: invokevirtual #593                // Method serializeCaps:()Lnet/minecraft/nbt/CompoundTag;
+      27: invokespecial #207                // Method "<init>":(Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/nbt/CompoundTag;)V
+      30: astore_1
+      31: aload_1
+      32: aload_0
+      33: invokevirtual #774                // Method getPopTime:()I
+      36: invokevirtual #777                // Method setPopTime:(I)V
+      39: aload_0
+      40: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      43: ifnull        57
+      46: aload_1
+      47: aload_0
+      48: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      51: invokevirtual #586                // Method net/minecraft/nbt/CompoundTag.copy:()Lnet/minecraft/nbt/CompoundTag;
+      54: putfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      57: aload_1
+      58: areturn
+
+  public net.minecraft.world.item.ItemStack copyWithCount(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifeq          11
+       7: getstatic     #322                // Field EMPTY:Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: aload_0
+      12: invokevirtual #368                // Method copy:()Lnet/minecraft/world/item/ItemStack;
+      15: astore_2
+      16: aload_2
+      17: iload_1
+      18: invokevirtual #371                // Method setCount:(I)V
+      21: aload_2
+      22: areturn
+
+  public static boolean matches(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: if_acmpne     7
+       5: iconst_1
+       6: ireturn
+       7: aload_0
+       8: invokevirtual #348                // Method getCount:()I
+      11: aload_1
+      12: invokevirtual #348                // Method getCount:()I
+      15: if_icmpeq     22
+      18: iconst_0
+      19: goto          27
+      22: aload_0
+      23: aload_1
+      24: invokestatic  #783                // Method isSameItemSameTags:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+      27: ireturn
+
+  public static boolean isSameItem(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       5: invokevirtual #788                // Method is:(Lnet/minecraft/world/item/Item;)Z
+       8: ireturn
+
+  public static boolean isSameItemSameTags(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       5: invokevirtual #788                // Method is:(Lnet/minecraft/world/item/Item;)Z
+       8: ifne          13
+      11: iconst_0
+      12: ireturn
+      13: aload_0
+      14: invokevirtual #338                // Method isEmpty:()Z
+      17: ifeq          31
+      20: aload_1
+      21: invokevirtual #338                // Method isEmpty:()Z
+      24: ifeq          31
+      27: iconst_1
+      28: goto          58
+      31: aload_0
+      32: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      35: aload_1
+      36: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      39: invokestatic  #796                // Method java/util/Objects.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      42: ifeq          57
+      45: aload_0
+      46: aload_1
+      47: invokevirtual #800                // Method areCapsCompatible:(Lnet/minecraftforge/common/capabilities/CapabilityProvider;)Z
+      50: ifeq          57
+      53: iconst_1
+      54: goto          58
+      57: iconst_0
+      58: ireturn
+
+  public java.lang.String getDescriptionId();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #806                // Method net/minecraft/world/item/Item.getDescriptionId:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+       8: areturn
+
+  public java.lang.String toString();
+    Code:
+       0: aload_0
+       1: invokevirtual #348                // Method getCount:()I
+       4: aload_0
+       5: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       8: invokestatic  #810                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      11: invokedynamic #822,  0            // InvokeDynamic #3:makeConcatWithConstants:(ILjava/lang/String;)Ljava/lang/String;
+      16: areturn
+
+  public void inventoryTick(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, int, boolean);
+    Code:
+       0: aload_0
+       1: getfield      #826                // Field popTime:I
+       4: ifle          17
+       7: aload_0
+       8: dup
+       9: getfield      #826                // Field popTime:I
+      12: iconst_1
+      13: isub
+      14: putfield      #826                // Field popTime:I
+      17: aload_0
+      18: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      21: ifnull        37
+      24: aload_0
+      25: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      28: aload_0
+      29: aload_1
+      30: aload_2
+      31: iload_3
+      32: iload         4
+      34: invokevirtual #829                // Method net/minecraft/world/item/Item.inventoryTick:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/Entity;IZ)V
+      37: return
+
+  public void onCraftedBy(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, int);
+    Code:
+       0: aload_2
+       1: getstatic     #838                // Field net/minecraft/stats/Stats.ITEM_CRAFTED:Lnet/minecraft/stats/StatType;
+       4: aload_0
+       5: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       8: invokevirtual #522                // Method net/minecraft/stats/StatType.get:(Ljava/lang/Object;)Lnet/minecraft/stats/Stat;
+      11: iload_3
+      12: invokevirtual #841                // Method net/minecraft/world/entity/player/Player.awardStat:(Lnet/minecraft/stats/Stat;I)V
+      15: aload_0
+      16: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      19: aload_0
+      20: aload_1
+      21: aload_2
+      22: invokevirtual #844                // Method net/minecraft/world/item/Item.onCraftedBy:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;)V
+      25: return
+
+  public int getUseDuration();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #850                // Method net/minecraft/world/item/Item.getUseDuration:(Lnet/minecraft/world/item/ItemStack;)I
+       8: ireturn
+
+  public net.minecraft.world.item.UseAnim getUseAnimation();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #855                // Method net/minecraft/world/item/Item.getUseAnimation:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/UseAnim;
+       8: areturn
+
+  public void releaseUsing(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, int);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: iload_3
+       8: invokevirtual #860                // Method net/minecraft/world/item/Item.releaseUsing:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V
+      11: return
+
+  public boolean useOnRelease();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #866                // Method net/minecraft/world/item/Item.useOnRelease:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ireturn
+
+  public boolean hasTag();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifne          28
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: ifnull        28
+      14: aload_0
+      15: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      18: invokevirtual #594                // Method net/minecraft/nbt/CompoundTag.isEmpty:()Z
+      21: ifne          28
+      24: iconst_1
+      25: goto          29
+      28: iconst_0
+      29: ireturn
+
+  public net.minecraft.nbt.CompoundTag getTag();
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: areturn
+
+  public net.minecraft.nbt.CompoundTag getOrCreateTag();
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: ifnonnull     18
+       7: aload_0
+       8: new           #204                // class net/minecraft/nbt/CompoundTag
+      11: dup
+      12: invokespecial #870                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      15: invokevirtual #174                // Method setTag:(Lnet/minecraft/nbt/CompoundTag;)V
+      18: aload_0
+      19: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      22: areturn
+
+  public net.minecraft.nbt.CompoundTag getOrCreateTagElement(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: ifnull        29
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: aload_1
+      12: bipush        10
+      14: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      17: ifeq          29
+      20: aload_0
+      21: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      24: aload_1
+      25: invokevirtual #264                // Method net/minecraft/nbt/CompoundTag.getCompound:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      28: areturn
+      29: new           #204                // class net/minecraft/nbt/CompoundTag
+      32: dup
+      33: invokespecial #870                // Method net/minecraft/nbt/CompoundTag."<init>":()V
+      36: astore_2
+      37: aload_0
+      38: aload_1
+      39: aload_2
+      40: invokevirtual #875                // Method addTagElement:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)V
+      43: aload_2
+      44: areturn
+
+  public net.minecraft.nbt.CompoundTag getTagElement(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: ifnull        31
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: aload_1
+      12: bipush        10
+      14: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      17: ifeq          31
+      20: aload_0
+      21: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      24: aload_1
+      25: invokevirtual #264                // Method net/minecraft/nbt/CompoundTag.getCompound:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+      28: goto          32
+      31: aconst_null
+      32: areturn
+
+  public void removeTagKey(java.lang.String);
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: ifnull        41
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: aload_1
+      12: invokevirtual #260                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;)Z
+      15: ifeq          41
+      18: aload_0
+      19: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      22: aload_1
+      23: invokevirtual #882                // Method net/minecraft/nbt/CompoundTag.remove:(Ljava/lang/String;)V
+      26: aload_0
+      27: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      30: invokevirtual #594                // Method net/minecraft/nbt/CompoundTag.isEmpty:()Z
+      33: ifeq          41
+      36: aload_0
+      37: aconst_null
+      38: putfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      41: return
+
+  public net.minecraft.nbt.ListTag getEnchantmentTags();
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: ifnull        21
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: ldc           #86                 // String Enchantments
+      13: bipush        10
+      15: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      18: goto          28
+      21: new           #891                // class net/minecraft/nbt/ListTag
+      24: dup
+      25: invokespecial #892                // Method net/minecraft/nbt/ListTag."<init>":()V
+      28: areturn
+
+  public void setTag(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       5: aload_0
+       6: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       9: aload_0
+      10: invokevirtual #243                // Method net/minecraft/world/item/Item.isDamageable:(Lnet/minecraft/world/item/ItemStack;)Z
+      13: ifeq          24
+      16: aload_0
+      17: aload_0
+      18: invokevirtual #247                // Method getDamageValue:()I
+      21: invokevirtual #251                // Method setDamageValue:(I)V
+      24: aload_1
+      25: ifnull        36
+      28: aload_0
+      29: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      32: aload_1
+      33: invokevirtual #302                // Method net/minecraft/world/item/Item.verifyTagAfterLoad:(Lnet/minecraft/nbt/CompoundTag;)V
+      36: return
+
+  public net.minecraft.network.chat.Component getHoverName();
+    Code:
+       0: aload_0
+       1: ldc           #89                 // String display
+       3: invokevirtual #899                // Method getTagElement:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+       6: astore_1
+       7: aload_1
+       8: ifnull        54
+      11: aload_1
+      12: ldc           #92                 // String Name
+      14: bipush        8
+      16: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      19: ifeq          54
+      22: aload_1
+      23: ldc           #92                 // String Name
+      25: invokevirtual #278                // Method net/minecraft/nbt/CompoundTag.getString:(Ljava/lang/String;)Ljava/lang/String;
+      28: invokestatic  #903                // Method net/minecraft/network/chat/Component$Serializer.fromJson:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      31: astore_2
+      32: aload_2
+      33: ifnull        38
+      36: aload_2
+      37: areturn
+      38: aload_1
+      39: ldc           #92                 // String Name
+      41: invokevirtual #882                // Method net/minecraft/nbt/CompoundTag.remove:(Ljava/lang/String;)V
+      44: goto          54
+      47: astore_2
+      48: aload_1
+      49: ldc           #92                 // String Name
+      51: invokevirtual #882                // Method net/minecraft/nbt/CompoundTag.remove:(Ljava/lang/String;)V
+      54: aload_0
+      55: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      58: aload_0
+      59: invokevirtual #907                // Method net/minecraft/world/item/Item.getName:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
+      62: areturn
+    Exception table:
+       from    to  target type
+          22    37    47   Class java/lang/Exception
+          38    44    47   Class java/lang/Exception
+
+  public net.minecraft.world.item.ItemStack setHoverName(net.minecraft.network.chat.Component);
+    Code:
+       0: aload_0
+       1: ldc           #89                 // String display
+       3: invokevirtual #914                // Method getOrCreateTagElement:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+       6: astore_2
+       7: aload_1
+       8: ifnull        24
+      11: aload_2
+      12: ldc           #92                 // String Name
+      14: aload_1
+      15: invokestatic  #918                // Method net/minecraft/network/chat/Component$Serializer.toJson:(Lnet/minecraft/network/chat/Component;)Ljava/lang/String;
+      18: invokevirtual #579                // Method net/minecraft/nbt/CompoundTag.putString:(Ljava/lang/String;Ljava/lang/String;)V
+      21: goto          30
+      24: aload_2
+      25: ldc           #92                 // String Name
+      27: invokevirtual #882                // Method net/minecraft/nbt/CompoundTag.remove:(Ljava/lang/String;)V
+      30: aload_0
+      31: areturn
+
+  public void resetHoverName();
+    Code:
+       0: aload_0
+       1: ldc           #89                 // String display
+       3: invokevirtual #899                // Method getTagElement:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+       6: astore_1
+       7: aload_1
+       8: ifnull        30
+      11: aload_1
+      12: ldc           #92                 // String Name
+      14: invokevirtual #882                // Method net/minecraft/nbt/CompoundTag.remove:(Ljava/lang/String;)V
+      17: aload_1
+      18: invokevirtual #594                // Method net/minecraft/nbt/CompoundTag.isEmpty:()Z
+      21: ifeq          30
+      24: aload_0
+      25: ldc           #89                 // String display
+      27: invokevirtual #922                // Method removeTagKey:(Ljava/lang/String;)V
+      30: aload_0
+      31: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      34: ifnull        52
+      37: aload_0
+      38: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      41: invokevirtual #594                // Method net/minecraft/nbt/CompoundTag.isEmpty:()Z
+      44: ifeq          52
+      47: aload_0
+      48: aconst_null
+      49: putfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      52: return
+
+  public boolean hasCustomHoverName();
+    Code:
+       0: aload_0
+       1: ldc           #89                 // String display
+       3: invokevirtual #899                // Method getTagElement:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+       6: astore_1
+       7: aload_1
+       8: ifnull        26
+      11: aload_1
+      12: ldc           #92                 // String Name
+      14: bipush        8
+      16: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      19: ifeq          26
+      22: iconst_1
+      23: goto          27
+      26: iconst_0
+      27: ireturn
+
+  public java.util.List<net.minecraft.network.chat.Component> getTooltipLines(net.minecraft.world.entity.player.Player, net.minecraft.world.item.TooltipFlag);
+    Code:
+       0: invokestatic  #932                // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+       3: astore_3
+       4: invokestatic  #936                // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+       7: aload_0
+       8: invokevirtual #938                // Method getHoverName:()Lnet/minecraft/network/chat/Component;
+      11: invokevirtual #944                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+      14: aload_0
+      15: invokevirtual #948                // Method getRarity:()Lnet/minecraft/world/item/Rarity;
+      18: invokevirtual #954                // Method net/minecraft/world/item/Rarity.getStyleModifier:()Ljava/util/function/UnaryOperator;
+      21: invokevirtual #958                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Ljava/util/function/UnaryOperator;)Lnet/minecraft/network/chat/MutableComponent;
+      24: astore        4
+      26: aload_0
+      27: invokevirtual #960                // Method hasCustomHoverName:()Z
+      30: ifeq          42
+      33: aload         4
+      35: getstatic     #966                // Field net/minecraft/ChatFormatting.ITALIC:Lnet/minecraft/ChatFormatting;
+      38: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      41: pop
+      42: aload_3
+      43: aload         4
+      45: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      50: pop
+      51: aload_2
+      52: invokeinterface #979,  1          // InterfaceMethod net/minecraft/world/item/TooltipFlag.isAdvanced:()Z
+      57: ifne          111
+      60: aload_0
+      61: invokevirtual #960                // Method hasCustomHoverName:()Z
+      64: ifne          111
+      67: aload_0
+      68: getstatic     #982                // Field net/minecraft/world/item/Items.FILLED_MAP:Lnet/minecraft/world/item/Item;
+      71: invokevirtual #788                // Method is:(Lnet/minecraft/world/item/Item;)Z
+      74: ifeq          111
+      77: aload_0
+      78: invokestatic  #988                // Method net/minecraft/world/item/MapItem.getMapId:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/Integer;
+      81: astore        5
+      83: aload         5
+      85: ifnull        111
+      88: aload_3
+      89: aload         5
+      91: invokedynamic #993,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/Integer;)Ljava/lang/String;
+      96: invokestatic  #996                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      99: getstatic     #999                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+     102: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     105: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     110: pop
+     111: aload_0
+     112: invokevirtual #1002               // Method getHideFlags:()I
+     115: istore        5
+     117: iload         5
+     119: getstatic     #1006               // Field net/minecraft/world/item/ItemStack$TooltipPart.ADDITIONAL:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+     122: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+     125: ifeq          150
+     128: aload_0
+     129: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+     132: aload_0
+     133: aload_1
+     134: ifnonnull     141
+     137: aconst_null
+     138: goto          145
+     141: aload_1
+     142: invokevirtual #1011               // Method net/minecraft/world/entity/player/Player.level:()Lnet/minecraft/world/level/Level;
+     145: aload_3
+     146: aload_2
+     147: invokevirtual #1015               // Method net/minecraft/world/item/Item.appendHoverText:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+     150: aload_0
+     151: invokevirtual #1017               // Method hasTag:()Z
+     154: ifeq          437
+     157: iload         5
+     159: getstatic     #1020               // Field net/minecraft/world/item/ItemStack$TooltipPart.UPGRADES:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+     162: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+     165: ifeq          184
+     168: aload_1
+     169: ifnull        184
+     172: aload_0
+     173: aload_1
+     174: invokevirtual #1011               // Method net/minecraft/world/entity/player/Player.level:()Lnet/minecraft/world/level/Level;
+     177: invokevirtual #480                // Method net/minecraft/world/level/Level.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+     180: aload_3
+     181: invokestatic  #1026               // Method net/minecraft/world/item/armortrim/ArmorTrim.appendUpgradeHoverText:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)V
+     184: iload         5
+     186: getstatic     #1029               // Field net/minecraft/world/item/ItemStack$TooltipPart.ENCHANTMENTS:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+     189: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+     192: ifeq          203
+     195: aload_3
+     196: aload_0
+     197: invokevirtual #1031               // Method getEnchantmentTags:()Lnet/minecraft/nbt/ListTag;
+     200: invokestatic  #1035               // Method appendEnchantmentNames:(Ljava/util/List;Lnet/minecraft/nbt/ListTag;)V
+     203: aload_0
+     204: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+     207: ldc           #89                 // String display
+     209: bipush        10
+     211: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+     214: ifeq          437
+     217: aload_0
+     218: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+     221: ldc           #89                 // String display
+     223: invokevirtual #264                // Method net/minecraft/nbt/CompoundTag.getCompound:(Ljava/lang/String;)Lnet/minecraft/nbt/CompoundTag;
+     226: astore        6
+     228: iload         5
+     230: getstatic     #1038               // Field net/minecraft/world/item/ItemStack$TooltipPart.DYE:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+     233: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+     236: ifeq          347
+     239: aload         6
+     241: ldc           #101                // String color
+     243: bipush        99
+     245: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+     248: ifeq          347
+     251: aload_2
+     252: invokeinterface #979,  1          // InterfaceMethod net/minecraft/world/item/TooltipFlag.isAdvanced:()Z
+     257: ifeq          315
+     260: aload_3
+     261: ldc_w         #1040               // String item.color
+     264: iconst_1
+     265: anewarray     #1042               // class java/lang/Object
+     268: dup
+     269: iconst_0
+     270: getstatic     #1048               // Field java/util/Locale.ROOT:Ljava/util/Locale;
+     273: ldc_w         #1050               // String #%06X
+     276: iconst_1
+     277: anewarray     #1042               // class java/lang/Object
+     280: dup
+     281: iconst_0
+     282: aload         6
+     284: ldc           #101                // String color
+     286: invokevirtual #1054               // Method net/minecraft/nbt/CompoundTag.getInt:(Ljava/lang/String;)I
+     289: invokestatic  #1059               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     292: aastore
+     293: invokestatic  #1063               // Method java/lang/String.format:(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     296: aastore
+     297: invokestatic  #1067               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+     300: getstatic     #999                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+     303: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     306: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     311: pop
+     312: goto          347
+     315: aload_3
+     316: ldc_w         #1069               // String item.dyed
+     319: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     322: iconst_2
+     323: anewarray     #962                // class net/minecraft/ChatFormatting
+     326: dup
+     327: iconst_0
+     328: getstatic     #999                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+     331: aastore
+     332: dup
+     333: iconst_1
+     334: getstatic     #966                // Field net/minecraft/ChatFormatting.ITALIC:Lnet/minecraft/ChatFormatting;
+     337: aastore
+     338: invokevirtual #1074               // Method net/minecraft/network/chat/MutableComponent.withStyle:([Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     341: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     346: pop
+     347: aload         6
+     349: ldc           #95                 // String Lore
+     351: invokevirtual #1077               // Method net/minecraft/nbt/CompoundTag.getTagType:(Ljava/lang/String;)B
+     354: bipush        9
+     356: if_icmpne     437
+     359: aload         6
+     361: ldc           #95                 // String Lore
+     363: bipush        8
+     365: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+     368: astore        7
+     370: iconst_0
+     371: istore        8
+     373: iload         8
+     375: aload         7
+     377: invokevirtual #1080               // Method net/minecraft/nbt/ListTag.size:()I
+     380: if_icmpge     437
+     383: aload         7
+     385: iload         8
+     387: invokevirtual #1083               // Method net/minecraft/nbt/ListTag.getString:(I)Ljava/lang/String;
+     390: astore        9
+     392: aload         9
+     394: invokestatic  #903                // Method net/minecraft/network/chat/Component$Serializer.fromJson:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     397: astore        10
+     399: aload         10
+     401: ifnull        419
+     404: aload_3
+     405: aload         10
+     407: getstatic     #1085               // Field LORE_STYLE:Lnet/minecraft/network/chat/Style;
+     410: invokestatic  #1091               // Method net/minecraft/network/chat/ComponentUtils.mergeStyles:(Lnet/minecraft/network/chat/MutableComponent;Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/MutableComponent;
+     413: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     418: pop
+     419: goto          431
+     422: astore        10
+     424: aload         6
+     426: ldc           #95                 // String Lore
+     428: invokevirtual #882                // Method net/minecraft/nbt/CompoundTag.remove:(Ljava/lang/String;)V
+     431: iinc          8, 1
+     434: goto          373
+     437: iload         5
+     439: getstatic     #1094               // Field net/minecraft/world/item/ItemStack$TooltipPart.MODIFIERS:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+     442: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+     445: ifeq          963
+     448: invokestatic  #1100               // Method net/minecraft/world/entity/EquipmentSlot.values:()[Lnet/minecraft/world/entity/EquipmentSlot;
+     451: astore        6
+     453: aload         6
+     455: arraylength
+     456: istore        7
+     458: iconst_0
+     459: istore        8
+     461: iload         8
+     463: iload         7
+     465: if_icmpge     963
+     468: aload         6
+     470: iload         8
+     472: aaload
+     473: astore        9
+     475: aload_0
+     476: aload         9
+     478: invokevirtual #1106               // Method getAttributeModifiers:(Lnet/minecraft/world/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;
+     481: astore        10
+     483: aload         10
+     485: invokeinterface #1109,  1         // InterfaceMethod com/google/common/collect/Multimap.isEmpty:()Z
+     490: ifne          957
+     493: aload_3
+     494: getstatic     #1113               // Field net/minecraft/network/chat/CommonComponents.EMPTY:Lnet/minecraft/network/chat/Component;
+     497: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     502: pop
+     503: aload_3
+     504: aload         9
+     506: invokevirtual #1115               // Method net/minecraft/world/entity/EquipmentSlot.getName:()Ljava/lang/String;
+     509: invokedynamic #1119,  0           // InvokeDynamic #5:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     514: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     517: getstatic     #999                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+     520: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     523: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     528: pop
+     529: aload         10
+     531: invokeinterface #1123,  1         // InterfaceMethod com/google/common/collect/Multimap.entries:()Ljava/util/Collection;
+     536: invokeinterface #1129,  1         // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     541: astore        11
+     543: aload         11
+     545: invokeinterface #1134,  1         // InterfaceMethod java/util/Iterator.hasNext:()Z
+     550: ifeq          957
+     553: aload         11
+     555: invokeinterface #1137,  1         // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     560: checkcast     #23                 // class java/util/Map$Entry
+     563: astore        12
+     565: aload         12
+     567: invokeinterface #1140,  1         // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     572: checkcast     #30                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+     575: astore        13
+     577: aload         13
+     579: invokevirtual #1144               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getAmount:()D
+     582: dstore        14
+     584: iconst_0
+     585: istore        16
+     587: aload_1
+     588: ifnull        659
+     591: aload         13
+     593: invokevirtual #1148               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getId:()Ljava/util/UUID;
+     596: getstatic     #1152               // Field net/minecraft/world/item/Item.BASE_ATTACK_DAMAGE_UUID:Ljava/util/UUID;
+     599: if_acmpne     633
+     602: dload         14
+     604: aload_1
+     605: getstatic     #1158               // Field net/minecraft/world/entity/ai/attributes/Attributes.ATTACK_DAMAGE:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+     608: invokevirtual #1162               // Method net/minecraft/world/entity/player/Player.getAttributeBaseValue:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
+     611: dadd
+     612: dstore        14
+     614: dload         14
+     616: aload_0
+     617: getstatic     #1168               // Field net/minecraft/world/entity/MobType.UNDEFINED:Lnet/minecraft/world/entity/MobType;
+     620: invokestatic  #1172               // Method net/minecraft/world/item/enchantment/EnchantmentHelper.getDamageBonus:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/MobType;)F
+     623: f2d
+     624: dadd
+     625: dstore        14
+     627: iconst_1
+     628: istore        16
+     630: goto          659
+     633: aload         13
+     635: invokevirtual #1148               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getId:()Ljava/util/UUID;
+     638: getstatic     #1175               // Field net/minecraft/world/item/Item.BASE_ATTACK_SPEED_UUID:Ljava/util/UUID;
+     641: if_acmpne     659
+     644: dload         14
+     646: aload_1
+     647: getstatic     #1178               // Field net/minecraft/world/entity/ai/attributes/Attributes.ATTACK_SPEED:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+     650: invokevirtual #1162               // Method net/minecraft/world/entity/player/Player.getAttributeBaseValue:(Lnet/minecraft/world/entity/ai/attributes/Attribute;)D
+     653: dadd
+     654: dstore        14
+     656: iconst_1
+     657: istore        16
+     659: aload         13
+     661: invokevirtual #1182               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getOperation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     664: getstatic     #1186               // Field net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.MULTIPLY_BASE:Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     667: if_acmpeq     718
+     670: aload         13
+     672: invokevirtual #1182               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getOperation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     675: getstatic     #1189               // Field net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.MULTIPLY_TOTAL:Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     678: if_acmpeq     718
+     681: aload         12
+     683: invokeinterface #1191,  1         // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     688: checkcast     #1193               // class net/minecraft/world/entity/ai/attributes/Attribute
+     691: getstatic     #1196               // Field net/minecraft/world/entity/ai/attributes/Attributes.KNOCKBACK_RESISTANCE:Lnet/minecraft/world/entity/ai/attributes/Attribute;
+     694: invokevirtual #1198               // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     697: ifeq          711
+     700: dload         14
+     702: ldc2_w        #1199               // double 10.0d
+     705: dmul
+     706: dstore        17
+     708: goto          726
+     711: dload         14
+     713: dstore        17
+     715: goto          726
+     718: dload         14
+     720: ldc2_w        #1201               // double 100.0d
+     723: dmul
+     724: dstore        17
+     726: iload         16
+     728: ifeq          803
+     731: aload_3
+     732: invokestatic  #1205               // Method net/minecraft/network/chat/CommonComponents.space:()Lnet/minecraft/network/chat/MutableComponent;
+     735: aload         13
+     737: invokevirtual #1182               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getOperation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     740: invokevirtual #1208               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.toValue:()I
+     743: invokedynamic #1212,  0           // InvokeDynamic #6:makeConcatWithConstants:(I)Ljava/lang/String;
+     748: iconst_2
+     749: anewarray     #1042               // class java/lang/Object
+     752: dup
+     753: iconst_0
+     754: getstatic     #1214               // Field ATTRIBUTE_MODIFIER_FORMAT:Ljava/text/DecimalFormat;
+     757: dload         17
+     759: invokevirtual #1219               // Method java/text/DecimalFormat.format:(D)Ljava/lang/String;
+     762: aastore
+     763: dup
+     764: iconst_1
+     765: aload         12
+     767: invokeinterface #1191,  1         // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     772: checkcast     #1193               // class net/minecraft/world/entity/ai/attributes/Attribute
+     775: invokevirtual #1221               // Method net/minecraft/world/entity/ai/attributes/Attribute.getDescriptionId:()Ljava/lang/String;
+     778: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     781: aastore
+     782: invokestatic  #1067               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+     785: invokevirtual #944                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+     788: getstatic     #1224               // Field net/minecraft/ChatFormatting.DARK_GREEN:Lnet/minecraft/ChatFormatting;
+     791: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     794: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     799: pop
+     800: goto          954
+     803: dload         14
+     805: dconst_0
+     806: dcmpl
+     807: ifle          876
+     810: aload_3
+     811: aload         13
+     813: invokevirtual #1182               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getOperation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     816: invokevirtual #1208               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.toValue:()I
+     819: invokedynamic #1227,  0           // InvokeDynamic #7:makeConcatWithConstants:(I)Ljava/lang/String;
+     824: iconst_2
+     825: anewarray     #1042               // class java/lang/Object
+     828: dup
+     829: iconst_0
+     830: getstatic     #1214               // Field ATTRIBUTE_MODIFIER_FORMAT:Ljava/text/DecimalFormat;
+     833: dload         17
+     835: invokevirtual #1219               // Method java/text/DecimalFormat.format:(D)Ljava/lang/String;
+     838: aastore
+     839: dup
+     840: iconst_1
+     841: aload         12
+     843: invokeinterface #1191,  1         // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     848: checkcast     #1193               // class net/minecraft/world/entity/ai/attributes/Attribute
+     851: invokevirtual #1221               // Method net/minecraft/world/entity/ai/attributes/Attribute.getDescriptionId:()Ljava/lang/String;
+     854: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     857: aastore
+     858: invokestatic  #1067               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+     861: getstatic     #1230               // Field net/minecraft/ChatFormatting.BLUE:Lnet/minecraft/ChatFormatting;
+     864: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     867: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     872: pop
+     873: goto          954
+     876: dload         14
+     878: dconst_0
+     879: dcmpg
+     880: ifge          954
+     883: dload         17
+     885: ldc2_w        #1231               // double -1.0d
+     888: dmul
+     889: dstore        17
+     891: aload_3
+     892: aload         13
+     894: invokevirtual #1182               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getOperation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+     897: invokevirtual #1208               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.toValue:()I
+     900: invokedynamic #1235,  0           // InvokeDynamic #8:makeConcatWithConstants:(I)Ljava/lang/String;
+     905: iconst_2
+     906: anewarray     #1042               // class java/lang/Object
+     909: dup
+     910: iconst_0
+     911: getstatic     #1214               // Field ATTRIBUTE_MODIFIER_FORMAT:Ljava/text/DecimalFormat;
+     914: dload         17
+     916: invokevirtual #1219               // Method java/text/DecimalFormat.format:(D)Ljava/lang/String;
+     919: aastore
+     920: dup
+     921: iconst_1
+     922: aload         12
+     924: invokeinterface #1191,  1         // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     929: checkcast     #1193               // class net/minecraft/world/entity/ai/attributes/Attribute
+     932: invokevirtual #1221               // Method net/minecraft/world/entity/ai/attributes/Attribute.getDescriptionId:()Ljava/lang/String;
+     935: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     938: aastore
+     939: invokestatic  #1067               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+     942: getstatic     #1238               // Field net/minecraft/ChatFormatting.RED:Lnet/minecraft/ChatFormatting;
+     945: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     948: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     953: pop
+     954: goto          543
+     957: iinc          8, 1
+     960: goto          461
+     963: aload_0
+     964: invokevirtual #1017               // Method hasTag:()Z
+     967: ifeq          1234
+     970: iload         5
+     972: getstatic     #1241               // Field net/minecraft/world/item/ItemStack$TooltipPart.UNBREAKABLE:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+     975: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+     978: ifeq          1012
+     981: aload_0
+     982: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+     985: ldc           #104                // String Unbreakable
+     987: invokevirtual #617                // Method net/minecraft/nbt/CompoundTag.getBoolean:(Ljava/lang/String;)Z
+     990: ifeq          1012
+     993: aload_3
+     994: ldc_w         #1243               // String item.unbreakable
+     997: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+    1000: getstatic     #1230               // Field net/minecraft/ChatFormatting.BLUE:Lnet/minecraft/ChatFormatting;
+    1003: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+    1006: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1011: pop
+    1012: iload         5
+    1014: getstatic     #1246               // Field net/minecraft/world/item/ItemStack$TooltipPart.CAN_DESTROY:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+    1017: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+    1020: ifeq          1123
+    1023: aload_0
+    1024: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+    1027: ldc           #110                // String CanDestroy
+    1029: bipush        9
+    1031: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+    1034: ifeq          1123
+    1037: aload_0
+    1038: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+    1041: ldc           #110                // String CanDestroy
+    1043: bipush        8
+    1045: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+    1048: astore        6
+    1050: aload         6
+    1052: invokevirtual #1247               // Method net/minecraft/nbt/ListTag.isEmpty:()Z
+    1055: ifne          1123
+    1058: aload_3
+    1059: getstatic     #1113               // Field net/minecraft/network/chat/CommonComponents.EMPTY:Lnet/minecraft/network/chat/Component;
+    1062: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1067: pop
+    1068: aload_3
+    1069: ldc_w         #1249               // String item.canBreak
+    1072: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+    1075: getstatic     #999                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+    1078: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+    1081: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1086: pop
+    1087: iconst_0
+    1088: istore        7
+    1090: iload         7
+    1092: aload         6
+    1094: invokevirtual #1080               // Method net/minecraft/nbt/ListTag.size:()I
+    1097: if_icmpge     1123
+    1100: aload_3
+    1101: aload         6
+    1103: iload         7
+    1105: invokevirtual #1083               // Method net/minecraft/nbt/ListTag.getString:(I)Ljava/lang/String;
+    1108: invokestatic  #1253               // Method expandBlockState:(Ljava/lang/String;)Ljava/util/Collection;
+    1111: invokeinterface #1257,  2         // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+    1116: pop
+    1117: iinc          7, 1
+    1120: goto          1090
+    1123: iload         5
+    1125: getstatic     #1260               // Field net/minecraft/world/item/ItemStack$TooltipPart.CAN_PLACE:Lnet/minecraft/world/item/ItemStack$TooltipPart;
+    1128: invokestatic  #1010               // Method shouldShowInTooltip:(ILnet/minecraft/world/item/ItemStack$TooltipPart;)Z
+    1131: ifeq          1234
+    1134: aload_0
+    1135: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+    1138: ldc           #113                // String CanPlaceOn
+    1140: bipush        9
+    1142: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+    1145: ifeq          1234
+    1148: aload_0
+    1149: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+    1152: ldc           #113                // String CanPlaceOn
+    1154: bipush        8
+    1156: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+    1159: astore        6
+    1161: aload         6
+    1163: invokevirtual #1247               // Method net/minecraft/nbt/ListTag.isEmpty:()Z
+    1166: ifne          1234
+    1169: aload_3
+    1170: getstatic     #1113               // Field net/minecraft/network/chat/CommonComponents.EMPTY:Lnet/minecraft/network/chat/Component;
+    1173: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1178: pop
+    1179: aload_3
+    1180: ldc_w         #1262               // String item.canPlace
+    1183: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+    1186: getstatic     #999                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+    1189: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+    1192: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1197: pop
+    1198: iconst_0
+    1199: istore        7
+    1201: iload         7
+    1203: aload         6
+    1205: invokevirtual #1080               // Method net/minecraft/nbt/ListTag.size:()I
+    1208: if_icmpge     1234
+    1211: aload_3
+    1212: aload         6
+    1214: iload         7
+    1216: invokevirtual #1083               // Method net/minecraft/nbt/ListTag.getString:(I)Ljava/lang/String;
+    1219: invokestatic  #1253               // Method expandBlockState:(Ljava/lang/String;)Ljava/util/Collection;
+    1222: invokeinterface #1257,  2         // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+    1227: pop
+    1228: iinc          7, 1
+    1231: goto          1201
+    1234: aload_2
+    1235: invokeinterface #979,  1          // InterfaceMethod net/minecraft/world/item/TooltipFlag.isAdvanced:()Z
+    1240: ifeq          1371
+    1243: aload_0
+    1244: invokevirtual #611                // Method isDamaged:()Z
+    1247: ifeq          1292
+    1250: aload_3
+    1251: ldc_w         #1264               // String item.durability
+    1254: iconst_2
+    1255: anewarray     #1042               // class java/lang/Object
+    1258: dup
+    1259: iconst_0
+    1260: aload_0
+    1261: invokevirtual #665                // Method getMaxDamage:()I
+    1264: aload_0
+    1265: invokevirtual #247                // Method getDamageValue:()I
+    1268: isub
+    1269: invokestatic  #1059               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1272: aastore
+    1273: dup
+    1274: iconst_1
+    1275: aload_0
+    1276: invokevirtual #665                // Method getMaxDamage:()I
+    1279: invokestatic  #1059               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1282: aastore
+    1283: invokestatic  #1067               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+    1286: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1291: pop
+    1292: aload_3
+    1293: getstatic     #270                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+    1296: aload_0
+    1297: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+    1300: invokeinterface #567,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+    1305: invokevirtual #575                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+    1308: invokestatic  #996                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+    1311: getstatic     #1267               // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+    1314: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+    1317: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1322: pop
+    1323: aload_0
+    1324: invokevirtual #1017               // Method hasTag:()Z
+    1327: ifeq          1371
+    1330: aload_3
+    1331: ldc_w         #1269               // String item.nbt_tags
+    1334: iconst_1
+    1335: anewarray     #1042               // class java/lang/Object
+    1338: dup
+    1339: iconst_0
+    1340: aload_0
+    1341: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+    1344: invokevirtual #1273               // Method net/minecraft/nbt/CompoundTag.getAllKeys:()Ljava/util/Set;
+    1347: invokeinterface #1276,  1         // InterfaceMethod java/util/Set.size:()I
+    1352: invokestatic  #1059               // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+    1355: aastore
+    1356: invokestatic  #1067               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+    1359: getstatic     #1267               // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+    1362: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+    1365: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1370: pop
+    1371: aload_1
+    1372: ifnull        1402
+    1375: aload_0
+    1376: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+    1379: aload_1
+    1380: invokevirtual #1011               // Method net/minecraft/world/entity/player/Player.level:()Lnet/minecraft/world/level/Level;
+    1383: invokevirtual #1280               // Method net/minecraft/world/level/Level.enabledFeatures:()Lnet/minecraft/world/flag/FeatureFlagSet;
+    1386: invokevirtual #341                // Method net/minecraft/world/item/Item.isEnabled:(Lnet/minecraft/world/flag/FeatureFlagSet;)Z
+    1389: ifne          1402
+    1392: aload_3
+    1393: getstatic     #1282               // Field DISABLED_ITEM_TOOLTIP:Lnet/minecraft/network/chat/Component;
+    1396: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+    1401: pop
+    1402: aload_0
+    1403: aload_1
+    1404: aload_3
+    1405: aload_2
+    1406: invokestatic  #1288               // Method net/minecraftforge/event/ForgeEventFactory.onItemTooltip:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)Lnet/minecraftforge/event/entity/player/ItemTooltipEvent;
+    1409: pop
+    1410: aload_3
+    1411: areturn
+    Exception table:
+       from    to  target type
+         392   419   422   Class java/lang/Exception
+
+  private static boolean shouldShowInTooltip(int, net.minecraft.world.item.ItemStack$TooltipPart);
+    Code:
+       0: iload_0
+       1: aload_1
+       2: invokevirtual #1321               // Method net/minecraft/world/item/ItemStack$TooltipPart.getMask:()I
+       5: iand
+       6: ifne          13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: ireturn
+
+  private int getHideFlags();
+    Code:
+       0: aload_0
+       1: invokevirtual #1017               // Method hasTag:()Z
+       4: ifeq          33
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: ldc           #116                // String HideFlags
+      13: bipush        99
+      15: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      18: ifeq          33
+      21: aload_0
+      22: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      25: ldc           #116                // String HideFlags
+      27: invokevirtual #1054               // Method net/minecraft/nbt/CompoundTag.getInt:(Ljava/lang/String;)I
+      30: goto          41
+      33: aload_0
+      34: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+      37: aload_0
+      38: invokevirtual #1326               // Method net/minecraft/world/item/Item.getDefaultTooltipHideFlags:(Lnet/minecraft/world/item/ItemStack;)I
+      41: ireturn
+
+  public void hideTooltipPart(net.minecraft.world.item.ItemStack$TooltipPart);
+    Code:
+       0: aload_0
+       1: invokevirtual #1330               // Method getOrCreateTag:()Lnet/minecraft/nbt/CompoundTag;
+       4: astore_2
+       5: aload_2
+       6: ldc           #116                // String HideFlags
+       8: aload_2
+       9: ldc           #116                // String HideFlags
+      11: invokevirtual #1054               // Method net/minecraft/nbt/CompoundTag.getInt:(Ljava/lang/String;)I
+      14: aload_1
+      15: invokevirtual #1321               // Method net/minecraft/world/item/ItemStack$TooltipPart.getMask:()I
+      18: ior
+      19: invokevirtual #1334               // Method net/minecraft/nbt/CompoundTag.putInt:(Ljava/lang/String;I)V
+      22: return
+
+  public static void appendEnchantmentNames(java.util.List<net.minecraft.network.chat.Component>, net.minecraft.nbt.ListTag);
+    Code:
+       0: iconst_0
+       1: istore_2
+       2: iload_2
+       3: aload_1
+       4: invokevirtual #1080               // Method net/minecraft/nbt/ListTag.size:()I
+       7: if_icmpge     44
+      10: aload_1
+      11: iload_2
+      12: invokevirtual #1339               // Method net/minecraft/nbt/ListTag.getCompound:(I)Lnet/minecraft/nbt/CompoundTag;
+      15: astore_3
+      16: getstatic     #1343               // Field net/minecraft/core/registries/BuiltInRegistries.ENCHANTMENT:Lnet/minecraft/core/Registry;
+      19: aload_3
+      20: invokestatic  #1347               // Method net/minecraft/world/item/enchantment/EnchantmentHelper.getEnchantmentId:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/resources/ResourceLocation;
+      23: invokeinterface #1353,  2         // InterfaceMethod net/minecraft/core/Registry.getOptional:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+      28: aload_0
+      29: aload_3
+      30: invokedynamic #1363,  0           // InvokeDynamic #9:accept:(Ljava/util/List;Lnet/minecraft/nbt/CompoundTag;)Ljava/util/function/Consumer;
+      35: invokevirtual #193                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      38: iinc          2, 1
+      41: goto          2
+      44: return
+
+  private static java.util.Collection<net.minecraft.network.chat.Component> expandBlockState(java.lang.String);
+    Code:
+       0: getstatic     #1370               // Field net/minecraft/core/registries/BuiltInRegistries.BLOCK:Lnet/minecraft/core/DefaultedRegistry;
+       3: invokeinterface #1374,  1         // InterfaceMethod net/minecraft/core/DefaultedRegistry.asLookup:()Lnet/minecraft/core/HolderLookup$RegistryLookup;
+       8: aload_0
+       9: iconst_1
+      10: invokestatic  #1378               // Method net/minecraft/commands/arguments/blocks/BlockStateParser.parseForTesting:(Lnet/minecraft/core/HolderLookup;Ljava/lang/String;Z)Lcom/mojang/datafixers/util/Either;
+      13: invokedynamic #1387,  0           // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+      18: invokedynamic #1394,  0           // InvokeDynamic #11:apply:()Ljava/util/function/Function;
+      23: invokevirtual #1400               // Method com/mojang/datafixers/util/Either.map:(Ljava/util/function/Function;Ljava/util/function/Function;)Ljava/lang/Object;
+      26: checkcast     #1125               // class java/util/Collection
+      29: areturn
+      30: astore_1
+      31: iconst_1
+      32: anewarray     #19                 // class net/minecraft/network/chat/Component
+      35: dup
+      36: iconst_0
+      37: ldc_w         #1402               // String missingno
+      40: invokestatic  #996                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      43: getstatic     #1267               // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+      46: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      49: aastore
+      50: invokestatic  #1405               // Method com/google/common/collect/Lists.newArrayList:([Ljava/lang/Object;)Ljava/util/ArrayList;
+      53: areturn
+    Exception table:
+       from    to  target type
+           0    29    30   Class com/mojang/brigadier/exceptions/CommandSyntaxException
+
+  public boolean hasFoil();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #1412               // Method net/minecraft/world/item/Item.isFoil:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ireturn
+
+  public net.minecraft.world.item.Rarity getRarity();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #1415               // Method net/minecraft/world/item/Item.getRarity:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/Rarity;
+       8: areturn
+
+  public boolean isEnchantable();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: invokevirtual #1418               // Method net/minecraft/world/item/Item.isEnchantable:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ifne          13
+      11: iconst_0
+      12: ireturn
+      13: aload_0
+      14: invokevirtual #1421               // Method isEnchanted:()Z
+      17: ifne          24
+      20: iconst_1
+      21: goto          25
+      24: iconst_0
+      25: ireturn
+
+  public void enchant(net.minecraft.world.item.enchantment.Enchantment, int);
+    Code:
+       0: aload_0
+       1: invokevirtual #1330               // Method getOrCreateTag:()Lnet/minecraft/nbt/CompoundTag;
+       4: pop
+       5: aload_0
+       6: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       9: ldc           #86                 // String Enchantments
+      11: bipush        9
+      13: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      16: ifne          36
+      19: aload_0
+      20: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      23: ldc           #86                 // String Enchantments
+      25: new           #891                // class net/minecraft/nbt/ListTag
+      28: dup
+      29: invokespecial #892                // Method net/minecraft/nbt/ListTag."<init>":()V
+      32: invokevirtual #590                // Method net/minecraft/nbt/CompoundTag.put:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      35: pop
+      36: aload_0
+      37: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      40: ldc           #86                 // String Enchantments
+      42: bipush        10
+      44: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      47: astore_3
+      48: aload_3
+      49: aload_1
+      50: invokestatic  #1426               // Method net/minecraft/world/item/enchantment/EnchantmentHelper.getEnchantmentId:(Lnet/minecraft/world/item/enchantment/Enchantment;)Lnet/minecraft/resources/ResourceLocation;
+      53: iload_2
+      54: i2b
+      55: invokestatic  #1430               // Method net/minecraft/world/item/enchantment/EnchantmentHelper.storeEnchantment:(Lnet/minecraft/resources/ResourceLocation;I)Lnet/minecraft/nbt/CompoundTag;
+      58: invokevirtual #1431               // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+      61: pop
+      62: return
+
+  public boolean isEnchanted();
+    Code:
+       0: aload_0
+       1: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       4: ifnull        44
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: ldc           #86                 // String Enchantments
+      13: bipush        9
+      15: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      18: ifeq          44
+      21: aload_0
+      22: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      25: ldc           #86                 // String Enchantments
+      27: bipush        10
+      29: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      32: invokevirtual #1247               // Method net/minecraft/nbt/ListTag.isEmpty:()Z
+      35: ifne          42
+      38: iconst_1
+      39: goto          43
+      42: iconst_0
+      43: ireturn
+      44: iconst_0
+      45: ireturn
+
+  public void addTagElement(java.lang.String, net.minecraft.nbt.Tag);
+    Code:
+       0: aload_0
+       1: invokevirtual #1330               // Method getOrCreateTag:()Lnet/minecraft/nbt/CompoundTag;
+       4: aload_1
+       5: aload_2
+       6: invokevirtual #590                // Method net/minecraft/nbt/CompoundTag.put:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+       9: pop
+      10: return
+
+  public boolean isFramed();
+    Code:
+       0: aload_0
+       1: getfield      #1439               // Field entityRepresentation:Lnet/minecraft/world/entity/Entity;
+       4: instanceof    #1441               // class net/minecraft/world/entity/decoration/ItemFrame
+       7: ireturn
+
+  public void setEntityRepresentation(net.minecraft.world.entity.Entity);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1439               // Field entityRepresentation:Lnet/minecraft/world/entity/Entity;
+       5: return
+
+  public net.minecraft.world.entity.decoration.ItemFrame getFrame();
+    Code:
+       0: aload_0
+       1: getfield      #1439               // Field entityRepresentation:Lnet/minecraft/world/entity/Entity;
+       4: instanceof    #1441               // class net/minecraft/world/entity/decoration/ItemFrame
+       7: ifeq          20
+      10: aload_0
+      11: invokevirtual #1450               // Method getEntityRepresentation:()Lnet/minecraft/world/entity/Entity;
+      14: checkcast     #1441               // class net/minecraft/world/entity/decoration/ItemFrame
+      17: goto          21
+      20: aconst_null
+      21: areturn
+
+  public net.minecraft.world.entity.Entity getEntityRepresentation();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifne          14
+       7: aload_0
+       8: getfield      #1439               // Field entityRepresentation:Lnet/minecraft/world/entity/Entity;
+      11: goto          15
+      14: aconst_null
+      15: areturn
+
+  public int getBaseRepairCost();
+    Code:
+       0: aload_0
+       1: invokevirtual #1017               // Method hasTag:()Z
+       4: ifeq          32
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: ldc           #107                // String RepairCost
+      13: iconst_3
+      14: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      17: ifeq          32
+      20: aload_0
+      21: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      24: ldc           #107                // String RepairCost
+      26: invokevirtual #1054               // Method net/minecraft/nbt/CompoundTag.getInt:(Ljava/lang/String;)I
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public void setRepairCost(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #1330               // Method getOrCreateTag:()Lnet/minecraft/nbt/CompoundTag;
+       4: ldc           #107                // String RepairCost
+       6: iload_1
+       7: invokevirtual #1334               // Method net/minecraft/nbt/CompoundTag.putInt:(Ljava/lang/String;I)V
+      10: return
+
+  public com.google.common.collect.Multimap<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier> getAttributeModifiers(net.minecraft.world.entity.EquipmentSlot);
+    Code:
+       0: aload_0
+       1: invokevirtual #1017               // Method hasTag:()Z
+       4: ifeq          183
+       7: aload_0
+       8: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      11: ldc_w         #1458               // String AttributeModifiers
+      14: bipush        9
+      16: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      19: ifeq          183
+      22: invokestatic  #1464               // Method com/google/common/collect/HashMultimap.create:()Lcom/google/common/collect/HashMultimap;
+      25: astore_2
+      26: aload_0
+      27: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      30: ldc_w         #1458               // String AttributeModifiers
+      33: bipush        10
+      35: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      38: astore_3
+      39: iconst_0
+      40: istore        4
+      42: iload         4
+      44: aload_3
+      45: invokevirtual #1080               // Method net/minecraft/nbt/ListTag.size:()I
+      48: if_icmpge     180
+      51: aload_3
+      52: iload         4
+      54: invokevirtual #1339               // Method net/minecraft/nbt/ListTag.getCompound:(I)Lnet/minecraft/nbt/CompoundTag;
+      57: astore        5
+      59: aload         5
+      61: ldc_w         #1466               // String Slot
+      64: bipush        8
+      66: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      69: ifeq          90
+      72: aload         5
+      74: ldc_w         #1466               // String Slot
+      77: invokevirtual #278                // Method net/minecraft/nbt/CompoundTag.getString:(Ljava/lang/String;)Ljava/lang/String;
+      80: aload_1
+      81: invokevirtual #1115               // Method net/minecraft/world/entity/EquipmentSlot.getName:()Ljava/lang/String;
+      84: invokevirtual #1467               // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      87: ifeq          174
+      90: getstatic     #1470               // Field net/minecraft/core/registries/BuiltInRegistries.ATTRIBUTE:Lnet/minecraft/core/Registry;
+      93: aload         5
+      95: ldc_w         #1472               // String AttributeName
+      98: invokevirtual #278                // Method net/minecraft/nbt/CompoundTag.getString:(Ljava/lang/String;)Ljava/lang/String;
+     101: invokestatic  #1476               // Method net/minecraft/resources/ResourceLocation.tryParse:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     104: invokeinterface #1353,  2         // InterfaceMethod net/minecraft/core/Registry.getOptional:(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/Optional;
+     109: astore        6
+     111: aload         6
+     113: invokevirtual #1479               // Method java/util/Optional.isPresent:()Z
+     116: ifeq          174
+     119: aload         5
+     121: invokestatic  #1483               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.load:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+     124: astore        7
+     126: aload         7
+     128: ifnull        174
+     131: aload         7
+     133: invokevirtual #1148               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getId:()Ljava/util/UUID;
+     136: invokevirtual #1489               // Method java/util/UUID.getLeastSignificantBits:()J
+     139: lconst_0
+     140: lcmp
+     141: ifeq          174
+     144: aload         7
+     146: invokevirtual #1148               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.getId:()Ljava/util/UUID;
+     149: invokevirtual #1492               // Method java/util/UUID.getMostSignificantBits:()J
+     152: lconst_0
+     153: lcmp
+     154: ifeq          174
+     157: aload_2
+     158: aload         6
+     160: invokevirtual #1493               // Method java/util/Optional.get:()Ljava/lang/Object;
+     163: checkcast     #1193               // class net/minecraft/world/entity/ai/attributes/Attribute
+     166: aload         7
+     168: invokeinterface #1495,  3         // InterfaceMethod com/google/common/collect/Multimap.put:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     173: pop
+     174: iinc          4, 1
+     177: goto          42
+     180: goto          193
+     183: aload_0
+     184: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+     187: aload_1
+     188: aload_0
+     189: invokevirtual #1498               // Method net/minecraft/world/item/Item.getAttributeModifiers:(Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)Lcom/google/common/collect/Multimap;
+     192: astore_2
+     193: aload_0
+     194: aload_1
+     195: aload_2
+     196: invokestatic  #1501               // Method net/minecraftforge/common/ForgeHooks.getAttributeModifiers:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;Lcom/google/common/collect/Multimap;)Lcom/google/common/collect/Multimap;
+     199: astore_2
+     200: aload_2
+     201: areturn
+
+  public void addAttributeModifier(net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier, net.minecraft.world.entity.EquipmentSlot);
+    Code:
+       0: aload_0
+       1: invokevirtual #1330               // Method getOrCreateTag:()Lnet/minecraft/nbt/CompoundTag;
+       4: pop
+       5: aload_0
+       6: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+       9: ldc_w         #1458               // String AttributeModifiers
+      12: bipush        9
+      14: invokevirtual #297                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      17: ifne          38
+      20: aload_0
+      21: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      24: ldc_w         #1458               // String AttributeModifiers
+      27: new           #891                // class net/minecraft/nbt/ListTag
+      30: dup
+      31: invokespecial #892                // Method net/minecraft/nbt/ListTag."<init>":()V
+      34: invokevirtual #590                // Method net/minecraft/nbt/CompoundTag.put:(Ljava/lang/String;Lnet/minecraft/nbt/Tag;)Lnet/minecraft/nbt/Tag;
+      37: pop
+      38: aload_0
+      39: getfield      #299                // Field tag:Lnet/minecraft/nbt/CompoundTag;
+      42: ldc_w         #1458               // String AttributeModifiers
+      45: bipush        10
+      47: invokevirtual #889                // Method net/minecraft/nbt/CompoundTag.getList:(Ljava/lang/String;I)Lnet/minecraft/nbt/ListTag;
+      50: astore        4
+      52: aload_2
+      53: invokevirtual #1508               // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.save:()Lnet/minecraft/nbt/CompoundTag;
+      56: astore        5
+      58: aload         5
+      60: ldc_w         #1472               // String AttributeName
+      63: getstatic     #1470               // Field net/minecraft/core/registries/BuiltInRegistries.ATTRIBUTE:Lnet/minecraft/core/Registry;
+      66: aload_1
+      67: invokeinterface #1509,  2         // InterfaceMethod net/minecraft/core/Registry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      72: invokevirtual #575                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      75: invokevirtual #579                // Method net/minecraft/nbt/CompoundTag.putString:(Ljava/lang/String;Ljava/lang/String;)V
+      78: aload_3
+      79: ifnull        94
+      82: aload         5
+      84: ldc_w         #1466               // String Slot
+      87: aload_3
+      88: invokevirtual #1115               // Method net/minecraft/world/entity/EquipmentSlot.getName:()Ljava/lang/String;
+      91: invokevirtual #579                // Method net/minecraft/nbt/CompoundTag.putString:(Ljava/lang/String;Ljava/lang/String;)V
+      94: aload         4
+      96: aload         5
+      98: invokevirtual #1431               // Method net/minecraft/nbt/ListTag.add:(Ljava/lang/Object;)Z
+     101: pop
+     102: return
+
+  public net.minecraft.network.chat.Component getDisplayName();
+    Code:
+       0: invokestatic  #936                // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+       3: aload_0
+       4: invokevirtual #938                // Method getHoverName:()Lnet/minecraft/network/chat/Component;
+       7: invokevirtual #944                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+      10: astore_1
+      11: aload_0
+      12: invokevirtual #960                // Method hasCustomHoverName:()Z
+      15: ifeq          26
+      18: aload_1
+      19: getstatic     #966                // Field net/minecraft/ChatFormatting.ITALIC:Lnet/minecraft/ChatFormatting;
+      22: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      25: pop
+      26: aload_1
+      27: invokestatic  #1516               // Method net/minecraft/network/chat/ComponentUtils.wrapInSquareBrackets:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+      30: astore_2
+      31: aload_0
+      32: invokevirtual #338                // Method isEmpty:()Z
+      35: ifne          59
+      38: aload_2
+      39: aload_0
+      40: invokevirtual #948                // Method getRarity:()Lnet/minecraft/world/item/Rarity;
+      43: invokevirtual #954                // Method net/minecraft/world/item/Rarity.getStyleModifier:()Ljava/util/function/UnaryOperator;
+      46: invokevirtual #958                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Ljava/util/function/UnaryOperator;)Lnet/minecraft/network/chat/MutableComponent;
+      49: aload_0
+      50: invokedynamic #1525,  0           // InvokeDynamic #12:apply:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/function/UnaryOperator;
+      55: invokevirtual #958                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Ljava/util/function/UnaryOperator;)Lnet/minecraft/network/chat/MutableComponent;
+      58: pop
+      59: aload_2
+      60: areturn
+
+  public boolean hasAdventureModePlaceTagForBlock(net.minecraft.core.Registry<net.minecraft.world.level.block.Block>, net.minecraft.world.level.block.state.pattern.BlockInWorld);
+    Code:
+       0: aload_0
+       1: getfield      #1528               // Field adventurePlaceCheck:Lnet/minecraft/world/item/AdventureModeCheck;
+       4: ifnonnull     20
+       7: aload_0
+       8: new           #1530               // class net/minecraft/world/item/AdventureModeCheck
+      11: dup
+      12: ldc           #113                // String CanPlaceOn
+      14: invokespecial #1531               // Method net/minecraft/world/item/AdventureModeCheck."<init>":(Ljava/lang/String;)V
+      17: putfield      #1528               // Field adventurePlaceCheck:Lnet/minecraft/world/item/AdventureModeCheck;
+      20: aload_0
+      21: getfield      #1528               // Field adventurePlaceCheck:Lnet/minecraft/world/item/AdventureModeCheck;
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: invokevirtual #1534               // Method net/minecraft/world/item/AdventureModeCheck.test:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+      30: ireturn
+
+  public boolean hasAdventureModeBreakTagForBlock(net.minecraft.core.Registry<net.minecraft.world.level.block.Block>, net.minecraft.world.level.block.state.pattern.BlockInWorld);
+    Code:
+       0: aload_0
+       1: getfield      #1540               // Field adventureBreakCheck:Lnet/minecraft/world/item/AdventureModeCheck;
+       4: ifnonnull     20
+       7: aload_0
+       8: new           #1530               // class net/minecraft/world/item/AdventureModeCheck
+      11: dup
+      12: ldc           #110                // String CanDestroy
+      14: invokespecial #1531               // Method net/minecraft/world/item/AdventureModeCheck."<init>":(Ljava/lang/String;)V
+      17: putfield      #1540               // Field adventureBreakCheck:Lnet/minecraft/world/item/AdventureModeCheck;
+      20: aload_0
+      21: getfield      #1540               // Field adventureBreakCheck:Lnet/minecraft/world/item/AdventureModeCheck;
+      24: aload_0
+      25: aload_1
+      26: aload_2
+      27: invokevirtual #1534               // Method net/minecraft/world/item/AdventureModeCheck.test:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Registry;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+      30: ireturn
+
+  public int getPopTime();
+    Code:
+       0: aload_0
+       1: getfield      #826                // Field popTime:I
+       4: ireturn
+
+  public void setPopTime(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #826                // Field popTime:I
+       5: return
+
+  public int getCount();
+    Code:
+       0: aload_0
+       1: invokevirtual #338                // Method isEmpty:()Z
+       4: ifeq          11
+       7: iconst_0
+       8: goto          15
+      11: aload_0
+      12: getfield      #235                // Field count:I
+      15: ireturn
+
+  public void setCount(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #235                // Field count:I
+       5: return
+
+  public void grow(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: invokevirtual #348                // Method getCount:()I
+       5: iload_1
+       6: iadd
+       7: invokevirtual #371                // Method setCount:(I)V
+      10: return
+
+  public void shrink(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: ineg
+       3: invokevirtual #1548               // Method grow:(I)V
+       6: return
+
+  public void onUseTick(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, int);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_1
+       5: aload_2
+       6: aload_0
+       7: iload_3
+       8: invokevirtual #1553               // Method net/minecraft/world/item/Item.onUseTick:(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V
+      11: return
+
+  public void onDestroyed(net.minecraft.world.entity.item.ItemEntity);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_1
+       5: invokevirtual #1560               // Method net/minecraft/world/item/Item.onDestroyed:(Lnet/minecraft/world/entity/item/ItemEntity;)V
+       8: return
+
+  public boolean isEdible();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #1565               // Method net/minecraft/world/item/Item.isEdible:()Z
+       7: ireturn
+
+  public void deserializeNBT(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_1
+       1: invokestatic  #1568               // Method of:(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/item/ItemStack;
+       4: astore_2
+       5: aload_0
+       6: aload_2
+       7: invokevirtual #614                // Method getTag:()Lnet/minecraft/nbt/CompoundTag;
+      10: invokevirtual #174                // Method setTag:(Lnet/minecraft/nbt/CompoundTag;)V
+      13: aload_2
+      14: getfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+      17: ifnull        28
+      20: aload_0
+      21: aload_2
+      22: getfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+      25: invokevirtual #1571               // Method deserializeCaps:(Lnet/minecraft/nbt/CompoundTag;)V
+      28: return
+
+  private void forgeInit();
+    Code:
+       0: aload_0
+       1: getfield      #233                // Field delegate:Lnet/minecraft/core/Holder$Reference;
+       4: ifnull        32
+       7: aload_0
+       8: aload_0
+       9: invokedynamic #1583,  0           // InvokeDynamic #13:get:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/function/Supplier;
+      14: invokevirtual #1587               // Method gatherCapabilities:(Ljava/util/function/Supplier;)V
+      17: aload_0
+      18: getfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+      21: ifnull        32
+      24: aload_0
+      25: aload_0
+      26: getfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+      29: invokevirtual #1571               // Method deserializeCaps:(Lnet/minecraft/nbt/CompoundTag;)V
+      32: return
+
+  public net.minecraft.sounds.SoundEvent getDrinkingSound();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #1591               // Method net/minecraft/world/item/Item.getDrinkingSound:()Lnet/minecraft/sounds/SoundEvent;
+       7: areturn
+
+  public net.minecraft.sounds.SoundEvent getEatingSound();
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: invokevirtual #1594               // Method net/minecraft/world/item/Item.getEatingSound:()Lnet/minecraft/sounds/SoundEvent;
+       7: areturn
+
+  public void deserializeNBT(net.minecraft.nbt.Tag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #204                // class net/minecraft/nbt/CompoundTag
+       5: invokevirtual #1597               // Method deserializeNBT:(Lnet/minecraft/nbt/CompoundTag;)V
+       8: return
+
+  private net.minecraftforge.common.capabilities.ICapabilityProvider lambda$forgeInit$10();
+    Code:
+       0: aload_0
+       1: getfield      #219                // Field item:Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_0
+       6: getfield      #214                // Field capNBT:Lnet/minecraft/nbt/CompoundTag;
+       9: invokevirtual #1601               // Method net/minecraft/world/item/Item.initCapabilities:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraftforge/common/capabilities/ICapabilityProvider;
+      12: areturn
+
+  private net.minecraft.network.chat.Style lambda$getDisplayName$9(net.minecraft.network.chat.Style);
+    Code:
+       0: aload_1
+       1: new           #40                 // class net/minecraft/network/chat/HoverEvent
+       4: dup
+       5: getstatic     #1605               // Field net/minecraft/network/chat/HoverEvent$Action.SHOW_ITEM:Lnet/minecraft/network/chat/HoverEvent$Action;
+       8: new           #43                 // class net/minecraft/network/chat/HoverEvent$ItemStackInfo
+      11: dup
+      12: aload_0
+      13: invokespecial #1608               // Method net/minecraft/network/chat/HoverEvent$ItemStackInfo."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+      16: invokespecial #1611               // Method net/minecraft/network/chat/HoverEvent."<init>":(Lnet/minecraft/network/chat/HoverEvent$Action;Ljava/lang/Object;)V
+      19: invokevirtual #1617               // Method net/minecraft/network/chat/Style.withHoverEvent:(Lnet/minecraft/network/chat/HoverEvent;)Lnet/minecraft/network/chat/Style;
+      22: areturn
+
+  private static java.util.List lambda$expandBlockState$8(net.minecraft.commands.arguments.blocks.BlockStateParser$TagResult);
+    Code:
+       0: aload_0
+       1: invokevirtual #1621               // Method net/minecraft/commands/arguments/blocks/BlockStateParser$TagResult.tag:()Lnet/minecraft/core/HolderSet;
+       4: invokeinterface #1626,  1         // InterfaceMethod net/minecraft/core/HolderSet.stream:()Ljava/util/stream/Stream;
+       9: invokedynamic #1633,  0           // InvokeDynamic #14:apply:()Ljava/util/function/Function;
+      14: invokeinterface #1638,  2         // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      19: invokestatic  #1644               // Method java/util/stream/Collectors.toList:()Ljava/util/stream/Collector;
+      22: invokeinterface #1648,  2         // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      27: checkcast     #971                // class java/util/List
+      30: areturn
+
+  private static net.minecraft.network.chat.MutableComponent lambda$expandBlockState$7(net.minecraft.core.Holder);
+    Code:
+       0: aload_0
+       1: invokeinterface #161,  1          // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       6: checkcast     #1652               // class net/minecraft/world/level/block/Block
+       9: invokevirtual #1654               // Method net/minecraft/world/level/block/Block.getName:()Lnet/minecraft/network/chat/MutableComponent;
+      12: getstatic     #1267               // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+      15: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      18: areturn
+
+  private static java.util.List lambda$expandBlockState$6(net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult);
+    Code:
+       0: iconst_1
+       1: anewarray     #19                 // class net/minecraft/network/chat/Component
+       4: dup
+       5: iconst_0
+       6: aload_0
+       7: invokevirtual #1659               // Method net/minecraft/commands/arguments/blocks/BlockStateParser$BlockResult.blockState:()Lnet/minecraft/world/level/block/state/BlockState;
+      10: invokevirtual #1665               // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+      13: invokevirtual #1654               // Method net/minecraft/world/level/block/Block.getName:()Lnet/minecraft/network/chat/MutableComponent;
+      16: getstatic     #1267               // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+      19: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      22: aastore
+      23: invokestatic  #1405               // Method com/google/common/collect/Lists.newArrayList:([Ljava/lang/Object;)Ljava/util/ArrayList;
+      26: areturn
+
+  private static void lambda$appendEnchantmentNames$5(java.util.List, net.minecraft.nbt.CompoundTag, net.minecraft.world.item.enchantment.Enchantment);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: aload_1
+       3: invokestatic  #1671               // Method net/minecraft/world/item/enchantment/EnchantmentHelper.getEnchantmentLevel:(Lnet/minecraft/nbt/CompoundTag;)I
+       6: invokevirtual #1677               // Method net/minecraft/world/item/enchantment/Enchantment.getFullname:(I)Lnet/minecraft/network/chat/Component;
+       9: invokeinterface #974,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      14: pop
+      15: return
+
+  private net.minecraft.world.InteractionResult lambda$onItemUseFirst$4(net.minecraft.world.item.context.UseOnContext, net.minecraft.world.item.context.UseOnContext);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #1681               // Method net/minecraft/world/item/Item.onItemUseFirst:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+       9: areturn
+
+  private net.minecraft.world.InteractionResult lambda$useOn$3(net.minecraft.world.item.context.UseOnContext, net.minecraft.world.item.context.UseOnContext);
+    Code:
+       0: aload_0
+       1: invokevirtual #142                // Method getItem:()Lnet/minecraft/world/item/Item;
+       4: aload_1
+       5: invokevirtual #1684               // Method net/minecraft/world/item/Item.useOn:(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+       8: areturn
+
+  private static void lambda$static$2(java.text.DecimalFormat);
+    Code:
+       0: aload_0
+       1: getstatic     #1048               // Field java/util/Locale.ROOT:Ljava/util/Locale;
+       4: invokestatic  #1692               // Method java/text/DecimalFormatSymbols.getInstance:(Ljava/util/Locale;)Ljava/text/DecimalFormatSymbols;
+       7: invokevirtual #1696               // Method java/text/DecimalFormat.setDecimalFormatSymbols:(Ljava/text/DecimalFormatSymbols;)V
+      10: return
+
+  private static com.mojang.datafixers.kinds.App lambda$static$1(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+       0: aload_0
+       1: getstatic     #270                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+       4: invokeinterface #1703,  1         // InterfaceMethod net/minecraft/core/DefaultedRegistry.byNameCodec:()Lcom/mojang/serialization/Codec;
+       9: ldc_w         #274                // String id
+      12: invokeinterface #1709,  2         // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      17: invokedynamic #1713,  0           // InvokeDynamic #15:apply:()Ljava/util/function/Function;
+      22: invokevirtual #1719               // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      25: getstatic     #1723               // Field com/mojang/serialization/Codec.INT:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+      28: ldc_w         #289                // String Count
+      31: invokeinterface #1726,  2         // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      36: invokedynamic #1729,  0           // InvokeDynamic #16:apply:()Ljava/util/function/Function;
+      41: invokevirtual #1719               // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      44: getstatic     #1731               // Field net/minecraft/nbt/CompoundTag.CODEC:Lcom/mojang/serialization/Codec;
+      47: ldc_w         #294                // String tag
+      50: invokeinterface #1734,  2         // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+      55: invokedynamic #1740,  0           // InvokeDynamic #17:apply:()Ljava/util/function/Function;
+      60: invokevirtual #1719               // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      63: invokevirtual #1744               // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P3;
+      66: aload_0
+      67: invokedynamic #1754,  0           // InvokeDynamic #18:apply:()Lcom/mojang/datafixers/util/Function3;
+      72: invokevirtual #1757               // Method com/mojang/datafixers/Products$P3.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function3;)Lcom/mojang/datafixers/kinds/App;
+      75: areturn
+
+  private static java.util.Optional lambda$static$0(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokevirtual #614                // Method getTag:()Lnet/minecraft/nbt/CompoundTag;
+       4: invokestatic  #1763               // Method java/util/Optional.ofNullable:(Ljava/lang/Object;)Ljava/util/Optional;
+       7: areturn
+
+  static {};
+    Code:
+       0: invokedynamic #1770,  0           // InvokeDynamic #19:apply:()Ljava/util/function/Function;
+       5: invokestatic  #1773               // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+       8: putstatic     #1774               // Field CODEC:Lcom/mojang/serialization/Codec;
+      11: invokestatic  #1780               // Method com/mojang/logging/LogUtils.getLogger:()Lorg/slf4j/Logger;
+      14: putstatic     #312                // Field LOGGER:Lorg/slf4j/Logger;
+      17: new           #2                  // class net/minecraft/world/item/ItemStack
+      20: dup
+      21: aconst_null
+      22: checkcast     #1782               // class java/lang/Void
+      25: invokespecial #1784               // Method "<init>":(Ljava/lang/Void;)V
+      28: putstatic     #322                // Field EMPTY:Lnet/minecraft/world/item/ItemStack;
+      31: new           #1216               // class java/text/DecimalFormat
+      34: dup
+      35: ldc_w         #1786               // String #.##
+      38: invokespecial #1787               // Method java/text/DecimalFormat."<init>":(Ljava/lang/String;)V
+      41: invokedynamic #1794,  0           // InvokeDynamic #20:accept:()Ljava/util/function/Consumer;
+      46: invokestatic  #1800               // Method net/minecraft/Util.make:(Ljava/lang/Object;Ljava/util/function/Consumer;)Ljava/lang/Object;
+      49: checkcast     #1216               // class java/text/DecimalFormat
+      52: putstatic     #1214               // Field ATTRIBUTE_MODIFIER_FORMAT:Ljava/text/DecimalFormat;
+      55: ldc_w         #1802               // String item.disabled
+      58: invokestatic  #1071               // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      61: getstatic     #1238               // Field net/minecraft/ChatFormatting.RED:Lnet/minecraft/ChatFormatting;
+      64: invokevirtual #969                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      67: putstatic     #1282               // Field DISABLED_ITEM_TOOLTIP:Lnet/minecraft/network/chat/Component;
+      70: getstatic     #1804               // Field net/minecraft/network/chat/Style.EMPTY:Lnet/minecraft/network/chat/Style;
+      73: getstatic     #1807               // Field net/minecraft/ChatFormatting.DARK_PURPLE:Lnet/minecraft/ChatFormatting;
+      76: invokevirtual #1811               // Method net/minecraft/network/chat/Style.withColor:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/Style;
+      79: iconst_1
+      80: invokestatic  #1816               // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      83: invokevirtual #1820               // Method net/minecraft/network/chat/Style.withItalic:(Ljava/lang/Boolean;)Lnet/minecraft/network/chat/Style;
+      86: putstatic     #1085               // Field LORE_STYLE:Lnet/minecraft/network/chat/Style;
+      89: return
+}
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8

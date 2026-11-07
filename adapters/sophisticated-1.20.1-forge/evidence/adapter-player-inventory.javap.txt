@@ -1,0 +1,63 @@
+Compiled from "PlayerInventorySlots.java"
+final class dev.mcpmcp.sophisticated.PlayerInventorySlots {
+  static boolean owns(net.minecraft.world.inventory.Slot, net.minecraft.world.Container);
+    Code:
+       0: aload_0
+       1: ifnull        8
+       4: aload_1
+       5: ifnonnull     10
+       8: iconst_0
+       9: ireturn
+      10: aload_0
+      11: invokevirtual #13                 // Method net/minecraft/world/inventory/Slot.m_150661_:()I
+      14: istore_2
+      15: iload_2
+      16: iflt          25
+      19: iload_2
+      20: bipush        36
+      22: if_icmplt     27
+      25: iconst_0
+      26: ireturn
+      27: aload_0
+      28: instanceof    #15                 // class net/minecraftforge/items/SlotItemHandler
+      31: ifeq          83
+      34: aload_0
+      35: invokevirtual #19                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      38: ldc           #15                 // class net/minecraftforge/items/SlotItemHandler
+      40: if_acmpeq     45
+      43: iconst_0
+      44: ireturn
+      45: aload_0
+      46: checkcast     #15                 // class net/minecraftforge/items/SlotItemHandler
+      49: invokevirtual #23                 // Method net/minecraftforge/items/SlotItemHandler.getItemHandler:()Lnet/minecraftforge/items/IItemHandler;
+      52: astore_3
+      53: aload_3
+      54: ifnull        81
+      57: aload_3
+      58: invokevirtual #19                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      61: ldc           #25                 // class net/minecraftforge/items/wrapper/InvWrapper
+      63: if_acmpne     81
+      66: aload_3
+      67: checkcast     #25                 // class net/minecraftforge/items/wrapper/InvWrapper
+      70: invokevirtual #29                 // Method net/minecraftforge/items/wrapper/InvWrapper.getInv:()Lnet/minecraft/world/Container;
+      73: aload_1
+      74: if_acmpne     81
+      77: iconst_1
+      78: goto          82
+      81: iconst_0
+      82: ireturn
+      83: aload_0
+      84: getfield      #35                 // Field net/minecraft/world/inventory/Slot.f_40218_:Lnet/minecraft/world/Container;
+      87: aload_1
+      88: if_acmpne     95
+      91: iconst_1
+      92: goto          96
+      95: iconst_0
+      96: ireturn
+
+  private dev.mcpmcp.sophisticated.PlayerInventorySlots();
+    Code:
+       0: aload_0
+       1: invokespecial #46                 // Method java/lang/Object."<init>":()V
+       4: return
+}

@@ -1,0 +1,41 @@
+{
+  "note": "Binary class comparison only, not a repeat gameplay test; final-delta explicitly reruns changed paths.",
+  "comparisons": [
+    {
+      "id": "mcpmcp.jei",
+      "baseline_sha256": "aa1996960655b5182068b1ba8b262102ae8a0d2784d75506896c16cd6f3308d1",
+      "final_sha256": "447315b48676a80f244957a1126b1f7af27a534f4b7104dfaa81915322037663",
+      "all_class_bytes_equal": true
+    },
+    {
+      "id": "mcpmcp.refinedstorage",
+      "baseline_sha256": "69bea201737d6e112f56b9cd8c35c5d313cfa9a810742926378962e6c11291f2",
+      "final_sha256": "b621527d326aceaf670ffa1664b2423dc2c262cec7a8e5625f77a1c9db4c1a09",
+      "all_class_bytes_equal": true
+    },
+    {
+      "id": "mcpmcp.malum",
+      "baseline_sha256": "497c926f2bb9ee8ab61edf84e06301f539d1af0bad50c9bf9df38a6818663c3f",
+      "final_sha256": "3baf3201958019f01fdd9c2550252c340592b96b8b5501d01c5d00fe9829df42",
+      "all_class_bytes_equal": true
+    },
+    {
+      "id": "mcpmcp.wizards_reborn",
+      "baseline_sha256": "7d7f775620905f2267058da5f11a2f0ad818314c22247ba7a3673aa7cc1559aa",
+      "final_sha256": "8cbdade9879651de3882ac014a95693dd15154ad15a06c1f2770226d5e0b4c8f",
+      "all_class_bytes_equal": true
+    },
+    {
+      "id": "mcpmcp.botania",
+      "baseline_sha256": "65d6486eac7f8c5a64e8026c96e08c8bd4abd882f3de57ea0bdf14f5d79d5fa0",
+      "final_sha256": "e712056ea148a35774a582730bdb36914e89b51e78ee87e9691ac7b3013e9301",
+      "all_class_bytes_equal": true
+    },
+    {
+      "id": "mcpmcp.avaritia",
+      "baseline_sha256": "0a82e7b48c190992446dec0df779d7030e792f3a7243dfb768f4109bf5d66a54",
+      "final_sha256": "33a3e2ffc1472171b49166882388557baf3c9119de7c9fc2df8945c88265a2a8",
+      "all_class_bytes_equal": true
+    }
+  ]
+}

@@ -69,14 +69,17 @@ final class LiveAccess implements AdapterBase.Access {
   return Jsons.obj("menu_slot",index,"container_slot",s.getContainerSlot(),"slot_class",s.getClass().getName(),"role",role(menu,s,index),"active",s.isActive(),"may_pickup",s.mayPickup(Minecraft.getInstance().player),"max_stack",s.getMaxStackSize(),"item",item(s.getItem()));
  }
  private String role(AbstractContainerMenu menu,Slot s,int index) throws Exception {
-  if(s.container==Minecraft.getInstance().player.getInventory())return "player_inventory";
-  if(type.equals("furnace"))return MenuGuard.furnaceRole(s.getClass().getName());
+  return role(menu,s,index,Minecraft.getInstance().player.getInventory());
+ }
+ String role(AbstractContainerMenu menu,Slot s,int index,net.minecraft.world.Container playerInventory) throws Exception {
+  if(type.equals("furnace"))return PlayerInventorySlots.owns(s,playerInventory)?"player_inventory":MenuGuard.furnaceRole(s.getClass().getName());
   for(var entry:upgradeMap(menu).entrySet()){Object upgrade=entry.getValue();if(((List<?>)call(upgrade,"getSlots")).contains(s)){
    if(Class.forName(Contract.CRAFTING).isInstance(upgrade)){
     if(((List<?>)call(upgrade,"getRecipeSlots")).contains(s))return "crafting_input";
     if(s instanceof ResultSlot)return "crafting_result";
    }return "upgrade_settings_read_only";
   }}
+  if(PlayerInventorySlots.owns(s,playerInventory))return "player_inventory";
   if((boolean)call(menu,"isStorageInventorySlot",new Class<?>[]{int.class},index))return "storage";
   return "upgrade_install_or_extra_read_only";
  }
@@ -103,7 +106,7 @@ final class LiveAccess implements AdapterBase.Access {
   Minecraft mc=world();AbstractContainerMenu menu=guarded(mc,args,op.equals("open"));
   if(op.equals("open")){
    int i=Jsons.integer(args,"inventory_slot",-1);ItemStack stack=mc.player.getInventory().getItem(i);
-   checkItem(stack,args);if(!Class.forName("net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem").isInstance(stack.getItem()))throw new IllegalStateException("backpack_item_required");
+   checkItemIdCount(stack,args);if(!Class.forName("net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem").isInstance(stack.getItem()))throw new IllegalStateException("backpack_item_required");
    BackpackSnapshot expected=backpackSnapshots.get(Jsons.str(args,"stack_token",""));if(expected==null||expected.slot()!=i||!ItemStack.matches(stack,expected.stack()))throw new IllegalStateException("backpack_stack_changed_refresh_observation");
    Object packet=Class.forName("net.p3pp3rf1y.sophisticatedbackpacks.network.BackpackOpenMessage").getConstructor(int.class).newInstance(i);
    Object handler=Class.forName("net.p3pp3rf1y.sophisticatedbackpacks.network.SBPPacketHandler").getField("INSTANCE").get(null);
@@ -113,20 +116,31 @@ final class LiveAccess implements AdapterBase.Access {
   }
   if(op.equals("sort")){call(menu,"sort");return submitted(op,menu);}
   if(op.equals("select_crafting")){int slot=Jsons.integer(args,"upgrade_slot",-1);Object upgrade=upgradeMap(menu).get(slot);if(!Class.forName(Contract.CRAFTING).isInstance(upgrade))throw new IllegalStateException("crafting_upgrade_not_present");call(menu,"setOpenTabId",new Class<?>[]{int.class},slot);return submitted(op,menu);}
-  if(op.startsWith("quick_move")){
-   if(Jsons.integer(args,"state_id",-1)!=menu.getStateId())throw new IllegalStateException("menu_state_changed");
-   int index=Jsons.integer(args,"slot",-1);if(index<0||index>=slotCount(menu))throw new IllegalArgumentException("slot_out_of_range");Slot slot=menu.getSlot(index);
-   checkItem(slot.getItem(),args);String role=role(menu,slot,index);
-   MenuGuard.quickMove(role,slot.isActive(),slot.mayPickup(mc.player));
-   if(!type.equals("furnace")&&(boolean)call(menu,"isInaccessibleSlot",new Class<?>[]{int.class},index))throw new IllegalStateException("slot_inaccessible");
-   if(op.equals("quick_move_packet"))mc.getConnection().send(new ServerboundContainerClickPacket(menu.containerId,menu.getStateId(),index,0,ClickType.QUICK_MOVE,menu.getCarried().copy(),new Int2ObjectOpenHashMap<>()));
+  if(op.startsWith("quick_move"))return quickMove(op,menu,args,mc.player,mc.player.getInventory(),(packet,index)->{
+   if(packet)mc.getConnection().send(new ServerboundContainerClickPacket(menu.containerId,menu.getStateId(),index,0,ClickType.QUICK_MOVE,menu.getCarried().copy(),new Int2ObjectOpenHashMap<>()));
    else {if(mc.gameMode==null)throw new IllegalStateException("game_mode_unavailable");mc.gameMode.handleInventoryMouseClick(menu.containerId,index,0,ClickType.QUICK_MOVE,mc.player);}
-   return submitted(op,menu);
-  }throw new IllegalArgumentException("unsupported_operation");
+  });
+  throw new IllegalArgumentException("unsupported_operation");
  }
- private static void checkItem(ItemStack s,JsonObject a) {if(s.isEmpty()||!BuiltInRegistries.ITEM.getKey(s.getItem()).toString().equals(Jsons.str(a,"expected_item",""))||s.getCount()!=Jsons.integer(a,"expected_count",-1))throw new IllegalStateException("slot_item_or_count_changed");}
+ @FunctionalInterface interface QuickMoveSender {void submit(boolean packet,int index) throws Exception;}
+ // Both delivery routes pass this exact guard before the one native submission.
+ JsonObject quickMove(String op,AbstractContainerMenu menu,JsonObject args,net.minecraft.world.entity.player.Player player,net.minecraft.world.Container inventory,QuickMoveSender sender) throws Exception {
+  if(!op.equals("quick_move")&&!op.equals("quick_move_packet"))throw new IllegalArgumentException("unsupported_operation");
+  if(Jsons.integer(args,"state_id",-1)!=menu.getStateId())throw new IllegalStateException("menu_state_changed");
+  int index=Jsons.integer(args,"slot",-1);if(index<0||index>=slotCount(menu))throw new IllegalArgumentException("slot_out_of_range");Slot slot=menu.getSlot(index);
+  checkItem(slot.getItem(),args);String role=role(menu,slot,index,inventory);
+  MenuGuard.quickMove(role,slot.isActive(),slot.mayPickup(player));
+  if(!type.equals("furnace")&&(boolean)call(menu,"isInaccessibleSlot",new Class<?>[]{int.class},index))throw new IllegalStateException("slot_inaccessible");
+  sender.submit(op.equals("quick_move_packet"),index);
+  return submitted(op,menu);
+ }
+ static void checkItem(ItemStack s,JsonObject a) {
+  checkItemIdCount(s,a);
+  if(!StackIdentity.hash(s).equals(Jsons.str(a,"expected_stack_hash","")))throw new IllegalStateException("slot_stack_changed_refresh_observation");
+ }
+ private static void checkItemIdCount(ItemStack s,JsonObject a) {if(s.isEmpty()||!BuiltInRegistries.ITEM.getKey(s.getItem()).toString().equals(Jsons.str(a,"expected_item",""))||s.getCount()!=Jsons.integer(a,"expected_count",-1))throw new IllegalStateException("slot_item_or_count_changed");}
  private static JsonObject submitted(String op,AbstractContainerMenu m) {return Jsons.obj("delivery","submitted","operation",op,"menu_id",m.containerId,"server_confirmed",false,"verification","read_mod_observer_after_server_synchronization");}
- private static JsonObject item(ItemStack s) {return Jsons.obj("item_id",BuiltInRegistries.ITEM.getKey(s.getItem()).toString(),"count",s.getCount(),"has_nbt",s.hasTag());}
+ private static JsonObject item(ItemStack s) {return Jsons.obj("item_id",BuiltInRegistries.ITEM.getKey(s.getItem()).toString(),"count",s.getCount(),"has_nbt",s.hasTag(),"stack_hash",StackIdentity.hash(s));}
  private static Object call(Object obj,String name) throws Exception {return call(obj,name,new Class<?>[0]);}
  private static Object call(Object obj,String name,Class<?>[] signature,Object...args) throws Exception {return obj.getClass().getMethod(name,signature).invoke(obj,args);}
 }

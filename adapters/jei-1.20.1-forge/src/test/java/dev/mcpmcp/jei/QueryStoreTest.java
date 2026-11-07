@@ -21,12 +21,12 @@ final class QueryStoreTest {
         rejected(()->store.page(runtime,2,"recipes",query,pinned.next(),1,1,Stream::empty,QueryStoreTest::row));
         JsonObject other=query.deepCopy();other.addProperty("query","different");rejected(()->store.page(runtime,1,"recipes",other,pinned.next(),1,1,Stream::empty,QueryStoreTest::row));
         clock.addAndGet(30001);rejected(()->store.page(runtime,1,"recipes",query,pinned.next(),1,1,Stream::empty,QueryStoreTest::row));
-        String handle=store.remember(runtime,1,"category","recipe");
+        String handle=store.remember(runtime,1,"category","recipe","focus");
         AdapterTest.check(store.resolve(runtime,1,handle).recipe().equals("recipe"),"opaque handle resolves same recipe");
         rejected(()->store.resolve(new Object(),1,handle));rejected(()->store.resolve(runtime,2,handle));
         clock.addAndGet(120001);rejected(()->store.resolve(runtime,1,handle));
-        String old=store.remember(runtime,1,"category",0);for(int i=0;i<512;i++)store.remember(runtime,1,"category",i);rejected(()->store.resolve(runtime,1,old));
-        String live=store.remember(runtime,1,"category",1);store.clear();rejected(()->store.resolve(runtime,1,live));
+        String old=store.remember(runtime,1,"category",0,"focus");for(int i=0;i<512;i++)store.remember(runtime,1,"category",i,"focus");rejected(()->store.resolve(runtime,1,old));
+        String live=store.remember(runtime,1,"category",1,"focus");store.clear();rejected(()->store.resolve(runtime,1,live));
         int[] closed={0};QueryStore.Page exp=store.page(runtime,1,"recipes",query,"",1,1,()->Stream.of(1,2).onClose(()->closed[0]++),QueryStoreTest::row);
         clock.addAndGet(30001);store.page(runtime,1,"other",query,"",1,1,Stream::empty,QueryStoreTest::row);
         AdapterTest.check(closed[0]==1,"expired iterator stream closed");store.clear();

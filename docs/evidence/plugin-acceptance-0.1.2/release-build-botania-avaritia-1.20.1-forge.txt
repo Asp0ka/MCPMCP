@@ -1,0 +1,105 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :avaritia:clean
+> Task :botania:clean
+
+> Task :verifyTargets
+botania 1.20.1-453-FORGE 222755726437ed9d908c58462b604c10d137c3756a4a228ab459dbbaf8bd4c19 javap_classes=26
+avaritia 1.3.9.0 a2f823fb0f226bfb25d10534a880150403aca5ce6b593f93a5e8ee6a7fb47d51 javap_classes=16
+Exact target metadata and reflected members verified
+
+> Task :avaritia:compileJava
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :avaritia:processResources
+> Task :avaritia:classes
+> Task :avaritia:jar
+> Task :avaritia:downloadMcpConfig
+> Task :avaritia:extractSrg
+> Task :avaritia:createMcpToSrg
+
+> Task :avaritia:reobfJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :avaritia:jarJar SKIPPED
+> Task :avaritia:reobfJarJar SKIPPED
+> Task :avaritia:assemble
+> Task :avaritia:compileTestJava
+> Task :avaritia:processTestResources NO-SOURCE
+> Task :avaritia:testClasses
+
+> Task :avaritia:adapterContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Botania/Avaritia public contracts: 86 checks passed
+
+> Task :avaritia:test
+> Task :avaritia:check
+> Task :avaritia:build
+
+> Task :botania:compileJava
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+
+> Task :botania:processResources
+> Task :botania:classes
+> Task :botania:jar
+> Task :botania:downloadMcpConfig
+> Task :botania:extractSrg
+> Task :botania:createMcpToSrg
+
+> Task :botania:reobfJar
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+> Task :botania:jarJar SKIPPED
+> Task :botania:reobfJarJar SKIPPED
+> Task :botania:assemble
+> Task :botania:compileTestJava
+> Task :botania:processTestResources NO-SOURCE
+> Task :botania:testClasses
+
+> Task :botania:adapterContractTest
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+Botania/Avaritia public contracts: 86 checks passed
+
+> Task :botania:test
+> Task :botania:check
+> Task :botania:build
+
+> Task :packageAdapters
+[
+  {
+    "mod_id": "botania",
+    "adapter": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\botania-avaritia-1.20.1-forge\\dist\\MCPMCP-Plugin\\botania-222755726437ed9d908c58462b604c10\\adapter.jar",
+    "adapter_sha256": "e712056ea148a35774a582730bdb36914e89b51e78ee87e9691ac7b3013e9301",
+    "target_sha256": "222755726437ed9d908c58462b604c10d137c3756a4a228ab459dbbaf8bd4c19",
+    "target_mod_version": "1.20.1-453-FORGE",
+    "target_implementation_version": "1.20.1-453-FORGE",
+    "service_providers": [
+      "dev.mcpmcp.magic.BotaniaProvider"
+    ],
+    "reobfuscated": true
+  },
+  {
+    "mod_id": "avaritia",
+    "adapter": "D:\\AI\\Hermes\\workspace\\MCP Minecraft Plus\\adapters\\botania-avaritia-1.20.1-forge\\dist\\MCPMCP-Plugin\\avaritia-a2f823fb0f226bfb25d10534a8801504\\adapter.jar",
+    "adapter_sha256": "33a3e2ffc1472171b49166882388557baf3c9119de7c9fc2df8945c88265a2a8",
+    "target_sha256": "a2f823fb0f226bfb25d10534a880150403aca5ce6b593f93a5e8ee6a7fb47d51",
+    "target_mod_version": "1.3.9.0",
+    "target_implementation_version": "1.20.1-1.3.9.0-beta4",
+    "service_providers": [
+      "dev.mcpmcp.magic.AvaritiaProvider"
+    ],
+    "reobfuscated": true
+  }
+]
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 29s
+24 actionable tasks: 24 executed

@@ -28,10 +28,31 @@ MCPMCP 核心仍只依赖原版协议与客户端公开 API。下列插件是可
 - 12 个 adapter 冷加载成功，`get_plugins` 全部 `active`、`java_loaded=true`、`java_error=null`。
 - JEI 15.20.0.130：分类、材料分页、橡木木板配方、槽位与催化剂读回；背包合成格填料后原木减少 1、结果槽出现 4 木板，游标为空、菜单未关闭。
 - 各插件根 observer 返回合同或明确 `available=false` 原因；Ars/Iron's/Traveloptics 读到法力与法术书，Malum 返回 569 条候选、Wizard's Reborn 返回 479 条候选并成功分页；Botania/Avaritia 的局部方块与菜单合同可用。
-- Botania/Avaritia 的配方由各自 JEI 分类暴露（如 `botania:mana_pool`、`avaritia:extreme_craft`），客户端 `RecipeManager` 的直读结果为空；查询这两类动态配方请使用 `jei.recipes(category=...)`，插件本身不会伪造配方。
-- 菜单型插件（RS 网格、精妙存储/背包、更多熔炉）需要真实方块与已打开菜单，未在本轮全部构造正向场景；未验证部分按各自 GUIDE 的前提执行，报告以实际读回为准。
+- Botania/Avaritia 的客户端 RecipeManager 查询已读到实际配方；空页 complete=false 仅表示当前扫描预算尚未命中，必须继续 next_cursor。额外的查看器动态配方也可用 JEI 分类查询（如 botania:mana_pool、avaritia:extreme_craft）。
+- 后续独立存档 `MCPMCP Plugin Acceptance` 已构造 RS 存取/自动合成、精妙存储搬运/排序持久化、背包升级合成、熔炉加工、Botania 灌注、Avaritia 实时9×9配方、Malum 插入/取回、Wissen 生成、Ars 机器/施法，以及铁咒/Traveloptics 施法场景。明细见 `plugin-acceptance-progress.md` 和 `evidence/plugin-acceptance-0.1.2/`；加载成功、客户端同步、提交和真实产物/效果分别记录，不能由代表场景推定全部功能覆盖。
+- 当前审查后的增量修复与最后安装副本必须由 `final-delta.json` 绑定具体 hash 后才可打包。历史场景证明当时的二进制，不能自动代表后来新构建；未覆盖等级、升级、法术、仪式、多人与其他目标版本仍未验证。
 
-## 构建
+## 构建与交付流程
+
+开发脚本需要 Python 3.11+（MCP stdio bridge 本身仍支持 Python 3.10+）。退出目标实例后：
+
+```text
+python scripts/plugin_release.py
+python scripts/install_plugins.py
+python scripts/install_plugins.py --apply
+```
+
+`plugin_release.py` 从明确工程执行所有适配器的 clean/build/reobf 和分发任务，生成按源文件、manifest、GUIDE、产物 SHA-256 绑定的构建凭据；不是搜索任意旧 JAR 来匹配。安装器要求完整12插件集合、唯一目标版本/full hash、SPI/provider、规范路径及目标进程均通过预检；全量暂存再复查，保留备份和用户支持文件。系统不能提供跨进程事务，复制过程中不要另外启动游戏。
+
+完成实际增量验收、保存 `docs/evidence/plugin-acceptance-0.1.2/final-delta.json`、提交源代码后运行：
+
+```text
+python scripts/package.py
+```
+
+主包包含核心、精确提交的源码、文档，以及 `optional/MCPMCP-Plugins-1.20.1-forge.zip`（测试实例12插件）和 `optional/MCPMCP-JEI-Variants-1.20.1-forge.zip`（JEI15.20/15.74二选一）。两个 JEI 变体都分发，但不得同时安装同 ID 的插件。包内 manifest 和 SHA256SUMS 记录对应提交、构建/安装/验收凭据及 hash；打包先写临时文件并验证后替换正式包。
+
+## 独立构建
 
 每个 adapter 是独立 Gradle 工程，`compileOnly` 引用 `core`/`plugin-api` 0.1.2 与目标模组 JAR，产物经 `reobfJar`。JEI 两个版本分别构建：
 

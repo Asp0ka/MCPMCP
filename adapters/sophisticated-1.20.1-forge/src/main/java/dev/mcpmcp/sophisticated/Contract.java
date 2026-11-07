@@ -27,7 +27,8 @@ public final class Contract {
    properties.add("upgrade_slot",integer(0,4095));required.add("upgrade_slot");
   } else if(operation.startsWith("quick_move")) {
    properties.add("slot",integer(0,16383));properties.add("expected_item",string(256));properties.add("expected_count",integer(1,Integer.MAX_VALUE));properties.add("state_id",integer(0,32767));
-   required.addAll(List.of("slot","expected_item","expected_count","state_id"));
+   properties.add("expected_stack_hash",Jsons.obj("type","string","minLength",64,"maxLength",64,"pattern","[0-9a-f]{64}"));
+   required.addAll(List.of("slot","expected_item","expected_count","expected_stack_hash","state_id"));
   } else if(!operation.equals("sort")) throw new IllegalArgumentException("unsupported_operation");
   return Jsons.obj("type","object","properties",properties,"required",required,"additionalProperties",false);
  }
@@ -37,8 +38,8 @@ public final class Contract {
  public static JsonObject describe(String type) {
   String kind=namespace(type);JsonArray actions=new JsonArray();
   for(String op:operations(type))actions.add(Jsons.obj("name",kind+"."+op,"input_schema",schema(op),"transport",transport(op),"permission",permission(op)));
-  return Jsons.obj("kind",kind,"source","exact_jar_client_menu","contract_version",1,"observation_schema",observationSchema(),"actions",actions,
-   "preconditions",List.of("world and connection present","exact target JAR binding; SophisticatedCore also pinned for storage/backpack","fresh menu_id and identity menu_token from this observer","empty cursor; no other menu is closed","quick_move requires fresh state_id and exact source item/count; active supported native slot only","open requires player inventory menu and verified backpack in inventory slot 0..35"),
+  return Jsons.obj("kind",kind,"source","exact_jar_client_menu","contract_version",2,"observation_schema",observationSchema(),"actions",actions,
+   "preconditions",List.of("world and connection present","exact target JAR binding; SophisticatedCore also pinned for storage/backpack","fresh menu_id and identity menu_token from this observer","empty cursor; no other menu is closed","quick_move and quick_move_packet require fresh state_id, exact source item/count, and expected_stack_hash from slots[].item.stack_hash (full ItemStack.save including NBT and ForgeCaps); active supported native slot only","open requires player inventory menu and verified backpack in inventory slot 0..35"),
    "verification","actions return delivery=submitted; read observer after server synchronization; client prediction is not server confirmation",
    "pagination","offset/limit apply to slots and upgrade containers independently; consult totals and has_more flags",
    "limitations",List.of("only currently open menus; no remote storage scanning","no automatic crafting, recipe mutation, arbitrary upgrade settings, mode/transport changes or server-side writes","unknown upgrades and ghost/filter slots are read-only","single native quick-move follows the mod configuration; destination and quantity are not guaranteed","furnace fuel acceptance requires inventory_slot candidate; no claim to enumerate every fuel"));

@@ -23,8 +23,14 @@ public final class AdapterTest {
             rejects(reads.get(k),"{"+base+"\"limit\":0}");rejects(reads.get(k),"{"+base+"\"limit\":65}");rejects(reads.get(k),"{"+base+"\"scan_budget\":2049}");rejects(reads.get(k),"{"+base+"\"unknown\":true}");
         }
         rejects(reads.get("jei.recipes"),"{}");rejects(reads.get("jei.recipe"),"{}");rejects(reads.get("jei.transfer"),"{}");rejects(actions.get("jei.transfer"),"{\"handle\":\"x\",\"dry_run\":\"false\"}");
+        int invalidBefore=calls[0];
+        for(String invalid:List.of("{\"item_id\":\"\"}","{\"item_id\":\" \"}","{\"item_id\":\"Minecraft:Oak\"}","{\"item_id\":\"minecraft:\"}","{\"item_id\":null}","{\"item_id\":\"minecraft:oak_planks\",\"ingredient_type\":\"test:type\",\"ingredient_uid\":\"oak\"}","{\"ingredient_type\":\"test:type\"}","{\"ingredient_uid\":\"oak\"}","{\"ingredient_type\":\"\",\"ingredient_uid\":\"\"}")) {
+            JsonObject bad=JsonParser.parseString(invalid).getAsJsonObject();bad.addProperty("category","minecraft:crafting");
+            rejects(reads.get("jei.recipes"),bad.toString());
+        }
+        check(calls[0]==invalidBefore,"invalid or empty focus never silently becomes an unfiltered backend query");
         int before=calls[0];JsonObject valid=JsonParser.parseString("{\"handle\":\"opaque-id\",\"dry_run\":false}").getAsJsonObject();
         check(actions.get("jei.transfer").call(valid).get("handle").getAsString().equals("opaque-id")&&calls[0]==before+1,"action forwards exactly once");
-        QueryStoreTest.run();System.out.println("JEI Adapter contracts: "+checks+" checks passed");
+        QueryStoreTest.run();FocusRegressionTest.run();System.out.println("JEI Adapter contracts: "+checks+" checks passed");
     }
 }

@@ -1,0 +1,21 @@
+Compiled from "SpellBook.java"
+public class com.hollingsworth.arsnouveau.common.items.SpellBook$BookCaster extends com.hollingsworth.arsnouveau.api.spell.SpellCaster {
+  public com.hollingsworth.arsnouveau.common.items.SpellBook$BookCaster(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #12                 // Method com/hollingsworth/arsnouveau/api/spell/SpellCaster."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+       5: return
+
+  public com.hollingsworth.arsnouveau.common.items.SpellBook$BookCaster(net.minecraft.nbt.CompoundTag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #19                 // Method com/hollingsworth/arsnouveau/api/spell/SpellCaster."<init>":(Lnet/minecraft/nbt/CompoundTag;)V
+       5: return
+
+  public int getMaxSlots();
+    Code:
+       0: bipush        10
+       2: ireturn
+}
