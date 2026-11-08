@@ -4,7 +4,7 @@
 
 ## 已配置自动化
 
-- Push、PR、手动触发和每周一 02:17 UTC 运行 CI。Python 3.10 在 Ubuntu 22.04 / Windows 2022，Python 3.12 在最新 Ubuntu / Windows 测试；Java 17 / Gradle 8.8 在 Windows 构建、check 和 reobf。CI 构建 JAR 保留 14 天。
+- Push、PR、手动触发和每周一 02:17 UTC 运行 CI。Python 3.12 在最新 Ubuntu / Windows 测试；Java 17 / Gradle 8.8 在 Windows 构建、check 和 reobf。CI 构建 JAR 保留 14 天。
 - Actions 固定完整 commit SHA，Dependabot 每周提出 Actions 更新 PR，最多 3 个；不自动合并，不自动升级 Minecraft、Forge 或适配器目标版本。
 - Issue / PR 模板、CODEOWNERS、贡献与安全说明。
 - CI 默认只读权限，PR 不使用 pull_request_target、不接入游戏凭据或本机客户端文件。
@@ -22,3 +22,5 @@ CI 和 Dependabot 由 GitHub 执行；这不代表有一个常驻 AI 自动修�
 Dependabot 漏洞告警和安全更新已启用；更新只提出 PR，不自动合并。Actions 固定 SHA 并使用只读工作流 token，禁止工作流代审批 PR。
 
 Gradle Wrapper 8.8 使用官方 downloads.gradle.org 直连并校验完整 SHA-256；GitHub 上构建仍保持 TLS 和 wrapper 校验。首次 CI 的 Python 3.10 / Gradle 分发下载遇到 504，已避免不必要的新镜像运行时下载。Windows 回滚测试将临时根目录解析为真实长路径后构造夹具，安装器的路径越界保护保持。
+
+GitHub 向 Python 3.10 运行时和 Gradle 浏览器下载地址返回 504。云端常规检查目前使用镜像已具备的 Python 3.12；Python 3.10 本轮云端未验证，不能把运行时下载失败记为测试通过。Gradle 使用官方 Release API 备用下载与固定 SHA-256 验证，失败后续传，不降低校验。

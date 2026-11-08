@@ -20,12 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-22.04
-            python: '3.10'
           - os: ubuntu-latest
             python: '3.12'
-          - os: windows-2022
-            python: '3.10'
           - os: windows-latest
             python: '3.12'
     steps:
@@ -52,8 +48,10 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6.4.1
+      - name: Provision verified Gradle distribution
+        run: python scripts/ci_setup_gradle.py
       - name: Compile, reobfuscate, and verify contracts
-        run: .\gradlew.bat --no-daemon --console=plain build
+        run: gradle --no-daemon --console=plain build
       - name: Upload build artifact
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
