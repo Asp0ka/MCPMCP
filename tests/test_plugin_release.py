@@ -142,7 +142,8 @@ class ReleaseTest(unittest.TestCase):
         import install_plugins as installer
         from unittest.mock import patch
         with tempfile.TemporaryDirectory() as tmp:
-            root=Path(tmp);pack=root/'fixture';pack.mkdir()
+            # Windows runner TEMP may use an 8.3 alias; contained() returns resolved paths.
+            root=Path(tmp).resolve();pack=root/'fixture';pack.mkdir()
             src=root/'source';src.mkdir()
             for name in ['plugin.json','adapter.jar','GUIDE.md']:(src/name).write_bytes(('new '+name).encode())
             row={'canonical':'fixture-hash','id':'mcpmcp.fixture','manifest_path':src/'plugin.json','jar_path':src/'adapter.jar','guide_path':src/'GUIDE.md'}
