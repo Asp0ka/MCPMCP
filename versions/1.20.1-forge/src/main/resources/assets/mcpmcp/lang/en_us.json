@@ -45,5 +45,21 @@
   "mcpmcp.plugins.reload_failed": "Refresh failed; previous plugin state retained. Check plugin declarations.",
   "mcpmcp.plugins.reloaded": "Plugin list refreshed.",
   "mcpmcp.plugins.override_failed": "Override failed or plugin changed. Refresh and try again.",
-  "mcpmcp.plugins.override_saved": "Compatibility choice saved; Java adapters may require restart."
+  "mcpmcp.plugins.override_saved": "Compatibility choice saved; Java adapters may require restart.",
+  "mcpmcp.server.title": "MCP Server",
+  "mcpmcp.server.first": "Start port",
+  "mcpmcp.server.last": "End port",
+  "mcpmcp.server.auto": "Start with game: %s",
+  "mcpmcp.server.save": "Save startup settings",
+  "mcpmcp.server.start": "Start server (this session)",
+  "mcpmcp.server.stop": "Stop server (this session)",
+  "mcpmcp.server.running": "Running on 127.0.0.1:%s",
+  "mcpmcp.server.stopped": "Server stopped",
+  "mcpmcp.server.session_note": "Start / stop does not change saved settings.",
+  "mcpmcp.server.saved": "Saved. Port changes apply on the next server start.",
+  "mcpmcp.server.save_failed": "Save failed; preferences were not changed.",
+  "mcpmcp.server.invalid_ports": "Use 1024–65535, start ≤ end, at most 11 ports.",
+  "mcpmcp.server.session_failed": "Could not change server state; see status below.",
+  "mcpmcp.server.session_changed": "Session server state updated.",
+  "mcpmcp.server.failure": "Server: %s"
 }

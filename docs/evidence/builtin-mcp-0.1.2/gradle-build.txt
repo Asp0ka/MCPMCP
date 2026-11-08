@@ -1,0 +1,122 @@
+# clean build 在离线模式下首轮触发 ForgeGradle 证书校验失败（工具链环境问题，非源码错误）；
+# 同命令重跑 build 成功，以下为成功输出。
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :assemble UP-TO-DATE
+> Task :check UP-TO-DATE
+> Task :build UP-TO-DATE
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources UP-TO-DATE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :core:assemble UP-TO-DATE
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+
+> Task :core:chatInputTest
+ChatInputTest: 25 checks passed
+
+> Task :core:contractTest
+CoreTest: 56 checks passed
+
+> Task :core:displayedMessagesTest
+DisplayedMessagesTest: 7 checks passed
+
+> Task :core:mcpProtocolTest
+McpProtocolTest: 169 assertions passed
+
+> Task :core:pluginCompatibilityTest
+PluginCompatibilityTest: 12 checks passed
+
+> Task :core:pluginStepTest
+PluginStepTest passed
+
+> Task :core:pluginValidationTest
+PluginValidationTest passed 16
+
+> Task :core:test UP-TO-DATE
+> Task :core:check
+> Task :core:build
+> Task :plugin-api:compileJava UP-TO-DATE
+> Task :plugin-api:processResources NO-SOURCE
+> Task :plugin-api:classes UP-TO-DATE
+> Task :plugin-api:jar UP-TO-DATE
+> Task :plugin-api:assemble UP-TO-DATE
+> Task :plugin-api:compileTestJava NO-SOURCE
+> Task :plugin-api:processTestResources NO-SOURCE
+> Task :plugin-api:testClasses UP-TO-DATE
+> Task :plugin-api:test NO-SOURCE
+> Task :plugin-api:check UP-TO-DATE
+> Task :plugin-api:build UP-TO-DATE
+> Task :versions:compileJava NO-SOURCE
+> Task :versions:processResources NO-SOURCE
+> Task :versions:classes UP-TO-DATE
+> Task :versions:jar UP-TO-DATE
+> Task :versions:assemble UP-TO-DATE
+> Task :versions:compileTestJava NO-SOURCE
+> Task :versions:processTestResources NO-SOURCE
+> Task :versions:testClasses UP-TO-DATE
+> Task :versions:test NO-SOURCE
+> Task :versions:check UP-TO-DATE
+> Task :versions:build UP-TO-DATE
+> Task :versions:1.20.1-forge:compileJava UP-TO-DATE
+> Task :versions:1.20.1-forge:processResources UP-TO-DATE
+> Task :versions:1.20.1-forge:classes UP-TO-DATE
+> Task :versions:1.20.1-forge:jar
+> Task :versions:1.20.1-forge:downloadMcpConfig
+> Task :versions:1.20.1-forge:extractSrg UP-TO-DATE
+> Task :versions:1.20.1-forge:createMcpToSrg UP-TO-DATE
+> Task :versions:1.20.1-forge:reobfJar
+> Task :versions:1.20.1-forge:jarJar SKIPPED
+> Task :versions:1.20.1-forge:reobfJarJar SKIPPED
+> Task :versions:1.20.1-forge:assemble
+> Task :versions:1.20.1-forge:compileTestJava UP-TO-DATE
+> Task :versions:1.20.1-forge:processTestResources NO-SOURCE
+> Task :versions:1.20.1-forge:testClasses UP-TO-DATE
+
+> Task :versions:1.20.1-forge:httpContractTest
+LocalServerTest: 19 assertions passed
+
+> Task :versions:1.20.1-forge:mcpHttpTest
+McpHttpTest: 55 assertions passed
+
+> Task :versions:1.20.1-forge:observContractTest
+ObservContractTest: 44 checks passed (all)
+
+> Task :versions:1.20.1-forge:observPagesTest
+ObservPagesTest: 4 checks passed
+
+> Task :versions:1.20.1-forge:pluginConfigTest
+PluginConfigTest: save/reload/revoke/invalid grant passed
+
+> Task :versions:1.20.1-forge:pluginStandaloneTest
+PluginValidationTest passed 16
+PluginStepTest passed
+PluginReloadTest passed
+symlink fixture unavailable: java.nio.file.FileSystemException: D:\Users\xujiy\AppData\Local\hermes\cache\scratch\plugin-tests-z2w34eha\plugins-10361648272063427119\test\plugin.json: ?????]???@?????????
+PluginManagerTest passed 25
+Standalone plugin contracts: PASS (temporary stubs only)
+
+> Task :versions:1.20.1-forge:serverConfigurationTest
+ServerConfigurationTest: defaults/migration/preservation/range validation PASS
+
+> Task :versions:1.20.1-forge:serverLifecycleTest
+ServerLifecycleTest: fallback/all-occupied/manual-retry/settings-rollback/session-generation/nonblocking-stop PASS
+
+> Task :versions:1.20.1-forge:serverSettingsInputTest
+ServerSettingsInputTest: valid/default/boundary and invalid typed ranges passed
+
+> Task :versions:1.20.1-forge:test UP-TO-DATE
+
+> Task :versions:1.20.1-forge:uiSafetyTest
+UiSafetyTest: 31 checks passed
+
+> Task :versions:1.20.1-forge:uiSettingsTest
+UiSettingsTest: current instance mutated and saved; old instance untouched
+
+> Task :versions:1.20.1-forge:check
+> Task :versions:1.20.1-forge:build
+
+BUILD SUCCESSFUL in 17s
+35 actionable tasks: 21 executed, 14 up-to-date

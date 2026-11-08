@@ -4,7 +4,7 @@
 
 `core` 使用Java17/Gson，包含Policy、Jobs、Schema、扫描边界、容器预检、插件声明校验与verify任务。`plugin-api` 仅暴露JSON DTO、McpmcpPlugin与PluginContext，不引用Minecraft/Forge类型。
 
-`versions/1.20.1-forge` 实现早期生命周期、客户端线程调度、观测、UI、原版协议、容器、Baritone及Forge插件消息目录。`bridge` 是标准库stdio JSON-RPC到本地HTTP的转换，HTTP只绑定127.0.0.1并检查token、Host、Origin、请求大小及并发。
+`versions/1.20.1-forge` 实现早期生命周期、客户端线程调度、观测、UI、原版协议、容器、Baritone及Forge插件消息目录。Forge版本层内置MCP Streamable HTTP服务，`core` 内嵌协议处理器与工具catalog；自动启动依次绑定本机配置的端口范围并发布不含凭据的运行时发现文件。仅绑定127.0.0.1并校验token、Host、Origin、请求大小及有界并发。`bridge` 保留为可选标准库stdio兼容transport，通过发现文件读取本次会话实际端口后转发到旧 `/call` 接口。
 
 ## 执行
 

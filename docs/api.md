@@ -1,6 +1,6 @@
 # 调用合同（1.20.1-forge）
 
-MCP外层工具19项（新增只读get_context），动态动作通过describe_action/list_capabilities发现。桥接使用stdio每行一个JSON-RPC消息；localhost HTTP的POST `/call` 是内部鉴权端点，不暴露公网。
+MCP外层工具19项（新增只读get_context），动态动作通过describe_action/list_capabilities发现。模组内置Streamable HTTP endpoint为 `/mcp`，仅绑定127.0.0.1并要求Bearer token；配置的端口范围默认为5210–5220，运行时实际端口见 `config/mcpmcp-runtime.json`。HTTP POST必须包含Accept `application/json, text/event-stream`；支持initialize/ping/notifications/initialized/tools/list/tools/call，不支持SSE/session/listChanged。旧Python stdio桥接仍可选使用；POST `/call` 是其兼容内部接口，不应配置为MCP HTTP transport。
 
 ## 原生聊天输入与运行上下文
 
@@ -73,3 +73,11 @@ ui.key使用GLFW数字键码、tap/press/release；ui.mouse使用GUI逻辑坐标
 move.to接收x/y/z/timeout_ms，持续running，到达才成功，取消/超时停止自己的Baritone。PACKET模式拒绝Baritone和UI；原始packet固定packet，不在SIMULATE偷发。观测截图不需要模拟输入，PACKET仍可读取。
 
 配置模式的CHEAT只允许客户端发送显式指令，不赋予服务器OP；HACK只允许额外协议行为，不保证服务器接受。插件permission不能降低核心封包最低权限。
+
+
+## 内置MCP HTTP
+
+Forge客户端模组默认随游戏启动在本机回环地址提供Streamable HTTP MCP，单一endpoint `/mcp` 同时用于POST和返回405的GET探测。使用配置文件token的Bearer认证；运行时实际端口写入同目录 `mcpmcp-runtime.json`（不包含token）。MCP工具目录从core内置资源读取，和旧stdio桥接保持一致。HTTP `/call` 是仅供旧桥接兼容的内部接口，不应配置为MCP transport。当前仅支持无状态JSON请求/响应与19项工具，不支持SSE/session/listChanged。
+
+
+发现文件只作候选地址，兼容bridge发送Bearer前通过 `/identity?challenge=<64位随机hex>` 验证HMAC-SHA256签名与PID/instance/port。该只读接口不接收凭据、不操作游戏；证明通过后必须沿用同一TCP连接发送 `/call`，禁止redirect或带凭据重连。旧模组没有发现文件时保留旧直连兼容，不能宣称旧版具备此校验。

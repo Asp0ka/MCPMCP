@@ -1,0 +1,59 @@
+{
+  "jar_sha256": "b56ca83c8cbafebbbae361f6f3877b974a6d87988cb893d9f9bf64bccd0f5a6f",
+  "checks": {
+    "java_build_and_reobf": true,
+    "standard_sdk_initialize_tools_and_status": true,
+    "tool_count": 19,
+    "dispatch_thread": "Render thread",
+    "default_5210_startup": true,
+    "occupied_5210_fallback_to_5211": true,
+    "all_5210_through_5220_occupied_keeps_stopped": true,
+    "no_automatic_retry_after_ports_become_free": true,
+    "manual_start_after_release_succeeds": true,
+    "manual_stop_closes_listener": true,
+    "manual_stop_survives_config_reload": true,
+    "manual_start_stop_keep_config_bytes_identical": true,
+    "invalid_port_ui_input_rejected_without_save": true,
+    "saved_auto_false_keeps_current_service_running": true,
+    "saved_port_5212_does_not_rebind_current_service": true,
+    "next_game_stays_stopped_with_auto_false": true,
+    "manual_start_next_game_uses_saved_5212": true,
+    "manual_start_does_not_change_persisted_auto_false": true,
+    "legacy_bridge_discovers_actual_port": true,
+    "runtime_file_contains_no_token": true,
+    "unauthenticated_http_returns_401": true,
+    "authenticated_notification_empty_202": true,
+    "version": "2025-11-25",
+    "scope": "1.20.1 Forge 47.4.28 dedicated acceptance client; main menu server/config lifecycle only",
+    "signed_bridge_real_game_success": true,
+    "standard_sdk_final_jar_success": true,
+    "resize_preserves_unsaved_auto": true,
+    "resize_retains_configuration_bytes": true,
+    "bridge_stale_pid_instance_rejected_before_bearer": true,
+    "bridge_fake_listener_bad_hmac_rejected_before_bearer": true,
+    "bridge_redirect_close_rejected_before_bearer": true
+  },
+  "not_tested": [
+    "remote/public HTTP deployment (not supported)",
+    "full gameplay/adapters regression on new core",
+    "other Minecraft/Forge versions",
+    "in-world held input server-stop test"
+  ],
+  "test_client_restored": true,
+  "restoration": {
+    "configuration_bytes_equal_pretest_backup": true,
+    "game_process_exited": true,
+    "runtime_running": false,
+    "runtime_port": 0,
+    "current_test_jar_sha256": "b56ca83c8cbafebbbae361f6f3877b974a6d87988cb893d9f9bf64bccd0f5a6f"
+  },
+  "prior_functional_jar_sha256": "c591cc179eca50fa54ec0c231f7627a8d4f3b8fbc0e23624230001ef8f277e34",
+  "review": {
+    "important": 1,
+    "suggestions": 1,
+    "important_fixed": "HMAC-SHA256 nonce proof bound to pid, instance, port on same TCP connection before sending bearer; no redirect/reconnect",
+    "suggestion_fixed": "resize retains existing field values and auto-start draft",
+    "python_tests": 46,
+    "mcp_http_assertions": 55
+  }
+}

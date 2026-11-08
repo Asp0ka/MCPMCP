@@ -23,9 +23,11 @@ metadata:
 
 ## 前提
 
-- 游戏已安装对应版本 MCPMCP JAR；配置路径指向当前实例 `config/mcpmcp.json`。
-- 已连接 `mcpmcp` MCP 服务。通过 `tool_search` 查工具，使用返回的精确名称；不要调用旧 `minecraft_info` 来操作另一个实例。
+- 游戏已安装对应版本 MCPMCP JAR；配置路径指向当前实例 `config/mcpmcp.json`。模组默认启动内置 Streamable HTTP MCP，连接 `config/mcpmcp-runtime.json` 的 `/mcp` 实际端点；配置token作Bearer认证。服务仅回环监听。端口与自动启动默认值是5210–5220和开启。
+- 手动启停是本次游戏状态；自动启动开关和端口范围写入配置。设置已保存而服务手动停止时，不会因配置重载重新启动。
+- 直接HTTP客户端不需要Python。旧stdio bridge仍兼容，需Python 3.10+，通过同一配置读取运行时端口。先检查对应实例；不要调用旧 `minecraft_info` 来操作另一个实例。
 - 凭据留在配置中，不复制 token 到聊天、日志、命令行或插件文档。
+- 发现文件和PID存在不能证明监听端身份。新版兼容bridge先通过随机challenge校验HMAC签名与PID/instance/port，再在同一TCP连接发送Bearer；会话不符、redirect或连接关闭时拒绝，不带凭据重连。该机制只验证共享token持有者，不隔离同账户已能读token的代码。
 - 远程工具只允许修改 `MCPMCP-Plugin` 内声明/文本文档。修改其他客户端文件需要用户明确授权；不要用通关、合成或“兼容模组”推定获得修改配方、配置或存档文件的授权。这个限制属于本MCP的能力边界，不能声称它限制了另有权限的终端/文件工具或同JVM的可信Java代码。
 - 用户已明确授权专用客户端自主开发和验收时，在该实例内持续完成必要操作，不重复索要同一授权。启动/停止前核对实例真实路径和进程参数；保留其他客户端、账号和存档，测试授权不外溢到它们。
 

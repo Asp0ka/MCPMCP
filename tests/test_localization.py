@@ -10,7 +10,7 @@ class LocalizationTest(unittest.TestCase):
   self.assertEqual(set(en),set(zh))
   self.assertTrue(all(isinstance(v,str) and v.strip() for v in en.values()))
   self.assertTrue(all(isinstance(v,str) and v.strip() for v in zh.values()))
-  for filename in ('SettingsScreen.java','PluginListScreen.java','PluginForceScreen.java'):
+  for filename in ('SettingsScreen.java','ServerSettingsScreen.java','PluginListScreen.java','PluginForceScreen.java'):
    source=(BASE/'java/dev/mcpmcp/forge'/filename).read_text(encoding='utf-8')
    for key in re.findall(r'"(mcpmcp\.[a-z_.]+)"',source):
     if not key.endswith('.'):

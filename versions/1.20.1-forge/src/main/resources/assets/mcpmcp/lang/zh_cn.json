@@ -45,5 +45,21 @@
   "mcpmcp.plugins.reload_failed": "刷新失败，保留原有插件状态。请检查插件声明。",
   "mcpmcp.plugins.reloaded": "插件列表已刷新。",
   "mcpmcp.plugins.override_failed": "设置失败或插件已更改，请刷新后重试。",
-  "mcpmcp.plugins.override_saved": "兼容性选择已保存，Java 适配器可能需要重启。"
+  "mcpmcp.plugins.override_saved": "兼容性选择已保存，Java 适配器可能需要重启。",
+  "mcpmcp.server.title": "MCP 服务器",
+  "mcpmcp.server.first": "起始端口",
+  "mcpmcp.server.last": "结束端口",
+  "mcpmcp.server.auto": "随游戏自动启动：%s",
+  "mcpmcp.server.save": "保存启动设置",
+  "mcpmcp.server.start": "启动服务器（仅本次）",
+  "mcpmcp.server.stop": "停止服务器（仅本次）",
+  "mcpmcp.server.running": "运行中：127.0.0.1:%s",
+  "mcpmcp.server.stopped": "服务器已停止",
+  "mcpmcp.server.session_note": "手动启动／停止不修改已保存的设置。",
+  "mcpmcp.server.saved": "已保存，端口变更在下次启动服务器时生效。",
+  "mcpmcp.server.save_failed": "保存失败，原设置保留。",
+  "mcpmcp.server.invalid_ports": "端口为 1024–65535，起始≤结束，最多 11 个。",
+  "mcpmcp.server.session_failed": "启停失败，请查看下方状态。",
+  "mcpmcp.server.session_changed": "本次游戏的服务器状态已更新。",
+  "mcpmcp.server.failure": "服务器：%s"
 }

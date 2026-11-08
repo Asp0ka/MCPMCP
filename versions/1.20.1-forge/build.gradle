@@ -14,3 +14,8 @@ tasks.register('pluginStandaloneTest', Exec) { workingDir rootProject.projectDir
 check.dependsOn pluginStandaloneTest
 tasks.register('printCompileClasspath') { doLast { println sourceSets.main.compileClasspath.asPath } }
 
+
+['serverSettingsInputTest':'ServerSettingsInputTest','serverLifecycleTest':'ServerLifecycleTest','serverConfigurationTest':'ServerConfigurationTest','mcpHttpTest':'McpHttpTest'].each { taskName,className ->
+ tasks.register(taskName, JavaExec) { dependsOn testClasses; classpath=sourceSets.test.runtimeClasspath; mainClass="dev.mcpmcp.forge.${className}" }
+ check.dependsOn taskName
+}

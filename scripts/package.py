@@ -40,15 +40,15 @@ def main():
     jar = JAR.read_bytes()
     manifest = {'name': 'MCP Minecraft Plus', 'version': VERSION, 'minecraft': '1.20.1',
                 'forge': '47.4.21', 'git_commit': commit, 'jar_sha256': digest(jar),
-                'sources_sha256': digest(source), 'requires': ['Java 17', 'Forge 47.4.21+', 'Python 3.10+ for MCP'],
-                'optional': ['compatible Baritone for movement', 'exact-version optional adapters'], 'jei_required': False,
+                'sources_sha256': digest(source), 'requires': ['Java 17', 'Forge 47.4.21+'],
+                'optional': ['Python 3.10+ for legacy stdio bridge only', 'compatible Baritone for movement', 'exact-version optional adapters'], 'jei_required': False,
                 'plugin_packages': plugin_packages['bundles']}
     install = '''# MCPMCP 0.1.2 / Minecraft 1.20.1 Forge
 
 1. Copy mods/mcpmcp-1.20.1-forge-0.1.2.jar into the intended instance mods folder.
 2. Start that instance normally with Java 17 and compatible Forge. Baritone is optional for movement; JEI/REI are not required.
-3. Configure an MCP stdio server: python <absolute>/bridge/mcp_server.py --config <instance>/config/mcpmcp.json
-4. Load skills/mcpmcp/SKILL.md; read get_status/list_capabilities/describe_action before actions.
+3. Connect an MCP Streamable HTTP client to the running instance endpoint http://127.0.0.1:<actual-port>/mcp with the local config token as Bearer authentication. Default ports: 5210 through 5220. See config/mcpmcp-runtime.json for the selected endpoint. Python is not required for direct HTTP; the optional legacy stdio bridge remains: python <absolute>/bridge/mcp_server.py --config <instance>/config/mcpmcp.json
+4. Configure saved startup preferences in Mods > MCP Minecraft Plus > Config > MCP Server. Manual start/stop affects this game session only and never writes config. Load skills/mcpmcp/SKILL.md; read get_status/list_capabilities/describe_action before actions.
 5. Optional adapters: exit the game first, select exact target versions/full hashes from the included plugin packages. The 14-plugin package targets the tested instance; the JEI-variants package contains two mutually exclusive alternatives, never install both. Read their INSTALL.md and docs/plugin-acceptance-progress.md.
 6. Read docs/acceptance.md for verified scope and limits. Never copy the generated local token into chat or launch arguments.
 
@@ -72,7 +72,7 @@ sources.zip contains the exact committed source snapshot. The full Git repositor
             for name in tracked.namelist():
                 if not name.endswith('/') and name.startswith(('bridge/', 'docs/', 'skills/', 'examples/')):
                     bundle.writestr(name, tracked.read(name))
-        build_log = ROOT / 'docs/evidence/native-chat-0.1.2/build-output.txt'
+        build_log = ROOT / 'docs/evidence/builtin-mcp-0.1.2/gradle-build.txt'
         if build_log.is_file():
             bundle.write(build_log, 'docs/evidence/build.log')
     with zipfile.ZipFile(out) as bundle:

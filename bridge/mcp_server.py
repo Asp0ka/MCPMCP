@@ -1,5 +1,5 @@
 """MCPMCP stdio bridge. All game effects go through the authenticated local mod."""
-import argparse,json,math,os,re,sys,uuid,urllib.request,urllib.error
+import argparse,json,math,os,re,sys,uuid,urllib.request,urllib.error,http.client,hmac,hashlib,secrets
 from pathlib import Path
 from typing import Any
 MAX_MESSAGE=1024*1024
@@ -9,16 +9,49 @@ class Bridge:
  def __call__(self,method,args):
   try:
    if self.path.stat().st_size>65536:raise BridgeError('config_too_large')
-   c=json.loads(self.path.read_text(encoding='utf-8-sig'));port=c.get('port',5007);token=c.get('token','')
+   c=json.loads(self.path.read_text(encoding='utf-8-sig'));port=c.get('port',5210);token=c.get('token','')
+   state=None
+   runtime=self.path.with_name('mcpmcp-runtime.json')
+   if runtime.exists():
+    if runtime.stat().st_size>8192:raise BridgeError('invalid_runtime')
+    state=json.loads(runtime.read_text(encoding='utf-8-sig'))
+    if not isinstance(state,dict)or type(state.get('running'))is not bool or not isinstance(state.get('game_directory'),str)or Path(state['game_directory']).resolve()!=self.path.resolve().parent.parent:raise BridgeError('invalid_runtime')
+    if not state['running']:raise BridgeError('server_not_running')
+    port=state.get('port')
+    if type(port)is not int or not 1024<=port<=65535:raise BridgeError('invalid_runtime')
    if type(port)is not int or not 1024<=port<=65535 or not isinstance(token,str)or not 32<=len(token)<=256:raise BridgeError('invalid_local_config')
-   req=urllib.request.Request(f'http://127.0.0.1:{port}/call',data=json.dumps({'method':method,'args':args},ensure_ascii=False,allow_nan=False).encode('utf-8'),headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'})
-   with self.opener.open(req,timeout=20)as response:raw=response.read(12*1024*1024+1)
+   payload=json.dumps({'method':method,'args':args},ensure_ascii=False,allow_nan=False).encode('utf-8')
+   if state is not None:
+    pid,instance=state.get('pid'),state.get('instance')
+    if type(pid)is not int or pid<=0 or not isinstance(instance,str) or str(uuid.UUID(instance))!=instance:raise BridgeError('runtime_identity_invalid')
+    # Authenticate the listener without disclosing the bearer, then use only this
+    # exact TCP connection. No redirects, retries, or reconnect with credentials.
+    nonce=secrets.token_hex(32)
+    connection=http.client.HTTPConnection('127.0.0.1',port,timeout=20)
+    try:
+     connection.connect()
+     connection.request('GET','/identity?challenge='+nonce,headers={'Accept':'application/json'})
+     response=connection.getresponse();identity_raw=response.read(8193)
+     if response.status!=200 or response.will_close or len(identity_raw)>8192 or connection.sock is None:raise BridgeError('runtime_identity_unverified')
+     identity=json.loads(identity_raw)
+     if not isinstance(identity,dict) or type(identity.get('pid'))is not int or type(identity.get('port'))is not int or identity.get('pid')!=pid or identity.get('port')!=port or identity.get('instance')!=instance or identity.get('challenge')!=nonce:raise BridgeError('runtime_identity_mismatch')
+     proof=identity.get('proof')
+     message='mcpmcp-identity-v1\n'+instance+'\n'+str(pid)+'\n'+str(port)+'\n'+nonce
+     expected=hmac.new(token.encode('utf-8'),message.encode('utf-8'),hashlib.sha256).hexdigest()
+     if not isinstance(proof,str) or not hmac.compare_digest(proof,expected):raise BridgeError('runtime_identity_unverified')
+     connection.request('POST','/call',body=payload,headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'})
+     response=connection.getresponse();raw=response.read(12*1024*1024+1)
+     if response.status!=200:raise BridgeError('bridge_http_error')
+    finally:connection.close()
+   else:
+    req=urllib.request.Request(f'http://127.0.0.1:{port}/call',data=payload,headers={'Authorization':'Bearer '+token,'Content-Type':'application/json'})
+    with self.opener.open(req,timeout=20)as response:raw=response.read(12*1024*1024+1)
    if len(raw)>12*1024*1024:raise BridgeError('response_too_large')
    result=json.loads(raw)
    if not isinstance(result,dict):raise BridgeError('invalid_bridge_response')
    return result
   except BridgeError:raise
-  except (OSError,ValueError,TypeError)as e:raise BridgeError('bridge_unavailable_or_invalid_response')from e
+  except (OSError,ValueError,TypeError,http.client.HTTPException)as e:raise BridgeError('bridge_unavailable_or_invalid_response')from e
 
 def string(maximum=128):return {'type':'string','minLength':1,'maxLength':maximum}
 def declaration(name,description,properties=None,required=None,write=False):return {'name':name,'description':description,'inputSchema':{'type':'object','properties':properties or {},'required':required or [],'additionalProperties':False},'annotations':{'readOnlyHint':not write,'destructiveHint':write,'openWorldHint':False}}

@@ -7,17 +7,13 @@ Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.
 ## 使用
 
 1. 向对应实例 `mods` 安装 `versions/1.20.1-forge/build/libs/mcpmcp-1.20.1-forge-0.1.2.jar`。按该游戏版本安装Forge；需要寻路时安装相容Baritone。无需JEI/REI。
-2. 正常启动游戏。主菜单即启动本地MCPMCP服务；首次生成 `config/mcpmcp.json`，默认 `NORMAL + MIXED`、DEBUG关闭、Java插件不信任。
-3. 用Python 3.10+运行：
+2. 正常启动游戏。主菜单阶段默认在 `127.0.0.1:5210/mcp` 启动内置 Streamable HTTP MCP 服务；端口被占用时按设置的结束端口递增尝试，全部失败则不启动并显示状态。首次生成 `config/mcpmcp.json`，默认范围5210–5220、自动启动开启、`NORMAL + MIXED`、DEBUG关闭、Java插件不信任。
+3. 在Forge模组设置中可保存自动启动和端口范围；单次手动启动/停止不写配置。端口范围设置保存后，下次启动MCP服务时生效。HTTP仅绑定回环地址并要求配置token认证。
+4. 直接将AI客户端连接到本次游戏状态中显示的 `http://127.0.0.1:<实际端口>/mcp`，启用 Streamable HTTP MCP传输，并使用该实例 `config/mcpmcp.json` 的token作为Bearer认证；也可配置运行时发现文件 `config/mcpmcp-runtime.json` 自动获取本次实际端口。不要将token复制到命令行或聊天。
+5. `bridge/mcp_server.py` stdio桥接仍保留兼容旧MCP客户端，可选使用；需Python 3.10+，配置 `python bridge/mcp_server.py --config "<实例目录>/config/mcpmcp.json"`，它自动读取本次游戏实际绑定端口。
+6. 将 `skills/mcpmcp/SKILL.md` 安装到AI客户端的技能目录。先调用 `get_status`、`list_capabilities` 和 `describe_action`，随后执行并读回。
 
-   ```text
-   python bridge/mcp_server.py --config "<实例目录>/config/mcpmcp.json"
-   ```
-
-   这是stdio MCP进程，不是交互式命令行。MCP客户端将此命令配置为服务，工作路径可任意；脚本和配置建议使用绝对路径。凭据由桥接直接读取，不能复制token到参数或聊天。
-4. 将 `skills/mcpmcp/SKILL.md` 安装到AI客户端的技能目录。先调用 `get_status`、`list_capabilities` 和 `describe_action`，随后执行并读回。
-
-本机已配置的Hermes服务名为 `mcpmcp`，指向专用测试实例。旧 `minecraft_info` 仍保留并指向旧实例，不能混用。专用实例是 `D:/Games/mc/Cheat/versions/1.20.1-Forge_47.4.28-test`；`Install.ps1` 的目录名保护只允许该测试实例。
+使用前核对AI客户端实际连接的实例：读取状态和路径，不能把服务名当作实例身份。旧 `minecraft_info` 不与本工程混用。专用验收实例是 `D:/Games/mc/Cheat/versions/1.20.1-Forge_47.4.28-test`；`Install.ps1` 的目录名保护只允许该测试实例。
 
 ## 能力
 
@@ -29,7 +25,7 @@ Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.
 - 19个MCP工具与动态动作目录；声明插件热重载，可选可信Java适配器冷加载，recipes等观测Provider扩展。
 - 已知PLAY封包目录/描述、现有连接上的有界元信息捕获，以及受权限约束的构造器/已核对wire发送。
 
-完整可调用参数以运行中的 `describe_action` 为准。`submitted` 不代表服务器接受；容器步骤等待同步、任务状态与独立读回共同构成验收。实测范围与限制见 [docs/acceptance.md](docs/acceptance.md)。
+MCP Streamable HTTP支持initialize、ping、notifications/initialized、tools/list和tools/call，当前固定工具目录共19项；不提供SSE流、会话ID或listChanged。旧stdio桥接仍保留。完整可调用参数以运行中的 `describe_action` 为准。`submitted` 不代表服务器接受；容器步骤等待同步、任务状态与独立读回共同构成验收。实测范围与限制见 [docs/acceptance.md](docs/acceptance.md)。
 
 ## 原生聊天输入与运行上下文
 
@@ -67,7 +63,7 @@ Forge模组列表 → MCP Minecraft Plus → 配置 → 插件列表，可滚动
 | `transport` | `PACKET`, `SIMULATE`, `MIXED` |
 | `debug` | 本机客户端聊天调试，限速，不输出完整载荷 |
 | `trustJavaPlugins` | 默认false；本地明确开启后重启，加载已审查Java插件 |
-| `port` | 默认5007；修改需要重启 |
+|| `port`, `portEnd`, `serverEnabled` | 默认5210、5220、true；自动启动和范围持久保存，手动启停仅本次会话 |
 | `scanBudget` | 有界观测预算，实际约束64..8192 |
 | `token` | 自动生成，仅本地配置保留 |
 
@@ -103,13 +99,14 @@ python scripts/live_acceptance.py --scenario all_regressions
 
 ## 打包
 
-构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.2-1.20.1-forge.zip`，包含JAR、stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
+构建与提交后执行 `python scripts/package.py`，生成 `dist/MCPMCP-0.1.2-1.20.1-forge.zip`，包含内置MCP JAR、可选旧stdio桥接、技能、文档、插件示例及对应提交的sources.zip；校验包完整性和SHA256，不带游戏配置、凭据或存档。
 
 ## 开发
 
 - [版本实现与迁移](docs/architecture.md)
 - [插件格式与Java Provider](docs/plugins.md)
 - [MCP调用与观测合同](docs/api.md)
+- [内置MCP HTTP、服务器设置与实测](docs/builtin-mcp-0.1.2.md)
 - [验收结果与限制](docs/acceptance.md)
 - [AI操作技能](skills/mcpmcp/SKILL.md)
 

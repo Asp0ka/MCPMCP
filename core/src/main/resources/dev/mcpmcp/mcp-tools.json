@@ -1,0 +1,425 @@
+{
+  "tools": [
+    {
+      "name": "get_context",
+      "description": "只读查询当前MCPMCP模式、执行方式、服务器作弊开关和玩家命令权限；远程未同步字段明确unknown，单人异步快照pending时重复查询。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_status",
+      "description": "读取主菜单/世界连接、模式、插件和任务状态。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "list_capabilities",
+      "description": "列出可调用动作与查询能力。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "describe_action",
+      "description": "读取动作参数、执行方式、前置条件和验证说明。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "execute_action",
+      "description": "执行一项明确指定的动作，返回 action_id；必须查询任务并读回验证。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "action_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96,
+            "pattern": "^[A-Za-z0-9_.-]{1,96}$"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_job",
+      "description": "读取动作进度、已交送或观察成功状态。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96
+          }
+        },
+        "required": [
+          "action_id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "cancel_job",
+      "description": "取消任务并清理自己拥有的输入或容器。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96
+          }
+        },
+        "required": [
+          "action_id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "observe",
+      "description": "优先结构化观测：player/state/inventory/equipment/container/recipes/blocks/entities/screen；blocks支持min/max或radius、block精确ID过滤、detail、include_air、limit、offset，limit是扫描候选预算而非命中条数，空页仍按next_offset续查；entities/screen按next_cursor续查。先局部粗查，再目标细查、分页和错误诊断。截图识图仅作最后手段：结构化路径无法解答具体视觉问题才用screenshot，按需最小区域；不得例行识别地形/HUD/背包或为一次动作失败直接截图。客户端缺失信息保留unknown。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "arguments": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_player_state",
+      "description": "读取生命、经验、饥饿、装备与玩家状态。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_inventory",
+      "description": "读取背包清单。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "enum": [
+              "coarse",
+              "detailed"
+            ]
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_screen",
+      "description": "优先读取当前屏幕控件ID、标签、bounds、焦点和菜单；本工具无cursor参数，返回next_cursor时用observe(kind=screen, arguments={cursor:next_cursor})续查，切屏重新读取。控件路径不能回答的视觉问题才考虑截图。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_recipes",
+      "description": "通过原生或插件提供者查询配方。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "cursor": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_chat_messages",
+      "description": "读取本客户端已接收的有界聊天记录。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "after": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_mods",
+      "description": "返回加载模组、版本与兼容状态。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_paths",
+      "description": "返回当前实例目录；远程存档目录不会猜测。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_plugins",
+      "description": "读取插件、内容revision、热/冷加载状态。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "reload_plugins",
+      "description": "原子重载声明式插件，失败保留上一版本。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "read_plugin_file",
+      "description": "只读取 MCPMCP-Plugin 内声明和文档，不读取其他客户端文件。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "write_plugin_file",
+      "description": "只写 MCPMCP-Plugin 内文本文件；不能安装或覆盖二进制代码。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 262144,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "path",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "aliases": {
+    "get_context": "context",
+    "get_player_state": "player",
+    "get_inventory": "inventory",
+    "get_screen": "screen",
+    "get_recipes": "recipes",
+    "get_chat_messages": "chat",
+    "get_mods": "mods",
+    "get_paths": "paths"
+  },
+  "methods": {
+    "get_status": "status",
+    "list_capabilities": "capabilities",
+    "describe_action": "describe",
+    "execute_action": "execute",
+    "get_job": "job",
+    "cancel_job": "cancel",
+    "get_plugins": "plugins",
+    "reload_plugins": "plugins.reload",
+    "read_plugin_file": "plugins.read",
+    "write_plugin_file": "plugins.write"
+  },
+  "instructions": "先get_context查询模式/执行方式/服务器作弊与玩家权限；chat.submit接收AI编写的完整文本，不补前缀、不分类普通消息和模组命令，经原生聊天提交链路，客户端/服务器决定接管或拒绝；仅交送不代表命令完成，后台任务用该模组自身停止命令。先读能力与状态，优先结构化观测player/state/inventory/container/blocks/entities/screen；先小范围粗查、再目标细查，按next_offset/next_cursor续查。dig_target_occluded先读玩家与目标邻域、检查距离遮挡并调整安全站位；分页未完、unknown、一次失败均不直接转截图。截图识图仅作最后手段：写明未解视觉问题和已尝试路径，仅最小必要区域识别一次，不做例行截图；用户明确要求检查画面或留证时按需处理。submitted不代表成功，以实时结构化读回验证。禁止未经用户同意修改其他模组、配方、脚本或客户端文件；本工具只允许自身插件文本目录。"
+}

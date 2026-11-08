@@ -1,0 +1,21 @@
+{
+  "instance": "D:\\Games\\mc\\Cheat\\versions\\神秘启旅",
+  "jar_sha256": "b56ca83c8cbafebbbae361f6f3877b974a6d87988cb893d9f9bf64bccd0f5a6f",
+  "server_preferences": {
+    "port": 5210,
+    "portEnd": 5220,
+    "serverEnabled": true
+  },
+  "other_config_unchanged": true,
+  "verified": true,
+  "runtime_validation": "passed_main_menu_standard_sdk_and_signed_bridge",
+  "backup_created": true,
+  "original_modpack_runtime_test": "main_menu_only_no_world_entered",
+  "protocol_version": "2025-11-25",
+  "tool_count": 19,
+  "active_loaded_plugins": 14,
+  "client_thread": "Render thread",
+  "actual_port": 5210,
+  "validation_process_exited": true,
+  "runtime_stopped_after_validation": true
+}
