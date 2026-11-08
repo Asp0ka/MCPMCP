@@ -1,5 +1,7 @@
 # MCP Minecraft Plus（MCPMCP）
 
+[贡献与验证](CONTRIBUTING.md) · [仓库自动管理](docs/repository-management.md) · [安全报告](SECURITY.md)
+
 Minecraft 客户端自动化平台。首版目标 **Minecraft 1.20.1 / Forge 47.4.21+ / Java 17**，版本 `0.1.2`。核心不依赖 JEI/REI，原版合成使用配方书和容器协议；Baritone 通过可选运行时接口提供寻路。
 
 这是独立重写工程。协议、权限与任务位于 `core`，插件API位于 `plugin-api`，Minecraft类型与Forge实现位于 `versions/1.20.1-forge`，Python桥接位于 `bridge`。后续版本/加载器仍需实现各自适配层，当前JAR不能直接跨版本或直接用于Fabric/NeoForge。

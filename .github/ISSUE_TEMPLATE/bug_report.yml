@@ -1,0 +1,22 @@
+name: 缺陷报告
+description: 提交可复现的问题，不附带凭据或存档
+labels: [bug]
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: MCPMCP、Minecraft、Forge、Java 版本及相关插件版本。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤、预期与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 脱敏日志与验证范围
+      description: 不要粘贴 token、账号、完整配置或存档。
